@@ -51,4 +51,6 @@
 	<string name="save_and_rest">Save and rest</string>
 	<string name="exit_workout">Exit workout?</string>
 	<string name="do_not_turnoff_display">Do not turn off the screen during a workout?</string>
+	<string name="resting">Resting</string>
+	<string name="resting_for">Resting for </string>
 </resources>

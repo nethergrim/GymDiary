@@ -4,6 +4,7 @@ import android.annotation.SuppressLint;
 import android.app.ActionBar;
 import android.app.Activity;
 import android.app.DialogFragment;
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.database.Cursor;
@@ -23,9 +24,7 @@ import android.widget.Button;
 import android.widget.CompoundButton;
 import android.widget.CompoundButton.OnCheckedChangeListener;
 import android.widget.EditText;
-import android.widget.LinearLayout;
 import android.widget.ListView;
-import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 import android.widget.ToggleButton;
@@ -45,19 +44,13 @@ public class TrainingAtProgress extends Activity  implements OnClickListener, On
 	ArrayAdapter<String> adapter;
 	String[] trNamesData = {};
 	int[] setsPerExercises = null;
-	String traName = "", exeName = "";
-	String date = "";
-	int set = 0;
+	String traName = "", exeName = "",date = "";
 	SharedPreferences sp;
-	int checkedPosition = 0;
+	int checkedPosition = 0,set = 0,oldReps = 0,oldWeight = 0,timerValue = 0;
 	DialogFragment dlg1;
-	int oldReps = 0;
-	int oldWeight = 0;
 	TextView tvPrevWeight,tvPrevReps,tvPrevLeft1,tvPrevLeft2;
-	ProgressBar myProgressBar;
-	int myProgress = 0;
-	int timerValue=0;
-	
+	ProgressDialog pd;
+	Handler h;
 	
 	
 	@SuppressLint("SimpleDateFormat")
@@ -70,8 +63,7 @@ public class TrainingAtProgress extends Activity  implements OnClickListener, On
         ActionBar bar = getActionBar();
         Intent intent = getIntent();
         traName = intent.getStringExtra("trainingName");
-        bar.setTitle(traName);     
-        myProgressBar = (ProgressBar) findViewById(R.id.progressBar1);        
+        bar.setTitle(traName);   
         String[] strArrExtra = {traName};
         String[] strArrCol = {DB.COLUMN_ID,DB.EXE_NAME};            
         tvPrevWeight = (TextView)findViewById(R.id.tvPrevWeight);
@@ -121,8 +113,6 @@ public class TrainingAtProgress extends Activity  implements OnClickListener, On
         		String tValue = db.getTimerValueByExerciseName(exeName);
         		etTimer.setText(tValue);      		
         		timerValue = Integer.parseInt(db.getTimerValueByExerciseName(exeName));
-                myProgressBar.setMax(timerValue);
-                myProgressBar.setProgress(0);
                 Log.d(LOG_TAG, "Progressbar MAX set to: "+timerValue);
         		oldReps = db.getLastReps(exeName, set);
         		oldWeight = db.getLastWeight(exeName, set);
@@ -163,18 +153,38 @@ public class TrainingAtProgress extends Activity  implements OnClickListener, On
 			}
         dlg1 = new Dialog1();
         dlg1.setCancelable(false);
-        etTimer.setText( db.getTimerValueByExerciseName(trNamesData[0]) );
-        
-        
-        int timerValue = Integer.parseInt(db.getTimerValueByExerciseName(exeName));
-        myProgressBar.setMax(timerValue);
+        etTimer.setText( db.getTimerValueByExerciseName(trNamesData[0]) );        
+        timerValue = Integer.parseInt(db.getTimerValueByExerciseName(exeName));
         }
   
 	protected void onResume() {
 	    turnOff = sp.getBoolean("turnoff", false);
+	    Log.d(LOG_TAG, "turnOFF = "+turnOff);
 	    exeName = trNamesData[lvMain.getCheckedItemPosition()];
 	    super.onResume();
 	  }
+	
+	private void goDialogProgress () {
+      pd = new ProgressDialog(this);
+      pd.setTitle(R.string.resting);
+      pd.setProgressStyle(ProgressDialog.STYLE_HORIZONTAL);
+      pd.setMax(timerValue);
+      pd.setIndeterminate(true);
+      pd.show();
+      h = new Handler() {
+        public void handleMessage(Message msg) {
+          pd.setIndeterminate(false);
+          if (pd.getProgress() < pd.getMax()) {
+            pd.incrementProgressBy(1);
+            h.sendEmptyMessageDelayed(0, 1000);
+          } else {
+            pd.dismiss();
+          }
+        }
+      };
+      h.sendEmptyMessageDelayed(0, 100);	    
+	}
+	
 	
 	@Override
     public boolean onOptionsItemSelected (MenuItem item){
@@ -190,7 +200,7 @@ public class TrainingAtProgress extends Activity  implements OnClickListener, On
 		if (isChecked){
 			tglChecked = true;
 			btnSave.setText(R.string.save_and_rest);
-		}			
+		}
 		else{
 			tglChecked = false;
 			btnSave.setText(R.string.save);			
@@ -214,8 +224,9 @@ public class TrainingAtProgress extends Activity  implements OnClickListener, On
 				int wei = Integer.parseInt(weight);
 				int rep_s = Integer.parseInt(reps);
 				String t = etTimer.getText().toString();
+				timerValue = Integer.parseInt(t);
     			etWeight.setText("");
-    			etReps.setText("");
+    			etReps.setText("");    			
     			exeName = trNamesData[checkedPosition];  			
     			set = ++setsPerExercises[checkedPosition];    			
     			db.addRec_Main(traName, exeName, t, date, wei, rep_s, set);	
@@ -234,32 +245,19 @@ public class TrainingAtProgress extends Activity  implements OnClickListener, On
     				tvPrevWeight.setHint("");
     				tvPrevLeft1.setHint("");
     				tvPrevLeft2.setHint("");        			
-    				}    			
-    			new Thread(myThread).start();    			
+    				}
+    			if (tglChecked) {
+    				goDialogProgress();
+    			}
     		}
 		}
 	}	
 	
-	private Runnable myThread = new Runnable() {
-		@Override
-		public void run() {
-			while (myProgress < timerValue) {
-				try {
-					myHandle.sendMessage(myHandle.obtainMessage());
-					Thread.sleep(1000);
-				} catch (Throwable t) {
-				}
-			}
-		}
-		Handler myHandle = new Handler() {
-			@Override
-			public void handleMessage(Message msg) {
-				myProgress++;
-				myProgressBar.setProgress(myProgress);
-			}
-		};
-	};
 	
+	@Override
+	public void onBackPressed() {
+		dlg1.show(getFragmentManager(), "dlg1");
+	}
 	
 	protected void onDestroy(){
 	    super.onDestroy();
