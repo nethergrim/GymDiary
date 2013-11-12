@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+ xmlns:android="http://schemas.android.com/apk/res/android"
+ android:layout_width="wrap_content"
+ android:layout_height="match_parent"
+ android:orientation="vertical">
+<TextView
+ android:id="@+id/textView1"
+ android:layout_width="wrap_content"
+ android:layout_height="wrap_content"
+ android:layout_gravity="center"
+ android:layout_margin="20dp"
+ android:text="@string/exit_workout"
+ android:textAppearance="?android:attr/textAppearanceLarge">
+</TextView>
+
+<LinearLayout
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content" >
+
+			<Button
+			    android:id="@+id/btnYes"
+			    style="@style/HabraThemeButton"
+			    android:layout_width="match_parent"
+			    android:layout_height="wrap_content"
+			    android:layout_margin="3dp"
+			    android:layout_weight="1"
+			    android:text="@string/yes" >
+
+			</Button>
+
+			<Button
+			    android:id="@+id/btnNo"
+			    style="@style/HabraThemeButton"
+			    android:layout_width="match_parent"
+			    android:layout_height="wrap_content"
+			    android:layout_margin="3dp"
+			    android:layout_weight="1"
+			    android:text="@string/no" >
+
+			</Button>
+
+</LinearLayout>
+</LinearLayout>

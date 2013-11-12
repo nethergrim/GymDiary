@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen
+ xmlns:android="http://schemas.android.com/apk/res/android">
+			<CheckBoxPreference
+			 android:key="turnoff"
+			 android:summary="Turn off screen during training"
+			 android:title="Screen off" android:enabled="false">
+			</CheckBoxPreference>
+			
+			<EditTextPreference
+			 android:key="etDefault"
+			 android:summary=""
+			 android:title="Default timer value (sec)" android:defaultValue="60" android:enabled="true">
+			</EditTextPreference>
+</PreferenceScreen>

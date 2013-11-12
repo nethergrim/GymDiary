@@ -1,0 +1,164 @@
+<?xml version="1.0" encoding="utf-8"?>
+   <HorizontalScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+       android:id="@+id/horizontalScrollView1"
+       android:layout_width="wrap_content"
+       android:layout_height="wrap_content"
+       android:scrollbars="horizontal" >
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="horizontal" >
+
+            <TextView
+                android:id="@+id/tv1_tab"
+                android:layout_width="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceLarge"
+                android:background="?android:attr/activatedBackgroundIndicator"
+                android:layout_height="wrap_content"
+                android:gravity="center_vertical"
+                android:minHeight="?android:attr/listPreferredItemHeight"
+                android:text="" />
+
+            <TextView
+                android:id="@+id/tv2_tab"
+                android:layout_width="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceLarge"
+                android:background="?android:attr/activatedBackgroundIndicator"
+                android:layout_height="wrap_content"
+                android:gravity="center_vertical"
+                android:minHeight="?android:attr/listPreferredItemHeight"
+                android:text="" />
+
+            <TextView
+                android:id="@+id/tv3_tab"
+                android:layout_width="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceLarge"
+                android:background="?android:attr/activatedBackgroundIndicator"
+                android:layout_height="wrap_content"
+                android:gravity="center_vertical"
+                android:minHeight="?android:attr/listPreferredItemHeight"
+                android:text="" />
+
+            <TextView
+                android:id="@+id/tv4_tab"
+                android:layout_width="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceLarge"
+                android:background="?android:attr/activatedBackgroundIndicator"
+                android:layout_height="wrap_content"
+                android:gravity="center_vertical"
+                android:minHeight="?android:attr/listPreferredItemHeight"
+                android:text="" />
+
+            <TextView
+                android:id="@+id/tv5_tab"
+                android:layout_width="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceLarge"
+                android:background="?android:attr/activatedBackgroundIndicator"
+                android:layout_height="wrap_content"
+                android:gravity="center_vertical"
+                android:minHeight="?android:attr/listPreferredItemHeight"
+                android:text="" />
+
+            <TextView
+                android:id="@+id/tv6_tab"
+                android:layout_width="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceLarge"
+                android:background="?android:attr/activatedBackgroundIndicator"
+                android:layout_height="wrap_content"
+                android:gravity="center_vertical"
+                android:minHeight="?android:attr/listPreferredItemHeight"
+                android:text="" />
+
+            <TextView
+                android:id="@+id/tv7_tab"
+                android:layout_width="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceLarge"
+                android:background="?android:attr/activatedBackgroundIndicator"
+                android:layout_height="wrap_content"
+                android:gravity="center_vertical"
+                android:minHeight="?android:attr/listPreferredItemHeight"
+                android:text="" />
+
+            <TextView
+                android:id="@+id/tv8_tab"
+                android:layout_width="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceLarge"
+                android:background="?android:attr/activatedBackgroundIndicator"
+                android:layout_height="wrap_content"
+                android:gravity="center_vertical"
+                android:minHeight="?android:attr/listPreferredItemHeight"
+                android:text="" />
+
+            <TextView
+                android:id="@+id/tv9_tab"
+                android:layout_width="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceLarge"
+                android:background="?android:attr/activatedBackgroundIndicator"
+                android:layout_height="wrap_content"
+                android:gravity="center_vertical"
+                android:minHeight="?android:attr/listPreferredItemHeight"
+                android:text="" />
+
+            <TextView
+                android:id="@+id/tv10_tab"
+                android:layout_width="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceLarge"
+                android:background="?android:attr/activatedBackgroundIndicator"
+                android:layout_height="wrap_content"
+                android:gravity="center_vertical"
+                android:minHeight="?android:attr/listPreferredItemHeight"
+                android:text="" />
+
+            <TextView
+                android:id="@+id/tv11_tab"
+                android:layout_width="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceLarge"
+                android:background="?android:attr/activatedBackgroundIndicator"
+                android:layout_height="wrap_content"
+                android:gravity="center_vertical"
+                android:minHeight="?android:attr/listPreferredItemHeight"
+                android:text="" />
+
+            <TextView
+                android:id="@+id/tv12_tab"
+                android:layout_width="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceLarge"
+                android:background="?android:attr/activatedBackgroundIndicator"
+                android:layout_height="wrap_content"
+                android:gravity="center_vertical"
+                android:minHeight="?android:attr/listPreferredItemHeight"
+                android:text="" />
+
+            <TextView
+                android:id="@+id/tv13_tab"
+                android:layout_width="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceLarge"
+                android:background="?android:attr/activatedBackgroundIndicator"
+                android:layout_height="wrap_content"
+                android:gravity="center_vertical"
+                android:minHeight="?android:attr/listPreferredItemHeight"
+                android:text="" />
+
+            <TextView
+                android:id="@+id/tv14_tab"
+                android:layout_width="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceLarge"
+                android:background="?android:attr/activatedBackgroundIndicator"
+                android:layout_height="wrap_content"
+                android:gravity="center_vertical"
+                android:minHeight="?android:attr/listPreferredItemHeight"
+                android:text="" />
+
+            <TextView
+                android:id="@+id/tv15_tab"
+                android:layout_width="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceLarge"
+                android:background="?android:attr/activatedBackgroundIndicator"
+                android:layout_height="wrap_content"
+                android:gravity="center_vertical"
+                android:minHeight="?android:attr/listPreferredItemHeight"
+                android:text="" />
+
+        </LinearLayout>
+    </HorizontalScrollView>
