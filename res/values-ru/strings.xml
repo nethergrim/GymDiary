@@ -44,6 +44,6 @@
     <string name="worklogString">История</string>
     <string name="yes">Да</string>
     <string name="resting">Отдых</string>
-    <string name="resting_for">Отдыхаем </string>
+    <string name="resting_for">Отдыхаем </string>    
 
 </resources>

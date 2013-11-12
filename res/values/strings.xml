@@ -16,17 +16,10 @@
     <string name="Create">Create</string>
     <string name="add_new_exersise">Name of the new exercise:</string>
     <string name="timer_between_sets">Set a timer duration(sec):</string>
-    <string name="action_search">Action search</string>
-    <string name="action_compose">Action compose</string>
-    <string name="item1">Item1</string>
-	<string name="item2">Item2</string>
-	<string name="item3">Item3</string>
-	<string name="item4">Item4</string>
 	<string name="btn_timer_select">Select timer long</string>	
 	<string name="add_an_exercise">Add an exercise</string>	
 	<string name="delete_record">Delete record</string>
 	<string name="edit">Edit</string>
-	<string name="pause">Pause</string>
 	<string name="stop">Stop</string>
 	<string name="delete">Delete</string>
 	<string name="creating_program">Creating/Editing program:</string>
