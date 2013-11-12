@@ -200,9 +200,12 @@ public class TrainingAtProgress extends Activity  implements OnClickListener, On
 		if (isChecked){
 			tglChecked = true;
 			btnSave.setText(R.string.save_and_rest);
+			etTimer.setEnabled(true);
+			etTimer.setText(timerValue);
 		}
 		else{
 			tglChecked = false;
+			etTimer.setEnabled(false);
 			btnSave.setText(R.string.save);			
 		}			
 	}	
