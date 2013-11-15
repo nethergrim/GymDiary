@@ -29,8 +29,7 @@
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
+            android:layout_height="150dp"
             android:orientation="vertical" >
 
             <LinearLayout
@@ -146,44 +145,47 @@
                     android:layout_height="match_parent"
                     android:layout_weight="2" />
 
-                <ToggleButton
-                    android:id="@+id/tglTurnOff"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="2"
-                    android:textOff="@string/timer"
-                    android:textOn="@string/timer" />
-
-                <EditText
-                    android:id="@+id/etTimerValueAtTraining"
-                    android:layout_width="72dp"
-                    android:layout_height="match_parent"
-                    android:layout_weight="3"
-                    android:ems="10"
-                    android:gravity="center_vertical|center_horizontal"
-                    android:hint="@string/timer"
-                    android:inputType="number" />
-
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="vertical" >
-
-                <Button
-                    android:id="@+id/btnSave"
-                    style="@style/HabraThemeButton"
-                    android:layout_width="match_parent"
-                    android:layout_margin="8dp"
-                    android:layout_height="wrap_content"
-                    android:drawableLeft="@android:drawable/ic_input_add"
-                    android:text="@string/save_and_rest" />
-
             </LinearLayout>
 
         </LinearLayout>
 
     </LinearLayout>
+
+    <Button
+        android:id="@+id/btnSave"
+        style="@style/HabraThemeButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentRight="true"
+        android:layout_margin="8dp"
+        android:layout_toRightOf="@+id/tglTurnOff"
+        android:layout_weight="1"
+        android:drawableLeft="@android:drawable/ic_input_add"
+        android:text="@string/save_and_rest" />
+
+    <EditText
+        android:id="@+id/etTimerValueAtTraining"
+        android:layout_width="72dp"
+        android:layout_height="match_parent"
+        android:layout_alignBottom="@+id/btnSave"
+        android:layout_alignParentLeft="true"
+        android:layout_alignTop="@+id/btnSave"
+        android:layout_weight="3"
+        android:ems="10"
+        android:gravity="center_vertical|center_horizontal"
+        android:hint="@string/timer"
+        android:inputType="number" />
+
+    <ToggleButton
+        android:id="@+id/tglTurnOff"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/etTimerValueAtTraining"
+        android:layout_alignTop="@+id/etTimerValueAtTraining"
+        android:layout_toRightOf="@+id/etTimerValueAtTraining"
+        android:layout_weight="2"
+        android:textOff="@string/timer"
+        android:textOn="@string/timer" />
 
 </RelativeLayout>

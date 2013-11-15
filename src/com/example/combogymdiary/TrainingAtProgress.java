@@ -28,6 +28,7 @@ import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 import android.widget.ToggleButton;
+import com.nethergrim.gymdiary.R;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
@@ -44,14 +45,13 @@ public class TrainingAtProgress extends Activity  implements OnClickListener, On
 	ArrayAdapter<String> adapter;
 	String[] trNamesData = {};
 	int[] setsPerExercises = null;
-	String traName = "", exeName = "",date = "";
+	String traName = "", exeName = "",date = "",tValue="";
 	SharedPreferences sp;
 	int checkedPosition = 0,set = 0,oldReps = 0,oldWeight = 0,timerValue = 0;
 	DialogFragment dlg1;
 	TextView tvPrevWeight,tvPrevReps,tvPrevLeft1,tvPrevLeft2;
 	ProgressDialog pd;
 	Handler h;
-	
 	
 	@SuppressLint("SimpleDateFormat")
 	@Override
@@ -63,7 +63,7 @@ public class TrainingAtProgress extends Activity  implements OnClickListener, On
         ActionBar bar = getActionBar();
         Intent intent = getIntent();
         traName = intent.getStringExtra("trainingName");
-        bar.setTitle(traName);   
+        bar.setTitle(traName);     
         String[] strArrExtra = {traName};
         String[] strArrCol = {DB.COLUMN_ID,DB.EXE_NAME};            
         tvPrevWeight = (TextView)findViewById(R.id.tvPrevWeight);
@@ -97,23 +97,19 @@ public class TrainingAtProgress extends Activity  implements OnClickListener, On
               } while (cur_exe.moveToNext());
         }        
         adapter = new ArrayAdapter<String>(this,android.R.layout.simple_list_item_single_choice, trNamesData);
-        lvMain.setAdapter(adapter);        
-        lvMain.setItemChecked(0, true); 
+        lvMain.setAdapter(adapter);      
         SimpleDateFormat sdf = new SimpleDateFormat("dd.MM.yyyy");
-        date = sdf.format(new Date(System.currentTimeMillis()));
-        tglTimerOn.setChecked(true);
+        date = sdf.format(new Date(System.currentTimeMillis()));      
         sp = PreferenceManager.getDefaultSharedPreferences(this);        
         lvMain.setOnItemClickListener(new AdapterView.OnItemClickListener() {
         	@Override
         	public void onItemClick(AdapterView<?> parent, View itemClicked, int position,long id) {
-        		Log.d(LOG_TAG, "Item Clicked position: "+position);
         		checkedPosition = position;
         		exeName = trNamesData[checkedPosition];
         		set = setsPerExercises[checkedPosition];
-        		String tValue = db.getTimerValueByExerciseName(exeName);
+        		tValue = db.getTimerValueByExerciseName(exeName);
         		etTimer.setText(tValue);      		
         		timerValue = Integer.parseInt(db.getTimerValueByExerciseName(exeName));
-                Log.d(LOG_TAG, "Progressbar MAX set to: "+timerValue);
         		oldReps = db.getLastReps(exeName, set);
         		oldWeight = db.getLastWeight(exeName, set);
         		if ( oldReps>0 && oldWeight>0 ){
@@ -155,12 +151,12 @@ public class TrainingAtProgress extends Activity  implements OnClickListener, On
         dlg1.setCancelable(false);
         etTimer.setText( db.getTimerValueByExerciseName(trNamesData[0]) );        
         timerValue = Integer.parseInt(db.getTimerValueByExerciseName(exeName));
+        tglTimerOn.setChecked(true);
+        lvMain.setItemChecked(0, true);
         }
   
 	protected void onResume() {
-	    turnOff = sp.getBoolean("turnoff", false);
-	    Log.d(LOG_TAG, "turnOFF = "+turnOff);
-	    exeName = trNamesData[lvMain.getCheckedItemPosition()];
+	    turnOff = sp.getBoolean("toTurnOff", false);
 	    super.onResume();
 	  }
 	
@@ -199,9 +195,9 @@ public class TrainingAtProgress extends Activity  implements OnClickListener, On
 	public void onCheckedChanged(CompoundButton tglTimerOn, boolean isChecked) {
 		if (isChecked){
 			tglChecked = true;
-			btnSave.setText(R.string.save_and_rest);
+			//btnSave.setText(R.string.save_and_rest);
 			etTimer.setEnabled(true);
-			etTimer.setText(timerValue);
+		
 		}
 		else{
 			tglChecked = false;
@@ -219,7 +215,6 @@ public class TrainingAtProgress extends Activity  implements OnClickListener, On
 	@Override
 	public void onClick(View arg0) {
 		int id = arg0.getId();
-		Log.d(LOG_TAG, "checked: " + trNamesData[lvMain.getCheckedItemPosition()] );
 		if (id == R.id.btnSave) {
 			String weight = etWeight.getText().toString();
 			String reps = etReps.getText().toString();			
@@ -249,9 +244,8 @@ public class TrainingAtProgress extends Activity  implements OnClickListener, On
     				tvPrevLeft1.setHint("");
     				tvPrevLeft2.setHint("");        			
     				}
-    			if (tglChecked) {
-    				goDialogProgress();
-    			}
+    			if (tglChecked) 
+    				goDialogProgress();    			
     		}
 		}
 	}	

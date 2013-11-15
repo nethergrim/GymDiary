@@ -34,7 +34,7 @@
     <string name="saved">Сохранено</string>
     <string name="settingsButtonString">Настройки</string>
     <string name="startTrainingButtonString">Начало тренировки</string>
-    <string name="startTrainingList">Выберите тренировочную программу:</string>
+    <string name="startTrainingList">Выберите тренировку:</string>
     <string name="starting_training">Начало тренировки</string>
     <string name="stop">Стоп</string>
     <string name="timer">Таймер</string>

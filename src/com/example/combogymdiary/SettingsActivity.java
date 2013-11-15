@@ -9,6 +9,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.EditText;
+import com.nethergrim.gymdiary.R;
 
 public class SettingsActivity extends PreferenceActivity  implements OnClickListener{
 	

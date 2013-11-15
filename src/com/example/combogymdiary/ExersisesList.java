@@ -19,6 +19,7 @@ import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.ListView;
 import android.widget.Toast;
+import com.nethergrim.gymdiary.R;
 
 
 public class ExersisesList extends Activity implements OnClickListener {
