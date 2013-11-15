@@ -19,7 +19,6 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.Toast;
-import com.nethergrim.gymdiary.R;
 
 public class AddingExersises extends Activity implements OnClickListener {
 

@@ -13,7 +13,6 @@ import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListView;
-import com.nethergrim.gymdiary.R;
 
 
 public class AddingProgram extends Activity implements OnClickListener {

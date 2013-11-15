@@ -27,7 +27,6 @@ import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 import android.widget.ToggleButton;
-import com.nethergrim.gymdiary.R;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
@@ -196,7 +195,6 @@ public class TrainingAtProgress extends Activity  implements OnClickListener, On
 			tglChecked = true;
 			btnSave.setText(R.string.save_and_rest);
 			etTimer.setEnabled(true);
-		
 		}
 		else{
 			tglChecked = false;

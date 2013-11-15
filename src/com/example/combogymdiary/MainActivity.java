@@ -9,7 +9,6 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
-import com.nethergrim.gymdiary.R;
 
 public class MainActivity extends Activity implements OnClickListener {
 
@@ -67,7 +66,9 @@ public class MainActivity extends Activity implements OnClickListener {
 		} else if (id == R.id.buttonExcersisesList) {
 			Intent gotoExersisesList = new Intent (this,ExersisesList.class);
 			startActivity(gotoExersisesList);
-		} else {
+		} else if (id == R.id.btnWorklog){
+			Intent gotoWorklog = new Intent (this,TrainingListActivity.class);
+			startActivity(gotoWorklog);
 		}
 	}
 }

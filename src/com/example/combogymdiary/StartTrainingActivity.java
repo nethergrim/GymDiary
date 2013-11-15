@@ -20,7 +20,6 @@ import android.widget.Toast;
 import android.widget.AdapterView.AdapterContextMenuInfo;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ListView;
-import com.nethergrim.gymdiary.R;
 
 public class StartTrainingActivity extends Activity implements OnClickListener {
 
