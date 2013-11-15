@@ -32,7 +32,7 @@
         <activity android:name="com.example.combogymdiary.AddingExersises"></activity>
         <activity android:name="com.example.combogymdiary.AddingProgram" ></activity>
         <activity android:name="com.example.combogymdiary.TrainingAtProgress"
-            android:windowSoftInputMode="adjustResize"
+            android:windowSoftInputMode="stateVisible"
             ></activity>
         
     </application>

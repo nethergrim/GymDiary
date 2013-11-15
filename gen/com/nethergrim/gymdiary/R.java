@@ -74,8 +74,7 @@ public final class R {
     }
     public static final class id {
         public static final int GridLayout1=0x7f0b0000;
-        public static final int LL1=0x7f0b0029;
-        public static final int LL2=0x7f0b0030;
+        public static final int LL1=0x7f0b002b;
         public static final int btnCreate=0x7f0b0012;
         public static final int btnNo=0x7f0b0010;
         public static final int btnSave=0x7f0b0009;
@@ -85,11 +84,11 @@ public final class R {
         public static final int buttonExcersisesList=0x7f0b0003;
         public static final int buttonSettings=0x7f0b0005;
         public static final int buttonStartTraining=0x7f0b0002;
-        public static final int editReps=0x7f0b002f;
+        public static final int editReps=0x7f0b0031;
         public static final int editText2=0x7f0b000c;
-        public static final int editWeight=0x7f0b002c;
+        public static final int editWeight=0x7f0b002e;
         public static final int etTimerValue=0x7f0b000b;
-        public static final int etTimerValueAtTraining=0x7f0b0031;
+        public static final int etTimerValueAtTraining=0x7f0b0028;
         public static final int exName=0x7f0b0013;
         public static final int horizontalScrollView1=0x7f0b0015;
         public static final int itemExit=0x7f0b0032;
@@ -101,8 +100,9 @@ public final class R {
         public static final int linearLayout3=0x7f0b000a;
         public static final int listView1=0x7f0b000e;
         public static final int listView11=0x7f0b0011;
+        public static final int ll2=0x7f0b002a;
         public static final int lvEx=0x7f0b0007;
-        public static final int lvSets=0x7f0b0028;
+        public static final int lvSets=0x7f0b0029;
         public static final int lvStartTraining=0x7f0b0027;
         public static final int textView1=0x7f0b0001;
         public static final int textView2=0x7f0b0026;
@@ -122,10 +122,10 @@ public final class R {
         public static final int tv7_tab=0x7f0b001c;
         public static final int tv8_tab=0x7f0b001d;
         public static final int tv9_tab=0x7f0b001e;
-        public static final int tvPrevLeft1=0x7f0b002a;
-        public static final int tvPrevLeft2=0x7f0b002d;
-        public static final int tvPrevReps=0x7f0b002e;
-        public static final int tvPrevWeight=0x7f0b002b;
+        public static final int tvPrevLeft1=0x7f0b002c;
+        public static final int tvPrevLeft2=0x7f0b002f;
+        public static final int tvPrevReps=0x7f0b0030;
+        public static final int tvPrevWeight=0x7f0b002d;
         public static final int tvText=0x7f0b0014;
     }
     public static final class layout {

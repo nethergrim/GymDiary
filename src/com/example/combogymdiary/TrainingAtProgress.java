@@ -12,7 +12,6 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
 import android.preference.PreferenceManager;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -195,7 +194,7 @@ public class TrainingAtProgress extends Activity  implements OnClickListener, On
 	public void onCheckedChanged(CompoundButton tglTimerOn, boolean isChecked) {
 		if (isChecked){
 			tglChecked = true;
-			//btnSave.setText(R.string.save_and_rest);
+			btnSave.setText(R.string.save_and_rest);
 			etTimer.setEnabled(true);
 		
 		}
