@@ -13,22 +13,13 @@
     tools:context=".MainActivity" >
     <Space />
 
-    <TextView
-        android:id="@+id/textView1"
-        android:layout_width="match_parent"
-        android:layout_gravity="left"
-        android:layout_marginTop="20dp"
-        android:gravity="center_vertical|center_horizontal"
-        android:text="@string/app_name"
-        android:textAppearance="?android:attr/textAppearanceLarge" />
-
     <Button
         android:id="@+id/buttonStartTraining"
         style="@style/HabraThemeButton"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="left"
-        android:layout_margin="1dp"
+        android:layout_margin="8dp"
         android:layout_marginTop="50dp"
         android:text="@string/startTrainingButtonString"
         android:textSize="@dimen/text20" />
@@ -39,7 +30,8 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="left"
-        android:layout_margin="1dp"
+        android:layout_margin="8dp"
+        android:layout_marginTop="-4dp"
         android:text="@string/excersisiesListButtonString"
         android:textSize="@dimen/text20" />
 
@@ -49,7 +41,8 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="left"
-        android:layout_margin="1dp"
+        android:layout_margin="8dp"
+        android:layout_marginTop="-4dp"
         android:text="@string/worklogString"
         android:textSize="@dimen/text20" />
 
@@ -59,9 +52,11 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="left"
-        android:layout_margin="1dp"
+        android:layout_margin="8dp"
+        android:layout_marginTop="-4dp"
         android:text="@string/settingsButtonString"
         android:textSize="@dimen/text20" />
+
     <Space />
 
 </GridLayout>

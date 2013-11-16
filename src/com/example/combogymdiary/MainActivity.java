@@ -32,13 +32,11 @@ public class MainActivity extends Activity implements OnClickListener {
         btnWorklog.setOnClickListener(this);
         ma=this;
         ActionBar bar = getActionBar();
-        bar.setDisplayShowTitleEnabled(false);
+        bar.setTitle(R.string.app_name);
     }
-
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-     //   getMenuInflater().inflate(R.menu.main_activity_actions, menu);
         return true;
     }
     
@@ -52,8 +50,7 @@ public class MainActivity extends Activity implements OnClickListener {
     	}
 		return false;    	
     }    
-    
-    
+        
 	@Override
 	public void onClick(View arg0) {
 	    int id = arg0.getId();

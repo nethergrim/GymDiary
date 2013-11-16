@@ -124,7 +124,7 @@ public class AddingExersises extends Activity implements OnClickListener {
 		int id = arg0.getId();
 		if (id == R.id.btnSave && editOrNot == false){			
 			if (!name.isEmpty() && !timer.isEmpty()){
-				db.addRec_Exe("empty", name , timer);
+				db.addRec_Exe("", name , timer);
 			    cursor.requery();			
 				etName.setText("");
 				etTimer.setText("");
@@ -136,7 +136,6 @@ public class AddingExersises extends Activity implements OnClickListener {
 			if (!name.isEmpty() && !timer.isEmpty()){
 				db.updateRec_Exe((int) exeID, DB.EXE_NAME, name);
 				db.updateRec_Exe((int) exeID, DB.TIMER_VALUE, timer);
-				Log.d(LOG_TAG, "Updating from " + exeName + " to " + name + " at ID " + exeID);
 			    cursor.requery();			
 				etName.setText("");
 				etTimer.setText("");
@@ -144,7 +143,9 @@ public class AddingExersises extends Activity implements OnClickListener {
 				Intent gotoExersisesList = new Intent (this,ExersisesList.class);
 				startActivity(gotoExersisesList);
 			}			
-		}	
+		}else {
+			Toast.makeText(this, R.string.saved, Toast.LENGTH_SHORT).show();
+		}		
 	}
 
 	protected void onDestroy() {

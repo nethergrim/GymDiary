@@ -69,30 +69,14 @@ public class AddingProgram extends Activity implements OnClickListener {
 	    if (id == R.id.buttonAddingProgram) {
 	    	String prgName = etName.getText().toString();
 			long[] arrIDs = lvExe.getCheckedItemIds();
-			/*
-			SparseBooleanArray sbArray = lvExe.getCheckedItemPositions();			
-			if (!prgName.isEmpty()) 
-	    	{
-	    		for (int i = 0 ; i < sbArray.size() ; i++) 
-	    		{
-	    			int key = sbArray.keyAt(i);
-	    			Log.d(LOG_TAG, "key at "+i+" = "+key);
-	    			if (sbArray.get(key))
-	    			{
-	    				Log.d(LOG_TAG, "GOT key at "+i+" = "+key);
-	    				db.updateRec_Exe(key, DB.TRA_NAME, prgName);
-	    			}
-	    		}*/
 			if (!prgName.isEmpty()) 
 			{
 				for (int i = 0; i < arrIDs.length; i++)
 				{
-					Log.d(LOG_TAG, "key at "+i+" = "+arrIDs[i]);
 					db.updateRec_Exe((int) arrIDs[i], DB.TRA_NAME, prgName);					
 				} 
 			}
-		    Intent gotoProgramList = new Intent (this,StartTrainingActivity.class);
-			startActivity(gotoProgramList);	    			
+			super.onBackPressed();    			
 		}
 	}
 		

@@ -88,8 +88,7 @@ public class StartTrainingActivity extends Activity implements OnClickListener {
 	      if (cdel.moveToFirst())
 	      {
 	    	do {
-	    		Log.d(LOG_TAG, "Rewriting " + cdel.getString(1) + " at index " + cdel.getInt(0) + " to empty");
-	    		db.updateRec_Exe(cdel.getInt(0), DB.TRA_NAME, "empty");
+	    		db.updateRec_Exe(cdel.getInt(0), DB.TRA_NAME, "");
 	    	} while (cdel.moveToNext());  
 	    	Toast.makeText(this, "Deleted: "  + tmpstr, Toast.LENGTH_SHORT).show();
 	    	cursor_exe.requery();

@@ -5,12 +5,14 @@ import android.app.ActionBar;
 import android.app.Activity;
 import android.app.DialogFragment;
 import android.app.ProgressDialog;
+import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.database.Cursor;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
+import android.os.Vibrator;
 import android.preference.PreferenceManager;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -50,6 +52,8 @@ public class TrainingAtProgress extends Activity  implements OnClickListener, On
 	TextView tvPrevWeight,tvPrevReps,tvPrevLeft1,tvPrevLeft2;
 	ProgressDialog pd;
 	Handler h;
+	
+	
 	
 	@SuppressLint("SimpleDateFormat")
 	@Override
@@ -116,8 +120,7 @@ public class TrainingAtProgress extends Activity  implements OnClickListener, On
         			tvPrevReps.setHint(tmp1);
         			tvPrevWeight.setHint(tmp2);
         			tvPrevLeft1.setHint(R.string.prev);
-        			tvPrevLeft2.setHint(R.string.prev);       			
-        			        			
+        			tvPrevLeft2.setHint(R.string.prev);   
         		}else {
         			tvPrevReps.setHint("");
         			tvPrevWeight.setHint("");
@@ -158,6 +161,7 @@ public class TrainingAtProgress extends Activity  implements OnClickListener, On
 	    super.onResume();
 	  }
 	
+	@SuppressLint("HandlerLeak")
 	private void goDialogProgress () {
       pd = new ProgressDialog(this);
       pd.setTitle(R.string.resting);
@@ -175,10 +179,11 @@ public class TrainingAtProgress extends Activity  implements OnClickListener, On
             pd.dismiss();
           }
         }
-      };
-      h.sendEmptyMessageDelayed(0, 100);	    
+      };      
+      Vibrator v = (Vibrator) getSystemService(Context.VIBRATOR_SERVICE);
+      v.vibrate(2000);
+      h.sendEmptyMessageDelayed(0, 100);
 	}
-	
 	
 	@Override
     public boolean onOptionsItemSelected (MenuItem item){
@@ -204,7 +209,7 @@ public class TrainingAtProgress extends Activity  implements OnClickListener, On
 	}	
 	
 	@Override
-	  public boolean onCreateOptionsMenu(Menu menu) {
+	public boolean onCreateOptionsMenu(Menu menu) {
 	    getMenuInflater().inflate(R.menu.main, menu);
 	    return true;
 	  }
@@ -247,7 +252,6 @@ public class TrainingAtProgress extends Activity  implements OnClickListener, On
 		}
 	}	
 	
-	
 	@Override
 	public void onBackPressed() {
 		dlg1.show(getFragmentManager(), "dlg1");
@@ -256,7 +260,5 @@ public class TrainingAtProgress extends Activity  implements OnClickListener, On
 	protected void onDestroy(){
 	    super.onDestroy();
 	    db.close();
-	    Toast.makeText(this, R.string.saved, Toast.LENGTH_SHORT).show();
 	  }
 }
-

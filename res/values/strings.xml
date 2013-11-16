@@ -32,6 +32,7 @@
     <string name="exit">Exit</string>
     <string name="save_data">Stop training and go out?</string>
     <string name="yes">Yes</string>
+    <string name="default_timer_value_prop">Default timer value (sec)</string>
     <string name="no">No</string>
     <string name="new_set">New set</string>
     <string name="cancel">Cancel</string>
@@ -49,5 +50,11 @@
     <string name="resting_for">Resting for </string>
     <string name="title_training_list">Trainings</string>
     <string name="title_training_detail">Training Detail</string>
+    <string name="turn_off_screen">Turn off screen during training</string>
+    <string name="screen_off">Turn screen off</string>
+    <string name="display_data_prev">display the data from the last workout</string>
+    <string name="vibrate_on_save">Vibrate at the end of the timer rest</string>
+    <string name="input_data">Input data!</string>
+    <string name="vibrate">Vibrate</string>
 
 </resources>

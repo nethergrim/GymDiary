@@ -36,7 +36,7 @@
         </activity>
         <activity
             android:name="com.example.combogymdiary.TrainingAtProgress"
-            android:windowSoftInputMode="stateVisible" >
+            android:windowSoftInputMode="stateHidden" >
         </activity>
         <activity
             android:name="com.example.combogymdiary.TrainingListActivity"
@@ -61,7 +61,8 @@
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".TrainingListActivity" />
-        </activity>
+        </activity>        
     </application>
-
+    
+<uses-permission android:name="android.permission.VIBRATE"/>
 </manifest>

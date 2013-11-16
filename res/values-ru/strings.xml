@@ -45,6 +45,15 @@
     <string name="yes">Да</string>
     <string name="resting">Отдых</string>
     <string name="resting_for">Отдыхаем </string>  
-    <string name="check_exe">Выберите упражнения для создания тренировки:</string>  
+    <string name="check_exe">Выберите упражнения для создания тренировки:</string> 
+    <string name="default_timer_value_prop">Значение таймера по умолчанию при создании упражнения (сек)</string> 
+    <string name="turn_off_screen">Отключать экран во время тренировки</string>
+    <string name="screen_off">Отключать экран</string>
+    <string name="display_data_prev">Отображать данные с прошлой тренировки</string>
+    <string name="vibrate_on_save">Вибрировать по окончании таймера отдыха</string>
+    <string name="input_data">Введите данные!</string>
+    <string name="vibrate">Вибрировать</string>
+    <string name="title_training_list">Тренировки</string>
+    <string name="title_training_detail">Тренировки детально</string>
 
 </resources>
