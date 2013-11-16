@@ -163,6 +163,7 @@ public final class R {
         public static final int create_new=0x7f080029;
         public static final int create_new_exercise=0x7f080016;
         public static final int creating_program=0x7f080015;
+        public static final int default_timer=0x7f080037;
         public static final int default_timer_value=0x7f080027;
         public static final int default_timer_value_prop=0x7f08001f;
         public static final int delete=0x7f080014;
@@ -183,6 +184,7 @@ public final class R {
         public static final int resting=0x7f08002d;
         public static final int resting_for=0x7f08002e;
         public static final int save=0x7f080026;
+        public static final int save_and_exit=0x7f080038;
         public static final int save_and_rest=0x7f08002a;
         public static final int save_data=0x7f08001d;
         public static final int saved=0x7f080023;

@@ -25,7 +25,7 @@
     <string name="exit_workout">Выйти из тренировки?</string>
     <string name="new_set">Новый подход</string>
     <string name="no">Нет</string>
-    <string name="prev">пред:</string>
+    <string name="prev">предыдущий:</string>
     <string name="programs_list">Список тренировок:</string>
     <string name="reps">Повторений:</string>
     <string name="save">Сохранить</string>
@@ -55,5 +55,7 @@
     <string name="vibrate">Вибрировать</string>
     <string name="title_training_list">Тренировки</string>
     <string name="title_training_detail">Тренировки детально</string>
-
+	<string name="default_timer">Таймер по умолчанию</string>
+	<string name="save_and_exit">Сохранить и выйти?</string>
+    
 </resources>

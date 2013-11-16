@@ -36,7 +36,7 @@ public class TrainingAtProgress extends Activity  implements OnClickListener, On
 	
 	Button btnSave;	
 	ToggleButton tglTimerOn;
-	Boolean tglChecked = true,turnOff = true;
+	Boolean tglChecked = true,turnOff = true,vibrate = false;
 	EditText etWeight,etReps,etTimer;
 	ListView lvMain;
 	DB db;
@@ -158,6 +158,7 @@ public class TrainingAtProgress extends Activity  implements OnClickListener, On
   
 	protected void onResume() {
 	    turnOff = sp.getBoolean("toTurnOff", false);
+	    vibrate = sp.getBoolean("vibrateOn", true);
 	    super.onResume();
 	  }
 	
@@ -179,9 +180,11 @@ public class TrainingAtProgress extends Activity  implements OnClickListener, On
             pd.dismiss();
           }
         }
-      };      
-      Vibrator v = (Vibrator) getSystemService(Context.VIBRATOR_SERVICE);
-      v.vibrate(2000);
+      };
+      if (vibrate) {
+			Vibrator v = (Vibrator) getSystemService(Context.VIBRATOR_SERVICE);
+			v.vibrate(2000);
+		}
       h.sendEmptyMessageDelayed(0, 100);
 	}
 	
@@ -246,9 +249,12 @@ public class TrainingAtProgress extends Activity  implements OnClickListener, On
     				tvPrevLeft1.setHint("");
     				tvPrevLeft2.setHint("");        			
     				}
-    			if (tglChecked) 
-    				goDialogProgress();    			
-    		}
+    			if (tglChecked) {
+    				goDialogProgress();
+    				
+    			}
+    		} else 
+    			Toast.makeText(this,R.string.input_data, Toast.LENGTH_SHORT).show();
 		}
 	}	
 	

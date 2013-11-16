@@ -30,9 +30,11 @@
         </activity>
         <activity android:name="com.example.combogymdiary.ExersisesList" >
         </activity>
-        <activity android:name="com.example.combogymdiary.AddingExersises" >
+        <activity android:name="com.example.combogymdiary.AddingExersises" 
+            android:windowSoftInputMode="stateHidden">
         </activity>
-        <activity android:name="com.example.combogymdiary.AddingProgram" >
+        <activity android:name="com.example.combogymdiary.AddingProgram"
+            android:windowSoftInputMode="stateHidden"             >
         </activity>
         <activity
             android:name="com.example.combogymdiary.TrainingAtProgress"

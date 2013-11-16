@@ -45,10 +45,11 @@
         android:layout_width="match_parent"
         android:layout_height="331dp"
         android:layout_above="@+id/ll2"
+        android:layout_alignParentTop="true"
         android:layout_alignRight="@+id/btnSave"
+        android:layout_marginBottom="2dp"
         android:layout_marginLeft="8dp"
         android:layout_marginTop="8dp"
-        android:layout_marginBottom="2dp"
         android:background="@drawable/rounded"
         android:keepScreenOn="true" >
 

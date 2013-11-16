@@ -6,7 +6,6 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -19,7 +18,7 @@ public class Dialog1 extends DialogFragment implements OnClickListener {
 
   public View onCreateView(LayoutInflater inflater, ViewGroup container,
       Bundle savedInstanceState) {
-    getDialog().setTitle("Save and exit?");
+    getDialog().setTitle(R.string.save_and_exit);
     View v = inflater.inflate(R.layout.dialog_exit, null);
     v.findViewById(R.id.btnYes).setOnClickListener(this);
     v.findViewById(R.id.btnNo).setOnClickListener(this);
@@ -33,17 +32,14 @@ public class Dialog1 extends DialogFragment implements OnClickListener {
     	Intent gotoMain = new Intent(c,MainActivity.class);
 		startActivity(gotoMain);
     }
-    
     dismiss();
   }
 
   public void onDismiss(DialogInterface dialog) {
     super.onDismiss(dialog);
-    Log.d(LOG_TAG, "Dialog 1: onDismiss");
   }
 
   public void onCancel(DialogInterface dialog) {
     super.onCancel(dialog);
-    Log.d(LOG_TAG, "Dialog 1: onCancel");
   }
 }

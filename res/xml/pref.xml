@@ -12,8 +12,8 @@
 			
 			<EditTextPreference
 			 android:key="etDefault"
-			 android:summary=""
-			 android:title="@string/default_timer_value_prop" 
+			 android:summary="@string/default_timer_value_prop"
+			 android:title="@string/default_timer" 
 			 android:defaultValue="60" 
 			 android:enabled="true"
 			 >
