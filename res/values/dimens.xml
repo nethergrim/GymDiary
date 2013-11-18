@@ -8,5 +8,6 @@
     <dimen name="text16">16dp</dimen>
     <dimen name="text14">14dp</dimen>
     <dimen name="dip12">12dp</dimen>
+    <dimen name="layer_width">100dp</dimen>
 
 </resources>

@@ -27,6 +27,7 @@ public final class R {
         public static final int activity_vertical_margin=0x7f070001;
         public static final int border_5=0x7f070003;
         public static final int dip12=0x7f070006;
+        public static final int layer_width=0x7f070007;
         public static final int text14=0x7f070005;
         public static final int text16=0x7f070004;
         public static final int text20=0x7f070002;
@@ -38,76 +39,79 @@ public final class R {
         public static final int ab_stacked_solid_mybarstyle=0x7f020003;
         public static final int ab_texture_tile_mybarstyle=0x7f020004;
         public static final int ab_transparent_mybarstyle=0x7f020005;
-        public static final int btn_cab_done_default_mybarstyle=0x7f020006;
-        public static final int btn_cab_done_focused_mybarstyle=0x7f020007;
-        public static final int btn_cab_done_mybarstyle=0x7f020008;
-        public static final int btn_cab_done_pressed_mybarstyle=0x7f020009;
-        public static final int button=0x7f02000a;
-        public static final int button_focused=0x7f02000b;
-        public static final int button_normal=0x7f02000c;
-        public static final int button_pressed=0x7f02000d;
-        public static final int cab_background_bottom_mybarstyle=0x7f02000e;
-        public static final int cab_background_top_mybarstyle=0x7f02000f;
-        public static final int ic_launcher=0x7f020010;
-        public static final int list_focused_mybarstyle=0x7f020011;
-        public static final int menu_dropdown_panel_mybarstyle=0x7f020012;
-        public static final int pressed_background_mybarstyle=0x7f020013;
-        public static final int progress_bg_mybarstyle=0x7f020014;
-        public static final int progress_horizontal_mybarstyle=0x7f020015;
-        public static final int progress_primary_mybarstyle=0x7f020016;
-        public static final int progress_secondary_mybarstyle=0x7f020017;
-        public static final int rect=0x7f020018;
-        public static final int rounded=0x7f020019;
-        public static final int selectable_background_mybarstyle=0x7f02001a;
-        public static final int spinner_ab_default_mybarstyle=0x7f02001b;
-        public static final int spinner_ab_disabled_mybarstyle=0x7f02001c;
-        public static final int spinner_ab_focused_mybarstyle=0x7f02001d;
-        public static final int spinner_ab_pressed_mybarstyle=0x7f02001e;
-        public static final int spinner_background_ab_mybarstyle=0x7f02001f;
-        public static final int tab_indicator_ab_mybarstyle=0x7f020020;
-        public static final int tab_selected_focused_mybarstyle=0x7f020021;
-        public static final int tab_selected_mybarstyle=0x7f020022;
-        public static final int tab_selected_pressed_mybarstyle=0x7f020023;
-        public static final int tab_unselected_focused_mybarstyle=0x7f020024;
-        public static final int tab_unselected_mybarstyle=0x7f020025;
-        public static final int tab_unselected_pressed_mybarstyle=0x7f020026;
+        public static final int arrow=0x7f020006;
+        public static final int btn_cab_done_default_mybarstyle=0x7f020007;
+        public static final int btn_cab_done_focused_mybarstyle=0x7f020008;
+        public static final int btn_cab_done_mybarstyle=0x7f020009;
+        public static final int btn_cab_done_pressed_mybarstyle=0x7f02000a;
+        public static final int button=0x7f02000b;
+        public static final int button_focused=0x7f02000c;
+        public static final int button_normal=0x7f02000d;
+        public static final int button_pressed=0x7f02000e;
+        public static final int cab_background_bottom_mybarstyle=0x7f02000f;
+        public static final int cab_background_top_mybarstyle=0x7f020010;
+        public static final int ic_launcher=0x7f020011;
+        public static final int ic_menu_forward=0x7f020012;
+        public static final int list_focused_mybarstyle=0x7f020013;
+        public static final int menu_dropdown_panel_mybarstyle=0x7f020014;
+        public static final int pressed_background_mybarstyle=0x7f020015;
+        public static final int progress_bg_mybarstyle=0x7f020016;
+        public static final int progress_horizontal_mybarstyle=0x7f020017;
+        public static final int progress_primary_mybarstyle=0x7f020018;
+        public static final int progress_secondary_mybarstyle=0x7f020019;
+        public static final int rect=0x7f02001a;
+        public static final int rounded=0x7f02001b;
+        public static final int selectable_background_mybarstyle=0x7f02001c;
+        public static final int spinner_ab_default_mybarstyle=0x7f02001d;
+        public static final int spinner_ab_disabled_mybarstyle=0x7f02001e;
+        public static final int spinner_ab_focused_mybarstyle=0x7f02001f;
+        public static final int spinner_ab_pressed_mybarstyle=0x7f020020;
+        public static final int spinner_background_ab_mybarstyle=0x7f020021;
+        public static final int tab_indicator_ab_mybarstyle=0x7f020022;
+        public static final int tab_selected_focused_mybarstyle=0x7f020023;
+        public static final int tab_selected_mybarstyle=0x7f020024;
+        public static final int tab_selected_pressed_mybarstyle=0x7f020025;
+        public static final int tab_unselected_focused_mybarstyle=0x7f020026;
+        public static final int tab_unselected_mybarstyle=0x7f020027;
+        public static final int tab_unselected_pressed_mybarstyle=0x7f020028;
     }
     public static final class id {
-        public static final int GridLayout1=0x7f0b0000;
+        public static final int GridLayout1=0x7f0b0001;
         public static final int LL1=0x7f0b001c;
-        public static final int btnCreate=0x7f0b0014;
-        public static final int btnNo=0x7f0b0012;
-        public static final int btnSave=0x7f0b000a;
-        public static final int btnWorklog=0x7f0b0003;
-        public static final int btnYes=0x7f0b0011;
-        public static final int buttonAddingProgram=0x7f0b000f;
-        public static final int buttonExcersisesList=0x7f0b0002;
-        public static final int buttonSettings=0x7f0b0004;
-        public static final int buttonStartTraining=0x7f0b0001;
+        public static final int action_settings=0x7f0b0024;
+        public static final int btnCreate=0x7f0b0013;
+        public static final int btnNo=0x7f0b0011;
+        public static final int btnSave=0x7f0b0009;
+        public static final int btnWorklog=0x7f0b0004;
+        public static final int btnYes=0x7f0b0010;
+        public static final int buttonAddingProgram=0x7f0b000e;
+        public static final int buttonExcersisesList=0x7f0b0003;
+        public static final int buttonSettings=0x7f0b0005;
+        public static final int buttonStartTraining=0x7f0b0002;
         public static final int editReps=0x7f0b0023;
-        public static final int editText2=0x7f0b000e;
+        public static final int editText2=0x7f0b000d;
         public static final int editWeight=0x7f0b001f;
-        public static final int etTimerValue=0x7f0b000c;
+        public static final int etTimerValue=0x7f0b000b;
         public static final int etTimerValueAtTraining=0x7f0b0019;
-        public static final int itemExit=0x7f0b0024;
-        public static final int item_Edit=0x7f0b0026;
-        public static final int item_add=0x7f0b0027;
-        public static final int item_delete=0x7f0b0025;
-        public static final int linearLayout1=0x7f0b0009;
-        public static final int linearLayout2=0x7f0b0007;
-        public static final int linearLayout3=0x7f0b000b;
-        public static final int listView1=0x7f0b0010;
-        public static final int listView11=0x7f0b0013;
+        public static final int imageCat=0x7f0b0015;
+        public static final int itemExit=0x7f0b0025;
+        public static final int item_Edit=0x7f0b0027;
+        public static final int item_add=0x7f0b0028;
+        public static final int item_delete=0x7f0b0026;
+        public static final int linearLayout1=0x7f0b0008;
+        public static final int linearLayout2=0x7f0b0006;
+        public static final int linearLayout3=0x7f0b000a;
+        public static final int listView1=0x7f0b000f;
+        public static final int listView11=0x7f0b0012;
         public static final int ll2=0x7f0b001b;
-        public static final int lvEx=0x7f0b0008;
+        public static final int lvEx=0x7f0b0007;
+        public static final int lvMainHistory=0x7f0b0000;
         public static final int lvSets=0x7f0b001a;
         public static final int lvStartTraining=0x7f0b0017;
-        public static final int textView1=0x7f0b000d;
+        public static final int textView1=0x7f0b000c;
         public static final int textView2=0x7f0b0022;
         public static final int tglTurnOff=0x7f0b0018;
-        public static final int training_detail=0x7f0b0015;
-        public static final int training_detail_container=0x7f0b0005;
-        public static final int training_list=0x7f0b0006;
+        public static final int tvCatName=0x7f0b0014;
         public static final int tvPrevLeft1=0x7f0b001d;
         public static final int tvPrevLeft2=0x7f0b0020;
         public static final int tvPrevReps=0x7f0b0021;
@@ -115,37 +119,21 @@ public final class R {
         public static final int tvText=0x7f0b0016;
     }
     public static final class layout {
-        public static final int activity_main=0x7f030000;
-        public static final int activity_training_detail=0x7f030001;
-        /** 
-    Layout alias to replace the single-pane version of the layout with a
-    two-pane version on Large screens.
-
-    For more on layout aliases, see:
-    http://developer.android.com/training/multiscreen/screensizes.html#TaskUseAliasFilters
-    
-
-    Layout alias to replace the single-pane version of the layout with a
-    two-pane version on Large screens.
-
-    For more on layout aliases, see:
-    http://developer.android.com/training/multiscreen/screensizes.html#TaskUseAliasFilters
-    
-         */
-        public static final int activity_training_list=0x7f030002;
-        public static final int activity_training_twopane=0x7f030003;
-        public static final int adding_exersise=0x7f030004;
-        public static final int adding_program=0x7f030005;
-        public static final int dialog_exit=0x7f030006;
-        public static final int exersises_list=0x7f030007;
-        public static final int fragment_training_detail=0x7f030008;
-        public static final int my_list_item=0x7f030009;
-        public static final int start_training=0x7f03000a;
-        public static final int training_at_progress=0x7f03000b;
+        public static final int activity_history=0x7f030000;
+        public static final int activity_main=0x7f030001;
+        public static final int adding_exersise=0x7f030002;
+        public static final int adding_program=0x7f030003;
+        public static final int dialog_exit=0x7f030004;
+        public static final int exersises_list=0x7f030005;
+        public static final int list_with_arrow=0x7f030006;
+        public static final int my_list_item=0x7f030007;
+        public static final int start_training=0x7f030008;
+        public static final int training_at_progress=0x7f030009;
     }
     public static final class menu {
-        public static final int main=0x7f0a0000;
-        public static final int menu_add_delete_edit=0x7f0a0001;
+        public static final int history=0x7f0a0000;
+        public static final int main=0x7f0a0001;
+        public static final int menu_add_delete_edit=0x7f0a0002;
     }
     public static final class string {
         public static final int Add=0x7f080009;

@@ -57,9 +57,9 @@
     <string name="input_data">Input data!</string>
     <string name="vibrate">Vibrate</string>
     <string name="default_timer">Default timer value</string>
-	<string name="save_and_exit">Save and exit?</string>
-	<string name="vibrate_lenght">Duration of vibration (sec)</string>
-	<string name="default_vibrate_lenght">Duration of vibration default (sec)</string>
-	
-	
+    <string name="save_and_exit">Save and exit?</string>
+    <string name="vibrate_lenght">Duration of vibration (sec)</string>
+    <string name="default_vibrate_lenght">Duration of vibration default (sec)</string>
+    
+
 </resources>

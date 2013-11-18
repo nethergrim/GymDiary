@@ -1,5 +1,8 @@
 package com.example.combogymdiary;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
 import android.annotation.SuppressLint;
 import android.app.ActionBar;
 import android.app.Activity;
@@ -26,13 +29,10 @@ import android.widget.Button;
 import android.widget.CompoundButton;
 import android.widget.CompoundButton.OnCheckedChangeListener;
 import android.widget.EditText;
-import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 import android.widget.ToggleButton;
-import java.text.SimpleDateFormat;
-import java.util.Date;
 
 public class TrainingAtProgress extends Activity  implements OnClickListener, OnCheckedChangeListener{
 	

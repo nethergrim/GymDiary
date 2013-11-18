@@ -85,29 +85,21 @@ public class DB {
 	  int result = 0;
       String[] cols = {DB.REPS,DB.SET};
       String[] tags = {_exeName};
-      Log.d(LOG_TAG,"==============\nStarted getLast Reps with name: "+_exeName+" set: "+_set);
 	  Cursor c = mDB.query(DB_MAIN_TABLE, cols, DB.EXE_NAME+"=?", tags, null, null, null);
 	  int size = c.getCount();
 	  if (size > 1) {
-		  Log.d(LOG_TAG, "getlastReps:\nsize of cursor with exe name = "+_exeName+" : "+size);
 		  int positionLastDay = size - _set - 1;
-		  Log.d(LOG_TAG, "position End of Last Day = "+positionLastDay);
 		  c.moveToPosition(positionLastDay);
-		  Log.d(LOG_TAG,"moved to position: "+ positionLastDay);
 		  _set++;
-		  if (c.getCount() > 3) {
-			  if (c.getInt(1) < _set ) { // если в прошлый раз было меньше подходов чем сегодня будет
-				  Log.d(LOG_TAG, "c.getInt(1) < (_set++), c.getInt(1)== "+c.getInt(1));	  
-			  } else if (c.getInt(1) == _set){ // если мы попали точно на прошлый подоход в прошлый раз
-			  		Log.d(LOG_TAG, "return "+c.getInt(0));
+		  if (c.getCount() > 7) {
+			  if (c.getInt(1) < _set ) { 
+			  } else if (c.getInt(1) == _set){ 
 			  		result =  c.getInt(0);
 			  } else if ( c.getInt(1) > _set ) { // если в прошлый раз было больше подходов чем сейчас делаем, идем вверх по таблице пока не найдем нужный подход
 				  while ( c.getInt(1) > _set ) {
-					Log.d(LOG_TAG,"moving to previous, c.getInt(1)= "+c.getInt(1)+" _set= "+_set);
 					c.moveToPrevious();
 					result =  c.getInt(0);
-					Log.d(LOG_TAG, "return "+c.getInt(0));
-				  	}
+				  }
 			  }
 		  }		  
 	  }	  

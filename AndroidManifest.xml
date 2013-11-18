@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.combogymdiary"
-    android:versionCode="1"
-    android:versionName="1.0" >
+    android:versionCode="2"
+    android:versionName="1.1" >
 
     <uses-sdk
         android:minSdkVersion="15"
@@ -30,41 +30,27 @@
         </activity>
         <activity android:name="com.example.combogymdiary.ExersisesList" >
         </activity>
-        <activity android:name="com.example.combogymdiary.AddingExersises" 
-            android:windowSoftInputMode="stateHidden">
+        <activity
+            android:name="com.example.combogymdiary.AddingExersises"
+            android:windowSoftInputMode="stateHidden" >
         </activity>
-        <activity android:name="com.example.combogymdiary.AddingProgram"
-            android:windowSoftInputMode="stateHidden"             >
+        <activity
+            android:name="com.example.combogymdiary.AddingProgram"
+            android:windowSoftInputMode="stateHidden" >
         </activity>
         <activity
             android:name="com.example.combogymdiary.TrainingAtProgress"
             android:windowSoftInputMode="stateHidden" >
         </activity>
         <activity
-            android:name="com.example.combogymdiary.TrainingListActivity"
-            android:label="@string/title_training_list"
+            android:name="com.example.combogymdiary.HistoryActivity"
             android:parentActivityName="com.example.combogymdiary.MainActivity" >
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.example.combogymdiary.MainActivity" />
         </activity>
-        <activity
-            android:name="com.example.combogymdiary.TrainingDetailActivityty"
-            android:label="@string/title_training_detail"
-            android:parentActivityName="com.example.combogymdiary.TrainingListActivity" >
-            <meta-data
-                android:name="android.support.PARENT_ACTIVITY"
-                android:value=".TrainingListActivity" />
-        </activity>
-        <activity
-            android:name="com.example.combogymdiary.TrainingDetailActivity"
-            android:label="@string/title_training_detail"
-            android:parentActivityName=".TrainingListActivity" >
-            <meta-data
-                android:name="android.support.PARENT_ACTIVITY"
-                android:value=".TrainingListActivity" />
-        </activity>        
     </application>
-    
-<uses-permission android:name="android.permission.VIBRATE"/>
+
+    <uses-permission android:name="android.permission.VIBRATE" />
+
 </manifest>

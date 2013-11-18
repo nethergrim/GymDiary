@@ -10,13 +10,14 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
 
+
 public class MainActivity extends Activity implements OnClickListener {
 
 	Button btnSettings;
 	Button btnStartT;
 	Button btnExcersises;
 	Button btnWorklog;
-	static MainActivity ma;
+	public static MainActivity ma;
 	
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,10 +33,8 @@ public class MainActivity extends Activity implements OnClickListener {
         btnWorklog.setOnClickListener(this);
         ma=this;
         ActionBar bar = getActionBar();
-        bar.setTitle(R.string.app_name);
-
-        
-    }
+        bar.setTitle(R.string.app_name); 
+        }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -66,8 +65,10 @@ public class MainActivity extends Activity implements OnClickListener {
 			Intent gotoExersisesList = new Intent (this,ExersisesList.class);
 			startActivity(gotoExersisesList);
 		} else if (id == R.id.btnWorklog){
-			Intent gotoWorklog = new Intent (this,TrainingListActivity.class);
+			Intent gotoWorklog = new Intent (this,HistoryActivity.class);
 			startActivity(gotoWorklog);
 		}
 	}
+	
+	
 }
