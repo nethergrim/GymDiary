@@ -23,4 +23,10 @@
 			    android:summary="@string/vibrate_on_save"	    
 			    android:key="vibrateOn"
 			    />
+			<EditTextPreference 
+			    android:key="vibtateLenght"
+			    android:summary="@string/default_vibrate_lenght"
+				android:title="@string/vibrate_lenght" 
+			 	android:defaultValue="2" 
+			    android:dialogTitle="@string/default_vibrate_lenght"/>
 </PreferenceScreen>

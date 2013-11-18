@@ -57,5 +57,8 @@
     <string name="title_training_detail">Тренировки детально</string>
 	<string name="default_timer">Таймер по умолчанию</string>
 	<string name="save_and_exit">Сохранить и выйти?</string>
-    
+    	<string name="vibrate_lenght">Длительность вибрации (сек)</string>
+	<string name="default_vibrate_lenght">Длительность вибрации по умолчанию (сек)</string>
+	
+	
 </resources>

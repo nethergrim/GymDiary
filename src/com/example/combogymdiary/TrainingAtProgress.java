@@ -14,6 +14,7 @@ import android.os.Handler;
 import android.os.Message;
 import android.os.Vibrator;
 import android.preference.PreferenceManager;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -25,6 +26,7 @@ import android.widget.Button;
 import android.widget.CompoundButton;
 import android.widget.CompoundButton.OnCheckedChangeListener;
 import android.widget.EditText;
+import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -47,7 +49,7 @@ public class TrainingAtProgress extends Activity  implements OnClickListener, On
 	int[] setsPerExercises = null;
 	String traName = "", exeName = "",date = "",tValue="";
 	SharedPreferences sp;
-	int checkedPosition = 0,set = 0,oldReps = 0,oldWeight = 0,timerValue = 0;
+	int checkedPosition = 0,set = 0,oldReps = 0,oldWeight = 0,timerValue = 0,vibrateLenght=0;
 	DialogFragment dlg1;
 	TextView tvPrevWeight,tvPrevReps,tvPrevLeft1,tvPrevLeft2;
 	ProgressDialog pd;
@@ -153,12 +155,15 @@ public class TrainingAtProgress extends Activity  implements OnClickListener, On
         etTimer.setText( db.getTimerValueByExerciseName(trNamesData[0]) );        
         timerValue = Integer.parseInt(db.getTimerValueByExerciseName(exeName));
         tglTimerOn.setChecked(true);
-        lvMain.setItemChecked(0, true);
+        lvMain.setItemChecked(0, true);        
         }
   
 	protected void onResume() {
 	    turnOff = sp.getBoolean("toTurnOff", false);
 	    vibrate = sp.getBoolean("vibrateOn", true);
+	    String vl = sp.getString("vibtateLenght", "2");
+	    vibrateLenght = Integer.parseInt(vl);
+	    vibrateLenght *= 1000;
 	    super.onResume();
 	  }
 	
@@ -183,7 +188,8 @@ public class TrainingAtProgress extends Activity  implements OnClickListener, On
       };
       if (vibrate) {
 			Vibrator v = (Vibrator) getSystemService(Context.VIBRATOR_SERVICE);
-			v.vibrate(2000);
+			v.vibrate(vibrateLenght);
+			Log.d(LOG_TAG, "vibrating for "+vibrateLenght+" millisec ");
 		}
       h.sendEmptyMessageDelayed(0, 100);
 	}
@@ -220,6 +226,7 @@ public class TrainingAtProgress extends Activity  implements OnClickListener, On
 	@Override
 	public void onClick(View arg0) {
 		int id = arg0.getId();
+		Log.d(LOG_TAG,"pressed button "+id+" ");		
 		if (id == R.id.btnSave) {
 			String weight = etWeight.getText().toString();
 			String reps = etReps.getText().toString();			
@@ -250,8 +257,7 @@ public class TrainingAtProgress extends Activity  implements OnClickListener, On
     				tvPrevLeft2.setHint("");        			
     				}
     			if (tglChecked) {
-    				goDialogProgress();
-    				
+    				goDialogProgress();    				
     			}
     		} else 
     			Toast.makeText(this,R.string.input_data, Toast.LENGTH_SHORT).show();

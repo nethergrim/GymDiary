@@ -33,6 +33,8 @@ public class MainActivity extends Activity implements OnClickListener {
         ma=this;
         ActionBar bar = getActionBar();
         bar.setTitle(R.string.app_name);
+
+        
     }
 
     @Override

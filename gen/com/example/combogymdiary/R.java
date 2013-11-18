@@ -166,6 +166,7 @@ public final class R {
         public static final int default_timer=0x7f080037;
         public static final int default_timer_value=0x7f080027;
         public static final int default_timer_value_prop=0x7f08001f;
+        public static final int default_vibrate_lenght=0x7f08003a;
         public static final int delete=0x7f080014;
         public static final int delete_record=0x7f080011;
         public static final int deleted=0x7f080025;
@@ -202,6 +203,7 @@ public final class R {
         public static final int training=0x7f08001a;
         public static final int turn_off_screen=0x7f080031;
         public static final int vibrate=0x7f080036;
+        public static final int vibrate_lenght=0x7f080039;
         public static final int vibrate_on_save=0x7f080034;
         public static final int worklogString=0x7f080006;
         public static final int yes=0x7f08001e;
