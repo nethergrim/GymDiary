@@ -1,17 +1,15 @@
-package com.example.combogymdiary;
+package com.nethergrim.combogymdiary;
 
 import java.util.ArrayList;
 import java.util.HashMap;
 
-import android.os.Bundle;
 import android.app.ActionBar;
 import android.app.Activity;
 import android.database.Cursor;
+import android.os.Bundle;
 import android.util.Log;
-import android.view.MenuItem;
 import android.widget.ListView;
 import android.widget.SimpleAdapter;
-import android.support.v4.app.NavUtils;
 
 public class HistoryActivity extends Activity {
 

@@ -60,6 +60,7 @@
     <string name="save_and_exit">Save and exit?</string>
     <string name="vibrate_lenght">Duration of vibration (sec)</string>
     <string name="default_vibrate_lenght">Duration of vibration default (sec)</string>
+    <string name="empty">*empty*</string>
     
 
 </resources>

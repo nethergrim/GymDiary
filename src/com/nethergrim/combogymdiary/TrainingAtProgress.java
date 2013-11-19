@@ -1,4 +1,4 @@
-package com.example.combogymdiary;
+package com.nethergrim.combogymdiary;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;

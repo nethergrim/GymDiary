@@ -1,4 +1,4 @@
-package com.example.combogymdiary;
+package com.nethergrim.combogymdiary;
 
 
 import android.content.ContentValues;
@@ -188,7 +188,6 @@ return mDB.query(DB_EXE_TABLE, column, selection, selectionArgs, groupBy, having
     cv.put(TRA_NAME, traName);
     cv.put(TIMER_VALUE, timer);
     long rowID = mDB.insert(DB_EXE_TABLE, null, cv);
-    Log.d(LOG_TAG, "mDB row inserted, ID = " + rowID + " Exe name = " + exeName + " TRA_NAME = " + traName + " timer value = "+timer);
   }
   
   public void addRec_Main(String traName ,String exeName, String timer,String date, int weight, int reps,int set) {

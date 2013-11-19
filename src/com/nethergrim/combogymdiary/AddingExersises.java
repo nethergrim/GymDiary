@@ -1,4 +1,4 @@
-package com.example.combogymdiary;
+package com.nethergrim.combogymdiary;
 
 import android.app.ActionBar;
 import android.app.Activity;
@@ -58,7 +58,7 @@ public class AddingExersises extends Activity implements OnClickListener {
 		startManagingCursor(cursor);
 		String[] from = new String[] {DB.EXE_NAME};
 		int[] to = new int[] { R.id.tvText, };
-		scAdapter = new SimpleCursorAdapter(this, R.layout.my_list_item,
+		scAdapter = new SimpleCursorAdapter(this, R.layout.my_list_item2,
 				cursor, from, to);
 		lvExersices_list.setAdapter(scAdapter);
 	    registerForContextMenu(lvExersices_list);   
@@ -123,7 +123,7 @@ public class AddingExersises extends Activity implements OnClickListener {
 		int id = arg0.getId();
 		if (id == R.id.btnSave && editOrNot == false){			
 			if (!name.isEmpty() && !timer.isEmpty()){
-				db.addRec_Exe("", name , timer);
+				db.addRec_Exe(R.string.empty+"", name , timer);
 			    cursor.requery();			
 				etName.setText("");
 				etTimer.setText("");

@@ -1,4 +1,4 @@
-package com.example.combogymdiary;
+package com.nethergrim.combogymdiary;
 
 import android.app.ActionBar;
 import android.app.Activity;
@@ -47,10 +47,14 @@ public class StartTrainingActivity extends Activity implements OnClickListener {
         btnAddNew.setOnClickListener(this);
         db = new DB(this);
 		db.open();
-		cursor_exe = db.getData_Exe_GroupBy(DB.TRA_NAME);		
-		startManagingCursor(cursor_exe);
-		cursor_exe.requery();
-		String[] from = new String[] { DB.TRA_NAME };
+		sp = PreferenceManager.getDefaultSharedPreferences(this);		
+		cursor_exe = db.getData_Exe_GroupBy(DB.TRA_NAME);
+		initList();  
+    }
+    
+    @SuppressWarnings("deprecation")
+	private void initList () {
+    	String[] from = new String[] { DB.TRA_NAME };
 		int[] to = new int[] { R.id.tvText, };
 		scAdapter = new SimpleCursorAdapter(this, R.layout.my_list_item, cursor_exe, from, to);		
 		lvMain.setAdapter(scAdapter);
@@ -58,11 +62,15 @@ public class StartTrainingActivity extends Activity implements OnClickListener {
 	    lvMain.setOnItemClickListener(new OnItemClickListener() {
 	        public void onItemClick(AdapterView<?> parent, View view,
 	            int position, long id) {
-	          Log.d(LOG_TAG, "itemClick: position = " + position + ", id = "+ id);
 	          goToTraining(position);
 	        }
 	    });
-	    sp = PreferenceManager.getDefaultSharedPreferences(this);
+    }
+    
+	@Override
+    protected void onResume() {
+    	cursor_exe.requery();
+    	super.onResume();
     }
     
     public void onCreateContextMenu(ContextMenu menu, View v,
@@ -80,15 +88,14 @@ public class StartTrainingActivity extends Activity implements OnClickListener {
 	      {
 	    	  c.moveToNext();
 	      }
-	      String tmpstr = c.getString(1);
-	      
+	      String tmpstr = c.getString(1);	      
 	      String[] cols = {DB.COLUMN_ID,DB.TRA_NAME};
 	      String[] args = {tmpstr};
 	      Cursor cdel = db.getDataExe(cols,DB.TRA_NAME + "=?" , args, null, null, null);
 	      if (cdel.moveToFirst())
 	      {
 	    	do {
-	    		db.updateRec_Exe(cdel.getInt(0), DB.TRA_NAME, "");
+	    		db.updateRec_Exe(cdel.getInt(0), DB.TRA_NAME, getString(R.string.empty));
 	    	} while (cdel.moveToNext());  
 	    	Toast.makeText(this, "Deleted: "  + tmpstr, Toast.LENGTH_SHORT).show();
 	    	cursor_exe.requery();

@@ -1,4 +1,4 @@
-package com.example.combogymdiary;
+package com.nethergrim.combogymdiary;
 
 
 import android.app.DialogFragment;

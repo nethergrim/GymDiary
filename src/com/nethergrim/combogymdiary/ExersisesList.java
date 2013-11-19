@@ -1,4 +1,4 @@
-package com.example.combogymdiary;
+package com.nethergrim.combogymdiary;
 
 import android.app.ActionBar;
 import android.app.Activity;
@@ -50,7 +50,7 @@ public class ExersisesList extends Activity implements OnClickListener {
 		String[] from = new String[] { DB.EXE_NAME };
 		int[] to = new int[] { R.id.tvText, };
 		cursor_exe.requery();
-		scAdapter = new SimpleCursorAdapter(this, R.layout.my_list_item,
+		scAdapter = new SimpleCursorAdapter(this, R.layout.my_list_item2,
 				cursor_exe, from, to);
 		lvExersices_list.setAdapter(scAdapter);
 	    registerForContextMenu(lvExersices_list);

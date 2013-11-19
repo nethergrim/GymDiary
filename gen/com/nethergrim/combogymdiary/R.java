@@ -5,7 +5,7 @@
  * should not be modified by hand.
  */
 
-package com.example.combogymdiary;
+package com.nethergrim.combogymdiary;
 
 public final class R {
     public static final class attr {
@@ -50,30 +50,31 @@ public final class R {
         public static final int button_pressed=0x7f02000e;
         public static final int cab_background_bottom_mybarstyle=0x7f02000f;
         public static final int cab_background_top_mybarstyle=0x7f020010;
-        public static final int ic_launcher=0x7f020011;
-        public static final int ic_menu_forward=0x7f020012;
-        public static final int list_focused_mybarstyle=0x7f020013;
-        public static final int menu_dropdown_panel_mybarstyle=0x7f020014;
-        public static final int pressed_background_mybarstyle=0x7f020015;
-        public static final int progress_bg_mybarstyle=0x7f020016;
-        public static final int progress_horizontal_mybarstyle=0x7f020017;
-        public static final int progress_primary_mybarstyle=0x7f020018;
-        public static final int progress_secondary_mybarstyle=0x7f020019;
-        public static final int rect=0x7f02001a;
-        public static final int rounded=0x7f02001b;
-        public static final int selectable_background_mybarstyle=0x7f02001c;
-        public static final int spinner_ab_default_mybarstyle=0x7f02001d;
-        public static final int spinner_ab_disabled_mybarstyle=0x7f02001e;
-        public static final int spinner_ab_focused_mybarstyle=0x7f02001f;
-        public static final int spinner_ab_pressed_mybarstyle=0x7f020020;
-        public static final int spinner_background_ab_mybarstyle=0x7f020021;
-        public static final int tab_indicator_ab_mybarstyle=0x7f020022;
-        public static final int tab_selected_focused_mybarstyle=0x7f020023;
-        public static final int tab_selected_mybarstyle=0x7f020024;
-        public static final int tab_selected_pressed_mybarstyle=0x7f020025;
-        public static final int tab_unselected_focused_mybarstyle=0x7f020026;
-        public static final int tab_unselected_mybarstyle=0x7f020027;
-        public static final int tab_unselected_pressed_mybarstyle=0x7f020028;
+        public static final int chevron_right=0x7f020011;
+        public static final int ic_launcher=0x7f020012;
+        public static final int ic_menu_forward=0x7f020013;
+        public static final int list_focused_mybarstyle=0x7f020014;
+        public static final int menu_dropdown_panel_mybarstyle=0x7f020015;
+        public static final int pressed_background_mybarstyle=0x7f020016;
+        public static final int progress_bg_mybarstyle=0x7f020017;
+        public static final int progress_horizontal_mybarstyle=0x7f020018;
+        public static final int progress_primary_mybarstyle=0x7f020019;
+        public static final int progress_secondary_mybarstyle=0x7f02001a;
+        public static final int rect=0x7f02001b;
+        public static final int rounded=0x7f02001c;
+        public static final int selectable_background_mybarstyle=0x7f02001d;
+        public static final int spinner_ab_default_mybarstyle=0x7f02001e;
+        public static final int spinner_ab_disabled_mybarstyle=0x7f02001f;
+        public static final int spinner_ab_focused_mybarstyle=0x7f020020;
+        public static final int spinner_ab_pressed_mybarstyle=0x7f020021;
+        public static final int spinner_background_ab_mybarstyle=0x7f020022;
+        public static final int tab_indicator_ab_mybarstyle=0x7f020023;
+        public static final int tab_selected_focused_mybarstyle=0x7f020024;
+        public static final int tab_selected_mybarstyle=0x7f020025;
+        public static final int tab_selected_pressed_mybarstyle=0x7f020026;
+        public static final int tab_unselected_focused_mybarstyle=0x7f020027;
+        public static final int tab_unselected_mybarstyle=0x7f020028;
+        public static final int tab_unselected_pressed_mybarstyle=0x7f020029;
     }
     public static final class id {
         public static final int GridLayout1=0x7f0b0001;
@@ -127,8 +128,9 @@ public final class R {
         public static final int exersises_list=0x7f030005;
         public static final int list_with_arrow=0x7f030006;
         public static final int my_list_item=0x7f030007;
-        public static final int start_training=0x7f030008;
-        public static final int training_at_progress=0x7f030009;
+        public static final int my_list_item2=0x7f030008;
+        public static final int start_training=0x7f030009;
+        public static final int training_at_progress=0x7f03000a;
     }
     public static final class menu {
         public static final int history=0x7f0a0000;
@@ -161,6 +163,7 @@ public final class R {
         public static final int display_data_prev=0x7f080033;
         public static final int do_not_turnoff_display=0x7f08002c;
         public static final int edit=0x7f080012;
+        public static final int empty=0x7f08003b;
         public static final int excersisiesListButtonString=0x7f080005;
         public static final int exit=0x7f08001c;
         public static final int exit_workout=0x7f08002b;
