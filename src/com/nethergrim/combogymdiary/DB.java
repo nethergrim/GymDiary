@@ -187,7 +187,7 @@ return mDB.query(DB_EXE_TABLE, column, selection, selectionArgs, groupBy, having
     cv.put(EXE_NAME, exeName);
     cv.put(TRA_NAME, traName);
     cv.put(TIMER_VALUE, timer);
-    long rowID = mDB.insert(DB_EXE_TABLE, null, cv);
+    mDB.insert(DB_EXE_TABLE, null, cv);
   }
   
   public void addRec_Main(String traName ,String exeName, String timer,String date, int weight, int reps,int set) {
@@ -199,7 +199,6 @@ return mDB.query(DB_EXE_TABLE, column, selection, selectionArgs, groupBy, having
 	    cv.put(REPS, reps);
 	    cv.put(SET,set);
 	    mDB.insert(DB_MAIN_TABLE, null, cv);
-	    Log.d(LOG_TAG, "INSERTED TO DB:\nexe name: "+exeName+"\ntra name: "+traName+"\ndate: "+date+"\nweight: "+weight+"\nreps: "+reps+"\nset: "+set+"\n==================================");
  }
   
   public void updateRec_Exe(int Id, String column, String data )  {

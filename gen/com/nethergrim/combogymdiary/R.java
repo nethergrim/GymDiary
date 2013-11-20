@@ -8,6 +8,9 @@
 package com.nethergrim.combogymdiary;
 
 public final class R {
+    public static final class array {
+        public static final int exercisesArray=0x7f090000;
+    }
     public static final class attr {
     }
     public static final class bool {
@@ -77,47 +80,54 @@ public final class R {
         public static final int tab_unselected_pressed_mybarstyle=0x7f020029;
     }
     public static final class id {
-        public static final int GridLayout1=0x7f0b0001;
-        public static final int LL1=0x7f0b001c;
-        public static final int action_settings=0x7f0b0024;
-        public static final int btnCreate=0x7f0b0013;
-        public static final int btnNo=0x7f0b0011;
-        public static final int btnSave=0x7f0b0009;
-        public static final int btnWorklog=0x7f0b0004;
-        public static final int btnYes=0x7f0b0010;
-        public static final int buttonAddingProgram=0x7f0b000e;
-        public static final int buttonExcersisesList=0x7f0b0003;
-        public static final int buttonSettings=0x7f0b0005;
-        public static final int buttonStartTraining=0x7f0b0002;
-        public static final int editReps=0x7f0b0023;
-        public static final int editText2=0x7f0b000d;
-        public static final int editWeight=0x7f0b001f;
-        public static final int etTimerValue=0x7f0b000b;
-        public static final int etTimerValueAtTraining=0x7f0b0019;
-        public static final int imageCat=0x7f0b0015;
-        public static final int itemExit=0x7f0b0025;
-        public static final int item_Edit=0x7f0b0027;
-        public static final int item_add=0x7f0b0028;
-        public static final int item_delete=0x7f0b0026;
-        public static final int linearLayout1=0x7f0b0008;
-        public static final int linearLayout2=0x7f0b0006;
-        public static final int linearLayout3=0x7f0b000a;
-        public static final int listView1=0x7f0b000f;
-        public static final int listView11=0x7f0b0012;
-        public static final int ll2=0x7f0b001b;
-        public static final int lvEx=0x7f0b0007;
-        public static final int lvMainHistory=0x7f0b0000;
-        public static final int lvSets=0x7f0b001a;
-        public static final int lvStartTraining=0x7f0b0017;
-        public static final int textView1=0x7f0b000c;
-        public static final int textView2=0x7f0b0022;
-        public static final int tglTurnOff=0x7f0b0018;
-        public static final int tvCatName=0x7f0b0014;
-        public static final int tvPrevLeft1=0x7f0b001d;
-        public static final int tvPrevLeft2=0x7f0b0020;
-        public static final int tvPrevReps=0x7f0b0021;
-        public static final int tvPrevWeight=0x7f0b001e;
-        public static final int tvText=0x7f0b0016;
+        public static final int GridLayout1=0x7f0c0002;
+        public static final int LL1=0x7f0c0023;
+        public static final int action_settings=0x7f0c002b;
+        public static final int adView=0x7f0c001c;
+        public static final int adView1=0x7f0c001e;
+        public static final int adView2=0x7f0c0000;
+        public static final int adView3=0x7f0c0007;
+        public static final int adView4=0x7f0c0010;
+        public static final int adView5=0x7f0c0015;
+        public static final int btnCreate=0x7f0c0017;
+        public static final int btnNo=0x7f0c0014;
+        public static final int btnSave=0x7f0c000b;
+        public static final int btnWorklog=0x7f0c0005;
+        public static final int btnYes=0x7f0c0013;
+        public static final int buttonAddingProgram=0x7f0c0011;
+        public static final int buttonExcersisesList=0x7f0c0004;
+        public static final int buttonSettings=0x7f0c0006;
+        public static final int buttonStartTraining=0x7f0c0003;
+        public static final int editReps=0x7f0c002a;
+        public static final int editText2=0x7f0c000f;
+        public static final int editWeight=0x7f0c0026;
+        public static final int etTimerValue=0x7f0c000d;
+        public static final int etTimerValueAtTraining=0x7f0c0020;
+        public static final int imageCat=0x7f0c0019;
+        public static final int itemExit=0x7f0c002c;
+        public static final int item_Edit=0x7f0c002e;
+        public static final int item_add=0x7f0c002f;
+        public static final int item_delete=0x7f0c002d;
+        public static final int linearLayout1=0x7f0c000a;
+        public static final int linearLayout2=0x7f0c0008;
+        public static final int linearLayout3=0x7f0c000c;
+        public static final int listView1=0x7f0c0012;
+        public static final int listView11=0x7f0c0016;
+        public static final int ll2=0x7f0c0022;
+        public static final int lvEx=0x7f0c0009;
+        public static final int lvMainHistory=0x7f0c0001;
+        public static final int lvSets=0x7f0c0021;
+        public static final int lvStartTraining=0x7f0c001d;
+        public static final int rl1=0x7f0c001b;
+        public static final int textView1=0x7f0c000e;
+        public static final int textView2=0x7f0c0029;
+        public static final int tglTurnOff=0x7f0c001f;
+        public static final int tvCatName=0x7f0c0018;
+        public static final int tvPrevLeft1=0x7f0c0024;
+        public static final int tvPrevLeft2=0x7f0c0027;
+        public static final int tvPrevReps=0x7f0c0028;
+        public static final int tvPrevWeight=0x7f0c0025;
+        public static final int tvText=0x7f0c001a;
     }
     public static final class layout {
         public static final int activity_history=0x7f030000;
@@ -133,9 +143,9 @@ public final class R {
         public static final int training_at_progress=0x7f03000a;
     }
     public static final class menu {
-        public static final int history=0x7f0a0000;
-        public static final int main=0x7f0a0001;
-        public static final int menu_add_delete_edit=0x7f0a0002;
+        public static final int history=0x7f0b0000;
+        public static final int main=0x7f0b0001;
+        public static final int menu_add_delete_edit=0x7f0b0002;
     }
     public static final class string {
         public static final int Add=0x7f080009;
@@ -200,10 +210,10 @@ public final class R {
         public static final int yes=0x7f08001e;
     }
     public static final class style {
-        public static final int ActionBar_Solid_Mybarstyle=0x7f090004;
-        public static final int ActionBar_Transparent_Mybarstyle=0x7f090005;
-        public static final int ActionBarTabStyle_Mybarstyle=0x7f090008;
-        public static final int ActionButton_CloseMode_Mybarstyle=0x7f09000b;
+        public static final int ActionBar_Solid_Mybarstyle=0x7f0a0004;
+        public static final int ActionBar_Transparent_Mybarstyle=0x7f0a0005;
+        public static final int ActionBarTabStyle_Mybarstyle=0x7f0a0008;
+        public static final int ActionButton_CloseMode_Mybarstyle=0x7f0a000b;
         /** 
         Base application theme, dependent on API level. This theme is replaced
         by AppBaseTheme from res/values-vXX/styles.xml on newer devices.
@@ -225,24 +235,24 @@ public final class R {
     
  API 14 theme customizations can go here. 
          */
-        public static final int AppBaseTheme=0x7f090000;
+        public static final int AppBaseTheme=0x7f0a0000;
         /**  Application theme. 
  All customizations that are NOT specific to a particular API-level can go here. 
          */
-        public static final int AppTheme=0x7f090001;
-        public static final int DropDownListView_Mybarstyle=0x7f090007;
-        public static final int DropDownNav_Mybarstyle=0x7f090009;
+        public static final int AppTheme=0x7f0a0001;
+        public static final int DropDownListView_Mybarstyle=0x7f0a0007;
+        public static final int DropDownNav_Mybarstyle=0x7f0a0009;
         /**    <style name="HabraTheme" parent="@android:style/Theme.Light">
         <item name="android:buttonStyle">@style/HabraThemeButton</item>
     </style>
          */
-        public static final int HabraThemeButton=0x7f090002;
-        public static final int PopupMenu_Mybarstyle=0x7f090006;
-        public static final int ProgressBar_Mybarstyle=0x7f09000a;
-        public static final int Theme_Mybarstyle=0x7f090003;
+        public static final int HabraThemeButton=0x7f0a0002;
+        public static final int PopupMenu_Mybarstyle=0x7f0a0006;
+        public static final int ProgressBar_Mybarstyle=0x7f0a000a;
+        public static final int Theme_Mybarstyle=0x7f0a0003;
         /**  this style is only referenced in a Light.DarkActionBar based theme 
          */
-        public static final int Theme_Mybarstyle_Widget=0x7f09000c;
+        public static final int Theme_Mybarstyle_Widget=0x7f0a000c;
     }
     public static final class xml {
         public static final int pref=0x7f040000;

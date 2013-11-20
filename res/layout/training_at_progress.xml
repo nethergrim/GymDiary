@@ -1,10 +1,22 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:ads="http://schemas.android.com/apk/lib/com.google.ads"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:gravity="center_vertical" >
 
+    <com.google.ads.AdView
+            android:id="@+id/adView1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            ads:adSize="BANNER"
+            ads:adUnitId="ca-app-pub-5652589022154086/4102541457"
+            ads:loadAdOnCreate="true"
+            android:gravity="center_horizontal" 
+            />
+    
+    
     <Button
         android:id="@+id/btnSave"
         style="@style/HabraThemeButton"
@@ -45,10 +57,9 @@
         android:layout_width="match_parent"
         android:layout_height="331dp"
         android:layout_above="@+id/ll2"
-        android:layout_alignParentTop="true"
         android:layout_alignRight="@+id/btnSave"
+        android:layout_below="@+id/adView1"
         android:layout_marginLeft="8dp"
-        android:layout_marginTop="8dp"
         android:background="@drawable/rounded"
         android:keepScreenOn="true" >
 

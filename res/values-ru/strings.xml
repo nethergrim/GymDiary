@@ -60,6 +60,50 @@
     	<string name="vibrate_lenght">Длительность вибрации (сек)</string>
 	<string name="default_vibrate_lenght">Длительность вибрации по умолчанию (сек)</string>
 	<string name="empty">*без названия*</string>
+	<string-array name="exercisesArray">
+		<item >Приседания со штангой</item>
+		<item > </item>
+		<item > </item>
+		<item > </item>
+		<item > </item>
+		<item > </item>
+		<item > </item>
+		<item > </item>
+		<item > </item>
+		<item > </item>
+		<item > </item>
+		<item > </item>
+		<item > </item>
+		<item > </item>
+		<item > </item>
+		<item > </item>
+		<item > </item>
+		<item > </item>
+		<item > </item>
+		<item > </item>
+		<item > </item>
+		<item > </item>
+		<item > </item>
+		<item > </item>
+		<item > </item>
+		<item > </item>
+		<item > </item>
+		<item > </item>
+		<item > </item>
+		<item > </item>
+		<item > </item>
+		<item > </item>
+		<item > </item>
+		<item > </item>
+		<item > </item>
+		<item > </item>
+		<item > </item>
+		<item > </item>
+		<item > </item>
+		<item > </item>
+		<item > </item>
+		<item > </item>		
+	</string-array>
 	
 	
 </resources>

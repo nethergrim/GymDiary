@@ -1,16 +1,27 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:ads="http://schemas.android.com/apk/lib/com.google.ads"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical" >
 
+    <com.google.ads.AdView
+            android:id="@+id/adView5"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            ads:adSize="BANNER"
+            ads:adUnitId="ca-app-pub-5652589022154086/4102541457"
+            ads:loadAdOnCreate="true"
+            android:gravity="center_horizontal" 
+             />
+    
     <ListView
         android:id="@+id/listView11"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_above="@+id/btnCreate"
         android:layout_alignParentLeft="true"
-        android:layout_alignParentTop="true"
+        android:layout_below="@+id/adView5"
         android:layout_margin="5dp"
         android:background="@drawable/rounded"
         android:focusableInTouchMode="true" >

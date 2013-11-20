@@ -1,17 +1,21 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:ads="http://schemas.android.com/apk/lib/com.google.ads"
     android:layout_width="match_parent"
     android:orientation="vertical"
-    android:layout_height="match_parent" >
+    android:layout_height="match_parent" 
+    android:id="@+id/rl1">
 
-        <Space
+        <com.google.ads.AdView
+            android:id="@+id/adView"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
-
-        <Space
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
-
+            android:layout_height="wrap_content"
+            ads:adSize="BANNER"
+            ads:adUnitId="ca-app-pub-5652589022154086/4102541457"
+            ads:loadAdOnCreate="true"
+            android:gravity="center_horizontal" 
+             />
+        
         <ListView
             android:id="@+id/lvStartTraining"
             android:layout_width="match_parent"
@@ -19,7 +23,7 @@
             android:layout_above="@+id/btnSave"
             android:layout_alignParentLeft="true"
             android:layout_alignParentRight="true"
-            android:layout_alignParentTop="true"
+            android:layout_below="@+id/adView"
             android:layout_margin="5dp"
             android:background="@drawable/rounded" >
 

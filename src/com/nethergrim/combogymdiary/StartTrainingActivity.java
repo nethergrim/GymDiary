@@ -1,5 +1,9 @@
 package com.nethergrim.combogymdiary;
 
+import com.google.ads.AdRequest;
+import com.google.ads.AdSize;
+import com.google.ads.AdView;
+
 import android.app.ActionBar;
 import android.app.Activity;
 import android.content.Intent;
@@ -8,17 +12,20 @@ import android.database.Cursor;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.support.v4.widget.SimpleCursorAdapter;
-import android.util.Log;
 import android.view.ContextMenu;
 import android.view.ContextMenu.ContextMenuInfo;
+import android.view.Gravity;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.View.OnClickListener;
+import android.view.ViewGroup.LayoutParams;
 import android.widget.AdapterView;
 import android.widget.AdapterView.AdapterContextMenuInfo;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.Button;
+import android.widget.GridLayout;
 import android.widget.ListView;
+import android.widget.RelativeLayout;
 import android.widget.Toast;
 
 public class StartTrainingActivity extends Activity implements OnClickListener {
@@ -33,8 +40,6 @@ public class StartTrainingActivity extends Activity implements OnClickListener {
 	Button btnAddNew;
 	SharedPreferences sp;
 	
-	
-    @SuppressWarnings("deprecation")
 	@Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -67,6 +72,7 @@ public class StartTrainingActivity extends Activity implements OnClickListener {
 	    });
     }
     
+	@SuppressWarnings("deprecation")
 	@Override
     protected void onResume() {
     	cursor_exe.requery();

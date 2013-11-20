@@ -11,6 +11,7 @@ import android.view.View.OnClickListener;
 import android.widget.Button;
 
 
+
 public class MainActivity extends Activity implements OnClickListener {
 
 	Button btnSettings;
@@ -18,6 +19,7 @@ public class MainActivity extends Activity implements OnClickListener {
 	Button btnExcersises;
 	Button btnWorklog;
 	public static MainActivity ma;
+
 	
     @Override
     protected void onCreate(Bundle savedInstanceState) {
