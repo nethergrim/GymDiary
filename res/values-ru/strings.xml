@@ -77,7 +77,20 @@
 		<item >Махи ногами в блоке</item>
 	</string-array>
 	<string-array name="exercisesArrayChest">
-		<item >й</item>
+		<item >Жим штанги лежа (ровная скамья)</item>
+		<item >Жим гантелей лежа (ровная скамья)</item>
+		<item >Жим штанги лежа (+30 градусов)</item>
+		<item >Жим гантелей лежа (+30 градусов)</item>
+		<item >Жим штанги лежа (-30 градусов)</item>
+		<item >жим гантелей лежа (-30 градусов)</item>
+		<item >Жим лежа в Смите (ровная скамья)</item>
+		<item >Жим лежа в Смите (+30 градусов)</item>
+		<item >Жим лежа в Смите (-30 градусов)</item>
+		<item >Разведения гантелей (ровная скамья)</item>
+		<item >Разведения гантелей (+30 градусов)</item>
+		<item >Жим в тренажере</item>
+		<item >Кроссовер</item>
+		<item >Кроссовер лежа на скамье</item>
 	</string-array>
 	<string-array name="exercisesArrayBack">
 		<item ></item>
