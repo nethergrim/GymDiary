@@ -108,12 +108,12 @@
                 <item >Shrugs with barbell</item>
         </string-array>
         <string-array name="exercisesArrayShoulders">
-                <item >Жим штанги из-за головы</item>
-                <item >Жим в Смите из-за головы</item>
-                <item >Жим гантелей сидя</item>
-                <item >Жим в тренажере</item>
-                <item >Жим Арнольда</item>
-                <item >Тяга к подбородку</item>
+                <item >Bench press behind the head</item>
+                <item >Bench press behind the head (Smith machine)</item>
+                <item >Dumbbell Bench sitting</item>
+                <item >Bench in the simulator</item>
+                <item >Bench Arnold</item>
+                <item >Pull to the chin</item>
                 <item >Махи в стороны</item>
                 <item >Махи перед собой</item>
                 <item >Махи назад (опора на скамью)</item>
