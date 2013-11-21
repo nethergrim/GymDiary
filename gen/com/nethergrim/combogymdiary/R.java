@@ -9,7 +9,12 @@ package com.nethergrim.combogymdiary;
 
 public final class R {
     public static final class array {
-        public static final int exercisesArray=0x7f090000;
+        public static final int exercisesArrayAbs=0x7f090005;
+        public static final int exercisesArrayArms=0x7f090004;
+        public static final int exercisesArrayBack=0x7f090002;
+        public static final int exercisesArrayChest=0x7f090001;
+        public static final int exercisesArrayLegs=0x7f090000;
+        public static final int exercisesArrayShoulders=0x7f090003;
     }
     public static final class attr {
     }
