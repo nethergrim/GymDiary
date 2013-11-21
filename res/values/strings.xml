@@ -94,18 +94,18 @@
                 <item >Crossover lying on the bench</item>
         </string-array>
         <string-array name="exercisesArrayBack">
-                <item >Подтягивания</item>
-                <item >Подтягивание с отягощением</item>
-                <item >Вертикальная тяга в блоке (к груди)</item>
-                <item >Вертикальная тяга в блоке (за голову)</item>
-                <item >Горизонтальая тяга в блоке</item>
-                <item >Становая тяга</item>
-                <item >Пуловер</item>
-                <item >Тяга штанги в наклоне</item>
-                <item >Тяга гантели в наклоне</item>
-                <item >Тяга Т-грифа</item>
-                <item >Шраги с гантелями</item>
-                <item >Шраги со штангой</item>
+                <item >Pullups</item>
+                <item >Pullups with weights</item>
+                <item >Vertical rod in the block (to the chest)</item>
+                <item >Vertical rod in the block (a head)</item>
+                <item >Horizontals thrust block</item>
+                <item >Deadlift</item>
+                <item >pullover</item>
+                <item >Thrust rod in the slope</item>
+                <item >Link dumbbells in the slope</item>
+                <item >Rod T-neck</item>
+                <item >Shrugs with dumbbells</item>
+                <item >Shrugs with barbell</item>
         </string-array>
         <string-array name="exercisesArrayShoulders">
                 <item >Жим штанги из-за головы</item>
