@@ -93,15 +93,85 @@
 		<item >Кроссовер лежа на скамье</item>
 	</string-array>
 	<string-array name="exercisesArrayBack">
+		<item >Подтягивания</item>
+		<item >Подтягивание с отягощением</item>
+		<item >Вертикальная тяга в блоке (к груди)</item>
+		<item >Вертикальная тяга в блоке (за голову)</item>
+		<item >Горизонтальая тяга в блоке</item>
+		<item >Становая тяга</item>
+		<item >Пуловер</item>
+		<item >Тяга штанги в наклоне</item>
+		<item >Тяга гантели в наклоне</item>
+		<item >Тяга Т-грифа</item>
+		<item >Шраги с гантелями</item>
+		<item >Шраги со штангой</item>
+		<item ></item>
+		<item ></item>
+		<item ></item>
+		<item ></item>
+		<item ></item>
 		<item ></item>
 	</string-array>
 	<string-array name="exercisesArrayShoulders">
 		<item ></item>
+		<item ></item>
+		<item ></item>
+		<item ></item>
+		<item ></item>
+		<item ></item>
+		<item ></item>
+		<item ></item>
+		<item ></item>
+		<item ></item>
+		<item ></item>
+		<item ></item>
+		<item ></item>
+		<item ></item>
+		<item ></item>
+		<item ></item>
+		<item ></item>
+		<item ></item>
 	</string-array>
 	<string-array name="exercisesArrayArms">
 		<item ></item>
+		<item ></item>
+		<item ></item>
+		<item ></item>
+		<item ></item>
+		<item ></item>
+		<item ></item>
+		<item ></item>
+		<item ></item>
+		<item ></item>
+		<item ></item>
+		<item ></item>
+		<item ></item>
+		<item ></item>
+		<item ></item>
+		<item ></item>
+		<item ></item>
+		<item ></item>
+		<item ></item>
 	</string-array>
 	<string-array name="exercisesArrayAbs">
+		<item ></item>
+		<item ></item>
+		<item ></item>
+		<item ></item>
+		<item ></item>
+		<item ></item>
+		<item ></item>
+		<item ></item>
+		<item ></item>
+		<item ></item>
+		<item ></item>
+		<item ></item>
+		<item ></item>
+		<item ></item>
+		<item ></item>
+		<item ></item>
+		<item ></item>
+		<item ></item>
 		<item ></item>
 	</string-array>
 	
