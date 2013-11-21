@@ -135,25 +135,8 @@
 		<item >Молоток</item>
 	</string-array>
 	<string-array name="exercisesArrayAbs">
-		<item ></item>
-		<item ></item>
-		<item ></item>
-		<item ></item>
-		<item ></item>
-		<item ></item>
-		<item ></item>
-		<item ></item>
-		<item ></item>
-		<item ></item>
-		<item ></item>
-		<item ></item>
-		<item ></item>
-		<item ></item>
-		<item ></item>
-		<item ></item>
-		<item ></item>
-		<item ></item>
-		<item ></item>
+		<item >Скручивания</item>
+		<item >Подъем ног в висе</item>
 	</string-array>
 	
 	
