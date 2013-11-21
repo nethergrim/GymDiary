@@ -107,24 +107,19 @@
 		<item >Шраги со штангой</item>
 	</string-array>
 	<string-array name="exercisesArrayShoulders">
-		<item ></item>
-		<item ></item>
-		<item ></item>
-		<item ></item>
-		<item ></item>
-		<item ></item>
-		<item ></item>
-		<item ></item>
-		<item ></item>
-		<item ></item>
-		<item ></item>
-		<item ></item>
-		<item ></item>
-		<item ></item>
-		<item ></item>
-		<item ></item>
-		<item ></item>
-		<item ></item>
+		<item >Жим штанги из-за головы</item>
+		<item >Жим в Смите из-за головы</item>
+		<item >Жим гантелей сидя</item>
+		<item >Жим в тренажере</item>
+		<item >Жим Арнольда</item>
+		<item >Тяга к подбородку</item>
+		<item >Махи в стороны</item>
+		<item >Махи перед собой</item>
+		<item >Махи назад (опора на скамью)</item>
+		<item >Тяга в сторону в блоке</item>
+		<item >Тяга перед собой в блоке</item>
+		<item >Тяга назад в блоке</item>
+		<item >Тяга Ли-Хейни</item>
 	</string-array>
 	<string-array name="exercisesArrayArms">
 		<item ></item>
