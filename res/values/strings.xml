@@ -61,6 +61,84 @@
     <string name="vibrate_lenght">Duration of vibration (sec)</string>
     <string name="default_vibrate_lenght">Duration of vibration default (sec)</string>
     <string name="empty">*empty*</string>
+        <string-array name="exercisesArrayLegs">
+                <item >Squats</item>
+                <item >Leg Press</item>
+                <item >Front squat</item>
+                <item >Smith machine squats</item>
+                <item >GAKK machine squats</item>
+                <item >Leg extention </item>
+                <item >Flexion</item>
+                <item >Deadlift</item>
+                <item >Calves in the simulator</item>
+                <item >Calves in Smith machine</item>
+                <item >Lunges with dumbbells</item>
+                <item >Reduction feet in the simulator</item>
+                <item >Breeding feet in the simulator</item>
+                <item >Kick their feet in the block</item>
+        </string-array>
+        <string-array name="exercisesArrayChest">
+                <item >Жим штанги лежа (ровная скамья)</item>
+                <item >Жим гантелей лежа (ровная скамья)</item>
+                <item >Жим штанги лежа (+30 градусов)</item>
+                <item >Жим гантелей лежа (+30 градусов)</item>
+                <item >Жим штанги лежа (-30 градусов)</item>
+                <item >жим гантелей лежа (-30 градусов)</item>
+                <item >Жим лежа в Смите (ровная скамья)</item>
+                <item >Жим лежа в Смите (+30 градусов)</item>
+                <item >Жим лежа в Смите (-30 градусов)</item>
+                <item >Разведения гантелей (ровная скамья)</item>
+                <item >Разведения гантелей (+30 градусов)</item>
+                <item >Жим в тренажере</item>
+                <item >Кроссовер</item>
+                <item >Кроссовер лежа на скамье</item>
+        </string-array>
+        <string-array name="exercisesArrayBack">
+                <item >Подтягивания</item>
+                <item >Подтягивание с отягощением</item>
+                <item >Вертикальная тяга в блоке (к груди)</item>
+                <item >Вертикальная тяга в блоке (за голову)</item>
+                <item >Горизонтальая тяга в блоке</item>
+                <item >Становая тяга</item>
+                <item >Пуловер</item>
+                <item >Тяга штанги в наклоне</item>
+                <item >Тяга гантели в наклоне</item>
+                <item >Тяга Т-грифа</item>
+                <item >Шраги с гантелями</item>
+                <item >Шраги со штангой</item>
+        </string-array>
+        <string-array name="exercisesArrayShoulders">
+                <item >Жим штанги из-за головы</item>
+                <item >Жим в Смите из-за головы</item>
+                <item >Жим гантелей сидя</item>
+                <item >Жим в тренажере</item>
+                <item >Жим Арнольда</item>
+                <item >Тяга к подбородку</item>
+                <item >Махи в стороны</item>
+                <item >Махи перед собой</item>
+                <item >Махи назад (опора на скамью)</item>
+                <item >Тяга в сторону в блоке</item>
+                <item >Тяга перед собой в блоке</item>
+                <item >Тяга назад в блоке</item>
+                <item >Тяга Ли-Хейни</item>
+        </string-array>
+        <string-array name="exercisesArrayArms">
+                <item >Жим узким хватом</item>
+                <item >Французский жим лежа</item>
+                <item >Французский жим сидя</item>
+                <item >Жим в блоке (трицепс)</item>
+                <item >Подъем штанги на бицепс</item>
+                <item >подъем гантелей на бицепс</item>
+                <item >Подъем штанги на скамье Скотта</item>
+                <item >подъем гантелей на скамье Скотта</item>
+                <item >Тяга в блоке (бицепс)</item>
+                <item >Подъем штанги обратным хватом</item>
+                <item >Молоток</item>
+        </string-array>
+        <string-array name="exercisesArrayAbs">
+                <item >Скручивания</item>
+                <item >Подъем ног в висе</item>
+        </string-array>
     
 
 </resources>
