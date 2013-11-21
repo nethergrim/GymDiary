@@ -55,8 +55,6 @@ public class TrainingAtProgress extends Activity  implements OnClickListener, On
 	ProgressDialog pd;
 	Handler h;
 	
-	
-	
 	@SuppressLint("SimpleDateFormat")
 	@Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -184,13 +182,13 @@ public class TrainingAtProgress extends Activity  implements OnClickListener, On
           } else {
             pd.dismiss();
           }
-        }
-      };
-      if (vibrate) {
+          if (vibrate) {
 			Vibrator v = (Vibrator) getSystemService(Context.VIBRATOR_SERVICE);
 			v.vibrate(vibrateLenght);
 			Log.d(LOG_TAG, "vibrating for "+vibrateLenght+" millisec ");
-		}
+          }
+        }
+      };      
       h.sendEmptyMessageDelayed(0, 100);
 	}
 	
@@ -213,7 +211,7 @@ public class TrainingAtProgress extends Activity  implements OnClickListener, On
 		else{
 			tglChecked = false;
 			etTimer.setEnabled(false);
-			btnSave.setText(R.string.save);			
+			btnSave.setText(R.string.save);
 		}			
 	}	
 	
@@ -225,8 +223,7 @@ public class TrainingAtProgress extends Activity  implements OnClickListener, On
 	
 	@Override
 	public void onClick(View arg0) {
-		int id = arg0.getId();
-		Log.d(LOG_TAG,"pressed button "+id+" ");		
+		int id = arg0.getId();		
 		if (id == R.id.btnSave) {
 			String weight = etWeight.getText().toString();
 			String reps = etReps.getText().toString();			
