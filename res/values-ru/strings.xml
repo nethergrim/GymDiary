@@ -60,49 +60,36 @@
     	<string name="vibrate_lenght">Длительность вибрации (сек)</string>
 	<string name="default_vibrate_lenght">Длительность вибрации по умолчанию (сек)</string>
 	<string name="empty">*без названия*</string>
-	<string-array name="exercisesArray">
+	<string-array name="exercisesArrayLegs">
 		<item >Приседания со штангой</item>
-		<item > </item>
-		<item > </item>
-		<item > </item>
-		<item > </item>
-		<item > </item>
-		<item > </item>
-		<item > </item>
-		<item > </item>
-		<item > </item>
-		<item > </item>
-		<item > </item>
-		<item > </item>
-		<item > </item>
-		<item > </item>
-		<item > </item>
-		<item > </item>
-		<item > </item>
-		<item > </item>
-		<item > </item>
-		<item > </item>
-		<item > </item>
-		<item > </item>
-		<item > </item>
-		<item > </item>
-		<item > </item>
-		<item > </item>
-		<item > </item>
-		<item > </item>
-		<item > </item>
-		<item > </item>
-		<item > </item>
-		<item > </item>
-		<item > </item>
-		<item > </item>
-		<item > </item>
-		<item > </item>
-		<item > </item>
-		<item > </item>
-		<item > </item>
-		<item > </item>
-		<item > </item>		
+		<item >Жим ногами</item>
+		<item >Фронтальные приседания</item>
+		<item >Приседания в Смите</item>
+		<item >Приседания в Гакк-машине</item>
+		<item >Разгибания ног в тренажере </item>
+		<item >Сгибания ног в тренажере</item>
+		<item >Мертвая тяга</item>
+		<item >Икроножные в тренажере</item>
+		<item >Икроножные в Смите</item>
+		<item >Выпады с гантелей</item>
+		<item >Сведение ног в тренажере</item>
+		<item >Разведение ног в тренажере</item>
+		<item >Махи ногами в блоке</item>
+	</string-array>
+	<string-array name="exercisesArrayChest">
+		<item >й</item>
+	</string-array>
+	<string-array name="exercisesArrayBack">
+		<item ></item>
+	</string-array>
+	<string-array name="exercisesArrayShoulders">
+		<item ></item>
+	</string-array>
+	<string-array name="exercisesArrayArms">
+		<item ></item>
+	</string-array>
+	<string-array name="exercisesArrayAbs">
+		<item ></item>
 	</string-array>
 	
 	
