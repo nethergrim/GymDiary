@@ -89,9 +89,9 @@
                 <item >Bench press (Smith machine) (-30 bench)</item>
                 <item >Breeding dumbbellsй (flat bench)</item>
                 <item >Breeding dumbbells (+30 bench)</item>
-                <item >Жим в тренажере</item>
-                <item >Кроссовер</item>
-                <item >Кроссовер лежа на скамье</item>
+                <item >Bench in the simulator</item>
+                <item >crossover</item>
+                <item >Crossover lying on the bench</item>
         </string-array>
         <string-array name="exercisesArrayBack">
                 <item >Подтягивания</item>
