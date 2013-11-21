@@ -122,25 +122,17 @@
 		<item >Тяга Ли-Хейни</item>
 	</string-array>
 	<string-array name="exercisesArrayArms">
-		<item ></item>
-		<item ></item>
-		<item ></item>
-		<item ></item>
-		<item ></item>
-		<item ></item>
-		<item ></item>
-		<item ></item>
-		<item ></item>
-		<item ></item>
-		<item ></item>
-		<item ></item>
-		<item ></item>
-		<item ></item>
-		<item ></item>
-		<item ></item>
-		<item ></item>
-		<item ></item>
-		<item ></item>
+		<item >Жим узким хватом</item>
+		<item >Французский жим лежа</item>
+		<item >Французский жим сидя</item>
+		<item >Жим в блоке (трицепс)</item>
+		<item >Подъем штанги на бицепс</item>
+		<item >подъем гантелей на бицепс</item>
+		<item >Подъем штанги на скамье Скотта</item>
+		<item >подъем гантелей на скамье Скотта</item>
+		<item >Тяга в блоке (бицепс)</item>
+		<item >Подъем штанги обратным хватом</item>
+		<item >Молоток</item>
 	</string-array>
 	<string-array name="exercisesArrayAbs">
 		<item ></item>
