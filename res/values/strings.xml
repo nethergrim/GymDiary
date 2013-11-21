@@ -78,17 +78,17 @@
                 <item >Kick their feet in the block</item>
         </string-array>
         <string-array name="exercisesArrayChest">
-                <item >Жим штанги лежа (ровная скамья)</item>
-                <item >Жим гантелей лежа (ровная скамья)</item>
-                <item >Жим штанги лежа (+30 градусов)</item>
-                <item >Жим гантелей лежа (+30 градусов)</item>
-                <item >Жим штанги лежа (-30 градусов)</item>
-                <item >жим гантелей лежа (-30 градусов)</item>
-                <item >Жим лежа в Смите (ровная скамья)</item>
-                <item >Жим лежа в Смите (+30 градусов)</item>
-                <item >Жим лежа в Смите (-30 градусов)</item>
-                <item >Разведения гантелей (ровная скамья)</item>
-                <item >Разведения гантелей (+30 градусов)</item>
+                <item >Bench press (flat bench)</item>
+                <item >Dumbbell bench press (flat bench)</item>
+                <item >Bench press (+30 bench)</item>
+                <item >Dumbbell bench press (+30 bench)</item>
+                <item >Bench press (-30 bench)</item>
+                <item >Dumbbell bench press (-30 bench)</item>
+                <item >Bench press (Smith machine) (flat bench)</item>
+                <item >Bench press (Smith machine) (+30 bench)</item>
+                <item >Bench press (Smith machine) (-30 bench)</item>
+                <item >Breeding dumbbellsй (flat bench)</item>
+                <item >Breeding dumbbells (+30 bench)</item>
                 <item >Жим в тренажере</item>
                 <item >Кроссовер</item>
                 <item >Кроссовер лежа на скамье</item>
