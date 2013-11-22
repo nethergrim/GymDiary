@@ -139,6 +139,12 @@
                 <item >Скручивания</item>
                 <item >Подъем ног в висе</item>
         </string-array>
+        <string name="traLegs">Legs training</string>
+    	<string name="traChest">Pectoral training</string>
+    	<string name="traBack">Тренировка training</string>
+    	<string name="traShoulders">Delts training</string>
+    	<string name="traArms">Arms training</string>
+    	<string name="traAbs">Abs training</string>
     
 
 </resources>
