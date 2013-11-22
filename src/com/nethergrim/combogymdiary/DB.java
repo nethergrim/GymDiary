@@ -265,42 +265,42 @@ return mDB.query(DB_EXE_TABLE, column, selection, selectionArgs, groupBy, having
 	for (int i = 0; i < exeLegs.length(); i++) {
 		ContentValues cv = new ContentValues();
 		cv.put(EXE_NAME, exeLegs[i]);
-		cv.put(TRA_NAME, getString(R.string.traLegs););
+		cv.put(TRA_NAME, getString(R.string.traLegs);
 		cv.put(TIMER_VALUE, 90);
 		mDB.insert(DB_EXE_TABLE, null, cv);
 	}
 	for (int i = 0; i < exeChest.length(); i++) {
 		ContentValues cv = new ContentValues();
 		cv.put(EXE_NAME, exeChest[i]);
-		cv.put(TRA_NAME, getString(R.string.traChest););
+		cv.put(TRA_NAME, getString(R.string.traChest);
 		cv.put(TIMER_VALUE, 60);
 		mDB.insert(DB_EXE_TABLE, null, cv);
 	}
 	for (int i = 0; i < exeArms.length(); i++) {
 		ContentValues cv = new ContentValues();
 		cv.put(EXE_NAME, exeArms[i]);
-		cv.put(TRA_NAME, getString(R.string.traArms););
+		cv.put(TRA_NAME, getString(R.string.traArms);
 		cv.put(TIMER_VALUE, 60);
 		mDB.insert(DB_EXE_TABLE, null, cv);
 	}
 	for (int i = 0; i < exeBack.length(); i++) {
 		ContentValues cv = new ContentValues();
 		cv.put(EXE_NAME, exeBack[i]);
-		cv.put(TRA_NAME, getString(R.string.traBack););
+		cv.put(TRA_NAME, getString(R.string.traBack);
 		cv.put(TIMER_VALUE, 60);
 		mDB.insert(DB_EXE_TABLE, null, cv);
 	}
 	for (int i = 0; i < exeShoulders.length(); i++) {
 		ContentValues cv = new ContentValues();
 		cv.put(EXE_NAME, exeShoulders[i]);
-		cv.put(TRA_NAME, getString(R.string.traShoulders););
+		cv.put(TRA_NAME, getString(R.string.traShoulders);
 		cv.put(TIMER_VALUE, 60);
 		mDB.insert(DB_EXE_TABLE, null, cv);
 	}
 	for (int i = 0; i < exeAbs.length(); i++) {
 		ContentValues cv = new ContentValues();
 		cv.put(EXE_NAME, exeAbs[i]);
-		cv.put(TRA_NAME, getString(R.string.traAbs););
+		cv.put(TRA_NAME, getString(R.string.traAbs);
 		cv.put(TIMER_VALUE, 60);
 		mDB.insert(DB_EXE_TABLE, null, cv);
 	}
