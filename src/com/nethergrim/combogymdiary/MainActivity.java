@@ -43,7 +43,7 @@ public class MainActivity extends Activity implements OnClickListener {
         db = new DB(this);
 		db.open();
 		cursor = db.getAllData_Exe();
-		if (cursor.getCount() < 1) {
+		if (cursor.getCount() < 60) {
 			Log.d(LOG_TAG, "cursor getcount < 1 ");
 	        String[] exeLegs = getResources().getStringArray(R.array.exercisesArrayLegs);
 			String[] exeChest = getResources().getStringArray(R.array.exercisesArrayChest);
