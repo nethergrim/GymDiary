@@ -15,13 +15,13 @@ public class DB {
   private static final String DB_NAME = "mydb";
   private static final int DB_VERSION = 1;
   
-  private static final String DB_EXE_TABLE = "exe_tab";// программа / упражнение / таймер
+  private static final String DB_EXE_TABLE = "exe_tab";// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ / пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ / пїЅпїЅпїЅпїЅпїЅпїЅ
   public static final String COLUMN_ID = "_id";
   public static final String EXE_NAME = "exercise_name";
   public static final String TRA_NAME = "training_name";
   public static final String TIMER_VALUE = "timer_value";
   
-  public static final String DB_MAIN_TABLE = "main_tab";// рабочая таблица
+  public static final String DB_MAIN_TABLE = "main_tab";// пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ
   public static final String DATE = "Date";
   public static final String WEIGHT = "Weight";
   public static final String REPS = "Reps";
@@ -95,7 +95,7 @@ public class DB {
 			  if (c.getInt(1) < _set ) { 
 			  } else if (c.getInt(1) == _set){ 
 			  		result =  c.getInt(0);
-			  } else if ( c.getInt(1) > _set ) { // если в прошлый раз было больше подходов чем сейчас делаем, идем вверх по таблице пока не найдем нужный подход
+			  } else if ( c.getInt(1) > _set ) { // пїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ, пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
 				  while ( c.getInt(1) > _set ) {
 					c.moveToPrevious();
 					result =  c.getInt(0);
@@ -255,6 +255,13 @@ return mDB.query(DB_EXE_TABLE, column, selection, selectionArgs, groupBy, having
     	Log.d(LOG_TAG, "--- onCreate database ---");
     	db.execSQL(DB_EXE_CREATE);   
     	db.execSQL(DB_MAIN_CREATE);
+    	Resources res = getResources();
+	String[] exeLegs = res.getStringArray(R.array.exercisesArrayLegs);
+	String[] exeChest = res.getStringArray(R.array.exercisesArrayChest);
+	String[] exeBack = res.getStringArray(R.array.exercisesArrayBack);
+	String[] exeShoulders = res.getStringArray(R.array.exercisesArrayShoulders);
+	String[] exeArms = res.getStringArray(R.array.exercisesArrayArms);
+	String[] exeAbs = res.getStringArray(R.array.exercisesArrayAbs);
     }
 
     @Override
