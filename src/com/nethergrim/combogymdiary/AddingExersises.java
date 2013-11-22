@@ -21,10 +21,10 @@ import android.widget.Toast;
 
 public class AddingExersises extends Activity implements OnClickListener {
 
-	Button btnCreate; 				// кпопка "Сохранить"
-	ListView lvExersices_list;		// список с упражнениями
-	EditText etName, etTimer;		// поля для ввода имени и значения таймера
-	String exeName = "", timerV = "";// название и таймер для изменения упражнения в базе
+	Button btnCreate; 				// пїЅпїЅпїЅпїЅпїЅпїЅ "пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ"
+	ListView lvExersices_list;		// пїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
+	EditText etName, etTimer;		// пїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ
+	String exeName = "", timerV = "";// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅ
 	int exePosition = 0;
 	long exeID=0;
 	String defaultTimer;
@@ -80,7 +80,7 @@ public class AddingExersises extends Activity implements OnClickListener {
 	}
 	
 	protected void onResume() {
-	    defaultTimer = sp.getString("etDefault", "" );
+	    defaultTimer = sp.getString("etDefault", "60" );
 	    etTimer.setText(defaultTimer);
 	    super.onResume();
 	  }
