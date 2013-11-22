@@ -5,11 +5,15 @@ import java.util.HashMap;
 
 import android.app.ActionBar;
 import android.app.Activity;
+import android.content.Intent;
 import android.database.Cursor;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.SimpleAdapter;
+import android.widget.AdapterView.OnItemClickListener;
 
 public class HistoryActivity extends Activity {
 
@@ -29,7 +33,7 @@ public class HistoryActivity extends Activity {
 		db = new DB(this);
 		db.open();
 		lvMain = (ListView)findViewById(R.id.lvMainHistory);
-		cursor = db.getData_Main_GroupBy(DB.DATE);// возможна проблема, если за один день 2 тренировки
+		cursor = db.getData_Main_GroupBy(DB.DATE);
 		if (cursor.moveToFirst()) {
 			size = cursor.getCount();
 			Log.d(LOG_TAG,"cursor size = "+size);
@@ -54,9 +58,33 @@ public class HistoryActivity extends Activity {
 			int[] to = { R.id.tvCatName };
 			SimpleAdapter adapter = new SimpleAdapter(this, data, R.layout.list_with_arrow,from, to);
 			lvMain.setAdapter(adapter);
+			lvMain.setOnItemClickListener(new OnItemClickListener() 
+	    	{
+	        public void onItemClick(AdapterView<?> parent, View view,
+	            int position, long id) 
+	        	{
+		          Log.d(LOG_TAG, "In ExercisesList itemClick: position = " + position + ", id = "+ id);
+		          goToDetailed(position, id);
+		        }
+	    	});
 		}
 	}
 	
+	public void goToDetailed(int position,long ID) 
+	{
+		cursor.moveToFirst();
+		while (cursor.getPosition() < position) {
+			cursor.moveToNext();
+		}
+		String date = cursor.getString(3);
+		String trName = cursor.getString(1);			
+		Intent intent_history_detailed = new Intent(this,HistoryDetailedActivity.class);
+		intent_history_detailed.putExtra("date", date);
+		intent_history_detailed.putExtra("trName", trName);
+		intent_history_detailed.putExtra("traID", ID);
+		Log.d(LOG_TAG,"put extra to AddingExersises: date " + date + " trName " + trName + " traID " + ID);
+	    startActivity(intent_history_detailed);	
+	}
 
 	private void setupActionBar() {
 		ActionBar bar = getActionBar();

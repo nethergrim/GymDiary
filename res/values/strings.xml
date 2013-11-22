@@ -61,90 +61,93 @@
     <string name="vibrate_lenght">Duration of vibration (sec)</string>
     <string name="default_vibrate_lenght">Duration of vibration default (sec)</string>
     <string name="empty">*empty*</string>
-        <string-array name="exercisesArrayLegs">
-                <item >Squats</item>
-                <item >Leg Press</item>
-                <item >Front squat</item>
-                <item >Smith machine squats</item>
-                <item >GAKK machine squats</item>
-                <item >Leg extention </item>
-                <item >Flexion</item>
-                <item >Deadlift</item>
-                <item >Calves in the simulator</item>
-                <item >Calves in Smith machine</item>
-                <item >Lunges with dumbbells</item>
-                <item >Reduction feet in the simulator</item>
-                <item >Breeding feet in the simulator</item>
-                <item >Kick their feet in the block</item>
-        </string-array>
-        <string-array name="exercisesArrayChest">
-                <item >Bench press (flat bench)</item>
-                <item >Dumbbell bench press (flat bench)</item>
-                <item >Bench press (+30 bench)</item>
-                <item >Dumbbell bench press (+30 bench)</item>
-                <item >Bench press (-30 bench)</item>
-                <item >Dumbbell bench press (-30 bench)</item>
-                <item >Bench press (Smith machine) (flat bench)</item>
-                <item >Bench press (Smith machine) (+30 bench)</item>
-                <item >Bench press (Smith machine) (-30 bench)</item>
-                <item >Breeding dumbbellsй (flat bench)</item>
-                <item >Breeding dumbbells (+30 bench)</item>
-                <item >Bench in the simulator</item>
-                <item >crossover</item>
-                <item >Crossover lying on the bench</item>
-        </string-array>
-        <string-array name="exercisesArrayBack">
-                <item >Pullups</item>
-                <item >Pullups with weights</item>
-                <item >Vertical rod in the block (to the chest)</item>
-                <item >Vertical rod in the block (a head)</item>
-                <item >Horizontals thrust block</item>
-                <item >Deadlift</item>
-                <item >pullover</item>
-                <item >Thrust rod in the slope</item>
-                <item >Link dumbbells in the slope</item>
-                <item >Rod T-neck</item>
-                <item >Shrugs with dumbbells</item>
-                <item >Shrugs with barbell</item>
-        </string-array>
-        <string-array name="exercisesArrayShoulders">
-                <item >Seated Barbell Military Press</item>
-                <item >Bench press behind the head (Smith machine)</item>
-                <item >Dumbbell Bench sitting</item>
-                <item >Leverage Shoulder Press</item>
-                <item >Bench Arnold</item>
-                <item >Face Pull</item>
-                <item >Power Partials</item>
-                <item >Front Two-Dumbbell Raise</item>
-                <item >Reverse Flyes</item>
-                <item >Car Drivers</item>
-                <item >Cable Front Delt Fly</item>
-                <item >Cable Rear Delt Fly</item>
-                <item >Lee Haney curl</item>
-        </string-array>
-        <string-array name="exercisesArrayArms">
-                <item >Close-Grip Barbell Bench Press</item>
-                <item >EZ-Bar Skullcrusher</item>
-                <item >One Arm Supinated Dumbbell Triceps Extension</item>
-                <item >Triceps Overhead Extension with Rope</item>
-                <item >Standing Barbell Curl</item>
-                <item >Dumbbell Bicep Curl</item>
-                <item >Barbell Preacher Curls</item>
-                <item >One Arm Dumbbell Preacher Curl</item>
-                <item >Standing One-Arm Cable Curl</item>
-                <item >Reverse Cable Curl</item>
-                <item >Hammer Curls</item>
-        </string-array>
-        <string-array name="exercisesArrayAbs">
-                <item >3/4 Sit-Up</item>
-                <item >Ab Crunch Machine</item>
-        </string-array>
-        <string name="traLegs">Legs training</string>
-    	<string name="traChest">Pectoral training</string>
-    	<string name="traBack">Back training</string>
-    	<string name="traShoulders">Delts training</string>
-    	<string name="traArms">Arms training</string>
-    	<string name="traAbs">Abs training</string>
-    
+
+    <string-array name="exercisesArrayLegs">
+        <item>Squats</item>
+        <item>Leg Press</item>
+        <item>Front squat</item>
+        <item>Smith machine squats</item>
+        <item>GAKK machine squats</item>
+        <item>Leg extention </item>
+        <item>Flexion</item>
+        <item>Deadlift</item>
+        <item>Calves in the simulator</item>
+        <item>Calves in Smith machine</item>
+        <item>Lunges with dumbbells</item>
+        <item>Reduction feet in the simulator</item>
+        <item>Breeding feet in the simulator</item>
+        <item>Kick their feet in the block</item>
+    </string-array>
+    <string-array name="exercisesArrayChest">
+        <item>Bench press (flat bench)</item>
+        <item>Dumbbell bench press (flat bench)</item>
+        <item>Bench press (+30 bench)</item>
+        <item>Dumbbell bench press (+30 bench)</item>
+        <item>Bench press (-30 bench)</item>
+        <item>Dumbbell bench press (-30 bench)</item>
+        <item>Bench press (Smith machine) (flat bench)</item>
+        <item>Bench press (Smith machine) (+30 bench)</item>
+        <item>Bench press (Smith machine) (-30 bench)</item>
+        <item>Breeding dumbbellsй (flat bench)</item>
+        <item>Breeding dumbbells (+30 bench)</item>
+        <item>Bench in the simulator</item>
+        <item>crossover</item>
+        <item>Crossover lying on the bench</item>
+    </string-array>
+    <string-array name="exercisesArrayBack">
+        <item>Pullups</item>
+        <item>Pullups with weights</item>
+        <item>Vertical rod in the block (to the chest)</item>
+        <item>Vertical rod in the block (a head)</item>
+        <item>Horizontals thrust block</item>
+        <item>Deadlift</item>
+        <item>pullover</item>
+        <item>Thrust rod in the slope</item>
+        <item>Link dumbbells in the slope</item>
+        <item>Rod T-neck</item>
+        <item>Shrugs with dumbbells</item>
+        <item>Shrugs with barbell</item>
+    </string-array>
+    <string-array name="exercisesArrayShoulders">
+        <item>Seated Barbell Military Press</item>
+        <item>Bench press behind the head (Smith machine)</item>
+        <item>Dumbbell Bench sitting</item>
+        <item>Leverage Shoulder Press</item>
+        <item>Bench Arnold</item>
+        <item>Face Pull</item>
+        <item>Power Partials</item>
+        <item>Front Two-Dumbbell Raise</item>
+        <item>Reverse Flyes</item>
+        <item>Car Drivers</item>
+        <item>Cable Front Delt Fly</item>
+        <item>Cable Rear Delt Fly</item>
+        <item>Lee Haney curl</item>
+    </string-array>
+    <string-array name="exercisesArrayArms">
+        <item>Close-Grip Barbell Bench Press</item>
+        <item>EZ-Bar Skullcrusher</item>
+        <item>One Arm Supinated Dumbbell Triceps Extension</item>
+        <item>Triceps Overhead Extension with Rope</item>
+        <item>Standing Barbell Curl</item>
+        <item>Dumbbell Bicep Curl</item>
+        <item>Barbell Preacher Curls</item>
+        <item>One Arm Dumbbell Preacher Curl</item>
+        <item>Standing One-Arm Cable Curl</item>
+        <item>Reverse Cable Curl</item>
+        <item>Hammer Curls</item>
+    </string-array>
+    <string-array name="exercisesArrayAbs">
+        <item>3/4 Sit-Up</item>
+        <item>Ab Crunch Machine</item>
+    </string-array>
+
+    <string name="traLegs">Legs training</string>
+    <string name="traChest">Pectoral training</string>
+    <string name="traBack">Back training</string>
+    <string name="traShoulders">Delts training</string>
+    <string name="traArms">Arms training</string>
+    <string name="traAbs">Abs training</string>
+    <string name="title_activity_history_detailed">HistoryDetailedActivity</string>
+    <string name="hello_world">Hello world!</string>
 
 </resources>

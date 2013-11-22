@@ -153,8 +153,9 @@ public final class R {
     }
     public static final class menu {
         public static final int history=0x7f0b0000;
-        public static final int main=0x7f0b0001;
-        public static final int menu_add_delete_edit=0x7f0b0002;
+        public static final int history_detailed=0x7f0b0001;
+        public static final int main=0x7f0b0002;
+        public static final int menu_add_delete_edit=0x7f0b0003;
     }
     public static final class string {
         public static final int Add=0x7f080009;
@@ -186,6 +187,7 @@ public final class R {
         public static final int excersisiesListButtonString=0x7f080005;
         public static final int exit=0x7f08001c;
         public static final int exit_workout=0x7f08002b;
+        public static final int hello_world=0x7f080043;
         public static final int input_data=0x7f080035;
         public static final int new_set=0x7f080021;
         public static final int no=0x7f080020;
@@ -207,8 +209,15 @@ public final class R {
         public static final int stop=0x7f080013;
         public static final int timer=0x7f080028;
         public static final int timer_between_sets=0x7f08000e;
+        public static final int title_activity_history_detailed=0x7f080042;
         public static final int title_training_detail=0x7f080030;
         public static final int title_training_list=0x7f08002f;
+        public static final int traAbs=0x7f080041;
+        public static final int traArms=0x7f080040;
+        public static final int traBack=0x7f08003e;
+        public static final int traChest=0x7f08003d;
+        public static final int traLegs=0x7f08003c;
+        public static final int traShoulders=0x7f08003f;
         public static final int trainProgramListButtonString=0x7f080004;
         public static final int training=0x7f08001a;
         public static final int turn_off_screen=0x7f080031;
