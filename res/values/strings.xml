@@ -108,36 +108,36 @@
                 <item >Shrugs with barbell</item>
         </string-array>
         <string-array name="exercisesArrayShoulders">
-                <item >Bench press behind the head</item>
+                <item >Seated Barbell Military Press</item>
                 <item >Bench press behind the head (Smith machine)</item>
                 <item >Dumbbell Bench sitting</item>
-                <item >Bench in the simulator</item>
+                <item >Leverage Shoulder Press</item>
                 <item >Bench Arnold</item>
-                <item >Pull to the chin</item>
-                <item >Махи в стороны</item>
-                <item >Махи перед собой</item>
-                <item >Махи назад (опора на скамью)</item>
-                <item >Тяга в сторону в блоке</item>
-                <item >Тяга перед собой в блоке</item>
-                <item >Тяга назад в блоке</item>
-                <item >Тяга Ли-Хейни</item>
+                <item >Face Pull</item>
+                <item >Power Partials</item>
+                <item >Front Two-Dumbbell Raise</item>
+                <item >Reverse Flyes</item>
+                <item >Car Drivers</item>
+                <item >Cable Front Delt Fly</item>
+                <item >Cable Rear Delt Fly</item>
+                <item >Lee Haney curl</item>
         </string-array>
         <string-array name="exercisesArrayArms">
-                <item >Жим узким хватом</item>
-                <item >Французский жим лежа</item>
-                <item >Французский жим сидя</item>
-                <item >Жим в блоке (трицепс)</item>
-                <item >Подъем штанги на бицепс</item>
-                <item >подъем гантелей на бицепс</item>
-                <item >Подъем штанги на скамье Скотта</item>
-                <item >подъем гантелей на скамье Скотта</item>
-                <item >Тяга в блоке (бицепс)</item>
-                <item >Подъем штанги обратным хватом</item>
-                <item >Молоток</item>
+                <item >Close-Grip Barbell Bench Press</item>
+                <item >EZ-Bar Skullcrusher</item>
+                <item >One Arm Supinated Dumbbell Triceps Extension</item>
+                <item >Triceps Overhead Extension with Rope</item>
+                <item >Standing Barbell Curl</item>
+                <item >Dumbbell Bicep Curl</item>
+                <item >Barbell Preacher Curls</item>
+                <item >One Arm Dumbbell Preacher Curl</item>
+                <item >Standing One-Arm Cable Curl</item>
+                <item >Reverse Cable Curl</item>
+                <item >Hammer Curls</item>
         </string-array>
         <string-array name="exercisesArrayAbs">
-                <item >Скручивания</item>
-                <item >Подъем ног в висе</item>
+                <item >3/4 Sit-Up</item>
+                <item >Ab Crunch Machine</item>
         </string-array>
         <string name="traLegs">Legs training</string>
     	<string name="traChest">Pectoral training</string>
