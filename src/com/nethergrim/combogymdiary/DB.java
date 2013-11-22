@@ -255,13 +255,12 @@ return mDB.query(DB_EXE_TABLE, column, selection, selectionArgs, groupBy, having
     	Log.d(LOG_TAG, "--- onCreate database ---");
     	db.execSQL(DB_EXE_CREATE);   
     	db.execSQL(DB_MAIN_CREATE);
-    	Resources res = getResources();
-	String[] exeLegs = res.getStringArray(R.array.exercisesArrayLegs);
-	String[] exeChest = res.getStringArray(R.array.exercisesArrayChest);
-	String[] exeBack = res.getStringArray(R.array.exercisesArrayBack);
-	String[] exeShoulders = res.getStringArray(R.array.exercisesArrayShoulders);
-	String[] exeArms = res.getStringArray(R.array.exercisesArrayArms);
-	String[] exeAbs = res.getStringArray(R.array.exercisesArrayAbs);
+	String[] exeLegs = getResources().getStringArray(R.array.exercisesArrayLegs);
+	String[] exeChest = getResources().getStringArray(R.array.exercisesArrayChest);
+	String[] exeBack = getResources().getStringArray(R.array.exercisesArrayBack);
+	String[] exeShoulders = getResources().getStringArray(R.array.exercisesArrayShoulders);
+	String[] exeArms = getResources().getStringArray(R.array.exercisesArrayArms);
+	String[] exeAbs = getResources().getStringArray(R.array.exercisesArrayAbs);
 	
 	for (int i = 0; i < exeLegs.length(); i++) {
 		ContentValues cv = new ContentValues();
