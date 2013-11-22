@@ -3,7 +3,9 @@ package com.nethergrim.combogymdiary;
 import android.app.ActionBar;
 import android.app.Activity;
 import android.content.Intent;
+import android.database.Cursor;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -19,7 +21,9 @@ public class MainActivity extends Activity implements OnClickListener {
 	Button btnExcersises;
 	Button btnWorklog;
 	public static MainActivity ma;
-
+	DB db;
+	Cursor cursor;
+	final String LOG_TAG = "myLogs";
 	
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,7 +40,33 @@ public class MainActivity extends Activity implements OnClickListener {
         ma=this;
         ActionBar bar = getActionBar();
         bar.setTitle(R.string.app_name); 
-        }
+        db = new DB(this);
+		db.open();
+		cursor = db.getAllData_Exe();
+		if (cursor.getCount() < 1) {
+			Log.d(LOG_TAG, "cursor getcount < 1 ");
+	        String[] exeLegs = getResources().getStringArray(R.array.exercisesArrayLegs);
+			String[] exeChest = getResources().getStringArray(R.array.exercisesArrayChest);
+			String[] exeBack = getResources().getStringArray(R.array.exercisesArrayBack);
+			String[] exeShoulders = getResources().getStringArray(R.array.exercisesArrayShoulders);
+			String[] exeArms = getResources().getStringArray(R.array.exercisesArrayArms);
+			String[] exeAbs = getResources().getStringArray(R.array.exercisesArrayAbs);
+			for (int i = 0; i < exeLegs.length; i++) 
+				db.addRec_Exe(getString(R.string.traLegs), exeLegs[i], "90");
+			for (int i = 0; i < exeChest.length; i++) 
+				db.addRec_Exe(getString(R.string.traChest), exeChest[i], "60");
+			for (int i = 0; i < exeArms.length; i++) 
+				db.addRec_Exe(getString(R.string.traArms), exeArms[i], "60");
+			for (int i = 0; i < exeBack.length; i++) 
+				db.addRec_Exe(getString(R.string.traBack), exeBack[i], "60");
+			for (int i = 0; i < exeShoulders.length; i++) 
+				db.addRec_Exe(getString(R.string.traShoulders), exeShoulders[i], "60");
+			for (int i = 0; i < exeAbs.length; i++) 
+				db.addRec_Exe(getString(R.string.traAbs), exeAbs[i], "60");
+		}
+		Log.d(LOG_TAG, "cursor getcount = " + cursor.getCount());
+		
+    }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
