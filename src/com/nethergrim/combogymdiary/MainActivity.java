@@ -44,30 +44,33 @@ public class MainActivity extends Activity implements OnClickListener {
 		db.open();
 		cursor = db.getAllData_Exe();
 		if (cursor.getCount() < 60) {
-			Log.d(LOG_TAG, "cursor getcount < 1 ");
-	        String[] exeLegs = getResources().getStringArray(R.array.exercisesArrayLegs);
-			String[] exeChest = getResources().getStringArray(R.array.exercisesArrayChest);
-			String[] exeBack = getResources().getStringArray(R.array.exercisesArrayBack);
-			String[] exeShoulders = getResources().getStringArray(R.array.exercisesArrayShoulders);
-			String[] exeArms = getResources().getStringArray(R.array.exercisesArrayArms);
-			String[] exeAbs = getResources().getStringArray(R.array.exercisesArrayAbs);
-			for (int i = 0; i < exeLegs.length; i++) 
-				db.addRec_Exe(getString(R.string.traLegs), exeLegs[i], "90");
-			for (int i = 0; i < exeChest.length; i++) 
-				db.addRec_Exe(getString(R.string.traChest), exeChest[i], "60");
-			for (int i = 0; i < exeArms.length; i++) 
-				db.addRec_Exe(getString(R.string.traArms), exeArms[i], "60");
-			for (int i = 0; i < exeBack.length; i++) 
-				db.addRec_Exe(getString(R.string.traBack), exeBack[i], "60");
-			for (int i = 0; i < exeShoulders.length; i++) 
-				db.addRec_Exe(getString(R.string.traShoulders), exeShoulders[i], "60");
-			for (int i = 0; i < exeAbs.length; i++) 
-				db.addRec_Exe(getString(R.string.traAbs), exeAbs[i], "60");
+			initTable();
 		}
-		Log.d(LOG_TAG, "cursor getcount = " + cursor.getCount());
-		
     }
 
+    private void initTable(){
+		Log.d(LOG_TAG, "cursor getcount < 60 ");
+        String[] exeLegs = getResources().getStringArray(R.array.exercisesArrayLegs);
+		String[] exeChest = getResources().getStringArray(R.array.exercisesArrayChest);
+		String[] exeBack = getResources().getStringArray(R.array.exercisesArrayBack);
+		String[] exeShoulders = getResources().getStringArray(R.array.exercisesArrayShoulders);
+		String[] exeArms = getResources().getStringArray(R.array.exercisesArrayArms);
+		String[] exeAbs = getResources().getStringArray(R.array.exercisesArrayAbs);
+		for (int i = 0; i < exeLegs.length; i++) 
+			db.addRec_Exe(getString(R.string.traLegs), exeLegs[i], "90");
+		for (int i = 0; i < exeChest.length; i++) 
+			db.addRec_Exe(getString(R.string.traChest), exeChest[i], "60");
+		for (int i = 0; i < exeArms.length; i++) 
+			db.addRec_Exe(getString(R.string.traArms), exeArms[i], "60");
+		for (int i = 0; i < exeBack.length; i++) 
+			db.addRec_Exe(getString(R.string.traBack), exeBack[i], "60");
+		for (int i = 0; i < exeShoulders.length; i++) 
+			db.addRec_Exe(getString(R.string.traShoulders), exeShoulders[i], "60");
+		for (int i = 0; i < exeAbs.length; i++) 
+			db.addRec_Exe(getString(R.string.traAbs), exeAbs[i], "60");
+		Log.d(LOG_TAG, "cursor getcount = " + cursor.getCount());
+    }
+    
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         return true;
@@ -102,5 +105,10 @@ public class MainActivity extends Activity implements OnClickListener {
 		}
 	}
 	
+	
+	protected void onDestroy() {
+	    super.onDestroy();
+	    db.close();	    
+	  }
 	
 }
