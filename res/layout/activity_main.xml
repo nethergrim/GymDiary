@@ -11,7 +11,8 @@
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context=".MainActivity" >
-    <Space />
+
+    <Space />
 
     
     <Button
@@ -20,6 +21,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="left"
+        android:textColor="@android:color/white"
         android:layout_margin="8dp"
         android:layout_marginTop="50dp"
         android:text="@string/startTrainingButtonString"
@@ -31,6 +33,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="left"
+        android:textColor="@android:color/white"
         android:layout_margin="8dp"
         android:layout_marginTop="-4dp"
         android:text="@string/excersisiesListButtonString"
@@ -41,6 +44,7 @@
         style="@style/HabraThemeButton"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:textColor="@android:color/white"
         android:layout_gravity="left"
         android:layout_margin="8dp"
         android:layout_marginTop="-4dp"
@@ -53,11 +57,13 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="left"
+        android:textColor="@android:color/white"
         android:layout_margin="8dp"
         android:layout_marginTop="-4dp"
         android:text="@string/settingsButtonString"
         android:textSize="@dimen/text20" />
 
-    <Space />
+
+    <Space />
 
 </GridLayout>
