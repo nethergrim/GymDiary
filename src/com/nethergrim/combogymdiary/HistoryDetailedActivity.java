@@ -45,7 +45,6 @@ public class HistoryDetailedActivity extends Activity {
 	
 	private void setupLayout(){
 		LayoutParams lpView = new LayoutParams(LayoutParams.WRAP_CONTENT, LayoutParams.WRAP_CONTENT);
-		LayoutParams lpViewForLL = new LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.WRAP_CONTENT);
         LinearLayout llMain = new LinearLayout(this);
         llMain.setOrientation(LinearLayout.VERTICAL);
         LayoutParams linLayoutParam = new LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.MATCH_PARENT); 
@@ -62,10 +61,6 @@ public class HistoryDetailedActivity extends Activity {
         			llMain.addView(tvNewSet,lpView);
         		}while (cursor.moveToNext() && cursor.getInt(5) != 1);
         		cursor.moveToPrevious();
-        		
-        		
-        		
-
         	} while (cursor.moveToNext());
         }        
 	}

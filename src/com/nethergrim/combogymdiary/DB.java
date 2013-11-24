@@ -116,7 +116,7 @@ public class DB {
 		  int positionLastDay = size - _set - 1;
 		  c.moveToPosition(positionLastDay);
 		  _set++;
-		  if (c.getCount() > 3) {
+		  if (c.getCount() > 7) {
 			  if (c.getInt(1) < _set ) { 
 			  } else if (c.getInt(1) == _set){ 
 			  		result =  c.getInt(0);

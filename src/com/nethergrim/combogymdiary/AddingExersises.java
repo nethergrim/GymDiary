@@ -22,10 +22,10 @@ import android.widget.Toast;
 
 public class AddingExersises extends Activity implements OnClickListener {
 
-	Button btnCreate; 				// ������ "���������"
-	ListView lvExersices_list;		// ������ � ������������
-	EditText etName, etTimer;		// ���� ��� ����� ����� � �������� �������
-	String exeName = "", timerV = "";// �������� � ������ ��� ��������� ���������� � ����
+	Button btnCreate; 				
+	ListView lvExersices_list;		
+	EditText etName, etTimer;		
+	String exeName = "", timerV = "";
 	int exePosition = 0;
 	long exeID=0;
 	String defaultTimer;

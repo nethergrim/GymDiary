@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.nethergrim.combogymdiary"
-    android:versionCode="4"
-    android:versionName="1.1.2" >
+    android:versionCode="6"
+    android:versionName="1.1.4" >
 
     <uses-sdk
         android:minSdkVersion="15"
@@ -23,37 +23,65 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        
         <activity android:name="com.nethergrim.combogymdiary.SettingsActivity" >
+                        <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.nethergrim.combogymdiary.MainActivity" />
         </activity>
+        
         <activity android:name="com.nethergrim.combogymdiary.StartTrainingActivity" >
+                        <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.nethergrim.combogymdiary.MainActivity" />
         </activity>
+        
         <activity android:name="com.nethergrim.combogymdiary.ExersisesList" >
+                        <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.nethergrim.combogymdiary.MainActivity" />
         </activity>
         <activity
             android:name="com.nethergrim.combogymdiary.AddingExersises"
             android:windowSoftInputMode="stateHidden" >
+                                    <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.nethergrim.combogymdiary.ExersisesList" />
         </activity>
+        
         <activity
             android:name="com.nethergrim.combogymdiary.AddingProgram"
             android:windowSoftInputMode="stateHidden" >
+                                    <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.nethergrim.combogymdiary.StartTrainingActivity" />
         </activity>
+        
+        
+        
         <activity
             android:name="com.nethergrim.combogymdiary.TrainingAtProgress"
             android:windowSoftInputMode="stateHidden" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.nethergrim.combogymdiary.MainActivity" />
         </activity>
+        
+        
+        
         <activity
             android:name="com.nethergrim.combogymdiary.HistoryActivity"
             android:parentActivityName="com.nethergrim.combogymdiary.MainActivity" >
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.example.combogymdiary.MainActivity" />
-        </activity>
+        </activity>  
+        
         <activity
             android:name="com.google.ads.AdActivity"
             android:configChanges="keyboard|keyboardHidden|orientation|screenLayout|uiMode|screenSize|smallestScreenSize" />
         <activity
             android:name="com.nethergrim.combogymdiary.HistoryDetailedActivity"
-            android:label="@string/title_activity_history_detailed"
             android:parentActivityName="com.nethergrim.combogymdiary.HistoryActivity" >
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"

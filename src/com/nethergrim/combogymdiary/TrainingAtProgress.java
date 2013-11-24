@@ -180,13 +180,14 @@ public class TrainingAtProgress extends Activity  implements OnClickListener, On
             pd.incrementProgressBy(1);
             h.sendEmptyMessageDelayed(0, 1000);
           } else {
-            pd.dismiss();
-          }
-          if (vibrate) {
+        	 if (vibrate) {
 			Vibrator v = (Vibrator) getSystemService(Context.VIBRATOR_SERVICE);
 			v.vibrate(vibrateLenght);
 			Log.d(LOG_TAG, "vibrating for "+vibrateLenght+" millisec ");
+          } 
+            pd.dismiss();
           }
+          
         }
       };      
       h.sendEmptyMessageDelayed(0, 100);
