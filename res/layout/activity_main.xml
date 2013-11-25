@@ -12,7 +12,6 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context=".MainActivity" >
 
-    <Space />
 
     
     <Button
@@ -27,6 +26,16 @@
         android:text="@string/startTrainingButtonString"
         android:textSize="@dimen/text20" />
 
+    
+    <View
+            android:layout_width="match_parent"
+            android:layout_height="1dip"
+            android:layout_marginLeft="4dip"
+            android:layout_marginRight="4dip"
+            android:layout_marginBottom="10dip"
+            android:background="?android:attr/dividerVertical"
+            />
+    
     <Button
         android:id="@+id/buttonExcersisesList"
         style="@style/HabraThemeButton"
@@ -64,6 +73,6 @@
         android:textSize="@dimen/text20" />
 
 
-    <Space />
+
 
 </GridLayout>

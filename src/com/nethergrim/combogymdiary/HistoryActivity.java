@@ -42,8 +42,7 @@ public class HistoryActivity extends Activity {
 			int ii = 0;
 			do {
 				names[ii] = cursor.getString(1);
-				dates[ii] = cursor.getString(3);
-				Log.d(LOG_TAG,"added to array name:"+names[ii]+" date "+dates[ii]);				
+				dates[ii] = cursor.getString(3);		
 				ii++;				
 			}while (cursor.moveToNext());
 
@@ -63,7 +62,6 @@ public class HistoryActivity extends Activity {
 	        public void onItemClick(AdapterView<?> parent, View view,
 	            int position, long id) 
 	        	{
-		          Log.d(LOG_TAG, "In ExercisesList itemClick: position = " + position + ", id = "+ id);
 		          goToDetailed(position, id);
 		        }
 	    	});

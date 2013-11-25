@@ -13,7 +13,7 @@
         android:layout_weight="0.93"
         android:gravity="center_vertical|center_horizontal"
         android:text="123"
-        android:textSize="@dimen/text20" >
+        android:textSize="16sp"  >
 
     </TextView>
 

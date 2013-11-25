@@ -37,7 +37,7 @@
     <string name="new_set">New set</string>
     <string name="cancel">Cancel</string>
     <string name="saved">Saved</string>
-    <string name="prev">prev:</string>
+    <string name="prev">prev: </string>
     <string name="deleted">Deleted</string>
     <string name="save">Save</string>
     <string name="default_timer_value">Default timer value between sets:</string>

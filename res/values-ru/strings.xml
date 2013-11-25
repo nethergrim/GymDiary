@@ -12,8 +12,8 @@
     <string name="btn_timer_select">Выберите продолжительность таймера</string>
     <string name="cancel">Отмена</string>
     <string name="create_new">Создать новое</string>
-    <string name="create_new_exercise">Создание/Редактирование упражнения</string>
-    <string name="creating_program">Создание/Редактирование программы</string>
+    <string name="create_new_exercise">Редактирование упражнения</string>
+    <string name="creating_program">Редактирование программы</string>
     <string name="default_timer_value">Значение таймера между подходами:</string>
     <string name="delete">Удалить</string>
     <string name="delete_record">Удалить</string>
@@ -25,7 +25,7 @@
     <string name="exit_workout">Выйти из тренировки?</string>
     <string name="new_set">Новый подход</string>
     <string name="no">Нет</string>
-    <string name="prev">предыдущий:</string>
+    <string name="prev">предыдущий: </string>
     <string name="programs_list">Список тренировок:</string>
     <string name="reps">Повторений:</string>
     <string name="save">Сохранить</string>
