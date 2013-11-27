@@ -61,7 +61,7 @@
         android:layout_below="@+id/adView1"
         android:layout_marginLeft="8dp"
         android:background="@drawable/rounded"
-        android:keepScreenOn="true" >
+        >
 
     </ListView>
 
