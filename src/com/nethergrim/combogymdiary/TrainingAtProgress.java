@@ -158,6 +158,7 @@ public class TrainingAtProgress extends Activity  implements OnClickListener, On
   
 	protected void onResume() {
 	    turnOff = sp.getBoolean("toTurnOff", false);
+	    lvMain.setKeepScreenOn(turnOff);
 	    vibrate = sp.getBoolean("vibrateOn", true);
 	    String vl = sp.getString("vibtateLenght", "2");
 	    vibrateLenght = Integer.parseInt(vl);
