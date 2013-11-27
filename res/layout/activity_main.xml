@@ -4,6 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:layout_gravity="center_vertical"
+    android:background="@drawable/cream_pixels_bitmap"
     android:columnCount="1"
     android:orientation="horizontal"
     android:paddingBottom="@dimen/activity_vertical_margin"
@@ -25,16 +26,6 @@
         android:layout_marginTop="50dp"
         android:text="@string/startTrainingButtonString"
         android:textSize="@dimen/text20" />
-
-    
-    <View
-            android:layout_width="match_parent"
-            android:layout_height="1dip"
-            android:layout_marginLeft="4dip"
-            android:layout_marginRight="4dip"
-            android:layout_marginBottom="10dip"
-            android:background="?android:attr/dividerVertical"
-            />
     
     <Button
         android:id="@+id/buttonExcersisesList"

@@ -1,5 +1,7 @@
 package com.nethergrim.combogymdiary;
 
+import com.jeremyfeinstein.slidingmenu.lib.SlidingMenu;
+
 import android.app.ActionBar;
 import android.app.Activity;
 import android.content.Intent;
@@ -24,6 +26,10 @@ public class AddingProgram extends Activity implements OnClickListener {
 	DB db;
 	SimpleCursorAdapter scAdapter;
 	Cursor cursor;
+	
+	
+	private SlidingMenu menu;
+	Button btnMenu1,btnMenu2,btnMenu3,btnMenu4;
 		
     @SuppressWarnings("deprecation")
 	@Override
@@ -48,19 +54,78 @@ public class AddingProgram extends Activity implements OnClickListener {
 		scAdapter = new SimpleCursorAdapter(this, android.R.layout.simple_list_item_multiple_choice,
 				cursor, from, to);
 		lvExe.setAdapter(scAdapter);
-	    registerForContextMenu(lvExe);	    
+	    registerForContextMenu(lvExe);	   
+	    setupSlidingMenu();
 	    }
     
-       
-    @Override
-    public boolean onOptionsItemSelected (MenuItem item) 
-    {
-    	int itemId = item.getItemId();
-		if (itemId == android.R.id.home) {
-			NavUtils.navigateUpFromSameTask(this);
+    
+	protected void onResume() {
+		if (menu.isMenuShowing()) {
+			menu.showContent();
 		}
-		return false;    	
-    }
+	    super.onResume();
+	  }
+    protected void setupSlidingMenu(){
+		menu = new SlidingMenu(this);
+        menu.setMode(SlidingMenu.LEFT);
+        menu.setTouchModeAbove(SlidingMenu.TOUCHMODE_FULLSCREEN);
+        menu.setShadowWidthRes(R.dimen.shadow_width);
+        menu.setShadowDrawable(R.drawable.shadow);
+        menu.setBehindOffsetRes(R.dimen.slidingmenu_offset);
+        menu.setFadeDegree(0.35f);
+        menu.attachToActivity(this, SlidingMenu.SLIDING_CONTENT);
+		menu.setMenu(R.layout.menu_frame);
+		btnMenu1 = (Button)findViewById(R.id.btnMenu1);
+		btnMenu2 = (Button)findViewById(R.id.btnMenu2);
+		btnMenu3 = (Button)findViewById(R.id.btnMenu3);
+		btnMenu4 = (Button)findViewById(R.id.btnMenu4);
+		btnMenu1.setOnClickListener(this);
+		btnMenu2.setOnClickListener(this);
+		btnMenu3.setOnClickListener(this);
+		btnMenu4.setOnClickListener(this);
+	}
+	public void gotoMenu (int id) {
+		Class<?> cls = null;
+		switch (id){
+		case R.id.btnMenu1:
+			cls = StartTrainingActivity.class;
+			break;
+		case R.id.btnMenu2:
+			cls = ExersisesList.class;
+			break;
+		case R.id.btnMenu3:
+			cls = HistoryActivity.class;
+			break;
+		case R.id.btnMenu4:
+			cls = SettingsActivity.class;
+			break;
+		}
+		Intent intent = new Intent(this, cls);
+		startActivity(intent);
+	}
+    
+       
+	@Override
+	public boolean onOptionsItemSelected(MenuItem item) {
+		switch (item.getItemId()) {
+		case android.R.id.home:
+			if (!menu.isMenuShowing()) {
+				menu.showMenu();
+			}
+			menu.showContent();
+			return true;
+		}
+		return false;
+	}
+	
+	@Override
+	public void onBackPressed() {
+		if (menu.isMenuShowing()) {
+			menu.showContent();
+		} else {
+			super.onBackPressed();
+		}
+	}
     
 	@Override
 	public void onClick(View arg0) {
@@ -76,6 +141,8 @@ public class AddingProgram extends Activity implements OnClickListener {
 				} 
 			}
 			super.onBackPressed();    			
+		} else {
+			gotoMenu(id);
 		}
 	}
 		
