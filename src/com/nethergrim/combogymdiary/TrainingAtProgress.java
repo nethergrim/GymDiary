@@ -38,7 +38,7 @@ public class TrainingAtProgress extends Activity  implements OnClickListener, On
 	
 	Button btnSave;	
 	ToggleButton tglTimerOn;
-	Boolean tglChecked = true,turnOff = true,vibrate = false;
+	Boolean tglChecked = true,turnOff = false,vibrate = false;
 	EditText etWeight,etReps,etTimer;
 	ListView lvMain;
 	DB db;
@@ -158,7 +158,7 @@ public class TrainingAtProgress extends Activity  implements OnClickListener, On
   
 	protected void onResume() {
 	    turnOff = sp.getBoolean("toTurnOff", false);
-	    lvMain.setKeepScreenOn(turnOff);
+	    lvMain.setKeepScreenOn(!turnOff);
 	    vibrate = sp.getBoolean("vibrateOn", true);
 	    String vl = sp.getString("vibtateLenght", "2");
 	    vibrateLenght = Integer.parseInt(vl);
