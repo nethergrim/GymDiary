@@ -96,12 +96,12 @@ public class HistoryActivity extends Activity {
 	  }
 	  
 	@Override
-        public boolean onOptionsItemSelected(MenuItem item) {
-                switch (item.getItemId()) {
-                case android.R.id.home:
-                        NavUtils.navigateUpFromSameTask(this);
-                        return true;
-                }
-                return super.onOptionsItemSelected(item);
-        }
+	public boolean onOptionsItemSelected(MenuItem item) {
+		switch (item.getItemId()) {
+		case android.R.id.home:
+			NavUtils.navigateUpFromSameTask(this);
+			break;
+		}
+		return false;
+	}
 }
