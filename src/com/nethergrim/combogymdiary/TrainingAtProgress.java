@@ -3,6 +3,8 @@ package com.nethergrim.combogymdiary;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
+import com.nethergrim.combogymdiary.Dialog1.MyInterface;
+
 import android.annotation.SuppressLint;
 import android.app.ActionBar;
 import android.app.Activity;
@@ -17,6 +19,7 @@ import android.os.Handler;
 import android.os.Message;
 import android.os.Vibrator;
 import android.preference.PreferenceManager;
+import android.support.v4.app.NavUtils;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -34,7 +37,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 import android.widget.ToggleButton;
 
-public class TrainingAtProgress extends Activity  implements OnClickListener, OnCheckedChangeListener{
+public class TrainingAtProgress extends Activity  implements MyInterface, OnClickListener, OnCheckedChangeListener{
 	
 	Button btnSave;	
 	ToggleButton tglTimerOn;
@@ -156,6 +159,9 @@ public class TrainingAtProgress extends Activity  implements OnClickListener, On
         lvMain.setItemChecked(0, true);        
         }
   
+	 @Override
+	public void onChoose() { finish(); }
+	
 	protected void onResume() {
 	    turnOff = sp.getBoolean("toTurnOff", false);
 	    lvMain.setKeepScreenOn(!turnOff);
