@@ -1,10 +1,9 @@
 package com.nethergrim.combogymdiary;
 
 
+import android.app.Activity;
 import android.app.DialogFragment;
-import android.content.Context;
 import android.content.DialogInterface;
-import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -28,9 +27,7 @@ public class Dialog1 extends DialogFragment implements OnClickListener {
   public void onClick(View v) {
     int ID = ((Button)v).getId();
     if (ID == R.id.btnYes){
-    	Context c = MainActivity.ma.getApplicationContext();
-    	Intent gotoMain = new Intent(c,MainActivity.class);
-		startActivity(gotoMain);
+    	mListener.onChoose();
     }
     dismiss();
   }
@@ -42,4 +39,22 @@ public class Dialog1 extends DialogFragment implements OnClickListener {
   public void onCancel(DialogInterface dialog) {
     super.onCancel(dialog);
   }
+  
+  public static interface MyInterface {
+	    public void onChoose();
+	}
+
+	private MyInterface mListener;
+
+	@Override
+	public void onAttach(Activity activity) {
+	    mListener = (MyInterface) activity;
+	    super.onAttach(activity);
+	}
+
+	@Override
+	public void onDetach() {
+	    mListener = null;
+	    super.onDetach();
+	}
 }
