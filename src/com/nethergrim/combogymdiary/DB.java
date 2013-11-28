@@ -95,7 +95,7 @@ public class DB {
 			  if (c.getInt(1) < _set ) { 
 			  } else if (c.getInt(1) == _set){ 
 			  		result =  c.getInt(0);
-			  } else if ( c.getInt(1) > _set ) { // ���� � ������� ��� ���� ������ �������� ��� ������ ������, ���� ����� �� ������� ���� �� ������ ������ ������
+			  } else if ( c.getInt(1) > _set ) { 
 				  while ( c.getInt(1) > _set ) {
 					c.moveToPrevious();
 					result =  c.getInt(0);
