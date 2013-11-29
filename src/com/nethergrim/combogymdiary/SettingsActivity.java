@@ -27,7 +27,7 @@ public class SettingsActivity extends PreferenceActivity  implements OnClickList
         addPreferencesFromResource(R.xml.pref);
         
         ActionBar bar = getActionBar();
-        bar.setDisplayHomeAsUpEnabled(true);
+        //bar.setDisplayHomeAsUpEnabled(true);
         bar.setTitle(R.string.settingsButtonString);
         setupSlidingMenu();
     }

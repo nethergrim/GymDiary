@@ -9,7 +9,6 @@ import android.content.SharedPreferences;
 import android.database.Cursor;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
-import android.support.v4.app.NavUtils;
 import android.support.v4.widget.SimpleCursorAdapter;
 import android.view.ContextMenu;
 import android.view.ContextMenu.ContextMenuInfo;
@@ -48,7 +47,7 @@ public class AddingExersises extends Activity implements OnClickListener {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.adding_exersise);
 		ActionBar bar = getActionBar();
-		bar.setDisplayHomeAsUpEnabled(true);
+		//bar.setDisplayHomeAsUpEnabled(true);
 		bar.setTitle(R.string.create_new_exercise);
 		btnCreate = (Button) findViewById(R.id.btnSave);
 		btnCreate.setOnClickListener(this);

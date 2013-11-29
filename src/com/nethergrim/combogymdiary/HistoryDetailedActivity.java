@@ -92,7 +92,7 @@ public class HistoryDetailedActivity extends Activity implements OnClickListener
 	
 	private void setupActionBar() {
 		getActionBar().setTitle(trName+" ("+trDate+")");
-		getActionBar().setDisplayHomeAsUpEnabled(true);
+	//	getActionBar().setDisplayHomeAsUpEnabled(true);
 	}
 
 	private void setupCursor(){

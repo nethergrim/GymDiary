@@ -148,7 +148,7 @@ public class HistoryActivity extends Activity implements OnClickListener{
 
 	private void setupActionBar() {
 		ActionBar bar = getActionBar();
-		bar.setDisplayHomeAsUpEnabled(true);
+	//	bar.setDisplayHomeAsUpEnabled(true);
 		bar.setTitle(R.string.worklogString);
 	}
 	
@@ -163,6 +163,7 @@ public class HistoryActivity extends Activity implements OnClickListener{
 		case android.R.id.home:
 			if (!menu.isMenuShowing()) {
 				menu.showMenu();
+				
 			}
 			menu.showContent();
 			return true;

@@ -45,7 +45,7 @@ public class StartTrainingActivity extends Activity implements OnClickListener {
         setContentView(R.layout.start_training);
         lvMain = (ListView) findViewById(R.id.lvStartTraining);        
         ActionBar bar = getActionBar();
-        bar.setDisplayHomeAsUpEnabled(true);
+       // bar.setDisplayHomeAsUpEnabled(true);
         bar.setTitle(R.string.startTrainingList);
         btnAddNew = (Button)findViewById(R.id.btnSave);
         btnAddNew.setOnClickListener(this);

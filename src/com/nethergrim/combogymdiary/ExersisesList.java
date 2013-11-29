@@ -49,7 +49,7 @@ public class ExersisesList extends Activity implements OnClickListener {
         btnCreate = (Button)findViewById(R.id.btnCreate);
         btnCreate.setOnClickListener(this);
         bar.setTitle(R.string.excersisiesListButtonString);
-        bar.setDisplayHomeAsUpEnabled(true);
+    //    bar.setDisplayHomeAsUpEnabled(true);
         lvExersices_list = (ListView) findViewById(R.id.listView11);
         db = new DB(this);
 		db.open();

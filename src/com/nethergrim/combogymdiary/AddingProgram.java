@@ -41,7 +41,7 @@ public class AddingProgram extends Activity implements OnClickListener {
         etName = (EditText) findViewById(R.id.etTimerValue);
         etName.setOnClickListener(this);
         ActionBar bar = getActionBar();
-        bar.setDisplayHomeAsUpEnabled(true);
+     //   bar.setDisplayHomeAsUpEnabled(true);
         bar.setTitle(R.string.creating_program);
         lvExe = (ListView)findViewById(R.id.listView1);
         lvExe.setChoiceMode(ListView.CHOICE_MODE_MULTIPLE);        

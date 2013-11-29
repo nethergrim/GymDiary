@@ -87,11 +87,11 @@ public class DB {
       String[] tags = {_exeName};
 	  Cursor c = mDB.query(DB_MAIN_TABLE, cols, DB.EXE_NAME+"=?", tags, null, null, null);
 	  int size = c.getCount();
-	  if (size > 2) {
+	  if (size > 1) {
 		  int positionLastDay = size - _set - 1;
 		  c.moveToPosition(positionLastDay);
 		  _set++;
-		  if (size > 3) {
+		  if (size > _set + 1) {
 			  if (c.getInt(1) < _set ) { 
 			  } else if (c.getInt(1) == _set){ 
 			  		result =  c.getInt(0);
@@ -112,11 +112,11 @@ public class DB {
       String[] tags = {_exeName};      
       Cursor c = mDB.query(DB_MAIN_TABLE, cols, DB.EXE_NAME+"=?", tags, null, null, null);
 	  int size = c.getCount();
-	  if (size > 2) {
+	  if (size > 1) {
 		  int positionLastDay = size - _set - 1;
 		  c.moveToPosition(positionLastDay);
 		  _set++;
-		  if (size > 3) {
+		  if (size > _set + 1) {
 			  if (c.getInt(1) < _set ) { 
 			  } else if (c.getInt(1) == _set){ 
 			  		result =  c.getInt(0);
