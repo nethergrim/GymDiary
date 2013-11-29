@@ -1,0 +1,157 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:ads="http://schemas.android.com/apk/lib/com.google.ads"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/cream_pixels_bitmap"
+    android:gravity="center_vertical" >
+
+    <LinearLayout
+        android:id="@+id/llRight"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentTop="true"
+        android:orientation="vertical" >
+
+        <com.google.ads.AdView
+            android:id="@+id/adView1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            ads:adSize="BANNER"
+            ads:adUnitId="ca-app-pub-5652589022154086/4102541457"
+            ads:loadAdOnCreate="true"
+            android:gravity="center_horizontal" >
+        </com.google.ads.AdView>
+
+        <EditText
+            android:id="@+id/etTimerValueAtTraining"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="8dp"
+            android:ems="10"
+            android:gravity="center_vertical|center_horizontal"
+            android:hint="@string/timer"
+            android:inputType="number" >
+
+            <requestFocus />
+        </EditText>
+
+        <ToggleButton
+            android:id="@+id/tglTurnOff"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textOff="@string/timer"
+            android:textOn="@string/timer" />
+
+        <LinearLayout
+            android:id="@+id/LL1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            tools:ignore="UselessParent" >
+
+            <TextView
+                android:id="@+id/tvPrevLeft1"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:gravity="left|center_vertical"
+                android:hint="@string/prev"
+                android:textSize="@dimen/dip12" />
+
+            <TextView
+                android:id="@+id/tvPrevWeight"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:gravity="left|center_vertical" />
+
+            <TextView
+                android:id="@+id/textView1"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="3"
+                android:gravity="right|center_vertical"
+                android:text="@string/Weight"
+                android:textSize="@dimen/text14" />
+
+            <EditText
+                android:id="@+id/editWeight"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="3"
+                android:ems="10"
+                android:inputType="number"
+                android:typeface="normal" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/ll2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" >
+
+            <TextView
+                android:id="@+id/tvPrevLeft2"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:gravity="left|center_vertical"
+                android:hint="@string/prev"
+                android:textSize="@dimen/dip12" />
+
+            <TextView
+                android:id="@+id/tvPrevReps"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:gravity="left|center_vertical" />
+
+            <TextView
+                android:id="@+id/textView2"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="3"
+                android:gravity="right|center_vertical"
+                android:text="@string/reps"
+                android:textSize="@dimen/text14" />
+
+            <EditText
+                android:id="@+id/editReps"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="3"
+                android:ems="10"
+                android:inputType="number"
+                android:typeface="normal" />
+        </LinearLayout>
+
+        <Button
+            android:id="@+id/btnSave"
+            style="@style/HabraThemeButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="8dp"
+            android:drawableLeft="@android:drawable/ic_input_add"
+            android:text="@string/save_and_rest" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/llLeft"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentLeft="true"
+        android:layout_toLeftOf="@+id/llRight"
+        android:orientation="vertical" >
+
+        <ListView
+            android:id="@+id/lvSets"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_margin="5dp"
+            android:layout_marginLeft="8dp"
+            android:background="@drawable/rounded" >
+        </ListView>
+    </LinearLayout>
+
+</RelativeLayout>

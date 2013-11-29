@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:ads="http://schemas.android.com/apk/lib/com.google.ads"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/cream_pixels_bitmap"
+    android:gravity="right" >
+
+    <Button
+        android:id="@+id/buttonStartTraining"
+        style="@style/HabraThemeButton"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="left"
+        android:layout_marginBottom="8dp"
+        android:layout_marginLeft="50dp"
+        android:layout_marginRight="50dp"
+        android:layout_marginTop="50dp"
+        android:text="@string/startTrainingButtonString"
+        android:textColor="@android:color/white"
+        android:textSize="@dimen/text20" />
+
+    <LinearLayout
+        android:id="@+id/linearLayout1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/buttonSettings"
+        android:orientation="horizontal"
+        android:layout_alignRight="@+id/buttonStartTraining"
+        android:layout_below="@+id/buttonStartTraining" >
+
+        <Button
+            android:id="@+id/buttonExcersisesList"
+            style="@style/HabraThemeButton"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="8dp"
+            android:text="@string/excersisiesListButtonString"
+            android:textColor="@android:color/white"
+            android:textSize="@dimen/text20" />
+
+        <Button
+            android:id="@+id/btnWorklog"
+            style="@style/HabraThemeButton"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_marginLeft="8dp"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="8dp"
+            android:text="@string/worklogString"
+            android:textColor="@android:color/white"
+            android:textSize="@dimen/text20" />
+    </LinearLayout>
+
+    <Button
+        android:id="@+id/buttonSettings"
+        style="@style/HabraThemeButton"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/buttonStartTraining"
+        android:layout_alignRight="@+id/buttonStartTraining"
+        android:layout_below="@+id/linearLayout1"
+        android:text="@string/settingsButtonString"
+        android:textColor="@android:color/white"
+        android:textSize="@dimen/text20" />
+
+</RelativeLayout>
