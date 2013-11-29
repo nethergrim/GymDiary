@@ -3,8 +3,6 @@ package com.nethergrim.combogymdiary;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
-import com.nethergrim.combogymdiary.Dialog1.MyInterface;
-
 import android.annotation.SuppressLint;
 import android.app.ActionBar;
 import android.app.Activity;
@@ -19,7 +17,6 @@ import android.os.Handler;
 import android.os.Message;
 import android.os.Vibrator;
 import android.preference.PreferenceManager;
-import android.support.v4.app.NavUtils;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -36,6 +33,8 @@ import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 import android.widget.ToggleButton;
+
+import com.nethergrim.combogymdiary.Dialog1.MyInterface;
 
 public class TrainingAtProgress extends Activity  implements MyInterface, OnClickListener, OnCheckedChangeListener{
 	
@@ -73,7 +72,7 @@ public class TrainingAtProgress extends Activity  implements MyInterface, OnClic
         String[] strArrCol = {DB.COLUMN_ID,DB.EXE_NAME};            
         tvPrevWeight = (TextView)findViewById(R.id.tvPrevWeight);
         tvPrevReps = (TextView)findViewById(R.id.tvPrevReps);
-        tvPrevLeft1 = (TextView)findViewById(R.id.tvPrevLeft1);
+        tvPrevLeft1 = (TextView)findViewById(R.id.tvPrevLeftUp);
         tvPrevLeft2 = (TextView)findViewById(R.id.tvPrevLeft2);        
         tglTimerOn = (ToggleButton) findViewById(R.id.tglTurnOff);
         tglTimerOn.setOnCheckedChangeListener(this); 

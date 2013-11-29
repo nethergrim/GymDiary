@@ -1,8 +1,6 @@
 package com.nethergrim.combogymdiary;
 
 
-import com.jeremyfeinstein.slidingmenu.lib.SlidingMenu;
-
 import android.app.ActionBar;
 import android.app.Activity;
 import android.content.Intent;
@@ -10,7 +8,6 @@ import android.content.SharedPreferences;
 import android.database.Cursor;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
-import android.support.v4.app.NavUtils;
 import android.support.v4.widget.SimpleCursorAdapter;
 import android.view.ContextMenu;
 import android.view.ContextMenu.ContextMenuInfo;
@@ -23,6 +20,8 @@ import android.widget.AdapterView.OnItemClickListener;
 import android.widget.Button;
 import android.widget.ListView;
 import android.widget.Toast;
+
+import com.jeremyfeinstein.slidingmenu.lib.SlidingMenu;
 
 public class StartTrainingActivity extends Activity implements OnClickListener {
 

@@ -3,24 +3,22 @@ package com.nethergrim.combogymdiary;
 import java.util.ArrayList;
 import java.util.HashMap;
 
-
-import com.jeremyfeinstein.slidingmenu.lib.SlidingMenu;
-
 import android.app.ActionBar;
 import android.app.Activity;
 import android.content.Intent;
 import android.database.Cursor;
 import android.os.Bundle;
-import android.support.v4.app.NavUtils;
 import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.AdapterView;
+import android.widget.AdapterView.OnItemClickListener;
 import android.widget.Button;
 import android.widget.ListView;
 import android.widget.SimpleAdapter;
-import android.widget.AdapterView.OnItemClickListener;
+
+import com.jeremyfeinstein.slidingmenu.lib.SlidingMenu;
 
 public class HistoryActivity extends Activity implements OnClickListener{
 
@@ -57,7 +55,6 @@ public class HistoryActivity extends Activity implements OnClickListener{
 				dates[ii] = cursor.getString(3);		
 				ii++;				
 			}while (cursor.moveToNext());
-
 			ArrayList<HashMap<String, Object>> data = new ArrayList<HashMap<String, Object>>(names.length);
 			HashMap<String, Object> map;
 			for (int i = 0; i < names.length; i++) {
@@ -149,7 +146,6 @@ public class HistoryActivity extends Activity implements OnClickListener{
 	private void setupActionBar() {
 		ActionBar bar = getActionBar();
 	//	bar.setDisplayHomeAsUpEnabled(true);
-		bar.setTitle(R.string.worklogString);
 	}
 	
 	protected void onDestroy(){
@@ -162,8 +158,7 @@ public class HistoryActivity extends Activity implements OnClickListener{
 		switch (item.getItemId()) {
 		case android.R.id.home:
 			if (!menu.isMenuShowing()) {
-				menu.showMenu();
-				
+				menu.showMenu();				
 			}
 			menu.showContent();
 			return true;

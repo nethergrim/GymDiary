@@ -1,12 +1,10 @@
 package com.nethergrim.combogymdiary;
 
-import com.jeremyfeinstein.slidingmenu.lib.SlidingMenu;
-
-import android.os.Bundle;
 import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.Intent;
 import android.database.Cursor;
+import android.os.Bundle;
 import android.view.Gravity;
 import android.view.MenuItem;
 import android.view.View;
@@ -15,7 +13,8 @@ import android.view.ViewGroup.LayoutParams;
 import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.TextView;
-import android.support.v4.app.NavUtils;
+
+import com.jeremyfeinstein.slidingmenu.lib.SlidingMenu;
 
 public class HistoryDetailedActivity extends Activity implements OnClickListener {
 

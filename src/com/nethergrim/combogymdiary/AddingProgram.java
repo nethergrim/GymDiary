@@ -1,13 +1,10 @@
 package com.nethergrim.combogymdiary;
 
-import com.jeremyfeinstein.slidingmenu.lib.SlidingMenu;
-
 import android.app.ActionBar;
 import android.app.Activity;
 import android.content.Intent;
 import android.database.Cursor;
 import android.os.Bundle;
-import android.support.v4.app.NavUtils;
 import android.support.v4.widget.SimpleCursorAdapter;
 import android.view.MenuItem;
 import android.view.View;
@@ -15,6 +12,8 @@ import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListView;
+
+import com.jeremyfeinstein.slidingmenu.lib.SlidingMenu;
 
 
 public class AddingProgram extends Activity implements OnClickListener {

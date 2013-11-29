@@ -20,7 +20,8 @@
 			</EditTextPreference>
 			<CheckBoxPreference 
 			    android:title="@string/vibrate"
-			    android:summary="@string/vibrate_on_save"	    
+			    android:summary="@string/vibrate_on_save"	 
+			    android:defaultValue="true"
 			    android:key="vibrateOn"
 			    />
 			<EditTextPreference 
