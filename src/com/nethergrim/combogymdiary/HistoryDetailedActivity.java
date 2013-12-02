@@ -12,6 +12,7 @@ import android.view.View.OnClickListener;
 import android.view.ViewGroup.LayoutParams;
 import android.widget.Button;
 import android.widget.LinearLayout;
+import android.widget.ScrollView;
 import android.widget.TextView;
 
 import com.jeremyfeinstein.slidingmenu.lib.SlidingMenu;
@@ -91,7 +92,7 @@ public class HistoryDetailedActivity extends Activity implements OnClickListener
 	
 	private void setupActionBar() {
 		getActionBar().setTitle(trName+" ("+trDate+")");
-	//	getActionBar().setDisplayHomeAsUpEnabled(true);
+		getActionBar().setDisplayHomeAsUpEnabled(false);
 	}
 
 	private void setupCursor(){
@@ -102,16 +103,19 @@ public class HistoryDetailedActivity extends Activity implements OnClickListener
 	
 	@SuppressLint("NewApi")
 	private void setupLayout(){
+		ScrollView scrollView = new ScrollView(this);
 		LayoutParams lpView = new LayoutParams(LayoutParams.WRAP_CONTENT, LayoutParams.WRAP_CONTENT);
         LinearLayout llMain = new LinearLayout(this);
         llMain.setOrientation(LinearLayout.VERTICAL);
-        LayoutParams linLayoutParam = new LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.MATCH_PARENT); 
-        setContentView(llMain, linLayoutParam);
+        LayoutParams linLayoutParam = new LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.MATCH_PARENT);
+        
+        setContentView(scrollView, linLayoutParam);
+        scrollView.addView(llMain,linLayoutParam);
         llMain.setGravity(Gravity.CENTER_HORIZONTAL);
         if (cursor.moveToFirst()){
         	do {
         		TextView tvNew = new TextView(this);
-        		tvNew.setText(cursor.getString(2)); // вывод названия упражнения
+        		tvNew.setText(cursor.getString(2)); 
         		tvNew.setLayoutParams(lpView);
         		llMain.addView(tvNew,lpView);
         		do {
@@ -126,6 +130,7 @@ public class HistoryDetailedActivity extends Activity implements OnClickListener
         		llMain.addView(divider,lpView);
         	} while (cursor.moveToNext());
         }        
+        llMain.setBackground(getResources().getDrawable(R.drawable.cream_pixels_bitmap));
 	}
 	
 	@Override

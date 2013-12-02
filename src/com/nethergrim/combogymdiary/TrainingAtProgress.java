@@ -3,6 +3,10 @@ package com.nethergrim.combogymdiary;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
+
+import kankan.wheel.widget.WheelView;
+import kankan.wheel.widget.adapters.AbstractWheelTextAdapter;
+
 import android.annotation.SuppressLint;
 import android.app.ActionBar;
 import android.app.Activity;
@@ -11,6 +15,7 @@ import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.content.res.Configuration;
 import android.database.Cursor;
 import android.os.Bundle;
 import android.os.Handler;
@@ -21,6 +26,7 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.ViewGroup;
 import android.view.View.OnClickListener;
 import android.widget.AbsListView;
 import android.widget.AdapterView;
@@ -36,14 +42,16 @@ import android.widget.ToggleButton;
 
 import com.nethergrim.combogymdiary.Dialog1.MyInterface;
 
+@SuppressLint("SimpleDateFormat")
 public class TrainingAtProgress extends Activity  implements MyInterface, OnClickListener, OnCheckedChangeListener{
 	
 	Button btnSave;	
 	ToggleButton tglTimerOn;
 	Boolean tglChecked = true,turnOff = false,vibrate = false;
-	EditText etWeight,etReps,etTimer;
+	EditText /*etWeight,etReps,*/etTimer;
 	ListView lvMain;
 	DB db;
+	int size = 0;
 	Cursor cursor;	
 	final String LOG_TAG = "myLogs";
 	ArrayAdapter<String> adapter;
@@ -53,45 +61,72 @@ public class TrainingAtProgress extends Activity  implements MyInterface, OnClic
 	SharedPreferences sp;
 	int checkedPosition = 0,set = 0,oldReps = 0,oldWeight = 0,timerValue = 0,vibrateLenght=0;
 	DialogFragment dlg1;
-	TextView tvPrevWeight,tvPrevReps,tvPrevLeft1,tvPrevLeft2;
+	//TextView tvPrevWeight,tvPrevReps,tvPrevLeft1,tvPrevLeft2;
 	ProgressDialog pd;
 	Handler h;
+	WheelView reps;
+	WheelView weights;
+	TextView infoText,setInfo;
 	
-	@SuppressLint("SimpleDateFormat")
+	@Override
+	public void onConfigurationChanged(Configuration newConfig) {
+	  super.onConfigurationChanged(newConfig);
+	  setContentView(R.layout.training_at_progress_new_wheel);
+	  initUi(false);
+	}
+	
 	@Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         db = new DB(this);
 		db.open();
-        setContentView(R.layout.training_at_progress);
-        ActionBar bar = getActionBar();
+        setContentView(R.layout.training_at_progress_new_wheel);
+        initUi(true);
+        
+        }
+  
+	 @Override
+	public void onChoose() { finish(); }
+	
+	private void initUi(boolean init){
+		ActionBar bar = getActionBar();
         Intent intent = getIntent();
         traName = intent.getStringExtra("trainingName");
         bar.setTitle(traName);     
+        reps = (WheelView) findViewById(R.id.wheelReps);
+        reps.setVisibleItems(5); // Number of items
+        reps.setWheelBackground(R.drawable.wheel_bg_holo);
+        reps.setWheelForeground(R.drawable.wheel_val_holo);
+        reps.setShadowColor(0xFFFFFF, 0xFFFFFF, 0xFFFFFF);
+        reps.setViewAdapter(new RepsAdapter(this));
+        
+        weights = (WheelView) findViewById(R.id.wheelWeight);
+        weights.setVisibleItems(5); // Number of items
+        weights.setWheelBackground(R.drawable.wheel_bg_holo);
+        weights.setWheelForeground(R.drawable.wheel_val_holo);
+        weights.setShadowColor(0xFFFFFF, 0xFFFFFF, 0xFFFFFF);
+        weights.setViewAdapter(new WeightsAdapter(this));
+        
         String[] strArrExtra = {traName};
         String[] strArrCol = {DB.COLUMN_ID,DB.EXE_NAME};            
-        tvPrevWeight = (TextView)findViewById(R.id.tvPrevWeight);
-        tvPrevReps = (TextView)findViewById(R.id.tvPrevReps);
-        tvPrevLeft1 = (TextView)findViewById(R.id.tvPrevLeftUp);
-        tvPrevLeft2 = (TextView)findViewById(R.id.tvPrevLeft2);        
         tglTimerOn = (ToggleButton) findViewById(R.id.tglTurnOff);
         tglTimerOn.setOnCheckedChangeListener(this); 
         etTimer = (EditText) findViewById(R.id.etTimerValueAtTraining);
         etTimer.setOnClickListener(this);       
+        infoText = (TextView)findViewById(R.id.infoText);
         btnSave = (Button)findViewById(R.id.btnSave);
-        btnSave.setOnClickListener(this);        
-        etWeight = (EditText) findViewById(R.id.editWeight);
-        etReps = (EditText) findViewById(R.id.editReps);  
-        etWeight.setOnClickListener(this);
-        etReps.setOnClickListener(this);
+        btnSave.setOnClickListener(this);
+        setInfo = (TextView)findViewById(R.id.tvSetInfo);
         lvMain = (ListView)findViewById(R.id.lvSets);
         lvMain.setChoiceMode(AbsListView.CHOICE_MODE_SINGLE);
         Cursor cur_exe = db.getDataExe(strArrCol, DB.TRA_NAME + "=?", strArrExtra, (String)null, (String)null, (String)null);
-        int size = cur_exe.getCount();
+        size = cur_exe.getCount();
         trNamesData = new String[size];
-        setsPerExercises = new int[size];        
-        for (int i = 0; i < size; i++){
-        	setsPerExercises[i] = 0;
+        if (init) {
+        	setsPerExercises = new int[size];        
+	        for (int i = 0; i < size; i++){
+	        	setsPerExercises[i] = 0;
+	        }
         }
         if (cur_exe.moveToFirst()){
         	int i = 0;
@@ -111,24 +146,19 @@ public class TrainingAtProgress extends Activity  implements MyInterface, OnClic
         		checkedPosition = position;
         		exeName = trNamesData[checkedPosition];
         		set = setsPerExercises[checkedPosition];
+        		setInfo.setText(getResources().getString(R.string.set_number)+ " " + (set+1));
         		tValue = db.getTimerValueByExerciseName(exeName);
         		etTimer.setText(tValue);      		
         		timerValue = Integer.parseInt(db.getTimerValueByExerciseName(exeName));
         		oldReps = db.getLastReps(exeName, set);
         		oldWeight = db.getLastWeight(exeName, set);
         		if ( oldReps>0 && oldWeight>0 ){
-        			String tmp1 = (""+oldReps);
-        			String tmp2 = (""+oldWeight);
-        			tvPrevReps.setHint(tmp1);
-        			tvPrevWeight.setHint(tmp2);
-        			tvPrevLeft1.setHint(R.string.prev);
-        			tvPrevLeft2.setHint(R.string.prev);   
-        		}else {
-        			tvPrevReps.setHint("");
-        			tvPrevWeight.setHint("");
-        			tvPrevLeft1.setHint("");
-        			tvPrevLeft2.setHint("");        			
-        			}
+       				infoText.setText(getResources().getString( R.string.previous_result_was)+" "+oldWeight+"x"+oldReps);
+       				weights.setCurrentItem(oldWeight-1);
+       				reps.setCurrentItem(oldReps-1);
+       			}else {    
+       				infoText.setText("");
+       				}
         		}
         	});        
 		exeName = trNamesData[checkedPosition];
@@ -138,29 +168,23 @@ public class TrainingAtProgress extends Activity  implements MyInterface, OnClic
 		oldReps = db.getLastReps(exeName, set);
 		oldWeight = db.getLastWeight(exeName, set);
 		if ( oldReps>0 && oldWeight>0 ){
-			String tmp1 = (""+oldReps);
-			String tmp2 = (""+oldWeight);
-			tvPrevReps.setHint(tmp1);
-			tvPrevWeight.setHint(tmp2);
-			tvPrevLeft1.setHint(R.string.prev);
-			tvPrevLeft2.setHint(R.string.prev);
-		}else {
-			tvPrevReps.setHint("");
-			tvPrevWeight.setHint("");
-			tvPrevLeft1.setHint("");
-			tvPrevLeft2.setHint("");        			
-			}
+			infoText.setText(getResources().getString( R.string.previous_result_was)+" "+oldWeight+"x"+oldReps);
+			weights.setCurrentItem(oldWeight-1);
+			reps.setCurrentItem(oldReps-1);
+			}else {    
+				infoText.setText("");
+				}
         dlg1 = new Dialog1();
         dlg1.setCancelable(false);
         etTimer.setText( db.getTimerValueByExerciseName(trNamesData[0]) );        
         timerValue = Integer.parseInt(db.getTimerValueByExerciseName(exeName));
         tglTimerOn.setChecked(true);
-        lvMain.setItemChecked(0, true);        
-        }
-  
-	 @Override
-	public void onChoose() { finish(); }
-	
+        lvMain.setItemChecked(0, true);
+        setInfo.setText(getResources().getString(R.string.set_number)+ " " + (set+1));
+        
+       // weights.setCurrentItem(3);
+	}
+	 
 	protected void onResume() {
 	    turnOff = sp.getBoolean("toTurnOff", false);
 	    lvMain.setKeepScreenOn(!turnOff);
@@ -232,39 +256,31 @@ public class TrainingAtProgress extends Activity  implements MyInterface, OnClic
 	public void onClick(View arg0) {
 		int id = arg0.getId();		
 		if (id == R.id.btnSave) {
-			String weight = etWeight.getText().toString();
-			String reps = etReps.getText().toString();			
-			if (!weight.isEmpty() && !reps.isEmpty()){	
-				int wei = Integer.parseInt(weight);
-				int rep_s = Integer.parseInt(reps);
-				String t = etTimer.getText().toString();
-				timerValue = Integer.parseInt(t);
-    			etWeight.setText("");
-    			etReps.setText("");    			
-    			exeName = trNamesData[checkedPosition];  			
-    			set = ++setsPerExercises[checkedPosition];    			
-    			db.addRec_Main(traName, exeName, t, date, wei, rep_s, set);	
-    			Toast.makeText(this,R.string.saved, Toast.LENGTH_SHORT).show();    			
-    			oldReps = db.getLastReps(exeName, set);
-    			oldWeight = db.getLastWeight(exeName, set);
-    			if ( oldReps>0 && oldWeight>0 ){
-    				String tmp1 = (""+oldReps);
-    				String tmp2 = (""+oldWeight);
-    				tvPrevReps.setHint(tmp1);
-    				tvPrevWeight.setHint(tmp2);
-    				tvPrevLeft1.setHint(R.string.prev);
-    				tvPrevLeft2.setHint(R.string.prev);
-    			}else {
-    				tvPrevReps.setHint("");
-    				tvPrevWeight.setHint("");
-    				tvPrevLeft1.setHint("");
-    				tvPrevLeft2.setHint("");        			
-    				}
-    			if (tglChecked) {
-    				goDialogProgress();    				
-    			}
-    		} else 
-    			Toast.makeText(this,R.string.input_data, Toast.LENGTH_SHORT).show();
+			String weightValue = ""+(weights.getCurrentItem() + 1);
+			String repsValue = ""+(reps.getCurrentItem()+1);
+			Log.d(LOG_TAG, "Saved: weight = "+weightValue+" reps = "+repsValue);
+	
+			int wei = (weights.getCurrentItem() + 1);
+			int rep_s = (reps.getCurrentItem()+1);
+			String t = etTimer.getText().toString();
+			timerValue = Integer.parseInt(t);  			
+   			exeName = trNamesData[checkedPosition];  			
+   			set = ++setsPerExercises[checkedPosition];
+   			setInfo.setText(getResources().getString(R.string.set_number)+ " " + (set+1));
+   			db.addRec_Main(traName, exeName, t, date, wei, rep_s, set);	
+   			Toast.makeText(this,R.string.saved, Toast.LENGTH_SHORT).show();    			
+   			oldReps = db.getLastReps(exeName, set);
+   			oldWeight = db.getLastWeight(exeName, set);
+   			if ( oldReps>0 && oldWeight>0 ){
+   				infoText.setText(getResources().getString( R.string.previous_result_was)+" "+oldWeight+"x"+oldReps);
+   				weights.setCurrentItem(oldWeight-1);
+   				reps.setCurrentItem(oldReps-1);
+   			}else {    
+   				infoText.setText("");
+   				}
+   			if (tglChecked) {
+   				goDialogProgress();    				
+   			}
 		}
 	}	
 	
@@ -277,4 +293,56 @@ public class TrainingAtProgress extends Activity  implements MyInterface, OnClic
 	    super.onDestroy();
 	    db.close();
 	  }
+	
+	private class RepsAdapter extends AbstractWheelTextAdapter {
+		final String reps[] = new String[] {"1","2","3","4","5","6","7","8","9","10","11","12","13","14","15","16","17","18","19","20","21","22","23","24","25","26","27","28","29","30","31","32","33","34","35","36","37","38","39","40","41","42","43","44","45","46","47","48","49","50","51","52","53","54","55","56","57","58","59","60","61","62","63","64","65","66","67","68","69","70","71","72","73","74","75","76","77","78","79","80","81","82","83","84","85","86","87","88","89","90","91","92","93","94","95","96","97","98","99","100","101","102","103","104","105","106","107","108","109","110","111","112","113","114","115","116","117","118","119","120","121","122","123","124","125","126","127","128","129","130","131","132","133","134","135","136","137","138","139","140","141","142","143"};
+
+		protected RepsAdapter(Context context) {
+			super(context, R.layout.city_holo_layout, NO_RESOURCE);
+
+			setItemTextResource(R.id.city_name);
+		}
+
+		@Override
+		public View getItem(int index, View cachedView, ViewGroup parent) {
+			View view = super.getItem(index, cachedView, parent);
+			return view;
+		}
+
+		@Override
+		public int getItemsCount() {
+			return reps.length;
+		}
+
+		@Override
+		protected CharSequence getItemText(int index) {
+			return reps[index];
+		}
+	}
+	
+	private class WeightsAdapter extends AbstractWheelTextAdapter {
+		final String weights[] = new String[] {"1","2","3","4","5","6","7","8","9","10","11","12","13","14","15","16","17","18","19","20","21","22","23","24","25","26","27","28","29","30","31","32","33","34","35","36","37","38","39","40","41","42","43","44","45","46","47","48","49","50","51","52","53","54","55","56","57","58","59","60","61","62","63","64","65","66","67","68","69","70","71","72","73","74","75","76","77","78","79","80","81","82","83","84","85","86","87","88","89","90","91","92","93","94","95","96","97","98","99","100","101","102","103","104","105","106","107","108","109","110","111","112","113","114","115","116","117","118","119","120","121","122","123","124","125","126","127","128","129","130","131","132","133","134","135","136","137","138","139","140","141","142","143","144","145","146","147","148","149","150","151","152","153","154","155","156","157","158","159","160","161","162","163","164","165","167","168","169","170","171","172","173","174","175","176","177","178","179","180","181","182","183","184","185","186","187","188","189","190","191","192","193","194","195","196","197","198","199","200","201","202","203","204","205","206","207","208","209","210","211","212","213","214","215","216","217","218","219","220","221","222","223","224","225","226","227","228","229","230","231","232","233","234","235","236","237","238","239","240","241","242","243","244","245","246","247","248","249","250","251","252","253","254","255","256","257","258","259","260","261","262","263","264","265","266","267","268","269","270","271","272","273","274","275","276","277","278","279"};
+
+		protected WeightsAdapter(Context context) {
+			super(context, R.layout.city_holo_layout, NO_RESOURCE);
+
+			setItemTextResource(R.id.city_name);
+		}
+
+		@Override
+		public View getItem(int index, View cachedView, ViewGroup parent) {
+			View view = super.getItem(index, cachedView, parent);
+			return view;
+		}
+
+		@Override
+		public int getItemsCount() {
+			return weights.length;
+		}
+
+		@Override
+		protected CharSequence getItemText(int index) {
+			return weights[index];
+		}
+	}
 }

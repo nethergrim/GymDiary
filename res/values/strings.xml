@@ -140,12 +140,14 @@
         <item>3/4 Sit-Up</item>
         <item>Ab Crunch Machine</item>
     </string-array>
-
+	<string name="training_history">Training history</string>
     <string name="traLegs">Legs training</string>
     <string name="traChest">Pectoral training</string>
     <string name="traBack">Back training</string>
     <string name="traShoulders">Delts training</string>
     <string name="traArms">Arms training</string>
     <string name="traAbs">Abs training</string>
+    <string name="set_number">Set №</string>
+    <string name="previous_result_was">Previous result was: </string>
 
 </resources>

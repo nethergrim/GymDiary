@@ -138,13 +138,15 @@
 		<item >Скручивания</item>
 		<item >Подъем ног в висе</item>
 	</string-array>
+	<string name="training_history">История тренировок</string>
 	<string name="traLegs">Тренировка ног</string>
 	<string name="traChest">Тренировка груди</string>
 	<string name="traBack">Тренировка спины</string>
 	<string name="traShoulders">Тренировка дельт</string>
 	<string name="traArms">Тренировка рук</string>
 	<string name="traAbs">Тренировка пресса</string>
-	
+	<string name="previous_result_was">Предыдущий результат: </string>
+	<string name="set_number">Подход №</string>
 	
 	
 </resources>

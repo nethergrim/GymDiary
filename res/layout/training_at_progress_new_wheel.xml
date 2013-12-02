@@ -70,6 +70,7 @@
         android:id="@+id/LL1"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:gravity="center_horizontal"
         android:layout_above="@+id/btnSave"
         android:layout_alignLeft="@+id/etTimerValueAtTraining"
         android:layout_alignRight="@+id/btnSave"
@@ -77,79 +78,60 @@
         tools:ignore="UselessParent" >
 
         <TextView
-            android:id="@+id/tvPrevLeft1"
+            android:id="@+id/textView4"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
-            android:gravity="left|center_vertical"
-            android:hint="@string/prev"
-            android:textSize="@dimen/dip12" />
-
-        <TextView
-            android:id="@+id/tvPrevWeight"
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:gravity="left|center_vertical" />
-
-        <TextView
-            android:id="@+id/textView1"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_weight="3"
-            android:gravity="right|center_vertical"
+            android:gravity="center_vertical"
             android:text="@string/Weight"
-            android:textSize="@dimen/text14" />
+            android:textAppearance="?android:attr/textAppearanceSmall" />
 
-        <EditText
-            android:id="@+id/editWeight"
+        <kankan.wheel.widget.WheelView
+            android:id="@+id/wheelWeight"
+            android:layout_width="100dp"
+            android:layout_height="160dp"
+            android:layout_margin="5dp" />
+
+        <TextView
+            android:id="@+id/textView3"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="3"
-            android:ems="10"
-            android:inputType="number"
-            android:typeface="normal" >
-        </EditText>
+            android:gravity="center_vertical"
+            android:layout_height="match_parent"
+            android:text="@string/reps"
+            android:textAppearance="?android:attr/textAppearanceSmall" />
+        
+        <kankan.wheel.widget.WheelView 
+            android:id="@+id/wheelReps"
+            android:layout_margin="5dp"
+			android:layout_height="160dp"
+			android:layout_width="100dp"
+	        android:layout_gravity="center_vertical"/>
+        
     </LinearLayout>
 
     <LinearLayout
         android:id="@+id/ll2"
         android:layout_width="match_parent"
+        android:orientation="vertical"
         android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
         android:layout_above="@+id/LL1"
         android:layout_alignLeft="@+id/lvSets"
         android:layout_alignRight="@+id/lvSets" >
 
         <TextView
-            android:id="@+id/tvPrevLeft2"
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:gravity="left|center_vertical"
-            android:hint="@string/prev"
-            android:textSize="@dimen/dip12" />
-
-        <TextView
-            android:id="@+id/tvPrevReps"
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:gravity="left|center_vertical" />
-
-        <TextView
-            android:id="@+id/textView2"
+            android:id="@+id/infoText"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_weight="3"
-            android:gravity="right|center_vertical"
-            android:text="@string/reps"
-            android:textSize="@dimen/text14" />
-
-        <EditText
-            android:id="@+id/editReps"
-            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_weight="3"
-            android:ems="10"
-            android:inputType="number"
-            android:typeface="normal" >
-        </EditText>
+            android:gravity="center_vertical|center_horizontal"
+            android:text="" />
+
+        <TextView
+            android:id="@+id/tvSetInfo"
+            android:layout_width="match_parent"
+            android:gravity="center_horizontal"
+            android:layout_height="wrap_content"
+            android:text="" />
+
     </LinearLayout>
 
 </RelativeLayout>

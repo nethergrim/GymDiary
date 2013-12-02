@@ -145,7 +145,8 @@ public class HistoryActivity extends Activity implements OnClickListener{
 
 	private void setupActionBar() {
 		ActionBar bar = getActionBar();
-	//	bar.setDisplayHomeAsUpEnabled(true);
+		bar.setTitle(R.string.training_history);
+		bar.setDisplayHomeAsUpEnabled(false);
 	}
 	
 	protected void onDestroy(){

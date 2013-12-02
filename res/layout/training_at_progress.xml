@@ -77,7 +77,7 @@
         tools:ignore="UselessParent" >
 
         <TextView
-            android:id="@+id/tvPrevLeft1"
+            android:id="@+id/tvPrevLeftUp"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:gravity="left|center_vertical"
