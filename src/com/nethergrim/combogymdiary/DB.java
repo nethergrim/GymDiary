@@ -12,7 +12,7 @@ import android.util.Log;
 public class DB {
 	
   final String LOG_TAG = "myLogs";
-  private static final String DB_NAME = "mydb";
+  public static final String DB_NAME = "mydb";
   private static final int DB_VERSION = 1;
   
   private static final String DB_EXE_TABLE = "exe_tab";// ��������� / ���������� / ������
@@ -213,7 +213,6 @@ return mDB.query(DB_EXE_TABLE, column, selection, selectionArgs, groupBy, having
   }
   
   public void updateRec_Main(int Id, int colId, String data_str, int data_int )  {
-	  Log.d(LOG_TAG, "--- Update mytabe: ---");
 	  ContentValues cv = new ContentValues();
 	  if (colId == 1)   {
 		  cv.put(TRA_NAME ,data_str);		  
@@ -234,13 +233,11 @@ return mDB.query(DB_EXE_TABLE, column, selection, selectionArgs, groupBy, having
   }
   
   public void delRec_Exe(long id) {
-	  int delCount = mDB.delete(DB_EXE_TABLE, COLUMN_ID + " = " + id, null);
-	  Log.d(LOG_TAG, "deleted rows count = " + delCount);
+	  mDB.delete(DB_EXE_TABLE, COLUMN_ID + " = " + id, null);
   }
   
   public void delRec_Main(long id) {
-	  int delCount = mDB.delete(DB_MAIN_TABLE, COLUMN_ID + " = " + id, null);
-	  Log.d(LOG_TAG, "deleted rows count = " + delCount);
+	  mDB.delete(DB_MAIN_TABLE, COLUMN_ID + " = " + id, null);
 	  }
   
   private class DBHelper extends SQLiteOpenHelper {
@@ -252,7 +249,6 @@ return mDB.query(DB_EXE_TABLE, column, selection, selectionArgs, groupBy, having
 
     @Override
     public void onCreate(SQLiteDatabase db) {
-    	Log.d(LOG_TAG, "--- onCreate database ---");
     	db.execSQL(DB_EXE_CREATE);   
     	db.execSQL(DB_MAIN_CREATE);
     }

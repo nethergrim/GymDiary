@@ -30,4 +30,14 @@
 				android:title="@string/vibrate_lenght" 
 			 	android:defaultValue="2" 
 			    android:dialogTitle="@string/default_vibrate_lenght"/>
+			
+			<Preference android:title="@string/backup"
+                android:key="btnBackup"
+                android:summary="@string/backup_database_to_sd"/>
+			
+			<Preference android:title="@string/restore"
+                android:key="btnRestore"
+                android:summary="@string/replace_from_backup"/>
+			
+			
 </PreferenceScreen>

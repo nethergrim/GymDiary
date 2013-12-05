@@ -2,6 +2,12 @@
 <resources>
 
     <string name="app_name">Combo Gym Diary</string>
+    <string name="backup">Backup</string>
+    <string name="backup_error">Backup error</string>
+    <string name="restore_error">Restore error</string>
+    <string name="restore">Restore from a backup</string>
+    <string name="backuped">Backuped</string>
+    <string name="restored">Restored from a backup</string>
     <string name="action_settings">Settings</string>
     <string name="startTrainingButtonString">Start training</string>
     <string name="settingsButtonString">Settings</string>
@@ -149,5 +155,7 @@
     <string name="traAbs">Abs training</string>
     <string name="set_number">Set №</string>
     <string name="previous_result_was">Previous result was: </string>
+    <string name="backup_database_to_sd">Backup database to SD card</string>
+    <string name="replace_from_backup">Replase database from SD card</string>
 
 </resources>

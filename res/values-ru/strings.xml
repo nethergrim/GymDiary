@@ -1,6 +1,12 @@
 <resources>
 
     <string name="Add">Добавить</string>
+    <string name="backup">Резервная копия базы</string>
+    <string name="restore">Восстановить базу данных</string>
+    <string name="backuped">Резервная копия сделана</string>
+    <string name="restored">База данных восстановлена из резервной копии</string>
+    <string name="backup_error">Ошибка создания резервной копии</string>
+    <string name="restore_error">Ошибка восстановления базы данных</string>
     <string name="Add_new">Добавить новую</string>
     <string name="Create">Создать</string>
     <string name="Weight">Вес:</string>
@@ -147,6 +153,7 @@
 	<string name="traAbs">Тренировка пресса</string>
 	<string name="previous_result_was">Предыдущий результат: </string>
 	<string name="set_number">Подход №</string>
-	
+	<string name="backup_database_to_sd">Сделать резервную копию данных на SD карточку</string>
+	<string name="replace_from_backup">Восстановить данные с SD карточки</string>
 	
 </resources>

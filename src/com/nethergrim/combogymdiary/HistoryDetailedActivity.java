@@ -4,6 +4,7 @@ import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.Intent;
 import android.database.Cursor;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.view.Gravity;
 import android.view.MenuItem;
@@ -16,6 +17,7 @@ import android.widget.ScrollView;
 import android.widget.TextView;
 
 import com.jeremyfeinstein.slidingmenu.lib.SlidingMenu;
+import com.nethergrim.combogymdiary.R.color;
 
 public class HistoryDetailedActivity extends Activity implements OnClickListener {
 
@@ -105,10 +107,13 @@ public class HistoryDetailedActivity extends Activity implements OnClickListener
 	private void setupLayout(){
 		ScrollView scrollView = new ScrollView(this);
 		LayoutParams lpView = new LayoutParams(LayoutParams.WRAP_CONTENT, LayoutParams.WRAP_CONTENT);
+		scrollView.setBackground(getResources().getDrawable(R.drawable.cream_pixels_bitmap));
         LinearLayout llMain = new LinearLayout(this);
         llMain.setOrientation(LinearLayout.VERTICAL);
         LayoutParams linLayoutParam = new LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.MATCH_PARENT);
         
+        
+		
         setContentView(scrollView, linLayoutParam);
         scrollView.addView(llMain,linLayoutParam);
         llMain.setGravity(Gravity.CENTER_HORIZONTAL);
@@ -124,13 +129,14 @@ public class HistoryDetailedActivity extends Activity implements OnClickListener
         			llMain.addView(tvNewSet,lpView);
         		}while (cursor.moveToNext() && cursor.getInt(5) != 1);
         		cursor.moveToPrevious();
-        		TextView divider = new TextView(this);
-        		divider.setText("----------------------");
-        		
-        		llMain.addView(divider,lpView);
+        		View div = new View(this);
+        		LinearLayout.LayoutParams lparamDivider = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, 1);
+        		lparamDivider.setMargins(20, 10, 20, 0);
+        		div.setLayoutParams(lparamDivider);
+        		div.setBackgroundColor(Color.GRAY);
+        		llMain.addView(div);
         	} while (cursor.moveToNext());
         }        
-        llMain.setBackground(getResources().getDrawable(R.drawable.cream_pixels_bitmap));
 	}
 	
 	@Override

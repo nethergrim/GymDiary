@@ -4,20 +4,22 @@ import android.app.ActionBar;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.preference.Preference;
 import android.preference.PreferenceActivity;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
+import android.widget.Toast;
 
 import com.jeremyfeinstein.slidingmenu.lib.SlidingMenu;
 
 public class SettingsActivity extends PreferenceActivity  implements OnClickListener{
-	
+	final String LOG_TAG = "myLogs";
 	SharedPreferences sPref;
 	private SlidingMenu menu;
 	Button btnMenu1,btnMenu2,btnMenu3,btnMenu4;
-	
+	public static SettingsActivity sa;
     @SuppressWarnings("deprecation")
 	@Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -28,6 +30,35 @@ public class SettingsActivity extends PreferenceActivity  implements OnClickList
         //bar.setDisplayHomeAsUpEnabled(true);
         bar.setTitle(R.string.settingsButtonString);
         setupSlidingMenu();
+        
+        
+        Preference btnBackup = (Preference)findPreference("btnBackup");
+        btnBackup.setOnPreferenceClickListener(new Preference.OnPreferenceClickListener() {
+                        @Override
+                        public boolean onPreferenceClick(Preference arg0) { 
+                        	Backuper backUP = new Backuper();
+                        	boolean yes = backUP.backupToSd();
+                        	if (yes)
+                        		Toast.makeText(getApplicationContext(),getResources().getString(R.string.backuped), Toast.LENGTH_SHORT).show();
+                        	else
+                        		Toast.makeText(getApplicationContext(),getResources().getString(R.string.backup_error), Toast.LENGTH_SHORT).show();
+                            return true;
+                        }
+                    });
+        
+        Preference btnRestore = (Preference)findPreference("btnRestore");
+        btnRestore.setOnPreferenceClickListener(new Preference.OnPreferenceClickListener() {
+                        @Override
+                        public boolean onPreferenceClick(Preference arg0) { 
+                        	Backuper backUP = new Backuper();
+                        	boolean yes = backUP.restoreBackup();
+                        	if (yes)
+                        		Toast.makeText(getApplicationContext(),getResources().getString(R.string.restored), Toast.LENGTH_SHORT).show();
+                        	else
+                        		Toast.makeText(getApplicationContext(),getResources().getString(R.string.restore_error), Toast.LENGTH_SHORT).show();
+                            return true;
+                        }
+                    });
     }
     
 	protected void onResume() {

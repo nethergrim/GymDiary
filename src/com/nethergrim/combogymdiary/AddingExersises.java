@@ -118,7 +118,7 @@ public class AddingExersises extends Activity implements OnClickListener {
 			break;
 		case R.id.btnMenu4:
 			cls = SettingsActivity.class;
-			break;
+			break;		
 		}
 		Intent intent = new Intent(this, cls);
 		startActivity(intent);

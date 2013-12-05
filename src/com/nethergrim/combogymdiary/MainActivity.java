@@ -6,8 +6,6 @@ import android.content.Intent;
 import android.database.Cursor;
 import android.os.Bundle;
 import android.util.Log;
-import android.view.Menu;
-import android.view.MenuItem;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
@@ -71,21 +69,7 @@ public class MainActivity extends Activity implements OnClickListener {
 		Log.d(LOG_TAG, "cursor getcount = " + cursor.getCount());
     }
     
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        return true;
-    }
-    
-    @Override
-    public boolean onOptionsItemSelected (MenuItem item) 
-    {
-    	switch (item.getItemId()) 
-    	{
-    	case android.R.id.home:    		
-    		break;
-    	}
-		return false;    	
-    }    
+   
         
 	@Override
 	public void onClick(View arg0) {

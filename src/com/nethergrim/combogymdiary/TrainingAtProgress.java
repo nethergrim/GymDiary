@@ -48,7 +48,7 @@ public class TrainingAtProgress extends Activity  implements MyInterface, OnClic
 	Button btnSave;	
 	ToggleButton tglTimerOn;
 	Boolean tglChecked = true,turnOff = false,vibrate = false;
-	EditText /*etWeight,etReps,*/etTimer;
+	EditText etTimer;
 	ListView lvMain;
 	DB db;
 	int size = 0;
@@ -61,7 +61,6 @@ public class TrainingAtProgress extends Activity  implements MyInterface, OnClic
 	SharedPreferences sp;
 	int checkedPosition = 0,set = 0,oldReps = 0,oldWeight = 0,timerValue = 0,vibrateLenght=0;
 	DialogFragment dlg1;
-	//TextView tvPrevWeight,tvPrevReps,tvPrevLeft1,tvPrevLeft2;
 	ProgressDialog pd;
 	Handler h;
 	WheelView reps;
