@@ -1,5 +1,6 @@
 package com.nethergrim.combogymdiary;
 
+import android.R;
 import android.app.ActionBar;
 import android.app.Activity;
 import android.content.Intent;
@@ -18,6 +19,7 @@ public class MainActivity extends Activity implements OnClickListener {
 	Button btnStartT;
 	Button btnExcersises;
 	Button btnWorklog;
+	Button btnCatalog;
 	public static MainActivity ma;
 	DB db;
 	Cursor cursor;
@@ -31,11 +33,14 @@ public class MainActivity extends Activity implements OnClickListener {
         btnStartT     = (Button) findViewById(R.id.buttonStartTraining);
         btnExcersises = (Button) findViewById(R.id.buttonExcersisesList);
         btnWorklog    = (Button) findViewById(R.id.btnWorklog);
+        btnCatalog	  = (Button) findViewById(R.id.btnCatalog);
+        btnCatalog.setOnClickListener(this);
         btnSettings.setOnClickListener(this);
         btnExcersises.setOnClickListener(this);
         btnStartT.setOnClickListener(this);
         btnWorklog.setOnClickListener(this);
         ma=this;
+        AdapterHelper.setContext(getApplicationContext());
         ActionBar bar = getActionBar();
         bar.setTitle(R.string.app_name); 
         db = new DB(this);
@@ -52,14 +57,17 @@ public class MainActivity extends Activity implements OnClickListener {
 		String[] exeChest = getResources().getStringArray(R.array.exercisesArrayChest);
 		String[] exeBack = getResources().getStringArray(R.array.exercisesArrayBack);
 		String[] exeShoulders = getResources().getStringArray(R.array.exercisesArrayShoulders);
-		String[] exeArms = getResources().getStringArray(R.array.exercisesArrayArms);
+		String[] exeBiceps = getResources().getStringArray(R.array.exercisesArrayBiceps);
+		String[] exeTriceps = getResources().getStringArray(R.array.exercisesArrayTriceps);
 		String[] exeAbs = getResources().getStringArray(R.array.exercisesArrayAbs);
 		for (int i = 0; i < exeLegs.length; i++) 
 			db.addRec_Exe(getString(R.string.traLegs), exeLegs[i], "90");
 		for (int i = 0; i < exeChest.length; i++) 
 			db.addRec_Exe(getString(R.string.traChest), exeChest[i], "60");
-		for (int i = 0; i < exeArms.length; i++) 
-			db.addRec_Exe(getString(R.string.traArms), exeArms[i], "60");
+		for (int i = 0; i < exeBiceps.length; i++) 
+			db.addRec_Exe(getString(R.string.traBiceps), exeBiceps[i], "60");
+		for (int i = 0; i < exeTriceps.length; i++) 
+			db.addRec_Exe(getString(R.string.traTriceps), exeTriceps[i], "60");
 		for (int i = 0; i < exeBack.length; i++) 
 			db.addRec_Exe(getString(R.string.traBack), exeBack[i], "60");
 		for (int i = 0; i < exeShoulders.length; i++) 
@@ -86,7 +94,11 @@ public class MainActivity extends Activity implements OnClickListener {
 		} else if (id == R.id.btnWorklog){
 			Intent gotoWorklog = new Intent (this,HistoryActivity.class);
 			startActivity(gotoWorklog);
+		} else if (id == R.id.btnCatalog) {
+			Intent gotoCatalog = new Intent (this,CatalogActivity.class);
+			startActivity(gotoCatalog);
 		}
+		
 	}
 	
 	

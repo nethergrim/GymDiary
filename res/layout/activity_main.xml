@@ -52,6 +52,17 @@
         android:textSize="@dimen/text20" />
 
     <Button
+        android:id="@+id/btnCatalog"
+        android:layout_width="match_parent"
+        android:layout_gravity="left"
+        style="@style/HabraThemeButton"
+            android:textSize="@dimen/text20"
+            android:textColor="@android:color/white"
+        android:layout_margin="8dp"
+        android:layout_marginTop="-4dp"
+        android:text="@string/exe_catalog" />
+
+    <Button
         android:id="@+id/buttonSettings"
         style="@style/HabraThemeButton"
         android:layout_width="match_parent"

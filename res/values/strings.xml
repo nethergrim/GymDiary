@@ -129,11 +129,7 @@
         <item>Cable Rear Delt Fly</item>
         <item>Lee Haney curl</item>
     </string-array>
-    <string-array name="exercisesArrayArms">
-        <item>Close-Grip Barbell Bench Press</item>
-        <item>EZ-Bar Skullcrusher</item>
-        <item>One Arm Supinated Dumbbell Triceps Extension</item>
-        <item>Triceps Overhead Extension with Rope</item>
+    <string-array name="exercisesArrayBiceps">
         <item>Standing Barbell Curl</item>
         <item>Dumbbell Bicep Curl</item>
         <item>Barbell Preacher Curls</item>
@@ -142,17 +138,47 @@
         <item>Reverse Cable Curl</item>
         <item>Hammer Curls</item>
     </string-array>
+    <string-array name="exercisesArrayTriceps">
+        <item>Close-Grip Barbell Bench Press</item>
+        <item>EZ-Bar Skullcrusher</item>
+        <item>One Arm Supinated Dumbbell Triceps Extension</item>
+        <item>Triceps Overhead Extension with Rope</item>
+    </string-array>
+    
+    
     <string-array name="exercisesArrayAbs">
         <item>3/4 Sit-Up</item>
         <item>Ab Crunch Machine</item>
     </string-array>
-	<string name="training_history">Training history</string>
+    <string-array name="partsOfBodyForMeasurementsArray">
+        <item>Weight</item>
+        <item>Tall</item>
+        <item>Chest</item>
+        <item>Waist</item>
+        <item>Hip</item>
+        <item>Thigh</item>
+        <item>Calf</item>
+        <item>Arm</item>
+    </string-array>
+    <string-array name="MuscleGroupsArray">
+        <item>Pectoral</item>
+        <item>Legs</item>
+        <item>Back</item>
+        <item>Deltoids</item>
+        <item>Biceps</item>
+        <item>Triceps</item>
+        <item>Abs</item>
+    </string-array>
+
+    <string name="training_history">Training history</string>
     <string name="traLegs">Legs training</string>
     <string name="traChest">Pectoral training</string>
     <string name="traBack">Back training</string>
     <string name="traShoulders">Delts training</string>
-    <string name="traArms">Arms training</string>
+    <string name="traBiceps">Biceps training</string>
+    <string name="traTriceps">Triceps training</string>
     <string name="traAbs">Abs training</string>
+     <string name="exe_catalog">Exercises catalog</string>
     <string name="set_number">Set №</string>
     <string name="previous_result_was">Previous result was: </string>
     <string name="backup_database_to_sd">Backup database to SD card</string>

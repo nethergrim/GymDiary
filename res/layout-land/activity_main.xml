@@ -15,7 +15,7 @@
         android:layout_marginBottom="8dp"
         android:layout_marginLeft="50dp"
         android:layout_marginRight="50dp"
-        android:layout_marginTop="50dp"
+        android:layout_marginTop="10dp"
         android:text="@string/startTrainingButtonString"
         android:textColor="@android:color/white"
         android:textSize="@dimen/text20" />
@@ -25,17 +25,17 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignLeft="@+id/buttonSettings"
-        android:orientation="horizontal"
         android:layout_alignRight="@+id/buttonStartTraining"
-        android:layout_below="@+id/buttonStartTraining" >
+        android:layout_below="@+id/buttonStartTraining"
+        android:orientation="horizontal" >
 
         <Button
             android:id="@+id/buttonExcersisesList"
             style="@style/HabraThemeButton"
             android:layout_width="0dp"
-            android:layout_weight="1"
             android:layout_height="wrap_content"
             android:layout_marginBottom="8dp"
+            android:layout_weight="1"
             android:text="@string/excersisiesListButtonString"
             android:textColor="@android:color/white"
             android:textSize="@dimen/text20" />
@@ -44,13 +44,42 @@
             android:id="@+id/btnWorklog"
             style="@style/HabraThemeButton"
             android:layout_width="0dp"
-            android:layout_weight="1"
-            android:layout_marginLeft="8dp"
             android:layout_height="wrap_content"
             android:layout_marginBottom="8dp"
+            android:layout_marginLeft="8dp"
+            android:layout_weight="1"
             android:text="@string/worklogString"
             android:textColor="@android:color/white"
             android:textSize="@dimen/text20" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/linearLayout2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/linearLayout1"
+        android:layout_alignRight="@+id/linearLayout1"
+        android:layout_below="@+id/linearLayout1" >
+
+        <Button
+            android:id="@+id/btnCatalog"
+            android:layout_marginBottom="8dp"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            style="@style/HabraThemeButton"
+            android:textSize="@dimen/text20"
+            android:textColor="@android:color/white"
+            android:layout_height="wrap_content"
+            android:text="@string/exe_catalog" />
+
+        <TextView
+            android:id="@+id/textView1"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="8dp"
+            android:layout_weight="1"
+            android:text="" />
+
     </LinearLayout>
 
     <Button
@@ -60,7 +89,7 @@
         android:layout_height="wrap_content"
         android:layout_alignLeft="@+id/buttonStartTraining"
         android:layout_alignRight="@+id/buttonStartTraining"
-        android:layout_below="@+id/linearLayout1"
+        android:layout_below="@+id/linearLayout2"
         android:text="@string/settingsButtonString"
         android:textColor="@android:color/white"
         android:textSize="@dimen/text20" />
