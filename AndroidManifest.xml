@@ -14,9 +14,6 @@
         android:label="@string/app_name"
         android:theme="@style/Theme.Mybarstyle"
         android:windowSoftInputMode="adjustPan" >
-        
-
-        
         <activity
             android:name="com.nethergrim.combogymdiary.MainActivity"
             android:label="@string/app_name" >
@@ -26,42 +23,35 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        
         <activity android:name="com.nethergrim.combogymdiary.SettingsActivity" >
-                        <meta-data
+            <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.nethergrim.combogymdiary.MainActivity" />
         </activity>
-        
         <activity android:name="com.nethergrim.combogymdiary.StartTrainingActivity" >
-                        <meta-data
+            <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.nethergrim.combogymdiary.MainActivity" />
         </activity>
-        
         <activity android:name="com.nethergrim.combogymdiary.ExersisesList" >
-                        <meta-data
+            <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.nethergrim.combogymdiary.MainActivity" />
         </activity>
         <activity
             android:name="com.nethergrim.combogymdiary.AddingExersises"
             android:windowSoftInputMode="stateHidden" >
-                                    <meta-data
+            <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.nethergrim.combogymdiary.ExersisesList" />
         </activity>
-        
         <activity
             android:name="com.nethergrim.combogymdiary.AddingProgram"
             android:windowSoftInputMode="stateHidden" >
-                                    <meta-data
+            <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.nethergrim.combogymdiary.StartTrainingActivity" />
         </activity>
-        
-        
-        
         <activity
             android:name="com.nethergrim.combogymdiary.TrainingAtProgress"
             android:configChanges="keyboardHidden|orientation|screenSize"
@@ -70,17 +60,13 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.nethergrim.combogymdiary.MainActivity" />
         </activity>
-        
-        
-        
         <activity
             android:name="com.nethergrim.combogymdiary.HistoryActivity"
             android:parentActivityName="com.nethergrim.combogymdiary.MainActivity" >
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.example.combogymdiary.MainActivity" />
-        </activity>  
-        
+        </activity>
         <activity
             android:name="com.google.ads.AdActivity"
             android:configChanges="keyboard|keyboardHidden|orientation|screenLayout|uiMode|screenSize|smallestScreenSize" />
@@ -91,8 +77,17 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.nethergrim.combogymdiary.HistoryActivity" />
         </activity>
+        <activity
+            android:name="com.nethergrim.combogymdiary.CatalogActivity"
+            android:parentActivityName="com.nethergrim.combogymdiary.MainActivity" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.nethergrim.combogymdiary.MainActivity" />
+        </activity>
     </application>
-	<uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"></uses-permission>
+
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" >
+    </uses-permission>
     <uses-permission android:name="android.permission.VIBRATE" />
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
