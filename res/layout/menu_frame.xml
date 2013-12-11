@@ -14,9 +14,10 @@
             android:layout_width="match_parent"
             android:layout_height="1dip"
             android:layout_alignLeft="@+id/btnMenu1"
+            android:background="@android:color/holo_blue_light"
             android:layout_alignRight="@+id/btnMenu1"
             android:layout_below="@+id/btnMenu1"
-            android:background="?android:attr/dividerVertical" />
+            />
 
         <Button
             android:id="@+id/btnMenu2"
@@ -38,7 +39,7 @@
             android:layout_alignLeft="@+id/btnMenu2"
             android:layout_alignRight="@+id/btnMenu2"
             android:layout_below="@+id/btnMenu2"
-            android:background="?android:attr/dividerVertical" />
+            android:background="@android:color/holo_blue_light" />
 
         <View
             android:id="@+id/viewTopDivider"
@@ -50,7 +51,7 @@
             android:layout_marginLeft="8dp"
             android:layout_marginRight="8dp"
             android:layout_marginTop="50dp"
-            android:background="?android:attr/dividerVertical" />
+            android:background="@android:color/holo_blue_light" />
 
         <Button
             android:id="@+id/btnMenu3"
@@ -72,20 +73,7 @@
             android:layout_alignLeft="@+id/btnMenu3"
             android:layout_alignRight="@+id/btnMenu3"
             android:layout_below="@+id/btnMenu3"
-            android:background="?android:attr/dividerVertical" />
-
-        <Button
-            android:id="@+id/btnMenu4"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignLeft="@+id/view3"
-            android:layout_alignRight="@+id/view3"
-            android:layout_below="@+id/view3"
-            android:background="?android:attr/selectableItemBackground"
-            android:drawableLeft="@android:drawable/ic_menu_manage"
-            android:gravity="center_vertical"
-            android:text="@string/settingsButtonString"
-            android:textColor="@android:color/white" />
+            android:background="@android:color/holo_blue_light" />
 
         <View
             android:id="@+id/view4"
@@ -94,7 +82,7 @@
             android:layout_alignLeft="@+id/btnMenu4"
             android:layout_alignRight="@+id/btnMenu4"
             android:layout_below="@+id/btnMenu4"
-            android:background="?android:attr/dividerVertical" />
+            android:background="@android:color/holo_blue_light" />
 
         <Button
             android:id="@+id/btnMenu1"
@@ -109,6 +97,43 @@
             android:drawableLeft="@android:drawable/ic_media_play"
             android:gravity="center_vertical"
             android:text="@string/startTrainingButtonString"
+            android:textColor="@android:color/white" />
+        
+        
+
+        <Button
+            android:id="@+id/btnCatalog"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:drawableLeft="@android:drawable/ic_menu_gallery"
+            android:background="?android:attr/selectableItemBackground"
+            android:textColor="@android:color/white"
+            android:layout_alignLeft="@+id/btnMenu4"
+            android:gravity="center_vertical"
+            android:layout_alignRight="@+id/view3"
+            android:layout_below="@+id/btnMenu3"
+            android:text="@string/exe_catalog" />
+
+        <View
+            android:id="@+id/view5"
+            android:layout_width="match_parent"
+            android:layout_height="1dip"
+            android:layout_alignLeft="@+id/btnMenu4"
+            android:layout_alignRight="@+id/btnMenu4"
+            android:layout_below="@+id/btnCatalog"
+            android:background="@android:color/holo_blue_light" />
+        
+        <Button
+            android:id="@+id/btnMenu4"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignLeft="@+id/view3"
+            android:layout_alignRight="@+id/view3"
+            android:layout_below="@+id/btnCatalog"
+            android:background="?android:attr/selectableItemBackground"
+            android:drawableLeft="@android:drawable/ic_menu_manage"
+            android:gravity="center_vertical"
+            android:text="@string/settingsButtonString"
             android:textColor="@android:color/white" />
 
     </RelativeLayout>

@@ -1,7 +1,6 @@
 package com.nethergrim.combogymdiary;
 
 import android.app.ActionBar;
-import android.app.Activity;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.database.Cursor;
@@ -19,9 +18,8 @@ import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.Toast;
 
-import com.jeremyfeinstein.slidingmenu.lib.SlidingMenu;
 
-public class AddingExersises extends Activity implements OnClickListener {
+public class AddingExersises extends BasicMenuActivity implements OnClickListener {
 
 	Button btnCreate; 				
 	ListView lvExersices_list;		
@@ -38,16 +36,14 @@ public class AddingExersises extends Activity implements OnClickListener {
 	Cursor cursor;
 	SharedPreferences sp;
 	
-	private SlidingMenu menu;
-	Button btnMenu1,btnMenu2,btnMenu3,btnMenu4;
+
 	
 	@SuppressWarnings("deprecation")
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {		
 		super.onCreate(savedInstanceState);
-		setContentView(R.layout.adding_exersise);
+		mMenuDrawer.setContentView(R.layout.adding_exersise);
 		ActionBar bar = getActionBar();
-		//bar.setDisplayHomeAsUpEnabled(true);
 		bar.setTitle(R.string.create_new_exercise);
 		btnCreate = (Button) findViewById(R.id.btnSave);
 		btnCreate.setOnClickListener(this);
@@ -82,80 +78,20 @@ public class AddingExersises extends Activity implements OnClickListener {
 			etTimer.setText(timerV);
 		}
         sp = PreferenceManager.getDefaultSharedPreferences(this);
-        setupSlidingMenu();
 	}
 	
-	protected void setupSlidingMenu(){
-		menu = new SlidingMenu(this);
-        menu.setMode(SlidingMenu.LEFT);
-        menu.setTouchModeAbove(SlidingMenu.TOUCHMODE_FULLSCREEN);
-        menu.setShadowWidthRes(R.dimen.shadow_width);
-        menu.setShadowDrawable(R.drawable.shadow);
-        menu.setBehindOffsetRes(R.dimen.slidingmenu_offset);
-        menu.setFadeDegree(0.35f);
-        menu.attachToActivity(this, SlidingMenu.SLIDING_CONTENT);
-		menu.setMenu(R.layout.menu_frame);
-		btnMenu1 = (Button)findViewById(R.id.btnMenu1);
-		btnMenu2 = (Button)findViewById(R.id.btnMenu2);
-		btnMenu3 = (Button)findViewById(R.id.btnMenu3);
-		btnMenu4 = (Button)findViewById(R.id.btnMenu4);
-		btnMenu1.setOnClickListener(this);
-		btnMenu2.setOnClickListener(this);
-		btnMenu3.setOnClickListener(this);
-		btnMenu4.setOnClickListener(this);
-	}
-	public void gotoMenu (int id) {
-		Class<?> cls = null;
-		switch (id){
-		case R.id.btnMenu1:
-			cls = StartTrainingActivity.class;
-			break;
-		case R.id.btnMenu2:
-			cls = ExersisesList.class;
-			break;
-		case R.id.btnMenu3:
-			cls = HistoryActivity.class;
-			break;
-		case R.id.btnMenu4:
-			cls = SettingsActivity.class;
-			break;		
-		}
-		Intent intent = new Intent(this, cls);
-		startActivity(intent);
-	}
+
 	
 	
 	protected void onResume() {
-		if (menu.isMenuShowing()) {
-			menu.showContent();
-		}
 	    defaultTimer = sp.getString("etDefault", "60" );
 	    etTimer.setText(defaultTimer);
 	    super.onResume();
 	  }
 	
 
-	@Override
-	public boolean onOptionsItemSelected(MenuItem item) {
-		switch (item.getItemId()) {
-		case android.R.id.home:
-			if (!menu.isMenuShowing()) {
-				menu.showMenu();
-			}
-			menu.showContent();
-			return true;
-		}
-		return false;
-	}
-	
-	@Override
-	public void onBackPressed() {
-		if (menu.isMenuShowing()) {
-			menu.showContent();
-		} else {
-			super.onBackPressed();
-		}
-	}
+
+
 	
 	public void onCreateContextMenu(ContextMenu menu, View v,
 		      ContextMenuInfo menuInfo) {
@@ -181,6 +117,7 @@ public class AddingExersises extends Activity implements OnClickListener {
 		String timer = etTimer.getText().toString();
 		
 		int id = arg0.getId();
+		pressButton(id);
 		if (id == R.id.btnSave && editOrNot == false){			
 			if (!name.isEmpty() && !timer.isEmpty()){
 				db.addRec_Exe(R.string.empty+"", name , timer);
@@ -202,8 +139,6 @@ public class AddingExersises extends Activity implements OnClickListener {
 				Intent gotoExersisesList = new Intent (this,ExersisesList.class);
 				startActivity(gotoExersisesList);
 			}			
-		}else {
-			gotoMenu(id);
 		}
 	}
 

@@ -52,7 +52,7 @@
         android:textSize="@dimen/text20" />
 
     <Button
-        android:id="@+id/btnCatalog"
+        android:id="@+id/btnCataloginMain"
         android:layout_width="match_parent"
         android:layout_gravity="left"
         style="@style/HabraThemeButton"
@@ -73,8 +73,5 @@
         android:layout_marginTop="-4dp"
         android:text="@string/settingsButtonString"
         android:textSize="@dimen/text20" />
-
-
-
 
 </GridLayout>

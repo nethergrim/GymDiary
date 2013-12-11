@@ -1,19 +1,17 @@
 package com.nethergrim.combogymdiary;
 
-import android.R;
+
 import android.app.ActionBar;
-import android.app.Activity;
 import android.content.Intent;
 import android.database.Cursor;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
-import android.view.View.OnClickListener;
 import android.widget.Button;
 
 
 
-public class MainActivity extends Activity implements OnClickListener {
+public class MainActivity extends BasicMenuActivity {
 
 	Button btnSettings;
 	Button btnStartT;
@@ -23,17 +21,16 @@ public class MainActivity extends Activity implements OnClickListener {
 	public static MainActivity ma;
 	DB db;
 	Cursor cursor;
-	final String LOG_TAG = "myLogs";
 	
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        mMenuDrawer.setContentView(R.layout.activity_main);
         btnSettings   = (Button) findViewById(R.id.buttonSettings);
         btnStartT     = (Button) findViewById(R.id.buttonStartTraining);
         btnExcersises = (Button) findViewById(R.id.buttonExcersisesList);
         btnWorklog    = (Button) findViewById(R.id.btnWorklog);
-        btnCatalog	  = (Button) findViewById(R.id.btnCatalog);
+        btnCatalog	  = (Button) findViewById(R.id.btnCataloginMain);
         btnCatalog.setOnClickListener(this);
         btnSettings.setOnClickListener(this);
         btnExcersises.setOnClickListener(this);
@@ -50,7 +47,7 @@ public class MainActivity extends Activity implements OnClickListener {
 			initTable();
 		}
     }
-
+    
     private void initTable(){
 		Log.d(LOG_TAG, "cursor getcount < 60 ");
         String[] exeLegs = getResources().getStringArray(R.array.exercisesArrayLegs);
@@ -77,11 +74,11 @@ public class MainActivity extends Activity implements OnClickListener {
 		Log.d(LOG_TAG, "cursor getcount = " + cursor.getCount());
     }
     
-   
         
 	@Override
 	public void onClick(View arg0) {
 	    int id = arg0.getId();
+	    pressButton(id);
 		if (id == R.id.buttonSettings) {
 			Intent gotoSettings = new Intent(this,SettingsActivity.class);
 			startActivity(gotoSettings);
@@ -94,13 +91,12 @@ public class MainActivity extends Activity implements OnClickListener {
 		} else if (id == R.id.btnWorklog){
 			Intent gotoWorklog = new Intent (this,HistoryActivity.class);
 			startActivity(gotoWorklog);
-		} else if (id == R.id.btnCatalog) {
+		} else if (id == R.id.btnCataloginMain) {
+			Log.d(LOG_TAG, "btnCatalog pressed");
 			Intent gotoCatalog = new Intent (this,CatalogActivity.class);
 			startActivity(gotoCatalog);
-		}
-		
+		} 
 	}
-	
 	
 	protected void onDestroy() {
 	    super.onDestroy();

@@ -7,10 +7,11 @@
   
   <TextView android:id="@+id/city_name"
       android:layout_gravity="center_vertical"
-	  android:layout_width="wrap_content"
+	  android:layout_width="match_parent"
 	  android:layout_height="wrap_content"
 	  android:text=""
 	  android:textSize="17sp"
+	  android:gravity="center_horizontal"
 	  android:textColor="#0099CC"
 	  android:paddingTop="10dp"
 	  android:paddingBottom="10dp"

@@ -93,19 +93,17 @@ public class TrainingAtProgress extends Activity  implements MyInterface, OnClic
         traName = intent.getStringExtra("trainingName");
         bar.setTitle(traName);     
         reps = (WheelView) findViewById(R.id.wheelReps);
-        reps.setVisibleItems(5); // Number of items
+        reps.setVisibleItems(5); 
         reps.setWheelBackground(R.drawable.wheel_bg_holo);
         reps.setWheelForeground(R.drawable.wheel_val_holo);
         reps.setShadowColor(0xFFFFFF, 0xFFFFFF, 0xFFFFFF);
         reps.setViewAdapter(new RepsAdapter(this));
-        
         weights = (WheelView) findViewById(R.id.wheelWeight);
-        weights.setVisibleItems(5); // Number of items
+        weights.setVisibleItems(5); 
         weights.setWheelBackground(R.drawable.wheel_bg_holo);
         weights.setWheelForeground(R.drawable.wheel_val_holo);
         weights.setShadowColor(0xFFFFFF, 0xFFFFFF, 0xFFFFFF);
         weights.setViewAdapter(new WeightsAdapter(this));
-        
         String[] strArrExtra = {traName};
         String[] strArrCol = {DB.COLUMN_ID,DB.EXE_NAME};            
         tglTimerOn = (ToggleButton) findViewById(R.id.tglTurnOff);
@@ -180,8 +178,6 @@ public class TrainingAtProgress extends Activity  implements MyInterface, OnClic
         tglTimerOn.setChecked(true);
         lvMain.setItemChecked(0, true);
         setInfo.setText(getResources().getString(R.string.set_number)+ " " + (set+1));
-        
-       // weights.setCurrentItem(3);
 	}
 	 
 	protected void onResume() {

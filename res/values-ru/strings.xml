@@ -1,7 +1,11 @@
 <resources>
 
+    <string name="md__drawerOpenIndicatorDesc">Close drawer</string>
+    <string name="md__drawerClosedIndicatorDesc">Open drawer</string>
     <string name="Add">Добавить</string>
     <string name="backup">Резервная копия базы</string>
+    <string name="title_activity_temp">TempActivity</string>
+    <string name="hello_world">Hello world!</string>
     <string name="restore">Восстановить базу данных</string>
     <string name="backuped">Резервная копия сделана</string>
     <string name="restored">База данных восстановлена из резервной копии</string>

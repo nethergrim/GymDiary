@@ -69,42 +69,66 @@
                  android:textOn="@string/timer" />
 
          </LinearLayout>
+	
+         
+         <LinearLayout
+             android:orientation="horizontal"
+             android:layout_marginTop="8dp"
+             android:layout_width="match_parent"
+             android:layout_height="wrap_content" >
+			
+             
+             <TextView
+                 android:id="@+id/textView4"
+                 android:layout_width="0dip"
+                 android:layout_weight="1"
+                 android:layout_height="match_parent"
+                 android:background="@android:color/white"
+                 android:gravity="center_horizontal"
+                 android:text="@string/Weight"
+                 android:textAppearance="?android:attr/textAppearanceSmall" />
 
+
+             <TextView
+                 android:id="@+id/textView3"
+                 android:layout_width="0dip"
+                 android:layout_weight="1"
+                 android:background="@android:color/white"
+				android:layout_marginLeft="8dp"
+                 android:layout_height="match_parent"
+                 android:gravity="center_horizontal"
+                 android:text="@string/reps"
+                 android:textAppearance="?android:attr/textAppearanceSmall" />
+             
+             
+         </LinearLayout>
+         
+         
          <LinearLayout
              android:id="@+id/LL1"
              android:layout_width="match_parent"
              android:layout_height="wrap_content"
              android:gravity="center_horizontal"
-             android:layout_marginTop="8dp"
              android:orientation="horizontal"
              tools:ignore="UselessParent" >
 
-             <TextView
-                 android:id="@+id/textView4"
-                 android:layout_width="wrap_content"
-                 android:layout_height="match_parent"
-                 android:gravity="center_vertical"
-                 android:text="@string/Weight"
-                 android:textAppearance="?android:attr/textAppearanceSmall" />
+             
 
              <kankan.wheel.widget.WheelView
                  android:id="@+id/wheelWeight"
-                 android:layout_width="60dp"
-                 android:layout_height="100dp" />
+                 android:layout_width="0dip"
+                 android:layout_weight="1"
+                 android:layout_height="110dp" />
 
-             <TextView
-                 android:id="@+id/textView3"
-                 android:layout_width="wrap_content"
-                 android:layout_height="match_parent"
-                 android:gravity="center_vertical"
-                 android:text="@string/reps"
-                 android:textAppearance="?android:attr/textAppearanceSmall" />
              
-         <kankan.wheel.widget.WheelView 
-            android:id="@+id/wheelReps"
-			android:layout_height="100dp"
-			android:layout_width="60dp"
-	        android:layout_gravity="center_vertical"/>
+             
+	         <kankan.wheel.widget.WheelView 
+	            android:id="@+id/wheelReps"
+				android:layout_height="110dp"
+				android:layout_width="0dip"
+				android:layout_marginLeft="8dp"
+                 android:layout_weight="1"
+		        android:layout_gravity="center_vertical"/>
          
          
          </LinearLayout>
@@ -113,7 +137,6 @@
              android:id="@+id/ll2"
              android:layout_width="match_parent"
              android:orientation="vertical"
-             android:layout_marginTop="8dp"
              android:layout_height="wrap_content" >
 
              <TextView

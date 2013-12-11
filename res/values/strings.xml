@@ -144,8 +144,6 @@
         <item>One Arm Supinated Dumbbell Triceps Extension</item>
         <item>Triceps Overhead Extension with Rope</item>
     </string-array>
-    
-    
     <string-array name="exercisesArrayAbs">
         <item>3/4 Sit-Up</item>
         <item>Ab Crunch Machine</item>
@@ -178,10 +176,12 @@
     <string name="traBiceps">Biceps training</string>
     <string name="traTriceps">Triceps training</string>
     <string name="traAbs">Abs training</string>
-     <string name="exe_catalog">Exercises catalog</string>
+    <string name="exe_catalog">Exercises catalog</string>
     <string name="set_number">Set №</string>
     <string name="previous_result_was">Previous result was: </string>
     <string name="backup_database_to_sd">Backup database to SD card</string>
     <string name="replace_from_backup">Replase database from SD card</string>
+    <string name="title_activity_temp">TempActivity</string>
+    <string name="hello_world">Hello world!</string>
 
 </resources>

@@ -62,7 +62,7 @@
         android:layout_below="@+id/linearLayout1" >
 
         <Button
-            android:id="@+id/btnCatalog"
+            android:id="@+id/btnCataloginMain"
             android:layout_marginBottom="8dp"
             android:layout_width="0dp"
             android:layout_weight="1"
@@ -73,12 +73,12 @@
             android:text="@string/exe_catalog" />
 
         <TextView
-            android:id="@+id/textView1"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="8dp"
-            android:layout_weight="1"
-            android:text="" />
+        android:id="@+id/btnTemp"
+        android:layout_weight="1"
+        android:layout_height="wrap_content"
+        android:layout_width="0dip"
+        android:layout_marginLeft="8dp"
+        android:layout_gravity="left" />
 
     </LinearLayout>
 

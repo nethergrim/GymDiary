@@ -1,7 +1,6 @@
 package com.nethergrim.combogymdiary;
 
 import android.app.ActionBar;
-import android.app.Activity;
 import android.content.Intent;
 import android.database.Cursor;
 import android.os.Bundle;
@@ -9,10 +8,8 @@ import android.support.v4.widget.SimpleCursorAdapter;
 import android.util.Log;
 import android.view.ContextMenu;
 import android.view.ContextMenu.ContextMenuInfo;
-import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.view.View.OnClickListener;
 import android.widget.AdapterView;
 import android.widget.AdapterView.AdapterContextMenuInfo;
 import android.widget.AdapterView.OnItemClickListener;
@@ -20,10 +17,9 @@ import android.widget.Button;
 import android.widget.ListView;
 import android.widget.Toast;
 
-import com.jeremyfeinstein.slidingmenu.lib.SlidingMenu;
 
 
-public class ExersisesList extends Activity implements OnClickListener {
+public class ExersisesList extends BasicMenuActivity {
 
 	final String LOG_TAG = "myLogs";
 	ListView lvExersices_list;
@@ -35,15 +31,12 @@ public class ExersisesList extends Activity implements OnClickListener {
 	int State = 0; // 1 - deleting, 2 - editing
 	Button btnCreate;
 	
-	private SlidingMenu menu;
-	Button btnMenu1,btnMenu2,btnMenu3,btnMenu4;
-	
 	
     @SuppressWarnings("deprecation")
 	@Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.exersises_list); 
+        mMenuDrawer.setContentView(R.layout.exersises_list); 
         ActionBar bar = getActionBar();
         btnCreate = (Button)findViewById(R.id.btnCreate);
         btnCreate.setOnClickListener(this);
@@ -69,82 +62,7 @@ public class ExersisesList extends Activity implements OnClickListener {
 		          goToEditExe(position, id);    
 		        }
 	    	});
-	    setupSlidingMenu();
     }
-    
-	protected void onResume() {
-		if (menu.isMenuShowing()) {
-			menu.showContent();
-		}
-	    super.onResume();
-	  }
-    
-    protected void setupSlidingMenu(){
-		menu = new SlidingMenu(this);
-        menu.setMode(SlidingMenu.LEFT);
-        menu.setTouchModeAbove(SlidingMenu.TOUCHMODE_FULLSCREEN);
-        menu.setShadowWidthRes(R.dimen.shadow_width);
-        menu.setShadowDrawable(R.drawable.shadow);
-        menu.setBehindOffsetRes(R.dimen.slidingmenu_offset);
-        menu.setFadeDegree(0.35f);
-        menu.attachToActivity(this, SlidingMenu.SLIDING_CONTENT);
-		menu.setMenu(R.layout.menu_frame);
-		btnMenu1 = (Button)findViewById(R.id.btnMenu1);
-		btnMenu2 = (Button)findViewById(R.id.btnMenu2);
-		btnMenu3 = (Button)findViewById(R.id.btnMenu3);
-		btnMenu4 = (Button)findViewById(R.id.btnMenu4);
-		btnMenu1.setOnClickListener(this);
-		btnMenu2.setOnClickListener(this);
-		btnMenu3.setOnClickListener(this);
-		btnMenu4.setOnClickListener(this);
-	}
-	public void gotoMenu (int id) {
-		Class<?> cls = null;
-		switch (id){
-		case R.id.btnMenu1:
-			cls = StartTrainingActivity.class;
-			break;
-		case R.id.btnMenu2:
-			cls = ExersisesList.class;
-			break;
-		case R.id.btnMenu3:
-			cls = HistoryActivity.class;
-			break;
-		case R.id.btnMenu4:
-			cls = SettingsActivity.class;
-			break;
-		}
-		Intent intent = new Intent(this, cls);
-		startActivity(intent);
-	}
-    
-    
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        return true;
-    }
-    
-    @Override
-	public boolean onOptionsItemSelected(MenuItem item) {
-		switch (item.getItemId()) {
-		case android.R.id.home:
-			if (!menu.isMenuShowing()) {
-				menu.showMenu();
-			}
-			menu.showContent();
-			return true;
-		}
-		return false;
-	}
-	
-	@Override
-	public void onBackPressed() {
-		if (menu.isMenuShowing()) {
-			menu.showContent();
-		} else {
-			super.onBackPressed();
-		}
-	}
     
 	public void onCreateContextMenu(ContextMenu menu, View v,
 		      ContextMenuInfo menuInfo) {
@@ -195,14 +113,14 @@ public class ExersisesList extends Activity implements OnClickListener {
     
 	@Override
 	public void onClick(View arg0) {
-	    switch (arg0.getId()) {
+		int id = arg0.getId();
+	    switch (id) {
 	    case R.id.btnCreate:
 	    	Intent gotoAddingExersisesActivity = new Intent(this,AddingExersises.class);
-	    	Log.d(LOG_TAG, "going to Adding Exercise");
 			startActivity(gotoAddingExersisesActivity);			
 	    	break;
 	    default:
-	    	gotoMenu(arg0.getId());
+	    	pressButton(id);
 	    	break;
 	    }	    
 	}

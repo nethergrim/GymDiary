@@ -18,7 +18,7 @@ public class SettingsActivity extends PreferenceActivity  implements OnClickList
 	final String LOG_TAG = "myLogs";
 	SharedPreferences sPref;
 	private SlidingMenu menu;
-	Button btnMenu1,btnMenu2,btnMenu3,btnMenu4;
+	Button btnMenu1,btnMenu2,btnMenu3,btnMenu4,btnMenuCatalog;
 	public static SettingsActivity sa;
     @SuppressWarnings("deprecation")
 	@Override
@@ -27,7 +27,6 @@ public class SettingsActivity extends PreferenceActivity  implements OnClickList
         addPreferencesFromResource(R.xml.pref);
         
         ActionBar bar = getActionBar();
-        //bar.setDisplayHomeAsUpEnabled(true);
         bar.setTitle(R.string.settingsButtonString);
         setupSlidingMenu();
         
@@ -86,6 +85,8 @@ public class SettingsActivity extends PreferenceActivity  implements OnClickList
 		btnMenu2.setOnClickListener(this);
 		btnMenu3.setOnClickListener(this);
 		btnMenu4.setOnClickListener(this);
+		btnMenuCatalog = (Button)findViewById(R.id.btnCatalog);
+    	btnMenuCatalog.setOnClickListener(this);
 	}
 	public void gotoMenu (int id) {
 		Class<?> cls = null;
@@ -101,6 +102,9 @@ public class SettingsActivity extends PreferenceActivity  implements OnClickList
 			break;
 		case R.id.btnMenu4:
 			cls = SettingsActivity.class;
+			break;
+		case R.id.btnCatalog:
+			cls = CatalogActivity.class;
 			break;
 		}
 		Intent intent = new Intent(this, cls);
