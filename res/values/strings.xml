@@ -184,5 +184,79 @@
     <string name="title_activity_temp">TempActivity</string>
     <string name="hello_world">Hello world!</string>
     <string name="title_activity_catalog_detailed">CatalogDetailedActivity</string>
+    
+    <string name="ex_0_0"></string>
+	<string name="ex_0_1"></string>
+	<string name="ex_0_2"></string>
+	<string name="ex_0_3"></string>
+	<string name="ex_0_4"></string>
+	<string name="ex_0_5"></string>
+	<string name="ex_0_6"></string>
+	<string name="ex_0_7"></string>
+	<string name="ex_0_8"></string>
+	<string name="ex_0_9"></string>
+	<string name="ex_0_10"></string>
+	<string name="ex_0_11"></string>
+	<string name="ex_0_12"></string>
+	<string name="ex_0_13"></string>
+	
+	<string name="ex_1_0"></string>
+	<string name="ex_1_1"></string>
+	<string name="ex_1_2"></string>
+	<string name="ex_1_3"></string>
+	<string name="ex_1_4"></string>
+	<string name="ex_1_5"></string>
+	<string name="ex_1_6"></string>
+	<string name="ex_1_7"></string>
+	<string name="ex_1_8"></string>
+	<string name="ex_1_9"></string>
+	<string name="ex_1_10"></string>
+	<string name="ex_1_11"></string>
+	<string name="ex_1_12"></string>
+	<string name="ex_1_13"></string>
+	
+	<string name="ex_2_0"></string>
+	<string name="ex_2_1"></string>
+	<string name="ex_2_2"></string>
+	<string name="ex_2_3"></string>
+	<string name="ex_2_4"></string>
+	<string name="ex_2_5"></string>
+	<string name="ex_2_6"></string>
+	<string name="ex_2_7"></string>
+	<string name="ex_2_8"></string>
+	<string name="ex_2_9"></string>
+	<string name="ex_2_10"></string>
+	<string name="ex_2_11"></string>
+	
+	<string name="ex_3_0"></string>
+	<string name="ex_3_1"></string>
+	<string name="ex_3_2"></string>
+	<string name="ex_3_3"></string>
+	<string name="ex_3_4"></string>
+	<string name="ex_3_5"></string>
+	<string name="ex_3_6"></string>
+	<string name="ex_3_7"></string>
+	<string name="ex_3_8"></string>
+	<string name="ex_3_9"></string>
+	<string name="ex_3_10"></string>
+	<string name="ex_3_11"></string>
+	<string name="ex_3_12"></string>
+	
+	<string name="ex_4_0"></string>
+	<string name="ex_4_1"></string>
+	<string name="ex_4_2"></string>
+	<string name="ex_4_3"></string>
+	<string name="ex_4_4"></string>
+	<string name="ex_4_5"></string>
+	<string name="ex_4_6"></string>
+	
+	<string name="ex_5_0"></string>
+	<string name="ex_5_1"></string>
+	<string name="ex_5_2"></string>
+	<string name="ex_5_3"></string>
+	
+	<string name="ex_6_0"></string>
+	<string name="ex_6_1"></string>
+    
 
 </resources>
