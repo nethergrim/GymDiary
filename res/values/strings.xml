@@ -183,5 +183,6 @@
     <string name="replace_from_backup">Replase database from SD card</string>
     <string name="title_activity_temp">TempActivity</string>
     <string name="hello_world">Hello world!</string>
+    <string name="title_activity_catalog_detailed">CatalogDetailedActivity</string>
 
 </resources>

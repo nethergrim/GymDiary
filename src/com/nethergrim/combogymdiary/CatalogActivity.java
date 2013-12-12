@@ -1,5 +1,6 @@
 package com.nethergrim.combogymdiary;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -29,11 +30,12 @@ public class CatalogActivity extends BasicMenuActivity{
         elvMain.setAdapter(adapter);
         getActionBar().setTitle(getResources().getString(R.string.exe_catalog));
         elvMain.setOnChildClickListener(new OnChildClickListener() {
+        	
 	      public boolean onChildClick(ExpandableListView parent, View v,
 	          int groupPosition,   int childPosition, long id) {
-	        Log.d(LOG_TAG, "onChildClick groupPosition = " + groupPosition + 
-	                " childPosition = " + childPosition + 
+	        Log.d(LOG_TAG,"onChildClick groupPosition = "+groupPosition+" childPosition = "+childPosition + 
 	                " id = " + id);
+	        gotoDetailed(groupPosition, childPosition, id);	        
 	        return false;
 	      }
 	    });
@@ -56,6 +58,15 @@ public class CatalogActivity extends BasicMenuActivity{
 	      }
 	    });
 	}
+	
+	private void gotoDetailed(int groupPosition, int childPosition, long id) {
+		Intent gotoDetailedActivity = new Intent(this,CatalogDetailedActivity.class);
+		gotoDetailedActivity.putExtra("groupPosition", groupPosition);
+		gotoDetailedActivity.putExtra("childPosition", childPosition);
+		gotoDetailedActivity.putExtra("id", id);
+		startActivity(gotoDetailedActivity);
+	}
+	
 	
 	@Override
 	public void onClick(View arg0) {

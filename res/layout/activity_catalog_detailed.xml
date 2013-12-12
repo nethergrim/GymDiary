@@ -1,0 +1,54 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:ads="http://schemas.android.com/apk/lib/com.google.ads"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/cream_pixels_bitmap"
+    tools:context=".CatalogDetailedActivity" >
+
+    <com.google.ads.AdView
+        android:id="@+id/adView5"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        ads:adSize="BANNER"
+        ads:adUnitId="ca-app-pub-5652589022154086/4102541457"
+        ads:loadAdOnCreate="true"
+        android:gravity="center_horizontal" >
+    </com.google.ads.AdView>
+
+    
+
+    <ScrollView
+        android:id="@+id/scrollView1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentRight="true"
+        android:layout_below="@+id/adView5" >
+
+        
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical" >
+            
+            <ImageView
+                android:id="@+id/ivMain"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:src="@drawable/wild_oliva" />
+            
+            <TextView
+            android:id="@+id/tvInfoExe"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+            
+        </LinearLayout>
+
+    </ScrollView>
+    
+</RelativeLayout>

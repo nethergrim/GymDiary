@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.nethergrim.combogymdiary"
-    android:versionCode="16"
-    android:versionName="1.1.14" >
+    android:versionCode="17"
+    android:versionName="1.1.15" >
 
     <uses-sdk
         android:minSdkVersion="15"
@@ -87,6 +87,14 @@
         <activity
             android:name="com.nethergrim.combogymdiary.TempActivity"
             android:label="@string/title_activity_temp" >
+        </activity>
+        <activity
+            android:name="com.nethergrim.combogymdiary.CatalogDetailedActivity"
+            android:label="@string/title_activity_catalog_detailed"
+            android:parentActivityName="com.nethergrim.combogymdiary.CatalogActivity" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.nethergrim.combogymdiary.CatalogActivity" />
         </activity>
     </application>
 

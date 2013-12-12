@@ -22,5 +22,6 @@
     android:textAppearance="?android:attr/textAppearanceListItem"
     android:textColor="@android:color/black"
     android:gravity="center_vertical"
+    android:textSize="16sp"
     android:textAlignment="viewStart"
 />

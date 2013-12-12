@@ -8,7 +8,7 @@ public class TempActivity extends BasicMenuActivity {
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		mMenuDrawer.setContentView(R.layout.activity_temp);
+	//	mMenuDrawer.setContentView(R.layout.activity_temp);
 	}
 
 	@Override
