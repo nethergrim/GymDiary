@@ -43,13 +43,12 @@ public class MainActivity extends BasicMenuActivity {
         db = new DB(this);
 		db.open();
 		cursor = db.getAllData_Exe();
-		if (cursor.getCount() < 60) {
+		if (cursor.getCount() < 10) {
 			initTable();
 		}
     }
     
     private void initTable(){
-		Log.d(LOG_TAG, "cursor getcount < 60 ");
         String[] exeLegs = getResources().getStringArray(R.array.exercisesArrayLegs);
 		String[] exeChest = getResources().getStringArray(R.array.exercisesArrayChest);
 		String[] exeBack = getResources().getStringArray(R.array.exercisesArrayBack);

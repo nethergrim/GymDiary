@@ -183,7 +183,6 @@
     <string name="replace_from_backup">Replase database from SD card</string>
     <string name="title_activity_temp">TempActivity</string>
     <string name="hello_world">Hello world!</string>
-    <string name="title_activity_catalog_detailed">CatalogDetailedActivity</string>
     
     <string name="ex_0_0"></string>
 	<string name="ex_0_1"></string>
@@ -257,6 +256,10 @@
 	
 	<string name="ex_6_0"></string>
 	<string name="ex_6_1"></string>
+	<string name="ex_6_2"></string>
+	<string name="ex_6_3"></string>
+	<string name="ex_6_4"></string>
+	
     
 
 </resources>

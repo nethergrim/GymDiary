@@ -26,6 +26,7 @@ public abstract class BasicMenuActivity extends Activity implements OnClickListe
         mMenuDrawer.setDrawerIndicatorEnabled(true);
         getActionBar().setDisplayShowHomeEnabled(true);
         initMenuButtons();
+        mMenuDrawer.setTouchBezelSize(3000);
     }
     
     private void initMenuButtons(){
