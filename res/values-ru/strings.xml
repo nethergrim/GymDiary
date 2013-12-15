@@ -1,9 +1,21 @@
 <resources>
 
+    
+    <string name="weight">Вес</string>
+    <string name="tall">Рост</string>
+    <string name="chest">Грудь</string>
+    <string name="waist">Талия</string>
+    <string name="hip">Бедро</string>
+    <string name="leg">Нога</string>
+    <string name="calf">Голень</string>
+    <string name="arm">Рука</string>
+    
     <string name="md__drawerOpenIndicatorDesc">Close drawer</string>
     <string name="md__drawerClosedIndicatorDesc">Open drawer</string>
     <string name="Add">Добавить</string>
+    <string name="adding_measurements">Добавление замеров</string>
     <string name="backup">Резервная копия базы</string>
+    <string name="measurements">Замеры</string>
     <string name="title_activity_temp">TempActivity</string>
     <string name="hello_world">Hello world!</string>
     <string name="restore">Восстановить базу данных</string>

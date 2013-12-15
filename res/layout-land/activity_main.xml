@@ -72,13 +72,18 @@
             android:layout_height="wrap_content"
             android:text="@string/exe_catalog" />
 
-        <TextView
-        android:id="@+id/btnTemp"
-        android:layout_weight="1"
-        android:layout_height="wrap_content"
-        android:layout_width="0dip"
-        android:layout_marginLeft="8dp"
-        android:layout_gravity="left" />
+        <Button
+            android:id="@+id/btnMeasurements"
+            style="@style/HabraThemeButton"
+            android:layout_width="0dip"
+            android:layout_height="match_parent"
+            android:layout_gravity="left"
+            android:layout_marginBottom="8dp"
+            android:layout_marginLeft="8dp"
+            android:layout_weight="1"
+            android:text="@string/measurements"
+            android:textColor="@android:color/white"
+            android:textSize="@dimen/text20" />
 
     </LinearLayout>
 

@@ -13,22 +13,25 @@ public class DB {
 	
   final String LOG_TAG = "myLogs";
   public static final String DB_NAME = "mydb";
-  private static final int DB_VERSION = 1;
+  private static final int DB_VERSION = 2;
   
-  private static final String DB_EXE_TABLE = "exe_tab";// ��������� / ���������� / ������
+  private static final String DB_EXE_TABLE = "exe_tab";
   public static final String COLUMN_ID = "_id";
   public static final String EXE_NAME = "exercise_name";
   public static final String TRA_NAME = "training_name";
   public static final String TIMER_VALUE = "timer_value";
   
-  public static final String DB_MAIN_TABLE = "main_tab";// ������� �������
+  public static final String DB_MAIN_TABLE = "main_tab";
   public static final String DATE = "Date";
   public static final String WEIGHT = "Weight";
   public static final String REPS = "Reps";
   public static final String SET = "SetsN";
   
+  public static final String DB_MEASURE_TABLE = "measurements_tab";
+  public static final String PART_OF_BODY_FOR_MEASURING = "part_of_body";
+  public static final String MEASURE_VALUE = "measure_value";
   
-
+  
   private static final String DB_EXE_CREATE = 
     "create table " + DB_EXE_TABLE + "(" +
       COLUMN_ID + " integer primary key autoincrement, "+
@@ -46,6 +49,14 @@ public class DB {
 		      WEIGHT + " integer, " +
 		      REPS + " integer, " +
 		      SET + " integer" +
+		      ");";
+  
+  private static final String DB_MEASURE_CREATE = 
+		    "create table " + DB_MEASURE_TABLE + "(" +
+		      COLUMN_ID + " integer primary key autoincrement, "+
+		      DATE + " text, " +
+		      PART_OF_BODY_FOR_MEASURING + " text, "+ 
+		      MEASURE_VALUE + " text" +
 		      ");";
   
   
@@ -183,6 +194,18 @@ public class DB {
 return mDB.query(DB_EXE_TABLE, column, selection, selectionArgs, groupBy, having, orderedBy);
 }
   
+  public Cursor getDataMeasures
+	(String[] column, 		// The columns to return
+	String selection,			// The columns for the WHERE clause
+	String[] selectionArgs,	// The values for the WHERE clause
+	String groupBy,			// group the rows
+	String having,			// filter by row groups
+	String orderedBy			// The sort order
+			)
+	{
+	return mDB.query(DB_MEASURE_TABLE, column, selection, selectionArgs, groupBy, having, orderedBy);
+}
+  
   public void addRec_Exe(String traName ,String exeName, String timer) {
     ContentValues cv = new ContentValues();
     cv.put(EXE_NAME, exeName);
@@ -190,6 +213,15 @@ return mDB.query(DB_EXE_TABLE, column, selection, selectionArgs, groupBy, having
     cv.put(TIMER_VALUE, timer);
     mDB.insert(DB_EXE_TABLE, null, cv);
   }
+  
+  public void addRec_Measure(String date ,String part_of_body, String value) {
+	    ContentValues cv = new ContentValues();
+	    cv.put(DATE, date);
+	    cv.put(PART_OF_BODY_FOR_MEASURING, part_of_body);
+	    cv.put(MEASURE_VALUE, value);
+	    mDB.insert(DB_MEASURE_TABLE, null, cv);
+	    Log.d(LOG_TAG, "Added row: date = "+date+" part_of_body = "+part_of_body+" value = "+value);
+	  }
   
   public void addRec_Main(String traName ,String exeName, String timer,String date, int weight, int reps,int set) {
 	    ContentValues cv = new ContentValues();
@@ -250,12 +282,18 @@ return mDB.query(DB_EXE_TABLE, column, selection, selectionArgs, groupBy, having
 
     @Override
     public void onCreate(SQLiteDatabase db) {
+    	Log.d(LOG_TAG, "DB created");
     	db.execSQL(DB_EXE_CREATE);   
     	db.execSQL(DB_MAIN_CREATE);
+    	db.execSQL(DB_MEASURE_CREATE);
     }
 
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
+    	if ( oldVersion == 1 && newVersion == 2) {
+    		Log.d(LOG_TAG, "DB updated from v1 to v2");
+    		db.execSQL(DB_MEASURE_CREATE);
+    	}
     }
   }
 }

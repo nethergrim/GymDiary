@@ -52,15 +52,26 @@
         android:textSize="@dimen/text20" />
 
     <Button
-        android:id="@+id/btnCataloginMain"
-        android:layout_width="match_parent"
-        android:layout_gravity="left"
+        android:id="@+id/btnMeasurements"
         style="@style/HabraThemeButton"
-            android:textSize="@dimen/text20"
-            android:textColor="@android:color/white"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="left"
+        android:textColor="@android:color/white"
         android:layout_margin="8dp"
         android:layout_marginTop="-4dp"
-        android:text="@string/exe_catalog" />
+        android:text="@string/measurements" 
+        android:textSize="@dimen/text20"/>
+
+    <Button
+        android:id="@+id/btnCataloginMain"
+        style="@style/HabraThemeButton"
+        android:layout_width="match_parent"
+        android:layout_margin="8dp"
+        android:layout_marginTop="-4dp"
+        android:text="@string/exe_catalog"
+        android:textColor="@android:color/white"
+        android:textSize="@dimen/text20" />
 
     <Button
         android:id="@+id/buttonSettings"

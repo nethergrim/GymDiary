@@ -14,7 +14,7 @@ public abstract class BasicMenuActivity extends Activity implements OnClickListe
 
 	protected MenuDrawer mMenuDrawer;
     final String LOG_TAG = "myLogs";
-    Button btnMenu1,btnMenu2,btnMenu3,btnMenu4,btnMenuCatalog;
+    Button btnMenu1,btnMenu2,btnMenu3,btnMenu4,btnMenuCatalog,btnMenuMeasurements;
     
     
     @Override
@@ -40,6 +40,8 @@ public abstract class BasicMenuActivity extends Activity implements OnClickListe
     	btnMenu4.setOnClickListener(this);
     	btnMenuCatalog = (Button)findViewById(R.id.btnCatalog);
     	btnMenuCatalog.setOnClickListener(this);
+    	btnMenuMeasurements=(Button)findViewById(R.id.btnMeasure);
+    	btnMenuMeasurements.setOnClickListener(this);
     }
     
     @Override
@@ -95,9 +97,13 @@ public abstract class BasicMenuActivity extends Activity implements OnClickListe
     		Intent gotoCatalog = new Intent (this,CatalogActivity.class);
 			startActivity(gotoCatalog);
     		return true;
+    	} else if (id == R.id.btnMeasure){
+    		Log.d(LOG_TAG, "Menu btnMeasure pressed");
+    		mMenuDrawer.closeMenu();
+    		Intent gotoMeasurements = new Intent (this,MeasurementsActivity.class);
+			startActivity(gotoMeasurements);
+    		return true;
     	}
-    	
     	return false;
     }
-
 }

@@ -18,6 +18,7 @@ public class MainActivity extends BasicMenuActivity {
 	Button btnExcersises;
 	Button btnWorklog;
 	Button btnCatalog;
+	Button btnMeasurements;
 	public static MainActivity ma;
 	DB db;
 	Cursor cursor;
@@ -31,6 +32,8 @@ public class MainActivity extends BasicMenuActivity {
         btnExcersises = (Button) findViewById(R.id.buttonExcersisesList);
         btnWorklog    = (Button) findViewById(R.id.btnWorklog);
         btnCatalog	  = (Button) findViewById(R.id.btnCataloginMain);
+        btnMeasurements=(Button) findViewById(R.id.btnMeasurements);
+        btnMeasurements.setOnClickListener(this);
         btnCatalog.setOnClickListener(this);
         btnSettings.setOnClickListener(this);
         btnExcersises.setOnClickListener(this);
@@ -91,10 +94,12 @@ public class MainActivity extends BasicMenuActivity {
 			Intent gotoWorklog = new Intent (this,HistoryActivity.class);
 			startActivity(gotoWorklog);
 		} else if (id == R.id.btnCataloginMain) {
-			Log.d(LOG_TAG, "btnCatalog pressed");
 			Intent gotoCatalog = new Intent (this,CatalogActivity.class);
 			startActivity(gotoCatalog);
-		} 
+		} else if (id == R.id.btnMeasurements){
+			Intent gotoMeasurements = new Intent (this,MeasurementsActivity.class);
+			startActivity(gotoMeasurements);
+		}
 	}
 	
 	protected void onDestroy() {
