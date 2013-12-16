@@ -6,4 +6,88 @@
 	android:background="@drawable/cream_pixels_bitmap"
     tools:context=".MeasurementsDetailedActivity" >
 
+    <ScrollView
+        android:id="@+id/scrollView1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentTop="true" >
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:gravity="center_horizontal"
+            android:layout_height="wrap_content"
+            android:orientation="vertical" >
+
+            <TextView
+                android:id="@+id/textView1_"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="16sp"
+                android:layout_marginTop="18dp"
+                android:text="" />
+
+
+            
+            <TextView
+                android:id="@+id/textView2_"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="16sp"
+                android:layout_marginTop="18dp"
+                android:text="" />
+
+            <TextView
+                android:id="@+id/textView3_"
+                android:layout_width="wrap_content"
+                android:textSize="16sp"
+                android:layout_marginTop="18dp"
+                android:layout_height="wrap_content"
+                android:text="" />
+
+            <TextView
+                android:id="@+id/textView4_"
+                android:layout_width="wrap_content"
+                android:textSize="16sp"
+                android:layout_marginTop="18dp"
+                android:layout_height="wrap_content"
+                android:text="" />
+
+            <TextView
+                android:id="@+id/textView5_"
+                android:layout_width="wrap_content"
+                android:layout_marginTop="18dp"
+                android:textSize="16sp"
+                android:layout_height="wrap_content"
+                android:text="" />
+
+            <TextView
+                android:id="@+id/textView6_"
+                android:layout_width="wrap_content"
+                android:layout_marginTop="18dp"
+                android:textSize="16sp"
+                android:layout_height="wrap_content"
+                android:text="" />
+
+            <TextView
+                android:id="@+id/textView7_"
+                android:layout_width="wrap_content"
+                android:layout_marginTop="18dp"
+                android:textSize="16sp"
+                android:layout_height="wrap_content"
+                android:text="" />
+
+            <TextView
+                android:id="@+id/textView8_"
+                android:layout_width="wrap_content"
+                android:layout_marginTop="18dp"
+                android:textSize="16sp"
+                android:layout_height="wrap_content"
+                android:text="" />
+
+        </LinearLayout>
+    </ScrollView>
+
 </RelativeLayout>

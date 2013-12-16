@@ -4,7 +4,7 @@
         android:id="@+id/action_add_measurements"
         android:orderInCategory="100"
         android:showAsAction="always"
-        android:icon="@android:drawable/ic_menu_add"
+        android:icon="@android:drawable/ic_input_add"
         android:title="@string/Add"/>
 
 </menu>

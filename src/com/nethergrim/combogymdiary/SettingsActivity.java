@@ -19,6 +19,7 @@ public class SettingsActivity extends PreferenceActivity  implements OnClickList
 	SharedPreferences sPref;
 	private SlidingMenu menu;
 	Button btnMenu1,btnMenu2,btnMenu3,btnMenu4,btnMenuCatalog;
+	private Button btnMenuMeasurements;
 	public static SettingsActivity sa;
     @SuppressWarnings("deprecation")
 	@Override
@@ -87,6 +88,8 @@ public class SettingsActivity extends PreferenceActivity  implements OnClickList
 		btnMenu4.setOnClickListener(this);
 		btnMenuCatalog = (Button)findViewById(R.id.btnCatalog);
     	btnMenuCatalog.setOnClickListener(this);
+    	btnMenuMeasurements=(Button)findViewById(R.id.btnMeasure);
+    	btnMenuMeasurements.setOnClickListener(this);
 	}
 	public void gotoMenu (int id) {
 		Class<?> cls = null;
@@ -105,6 +108,9 @@ public class SettingsActivity extends PreferenceActivity  implements OnClickList
 			break;
 		case R.id.btnCatalog:
 			cls = CatalogActivity.class;
+			break;
+		case R.id.btnMeasure:
+			cls = MeasurementsActivity.class;
 			break;
 		}
 		Intent intent = new Intent(this, cls);

@@ -3,7 +3,7 @@
     android:id="@+id/GridLayout1"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:layout_gravity="center_vertical"
+    android:layout_gravity="center_vertical|center_horizontal"
     android:background="@drawable/cream_pixels_bitmap"
     android:columnCount="1"
     android:orientation="horizontal"

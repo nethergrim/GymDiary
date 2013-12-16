@@ -1,5 +1,9 @@
 <resources>
 
+    <string name="sm">(см)</string>
+    <string name="inch">(дюйм)</string>
+    <string name="kg">(кг)</string>
+    <string name="pound">(ф.)</string>
     
     <string name="weight">Вес</string>
     <string name="tall">Рост</string>

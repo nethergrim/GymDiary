@@ -1,6 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
+    
+    <string name="sm">(sm)</string>
+    <string name="inch">(in)</string>
+    <string name="kg">(kg)</string>
+    <string name="pound">(p)</string>
+    
     <string name="weight">Weight</string>
     <string name="tall">Tall</string>
     <string name="chest">Chest</string>
@@ -262,8 +268,5 @@
     <string name="ex_6_2"></string>
     <string name="ex_6_3"></string>
     <string name="ex_6_4"></string>
-    <string name="title_activity_measurements">MeasurementsActivity</string>
-    <string name="title_activity_adding_measurement">AddingMeasurementActivity</string>
-    <string name="title_activity_measurements_detailed">MeasurementsDetailedActivity</string>
 
 </resources>

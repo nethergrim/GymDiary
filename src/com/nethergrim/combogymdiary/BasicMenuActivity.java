@@ -4,13 +4,14 @@ package com.nethergrim.combogymdiary;
 import net.simonvt.menudrawer.MenuDrawer;
 import android.app.Activity;
 import android.content.Intent;
+import android.support.v4.app.FragmentActivity;
 import android.util.Log;
 import android.view.View.OnClickListener;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.widget.Button;
 
-public abstract class BasicMenuActivity extends Activity implements OnClickListener {
+public abstract class BasicMenuActivity extends FragmentActivity implements OnClickListener {
 
 	protected MenuDrawer mMenuDrawer;
     final String LOG_TAG = "myLogs";
