@@ -41,6 +41,7 @@ import android.widget.Toast;
 import android.widget.ToggleButton;
 
 import com.nethergrim.combogymdiary.Dialog1.MyInterface;
+import android.app.backup.BackupManager;
 
 @SuppressLint("SimpleDateFormat")
 public class TrainingAtProgress extends Activity  implements MyInterface, OnClickListener, OnCheckedChangeListener{
@@ -85,7 +86,12 @@ public class TrainingAtProgress extends Activity  implements MyInterface, OnClic
         }
   
 	 @Override
-	public void onChoose() { finish(); }
+	public void onChoose() { 
+		 Toast.makeText(this,R.string.saved, Toast.LENGTH_SHORT).show();   
+		 BackupManager bm = new BackupManager(this);
+		 bm.dataChanged();
+		 finish(); 
+		 }
 	
 	private void initUi(boolean init){
 		ActionBar bar = getActionBar();

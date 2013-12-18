@@ -47,12 +47,19 @@ public class HistoryDetailedActivity extends BasicMenuActivity {
 		cursor = db.getDataMain(cols, DB.DATE+"=?", args, null, null, null);
 	}
 	
+
 	@SuppressLint("NewApi")
 	private void setupLayout(){
 		ScrollView scrollView = new ScrollView(this);
 		LayoutParams lpView = new LayoutParams(LayoutParams.WRAP_CONTENT, LayoutParams.WRAP_CONTENT);
-		scrollView.setBackground(getResources().getDrawable(R.drawable.cream_pixels_bitmap));
-        LinearLayout llMain = new LinearLayout(this);
+	    LinearLayout llMain = new LinearLayout(this);
+	    
+	    int currentapiVersion = android.os.Build.VERSION.SDK_INT;
+	    if (currentapiVersion >= android.os.Build.VERSION_CODES.JELLY_BEAN){
+	    	llMain.setBackground(getResources().getDrawable(R.drawable.cream_pixels_bitmap));
+	    }
+	    
+        
         llMain.setOrientation(LinearLayout.VERTICAL);
         LayoutParams linLayoutParam = new LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.MATCH_PARENT);
         mMenuDrawer.setContentView(scrollView, linLayoutParam);
