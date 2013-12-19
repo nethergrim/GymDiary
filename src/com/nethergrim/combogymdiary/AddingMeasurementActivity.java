@@ -3,6 +3,7 @@ package com.nethergrim.combogymdiary;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
+import android.app.backup.BackupManager;
 import android.os.Bundle;
 import android.support.v4.app.NavUtils;
 import android.view.View;
@@ -85,6 +86,8 @@ public class AddingMeasurementActivity extends BasicMenuActivity {
 				db.addRec_Measure(date, getResources().getString(R.string.arm), arm_m);
 				areEmpty = false;
 			}
+			BackupManager bm = new BackupManager(this);
+			bm.dataChanged();
 			if (areEmpty){
 				Toast.makeText(this,R.string.input_data, Toast.LENGTH_SHORT).show(); 
 			} else {

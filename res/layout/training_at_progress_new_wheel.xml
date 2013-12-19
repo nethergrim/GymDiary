@@ -78,7 +78,7 @@
         tools:ignore="UselessParent" >
 
         <TextView
-            android:id="@+id/textView4"
+            android:id="@+id/textView4__"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:gravity="center_vertical"
@@ -92,7 +92,7 @@
             android:layout_margin="5dp" />
 
         <TextView
-            android:id="@+id/textView3"
+            android:id="@+id/textView3__"
             android:layout_width="wrap_content"
             android:gravity="center_vertical"
             android:layout_height="match_parent"
@@ -122,6 +122,7 @@
             android:id="@+id/infoText"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:textSize="17sp"
             android:gravity="center_vertical|center_horizontal"
             android:text="" />
 
@@ -130,6 +131,7 @@
             android:layout_width="match_parent"
             android:gravity="center_horizontal"
             android:layout_height="wrap_content"
+            android:textSize="17sp"
             android:text="" />
 
     </LinearLayout>

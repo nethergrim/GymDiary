@@ -56,7 +56,7 @@ public class HistoryDetailedActivity extends BasicMenuActivity {
 	    
 	    int currentapiVersion = android.os.Build.VERSION.SDK_INT;
 	    if (currentapiVersion >= android.os.Build.VERSION_CODES.JELLY_BEAN){
-	    	llMain.setBackground(getResources().getDrawable(R.drawable.cream_pixels_bitmap));
+	    	scrollView.setBackground(getResources().getDrawable(R.drawable.cream_pixels_bitmap));
 	    }
 	    
         

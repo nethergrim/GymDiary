@@ -19,4 +19,19 @@
 
 <resources>
     <color name="pressed_mybarstyle">#CC33B5E5</color>
+    <color name="holo_green_light">#99CC00</color>
+    <color name="holo_green_dark">#669900</color>
+    
+    <color name="holo_blue_light">#33B5E5</color>
+    <color name="holo_blue_dark">#0099CC</color>
+    <color name="holo_purple_light">#AA66CC</color>
+    <color name="holo_purple_dark">#9933CC</color>
+    
+    <color name="holo_orange_light">#FFBB33</color>
+    <color name="holo_orange_dark">#FF8800</color>
+    
+    <color name="holo_red_light">#FF4444</color>
+    <color name="holo_red_dark">#CC0000</color>
+    
+    
 </resources>
