@@ -1332,7 +1332,11 @@ containing a value of this type.
     }
     public static final class id {
         public static final int GridLayout1=0x7f06005d;
-        public static final int LL1=0x7f060099;
+        public static final int LL1=0x7f06009e;
+        public static final int LL3=0x7f06009b;
+        public static final int LLBottom=0x7f060097;
+        public static final int LLButtons=0x7f0600a1;
+        public static final int LLTop=0x7f060094;
         public static final int abs__action_bar=0x7f060031;
         public static final int abs__action_bar_container=0x7f060030;
         public static final int abs__action_bar_subtitle=0x7f060022;
@@ -1372,10 +1376,10 @@ containing a value of this type.
         public static final int abs__textButton=0x7f060024;
         public static final int abs__title=0x7f06002c;
         public static final int abs__up=0x7f06000b;
-        public static final int action_add_measurements=0x7f0600a2;
-        public static final int action_settings=0x7f0600a0;
+        public static final int action_add_measurements=0x7f0600a6;
+        public static final int action_settings=0x7f0600a4;
         public static final int adView=0x7f060092;
-        public static final int adView1=0x7f060094;
+        public static final int adView1=0x7f060095;
         public static final int adView2=0x7f060044;
         public static final int adView3=0x7f06006f;
         public static final int adView4=0x7f060077;
@@ -1414,15 +1418,15 @@ containing a value of this type.
         public static final int etMeasureWaist=0x7f06004c;
         public static final int etMeasureWeight=0x7f060046;
         public static final int etTimerValue=0x7f060073;
-        public static final int etTimerValueAtTraining=0x7f060096;
+        public static final int etTimerValueAtTraining=0x7f0600a2;
         public static final int fullscreen=0x7f06001f;
         public static final int homeAsUp=0x7f060006;
         public static final int imageCat=0x7f060080;
-        public static final int infoText=0x7f06009e;
-        public static final int itemExit=0x7f0600a1;
-        public static final int item_Edit=0x7f0600a4;
-        public static final int item_add=0x7f0600a5;
-        public static final int item_delete=0x7f0600a3;
+        public static final int infoText=0x7f060099;
+        public static final int itemExit=0x7f0600a5;
+        public static final int item_Edit=0x7f0600a8;
+        public static final int item_add=0x7f0600a9;
+        public static final int item_delete=0x7f0600a7;
         public static final int ivMain=0x7f06005a;
         public static final int left=0x7f060010;
         public static final int linearLayout1=0x7f060064;
@@ -1437,7 +1441,7 @@ containing a value of this type.
         public static final int lvEx=0x7f060070;
         public static final int lvMainHistory=0x7f06005c;
         public static final int lvMeasurements=0x7f060066;
-        public static final int lvSets=0x7f060097;
+        public static final int lvSets=0x7f060096;
         public static final int lvStartTraining=0x7f060093;
         public static final int margin=0x7f06001e;
         /**  Used with View#setTag(int) to specify a position for the active view. 
@@ -1479,10 +1483,10 @@ containing a value of this type.
         public static final int textView2_=0x7f060068;
         public static final int textView3=0x7f060049;
         public static final int textView3_=0x7f060069;
-        public static final int textView3__=0x7f06009c;
+        public static final int textView3__=0x7f06009d;
         public static final int textView4=0x7f06004b;
         public static final int textView4_=0x7f06006a;
-        public static final int textView4__=0x7f06009a;
+        public static final int textView4__=0x7f06009c;
         public static final int textView5=0x7f06004d;
         public static final int textView5_=0x7f06006b;
         public static final int textView6=0x7f06004f;
@@ -1492,11 +1496,11 @@ containing a value of this type.
         public static final int textView8=0x7f060053;
         public static final int textView8_=0x7f06006e;
         public static final int textView9=0x7f060055;
-        public static final int tglTurnOff=0x7f060095;
+        public static final int tglTurnOff=0x7f0600a3;
         public static final int top=0x7f060011;
         public static final int tvCatName=0x7f06007f;
         public static final int tvInfoExe=0x7f06005b;
-        public static final int tvSetInfo=0x7f06009f;
+        public static final int tvSetInfo=0x7f06009a;
         public static final int tvText=0x7f06008f;
         public static final int useLogo=0x7f060004;
         public static final int view1=0x7f060082;
@@ -1506,8 +1510,8 @@ containing a value of this type.
         public static final int view5=0x7f06008b;
         public static final int view6=0x7f06008e;
         public static final int viewTopDivider=0x7f060086;
-        public static final int wheelReps=0x7f06009d;
-        public static final int wheelWeight=0x7f06009b;
+        public static final int wheelReps=0x7f0600a0;
+        public static final int wheelWeight=0x7f06009f;
         public static final int wrap_content=0x7f060000;
     }
     public static final class integer {

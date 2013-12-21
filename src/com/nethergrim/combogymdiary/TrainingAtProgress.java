@@ -55,7 +55,7 @@ public class TrainingAtProgress extends Activity  implements MyInterface, OnClic
 	ListView lvMain;
 	DB db;
 	int size = 0;
-	Cursor cursor;	
+	Cursor cur_exe;	
 	final String LOG_TAG = "myLogs";
 	ArrayAdapter<String> adapter;
 	String[] trNamesData = {};
@@ -128,8 +128,11 @@ public class TrainingAtProgress extends Activity  implements MyInterface, OnClic
         lvMain = (ListView)findViewById(R.id.lvSets);
         anim = AnimationUtils.loadAnimation(this, R.anim.myalpha);
         lvMain.setChoiceMode(AbsListView.CHOICE_MODE_SINGLE);
-        Cursor cur_exe = db.getDataExe(strArrCol, DB.TRA_NAME + "=?", strArrExtra, (String)null, (String)null, (String)null);
+        cur_exe = db.getDataExe(strArrCol, DB.TRA_NAME + "=?", strArrExtra, (String)null, (String)null, (String)null);
         size = cur_exe.getCount();
+        
+        
+        
         trNamesData = new String[size];
         if (init) {
         	setsPerExercises = new int[size];        

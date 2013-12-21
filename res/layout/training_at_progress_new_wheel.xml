@@ -1,139 +1,161 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:ads="http://schemas.android.com/apk/lib/com.google.ads"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
+    android:orientation="vertical"
     android:layout_height="match_parent"
     android:background="@drawable/cream_pixels_bitmap"
     android:gravity="center_vertical" >
 
-    <com.google.ads.AdView
+    <LinearLayout
+        android:id="@+id/LLTop"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_weight="1"
+        android:orientation="vertical" >
+
+        <com.google.ads.AdView
             android:id="@+id/adView1"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:minHeight="110dp"
             ads:adSize="BANNER"
             ads:adUnitId="ca-app-pub-5652589022154086/4102541457"
             ads:loadAdOnCreate="true"
-            android:gravity="center_horizontal" 
-            />
-    
-    
-    <Button
-        android:id="@+id/btnSave"
-        style="@style/HabraThemeButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:layout_alignParentRight="true"
-        android:layout_margin="8dp"
-        android:layout_toRightOf="@+id/tglTurnOff"
-        android:drawableLeft="@android:drawable/ic_input_add"
-        android:text="@string/save_and_rest" />
+            android:gravity="center_horizontal" >
+        </com.google.ads.AdView>
 
-    <EditText
-        android:id="@+id/etTimerValueAtTraining"
-        android:layout_width="72dp"
+        <ListView
+            android:id="@+id/lvSets"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:layout_marginLeft="8dp"
+            android:layout_marginRight="8dp"
+            android:background="@drawable/rounded" >
+        </ListView>
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/LLBottom"
+        android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_alignBottom="@+id/btnSave"
-        android:layout_alignParentLeft="true"
-        android:layout_alignTop="@+id/btnSave"
-        android:layout_marginLeft="8dp"
-        android:ems="10"
-        android:gravity="center_vertical|center_horizontal"
-        android:hint="@string/timer"
-        android:inputType="number" />
+        android:layout_weight="1"
+        android:orientation="vertical" >
 
-    <ToggleButton
-        android:id="@+id/tglTurnOff"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignBottom="@+id/etTimerValueAtTraining"
-        android:layout_alignTop="@+id/etTimerValueAtTraining"
-        android:layout_toRightOf="@+id/etTimerValueAtTraining"
-        android:textOff="@string/timer"
-        android:textOn="@string/timer" />
-
-    <ListView
-        android:id="@+id/lvSets"
-        android:layout_width="match_parent"
-        android:layout_height="331dp"
-        android:layout_above="@+id/ll2"
-        android:layout_alignRight="@+id/btnSave"
-        android:layout_below="@+id/adView1"
-        android:layout_marginLeft="8dp"
-        android:background="@drawable/rounded"
-        >
-
-    </ListView>
-
-    <LinearLayout
-        android:id="@+id/LL1"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:gravity="center_horizontal"
-        android:layout_above="@+id/btnSave"
-        android:layout_alignLeft="@+id/etTimerValueAtTraining"
-        android:layout_alignRight="@+id/btnSave"
-        android:orientation="horizontal"
-        tools:ignore="UselessParent" >
-
-        <TextView
-            android:id="@+id/textView4__"
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:gravity="center_vertical"
-            android:text="@string/Weight"
-            android:textAppearance="?android:attr/textAppearanceSmall" />
-
-        <kankan.wheel.widget.WheelView
-            android:id="@+id/wheelWeight"
-            android:layout_width="100dp"
-            android:layout_height="160dp"
-            android:layout_margin="5dp" />
-
-        <TextView
-            android:id="@+id/textView3__"
-            android:layout_width="wrap_content"
-            android:gravity="center_vertical"
-            android:layout_height="match_parent"
-            android:text="@string/reps"
-            android:textAppearance="?android:attr/textAppearanceSmall" />
-        
-        <kankan.wheel.widget.WheelView 
-            android:id="@+id/wheelReps"
-            android:layout_margin="5dp"
-			android:layout_height="160dp"
-			android:layout_width="100dp"
-	        android:layout_gravity="center_vertical"/>
-        
-    </LinearLayout>
-
-    <LinearLayout
-        android:id="@+id/ll2"
-        android:layout_width="match_parent"
-        android:orientation="vertical"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
-        android:layout_above="@+id/LL1"
-        android:layout_alignLeft="@+id/lvSets"
-        android:layout_alignRight="@+id/lvSets" >
-
-        <TextView
-            android:id="@+id/infoText"
+        <LinearLayout
+            android:id="@+id/ll2"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textSize="17sp"
-            android:gravity="center_vertical|center_horizontal"
-            android:text="" />
+            android:layout_marginTop="8dp"
+            android:orientation="vertical" >
 
-        <TextView
-            android:id="@+id/tvSetInfo"
+            <TextView
+                android:id="@+id/infoText"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_vertical|center_horizontal"
+                android:textSize="17sp" />
+
+            <TextView
+                android:id="@+id/tvSetInfo"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_horizontal"
+                android:textSize="17sp" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/LL3"
             android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="12dp"
+            android:layout_marginRight="5dp" >
+
+            <TextView
+                android:id="@+id/textView4__"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginRight="5dp"
+                android:layout_weight="1"
+                android:background="@android:color/white"
+                android:gravity="bottom"
+                android:text="@string/Weight"
+                android:textAppearance="?android:attr/textAppearanceSmall" />
+
+            <TextView
+                android:id="@+id/textView3__"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginLeft="5dp"
+                android:layout_weight="1"
+                android:background="@android:color/white"
+                android:gravity="bottom"
+                android:text="@string/reps"
+                android:textAppearance="?android:attr/textAppearanceSmall" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/LL1"
+            android:layout_width="match_parent"
+            android:layout_height="0dip"
+            android:layout_weight="2"
             android:gravity="center_horizontal"
+            android:orientation="horizontal"
+            tools:ignore="UselessParent" >
+
+            <kankan.wheel.widget.WheelView
+                android:id="@+id/wheelWeight"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginLeft="5dp"
+                android:layout_marginRight="5dp"
+                android:layout_weight="1" />
+
+            <kankan.wheel.widget.WheelView
+                android:id="@+id/wheelReps"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginLeft="5dp"
+                android:layout_marginRight="5dp"
+                android:layout_weight="1" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/LLButtons"
+            android:layout_margin="5dp"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textSize="17sp"
-            android:text="" />
+            android:orientation="horizontal" >
+
+            <EditText
+                android:id="@+id/etTimerValueAtTraining"
+                android:layout_width="72dp"
+                android:layout_height="match_parent"
+                android:hint="@string/timer"
+                android:inputType="number" >
+            </EditText>
+
+            <ToggleButton
+                android:id="@+id/tglTurnOff"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:textOff="@string/timer"
+                android:textOn="@string/timer" />
+
+            <Button
+                android:id="@+id/btnSave"
+                style="@style/HabraThemeButton"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:drawableLeft="@android:drawable/ic_input_add"
+                android:text="@string/save_and_rest" />
+
+        </LinearLayout>
 
     </LinearLayout>
 
-</RelativeLayout>
+</LinearLayout>
