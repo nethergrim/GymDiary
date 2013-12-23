@@ -1,68 +1,43 @@
 package com.nethergrim.combogymdiary;
 
-import android.app.ActionBar;
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.database.Cursor;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
-import android.support.v4.widget.SimpleCursorAdapter;
-import android.view.ContextMenu;
-import android.view.ContextMenu.ContextMenuInfo;
-import android.view.MenuItem;
+import android.support.v4.app.NavUtils;
 import android.view.View;
 import android.view.View.OnClickListener;
-import android.widget.AdapterView.AdapterContextMenuInfo;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.ListView;
 import android.widget.Toast;
 
 
 public class AddingExersises extends BasicMenuActivity implements OnClickListener {
 
-	Button btnCreate; 				
-	ListView lvExersices_list;		
+	Button btnCreate; 					
 	EditText etName, etTimer;		
 	String exeName = "", timerV = "";
 	int exePosition = 0;
-	long exeID=0;
+	long exeID = 0;
 	String defaultTimer;
-	final String LOG_TAG = "myLogs";
 	Boolean editOrNot = false;	
-	private static final int CM_DELETE_ID = 1;
 	DB db;
-	SimpleCursorAdapter scAdapter;
-	Cursor cursor;
 	SharedPreferences sp;
+	// исправил под базу версии 3
 	
-
-	
-	@SuppressWarnings("deprecation")
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {		
 		super.onCreate(savedInstanceState);
 		mMenuDrawer.setContentView(R.layout.adding_exersise);
-		ActionBar bar = getActionBar();
-		bar.setTitle(R.string.create_new_exercise);
+		getActionBar().setTitle(R.string.create_new_exercise);
 		btnCreate = (Button) findViewById(R.id.btnSave);
 		btnCreate.setOnClickListener(this);
 		etName = (EditText) findViewById(R.id.etTimerValue);
-		etName.setOnClickListener(this);
 		etTimer = (EditText) findViewById(R.id.editText2);
-		etTimer.setOnClickListener(this);
-		lvExersices_list = (ListView) findViewById(R.id.lvEx);		
+		
 		db = new DB(this);
 		db.open();
-		cursor = db.getAllData_Exe();
-		cursor.requery();
-		startManagingCursor(cursor);
-		String[] from = new String[] {DB.EXE_NAME};
-		int[] to = new int[] { R.id.tvText, };
-		scAdapter = new SimpleCursorAdapter(this, R.layout.my_list_item2,
-				cursor, from, to);
-		lvExersices_list.setAdapter(scAdapter);
-	    registerForContextMenu(lvExersices_list);   
+
 	    Intent intent = getIntent();	    
         exeName = intent.getStringExtra("exeName");        
         timerV = intent.getStringExtra("timerValue");        
@@ -71,7 +46,6 @@ public class AddingExersises extends BasicMenuActivity implements OnClickListene
         if ( exeName != null && timerV != null )  {
         	editOrNot = true;
         	}
-        
         if (editOrNot) 
 		{
 			etName.setText(exeName);
@@ -80,37 +54,13 @@ public class AddingExersises extends BasicMenuActivity implements OnClickListene
         sp = PreferenceManager.getDefaultSharedPreferences(this);
 	}
 	
-
-	
-	
 	protected void onResume() {
 	    defaultTimer = sp.getString("etDefault", "60" );
 	    etTimer.setText(defaultTimer);
 	    super.onResume();
 	  }
-	
 
 
-
-	
-	public void onCreateContextMenu(ContextMenu menu, View v,
-		      ContextMenuInfo menuInfo) {
-		    super.onCreateContextMenu(menu, v, menuInfo);
-		    menu.add(0, CM_DELETE_ID, 0, R.string.delete_record);
-		  }
-
-	@SuppressWarnings("deprecation")
-	public boolean onContextItemSelected(MenuItem item) {
-	    if (item.getItemId() == CM_DELETE_ID) {
-	      AdapterContextMenuInfo acmi = (AdapterContextMenuInfo) item.getMenuInfo();
-	      db.delRec_Exe(acmi.id);
-	      cursor.requery();
-	      return true;
-	    }
-	    return super.onContextItemSelected(item);
-	  }
-	
-		@SuppressWarnings("deprecation")
 		@Override
 	public void onClick(View arg0) {
 		String name = etName.getText().toString();
@@ -120,24 +70,22 @@ public class AddingExersises extends BasicMenuActivity implements OnClickListene
 		pressButton(id);
 		if (id == R.id.btnSave && editOrNot == false){			
 			if (!name.isEmpty() && !timer.isEmpty()){
-				db.addRec_Exe(R.string.empty+"", name , timer);
-			    cursor.requery();			
+				db.addRec_Exe(name , timer);
+			    		
 				etName.setText("");
 				etTimer.setText("");
 				Toast.makeText(this, R.string.saved, Toast.LENGTH_SHORT).show();
-				Intent gotoExersisesList = new Intent (this,ExersisesList.class);
-				startActivity(gotoExersisesList);
+				NavUtils.navigateUpFromSameTask(this);
 			}
 		} else if (id == R.id.btnSave && editOrNot == true)	{
 			if (!name.isEmpty() && !timer.isEmpty()){
 				db.updateRec_Exe((int) exeID, DB.EXE_NAME, name);
 				db.updateRec_Exe((int) exeID, DB.TIMER_VALUE, timer);
-			    cursor.requery();			
+			  	
 				etName.setText("");
 				etTimer.setText("");
 				Toast.makeText(this, R.string.saved, Toast.LENGTH_SHORT).show();
-				Intent gotoExersisesList = new Intent (this,ExersisesList.class);
-				startActivity(gotoExersisesList);
+				NavUtils.navigateUpFromSameTask(this);
 			}			
 		}
 	}

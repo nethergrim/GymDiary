@@ -16,23 +16,6 @@
             ads:loadAdOnCreate="true"
             android:gravity="center_horizontal" 
              />
-    
-    <LinearLayout
-        android:layout_width="wrap_content"
-        android:layout_height="match_parent"
-        android:layout_above="@+id/linearLayout2"
-        android:layout_below="@+id/adView3"
-        android:orientation="vertical" >
-
-        <ListView
-            android:id="@+id/lvEx"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_margin="5dp"
-            android:background="@drawable/rounded"
-            android:visibility="visible" >
-        </ListView>
-    </LinearLayout>
 
     <LinearLayout
         android:id="@+id/linearLayout1"

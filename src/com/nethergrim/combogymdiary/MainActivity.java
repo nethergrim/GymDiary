@@ -22,7 +22,7 @@ public class MainActivity extends BasicMenuActivity {
 	public static MainActivity ma;
 	DB db;
 	Cursor cursor;
-	
+	// исправил под базу версии 3
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -59,21 +59,31 @@ public class MainActivity extends BasicMenuActivity {
 		String[] exeBiceps = getResources().getStringArray(R.array.exercisesArrayBiceps);
 		String[] exeTriceps = getResources().getStringArray(R.array.exercisesArrayTriceps);
 		String[] exeAbs = getResources().getStringArray(R.array.exercisesArrayAbs);
+		
+
+		db.addRec_Trainings( getString(R.string.traLegs),db.convertArrayToString(exeLegs) );
+		db.addRec_Trainings( getString(R.string.traChest), db.convertArrayToString(exeChest) );
+		db.addRec_Trainings( getString(R.string.traBack),db.convertArrayToString(exeBack) );
+		db.addRec_Trainings( getString(R.string.traShoulders),db.convertArrayToString(exeShoulders) );
+		db.addRec_Trainings( getString(R.string.traBiceps),db.convertArrayToString(exeBiceps) );
+		db.addRec_Trainings( getString(R.string.traTriceps),db.convertArrayToString(exeTriceps));
+		db.addRec_Trainings( getString(R.string.traAbs),db.convertArrayToString(exeAbs));
+	
+		
 		for (int i = 0; i < exeLegs.length; i++) 
-			db.addRec_Exe(getString(R.string.traLegs), exeLegs[i], "90");
+			db.addRec_Exe(exeLegs[i], "90");
 		for (int i = 0; i < exeChest.length; i++) 
-			db.addRec_Exe(getString(R.string.traChest), exeChest[i], "60");
+			db.addRec_Exe(exeChest[i], "60");
 		for (int i = 0; i < exeBiceps.length; i++) 
-			db.addRec_Exe(getString(R.string.traBiceps), exeBiceps[i], "60");
+			db.addRec_Exe(exeBiceps[i], "60");
 		for (int i = 0; i < exeTriceps.length; i++) 
-			db.addRec_Exe(getString(R.string.traTriceps), exeTriceps[i], "60");
+			db.addRec_Exe(exeTriceps[i], "60");
 		for (int i = 0; i < exeBack.length; i++) 
-			db.addRec_Exe(getString(R.string.traBack), exeBack[i], "60");
+			db.addRec_Exe(exeBack[i], "60");
 		for (int i = 0; i < exeShoulders.length; i++) 
-			db.addRec_Exe(getString(R.string.traShoulders), exeShoulders[i], "60");
+			db.addRec_Exe(exeShoulders[i], "60");
 		for (int i = 0; i < exeAbs.length; i++) 
-			db.addRec_Exe(getString(R.string.traAbs), exeAbs[i], "60");
-		Log.d(LOG_TAG, "cursor getcount = " + cursor.getCount());
+			db.addRec_Exe(exeAbs[i], "60");
     }
     
         

@@ -13,7 +13,7 @@ public class DB {
 	
   final String LOG_TAG = "myLogs";
   public static final String DB_NAME = "mydb";
-  private static final int DB_VERSION = 2;
+  private static final int DB_VERSION = 3;
   
   private static final String DB_EXE_TABLE = "exe_tab";
   public static final String COLUMN_ID = "_id";
@@ -31,11 +31,13 @@ public class DB {
   public static final String PART_OF_BODY_FOR_MEASURING = "part_of_body";
   public static final String MEASURE_VALUE = "measure_value";
   
+  public static final String DB_TRAININGS_TABLE = "trainings_tab";
+  
   
   private static final String DB_EXE_CREATE = 
     "create table " + DB_EXE_TABLE + "(" +
       COLUMN_ID + " integer primary key autoincrement, "+
-    		TRA_NAME+" text, " +
+    //		TRA_NAME+" text, " +
     		EXE_NAME+" text, "+ 
     		TIMER_VALUE + " text" +
     		");";
@@ -59,6 +61,14 @@ public class DB {
 		      MEASURE_VALUE + " text" +
 		      ");";
   
+  private static final String DB_TRAININGS_CREATE = 
+		    "create table " + DB_TRAININGS_TABLE + "(" +
+		      COLUMN_ID + " integer primary key autoincrement, "+
+		    		TRA_NAME+" text, " +
+		    		EXE_NAME+" text"+ 
+		    		");";
+  public static String strSeparator = "__,__";
+  
   
   private Context mCtx;  
   private DBHelper mDBHelper;
@@ -68,6 +78,23 @@ public class DB {
 	    mCtx = ctx;
 	  }
   
+  
+  
+  public  String convertArrayToString(String[] array){
+      String str = "";
+      for (int i = 0;i<array.length; i++) {
+          str = str+array[i];
+          // Do not append comma at the end of last element
+          if(i<array.length-1){
+              str = str+strSeparator;
+          }
+      }
+      return str;
+  }
+  public  String[] convertStringToArray(String str){
+      String[] arr = str.split(strSeparator);
+      return arr;
+  }
   public void open() {
     mDBHelper = new DBHelper(mCtx, DB_NAME, null, DB_VERSION);
     mDB = mDBHelper.getWritableDatabase();
@@ -193,6 +220,18 @@ public class DB {
 {
 return mDB.query(DB_EXE_TABLE, column, selection, selectionArgs, groupBy, having, orderedBy);
 }
+ 
+  public Cursor getDataTrainings
+	(String[] column, 		
+	String selection,			
+	String[] selectionArgs,
+	String groupBy,			
+	String having,			
+	String orderedBy		
+			)
+{
+return mDB.query(DB_TRAININGS_TABLE, column, selection, selectionArgs, groupBy, having, orderedBy);
+}
   
   public Cursor getDataMeasures
 	(String[] column, 		// The columns to return
@@ -206,13 +245,19 @@ return mDB.query(DB_EXE_TABLE, column, selection, selectionArgs, groupBy, having
 	return mDB.query(DB_MEASURE_TABLE, column, selection, selectionArgs, groupBy, having, orderedBy);
 }
   
-  public void addRec_Exe(String traName ,String exeName, String timer) {
+  public void addRec_Exe(String exeName, String timer) {
     ContentValues cv = new ContentValues();
     cv.put(EXE_NAME, exeName);
-    cv.put(TRA_NAME, traName);
     cv.put(TIMER_VALUE, timer);
     mDB.insert(DB_EXE_TABLE, null, cv);
   }
+  
+  public void addRec_Trainings(String traName ,String exeName) {
+	    ContentValues cv = new ContentValues();
+	    cv.put(EXE_NAME, exeName);
+	    cv.put(TRA_NAME, traName);
+	    mDB.insert(DB_TRAININGS_TABLE, null, cv);
+	  }
   
   public void addRec_Measure(String date ,String part_of_body, String value) {
 	    ContentValues cv = new ContentValues();
@@ -269,6 +314,10 @@ return mDB.query(DB_EXE_TABLE, column, selection, selectionArgs, groupBy, having
 	  mDB.delete(DB_EXE_TABLE, COLUMN_ID + " = " + id, null);
   }
   
+  public void delRec_Trainings(long id) {
+	  mDB.delete(DB_TRAININGS_TABLE, COLUMN_ID + " = " + id, null);
+  }
+  
   public void delRec_Main(long id) {
 	  mDB.delete(DB_MAIN_TABLE, COLUMN_ID + " = " + id, null);
 	  }
@@ -286,6 +335,8 @@ return mDB.query(DB_EXE_TABLE, column, selection, selectionArgs, groupBy, having
     	db.execSQL(DB_EXE_CREATE);   
     	db.execSQL(DB_MAIN_CREATE);
     	db.execSQL(DB_MEASURE_CREATE);
+    	db.execSQL(DB_TRAININGS_CREATE);
+    	
     }
 
     @Override
@@ -293,6 +344,43 @@ return mDB.query(DB_EXE_TABLE, column, selection, selectionArgs, groupBy, having
     	if ( oldVersion == 1 && newVersion == 2) {
     		Log.d(LOG_TAG, "DB updated from v1 to v2");
     		db.execSQL(DB_MEASURE_CREATE);
+    	} else if ( oldVersion == 2 && newVersion == 3){
+    		Log.d(LOG_TAG, "DB updating from v2 to v3");
+    		db.beginTransaction();
+    		
+    		try {
+    			db.execSQL(DB_TRAININGS_CREATE);
+    			Cursor c = db.query(DB_EXE_TABLE, null, null, null, TRA_NAME, null, null);
+    			if (c.moveToFirst()){	// читает записи упражнений из таблицы DB_EXE_TABLE, и перекидывает в таблицу DB_TRAININGS_TABLE, все упражнения перекидывает одним массивом.
+    				do {
+    					String[] args = {c.getString(1)};
+    					Cursor cur_local = db.query(DB_EXE_TABLE, null, TRA_NAME + "=?", args, null, null, null);
+    					if (cur_local.moveToFirst()){
+    						String[] exercices = new String[cur_local.getCount()];
+    						int i = 0;
+    						do {
+    							exercices[i] = cur_local.getString(2);
+    							i++;
+    						} while(cur_local.moveToNext());
+    						String exes = convertArrayToString(exercices);
+    						addRec_Trainings(c.getString(1), exes);
+    					}
+    				}while (c.moveToNext());
+    			}
+    			
+    			
+    			
+    			db.execSQL("create temporary table exe_tmp (_id integer, exercise_name text, timer_value text);");
+    			db.execSQL("insert into exe_tmp select _id, exercise_name, timer_value from exe_tab;");
+    			db.execSQL("drop table exe_tab");
+    			db.execSQL(DB_EXE_CREATE);
+    			db.execSQL("insert into exe_tab select _id, exercise_name, timer_value from exe_tmp;");
+    			db.execSQL("drop table exe_tmp;");
+
+    	          db.setTransactionSuccessful();
+    	        } finally {
+    	          db.endTransaction();
+    	        }
     	}
     }
   }

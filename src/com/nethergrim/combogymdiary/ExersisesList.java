@@ -1,6 +1,6 @@
 package com.nethergrim.combogymdiary;
 
-import android.app.ActionBar;
+
 import android.content.Intent;
 import android.database.Cursor;
 import android.os.Bundle;
@@ -21,15 +21,14 @@ import android.widget.Toast;
 
 public class ExersisesList extends BasicMenuActivity {
 
-	final String LOG_TAG = "myLogs";
-	ListView lvExersices_list;
+
+	private ListView lvExersices_list;
 	private static final int CM_DELETE_ID = 1;
 	private static final int CM_EDIT_ID = 2;
-	DB db;
-	SimpleCursorAdapter scAdapter;
-	Cursor cursor_exe;
-	int State = 0; // 1 - deleting, 2 - editing
-	Button btnCreate;
+	private DB db;
+	private SimpleCursorAdapter scAdapter;
+	private Cursor cursor_exe;
+	private Button btnCreate;
 	
 	
     @SuppressWarnings("deprecation")
@@ -37,11 +36,9 @@ public class ExersisesList extends BasicMenuActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         mMenuDrawer.setContentView(R.layout.exersises_list); 
-        ActionBar bar = getActionBar();
         btnCreate = (Button)findViewById(R.id.btnCreate);
         btnCreate.setOnClickListener(this);
-        bar.setTitle(R.string.excersisiesListButtonString);
-    //    bar.setDisplayHomeAsUpEnabled(true);
+        getActionBar().setTitle(R.string.excersisiesListButtonString);
         lvExersices_list = (ListView) findViewById(R.id.listView11);
         db = new DB(this);
 		db.open();
@@ -73,24 +70,20 @@ public class ExersisesList extends BasicMenuActivity {
 
 	public void goToEditExe(int position,long ID) 
 	{
-		Cursor cur_edit_exe = db.getAllData_Exe();
-		if (cur_edit_exe.moveToFirst())
+
+		if (cursor_exe.moveToFirst())
 		{
-			while (cur_edit_exe.getPosition() < position) {
-				Log.d(LOG_TAG,"cursor cur_edit_exe stands on: " + cur_edit_exe.getString(2) + " position " + position);
-				cur_edit_exe.moveToNext();
-				Log.d(LOG_TAG,"cursor cur_edit_exe moved to: " + cur_edit_exe.getString(2) + " position " + position);
+			while (cursor_exe.getPosition() < position) {
+				cursor_exe.moveToNext();
 			}
-			String name = cur_edit_exe.getString(2);
+			String name = cursor_exe.getString(1);
 			Toast.makeText(this, "Editing: "  + name, Toast.LENGTH_SHORT).show();
-			Log.d(LOG_TAG,"going to edit: " + name);
-			String timV = cur_edit_exe.getString(3);			
+			String timV = cursor_exe.getString(2);			
 			Intent intent_exe_edit = new Intent(this,AddingExersises.class);
 			intent_exe_edit.putExtra("exeName", name);
 			intent_exe_edit.putExtra("timerValue", timV);   
 			intent_exe_edit.putExtra("exePosition", position);
 			intent_exe_edit.putExtra("exeID", ID);
-			Log.d(LOG_TAG,"put extra to AddingExersises: exeName " + name + " timerValue " + timV + " position " + position);
 	        startActivity(intent_exe_edit);
 		}		
 	}
@@ -99,7 +92,7 @@ public class ExersisesList extends BasicMenuActivity {
 	public boolean onContextItemSelected(MenuItem item) {
 		AdapterContextMenuInfo acmi = (AdapterContextMenuInfo) item.getMenuInfo();
 	    if (item.getItemId() == CM_DELETE_ID) {	      
-	      db.delRec_Exe(acmi.id);
+	      db.delRec_Exe(acmi.id);// TODO дописать удаление из таблицы тренировок, найти значение, и перезаписать массив без этого значения
 	      Toast.makeText(this, R.string.deleted, Toast.LENGTH_SHORT).show();
 	      cursor_exe.requery();
 	      return true;

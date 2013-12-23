@@ -1,27 +1,23 @@
 package com.nethergrim.combogymdiary;
 
-import android.app.ActionBar;
 import android.database.Cursor;
 import android.os.Bundle;
+import android.support.v4.app.NavUtils;
 import android.support.v4.widget.SimpleCursorAdapter;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListView;
 
-
-
-
 public class AddingProgram extends BasicMenuActivity{
 
-	Button btnAdd;
-	EditText etName;
-	ListView lvExe;
-	final String LOG_TAG = "myLogs";
-	DB db;
-	SimpleCursorAdapter scAdapter;
-	Cursor cursor;
-		
+	private Button btnAdd;
+	private EditText etName;
+	private ListView lvExe;
+	private DB db;
+	private SimpleCursorAdapter scAdapter;
+	private Cursor cursor;
+	// исправил под версию базы 3
     @SuppressWarnings("deprecation")
 	@Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -30,9 +26,7 @@ public class AddingProgram extends BasicMenuActivity{
         btnAdd = (Button) findViewById(R.id.buttonAddingProgram);
         btnAdd.setOnClickListener(this);
         etName = (EditText) findViewById(R.id.etTimerValue);
-        etName.setOnClickListener(this);
-        ActionBar bar = getActionBar();
-        bar.setTitle(R.string.creating_program);
+        getActionBar().setTitle(R.string.creating_program);
         lvExe = (ListView)findViewById(R.id.listView1);
         lvExe.setChoiceMode(ListView.CHOICE_MODE_MULTIPLE);        
         db = new DB(this);
@@ -44,7 +38,6 @@ public class AddingProgram extends BasicMenuActivity{
 		scAdapter = new SimpleCursorAdapter(this, android.R.layout.simple_list_item_multiple_choice,
 				cursor, from, to);
 		lvExe.setAdapter(scAdapter);
-	    registerForContextMenu(lvExe);	 
 	    }
 
     
@@ -57,12 +50,16 @@ public class AddingProgram extends BasicMenuActivity{
 			long[] arrIDs = lvExe.getCheckedItemIds();
 			if (!prgName.isEmpty()) 
 			{
-				for (int i = 0; i < arrIDs.length; i++)
-				{
-					db.updateRec_Exe((int) arrIDs[i], DB.TRA_NAME, prgName);					
-				} 
+				cursor.moveToFirst();
+				String[] exersices = new String[arrIDs.length];
+				for (int i = 0; i < exersices.length; i++) {
+					cursor.moveToPosition( (int)arrIDs[i] );
+					exersices[i] = cursor.getString(2);
+				}
+				
+				db.addRec_Trainings(prgName, db.convertArrayToString(exersices) );
 			}
-			super.onBackPressed();    			
+			NavUtils.navigateUpFromSameTask(this);	
 		} else {
 		}
 	}
