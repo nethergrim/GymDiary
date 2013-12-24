@@ -92,7 +92,8 @@ public class ExersisesList extends BasicMenuActivity {
 	public boolean onContextItemSelected(MenuItem item) {
 		AdapterContextMenuInfo acmi = (AdapterContextMenuInfo) item.getMenuInfo();
 	    if (item.getItemId() == CM_DELETE_ID) {	      
-	      db.delRec_Exe(acmi.id);// TODO дописать удаление из таблицы тренировок, найти значение, и перезаписать массив без этого значения
+	      db.delRec_Exe(acmi.id);
+	      db.deleteExersiceByName( acmi.toString());
 	      Toast.makeText(this, R.string.deleted, Toast.LENGTH_SHORT).show();
 	      cursor_exe.requery();
 	      return true;

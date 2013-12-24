@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.database.Cursor;
 import android.os.Bundle;
 import android.support.v4.widget.SimpleCursorAdapter;
+import android.util.Log;
 import android.view.ContextMenu;
 import android.view.ContextMenu.ContextMenuInfo;
 import android.view.MenuItem;
@@ -73,13 +74,15 @@ public class StartTrainingActivity extends BasicMenuActivity {
 	public boolean onContextItemSelected(MenuItem item) {
 	    if (item.getItemId() == CM_DELETE_ID) {
 	      AdapterContextMenuInfo acmi = (AdapterContextMenuInfo) item.getMenuInfo();
-	      if (cursor_exe.moveToFirst()){
-	    	  for (int i = 0; i <= acmi.position; i++) 
+	      if(cursor_exe.moveToFirst()){
+	    	  for (int i = 0; i < acmi.position; i++) 
 		      {
 		    	  cursor_exe.moveToNext();
 		      }
-		      int id = cursor_exe.getPosition();	      
-	
+		      int id = cursor_exe.getInt(0);	      
+		      Log.d(LOG_TAG, "going to delete id == "+id);
+		      
+		      
 		      db.delRec_Trainings(id);
 		      Toast.makeText(this, "Deleted", Toast.LENGTH_SHORT).show();
 		      cursor_exe.requery();

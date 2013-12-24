@@ -15,12 +15,14 @@ import android.widget.Toast;
 import com.jeremyfeinstein.slidingmenu.lib.SlidingMenu;
 
 public class SettingsActivity extends PreferenceActivity  implements OnClickListener{
+	
 	final String LOG_TAG = "myLogs";
 	SharedPreferences sPref;
 	private SlidingMenu menu;
-	Button btnMenu1,btnMenu2,btnMenu3,btnMenu4,btnMenuCatalog;
+	private Button btnMenu1,btnMenu2,btnMenu3,btnMenu4,btnMenuCatalog;
 	private Button btnMenuMeasurements;
 	public static SettingsActivity sa;
+	
     @SuppressWarnings("deprecation")
 	@Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -52,8 +54,14 @@ public class SettingsActivity extends PreferenceActivity  implements OnClickList
                         public boolean onPreferenceClick(Preference arg0) { 
                         	Backuper backUP = new Backuper();
                         	boolean yes = backUP.restoreBackup();
-                        	if (yes)
+                        	
+                        	
+                        	if (yes){
                         		Toast.makeText(getApplicationContext(),getResources().getString(R.string.restored), Toast.LENGTH_SHORT).show();
+                        		DB db = new DB(getApplicationContext());
+                        		db.open();
+                        		db.close();
+                        	}
                         	else
                         		Toast.makeText(getApplicationContext(),getResources().getString(R.string.restore_error), Toast.LENGTH_SHORT).show();
                             return true;

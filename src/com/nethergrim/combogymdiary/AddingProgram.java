@@ -4,6 +4,7 @@ import android.database.Cursor;
 import android.os.Bundle;
 import android.support.v4.app.NavUtils;
 import android.support.v4.widget.SimpleCursorAdapter;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -31,7 +32,7 @@ public class AddingProgram extends BasicMenuActivity{
         lvExe.setChoiceMode(ListView.CHOICE_MODE_MULTIPLE);        
         db = new DB(this);
 		db.open();
-		cursor = db.getAllData_Exe();		
+		cursor = db.getDataExe(null, null, null, null, null, null);
 		startManagingCursor(cursor);		
 		String[] from = new String[] {DB.EXE_NAME};
 		int[] to = new int[] { android.R.id.text1, };
@@ -53,8 +54,9 @@ public class AddingProgram extends BasicMenuActivity{
 				cursor.moveToFirst();
 				String[] exersices = new String[arrIDs.length];
 				for (int i = 0; i < exersices.length; i++) {
-					cursor.moveToPosition( (int)arrIDs[i] );
-					exersices[i] = cursor.getString(2);
+					cursor.moveToPosition( (int)arrIDs[i] - 1 );
+					exersices[i] = cursor.getString(1);
+					Log.d(LOG_TAG, "Added to exersices["+i+"] - "+cursor.getString(1));
 				}
 				
 				db.addRec_Trainings(prgName, db.convertArrayToString(exersices) );

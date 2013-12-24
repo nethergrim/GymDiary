@@ -48,28 +48,28 @@ import android.app.backup.BackupManager;
 @SuppressLint("SimpleDateFormat")
 public class TrainingAtProgress extends Activity  implements MyInterface, OnClickListener, OnCheckedChangeListener{
 	
-	Button btnSave;	
-	ToggleButton tglTimerOn;
-	Boolean tglChecked = true,turnOff = false,vibrate = false;
-	EditText etTimer;
-	ListView lvMain;
-	DB db;
-	int size = 0;
-	Cursor cur_exe;	
 	final String LOG_TAG = "myLogs";
-	ArrayAdapter<String> adapter;
-	String[] trNamesData = {};
-	int[] setsPerExercises = null;
-	String traName = "", exeName = "",date = "",tValue="";
-	SharedPreferences sp;
-	int checkedPosition = 0,set = 0,oldReps = 0,oldWeight = 0,timerValue = 0,vibrateLenght=0;
-	DialogFragment dlg1;
-	ProgressDialog pd;
-	Handler h;
-	WheelView reps;
-	WheelView weights;
-	TextView infoText,setInfo,tv4,tv3;
-	Animation anim = null;
+	private Button btnSave;	
+	private ToggleButton tglTimerOn;
+	private Boolean tglChecked = true,turnOff = false,vibrate = false;
+	private EditText etTimer;
+	private ListView lvMain;
+	private DB db;
+	private Cursor cursor;	
+	private ArrayAdapter<String> adapter;
+	private String[] exersices;
+	//private String[] trNamesData = {};
+	private int[] setsPerExercises = null;
+	private String traName = "", exeName = "",date = "",tValue="";
+	private SharedPreferences sp;
+	private int checkedPosition = 0,set = 0,oldReps = 0,oldWeight = 0,timerValue = 0,vibrateLenght=0;
+	private DialogFragment dlg1;
+	private ProgressDialog pd;
+	private Handler h;
+	private WheelView reps;
+	private WheelView weights;
+	private TextView infoText,setInfo,tv4,tv3;
+	private Animation anim = null;
 	
 	@Override
 	public void onConfigurationChanged(Configuration newConfig) {
@@ -85,7 +85,6 @@ public class TrainingAtProgress extends Activity  implements MyInterface, OnClic
 		db.open();
         setContentView(R.layout.training_at_progress_new_wheel);
         initUi(true);
-        
         }
   
 	 @Override
@@ -115,8 +114,7 @@ public class TrainingAtProgress extends Activity  implements MyInterface, OnClic
         weights.setWheelForeground(R.drawable.wheel_val_holo);
         weights.setShadowColor(0xFFFFFF, 0xFFFFFF, 0xFFFFFF);
         weights.setViewAdapter(new WeightsAdapter(this));
-        String[] strArrExtra = {traName};
-        String[] strArrCol = {DB.COLUMN_ID,DB.EXE_NAME};            
+        String[] strArrExtra = {traName};          
         tglTimerOn = (ToggleButton) findViewById(R.id.tglTurnOff);
         tglTimerOn.setOnCheckedChangeListener(this); 
         etTimer = (EditText) findViewById(R.id.etTimerValueAtTraining);
@@ -128,26 +126,19 @@ public class TrainingAtProgress extends Activity  implements MyInterface, OnClic
         lvMain = (ListView)findViewById(R.id.lvSets);
         anim = AnimationUtils.loadAnimation(this, R.anim.myalpha);
         lvMain.setChoiceMode(AbsListView.CHOICE_MODE_SINGLE);
-        cur_exe = db.getDataExe(strArrCol, DB.TRA_NAME + "=?", strArrExtra, (String)null, (String)null, (String)null);
-        size = cur_exe.getCount();
-        
-        
-        
-        trNamesData = new String[size];
+ 
+        cursor = db.getDataTrainings(null, DB.TRA_NAME + "=?", strArrExtra, null, null, null);
+        cursor.moveToFirst();
+        exersices = db.convertStringToArray(cursor.getString(2)) ;
+        Log.d(LOG_TAG, "got string"+cursor.getString(2));
+
         if (init) {
-        	setsPerExercises = new int[size];        
-	        for (int i = 0; i < size; i++){
+        	setsPerExercises = new int[exersices.length];        
+	        for (int i = 0; i < exersices.length; i++){
 	        	setsPerExercises[i] = 0;
 	        }
         }
-        if (cur_exe.moveToFirst()){
-        	int i = 0;
-        	do {
-        		trNamesData[i] = cur_exe.getString(1);        		
-        		i++;
-              } while (cur_exe.moveToNext());
-        }        
-        adapter = new ArrayAdapter<String>(this,android.R.layout.simple_list_item_single_choice, trNamesData);
+        adapter = new ArrayAdapter<String>(this,android.R.layout.simple_list_item_single_choice, exersices);
         lvMain.setAdapter(adapter);      
         SimpleDateFormat sdf = new SimpleDateFormat("dd.MM.yyyy");
         date = sdf.format(new Date(System.currentTimeMillis()));      
@@ -156,7 +147,7 @@ public class TrainingAtProgress extends Activity  implements MyInterface, OnClic
         	@Override
         	public void onItemClick(AdapterView<?> parent, View itemClicked, int position,long id) {
         		checkedPosition = position;
-        		exeName = trNamesData[checkedPosition];
+        		exeName = exersices[checkedPosition];
         		set = setsPerExercises[checkedPosition];
         		setInfo.setText(getResources().getString(R.string.set_number)+ " " + (set+1));
         		tValue = db.getTimerValueByExerciseName(exeName);
@@ -174,9 +165,8 @@ public class TrainingAtProgress extends Activity  implements MyInterface, OnClic
        				}
         		animate();
         		}
-        	
         	});        
-		exeName = trNamesData[checkedPosition];
+		exeName = exersices[checkedPosition];
 		set = setsPerExercises[checkedPosition];
 		String tValue = db.getTimerValueByExerciseName(exeName);
 		etTimer.setText(tValue);
@@ -191,7 +181,7 @@ public class TrainingAtProgress extends Activity  implements MyInterface, OnClic
 				}
         dlg1 = new Dialog1();
         dlg1.setCancelable(false);
-        etTimer.setText( db.getTimerValueByExerciseName(trNamesData[0]) );        
+        etTimer.setText( db.getTimerValueByExerciseName(exersices[0]) );        
         timerValue = Integer.parseInt(db.getTimerValueByExerciseName(exeName));
         tglTimerOn.setChecked(true);
         lvMain.setItemChecked(0, true);
@@ -292,7 +282,7 @@ public class TrainingAtProgress extends Activity  implements MyInterface, OnClic
 			int rep_s = (reps.getCurrentItem()+1);
 			String t = etTimer.getText().toString();
 			timerValue = Integer.parseInt(t);  			
-   			exeName = trNamesData[checkedPosition];  			
+   			exeName = exersices[checkedPosition];  			
    			set = ++setsPerExercises[checkedPosition];
    			setInfo.setText(getResources().getString(R.string.set_number)+ " " + (set+1));
    			db.addRec_Main(traName, exeName, t, date, wei, rep_s, set);	

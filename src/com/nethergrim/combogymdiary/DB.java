@@ -98,6 +98,7 @@ public class DB {
   public void open() {
     mDBHelper = new DBHelper(mCtx, DB_NAME, null, DB_VERSION);
     mDB = mDBHelper.getWritableDatabase();
+    Log.d(LOG_TAG, "opened DB version "+DB_VERSION);
   }
   
   public void close() {
@@ -145,6 +146,44 @@ public class DB {
 	  return result;
   }
   
+  public void deleteExersiceByName(String name){
+	  Log.d(LOG_TAG, "going to delete exersice "+name);
+	  Cursor c = mDB.query(DB_TRAININGS_TABLE, null, null, null, null, null, null);
+	  if (c.moveToFirst()){
+		  do {
+			  int delta = 0;
+			 String tmp = c.getString(2);
+			 String[] tmpArray = convertStringToArray(tmp);
+			 int[] intArray = new int[tmpArray.length];
+			 for (int i = 0; i < intArray.length; i++) intArray[i] = 0;
+			 
+			 for (int i = 0; i < tmpArray.length ; i++){
+				 if (tmpArray[i].equals(name)){
+					 intArray[i] = 1;
+					 delta++;
+				 }
+			 }
+			 
+			 String[] newArray = new String[tmpArray.length - delta];
+			 for (int i = 0, j = 0; i < tmpArray.length; i++){
+				 if (intArray[i] == 0){
+					 newArray[j] = tmpArray[i];
+					 j++;
+				 } else if (intArray[i] == 1) {
+					 continue;
+				 }
+			 }
+			 
+			 String newString = convertArrayToString(newArray);
+			 updateRec_Training(c.getInt(0), 2, newString);
+			 
+		  } while(c.moveToNext());
+		  
+		  
+	  }
+	  
+  }
+  
   public int getLastWeight(String _exeName, int _set) {
       int result = 0;
       String[] cols = {DB.WEIGHT,DB.SET};
@@ -172,11 +211,15 @@ public class DB {
   
   public String getTimerValueByExerciseName (String exeName) 
   {	  
+	  Log.d(LOG_TAG, "going to search timer value for exe:"+exeName);
+	  String result = null;
 	  String[] cols = {DB.TIMER_VALUE};
 	  String[] tags = {exeName};
 	  Cursor c1 = mDB.query(DB_EXE_TABLE, cols, DB.EXE_NAME+"=?", tags, null, null, null, null);
-	  c1.moveToFirst();
-	  String result = c1.getString(0);
+	  if (c1.moveToFirst()){
+		  result = c1.getString(0);
+	  } else
+		  Log.d(LOG_TAG, "ERROR There is no such exe:"+exeName);
 	  Log.d(LOG_TAG, "Result of GetTimerValueByExercise: "+result);
 	  return result;
   }
@@ -256,7 +299,8 @@ return mDB.query(DB_TRAININGS_TABLE, column, selection, selectionArgs, groupBy, 
 	    ContentValues cv = new ContentValues();
 	    cv.put(EXE_NAME, exeName);
 	    cv.put(TRA_NAME, traName);
-	    mDB.insert(DB_TRAININGS_TABLE, null, cv);
+	     long id = mDB.insert(DB_TRAININGS_TABLE, null, cv);
+	     Log.d(LOG_TAG, "added record to trainigns: id == "+id);
 	  }
   
   public void addRec_Measure(String date ,String part_of_body, String value) {
@@ -310,12 +354,24 @@ return mDB.query(DB_TRAININGS_TABLE, column, selection, selectionArgs, groupBy, 
 	  mDB.update(DB_MAIN_TABLE, cv, "_id = " + Id, null);
   }
   
+  public void updateRec_Training(int Id, int colId, String data_str)  {
+	  ContentValues cv = new ContentValues();
+	  if (colId == 1)   {
+		  cv.put(TRA_NAME ,data_str);		  
+	  }  else if (colId == 2) {
+		  cv.put(EXE_NAME, data_str);
+	  }
+	  mDB.update(DB_TRAININGS_TABLE, cv, "_id = " + Id, null);
+  }
+  
+  
   public void delRec_Exe(long id) {
 	  mDB.delete(DB_EXE_TABLE, COLUMN_ID + " = " + id, null);
   }
   
   public void delRec_Trainings(long id) {
 	  mDB.delete(DB_TRAININGS_TABLE, COLUMN_ID + " = " + id, null);
+	  Log.d(LOG_TAG, "deleting id == "+id);
   }
   
   public void delRec_Main(long id) {
@@ -344,12 +400,14 @@ return mDB.query(DB_TRAININGS_TABLE, column, selection, selectionArgs, groupBy, 
     	if ( oldVersion == 1 && newVersion == 2) {
     		Log.d(LOG_TAG, "DB updated from v1 to v2");
     		db.execSQL(DB_MEASURE_CREATE);
-    	} else if ( oldVersion == 2 && newVersion == 3){
+    	} 
+    	if ( oldVersion == 2 && newVersion == 3){
     		Log.d(LOG_TAG, "DB updating from v2 to v3");
+    		db.execSQL(DB_TRAININGS_CREATE);
     		db.beginTransaction();
     		
     		try {
-    			db.execSQL(DB_TRAININGS_CREATE);
+    			
     			Cursor c = db.query(DB_EXE_TABLE, null, null, null, TRA_NAME, null, null);
     			if (c.moveToFirst()){	// читает записи упражнений из таблицы DB_EXE_TABLE, и перекидывает в таблицу DB_TRAININGS_TABLE, все упражнения перекидывает одним массивом.
     				do {
@@ -363,6 +421,7 @@ return mDB.query(DB_TRAININGS_TABLE, column, selection, selectionArgs, groupBy, 
     							i++;
     						} while(cur_local.moveToNext());
     						String exes = convertArrayToString(exercices);
+    						Log.d(LOG_TAG, "trying to add rec to trainings: "+ c.getString(1)+" \n " + exes);
     						addRec_Trainings(c.getString(1), exes);
     					}
     				}while (c.moveToNext());

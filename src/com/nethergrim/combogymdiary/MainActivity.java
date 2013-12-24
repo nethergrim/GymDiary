@@ -5,7 +5,6 @@ import android.app.ActionBar;
 import android.content.Intent;
 import android.database.Cursor;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 
@@ -13,12 +12,12 @@ import android.widget.Button;
 
 public class MainActivity extends BasicMenuActivity {
 
-	Button btnSettings;
-	Button btnStartT;
-	Button btnExcersises;
-	Button btnWorklog;
-	Button btnCatalog;
-	Button btnMeasurements;
+	private Button btnSettings;
+	private Button btnStartT;
+	private Button btnExcersises;
+	private Button btnWorklog;
+	private Button btnCatalog;
+	private Button btnMeasurements;
 	public static MainActivity ma;
 	DB db;
 	Cursor cursor;
@@ -45,7 +44,8 @@ public class MainActivity extends BasicMenuActivity {
         bar.setTitle(R.string.app_name); 
         db = new DB(this);
 		db.open();
-		cursor = db.getAllData_Exe();
+	//	cursor = db.getAllData_Exe();
+		cursor = db.getDataExe(null, null, null, null, null, null);
 		if (cursor.getCount() < 10) {
 			initTable();
 		}
