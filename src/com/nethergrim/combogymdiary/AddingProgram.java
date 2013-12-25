@@ -32,7 +32,8 @@ public class AddingProgram extends BasicMenuActivity{
         lvExe.setChoiceMode(ListView.CHOICE_MODE_MULTIPLE);        
         db = new DB(this);
 		db.open();
-		cursor = db.getDataExe(null, null, null, null, null, null);
+		String[] cols = {DB.COLUMN_ID,DB.EXE_NAME,DB.TIMER_VALUE};
+		cursor = db.getDataExe(cols, null, null, null, null, null);
 		startManagingCursor(cursor);		
 		String[] from = new String[] {DB.EXE_NAME};
 		int[] to = new int[] { android.R.id.text1, };

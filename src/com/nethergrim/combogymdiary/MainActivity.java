@@ -19,9 +19,10 @@ public class MainActivity extends BasicMenuActivity {
 	private Button btnCatalog;
 	private Button btnMeasurements;
 	public static MainActivity ma;
-	DB db;
-	Cursor cursor;
-	// исправил под базу версии 3
+	private DB db;
+	private Cursor cursor;
+	
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -44,12 +45,13 @@ public class MainActivity extends BasicMenuActivity {
         bar.setTitle(R.string.app_name); 
         db = new DB(this);
 		db.open();
-	//	cursor = db.getAllData_Exe();
 		cursor = db.getDataExe(null, null, null, null, null, null);
 		if (cursor.getCount() < 10) {
 			initTable();
 		}
     }
+    
+    
     
     private void initTable(){
         String[] exeLegs = getResources().getStringArray(R.array.exercisesArrayLegs);

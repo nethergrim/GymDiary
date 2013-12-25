@@ -37,7 +37,7 @@ public class DB {
   private static final String DB_EXE_CREATE = 
     "create table " + DB_EXE_TABLE + "(" +
       COLUMN_ID + " integer primary key autoincrement, "+
-    //		TRA_NAME+" text, " +
+    		TRA_NAME+" text, " +
     		EXE_NAME+" text, "+ 
     		TIMER_VALUE + " text" +
     		");";
@@ -98,7 +98,7 @@ public class DB {
   public void open() {
     mDBHelper = new DBHelper(mCtx, DB_NAME, null, DB_VERSION);
     mDB = mDBHelper.getWritableDatabase();
-    Log.d(LOG_TAG, "opened DB version "+DB_VERSION);
+    Log.d(LOG_TAG, "opened DB ");
   }
   
   public void close() {
@@ -299,7 +299,7 @@ return mDB.query(DB_TRAININGS_TABLE, column, selection, selectionArgs, groupBy, 
 	    ContentValues cv = new ContentValues();
 	    cv.put(EXE_NAME, exeName);
 	    cv.put(TRA_NAME, traName);
-	     long id = mDB.insert(DB_TRAININGS_TABLE, null, cv);
+	     long id = mDB.insert(DB_TRAININGS_TABLE, null, cv); // тут падает
 	     Log.d(LOG_TAG, "added record to trainigns: id == "+id);
 	  }
   
@@ -404,42 +404,6 @@ return mDB.query(DB_TRAININGS_TABLE, column, selection, selectionArgs, groupBy, 
     	if ( oldVersion == 2 && newVersion == 3){
     		Log.d(LOG_TAG, "DB updating from v2 to v3");
     		db.execSQL(DB_TRAININGS_CREATE);
-    		db.beginTransaction();
-    		
-    		try {
-    			
-    			Cursor c = db.query(DB_EXE_TABLE, null, null, null, TRA_NAME, null, null);
-    			if (c.moveToFirst()){	// читает записи упражнений из таблицы DB_EXE_TABLE, и перекидывает в таблицу DB_TRAININGS_TABLE, все упражнения перекидывает одним массивом.
-    				do {
-    					String[] args = {c.getString(1)};
-    					Cursor cur_local = db.query(DB_EXE_TABLE, null, TRA_NAME + "=?", args, null, null, null);
-    					if (cur_local.moveToFirst()){
-    						String[] exercices = new String[cur_local.getCount()];
-    						int i = 0;
-    						do {
-    							exercices[i] = cur_local.getString(2);
-    							i++;
-    						} while(cur_local.moveToNext());
-    						String exes = convertArrayToString(exercices);
-    						Log.d(LOG_TAG, "trying to add rec to trainings: "+ c.getString(1)+" \n " + exes);
-    						addRec_Trainings(c.getString(1), exes);
-    					}
-    				}while (c.moveToNext());
-    			}
-    			
-    			
-    			
-    			db.execSQL("create temporary table exe_tmp (_id integer, exercise_name text, timer_value text);");
-    			db.execSQL("insert into exe_tmp select _id, exercise_name, timer_value from exe_tab;");
-    			db.execSQL("drop table exe_tab");
-    			db.execSQL(DB_EXE_CREATE);
-    			db.execSQL("insert into exe_tab select _id, exercise_name, timer_value from exe_tmp;");
-    			db.execSQL("drop table exe_tmp;");
-
-    	          db.setTransactionSuccessful();
-    	        } finally {
-    	          db.endTransaction();
-    	        }
     	}
     }
   }

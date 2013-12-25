@@ -25,7 +25,7 @@ public class StartTrainingActivity extends BasicMenuActivity {
 	private Cursor cursor_exe;
 	private ListView lvMain;
 	private Button btnAddNew;
-	// исправил под версию базы 3, проверить!
+
 	@Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -36,11 +36,36 @@ public class StartTrainingActivity extends BasicMenuActivity {
         btnAddNew.setOnClickListener(this);
         db = new DB(this);
 		db.open();
+		initTrainings();
 		cursor_exe = db.getDataTrainings(null, null, null, null, null, null);
 		initList();  
     }
 	
-	
+	private void initTrainings(){
+		Cursor size = db.getDataTrainings(null, null, null, null, null, null);
+		if (size.getCount() < 1) {
+			Cursor c = db.getDataExe(null, null, null, DB.TRA_NAME, null, null);
+			Log.d(LOG_TAG, "cursor length: "+ c.getCount());
+			if (c.moveToFirst()){	
+				do {
+					String[] args = {c.getString(1)};
+					Cursor cur_local = db.getDataExe(null, DB.TRA_NAME + "=?", args, null, null, null);
+					if (cur_local.moveToFirst()){
+						String[] exercices = new String[cur_local.getCount()];
+						int i = 0;
+						do {
+							exercices[i] = cur_local.getString(2);
+							i++;
+						} while(cur_local.moveToNext());
+						String exes = db.convertArrayToString(exercices);
+						String tmp = c.getString(1);
+						Log.d(LOG_TAG, "trying to add rec to trainings: "+ tmp+" \n " + exes);
+						db.addRec_Trainings(c.getString(1), exes);
+					}
+				}while (c.moveToNext());
+			}
+		}
+	}
 	
     @SuppressWarnings("deprecation")
 	private void initList () {

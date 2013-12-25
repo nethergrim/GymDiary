@@ -1396,7 +1396,7 @@ containing a value of this type.
         public static final int btnMenu3=0x7f060086;
         public static final int btnMenu4=0x7f060089;
         public static final int btnNo=0x7f06007b;
-        public static final int btnSave=0x7f060070;
+        public static final int btnSave=0x7f060073;
         public static final int btnWorklog=0x7f060060;
         public static final int btnYes=0x7f06007a;
         public static final int buttonAddingProgram=0x7f060076;
@@ -1405,7 +1405,7 @@ containing a value of this type.
         public static final int buttonStartTraining=0x7f06005e;
         public static final int city_name=0x7f060079;
         public static final int disableHome=0x7f060009;
-        public static final int editText2=0x7f060073;
+        public static final int editText2=0x7f060071;
         public static final int edit_query=0x7f060037;
         public static final int elvMain=0x7f060058;
         public static final int end=0x7f060015;
@@ -1431,7 +1431,7 @@ containing a value of this type.
         public static final int left=0x7f060010;
         public static final int linearLayout1=0x7f060064;
         public static final int linearLayout2=0x7f060065;
-        public static final int linearLayout3=0x7f060071;
+        public static final int linearLayout3=0x7f060070;
         public static final int listMode=0x7f060002;
         public static final int listView1=0x7f060077;
         public static final int listView11=0x7f06007c;

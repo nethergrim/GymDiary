@@ -14,15 +14,15 @@ import android.widget.Toast;
 
 public class AddingExersises extends BasicMenuActivity implements OnClickListener {
 
-	Button btnCreate; 					
-	EditText etName, etTimer;		
-	String exeName = "", timerV = "";
-	int exePosition = 0;
-	long exeID = 0;
-	String defaultTimer;
-	Boolean editOrNot = false;	
-	DB db;
-	SharedPreferences sp;
+	private Button btnCreate; 					
+	private EditText etName, etTimer;		
+	private String exeName = "", timerV = "";
+	private int exePosition;
+	private long exeID = 0;
+	private String defaultTimer;
+	private Boolean editOrNot = false;	
+	private DB db;
+	private SharedPreferences sp;
 	// исправил под базу версии 3
 	
 	@Override

@@ -42,7 +42,9 @@ public class ExersisesList extends BasicMenuActivity {
         lvExersices_list = (ListView) findViewById(R.id.listView11);
         db = new DB(this);
 		db.open();
-		cursor_exe = db.getAllData_Exe();
+		//cursor_exe = db.getAllData_Exe();
+		String[] cols = {DB.COLUMN_ID,DB.EXE_NAME,DB.TIMER_VALUE};
+		cursor_exe = db.getDataExe(cols, null, null, null, null, null);
 		String[] from = new String[] { DB.EXE_NAME };
 		int[] to = new int[] { R.id.tvText, };
 		cursor_exe.requery();

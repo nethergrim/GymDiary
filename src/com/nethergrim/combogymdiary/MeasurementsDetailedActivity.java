@@ -1,6 +1,5 @@
 package com.nethergrim.combogymdiary;
 
-import com.google.ads.w;
 
 import android.content.Intent;
 import android.database.Cursor;

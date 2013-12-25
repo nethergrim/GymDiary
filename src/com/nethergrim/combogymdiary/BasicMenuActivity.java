@@ -2,7 +2,6 @@ package com.nethergrim.combogymdiary;
 
 
 import net.simonvt.menudrawer.MenuDrawer;
-import android.app.Activity;
 import android.content.Intent;
 import android.support.v4.app.FragmentActivity;
 import android.util.Log;

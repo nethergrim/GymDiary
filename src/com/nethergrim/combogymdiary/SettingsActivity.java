@@ -44,6 +44,10 @@ public class SettingsActivity extends PreferenceActivity  implements OnClickList
                         		Toast.makeText(getApplicationContext(),getResources().getString(R.string.backuped), Toast.LENGTH_SHORT).show();
                         	else
                         		Toast.makeText(getApplicationContext(),getResources().getString(R.string.backup_error), Toast.LENGTH_SHORT).show();
+                        	
+                        	DB db = new DB(getApplicationContext());
+                    		db.open();
+                    		db.close();
                             return true;
                         }
                     });
@@ -52,18 +56,21 @@ public class SettingsActivity extends PreferenceActivity  implements OnClickList
         btnRestore.setOnPreferenceClickListener(new Preference.OnPreferenceClickListener() {
                         @Override
                         public boolean onPreferenceClick(Preference arg0) { 
+                        	
                         	Backuper backUP = new Backuper();
                         	boolean yes = backUP.restoreBackup();
                         	
                         	
                         	if (yes){
                         		Toast.makeText(getApplicationContext(),getResources().getString(R.string.restored), Toast.LENGTH_SHORT).show();
-                        		DB db = new DB(getApplicationContext());
-                        		db.open();
-                        		db.close();
+                        		
                         	}
                         	else
                         		Toast.makeText(getApplicationContext(),getResources().getString(R.string.restore_error), Toast.LENGTH_SHORT).show();
+                        	
+                        	DB db = new DB(getApplicationContext());
+                    		db.open();
+                    		db.close();
                             return true;
                         }
                     });

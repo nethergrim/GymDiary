@@ -135,6 +135,7 @@
                 android:id="@+id/etTimerValueAtTraining"
                 android:layout_width="72dp"
                 android:layout_height="match_parent"
+                android:gravity="center_horizontal|center_vertical"
                 android:hint="@string/timer"
                 android:inputType="number" >
             </EditText>
