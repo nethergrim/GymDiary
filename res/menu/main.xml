@@ -1,11 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu
  xmlns:android="http://schemas.android.com/apk/res/android">
+		
+		<item android:id="@+id/itemEditTrainings"
+		    android:showAsAction="always"
+		    android:title="@string/edit"
+		    android:icon="@drawable/edit_query"
+		    
+		    ></item>
+	
+		
 		<item
 		 android:id="@+id/itemExit"
 		 android:showAsAction="always"
 		 android:title="@string/exit"
+		 android:icon="@drawable/ic_cab_done_holo_light"
 		 >
 		</item>
-
 </menu>

@@ -3,15 +3,14 @@ package com.nethergrim.combogymdiary;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
-
 import kankan.wheel.widget.WheelView;
 import kankan.wheel.widget.adapters.AbstractWheelTextAdapter;
-
 import android.annotation.SuppressLint;
 import android.app.ActionBar;
 import android.app.Activity;
 import android.app.DialogFragment;
 import android.app.ProgressDialog;
+import android.app.backup.BackupManager;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -26,8 +25,8 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.view.ViewGroup;
 import android.view.View.OnClickListener;
+import android.view.ViewGroup;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.AbsListView;
@@ -43,7 +42,6 @@ import android.widget.Toast;
 import android.widget.ToggleButton;
 
 import com.nethergrim.combogymdiary.Dialog1.MyInterface;
-import android.app.backup.BackupManager;
 
 @SuppressLint("SimpleDateFormat")
 public class TrainingAtProgress extends Activity  implements MyInterface, OnClickListener, OnCheckedChangeListener{
@@ -246,9 +244,20 @@ public class TrainingAtProgress extends Activity  implements MyInterface, OnClic
     	int itemId = item.getItemId();
     	if (itemId == R.id.itemExit){
 			dlg1.show(getFragmentManager(), "dlg1");			
+		} else if (itemId == R.id.itemEditTrainings){
+			Intent intent = new Intent(this,EditingProgramAtTraining.class);
+			intent.putExtra("trName", traName);
+			Log.d(LOG_TAG, "started activity for result with extra: "+traName);
+			startActivityForResult(intent, 1);
 		}
 		return false;    	
     }
+	
+	@Override
+	  protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+	    if (data == null) {return;}
+	    //TODO переписать массив интов, со значениями подходов
+	  }
 	
 	@Override
 	public void onCheckedChanged(CompoundButton tglTimerOn, boolean isChecked) {
@@ -274,10 +283,6 @@ public class TrainingAtProgress extends Activity  implements MyInterface, OnClic
 	public void onClick(View arg0) {
 		int id = arg0.getId();		
 		if (id == R.id.btnSave) {
-			String weightValue = ""+(weights.getCurrentItem() + 1);
-			String repsValue = ""+(reps.getCurrentItem()+1);
-			Log.d(LOG_TAG, "Saved: weight = "+weightValue+" reps = "+repsValue);
-	
 			int wei = (weights.getCurrentItem() + 1);
 			int rep_s = (reps.getCurrentItem()+1);
 			String t = etTimer.getText().toString();

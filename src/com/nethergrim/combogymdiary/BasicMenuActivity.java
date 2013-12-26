@@ -3,11 +3,11 @@ package com.nethergrim.combogymdiary;
 
 import net.simonvt.menudrawer.MenuDrawer;
 import android.content.Intent;
+import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
 import android.util.Log;
-import android.view.View.OnClickListener;
-import android.os.Bundle;
 import android.view.MenuItem;
+import android.view.View.OnClickListener;
 import android.widget.Button;
 
 public abstract class BasicMenuActivity extends FragmentActivity implements OnClickListener {

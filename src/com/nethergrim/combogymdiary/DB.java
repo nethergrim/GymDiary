@@ -115,6 +115,18 @@ public class DB {
 	  return mDB.query(DB_EXE_TABLE, null, null, null, groupBy, null, null);
   }
   
+  public int getExeIdByName(String name){
+
+	  String[] args = {name};
+	  String[] cols = {DB.COLUMN_ID};
+	  Cursor c = mDB.query(DB_EXE_TABLE,cols, DB.EXE_NAME+"=?", args, (String)null, (String)null, (String)null);
+	  if  (c.moveToFirst()) {
+		  return c.getInt(0);
+	  }	  else {
+		  return 0;
+	  }
+  }
+  
   public Cursor getData_Main_GroupBy (String groupBy) {
       
 	  return mDB.query(DB_MAIN_TABLE, null, null, null, groupBy, null, null);

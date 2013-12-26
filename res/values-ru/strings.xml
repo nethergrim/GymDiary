@@ -39,7 +39,8 @@
     <string name="cancel">Отмена</string>
     <string name="create_new">Создать новое</string>
     <string name="create_new_exercise">Редактирование упражнения</string>
-    <string name="creating_program">Редактирование программы</string>
+    <string name="creating_program">Создание программы</string>
+    <string name="editing_program">Редактирование программы</string>
     <string name="default_timer_value">Значение таймера между подходами:</string>
     <string name="delete">Удалить</string>
     <string name="delete_record">Удалить</string>
@@ -108,7 +109,7 @@
 		<item >Жим штанги лежа (+30 градусов)</item>
 		<item >Жим гантелей лежа (+30 градусов)</item>
 		<item >Жим штанги лежа (-30 градусов)</item>
-		<item >жим гантелей лежа (-30 градусов)</item>
+		<item >Жим гантелей лежа (-30 градусов)</item>
 		<item >Жим лежа в Смите (ровная скамья)</item>
 		<item >Жим лежа в Смите (+30 градусов)</item>
 		<item >Жим лежа в Смите (-30 градусов)</item>

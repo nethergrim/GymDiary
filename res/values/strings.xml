@@ -1,12 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    
     <string name="sm">(sm)</string>
     <string name="inch">(in)</string>
     <string name="kg">(kg)</string>
     <string name="pound">(p)</string>
-    
     <string name="weight">Weight</string>
     <string name="tall">Tall</string>
     <string name="chest">Chest</string>
@@ -15,6 +13,7 @@
     <string name="leg">Leg</string>
     <string name="calf">Calf</string>
     <string name="arm">Arm</string>
+    <string name="editing_program">Editing program</string>
     <string name="app_name">Combo Gym Diary</string>
     <string name="backup">Backup</string>
     <string name="adding_measurements">Adding measurements</string>
@@ -268,5 +267,6 @@
     <string name="ex_6_2"></string>
     <string name="ex_6_3"></string>
     <string name="ex_6_4"></string>
+    <string name="title_activity_editing_program_at_training">EditingProgramAtTraining</string>
 
 </resources>
