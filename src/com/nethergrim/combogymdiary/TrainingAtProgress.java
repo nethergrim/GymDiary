@@ -247,6 +247,7 @@ public class TrainingAtProgress extends Activity  implements MyInterface, OnClic
 		} else if (itemId == R.id.itemEditTrainings){
 			Intent intent = new Intent(this,EditingProgramAtTraining.class);
 			intent.putExtra("trName", traName);
+			intent.putExtra("ifAddingExe",true);
 			Log.d(LOG_TAG, "started activity for result with extra: "+traName);
 			startActivityForResult(intent, 1);
 		}
@@ -256,7 +257,7 @@ public class TrainingAtProgress extends Activity  implements MyInterface, OnClic
 	@Override
 	  protected void onActivityResult(int requestCode, int resultCode, Intent data) {
 	    if (data == null) {return;}
-	    //TODO переписать массив интов, со значениями подходов
+	    //TODO пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ, пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 	  }
 	
 	@Override
