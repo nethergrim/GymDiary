@@ -19,6 +19,7 @@ public class EditingProgramAtTraining extends BasicMenuActivity  {
 	private String traName;
 	private Cursor traCursor;
 	private String[] exercisesOld;
+	private boolean ifAddingExe = false;
 	
 	@SuppressWarnings("deprecation")
 	@Override
@@ -29,16 +30,27 @@ public class EditingProgramAtTraining extends BasicMenuActivity  {
 		lvMain.setChoiceMode(ListView.CHOICE_MODE_MULTIPLE);
 		Intent in = getIntent();
 		traName = in.getStringExtra("trName");
+		ifAddingExe = in.getBooleanExtra("ifAddingExe");
+		if (ifAddingExe) {
+			getActionBar().setTitle("");//TODO Р·РґРµСЃСЊ РґРѕРїРёСЃР°С‚СЊ С‚РёС‚СѓР» Р° Р»СЏ "РґРѕР±Р°РІР»РµРЅРёРµ СѓРїСЂР°Р¶РЅРµРЅРёСЏ РІ С‚СЂРµРЅРёСЂРѕРІРєСѓ"
+			String[] a = {traName};
+			Cursor c = db.getDataTrainings(null,DB.TRA_NAME+"=?",a,null,null,null);
+			c.moveToFirst();
+			
+			
+			String[] args = db.convertStringToArray(c.getString(2));
+			cursor = db.getDataExe(null, DB.EXE_NAME+"!=?", args, null, null, DB.EXE_NAME);
+		} else { 	 // СЌС‚РѕС‚ СЃР»СѓС‡Р°Р№, РµСЃР»Рё РїРѕР»РЅРѕРµ СЂРµРґР°РєС‚РёСЂРѕРІР°РЅРёРµ РїСЂРѕРіСЂР°РјРјС‹
+			cursor = db.getDataExe(null, null, null, null, null, DB.EXE_NAME);
+			initData();
+			setClicked();
+		}
 	    db = new DB(this);
 	    db.open();
-	    // TODO дописать вариативность на два разных случая (добавление или редактирование)
 	    String[] from = new String[] { DB.EXE_NAME };
 	    int[] to = new int[] { android.R.id.text1 };
-	    cursor = db.getDataExe(null, null, null, null, null, DB.EXE_NAME);
-	    scAdapter = new SimpleCursorAdapter(this, android.R.layout.simple_list_item_multiple_choice,
-				cursor, from, to);
-	    initData();
-	    setClicked();
+	    scAdapter = new SimpleCursorAdapter(this, android.R.layout.simple_list_item_multiple_choice,cursor,from,to);
+	    
 	}
 	
 	private void initData(){
@@ -58,8 +70,6 @@ public class EditingProgramAtTraining extends BasicMenuActivity  {
 						lvMain.setItemChecked(i,true);
 					}
 				}
-				
-				
 				i++;
 			} while(cursor.moveToNext());
 		}
