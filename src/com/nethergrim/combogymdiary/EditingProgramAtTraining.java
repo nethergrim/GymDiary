@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.database.Cursor;
 import android.os.Bundle;
 import android.support.v4.widget.SimpleCursorAdapter;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -29,19 +30,16 @@ public class EditingProgramAtTraining extends BasicMenuActivity  {
 		lvMain = (ListView)findViewById(R.id.lvExers);
 		lvMain.setChoiceMode(ListView.CHOICE_MODE_MULTIPLE);
 		Intent in = getIntent();
+		db = new DB(this);
+		db.open();
 		traName = in.getStringExtra("trName");
-		ifAddingExe = in.getBooleanExtra("ifAddingExe");
+		ifAddingExe = in.getBooleanExtra("ifAddingExe",false);
+		Log.d(LOG_TAG, "traName = "+traName+" ifAddingExe = "+ifAddingExe);
+		cursor = db.getDataExe(null, null, null, null, null, DB.EXE_NAME);
 		if (ifAddingExe) {
-			getActionBar().setTitle("");//TODO здесь дописать титул а ля "добавление упражнения в тренировку"
-			String[] a = {traName};
-			Cursor c = db.getDataTrainings(null,DB.TRA_NAME+"=?",a,null,null,null);
-			c.moveToFirst();
+			getActionBar().setTitle(getResources().getString(R.string.add_an_exercise));
 			
-			
-			String[] args = db.convertStringToArray(c.getString(2));
-			cursor = db.getDataExe(null, DB.EXE_NAME+"!=?", args, null, null, DB.EXE_NAME);
-		} else { 	 // этот случай, если полное редактирование программы
-			cursor = db.getDataExe(null, null, null, null, null, DB.EXE_NAME);
+		} else { 	
 			initData();
 			setClicked();
 		}
@@ -50,11 +48,10 @@ public class EditingProgramAtTraining extends BasicMenuActivity  {
 	    String[] from = new String[] { DB.EXE_NAME };
 	    int[] to = new int[] { android.R.id.text1 };
 	    scAdapter = new SimpleCursorAdapter(this, android.R.layout.simple_list_item_multiple_choice,cursor,from,to);
-	    
+	    lvMain.setAdapter(scAdapter);
 	}
 	
 	private void initData(){
-		lvMain.setAdapter(scAdapter);
 	    String[] args = {traName};
 	    traCursor = db.getDataTrainings(null, DB.TRA_NAME+"=?", args, null, null, null);
 	    traCursor.moveToFirst();
@@ -91,6 +88,7 @@ public class EditingProgramAtTraining extends BasicMenuActivity  {
 			
 			Intent intent = new Intent();
 		    setResult(RESULT_OK, intent);
+		    intent.putExtra("return_array_of_exersices", arrIDs);
 		    finish();
 			
 			break;

@@ -101,6 +101,16 @@ public class DB {
     Log.d(LOG_TAG, "opened DB ");
   }
   
+  public String getExerciseByID(int id){
+	  String[] args = {""+id};
+	  Cursor c = mDB.query(DB.DB_EXE_TABLE, null, DB.COLUMN_ID+"=?", args, null, null, null);
+	  if (c.moveToFirst()) {
+		  return c.getString(2);
+	  } else 
+		  return null;
+	  
+  }
+  
   public void close() {
     if (mDBHelper!=null) mDBHelper.close();
   }

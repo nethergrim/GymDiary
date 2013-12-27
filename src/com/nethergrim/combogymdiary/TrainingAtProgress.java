@@ -1,6 +1,7 @@
 package com.nethergrim.combogymdiary;
 
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 
 import kankan.wheel.widget.WheelView;
@@ -56,8 +57,6 @@ public class TrainingAtProgress extends Activity  implements MyInterface, OnClic
 	private Cursor cursor;	
 	private ArrayAdapter<String> adapter;
 	private String[] exersices;
-	//private String[] trNamesData = {};
-	private int[] setsPerExercises = null;
 	private String traName = "", exeName = "",date = "",tValue="";
 	private SharedPreferences sp;
 	private int checkedPosition = 0,set = 0,oldReps = 0,oldWeight = 0,timerValue = 0,vibrateLenght=0;
@@ -68,6 +67,8 @@ public class TrainingAtProgress extends Activity  implements MyInterface, OnClic
 	private WheelView weights;
 	private TextView infoText,setInfo,tv4,tv3;
 	private Animation anim = null;
+	ArrayList<String> alMain = new ArrayList<String>();
+	ArrayList<Integer> alSet = new ArrayList<Integer>();
 	
 	@Override
 	public void onConfigurationChanged(Configuration newConfig) {
@@ -127,16 +128,22 @@ public class TrainingAtProgress extends Activity  implements MyInterface, OnClic
  
         cursor = db.getDataTrainings(null, DB.TRA_NAME + "=?", strArrExtra, null, null, null);
         cursor.moveToFirst();
+        
         exersices = db.convertStringToArray(cursor.getString(2)) ;
-        Log.d(LOG_TAG, "got string"+cursor.getString(2));
+        for (int i = 0; i < exersices.length; i++) {
+        	alMain.add(exersices[i]);
+        	Log.d(LOG_TAG, "*** Added exersice "+exersices[i]);
+        }
+        
+
 
         if (init) {
-        	setsPerExercises = new int[exersices.length];        
-	        for (int i = 0; i < exersices.length; i++){
-	        	setsPerExercises[i] = 0;
+        	//setsPerExercises = new int[exersices.length];        
+	        for (int i = 0; i < alMain.size(); i++){
+	        	alSet.add(0);
 	        }
         }
-        adapter = new ArrayAdapter<String>(this,android.R.layout.simple_list_item_single_choice, exersices);
+        adapter = new ArrayAdapter<String>(this,android.R.layout.simple_list_item_single_choice, alMain);
         lvMain.setAdapter(adapter);      
         SimpleDateFormat sdf = new SimpleDateFormat("dd.MM.yyyy");
         date = sdf.format(new Date(System.currentTimeMillis()));      
@@ -145,8 +152,8 @@ public class TrainingAtProgress extends Activity  implements MyInterface, OnClic
         	@Override
         	public void onItemClick(AdapterView<?> parent, View itemClicked, int position,long id) {
         		checkedPosition = position;
-        		exeName = exersices[checkedPosition];
-        		set = setsPerExercises[checkedPosition];
+        		exeName = alMain.get(checkedPosition);
+        		set = alSet.get(checkedPosition);
         		setInfo.setText(getResources().getString(R.string.set_number)+ " " + (set+1));
         		tValue = db.getTimerValueByExerciseName(exeName);
         		etTimer.setText(tValue);      		
@@ -164,8 +171,8 @@ public class TrainingAtProgress extends Activity  implements MyInterface, OnClic
         		animate();
         		}
         	});        
-		exeName = exersices[checkedPosition];
-		set = setsPerExercises[checkedPosition];
+        exeName = alMain.get(checkedPosition);
+        set = alSet.get(checkedPosition);
 		String tValue = db.getTimerValueByExerciseName(exeName);
 		etTimer.setText(tValue);
 		oldReps = db.getLastReps(exeName, set);
@@ -179,7 +186,7 @@ public class TrainingAtProgress extends Activity  implements MyInterface, OnClic
 				}
         dlg1 = new Dialog1();
         dlg1.setCancelable(false);
-        etTimer.setText( db.getTimerValueByExerciseName(exersices[0]) );        
+        etTimer.setText( db.getTimerValueByExerciseName(alMain.get(0)) );        
         timerValue = Integer.parseInt(db.getTimerValueByExerciseName(exeName));
         tglTimerOn.setChecked(true);
         lvMain.setItemChecked(0, true);
@@ -257,8 +264,16 @@ public class TrainingAtProgress extends Activity  implements MyInterface, OnClic
 	@Override
 	  protected void onActivityResult(int requestCode, int resultCode, Intent data) {
 	    if (data == null) {return;}
-	    //TODO ���������� ������ �����, �� ���������� ��������
+	    long[] itemsChecked = data.getLongArrayExtra("return_array_of_exersices");
+	    for (int i = 0; i < itemsChecked.length; i++) {
+	    	Log.d(LOG_TAG, "***** returned item checked: "+itemsChecked[i] + "  "+db.getExerciseByID((int) itemsChecked[i]));
+	    	alMain.add( db.getExerciseByID( (int) itemsChecked[i]) );
+	    	alSet.add(0);
+	    }
+	    adapter.notifyDataSetChanged();
+	    
 	  }
+
 	
 	@Override
 	public void onCheckedChanged(CompoundButton tglTimerOn, boolean isChecked) {
@@ -288,8 +303,11 @@ public class TrainingAtProgress extends Activity  implements MyInterface, OnClic
 			int rep_s = (reps.getCurrentItem()+1);
 			String t = etTimer.getText().toString();
 			timerValue = Integer.parseInt(t);  			
-   			exeName = exersices[checkedPosition];  			
-   			set = ++setsPerExercises[checkedPosition];
+			exeName = alMain.get(checkedPosition);
+			int tmp = alSet.get(checkedPosition);
+			tmp++;
+			alSet.set(checkedPosition, tmp);
+			set = alSet.get(checkedPosition);
    			setInfo.setText(getResources().getString(R.string.set_number)+ " " + (set+1));
    			db.addRec_Main(traName, exeName, t, date, wei, rep_s, set);	
    			Toast.makeText(this,R.string.saved, Toast.LENGTH_SHORT).show();    			
