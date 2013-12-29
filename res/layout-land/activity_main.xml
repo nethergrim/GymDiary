@@ -13,8 +13,8 @@
         android:layout_height="wrap_content"
         android:layout_gravity="left"
         android:layout_marginBottom="8dp"
-        android:layout_marginLeft="50dp"
-        android:layout_marginRight="50dp"
+        android:layout_marginLeft="30dp"
+        android:layout_marginRight="30dp"
         android:layout_marginTop="10dp"
         android:text="@string/startTrainingButtonString"
         android:textColor="@android:color/white"
@@ -98,5 +98,18 @@
         android:text="@string/settingsButtonString"
         android:textColor="@android:color/white"
         android:textSize="@dimen/text20" />
+
+    <TextView
+        android:id="@+id/textView1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentRight="true"
+        android:gravity="center_horizontal"
+        android:layout_below="@+id/buttonSettings"
+        android:layout_marginTop="2dp"
+        android:text="@string/happy_new_year"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:textColor="@color/holo_red_dark" />
 
 </RelativeLayout>

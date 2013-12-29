@@ -23,7 +23,7 @@
         android:layout_gravity="left"
         android:textColor="@android:color/white"
         android:layout_margin="8dp"
-        android:layout_marginTop="50dp"
+        android:layout_marginTop="70dp"
         android:text="@string/startTrainingButtonString"
         android:textSize="@dimen/text20" />
     
@@ -84,5 +84,14 @@
         android:layout_marginTop="-4dp"
         android:text="@string/settingsButtonString"
         android:textSize="@dimen/text20" />
+
+    <TextView
+        android:id="@+id/textView1"
+        android:layout_column="0"
+        android:layout_gravity="center_horizontal|"
+        android:layout_row="0"
+        android:text="@string/happy_new_year"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:textColor="@color/holo_red_dark" />
 
 </GridLayout>

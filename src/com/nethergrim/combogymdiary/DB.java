@@ -84,7 +84,6 @@ public class DB {
       String str = "";
       for (int i = 0;i<array.length; i++) {
           str = str+array[i];
-          // Do not append comma at the end of last element
           if(i<array.length-1){
               str = str+strSeparator;
           }
@@ -98,7 +97,6 @@ public class DB {
   public void open() {
     mDBHelper = new DBHelper(mCtx, DB_NAME, null, DB_VERSION);
     mDB = mDBHelper.getWritableDatabase();
-    Log.d(LOG_TAG, "opened DB ");
   }
   
   public String getExerciseByID(int id){

@@ -20,6 +20,7 @@ import android.widget.Toast;
 public class StartTrainingActivity extends BasicMenuActivity {
 
 	private static final int CM_DELETE_ID = 1;
+	private static final int CM_EDIT_ID	  = 2;
 	private DB db;
 	private SimpleCursorAdapter scAdapter;
 	private Cursor cursor_exe;
@@ -93,6 +94,7 @@ public class StartTrainingActivity extends BasicMenuActivity {
 		      ContextMenuInfo menuInfo) {
 		    super.onCreateContextMenu(menu, v, menuInfo);
 		    menu.add(0, CM_DELETE_ID, 0, R.string.delete_record);
+		    menu.add(1, CM_EDIT_ID, 0, R.string.edit);
 		  }
     
     @SuppressWarnings("deprecation")
@@ -113,9 +115,26 @@ public class StartTrainingActivity extends BasicMenuActivity {
 		      cursor_exe.requery();
 		      return true;
 	      }
+	    } else if (item.getItemId() == CM_EDIT_ID){
+	    	AdapterContextMenuInfo acmi = (AdapterContextMenuInfo) item.getMenuInfo();
+	    	long id = acmi.id;
+	    	Intent intent = new Intent(this,EditingProgramAtTraining.class);
+			intent.putExtra("trID", id);
+			intent.putExtra("ifAddingExe",false);
+			startActivityForResult(intent, 1);
+	    	
+	    	return true;
 	    }
 	    return super.onContextItemSelected(item);
 	  }    
+    
+    @Override
+	  protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+	   // if (data == null) {return;}
+
+	    
+	  }
+    
     
     public void goToTraining(int position) 
     {

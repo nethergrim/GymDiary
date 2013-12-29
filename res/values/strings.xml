@@ -4,6 +4,7 @@
     <string name="sm">(sm)</string>
     <string name="inch">(in)</string>
     <string name="kg">(kg)</string>
+    <string name="happy_new_year">Happy New 2014 year !!!</string>
     <string name="pound">(p)</string>
     <string name="weight">Weight</string>
     <string name="tall">Tall</string>
@@ -267,6 +268,5 @@
     <string name="ex_6_2"></string>
     <string name="ex_6_3"></string>
     <string name="ex_6_4"></string>
-    <string name="title_activity_editing_program_at_training">EditingProgramAtTraining</string>
 
 </resources>
