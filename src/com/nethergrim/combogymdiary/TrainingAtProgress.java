@@ -3,18 +3,18 @@ package com.nethergrim.combogymdiary;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.StringTokenizer;
 
 import kankan.wheel.widget.WheelView;
 import kankan.wheel.widget.adapters.AbstractWheelTextAdapter;
 import android.annotation.SuppressLint;
-import android.app.ActionBar;
-import android.app.Activity;
 import android.app.DialogFragment;
 import android.app.ProgressDialog;
 import android.app.backup.BackupManager;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.content.SharedPreferences.Editor;
 import android.content.res.Configuration;
 import android.database.Cursor;
 import android.os.Bundle;
@@ -26,10 +26,7 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.view.View.OnClickListener;
 import android.view.ViewGroup;
-import android.view.animation.Animation;
-import android.view.animation.AnimationUtils;
 import android.widget.AbsListView;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -45,7 +42,7 @@ import android.widget.ToggleButton;
 import com.nethergrim.combogymdiary.Dialog1.MyInterface;
 
 @SuppressLint("SimpleDateFormat")
-public class TrainingAtProgress extends Activity  implements MyInterface, OnClickListener, OnCheckedChangeListener{
+public class TrainingAtProgress extends BasicMenuActivity  implements MyInterface, OnCheckedChangeListener{
 	
 	final String LOG_TAG = "myLogs";
 	private Button btnSave;	
@@ -62,13 +59,17 @@ public class TrainingAtProgress extends Activity  implements MyInterface, OnClic
 	private int checkedPosition = 0,set = 0,oldReps = 0,oldWeight = 0,timerValue = 0,vibrateLenght=0;
 	private DialogFragment dlg1;
 	private ProgressDialog pd;
+	private long startTime  = 0;
 	private Handler h;
 	private WheelView reps;
 	private WheelView weights;
-	private TextView infoText,setInfo,tv4,tv3;
-	private Animation anim = null;
-	ArrayList<String> alMain = new ArrayList<String>();
-	ArrayList<Integer> alSet = new ArrayList<Integer>();
+	private TextView infoText,setInfo;
+	private ArrayList<String> alMain = new ArrayList<String>();
+	private ArrayList<Integer> alSet = new ArrayList<Integer>();
+	private int seconds;
+	private int minutes;
+	private boolean isTrainingProgress = false;
+	Handler timerHandler = new Handler();
 	
 	@Override
 	public void onConfigurationChanged(Configuration newConfig) {
@@ -82,30 +83,79 @@ public class TrainingAtProgress extends Activity  implements MyInterface, OnClic
         super.onCreate(savedInstanceState);
         db = new DB(this);
 		db.open();
-        setContentView(R.layout.training_at_progress_new_wheel);
+        mMenuDrawer.setContentView(R.layout.training_at_progress_new_wheel);
+        sp = PreferenceManager.getDefaultSharedPreferences(this); 
+        isTrainingProgress = sp.getBoolean(TRAINING_AT_PROGRESS, false);
+        Editor ed = sp.edit();
+    	ed.putBoolean(TRAINING_AT_PROGRESS, true);
+    	
+    	ed.apply();
+        startTime = System.currentTimeMillis();
         initUi(true);
+        
+        
         }
   
 	 @Override
-	public void onChoose() { 
-		 Toast.makeText(this,R.string.saved, Toast.LENGTH_SHORT).show();   
+	public void onChoose() {   
 		 BackupManager bm = new BackupManager(this);
-		 bm.dataChanged();
+		 Cursor tmpCursor = db.getDataMain(null, null, null, null, null, null);
+		 if (tmpCursor.getCount() > 10) {
+			 bm.dataChanged();
+			 Backuper backUP = new Backuper();
+			 boolean yes = backUP.backupToSd();
+			 if (yes){
+	     		Toast.makeText(getApplicationContext(),getResources().getString(R.string.backuped), Toast.LENGTH_LONG).show();
+	     		}
+		 	}
+		 Editor ed = sp.edit();
+		 ed.putBoolean(TRAINING_AT_PROGRESS, false);
+		 ed.apply();
+		 Log.d(LOG_TAG, "***\nPreference "+TRAINING_AT_PROGRESS+" finished");
 		 finish(); 
 		 }
+	 
+	Runnable timerRunnable = new Runnable() {
+
+	        @Override
+	        public void run() {
+	            long millis = System.currentTimeMillis() - startTime;
+	            seconds = (int) (millis / 1000);
+	            minutes = seconds / 60;
+	            seconds = seconds % 60;
+
+	            setInfo.setText(String.format("%d:%02d", minutes, seconds) + "  " +getResources().getString(R.string.set_number)+ " " + (set+1));
+
+	            timerHandler.postDelayed(this, 500);
+	        }
+	    };
+	    
+	@Override
+	public void onPause() {
+	    	saveSetsToPreferences();
+	        super.onPause();
+	        timerHandler.removeCallbacks(timerRunnable);
+	    }
+	   
+	@Override
+	public void onStop(){
+		 finish(); 
+		 super.onStop();
+	}
 	
 	private void initUi(boolean init){
-		ActionBar bar = getActionBar();
         Intent intent = getIntent();
         traName = intent.getStringExtra("trainingName");
-        bar.setTitle(traName);     
+       	Editor ed = sp.edit();
+       	ed.putString(TRAINING_NAME, traName);
+       	ed.apply();
+        
+        getActionBar().setTitle(traName);     
         reps = (WheelView) findViewById(R.id.wheelReps);
         reps.setVisibleItems(5); 
         reps.setWheelBackground(R.drawable.wheel_bg_holo);
         reps.setWheelForeground(R.drawable.wheel_val_holo);
         reps.setShadowColor(0xFFFFFF, 0xFFFFFF, 0xFFFFFF);
-        tv4 = (TextView)findViewById(R.id.textView4__);
-        tv3 = (TextView)findViewById(R.id.textView3__);
         reps.setViewAdapter(new RepsAdapter(this));
         weights = (WheelView) findViewById(R.id.wheelWeight);
         weights.setVisibleItems(5); 
@@ -123,98 +173,93 @@ public class TrainingAtProgress extends Activity  implements MyInterface, OnClic
         btnSave.setOnClickListener(this);
         setInfo = (TextView)findViewById(R.id.tvSetInfo);
         lvMain = (ListView)findViewById(R.id.lvSets);
-        anim = AnimationUtils.loadAnimation(this, R.anim.myalpha);
         lvMain.setChoiceMode(AbsListView.CHOICE_MODE_SINGLE);
- 
-        cursor = db.getDataTrainings(null, DB.TRA_NAME + "=?", strArrExtra, null, null, null);
-        cursor.moveToFirst();
         
-        exersices = db.convertStringToArray(cursor.getString(2)) ;
-        for (int i = 0; i < exersices.length; i++) {
-        	alMain.add(exersices[i]);
-        	Log.d(LOG_TAG, "*** Added exersice "+exersices[i]);
+        
+        Log.d(LOG_TAG, "getting cursor with TRA_NAME == "+traName);
+        cursor = db.getDataTrainings(null, DB.TRA_NAME + "=?", strArrExtra, null, null, null);
+        
+        if (cursor.moveToFirst()){
+        	exersices = db.convertStringToArray(cursor.getString(2)) ;
+        	 for (int i = 0; i < exersices.length; i++) {
+             	alMain.add(exersices[i]);
+             }
+        } else {
+        	Log.d(LOG_TAG, "ERROR curor is empty");
         }
         
-
-
-        if (init) {
-        	//setsPerExercises = new int[exersices.length];        
+       
+        if (init && isTrainingAtProgress == false) {       
 	        for (int i = 0; i < alMain.size(); i++){
 	        	alSet.add(0);
 	        }
+        } else if (init && isTrainingProgress == true) {
+        	alSet = restoreSetsFromPreferences();
         }
         adapter = new ArrayAdapter<String>(this,android.R.layout.simple_list_item_single_choice, alMain);
         lvMain.setAdapter(adapter);      
         SimpleDateFormat sdf = new SimpleDateFormat("dd.MM.yyyy");
         date = sdf.format(new Date(System.currentTimeMillis()));      
-        sp = PreferenceManager.getDefaultSharedPreferences(this);        
+        
         lvMain.setOnItemClickListener(new AdapterView.OnItemClickListener() {
         	@Override
         	public void onItemClick(AdapterView<?> parent, View itemClicked, int position,long id) {
         		checkedPosition = position;
-        		exeName = alMain.get(checkedPosition);
-        		set = alSet.get(checkedPosition);
-        		setInfo.setText(getResources().getString(R.string.set_number)+ " " + (set+1));
-        		tValue = db.getTimerValueByExerciseName(exeName);
-        		etTimer.setText(tValue);      		
-        		timerValue = Integer.parseInt(db.getTimerValueByExerciseName(exeName));
-        		oldReps = db.getLastReps(exeName, set);
-        		oldWeight = db.getLastWeight(exeName, set);
-        		if ( oldReps>0 && oldWeight>0 ){
-       				infoText.setText(getResources().getString( R.string.previous_result_was)+" "+oldWeight+"x"+oldReps);
-       				weights.setCurrentItem(oldWeight-1);
-       				reps.setCurrentItem(oldReps-1);
-       				
-       			}else {    
-       				infoText.setText("");
-       				}
-        		animate();
+        		initData(position);
         		}
         	});        
-        exeName = alMain.get(checkedPosition);
-        set = alSet.get(checkedPosition);
-		String tValue = db.getTimerValueByExerciseName(exeName);
-		etTimer.setText(tValue);
+
+        initData(0);
+        lvMain.setItemChecked(0, true);
+        
+        dlg1 = new Dialog1();
+        dlg1.setCancelable(false);
+        setInfo.setTextColor( getResources().getColor(R.color.holo_orange_dark) );
+        infoText.setTextColor( getResources().getColor(R.color.holo_orange_dark) );
+        tglTimerOn.setChecked(true);
+	}
+
+	private void initData(int position){
+		exeName = alMain.get(position);
+		set = alSet.get(position);
+		setInfo.setText(String.format("%d:%02d", minutes, seconds) + "  " +getResources().getString(R.string.set_number)+ " " + (set+1));
+		
+		tValue = db.getTimerValueByExerciseName(exeName);
+		etTimer.setText(tValue);      		
+		timerValue = Integer.parseInt(db.getTimerValueByExerciseName(exeName));
 		oldReps = db.getLastReps(exeName, set);
 		oldWeight = db.getLastWeight(exeName, set);
 		if ( oldReps>0 && oldWeight>0 ){
-			infoText.setText(getResources().getString( R.string.previous_result_was)+" "+oldWeight+"x"+oldReps);
-			weights.setCurrentItem(oldWeight-1);
-			reps.setCurrentItem(oldReps-1);
+				infoText.setText(getResources().getString( R.string.previous_result_was)+" "+oldWeight+"x"+oldReps);
+				weights.setCurrentItem(oldWeight-1);
+				reps.setCurrentItem(oldReps-1);
+				
 			}else {    
 				infoText.setText("");
 				}
-        dlg1 = new Dialog1();
-        dlg1.setCancelable(false);
-        etTimer.setText( db.getTimerValueByExerciseName(alMain.get(0)) );        
-        timerValue = Integer.parseInt(db.getTimerValueByExerciseName(exeName));
-        tglTimerOn.setChecked(true);
-        lvMain.setItemChecked(0, true);
-        setInfo.setText(getResources().getString(R.string.set_number)+ " " + (set+1));
-        setInfo.setTextColor( getResources().getColor(R.color.holo_orange_dark) );
-        infoText.setTextColor( getResources().getColor(R.color.holo_orange_dark) );
-        animate();        
 	}
-	
-	private void animate(){
-		infoText.startAnimation(anim);
-		setInfo.startAnimation(anim);
-		reps.startAnimation(anim);
-		weights.startAnimation(anim);
-		tv3.startAnimation(anim);
-		tv4.startAnimation(anim);
-		etTimer.startAnimation(anim);
-		btnSave.startAnimation(anim);
-		tglTimerOn.startAnimation(anim);
-	}
-	
+
 	protected void onResume() {
+		
+		
+		Log.d(LOG_TAG, "isTrainingAtProgress == "+isTrainingProgress);
+		
+
+		
+		if (isTrainingProgress ){
+			
+			alSet = restoreSetsFromPreferences();
+		}
+		initData(0);
+		
 	    turnOff = sp.getBoolean("toTurnOff", false);
 	    lvMain.setKeepScreenOn(!turnOff);
 	    vibrate = sp.getBoolean("vibrateOn", true);
 	    String vl = sp.getString("vibtateLenght", "2");
+	    
 	    vibrateLenght = Integer.parseInt(vl);
 	    vibrateLenght *= 1000;
+	    timerHandler.postDelayed(timerRunnable, 0);
 	    super.onResume();
 	  }
 	
@@ -257,12 +302,18 @@ public class TrainingAtProgress extends Activity  implements MyInterface, OnClic
 			intent.putExtra("ifAddingExe",true);
 			Log.d(LOG_TAG, "started activity for result with extra: "+traName);
 			startActivityForResult(intent, 1);
+		} else if (itemId == android.R.id.home){
+			if (mMenuDrawer.isActivated()) {
+				mMenuDrawer.closeMenu();
+			}else
+				mMenuDrawer.toggleMenu();
+			return true;
 		}
 		return false;    	
     }
 	
 	@Override
-	  protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+	protected void onActivityResult(int requestCode, int resultCode, Intent data) {
 	    if (data == null) {return;}
 	    long[] itemsChecked = data.getLongArrayExtra("return_array_of_exersices");
 	    for (int i = 0; i < itemsChecked.length; i++) {
@@ -274,7 +325,6 @@ public class TrainingAtProgress extends Activity  implements MyInterface, OnClic
 	    
 	  }
 
-	
 	@Override
 	public void onCheckedChanged(CompoundButton tglTimerOn, boolean isChecked) {
 		if (isChecked){
@@ -295,27 +345,60 @@ public class TrainingAtProgress extends Activity  implements MyInterface, OnClic
 	    return true;
 	  }
 	
+	public void saveSetsToPreferences(){
+		Log.d(LOG_TAG, "sets saving to preferences");
+		
+		StringBuilder str = new StringBuilder();
+		for (int i = 0; i < alSet.size() ; i++) {
+			
+		    str.append( alSet.get(i) ).append(",");
+		}
+		
+		sp.edit().putString(LIST_OF_SETS, str.toString()).apply();
+		Log.d(LOG_TAG, "sets saved to preferences");
+	}
+	
+	public ArrayList<Integer> restoreSetsFromPreferences(){
+		if ( sp.contains(LIST_OF_SETS)) {
+			Log.d(LOG_TAG, "sets restoring from preferences");
+			
+			String savedString = sp.getString(LIST_OF_SETS, "");
+			StringTokenizer st = new StringTokenizer(savedString, ",");
+			
+
+			ArrayList<Integer> array = new ArrayList<Integer>();
+			int size = st.countTokens();
+			for (int i = 0; i < size; i++) {
+				array.add( Integer.parseInt(st.nextToken()) );
+			}
+			
+			Log.d(LOG_TAG, "sets restored from preferences");
+			return array;
+		} else 
+			return null;
+		
+	}
+	
 	@Override
 	public void onClick(View arg0) {
 		int id = arg0.getId();		
+		pressButton(id);
 		if (id == R.id.btnSave) {
 			int wei = (weights.getCurrentItem() + 1);
 			int rep_s = (reps.getCurrentItem()+1);
 			String t = etTimer.getText().toString();
-			timerValue = Integer.parseInt(t);  			
-			exeName = alMain.get(checkedPosition);
+			timerValue = Integer.parseInt(t);  		
 			int tmp = alSet.get(checkedPosition);
 			tmp++;
 			alSet.set(checkedPosition, tmp);
 			set = alSet.get(checkedPosition);
-   			setInfo.setText(getResources().getString(R.string.set_number)+ " " + (set+1));
+			setInfo.setText(String.format("%d:%02d", minutes, seconds) + "  " +getResources().getString(R.string.set_number)+ " " + (set+1));
    			db.addRec_Main(traName, exeName, t, date, wei, rep_s, set);	
    			Toast.makeText(this,R.string.saved, Toast.LENGTH_SHORT).show();    			
    			oldReps = db.getLastReps(exeName, set);
    			oldWeight = db.getLastWeight(exeName, set);
    			if ( oldReps>0 && oldWeight>0 ){
    				infoText.setText(getResources().getString( R.string.previous_result_was)+" "+oldWeight+"x"+oldReps);
-   				animate();
    				weights.setCurrentItem(oldWeight-1);
    				reps.setCurrentItem(oldReps-1);
    			}else {    
@@ -329,12 +412,17 @@ public class TrainingAtProgress extends Activity  implements MyInterface, OnClic
 	
 	@Override
 	public void onBackPressed() {
-		dlg1.show(getFragmentManager(), "dlg1");
+		if (mMenuDrawer.isMenuVisible()) {
+			mMenuDrawer.closeMenu();
+		} else {
+			dlg1.show(getFragmentManager(), "dlg1");
+		}
 	}
 	
 	protected void onDestroy(){
+		 db.close();
 	    super.onDestroy();
-	    db.close();
+	   
 	  }
 	
 	private class RepsAdapter extends AbstractWheelTextAdapter {

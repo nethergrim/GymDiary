@@ -109,7 +109,6 @@ public class StartTrainingActivity extends BasicMenuActivity {
 		      int id = cursor_exe.getInt(0);	      
 		      Log.d(LOG_TAG, "going to delete id == "+id);
 		      
-		      
 		      db.delRec_Trainings(id);
 		      Toast.makeText(this, "Deleted", Toast.LENGTH_SHORT).show();
 		      cursor_exe.requery();
@@ -130,9 +129,7 @@ public class StartTrainingActivity extends BasicMenuActivity {
     
     @Override
 	  protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-	   // if (data == null) {return;}
 
-	    
 	  }
     
     

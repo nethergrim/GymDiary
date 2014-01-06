@@ -28,6 +28,7 @@
     <color name="holo_purple_dark">#9933CC</color>
     
     <color name="holo_orange_light">#FFBB33</color>
+    <color name="holo_orange_dark_alpha_half">#CCFF8800</color>
     <color name="holo_orange_dark">#FF8800</color>
     
     <color name="holo_red_light">#FF4444</color>

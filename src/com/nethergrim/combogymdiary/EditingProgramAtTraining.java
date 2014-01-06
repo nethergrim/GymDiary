@@ -22,7 +22,6 @@ public class EditingProgramAtTraining extends BasicMenuActivity  {
 	private SimpleCursorAdapter scAdapter;
 	private Cursor cursor;
 	private String traName;
-	private Cursor traCursor;
 	private String[] exercisesOld;
 	private boolean ifAddingExe = false;
 	private EditText etName;
@@ -41,14 +40,14 @@ public class EditingProgramAtTraining extends BasicMenuActivity  {
 		ifAddingExe = in.getBooleanExtra("ifAddingExe",false);
 		traName = in.getStringExtra("trName");
 		traID = in.getLongExtra("trID", 0);
-		Log.d(LOG_TAG, "traID == "+traID);
 		cursor = db.getDataExe(null, null, null, null, null, DB.EXE_NAME);
 	    String[] from = new String[] { DB.EXE_NAME };
 	    int[] to = new int[] { android.R.id.text1 };
 	    scAdapter = new SimpleCursorAdapter(this, android.R.layout.simple_list_item_multiple_choice,cursor,from,to);
 	    lvMain.setAdapter(scAdapter);
 	    if (ifAddingExe) {
-	    	etName.setAlpha(0);
+	    	etName.setEnabled(false);
+	    	etName.setText(traName);
 			getActionBar().setTitle(getResources().getString(R.string.add_an_exercise));
 		} else {
 			if (traID > 0) {
@@ -56,7 +55,6 @@ public class EditingProgramAtTraining extends BasicMenuActivity  {
 				RelativeLayout.LayoutParams lp = new RelativeLayout.LayoutParams(LayoutParams.WRAP_CONTENT, LayoutParams.WRAP_CONTENT);
 				lp.addRule(RelativeLayout.BELOW, R.id.etNewNameOfProgram);
 				lvMain.setLayoutParams(lp);
-				
 				initData();
 				setClicked();
 			}
@@ -100,47 +98,57 @@ public class EditingProgramAtTraining extends BasicMenuActivity  {
 		switch (item.getItemId()) {
 		case R.id.actionSaveEdited:
 			if (ifAddingExe) {
-				long[] arrIDs = lvMain.getCheckedItemIds();
-				Intent intent = new Intent();
-			    setResult(RESULT_OK, intent);
-			    intent.putExtra("return_array_of_exersices", arrIDs);
-			    finish();
+				addExe();
 			} else {
-				long[] arrIDs = lvMain.getCheckedItemIds();
-				
-
-				Cursor cur = db.getDataExe(null, null, null, null, null, null);
-				String[] args = new String[arrIDs.length];
-				if (cur.moveToFirst()){
-					int i = 0;
-					do{
-						for (int j = 0; j < arrIDs.length; j++){
-							if ( cur.getInt(0) == arrIDs[j]){
-								args[i] = cur.getString(2);
-								Log.d(LOG_TAG, "args[i] =="+args[i]);
-								i++;
-							}
-						}
-					}while(cur.moveToNext());
-					String newW = db.convertArrayToString(args);
-					db.updateRec_Training((int)traID, 1, etName.getText().toString());
-					db.updateRec_Training((int)traID, 2, newW);
-				
-				}
-				
-				
-				
-				
-				
-				Intent intent = new Intent();
-			    setResult(RESULT_OK, intent);
-			    finish();
+				editProgram();
 			}
 			break;
 		}
 		return super.onOptionsItemSelected(item);
 	}
-
+	
+	private void addExe(){
+		long[] arrIDs = lvMain.getCheckedItemIds();
+		Intent intent = new Intent();
+	    setResult(RESULT_OK, intent);
+	    intent.putExtra("return_array_of_exersices", arrIDs);
+	    finish();
+	}
+	
+	private void editProgram(){
+		long[] arrIDs = lvMain.getCheckedItemIds();
+		Cursor cur = db.getDataExe(null, null, null, null, null, null);
+		String[] args = new String[arrIDs.length];
+		if (cur.moveToFirst()){
+			int i = 0;
+			do{
+				for (int j = 0; j < arrIDs.length; j++){
+					if ( cur.getInt(0) == arrIDs[j]){
+						args[i] = cur.getString(2);
+						Log.d(LOG_TAG, "args[i] =="+args[i]);
+						i++;
+					}
+				}
+			}while(cur.moveToNext());
+			String newW = db.convertArrayToString(args);
+			db.updateRec_Training((int)traID, 1, etName.getText().toString());
+			db.updateRec_Training((int)traID, 2, newW);
+		}
+		Intent intent = new Intent();
+	    setResult(RESULT_OK, intent);
+	    finish();
+	    
+	}
+	
+	@Override
+	public void onBackPressed() {
+		if (ifAddingExe == false){
+			editProgram();
+		} else {
+			addExe();
+		}
+	}
+	
 	@Override
 	public void onClick(View arg0) {
 		pressButton(arg0.getId());		
@@ -150,6 +158,4 @@ public class EditingProgramAtTraining extends BasicMenuActivity  {
 		    super.onDestroy();
 		    db.close();
 		  }
-
-
 }

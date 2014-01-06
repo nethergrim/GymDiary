@@ -231,7 +231,6 @@ public class DB {
   
   public String getTimerValueByExerciseName (String exeName) 
   {	  
-	  Log.d(LOG_TAG, "going to search timer value for exe:"+exeName);
 	  String result = null;
 	  String[] cols = {DB.TIMER_VALUE};
 	  String[] tags = {exeName};
@@ -240,7 +239,6 @@ public class DB {
 		  result = c1.getString(0);
 	  } else
 		  Log.d(LOG_TAG, "ERROR There is no such exe:"+exeName);
-	  Log.d(LOG_TAG, "Result of GetTimerValueByExercise: "+result);
 	  return result;
   }
   

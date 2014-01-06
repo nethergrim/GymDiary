@@ -3,8 +3,11 @@ package com.nethergrim.combogymdiary;
 
 import android.app.ActionBar;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.database.Cursor;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 
@@ -21,6 +24,8 @@ public class MainActivity extends BasicMenuActivity {
 	public static MainActivity ma;
 	private DB db;
 	private Cursor cursor;
+	private SharedPreferences sp;
+	
 	
 
     @Override
@@ -29,6 +34,7 @@ public class MainActivity extends BasicMenuActivity {
         mMenuDrawer.setContentView(R.layout.activity_main);
         btnSettings   = (Button) findViewById(R.id.buttonSettings);
         btnStartT     = (Button) findViewById(R.id.buttonStartTraining);
+        
         btnExcersises = (Button) findViewById(R.id.buttonExcersisesList);
         btnWorklog    = (Button) findViewById(R.id.btnWorklog);
         btnCatalog	  = (Button) findViewById(R.id.btnCataloginMain);
@@ -49,6 +55,18 @@ public class MainActivity extends BasicMenuActivity {
 		if (cursor.getCount() < 10) {
 			initTable();
 		}
+    }
+    
+    @Override
+    public void onResume(){
+    	sp = PreferenceManager.getDefaultSharedPreferences(this);        
+        if (sp.getBoolean(TRAINING_AT_PROGRESS, false)) {
+        	btnStartT.setBackgroundColor(getResources().getColor(R.color.holo_orange_dark));
+        	btnStartT.setText(getResources().getString(R.string.continue_training));
+        } else {
+        	btnStartT.setText(getResources().getString(R.string.startTrainingButtonString));
+        }
+        super.onResume();
     }
     
     
@@ -97,8 +115,17 @@ public class MainActivity extends BasicMenuActivity {
 			Intent gotoSettings = new Intent(this,SettingsActivity.class);
 			startActivity(gotoSettings);
 		} else if (id == R.id.buttonStartTraining) {
-			Intent gotoStartTraining = new Intent (this,StartTrainingActivity.class);
-			startActivity(gotoStartTraining);
+			if (isTrainingAtProgress) {
+    			Intent start = new Intent(this,TrainingAtProgress.class);
+    			
+    			String str = sPref.getString(TRAINING_NAME, "");
+    			Log.d(LOG_TAG, "putting extra: TRA_NAME == "+str);
+    			start.putExtra("trainingName", str);
+    			startActivity(start);
+    		}else {
+    			Intent gotoStartTraining = new Intent (this,StartTrainingActivity.class);
+    			startActivity(gotoStartTraining);
+    		}
 		} else if (id == R.id.buttonExcersisesList) {
 			Intent gotoExersisesList = new Intent (this,ExersisesList.class);
 			startActivity(gotoExersisesList);
