@@ -90,11 +90,16 @@ public class TrainingAtProgress extends BasicMenuActivity  implements MyInterfac
         mMenuDrawer.setContentView(R.layout.training_at_progress_new_wheel);
         sp = PreferenceManager.getDefaultSharedPreferences(this); 
         isTrainingProgress = sp.getBoolean(TRAINING_AT_PROGRESS, false);
+        if (isTrainingProgress) {
+        	traName = sp.getString(TRAINING_NAME, "");
+        	Log.d(LOG_TAG, "Тренировка продолжается "+traName);
+        } else {
+        	traName = getIntent().getStringExtra("trainingName");
+        	Log.d(LOG_TAG, "Тренировка началась "+traName);
+        }
         
-      
+        sp.edit().putString(TRAINING_NAME, traName).apply();
         startService(new Intent(this, MyService.class));
-        
-        
         Editor ed = sp.edit();
     	ed.putBoolean(TRAINING_AT_PROGRESS, true);
     	ed.apply();
@@ -104,7 +109,7 @@ public class TrainingAtProgress extends BasicMenuActivity  implements MyInterfac
   
 	 @Override
 	public void onChoose() {   
-		 
+		 sp.edit().putString(TRAINING_NAME, "").apply();
 		 BackupManager bm = new BackupManager(this);
 		 Cursor tmpCursor = db.getDataMain(null, null, null, null, null, null);
 		 if (tmpCursor.getCount() > 10) {
@@ -118,7 +123,6 @@ public class TrainingAtProgress extends BasicMenuActivity  implements MyInterfac
 		 Editor ed = sp.edit();
 		 ed.putBoolean(TRAINING_AT_PROGRESS, false);
 		 ed.apply();
-		 Log.d(LOG_TAG, "***\nPreference "+TRAINING_AT_PROGRESS+" finished");
 		 stopService(new Intent(this, MyService.class));
 		 
 		 NotificationManager notificationManager = (NotificationManager)getSystemService(Context.NOTIFICATION_SERVICE);
@@ -147,18 +151,16 @@ public class TrainingAtProgress extends BasicMenuActivity  implements MyInterfac
 	public void onPause() {
 	    	saveSetsToPreferences();
 	    	saveTimerToPregerences();
+	    	sp.edit().putString(TRAINING_NAME, traName);
+	    	
 	    	
 	        super.onPause();
 	        timerHandler.removeCallbacks(timerRunnable);
 	    }
 	  
 	public void saveTimerToPregerences(){
-		Log.d(LOG_TAG, "timer saving to preferences");
-		
 		sp.edit().putInt(SECONDS, seconds).apply();
 		sp.edit().putInt(MINUTES, minutes).apply();
-		
-		Log.d(LOG_TAG, "timer saved to preferences");
 	}
 	
 	public void restoreTimerFromPreferences(){
@@ -168,16 +170,13 @@ public class TrainingAtProgress extends BasicMenuActivity  implements MyInterfac
 	
 	@Override
  	public void onStop(){
-		
 		 finish(); 
 		 super.onStop();
 	}
 	
 	private void initUi(boolean init){
-        Intent intent = getIntent();
-        traName = intent.getStringExtra("trainingName");
        	Editor ed = sp.edit();
-       	ed.putString(TRAINING_NAME, traName);
+       	
        	ed.apply();
         getActionBar().setTitle(traName);     
         reps = (WheelView) findViewById(R.id.wheelReps);
@@ -359,7 +358,6 @@ public class TrainingAtProgress extends BasicMenuActivity  implements MyInterfac
 	  }
 	
 	public void saveSetsToPreferences(){
-		Log.d(LOG_TAG, "sets saving to preferences");
 		
 		StringBuilder str = new StringBuilder();
 		for (int i = 0; i < alSet.size() ; i++) {
@@ -368,12 +366,10 @@ public class TrainingAtProgress extends BasicMenuActivity  implements MyInterfac
 		}
 		
 		sp.edit().putString(LIST_OF_SETS, str.toString()).apply();
-		Log.d(LOG_TAG, "sets saved to preferences");
 	}
 	
 	public ArrayList<Integer> restoreSetsFromPreferences(){
 		if ( sp.contains(LIST_OF_SETS)) {
-			Log.d(LOG_TAG, "sets restoring from preferences");
 			
 			String savedString = sp.getString(LIST_OF_SETS, "");
 			StringTokenizer st = new StringTokenizer(savedString, ",");
@@ -384,8 +380,6 @@ public class TrainingAtProgress extends BasicMenuActivity  implements MyInterfac
 			for (int i = 0; i < size; i++) {
 				array.add( Integer.parseInt(st.nextToken()) );
 			}
-			
-			Log.d(LOG_TAG, "sets restored from preferences");
 			return array;
 		} else 
 			return null;
