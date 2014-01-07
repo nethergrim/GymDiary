@@ -8,7 +8,7 @@
 
     <Button
         android:id="@+id/buttonStartTraining"
-        style="@style/HabraThemeButton"
+        android:background="@drawable/button_start_training"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="left"
@@ -99,17 +99,6 @@
         android:textColor="@android:color/white"
         android:textSize="@dimen/text20" />
 
-    <TextView
-        android:id="@+id/textView1"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentRight="true"
-        android:gravity="center_horizontal"
-        android:layout_below="@+id/buttonSettings"
-        android:layout_marginTop="2dp"
-        android:text="@string/happy_new_year"
-        android:textAppearance="?android:attr/textAppearanceLarge"
-        android:textColor="@color/holo_red_dark" />
+
 
 </RelativeLayout>

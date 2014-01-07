@@ -2,6 +2,12 @@
 <resources>
 
     <string name="sm">(sm)</string>
+    
+    <string name="training_started">Training Started</string>
+    <string name="finish_training">Finish training !</string>
+    <string name="training_finished">Training Finished</string>
+    
+    
     <string name="inch">(in)</string>
     <string name="kg">(kg)</string>
     <string name="happy_new_year">Happy New 2014 year !!!</string>

@@ -18,6 +18,7 @@
 -->
 
 <resources>
+    <color name="full_alpha">#0033B5E5</color>
     <color name="pressed_mybarstyle">#CC33B5E5</color>
     <color name="holo_green_light">#99CC00</color>
     <color name="holo_green_dark">#669900</color>

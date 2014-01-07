@@ -19,9 +19,12 @@ public abstract class BasicMenuActivity extends FragmentActivity implements OnCl
     protected final String LOG_TAG = "myLogs";
     protected Button btnMenu1,btnMenu2,btnMenu3,btnMenu4,btnMenuCatalog,btnMenuMeasurements;
     protected SharedPreferences sPref;
-    protected final String TRAINING_AT_PROGRESS = "training_at_progress";
-    protected final String LIST_OF_SETS = "list_of_sets";
-    protected final String TRAINING_NAME = "training_name";
+    protected final static  String TRAINING_AT_PROGRESS = "training_at_progress";
+    protected final static String LIST_OF_SETS = "list_of_sets";
+    public final static String TRAINING_NAME = "training_name";
+    public final static String TRA_ID = "training_id";
+    protected final  static  String MINUTES = "minutes";
+    protected final  static String SECONDS = "seconds";
     protected boolean isTrainingAtProgress;
     
     
@@ -62,11 +65,8 @@ public abstract class BasicMenuActivity extends FragmentActivity implements OnCl
         	btnMenu1.setBackgroundColor(getResources().getColor(R.color.holo_orange_dark_alpha_half));
         }else {
         	btnMenu1.setText(getResources().getString(R.string.startTrainingButtonString));
-        	
+        	btnMenu1.setBackgroundColor(getResources().getColor(R.color.full_alpha));
         }
-        
-        
-        
         super.onResume();
     }
     

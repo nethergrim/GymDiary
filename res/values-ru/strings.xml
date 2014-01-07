@@ -1,6 +1,12 @@
 <resources>
 
     <string name="sm">(см)</string>
+    
+    <string name="training_started">Тренировка началась</string>
+    <string name="finish_training">Закончите тренировку !</string>
+    <string name="training_finished">Тренировка окончена</string>
+    
+    
     <string name="inch">(дюйм)</string>
     <string name="kg">(кг)</string>
     <string name="pound">(ф.)</string>

@@ -10,7 +10,7 @@ import android.preference.PreferenceManager;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
-
+import android.widget.LinearLayout;
 
 
 public class MainActivity extends BasicMenuActivity {
@@ -21,12 +21,10 @@ public class MainActivity extends BasicMenuActivity {
 	private Button btnWorklog;
 	private Button btnCatalog;
 	private Button btnMeasurements;
-	public static MainActivity ma;
 	private DB db;
 	private Cursor cursor;
 	private SharedPreferences sp;
-	
-	
+	public static MainActivity ma;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -79,7 +77,6 @@ public class MainActivity extends BasicMenuActivity {
 		String[] exeBiceps = getResources().getStringArray(R.array.exercisesArrayBiceps);
 		String[] exeTriceps = getResources().getStringArray(R.array.exercisesArrayTriceps);
 		String[] exeAbs = getResources().getStringArray(R.array.exercisesArrayAbs);
-		
 
 		db.addRec_Trainings( getString(R.string.traLegs),db.convertArrayToString(exeLegs) );
 		db.addRec_Trainings( getString(R.string.traChest), db.convertArrayToString(exeChest) );
@@ -88,7 +85,6 @@ public class MainActivity extends BasicMenuActivity {
 		db.addRec_Trainings( getString(R.string.traBiceps),db.convertArrayToString(exeBiceps) );
 		db.addRec_Trainings( getString(R.string.traTriceps),db.convertArrayToString(exeTriceps));
 		db.addRec_Trainings( getString(R.string.traAbs),db.convertArrayToString(exeAbs));
-	
 		
 		for (int i = 0; i < exeLegs.length; i++) 
 			db.addRec_Exe(exeLegs[i], "90");
@@ -117,9 +113,7 @@ public class MainActivity extends BasicMenuActivity {
 		} else if (id == R.id.buttonStartTraining) {
 			if (isTrainingAtProgress) {
     			Intent start = new Intent(this,TrainingAtProgress.class);
-    			
     			String str = sPref.getString(TRAINING_NAME, "");
-    			Log.d(LOG_TAG, "putting extra: TRA_NAME == "+str);
     			start.putExtra("trainingName", str);
     			startActivity(start);
     		}else {

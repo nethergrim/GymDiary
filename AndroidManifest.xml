@@ -132,6 +132,7 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.nethergrim.combogymdiary.TrainingAtProgress" />
         </activity>
+        <service android:name="MyService" android:process=":myservice"></service>
     </application>
 
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" >

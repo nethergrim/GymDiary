@@ -9,7 +9,9 @@ import kankan.wheel.widget.WheelView;
 import kankan.wheel.widget.adapters.AbstractWheelTextAdapter;
 import android.annotation.SuppressLint;
 import android.app.DialogFragment;
+import android.app.NotificationManager;
 import android.app.ProgressDialog;
+import android.app.backup.BackupAgent;
 import android.app.backup.BackupManager;
 import android.content.Context;
 import android.content.Intent;
@@ -68,36 +70,41 @@ public class TrainingAtProgress extends BasicMenuActivity  implements MyInterfac
 	private ArrayList<Integer> alSet = new ArrayList<Integer>();
 	private int seconds;
 	private int minutes;
+	private int secDelta = 0,minDelta = 0;
 	private boolean isTrainingProgress = false;
 	Handler timerHandler = new Handler();
 	
 	@Override
 	public void onConfigurationChanged(Configuration newConfig) {
 	  super.onConfigurationChanged(newConfig);
-	  setContentView(R.layout.training_at_progress_new_wheel);
+	  mMenuDrawer.setContentView(R.layout.training_at_progress_new_wheel);
 	  initUi(false);
 	}
 	
 	@Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        
         db = new DB(this);
 		db.open();
         mMenuDrawer.setContentView(R.layout.training_at_progress_new_wheel);
         sp = PreferenceManager.getDefaultSharedPreferences(this); 
         isTrainingProgress = sp.getBoolean(TRAINING_AT_PROGRESS, false);
+        
+      
+        startService(new Intent(this, MyService.class));
+        
+        
         Editor ed = sp.edit();
     	ed.putBoolean(TRAINING_AT_PROGRESS, true);
-    	
     	ed.apply();
         startTime = System.currentTimeMillis();
         initUi(true);
-        
-        
         }
   
 	 @Override
 	public void onChoose() {   
+		 
 		 BackupManager bm = new BackupManager(this);
 		 Cursor tmpCursor = db.getDataMain(null, null, null, null, null, null);
 		 if (tmpCursor.getCount() > 10) {
@@ -112,6 +119,11 @@ public class TrainingAtProgress extends BasicMenuActivity  implements MyInterfac
 		 ed.putBoolean(TRAINING_AT_PROGRESS, false);
 		 ed.apply();
 		 Log.d(LOG_TAG, "***\nPreference "+TRAINING_AT_PROGRESS+" finished");
+		 stopService(new Intent(this, MyService.class));
+		 
+		 NotificationManager notificationManager = (NotificationManager)getSystemService(Context.NOTIFICATION_SERVICE);
+		 notificationManager.cancel(sp.getInt(BasicMenuActivity.TRA_ID, 1));
+		 
 		 finish(); 
 		 }
 	 
@@ -121,24 +133,42 @@ public class TrainingAtProgress extends BasicMenuActivity  implements MyInterfac
 	        public void run() {
 	            long millis = System.currentTimeMillis() - startTime;
 	            seconds = (int) (millis / 1000);
-	            minutes = seconds / 60;
-	            seconds = seconds % 60;
+	            minutes = (seconds / 60) + minDelta;
+	            seconds = (seconds % 60) + secDelta;
 
 	            setInfo.setText(String.format("%d:%02d", minutes, seconds) + "  " +getResources().getString(R.string.set_number)+ " " + (set+1));
 
 	            timerHandler.postDelayed(this, 500);
 	        }
 	    };
+
 	    
 	@Override
 	public void onPause() {
 	    	saveSetsToPreferences();
+	    	saveTimerToPregerences();
+	    	
 	        super.onPause();
 	        timerHandler.removeCallbacks(timerRunnable);
 	    }
-	   
+	  
+	public void saveTimerToPregerences(){
+		Log.d(LOG_TAG, "timer saving to preferences");
+		
+		sp.edit().putInt(SECONDS, seconds).apply();
+		sp.edit().putInt(MINUTES, minutes).apply();
+		
+		Log.d(LOG_TAG, "timer saved to preferences");
+	}
+	
+	public void restoreTimerFromPreferences(){
+		minDelta = sp.getInt(MINUTES, 0);
+		secDelta = sp.getInt(SECONDS, 0);
+	}
+	
 	@Override
-	public void onStop(){
+ 	public void onStop(){
+		
 		 finish(); 
 		 super.onStop();
 	}
@@ -149,7 +179,6 @@ public class TrainingAtProgress extends BasicMenuActivity  implements MyInterfac
        	Editor ed = sp.edit();
        	ed.putString(TRAINING_NAME, traName);
        	ed.apply();
-        
         getActionBar().setTitle(traName);     
         reps = (WheelView) findViewById(R.id.wheelReps);
         reps.setVisibleItems(5); 
@@ -174,11 +203,7 @@ public class TrainingAtProgress extends BasicMenuActivity  implements MyInterfac
         setInfo = (TextView)findViewById(R.id.tvSetInfo);
         lvMain = (ListView)findViewById(R.id.lvSets);
         lvMain.setChoiceMode(AbsListView.CHOICE_MODE_SINGLE);
-        
-        
-        Log.d(LOG_TAG, "getting cursor with TRA_NAME == "+traName);
         cursor = db.getDataTrainings(null, DB.TRA_NAME + "=?", strArrExtra, null, null, null);
-        
         if (cursor.moveToFirst()){
         	exersices = db.convertStringToArray(cursor.getString(2)) ;
         	 for (int i = 0; i < exersices.length; i++) {
@@ -187,8 +212,6 @@ public class TrainingAtProgress extends BasicMenuActivity  implements MyInterfac
         } else {
         	Log.d(LOG_TAG, "ERROR curor is empty");
         }
-        
-       
         if (init && isTrainingAtProgress == false) {       
 	        for (int i = 0; i < alMain.size(); i++){
 	        	alSet.add(0);
@@ -207,8 +230,7 @@ public class TrainingAtProgress extends BasicMenuActivity  implements MyInterfac
         		checkedPosition = position;
         		initData(position);
         		}
-        	});        
-
+        	});   
         initData(0);
         lvMain.setItemChecked(0, true);
         
@@ -223,7 +245,6 @@ public class TrainingAtProgress extends BasicMenuActivity  implements MyInterfac
 		exeName = alMain.get(position);
 		set = alSet.get(position);
 		setInfo.setText(String.format("%d:%02d", minutes, seconds) + "  " +getResources().getString(R.string.set_number)+ " " + (set+1));
-		
 		tValue = db.getTimerValueByExerciseName(exeName);
 		etTimer.setText(tValue);      		
 		timerValue = Integer.parseInt(db.getTimerValueByExerciseName(exeName));
@@ -240,23 +261,15 @@ public class TrainingAtProgress extends BasicMenuActivity  implements MyInterfac
 	}
 
 	protected void onResume() {
-		
-		
-		Log.d(LOG_TAG, "isTrainingAtProgress == "+isTrainingProgress);
-		
-
-		
 		if (isTrainingProgress ){
-			
+			restoreTimerFromPreferences();
 			alSet = restoreSetsFromPreferences();
 		}
 		initData(0);
-		
 	    turnOff = sp.getBoolean("toTurnOff", false);
 	    lvMain.setKeepScreenOn(!turnOff);
 	    vibrate = sp.getBoolean("vibrateOn", true);
 	    String vl = sp.getString("vibtateLenght", "2");
-	    
 	    vibrateLenght = Integer.parseInt(vl);
 	    vibrateLenght *= 1000;
 	    timerHandler.postDelayed(timerRunnable, 0);

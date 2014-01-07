@@ -71,7 +71,6 @@ public class AddingExersises extends BasicMenuActivity implements OnClickListene
 		if (id == R.id.btnSave && editOrNot == false){			
 			if (!name.isEmpty() && !timer.isEmpty()){
 				db.addRec_Exe(name , timer);
-			    		
 				etName.setText("");
 				etTimer.setText("");
 				Toast.makeText(this, R.string.saved, Toast.LENGTH_SHORT).show();
@@ -81,7 +80,6 @@ public class AddingExersises extends BasicMenuActivity implements OnClickListene
 			if (!name.isEmpty() && !timer.isEmpty()){
 				db.updateRec_Exe((int) exeID, DB.EXE_NAME, name);
 				db.updateRec_Exe((int) exeID, DB.TIMER_VALUE, timer);
-			  	
 				etName.setText("");
 				etTimer.setText("");
 				Toast.makeText(this, R.string.saved, Toast.LENGTH_SHORT).show();
