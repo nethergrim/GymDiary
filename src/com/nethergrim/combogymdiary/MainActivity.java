@@ -59,8 +59,13 @@ public class MainActivity extends BasicMenuActivity {
     public void onResume(){
     	sp = PreferenceManager.getDefaultSharedPreferences(this);        
         if (sp.getBoolean(TRAINING_AT_PROGRESS, false)) {
+        	startActivity(new Intent(this,TrainingAtProgress.class));
         	btnStartT.setBackgroundColor(getResources().getColor(R.color.holo_orange_dark));
         	btnStartT.setText(getResources().getString(R.string.continue_training));
+        	
+        	
+
+        	
         } else {
         	btnStartT.setText(getResources().getString(R.string.startTrainingButtonString));
         }

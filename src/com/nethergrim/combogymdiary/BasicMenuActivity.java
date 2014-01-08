@@ -23,6 +23,7 @@ public abstract class BasicMenuActivity extends FragmentActivity implements OnCl
     protected final static String LIST_OF_SETS = "list_of_sets";
     public final static String TRAINING_NAME = "training_name";
     public final static String TRA_ID = "training_id";
+    public final static String TRAINING_LIST = "training_list";
     protected final  static  String MINUTES = "minutes";
     protected final  static String SECONDS = "seconds";
     protected boolean isTrainingAtProgress;
@@ -52,13 +53,11 @@ public abstract class BasicMenuActivity extends FragmentActivity implements OnCl
     	
         if (sPref.contains(TRAINING_AT_PROGRESS)){
         	isTrainingAtProgress = sPref.getBoolean(TRAINING_AT_PROGRESS, false);
-        	Log.d(LOG_TAG, "Preference " + TRAINING_AT_PROGRESS+" == " + isTrainingAtProgress);
         	
         }else {
         	Editor editor = sPref.edit();
         	editor.putBoolean(TRAINING_AT_PROGRESS, false);
         	editor.commit();
-        	Log.d(LOG_TAG, "***\nPreference "+TRAINING_AT_PROGRESS+" created");
         }
         if (isTrainingAtProgress) {
         	btnMenu1.setText(getResources().getString(R.string.continue_training));

@@ -38,7 +38,7 @@ public class MyService extends Service {
 
     Notification notif = new Notification(R.drawable.ic_launcher, getResources().getString(R.string.training_started) , System.currentTimeMillis());
 
-    Intent intent = new Intent(this, TrainingAtProgress.class);
+    Intent intent = new Intent(this, MainActivity.class);
     Editor ed = sp.edit();
 	ed.putInt(BasicMenuActivity.TRA_ID, ID);
 	ed.apply();
@@ -47,7 +47,6 @@ public class MyService extends Service {
     PendingIntent pIntent = PendingIntent.getActivity(this, 0, intent, 0);
 
     notif.setLatestEventInfo(this, getResources().getString(R.string.finish_training), "", pIntent);
-    
 
     notif.flags |= Notification.FLAG_AUTO_CANCEL;
     notif.flags |= Notification.FLAG_NO_CLEAR;

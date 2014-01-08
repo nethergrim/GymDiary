@@ -11,7 +11,6 @@ import android.annotation.SuppressLint;
 import android.app.DialogFragment;
 import android.app.NotificationManager;
 import android.app.ProgressDialog;
-import android.app.backup.BackupAgent;
 import android.app.backup.BackupManager;
 import android.content.Context;
 import android.content.Intent;
@@ -46,7 +45,7 @@ import com.nethergrim.combogymdiary.Dialog1.MyInterface;
 @SuppressLint("SimpleDateFormat")
 public class TrainingAtProgress extends BasicMenuActivity  implements MyInterface, OnCheckedChangeListener{
 	
-	final String LOG_TAG = "myLogs";
+
 	private Button btnSave;	
 	private ToggleButton tglTimerOn;
 	private Boolean tglChecked = true,turnOff = false,vibrate = false;
@@ -111,6 +110,7 @@ public class TrainingAtProgress extends BasicMenuActivity  implements MyInterfac
 	public void onChoose() {   
 		 sp.edit().putString(TRAINING_NAME, "").apply();
 		 BackupManager bm = new BackupManager(this);
+		
 		 Cursor tmpCursor = db.getDataMain(null, null, null, null, null, null);
 		 if (tmpCursor.getCount() > 10) {
 			 bm.dataChanged();
@@ -137,8 +137,10 @@ public class TrainingAtProgress extends BasicMenuActivity  implements MyInterfac
 	        public void run() {
 	            long millis = System.currentTimeMillis() - startTime;
 	            seconds = (int) (millis / 1000);
-	            minutes = (seconds / 60) + minDelta;
-	            seconds = (seconds % 60) + secDelta;
+	            minutes += minDelta;
+	            seconds += secDelta;
+	            minutes = (seconds / 60) ;
+	            seconds = (seconds % 60) ;
 
 	            setInfo.setText(String.format("%d:%02d", minutes, seconds) + "  " +getResources().getString(R.string.set_number)+ " " + (set+1));
 
@@ -166,12 +168,8 @@ public class TrainingAtProgress extends BasicMenuActivity  implements MyInterfac
 	public void restoreTimerFromPreferences(){
 		minDelta = sp.getInt(MINUTES, 0);
 		secDelta = sp.getInt(SECONDS, 0);
-	}
-	
-	@Override
- 	public void onStop(){
-		 finish(); 
-		 super.onStop();
+		sp.edit().putInt(MINUTES, 0).apply();
+		sp.edit().putInt(SECONDS, 0).apply();
 	}
 	
 	private void initUi(boolean init){
@@ -212,7 +210,7 @@ public class TrainingAtProgress extends BasicMenuActivity  implements MyInterfac
         	Log.d(LOG_TAG, "ERROR curor is empty");
         }
         if (init && isTrainingAtProgress == false) {       
-	        for (int i = 0; i < alMain.size(); i++){
+	        for (int i = 0; i < 200; i++){
 	        	alSet.add(0);
 	        }
         } else if (init && isTrainingProgress == true) {
@@ -245,8 +243,11 @@ public class TrainingAtProgress extends BasicMenuActivity  implements MyInterfac
 		set = alSet.get(position);
 		setInfo.setText(String.format("%d:%02d", minutes, seconds) + "  " +getResources().getString(R.string.set_number)+ " " + (set+1));
 		tValue = db.getTimerValueByExerciseName(exeName);
-		etTimer.setText(tValue);      		
-		timerValue = Integer.parseInt(db.getTimerValueByExerciseName(exeName));
+		etTimer.setText(tValue);   
+		if (!exeName.isEmpty()){
+			timerValue = Integer.parseInt(db.getTimerValueByExerciseName(exeName));
+		}
+		
 		oldReps = db.getLastReps(exeName, set);
 		oldWeight = db.getLastWeight(exeName, set);
 		if ( oldReps>0 && oldWeight>0 ){
@@ -262,8 +263,8 @@ public class TrainingAtProgress extends BasicMenuActivity  implements MyInterfac
 	protected void onResume() {
 		if (isTrainingProgress ){
 			restoreTimerFromPreferences();
-			alSet = restoreSetsFromPreferences();
-		}
+			restoreSetsFromPreferences();
+		} 
 		initData(0);
 	    turnOff = sp.getBoolean("toTurnOff", false);
 	    lvMain.setKeepScreenOn(!turnOff);
@@ -333,6 +334,9 @@ public class TrainingAtProgress extends BasicMenuActivity  implements MyInterfac
 	    	alMain.add( db.getExerciseByID( (int) itemsChecked[i]) );
 	    	alSet.add(0);
 	    }
+	    for (int j = 0; j < 100; j++) {
+	    	alSet.add(0);
+	    }
 	    adapter.notifyDataSetChanged();
 	    
 	  }
@@ -364,22 +368,22 @@ public class TrainingAtProgress extends BasicMenuActivity  implements MyInterfac
 			
 		    str.append( alSet.get(i) ).append(",");
 		}
-		
 		sp.edit().putString(LIST_OF_SETS, str.toString()).apply();
+		
+
 	}
 	
 	public ArrayList<Integer> restoreSetsFromPreferences(){
-		if ( sp.contains(LIST_OF_SETS)) {
+		if ( sp.contains(LIST_OF_SETS) && sp.contains(TRAINING_LIST)) {
 			
 			String savedString = sp.getString(LIST_OF_SETS, "");
 			StringTokenizer st = new StringTokenizer(savedString, ",");
-			
-
 			ArrayList<Integer> array = new ArrayList<Integer>();
 			int size = st.countTokens();
 			for (int i = 0; i < size; i++) {
 				array.add( Integer.parseInt(st.nextToken()) );
 			}
+			alSet = array;
 			return array;
 		} else 
 			return null;
@@ -388,8 +392,13 @@ public class TrainingAtProgress extends BasicMenuActivity  implements MyInterfac
 	
 	@Override
 	public void onClick(View arg0) {
-		int id = arg0.getId();		
-		pressButton(id);
+		int id = arg0.getId();	
+		if (id == R.id.btnMenu1) {
+			mMenuDrawer.closeMenu();
+		}else {
+			pressButton(id);
+		}
+		
 		if (id == R.id.btnSave) {
 			int wei = (weights.getCurrentItem() + 1);
 			int rep_s = (reps.getCurrentItem()+1);
