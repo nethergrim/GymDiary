@@ -8,20 +8,29 @@ import android.content.Intent;
 import android.database.Cursor;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.ContextMenu;
+import android.view.MenuItem;
 import android.view.View;
+import android.view.ContextMenu.ContextMenuInfo;
 import android.widget.AdapterView;
+import android.widget.AdapterView.AdapterContextMenuInfo;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ListView;
 import android.widget.SimpleAdapter;
+import android.widget.Toast;
 
 public class HistoryActivity extends BasicMenuActivity {
 	
-	ListView lvMain;
-	String[] names;
-	String[] dates;
-	DB db;
-	Cursor cursor;
-	int size = 0;
+	private ListView lvMain;
+	private String[] names;
+	private String[] dates;
+	private DB db;
+	private static final int CM_DELETE_ID = 1;
+	private Cursor cursor;
+	private int size = 0;
+	SimpleAdapter adapter;
+	HashMap<String, Object> map;
+	ArrayList<HashMap<String, Object>> data;
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -34,7 +43,6 @@ public class HistoryActivity extends BasicMenuActivity {
 		cursor = db.getData_Main_GroupBy(DB.DATE);
 		if (cursor.moveToFirst()) {
 			size = cursor.getCount();
-			Log.d(LOG_TAG,"cursor size = "+size);
 			names = new String[size];
 			dates = new String[size];
 			int ii = 0;
@@ -43,8 +51,8 @@ public class HistoryActivity extends BasicMenuActivity {
 				dates[ii] = cursor.getString(3);		
 				ii++;				
 			}while (cursor.moveToNext());
-			ArrayList<HashMap<String, Object>> data = new ArrayList<HashMap<String, Object>>(names.length);
-			HashMap<String, Object> map;
+			data = new ArrayList<HashMap<String, Object>>(names.length);
+			
 			for (int i = 0; i < names.length; i++) {
 				map = new HashMap<String, Object>();
 				map.put("NameAndDate", names[i]+" ("+dates[i]+")");
@@ -52,7 +60,7 @@ public class HistoryActivity extends BasicMenuActivity {
 			}
 			String[] from = {"NameAndDate"};
 			int[] to = { R.id.tvCatName };
-			SimpleAdapter adapter = new SimpleAdapter(this, data, R.layout.list_with_arrow,from, to);
+			adapter = new SimpleAdapter(this, data, R.layout.list_with_arrow,from, to);
 			lvMain.setAdapter(adapter);
 			lvMain.setOnItemClickListener(new OnItemClickListener() 
 	    	{
@@ -63,8 +71,43 @@ public class HistoryActivity extends BasicMenuActivity {
 		        }
 	    	});
 		}
+		registerForContextMenu(lvMain);
 	}
 
+	
+	public void onCreateContextMenu(ContextMenu menu, View v,
+		      ContextMenuInfo menuInfo) {
+		    super.onCreateContextMenu(menu, v, menuInfo);
+		    menu.add(0, CM_DELETE_ID, 0, R.string.delete_record);
+		  }
+
+	public boolean onContextItemSelected(MenuItem item) {
+		AdapterContextMenuInfo acmi = (AdapterContextMenuInfo) item.getMenuInfo();
+	    if (item.getItemId() == CM_DELETE_ID) {	      
+	    	int pos = acmi.position;
+	    	cursor.moveToFirst();
+			while (cursor.getPosition() < pos) {
+				cursor.moveToNext();
+			}
+			String date = cursor.getString(3);
+	    	String[] args = {date};
+	    	
+	    	Cursor tmp = db.getDataMain(null, DB.DATE+"=?", args, null, null, null) ;
+	    	if (tmp.moveToFirst()) {
+	    		
+	    		do {
+	    			db.delRec_Main( tmp.getInt(0) );
+	    		} while (tmp.moveToNext());
+	    		Log.d(LOG_TAG, "pos == "+pos+" data.getPos == "+data.get(pos));
+	    		data.remove(pos);
+	    		adapter.notifyDataSetChanged();
+	    	}
+	    	
+	    	return true;
+	    }	    
+	    return super.onContextItemSelected(item);
+	  }
+	
 	
 	public void goToDetailed(int position,long ID) 
 	{
@@ -78,7 +121,6 @@ public class HistoryActivity extends BasicMenuActivity {
 		intent_history_detailed.putExtra("date", date);
 		intent_history_detailed.putExtra("trName", trName);
 		intent_history_detailed.putExtra("traID", ID);
-		Log.d(LOG_TAG,"put extra to AddingExersises: date " + date + " trName " + trName + " traID " + ID);
 	    startActivity(intent_history_detailed);	
 	}
 
