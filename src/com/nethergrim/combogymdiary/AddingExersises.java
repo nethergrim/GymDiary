@@ -17,7 +17,7 @@ public class AddingExersises extends BasicMenuActivity implements OnClickListene
 	private Button btnCreate; 					
 	private EditText etName, etTimer;		
 	private String exeName = "", timerV = "";
-	private int exePosition;
+	private int exePosition = 0;
 	private long exeID = 0;
 	private String defaultTimer;
 	private Boolean editOrNot = false;	

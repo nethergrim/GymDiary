@@ -68,6 +68,7 @@
         </activity>
         <activity
             android:name="com.nethergrim.combogymdiary.HistoryActivity"
+            android:configChanges="keyboardHidden|orientation|screenSize"
             android:parentActivityName="com.nethergrim.combogymdiary.MainActivity" >
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
