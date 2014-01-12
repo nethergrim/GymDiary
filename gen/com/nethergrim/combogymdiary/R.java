@@ -1240,7 +1240,6 @@ containing a value of this type.
         public static final int LL1=0x7f06009d;
         public static final int LL3=0x7f06009a;
         public static final int LLBottom=0x7f060096;
-        public static final int LLButtons=0x7f0600a0;
         public static final int LLTop=0x7f060093;
         public static final int abs__action_bar=0x7f06002e;
         public static final int abs__action_bar_container=0x7f06002d;
@@ -1281,9 +1280,9 @@ containing a value of this type.
         public static final int abs__textButton=0x7f060021;
         public static final int abs__title=0x7f060029;
         public static final int abs__up=0x7f06000b;
-        public static final int actionSaveEdited=0x7f0600aa;
-        public static final int action_add_measurements=0x7f0600ad;
-        public static final int action_settings=0x7f0600a9;
+        public static final int actionSaveEdited=0x7f0600a9;
+        public static final int action_add_measurements=0x7f0600ac;
+        public static final int action_settings=0x7f0600a8;
         public static final int adView=0x7f060091;
         public static final int adView1=0x7f060094;
         public static final int adView2=0x7f060041;
@@ -1325,18 +1324,18 @@ containing a value of this type.
         public static final int etMeasureWeight=0x7f060043;
         public static final int etNewNameOfProgram=0x7f06005a;
         public static final int etTimerValue=0x7f060071;
-        public static final int etTimerValueAtTraining=0x7f0600a1;
+        public static final int etTimerValueAtTraining=0x7f06009e;
         public static final int homeAsUp=0x7f060006;
         public static final int imageCat=0x7f06007e;
-        public static final int imageView1=0x7f0600a6;
-        public static final int imageView2=0x7f0600a4;
-        public static final int imageView3=0x7f0600a8;
+        public static final int imageView1=0x7f0600a5;
+        public static final int imageView2=0x7f0600a3;
+        public static final int imageView3=0x7f0600a7;
         public static final int infoText=0x7f060098;
-        public static final int itemEditTrainings=0x7f0600ab;
-        public static final int itemExit=0x7f0600ac;
-        public static final int item_Edit=0x7f0600af;
-        public static final int item_add=0x7f0600b0;
-        public static final int item_delete=0x7f0600ae;
+        public static final int itemEditTrainings=0x7f0600aa;
+        public static final int itemExit=0x7f0600ab;
+        public static final int item_Edit=0x7f0600ae;
+        public static final int item_add=0x7f0600af;
+        public static final int item_delete=0x7f0600ad;
         public static final int ivMain=0x7f060057;
         public static final int left=0x7f060010;
         public static final int linearLayout1=0x7f060063;
@@ -1346,9 +1345,9 @@ containing a value of this type.
         public static final int listView1=0x7f060076;
         public static final int listView11=0x7f06007b;
         public static final int ll2=0x7f060097;
-        public static final int llBtnBack=0x7f0600a3;
-        public static final int llBtnForward=0x7f0600a7;
-        public static final int llBtnSave=0x7f0600a5;
+        public static final int llBtnBack=0x7f0600a2;
+        public static final int llBtnForward=0x7f0600a6;
+        public static final int llBtnSave=0x7f0600a4;
         public static final int llLeft=0x7f060077;
         public static final int llRight=0x7f060073;
         public static final int lvExers=0x7f060059;
@@ -1406,7 +1405,7 @@ containing a value of this type.
         public static final int textView8=0x7f060050;
         public static final int textView8_=0x7f06006d;
         public static final int textView9=0x7f060052;
-        public static final int tglTurnOff=0x7f0600a2;
+        public static final int tglTurnOff=0x7f06009f;
         public static final int top=0x7f060011;
         public static final int tvCatName=0x7f06007d;
         public static final int tvDouble1=0x7f06007f;
@@ -1422,8 +1421,8 @@ containing a value of this type.
         public static final int view5=0x7f06008b;
         public static final int view6=0x7f06008e;
         public static final int viewTopDivider=0x7f060086;
-        public static final int wheelReps=0x7f06009f;
-        public static final int wheelWeight=0x7f06009e;
+        public static final int wheelReps=0x7f0600a1;
+        public static final int wheelWeight=0x7f0600a0;
         public static final int wrap_content=0x7f060000;
     }
     public static final class integer {
