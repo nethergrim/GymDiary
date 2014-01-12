@@ -140,7 +140,6 @@ public class DB {
 	  return mDB.query(DB_MAIN_TABLE, null, null, null, groupBy, null, null);
   }  
   
-  
   public int getLastReps(String _exeName, int _set) {
 	  int result = 0;
       String[] cols = {DB.REPS,DB.SET};
@@ -253,6 +252,52 @@ public class DB {
 	  return result;
   }
   
+  public int getThisWeight (int currentSet, String exeName) {
+	  int result = 0;
+	  String[] args = {exeName};
+	  Cursor c = mDB.query(DB_MAIN_TABLE, null, EXE_NAME+"=?", args, null, null, null);
+	  if (c.moveToLast()) {
+		  do {
+			  if (c.getInt(6) == currentSet) {
+				  result = c.getInt(4);
+				  break;
+			  }
+		  } while (c.moveToPrevious());
+	  }
+	  return result;
+  }
+  
+  public int getThisReps (int currentSet, String exeName) {
+	  int result = 0;
+	  String[] args = {exeName};
+	  Cursor c = mDB.query(DB_MAIN_TABLE, null, EXE_NAME+"=?", args, null, null, null);
+	  if (c.moveToLast()) {
+		  do {
+			  if (c.getInt(6) == currentSet) {
+				  result = c.getInt(5);
+				  break;
+			  }
+		  } while (c.moveToPrevious());
+	  }
+	  return result;
+  }
+  
+  public int getThisId (int currentSet, String exeName) {
+	  int result = 0;
+	  String[] args = {exeName};
+	  Cursor c = mDB.query(DB_MAIN_TABLE, null, EXE_NAME+"=?", args, null, null, null);
+	  if (c.moveToLast()) {
+		  do {
+			  if (c.getInt(6) == currentSet) {
+				  result = c.getInt(0);
+				  break;
+			  }
+		  } while (c.moveToPrevious());
+	  }
+	  Log.d(LOG_TAG, "returned ID == "+result );
+	  return result;
+  }
+  
   public Cursor getAllData_Main() {
 	    return mDB.query(DB_MAIN_TABLE, null, null, null, null, null, null);
 	  }
@@ -330,7 +375,7 @@ return mDB.query(DB_TRAININGS_TABLE, column, selection, selectionArgs, groupBy, 
 	    Log.d(LOG_TAG, "Added row: date = "+date+" part_of_body = "+part_of_body+" value = "+value);
 	  }
   
-  public void addRec_Main(String traName ,String exeName, String timer,String date, int weight, int reps,int set) {
+  public void addRec_Main(String traName ,String exeName,String date, int weight, int reps,int set) {
 	    ContentValues cv = new ContentValues();
 	    cv.put(EXE_NAME, exeName);
 	    cv.put(TRA_NAME, traName);
@@ -356,19 +401,26 @@ return mDB.query(DB_TRAININGS_TABLE, column, selection, selectionArgs, groupBy, 
 	  ContentValues cv = new ContentValues();
 	  if (colId == 1)   {
 		  cv.put(TRA_NAME ,data_str);		  
-	  }  else if (colId == 2) 	  {
+	  }  
+	  else if (colId == 2) 	  {
 		  cv.put(EXE_NAME,data_str);		  
-	  }  else if (colId == 3) 	  {
-		  cv.put(TIMER_VALUE, data_str);		  
-	  }  else if(colId == 4) 	  {
+	  }  
+	  else if (colId == 3) 	  {
 		  cv.put(DATE, data_str);
-	  }  else if (colId == 5) 	  {
+	  }  
+	  else if (colId == 4) 	  {
 		  cv.put(WEIGHT, data_int);
-	  } else if (colId == 6)	  {
+	  } 
+	  else if (colId == 5)	  {
 		  cv.put(REPS, data_int);
-	  } else if (colId == 7){
+	  } 
+	  else if (colId == 6){
 		  cv.put(SET, data_int);
 	  }
+	  Log.d(LOG_TAG, "Updating main DB:\n"
+			  +"id == "+Id
+			  +" colID == "+colId
+			  +" data == "+data_int );
 	  mDB.update(DB_MAIN_TABLE, cv, "_id = " + Id, null);
   }
   
@@ -381,7 +433,6 @@ return mDB.query(DB_TRAININGS_TABLE, column, selection, selectionArgs, groupBy, 
 	  }
 	  mDB.update(DB_TRAININGS_TABLE, cv, "_id = " + Id, null);
   }
-  
   
   public void delRec_Exe(long id) {
 	  mDB.delete(DB_EXE_TABLE, COLUMN_ID + " = " + id, null);

@@ -1,11 +1,11 @@
 <resources>
 
     <string name="sm">(см)</string>
-    
+    <string name="resaved">Исправлено</string>
     <string name="training_started">Тренировка началась</string>
     <string name="finish_training">Закончите тренировку !</string>
     <string name="training_finished">Тренировка окончена</string>
-    
+    <string name="resaved_text">Сохраненный результат:</string>
     
     <string name="inch">(дюйм)</string>
     <string name="kg">(кг)</string>
@@ -182,7 +182,8 @@
     <string name="traTriceps">Тренировка трицепсов</string>
     <string name="exe_catalog">Справочник упражнений</string>
 	<string name="traAbs">Тренировка пресса</string>
-	<string name="previous_result_was">Предыдущий результат: </string>
+	<string name="previous_result_was">Новый подход! Предыдущий результат: </string>
+	<string name="new_set">Новый подход!</string>
 	<string name="set_number">Подход №</string>
 	<string name="backup_database_to_sd">Сделать резервную копию данных на SD карточку</string>
 	<string name="replace_from_backup">Восстановить данные с SD карточки</string>

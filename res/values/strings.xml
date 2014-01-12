@@ -2,11 +2,11 @@
 <resources>
 
     <string name="sm">(sm)</string>
-    
+    <string name="resaved">re-saved</string>
     <string name="training_started">Training Started</string>
     <string name="finish_training">Finish training !</string>
     <string name="training_finished">Training Finished</string>
-    
+    <string name="resaved_text">Saved result was:</string>
     
     <string name="inch">(in)</string>
     <string name="kg">(kg)</string>
@@ -201,7 +201,8 @@
     <string name="traAbs">Abs training</string>
     <string name="exe_catalog">Exercises catalog</string>
     <string name="set_number">Set №</string>
-    <string name="previous_result_was">Previous result was: </string>
+    <string name="previous_result_was">New set! Previous result was: </string>
+    <string name="new_set">New set!</string>
     <string name="backup_database_to_sd">Backup database to SD card</string>
     <string name="replace_from_backup">Replase database from SD card</string>
     <string name="title_activity_temp">TempActivity</string>

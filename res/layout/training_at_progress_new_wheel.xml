@@ -147,13 +147,68 @@
                 android:textOff="@string/timer"
                 android:textOn="@string/timer" />
 
-            <Button
-                android:id="@+id/btnSave"
-                style="@style/HabraThemeButton"
-                android:layout_width="match_parent"
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:orientation="horizontal"
+            android:minHeight="48dp"
+            android:layout_height="wrap_content" >
+
+
+            <LinearLayout
+                android:id="@+id/llBtnBack"
+                android:layout_width="wrap_content"
                 android:layout_height="match_parent"
-                android:drawableLeft="@android:drawable/ic_input_add"
-                android:text="@string/save_and_rest" />
+                style="@style/HabraThemeButton"
+                android:layout_marginLeft="-2dp"
+                android:layout_marginRight="-2dp"
+                android:orientation="horizontal"
+                android:layout_weight="0.2" >
+
+                <ImageView
+                    android:id="@+id/imageView2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/ic_action_back" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/llBtnSave"
+                android:layout_width="wrap_content"
+                style="@style/HabraThemeButton"
+                android:orientation="horizontal"
+                android:layout_marginLeft="-3dp"
+                android:layout_weight="1"
+                android:layout_marginRight="-3dp"
+                android:layout_height="match_parent" >
+
+                <ImageView
+                    android:id="@+id/imageView1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/ic_action_save" />
+                
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/llBtnForward"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_marginLeft="-2dp"
+                android:layout_marginRight="-2dp"
+                style="@style/HabraThemeButton"
+                android:orientation="horizontal"
+                android:layout_weight="0.2" >
+
+                <ImageView
+                    android:id="@+id/imageView3"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/ic_action_forward" />
+
+            </LinearLayout>
 
         </LinearLayout>
 

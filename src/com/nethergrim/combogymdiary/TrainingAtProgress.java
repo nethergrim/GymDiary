@@ -28,11 +28,14 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.widget.AbsListView;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
-import android.widget.Button;
 import android.widget.CompoundButton;
+import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.CompoundButton.OnCheckedChangeListener;
 import android.widget.EditText;
 import android.widget.ListView;
@@ -45,8 +48,6 @@ import com.nethergrim.combogymdiary.Dialog1.MyInterface;
 @SuppressLint("SimpleDateFormat")
 public class TrainingAtProgress extends BasicMenuActivity  implements MyInterface, OnCheckedChangeListener{
 	
-
-	private Button btnSave;	
 	private ToggleButton tglTimerOn;
 	private Boolean tglChecked = true,turnOff = false,vibrate = false;
 	private EditText etTimer;
@@ -57,7 +58,7 @@ public class TrainingAtProgress extends BasicMenuActivity  implements MyInterfac
 	private String[] exersices;
 	private String traName = "", exeName = "",date = "",tValue="";
 	private SharedPreferences sp;
-	private int checkedPosition = 0,set = 0,oldReps = 0,oldWeight = 0,timerValue = 0,vibrateLenght=0;
+	private int checkedPosition = 0,set = 0, currentSet = 0,oldReps = 0,oldWeight = 0,timerValue = 0,vibrateLenght=0,currentId=0;
 	private DialogFragment dlg1;
 	private ProgressDialog pd;
 	private long startTime  = 0;
@@ -71,7 +72,10 @@ public class TrainingAtProgress extends BasicMenuActivity  implements MyInterfac
 	private int minutes;
 	private int secDelta = 0,minDelta = 0;
 	private boolean isTrainingProgress = false;
-	Handler timerHandler = new Handler();
+	private Handler timerHandler = new Handler();
+	private LinearLayout llBack, llSave, llForward, llBottom;
+	private ImageView ivBack,ivForward;
+	private Animation anim = null;
 	
 	@Override
 	public void onConfigurationChanged(Configuration newConfig) {
@@ -83,7 +87,6 @@ public class TrainingAtProgress extends BasicMenuActivity  implements MyInterfac
 	@Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        
         db = new DB(this);
 		db.open();
         mMenuDrawer.setContentView(R.layout.training_at_progress_new_wheel);
@@ -91,12 +94,9 @@ public class TrainingAtProgress extends BasicMenuActivity  implements MyInterfac
         isTrainingProgress = sp.getBoolean(TRAINING_AT_PROGRESS, false);
         if (isTrainingProgress) {
         	traName = sp.getString(TRAINING_NAME, "");
-        	Log.d(LOG_TAG, "Тренировка продолжается "+traName);
         } else {
         	traName = getIntent().getStringExtra("trainingName");
-        	Log.d(LOG_TAG, "Тренировка началась "+traName);
         }
-        
         sp.edit().putString(TRAINING_NAME, traName).apply();
         startService(new Intent(this, MyService.class));
         Editor ed = sp.edit();
@@ -110,7 +110,6 @@ public class TrainingAtProgress extends BasicMenuActivity  implements MyInterfac
 	public void onChoose() {   
 		 sp.edit().putString(TRAINING_NAME, "").apply();
 		 BackupManager bm = new BackupManager(this);
-		
 		 Cursor tmpCursor = db.getDataMain(null, null, null, null, null, null);
 		 if (tmpCursor.getCount() > 10) {
 			 bm.dataChanged();
@@ -124,7 +123,6 @@ public class TrainingAtProgress extends BasicMenuActivity  implements MyInterfac
 		 ed.putBoolean(TRAINING_AT_PROGRESS, false);
 		 ed.apply();
 		 stopService(new Intent(this, MyService.class));
-		 
 		 NotificationManager notificationManager = (NotificationManager)getSystemService(Context.NOTIFICATION_SERVICE);
 		 notificationManager.cancel(sp.getInt(BasicMenuActivity.TRA_ID, 1));
 		 
@@ -142,22 +140,20 @@ public class TrainingAtProgress extends BasicMenuActivity  implements MyInterfac
 	            minutes = (seconds / 60) ;
 	            seconds = (seconds % 60) ;
 
-	            setInfo.setText(String.format("%d:%02d", minutes, seconds) + "  " +getResources().getString(R.string.set_number)+ " " + (set+1));
+	            setInfo.setText(String.format("%d:%02d", minutes, seconds) + "  " +getResources().getString(R.string.set_number)+ " " + (currentSet+1));
 
 	            timerHandler.postDelayed(this, 500);
 	        }
 	    };
 
-	    
 	@Override
 	public void onPause() {
 	    	saveSetsToPreferences();
 	    	saveTimerToPregerences();
 	    	sp.edit().putString(TRAINING_NAME, traName);
-	    	
-	    	
+	    	timerHandler.removeCallbacks(timerRunnable);
 	        super.onPause();
-	        timerHandler.removeCallbacks(timerRunnable);
+	        
 	    }
 	  
 	public void saveTimerToPregerences(){
@@ -174,7 +170,18 @@ public class TrainingAtProgress extends BasicMenuActivity  implements MyInterfac
 	
 	private void initUi(boolean init){
        	Editor ed = sp.edit();
-       	
+       	llBottom = (LinearLayout)findViewById(R.id.LLBottom);
+       	anim = AnimationUtils.loadAnimation(this, R.anim.setfortraining);
+       	llBack = (LinearLayout) findViewById(R.id.llBtnBack);
+       	llSave = (LinearLayout) findViewById(R.id.llBtnSave);
+       	llForward = (LinearLayout)findViewById(R.id.llBtnForward);
+       	llBack.setOnClickListener(this);
+       	llSave.setOnClickListener(this);
+       	llForward.setOnClickListener(this);
+       	llBack.setEnabled(false);
+       	llForward.setEnabled(false);
+       	ivBack = (ImageView)findViewById(R.id.imageView2);
+       	ivForward = (ImageView)findViewById(R.id.imageView3);
        	ed.apply();
         getActionBar().setTitle(traName);     
         reps = (WheelView) findViewById(R.id.wheelReps);
@@ -195,8 +202,6 @@ public class TrainingAtProgress extends BasicMenuActivity  implements MyInterfac
         etTimer = (EditText) findViewById(R.id.etTimerValueAtTraining);
         etTimer.setOnClickListener(this);       
         infoText = (TextView)findViewById(R.id.infoText);
-        btnSave = (Button)findViewById(R.id.btnSave);
-        btnSave.setOnClickListener(this);
         setInfo = (TextView)findViewById(R.id.tvSetInfo);
         lvMain = (ListView)findViewById(R.id.lvSets);
         lvMain.setChoiceMode(AbsListView.CHOICE_MODE_SINGLE);
@@ -214,7 +219,7 @@ public class TrainingAtProgress extends BasicMenuActivity  implements MyInterfac
 	        	alSet.add(0);
 	        }
         } else if (init && isTrainingProgress == true) {
-        	alSet = restoreSetsFromPreferences();
+        	restoreSetsFromPreferences();
         }
         adapter = new ArrayAdapter<String>(this,android.R.layout.simple_list_item_single_choice, alMain);
         lvMain.setAdapter(adapter);      
@@ -225,6 +230,7 @@ public class TrainingAtProgress extends BasicMenuActivity  implements MyInterfac
         	@Override
         	public void onItemClick(AdapterView<?> parent, View itemClicked, int position,long id) {
         		checkedPosition = position;
+        		
         		initData(position);
         		}
         	});   
@@ -236,18 +242,38 @@ public class TrainingAtProgress extends BasicMenuActivity  implements MyInterfac
         setInfo.setTextColor( getResources().getColor(R.color.holo_orange_dark) );
         infoText.setTextColor( getResources().getColor(R.color.holo_orange_dark) );
         tglTimerOn.setChecked(true);
+        
 	}
 
+	private void initSetButtons(){
+		if (set > 0 && currentSet > 0) {
+			llBack.setEnabled(true);
+			ivBack.setAlpha(1.0F);
+		} else {
+			llBack.setEnabled(false);
+			ivBack.setAlpha(0.35F);
+			}
+		if (currentSet < set) {
+			llForward.setEnabled(true);
+			ivForward.setAlpha(1.0F);
+		} else { 
+			llForward.setEnabled(false);
+			ivForward.setAlpha(0.35F);
+		}
+	}
+	
 	private void initData(int position){
 		exeName = alMain.get(position);
 		set = alSet.get(position);
-		setInfo.setText(String.format("%d:%02d", minutes, seconds) + "  " +getResources().getString(R.string.set_number)+ " " + (set+1));
+		currentSet = set;
+		setInfo.setText(String.format("%d:%02d", minutes, seconds) + "  " +getResources().getString(R.string.set_number)+ " " + (set + 1));
 		tValue = db.getTimerValueByExerciseName(exeName);
 		etTimer.setText(tValue);   
 		if (!exeName.isEmpty()){
 			timerValue = Integer.parseInt(db.getTimerValueByExerciseName(exeName));
 		}
 		
+		initSetButtons();
 		oldReps = db.getLastReps(exeName, set);
 		oldWeight = db.getLastWeight(exeName, set);
 		if ( oldReps>0 && oldWeight>0 ){
@@ -256,12 +282,13 @@ public class TrainingAtProgress extends BasicMenuActivity  implements MyInterfac
 				reps.setCurrentItem(oldReps-1);
 				
 			}else {    
-				infoText.setText("");
+				infoText.setText(getResources().getString(R.string.new_set));
 				}
 	}
 
 	protected void onResume() {
 		if (isTrainingProgress ){
+			
 			restoreTimerFromPreferences();
 			restoreSetsFromPreferences();
 		} 
@@ -345,13 +372,11 @@ public class TrainingAtProgress extends BasicMenuActivity  implements MyInterfac
 	public void onCheckedChanged(CompoundButton tglTimerOn, boolean isChecked) {
 		if (isChecked){
 			tglChecked = true;
-			btnSave.setText(R.string.save_and_rest);
 			etTimer.setEnabled(true);
 		}
 		else{
 			tglChecked = false;
 			etTimer.setEnabled(false);
-			btnSave.setText(R.string.save);
 		}			
 	}	
 	
@@ -373,8 +398,8 @@ public class TrainingAtProgress extends BasicMenuActivity  implements MyInterfac
 
 	}
 	
-	public ArrayList<Integer> restoreSetsFromPreferences(){
-		if ( sp.contains(LIST_OF_SETS) && sp.contains(TRAINING_LIST)) {
+	public void restoreSetsFromPreferences(){
+		if ( sp.contains(LIST_OF_SETS)) {
 			
 			String savedString = sp.getString(LIST_OF_SETS, "");
 			StringTokenizer st = new StringTokenizer(savedString, ",");
@@ -384,32 +409,31 @@ public class TrainingAtProgress extends BasicMenuActivity  implements MyInterfac
 				array.add( Integer.parseInt(st.nextToken()) );
 			}
 			alSet = array;
-			return array;
-		} else 
-			return null;
-		
+			Log.d(LOG_TAG, "restoring from prefereces");
+		} 
 	}
 	
 	@Override
 	public void onClick(View arg0) {
 		int id = arg0.getId();	
+		initSetButtons();
+		Log.d(LOG_TAG, "currentSet == "+currentSet+" set == "+set);
 		if (id == R.id.btnMenu1) {
 			mMenuDrawer.closeMenu();
 		}else {
 			pressButton(id);
 		}
-		
-		if (id == R.id.btnSave) {
+		if (id == R.id.llBtnSave && currentSet == set) {
 			int wei = (weights.getCurrentItem() + 1);
 			int rep_s = (reps.getCurrentItem()+1);
-			String t = etTimer.getText().toString();
-			timerValue = Integer.parseInt(t);  		
 			int tmp = alSet.get(checkedPosition);
 			tmp++;
 			alSet.set(checkedPosition, tmp);
 			set = alSet.get(checkedPosition);
 			setInfo.setText(String.format("%d:%02d", minutes, seconds) + "  " +getResources().getString(R.string.set_number)+ " " + (set+1));
-   			db.addRec_Main(traName, exeName, t, date, wei, rep_s, set);	
+   			db.addRec_Main(traName, exeName, date, wei, rep_s, set);	
+   			currentSet = set;
+   			initSetButtons();
    			Toast.makeText(this,R.string.saved, Toast.LENGTH_SHORT).show();    			
    			oldReps = db.getLastReps(exeName, set);
    			oldWeight = db.getLastWeight(exeName, set);
@@ -418,12 +442,52 @@ public class TrainingAtProgress extends BasicMenuActivity  implements MyInterfac
    				weights.setCurrentItem(oldWeight-1);
    				reps.setCurrentItem(oldReps-1);
    			}else {    
-   				infoText.setText("");
+   				infoText.setText(getResources().getString(R.string.new_set));
    				}
    			if (tglChecked) {
    				goDialogProgress();    				
    			}
+		}else if (id ==R.id.llBtnSave && currentSet < set){
+			int wei = (weights.getCurrentItem() + 1);
+			int rep_s = (reps.getCurrentItem()+1);
+			
+			
+			db.updateRec_Main(currentId, 4, null, wei);
+			db.updateRec_Main(currentId, 5, null, rep_s);
+			
+			
+			Toast.makeText(this,R.string.resaved, Toast.LENGTH_SHORT).show();
+			currentSet = set;
+			initData(checkedPosition);
+		} else if ( id == R.id.llBtnBack) {
+			if (currentSet > 0) {
+				llBottom.startAnimation(anim);
+				currentSet --; 
+				int weitghsS = db.getThisWeight(currentSet+1, exeName) -1;
+				int repsS = db.getThisReps(currentSet+1, exeName)  -1;
+				currentId = db.getThisId(currentSet+1, exeName) ;
+				
+				weights.setCurrentItem(weitghsS);
+				reps.setCurrentItem(repsS);
+				infoText.setText(getResources().getString( R.string.resaved_text)+" " + (weitghsS+1) +"x"+(repsS+1));
+			}
+			
+			
+		}else if ( id == R.id.llBtnForward){
+			if (currentSet < set-1 ) {
+				llBottom.startAnimation(anim);
+				currentSet ++; 
+				int weitghsS = db.getThisWeight(currentSet+1, exeName) -1;
+				int repsS = db.getThisReps(currentSet+1, exeName)  -1;
+				weights.setCurrentItem(weitghsS);
+				reps.setCurrentItem(repsS);
+				infoText.setText(getResources().getString( R.string.resaved_text)+" " + (weitghsS+1) +"x"+(repsS+1));
+			} else if (currentSet  == set -1) {
+				llBottom.startAnimation(anim);
+				initData(checkedPosition);
+			}
 		}
+		
 	}	
 	
 	@Override
