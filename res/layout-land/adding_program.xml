@@ -50,6 +50,7 @@
             style="@style/HabraThemeButton"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:textColor="@android:color/white"
             android:layout_margin="5dp"
             android:drawableLeft="@android:drawable/ic_input_add"
             android:text="@string/Create" />

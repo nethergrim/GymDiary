@@ -85,6 +85,7 @@
                 android:id="@+id/btnSave"
                 style="@style/HabraThemeButton"
                 android:layout_width="match_parent"
+                android:textColor="@android:color/white"
                 android:layout_height="wrap_content"
                 android:layout_margin="5dp"
                 android:drawableLeft="@android:drawable/ic_input_add"

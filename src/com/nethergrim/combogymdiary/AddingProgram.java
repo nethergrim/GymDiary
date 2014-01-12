@@ -33,7 +33,7 @@ public class AddingProgram extends BasicMenuActivity{
         db = new DB(this);
 		db.open();
 		String[] cols = {DB.COLUMN_ID,DB.EXE_NAME,DB.TIMER_VALUE};
-		cursor = db.getDataExe(cols, null, null, null, null, null);
+		cursor = db.getDataExe(cols, null, null, null, null, DB.EXE_NAME);
 		startManagingCursor(cursor);		
 		String[] from = new String[] {DB.EXE_NAME};
 		int[] to = new int[] { android.R.id.text1, };

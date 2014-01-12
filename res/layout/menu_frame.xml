@@ -41,18 +41,6 @@
             android:layout_below="@+id/btnMenu2"
             android:background="@android:color/holo_blue_light" />
 
-        <View
-            android:id="@+id/viewTopDivider"
-            android:layout_width="match_parent"
-            android:layout_height="1dip"
-            android:layout_alignParentLeft="true"
-            android:layout_alignParentRight="true"
-            android:layout_alignParentTop="true"
-            android:layout_marginLeft="8dp"
-            android:layout_marginTop="8dp"
-            android:layout_marginRight="10dp"
-            android:background="@android:color/holo_blue_light" />
-
         <Button
             android:id="@+id/btnMenu3"
             android:layout_width="wrap_content"
@@ -90,7 +78,6 @@
             android:layout_height="wrap_content"
             android:layout_alignParentLeft="true"
             android:layout_alignParentRight="true"
-            android:layout_below="@+id/viewTopDivider"
             android:layout_marginLeft="8dp"
             android:layout_marginRight="8dp"
             android:background="?android:attr/selectableItemBackground"

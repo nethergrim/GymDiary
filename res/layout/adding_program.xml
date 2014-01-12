@@ -42,6 +42,7 @@
         android:layout_alignParentLeft="true"
         android:layout_alignParentRight="true"
         android:layout_margin="5dp"
+        android:textColor="@android:color/white"
         android:drawableLeft="@android:drawable/ic_input_add"
         android:text="@string/Create" />
 

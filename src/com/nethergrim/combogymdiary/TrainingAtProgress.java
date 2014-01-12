@@ -416,8 +416,6 @@ public class TrainingAtProgress extends BasicMenuActivity  implements MyInterfac
 	@Override
 	public void onClick(View arg0) {
 		int id = arg0.getId();	
-		initSetButtons();
-		Log.d(LOG_TAG, "currentSet == "+currentSet+" set == "+set);
 		if (id == R.id.btnMenu1) {
 			mMenuDrawer.closeMenu();
 		}else {
@@ -450,12 +448,8 @@ public class TrainingAtProgress extends BasicMenuActivity  implements MyInterfac
 		}else if (id ==R.id.llBtnSave && currentSet < set){
 			int wei = (weights.getCurrentItem() + 1);
 			int rep_s = (reps.getCurrentItem()+1);
-			
-			
 			db.updateRec_Main(currentId, 4, null, wei);
 			db.updateRec_Main(currentId, 5, null, rep_s);
-			
-			
 			Toast.makeText(this,R.string.resaved, Toast.LENGTH_SHORT).show();
 			currentSet = set;
 			initData(checkedPosition);
@@ -466,7 +460,6 @@ public class TrainingAtProgress extends BasicMenuActivity  implements MyInterfac
 				int weitghsS = db.getThisWeight(currentSet+1, exeName) -1;
 				int repsS = db.getThisReps(currentSet+1, exeName)  -1;
 				currentId = db.getThisId(currentSet+1, exeName) ;
-				
 				weights.setCurrentItem(weitghsS);
 				reps.setCurrentItem(repsS);
 				infoText.setText(getResources().getString( R.string.resaved_text)+" " + (weitghsS+1) +"x"+(repsS+1));
@@ -487,6 +480,7 @@ public class TrainingAtProgress extends BasicMenuActivity  implements MyInterfac
 				initData(checkedPosition);
 			}
 		}
+		initSetButtons();
 		
 	}	
 	
