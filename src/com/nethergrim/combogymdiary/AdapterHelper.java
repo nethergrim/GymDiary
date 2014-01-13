@@ -15,47 +15,38 @@ public class AdapterHelper {
   
   
   ArrayList<Map<String, String>> groupData;
-  
   ArrayList<Map<String, String>> childDataItem;
-
   ArrayList<ArrayList<Map<String, String>>> childData;
-  // в итоге получится childData = ArrayList<childDataItem>
-  
   Map<String, String> m;
+  String[] groups;
+  String[] pectoral;
+  String[] legs;
+  String[] back;
+  String[] deltoids;
+  String[] biceps;
+  String[] triceps;
+  String[] abs;
   
-
+  Context ctx;
   AdapterHelper(Context _ctx) {
-    //ctx = _ctx;    
+    ctx = _ctx;    
+    
+    groups = ctx.getResources().getStringArray(R.array.MuscleGroupsArray);
+    pectoral = ctx.getResources().getStringArray(R.array.exercisesArrayChest);
+    legs = ctx.getResources().getStringArray(R.array.exercisesArrayLegs);
+    back = ctx.getResources().getStringArray(R.array.exercisesArrayBack);
+    deltoids = ctx.getResources().getStringArray(R.array.exercisesArrayShoulders);
+    biceps = ctx.getResources().getStringArray(R.array.exercisesArrayBiceps);
+    triceps = ctx.getResources().getStringArray(R.array.exercisesArrayTriceps);
+    abs = ctx.getResources().getStringArray(R.array.exercisesArrayAbs);
   }
-  private static Context ctx;
 
-  
-  
-  public static void setContext(Context mcontext) {
-      if (ctx == null)
-    	  ctx = mcontext;
-      ctx.getResources();
-  }
-  
-  String[] groups = ctx.getResources().getStringArray(R.array.MuscleGroupsArray);
-  String[] pectoral = ctx.getResources().getStringArray(R.array.exercisesArrayChest);
-  String[] legs = ctx.getResources().getStringArray(R.array.exercisesArrayLegs);
-  String[] back = ctx.getResources().getStringArray(R.array.exercisesArrayBack);
-  String[] deltoids = ctx.getResources().getStringArray(R.array.exercisesArrayShoulders);
-  String[] biceps = ctx.getResources().getStringArray(R.array.exercisesArrayBiceps);
-  String[] triceps = ctx.getResources().getStringArray(R.array.exercisesArrayTriceps);
-  String[] abs = ctx.getResources().getStringArray(R.array.exercisesArrayAbs);
-  
-  
   
   SimpleExpandableListAdapter adapter;
   
   
   SimpleExpandableListAdapter getAdapter() {
     
-	  
-
-	  
         groupData = new ArrayList<Map<String, String>>();
         for (String group : groups) {
           m = new HashMap<String, String>();
@@ -64,7 +55,6 @@ public class AdapterHelper {
         }
         
         String groupFrom[] = new String[] {ATTR_GROUP_NAME};
-       
         int groupTo[] = new int[] {android.R.id.text1};
         
 
@@ -132,12 +122,11 @@ public class AdapterHelper {
         adapter = new SimpleExpandableListAdapter(
             ctx,
             groupData,
-            R.layout.simple_expandable_list_item_1,
+            android.R.layout.simple_expandable_list_item_1,
             groupFrom,
             groupTo,
             childData,
-            R.layout.my_list_item_3,
-            //android.R.layout.simple_list_item_1,
+            android.R.layout.simple_list_item_1,
             childFrom,
             childTo);
         

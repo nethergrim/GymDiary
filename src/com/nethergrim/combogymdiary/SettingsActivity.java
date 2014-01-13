@@ -1,24 +1,25 @@
 package com.nethergrim.combogymdiary;
 
 
+import com.nethergrim.combogymdiary.DialogRestoreFromBackup.MyInterface;
+
 import android.app.ActionBar;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.preference.Preference;
 import android.preference.PreferenceActivity;
+import android.app.DialogFragment;
 import android.view.MenuItem;
 import android.widget.Toast;
 
 
 
-public class SettingsActivity extends PreferenceActivity  {
+public class SettingsActivity extends PreferenceActivity implements MyInterface {
 	
 
 
 	public static SettingsActivity sa;
-	
-	
-
+	DialogFragment dlg2;
     protected SharedPreferences sPref;
 
 	
@@ -30,6 +31,7 @@ public class SettingsActivity extends PreferenceActivity  {
         ActionBar bar = getActionBar();
         bar.setDisplayHomeAsUpEnabled(true);
         bar.setTitle(R.string.settingsButtonString);
+        dlg2 = new DialogRestoreFromBackup();
         Preference btnBackup = (Preference)findPreference("btnBackup");
         btnBackup.setOnPreferenceClickListener(new Preference.OnPreferenceClickListener() {
                         @Override
@@ -47,31 +49,32 @@ public class SettingsActivity extends PreferenceActivity  {
                             return true;
                         }
                     });
-        
         Preference btnRestore = (Preference)findPreference("btnRestore");
         btnRestore.setOnPreferenceClickListener(new Preference.OnPreferenceClickListener() {
                         @Override
                         public boolean onPreferenceClick(Preference arg0) { 
-                        	
-                        	Backuper backUP = new Backuper();
-                        	boolean yes = backUP.restoreBackup();
-                        	
-                        	
-                        	if (yes){
-                        		Toast.makeText(getApplicationContext(),getResources().getString(R.string.restored), Toast.LENGTH_SHORT).show();
-                        		
-                        	}
-                        	else
-                        		Toast.makeText(getApplicationContext(),getResources().getString(R.string.restore_error), Toast.LENGTH_SHORT).show();
-                        	
-                        	DB db = new DB(getApplicationContext());
-                    		db.open();
-                    		db.close();
+                        	dlg2.show(getFragmentManager(), "dlg2");
                             return true;
                         }
                     });
     }
 
+    
+
+	 @Override
+	public void onChoose() {   
+		Backuper backUP = new Backuper();
+     	boolean yes = backUP.restoreBackup();
+     	if (yes){
+     		Toast.makeText(getApplicationContext(),getResources().getString(R.string.restored), Toast.LENGTH_SHORT).show();
+     	}
+     	else
+     		Toast.makeText(getApplicationContext(),getResources().getString(R.string.restore_error), Toast.LENGTH_SHORT).show();
+     	DB db = new DB(getApplicationContext());
+ 		db.open();
+ 		db.close();
+	 }
+    
     @Override
    	public boolean onOptionsItemSelected(MenuItem item) {
    		switch (item.getItemId()) {
@@ -81,7 +84,7 @@ public class SettingsActivity extends PreferenceActivity  {
    		}
    		return false;
    	}
-
     
+
 
 }

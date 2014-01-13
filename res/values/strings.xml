@@ -7,7 +7,8 @@
     <string name="finish_training">Finish training !</string>
     <string name="training_finished">Training Finished</string>
     <string name="resaved_text">Saved result was:</string>
-    
+    <string name="attention">Attention!</string>
+    <string name="restoreAreYouSure">Are you sure you want to restore all the data from SD card? It will delete all your data</string>
     <string name="inch">(in)</string>
     <string name="kg">(kg)</string>
     <string name="happy_new_year">Happy New 2014 year !!!</string>

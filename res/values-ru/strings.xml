@@ -6,7 +6,8 @@
     <string name="finish_training">Закончите тренировку !</string>
     <string name="training_finished">Тренировка окончена</string>
     <string name="resaved_text">Сохраненный результат:</string>
-    
+    <string name="attention">Внимание!</string>
+    <string name="restoreAreYouSure">Вы уверены что хотите восстановить данные с SD карты?\nЭто действие перезапишет все ваши данные!</string>
     <string name="inch">(дюйм)</string>
     <string name="kg">(кг)</string>
     <string name="pound">(ф.)</string>

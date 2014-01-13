@@ -30,7 +30,6 @@ public class MainActivity extends BasicMenuActivity {
         mMenuDrawer.setContentView(R.layout.activity_main);
         btnSettings   = (Button) findViewById(R.id.buttonSettings);
         btnStartT     = (Button) findViewById(R.id.buttonStartTraining);
-        
         btnExcersises = (Button) findViewById(R.id.buttonExcersisesList);
         btnWorklog    = (Button) findViewById(R.id.btnWorklog);
         btnCatalog	  = (Button) findViewById(R.id.btnCataloginMain);
@@ -42,7 +41,6 @@ public class MainActivity extends BasicMenuActivity {
         btnStartT.setOnClickListener(this);
         btnWorklog.setOnClickListener(this);
         ma=this;
-        AdapterHelper.setContext(getApplicationContext());
         ActionBar bar = getActionBar();
         bar.setTitle(R.string.app_name); 
         db = new DB(this);

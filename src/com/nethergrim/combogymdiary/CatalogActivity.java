@@ -25,7 +25,7 @@ public class CatalogActivity extends BasicMenuActivity{
 		super.onCreate(savedInstanceState);
 		mMenuDrawer.setContentView(R.layout.activity_catalog);
 		elvMain = (ExpandableListView)findViewById(R.id.elvMain);
-		ah = new AdapterHelper( getBaseContext());
+		ah = new AdapterHelper(this);
         adapter = ah.getAdapter();
         elvMain.setAdapter(adapter);
         getActionBar().setTitle(getResources().getString(R.string.exe_catalog));
@@ -66,7 +66,6 @@ public class CatalogActivity extends BasicMenuActivity{
 		gotoDetailedActivity.putExtra("id", id);
 		startActivity(gotoDetailedActivity);
 	}
-	
 	
 	@Override
 	public void onClick(View arg0) {
