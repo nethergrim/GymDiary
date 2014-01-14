@@ -2,6 +2,8 @@
 
     <string name="sm">(см)</string>
     <string name="resaved">Исправлено</string>
+    <string name="no_history">Нет истории для этой тренировки: </string>
+    <string name="see_last_training">Просмотреть прошлую тренировку</string>
     <string name="training_started">Тренировка началась</string>
     <string name="finish_training">Закончите тренировку !</string>
     <string name="training_finished">Тренировка окончена</string>

@@ -1,7 +1,6 @@
 package com.nethergrim.combogymdiary;
 
 
-import android.app.ActionBar;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.database.Cursor;
@@ -9,6 +8,7 @@ import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.view.View;
 import android.widget.Button;
+
 
 
 public class MainActivity extends BasicMenuActivity {
@@ -24,7 +24,8 @@ public class MainActivity extends BasicMenuActivity {
 	private SharedPreferences sp;
 	public static MainActivity ma;
 
-    @Override
+
+	@Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         mMenuDrawer.setContentView(R.layout.activity_main);
@@ -33,7 +34,7 @@ public class MainActivity extends BasicMenuActivity {
         btnExcersises = (Button) findViewById(R.id.buttonExcersisesList);
         btnWorklog    = (Button) findViewById(R.id.btnWorklog);
         btnCatalog	  = (Button) findViewById(R.id.btnCataloginMain);
-        btnMeasurements=(Button) findViewById(R.id.btnMeasurements);
+        btnMeasurements=(Button) findViewById(R.id.btnMeasurementsS);
         btnMeasurements.setOnClickListener(this);
         btnCatalog.setOnClickListener(this);
         btnSettings.setOnClickListener(this);
@@ -41,8 +42,8 @@ public class MainActivity extends BasicMenuActivity {
         btnStartT.setOnClickListener(this);
         btnWorklog.setOnClickListener(this);
         ma=this;
-        ActionBar bar = getActionBar();
-        bar.setTitle(R.string.app_name); 
+        
+        getActionBar().setTitle(R.string.app_name);
         db = new DB(this);
 		db.open();
 		cursor = db.getDataExe(null, null, null, null, null, null);
@@ -58,10 +59,6 @@ public class MainActivity extends BasicMenuActivity {
         	startActivity(new Intent(this,TrainingAtProgress.class));
         	btnStartT.setBackgroundColor(getResources().getColor(R.color.holo_orange_dark));
         	btnStartT.setText(getResources().getString(R.string.continue_training));
-        	
-        	
-
-        	
         } else {
         	btnStartT.setText(getResources().getString(R.string.startTrainingButtonString));
         }
@@ -130,7 +127,7 @@ public class MainActivity extends BasicMenuActivity {
 		} else if (id == R.id.btnCataloginMain) {
 			Intent gotoCatalog = new Intent (this,CatalogActivity.class);
 			startActivity(gotoCatalog);
-		} else if (id == R.id.btnMeasurements){
+		} else if (id == R.id.btnMeasurementsS){
 			Intent gotoMeasurements = new Intent (this,MeasurementsActivity.class);
 			startActivity(gotoMeasurements);
 		}

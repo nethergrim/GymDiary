@@ -40,7 +40,6 @@ public class HistoryActivity extends BasicMenuActivity  implements LoaderCallbac
 		adapter = new SimpleCursorAdapter(this, R.layout.list_with_arrow_double_textview, null, from, to, 0);
 		lvMain.setAdapter(adapter);
 		getSupportLoaderManager().initLoader(0, null, this);
-	   // getSupportLoaderManager().getLoader(0).forceLoad();
 	    lvMain.setOnItemClickListener(new AdapterView.OnItemClickListener() {
         	@Override
         	public void onItemClick(AdapterView<?> parent, View itemClicked, int position,long id) {

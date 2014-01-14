@@ -14,11 +14,10 @@ import android.widget.TextView;
 
 public class HistoryDetailedActivity extends BasicMenuActivity {
 
-	DB db;
-	Cursor cursor;
-	String trName = null;
-	String trDate = null;
-	int id = 0;
+	private DB db;
+	private Cursor cursor;
+	private String trName = null;
+	private String trDate = null;
 	
 	
 	@Override
@@ -29,7 +28,6 @@ public class HistoryDetailedActivity extends BasicMenuActivity {
 		Intent intent = getIntent();	    
 		trName 	= intent.getStringExtra("trName");        
 		trDate 	= intent.getStringExtra("date");
-		id 		= intent.getIntExtra("traID",0);
 		setupActionBar();
 		setupCursor();
 		setupLayout();

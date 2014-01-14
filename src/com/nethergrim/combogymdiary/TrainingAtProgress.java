@@ -63,14 +63,11 @@ public class TrainingAtProgress extends BasicMenuActivity  implements MyInterfac
 	private ProgressDialog pd;
 	private long startTime  = 0;
 	private Handler h;
-	private WheelView reps;
-	private WheelView weights;
+	private WheelView reps, weights;
 	private TextView infoText,setInfo;
 	private ArrayList<String> alMain = new ArrayList<String>();
 	private ArrayList<Integer> alSet = new ArrayList<Integer>();
-	private int seconds;
-	private int minutes;
-	private int secDelta = 0,minDelta = 0;
+	private int seconds, minutes,secDelta = 0,minDelta = 0;
 	private boolean isTrainingProgress = false;
 	private Handler timerHandler = new Handler();
 	private LinearLayout llBack, llSave, llForward, llBottom;
@@ -345,9 +342,31 @@ public class TrainingAtProgress extends BasicMenuActivity  implements MyInterfac
 		} else if (itemId == android.R.id.home){
 			if (mMenuDrawer.isActivated()) {
 				mMenuDrawer.closeMenu();
-			}else
-				mMenuDrawer.toggleMenu();
+				}
+				else{
+				mMenuDrawer.toggleMenu();}
 			return true;
+		} else if (itemId == R.id.itemSeePreviousTraining) {
+			String[] args = {traName};
+			Cursor tmpCursor = db.getDataMain(null, DB.TRA_NAME+"=?", args, DB.DATE, null, null);
+			Log.d(LOG_TAG, "tmpCursor size == "+tmpCursor.getCount());
+			if (tmpCursor.moveToLast() && (tmpCursor.getCount() > 1 || !tmpCursor.getString(3).equals(date) )) {
+
+				
+				if (tmpCursor.getString(3).equals(date) ) { // сегодня уже были сеты
+					tmpCursor.moveToPrevious();}
+
+				Intent intent_history_detailed = new Intent(this,HistoryDetailedActivity.class);
+				intent_history_detailed.putExtra("date", tmpCursor.getString(3));
+				intent_history_detailed.putExtra("trName", tmpCursor.getString(1));
+				startActivity(intent_history_detailed);	
+
+				
+				
+			} else {
+				Log.d(LOG_TAG, "empty cursor");
+				Toast.makeText(this,getResources().getString(R.string.no_history)  + traName, Toast.LENGTH_SHORT).show();
+			}		
 		}
 		return false;    	
     }

@@ -2,6 +2,8 @@
 <resources>
 
     <string name="sm">(sm)</string>
+    <string name="see_last_training">See previous training</string>
+    <string name="no_history">There is no history for this training: </string>
     <string name="resaved">re-saved</string>
     <string name="training_started">Training Started</string>
     <string name="finish_training">Finish training !</string>

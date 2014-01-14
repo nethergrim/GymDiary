@@ -73,7 +73,7 @@
             android:text="@string/exe_catalog" />
 
         <Button
-            android:id="@+id/btnMeasurements"
+            android:id="@+id/btnMeasurementsS"
             style="@style/HabraThemeButton"
             android:layout_width="0dip"
             android:layout_height="match_parent"
