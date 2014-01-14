@@ -127,8 +127,8 @@
 				android:layout_height="match_parent"
 				android:layout_width="0dip"
 				android:layout_marginLeft="8dp"
-                 android:layout_weight="1"
-		        android:layout_gravity="center_vertical"/>
+                android:layout_weight="1"
+		        />
          
          
          </LinearLayout>
