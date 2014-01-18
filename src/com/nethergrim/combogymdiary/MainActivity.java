@@ -2,12 +2,12 @@ package com.nethergrim.combogymdiary;
 
 
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.database.Cursor;
+import android.os.AsyncTask;
 import android.os.Bundle;
-import android.preference.PreferenceManager;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ProgressBar;
 
 
 
@@ -21,8 +21,10 @@ public class MainActivity extends BasicMenuActivity {
 	private Button btnMeasurements;
 	private DB db;
 	private Cursor cursor;
-	private SharedPreferences sp;
+	private ProgressBar pb;
+	private InitTask task;
 	public static MainActivity ma;
+	
 
 
 	@Override
@@ -35,6 +37,8 @@ public class MainActivity extends BasicMenuActivity {
         btnWorklog    = (Button) findViewById(R.id.btnWorklog);
         btnCatalog	  = (Button) findViewById(R.id.btnCataloginMain);
         btnMeasurements=(Button) findViewById(R.id.btnMeasurementsS);
+        pb = (ProgressBar)findViewById(R.id.progressBar1);
+        pb.setVisibility(View.GONE);
         btnMeasurements.setOnClickListener(this);
         btnCatalog.setOnClickListener(this);
         btnSettings.setOnClickListener(this);
@@ -48,24 +52,15 @@ public class MainActivity extends BasicMenuActivity {
 		db.open();
 		cursor = db.getDataExe(null, null, null, null, null, null);
 		if (cursor.getCount() < 10) {
-			initTable();
+			pb.setVisibility(View.VISIBLE);
+			
+
+			task = new InitTask();
+			task.execute();
+			
 		}
     }
-    
-    @Override
-    public void onResume(){
-    	sp = PreferenceManager.getDefaultSharedPreferences(this);        
-        if (sp.getBoolean(TRAINING_AT_PROGRESS, false)) {
-        	startActivity(new Intent(this,TrainingAtProgress.class));
-        	btnStartT.setBackgroundColor(getResources().getColor(R.color.holo_orange_dark));
-        	btnStartT.setText(getResources().getString(R.string.continue_training));
-        } else {
-        	btnStartT.setText(getResources().getString(R.string.startTrainingButtonString));
-        }
-        super.onResume();
-    }
-    
-    
+
     
     private void initTable(){
         String[] exeLegs = getResources().getStringArray(R.array.exercisesArrayLegs);
@@ -100,8 +95,7 @@ public class MainActivity extends BasicMenuActivity {
 			db.addRec_Exe(exeAbs[i], "60");
     }
     
-        
-	@Override
+ 	@Override
 	public void onClick(View arg0) {
 	    int id = arg0.getId();
 	    pressButton(id);
@@ -138,4 +132,24 @@ public class MainActivity extends BasicMenuActivity {
 	    db.close();	    
 	  }
 	
+	
+	class InitTask extends AsyncTask<Void, Void, Void> {
+
+	    @Override
+	    protected void onPreExecute() {
+	      super.onPreExecute();
+	    }
+
+	    @Override
+	    protected Void doInBackground(Void... params)  {
+	      initTable();
+	      return null;
+	    }
+
+	    @Override
+	    protected void onPostExecute(Void result) {
+	      super.onPostExecute(result);
+	      pb.setVisibility(View.GONE);
+	    }
+	  }
 }

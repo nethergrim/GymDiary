@@ -37,16 +37,15 @@ public class StartTrainingActivity extends BasicMenuActivity {
         btnAddNew.setOnClickListener(this);
         db = new DB(this);
 		db.open();
-		initTrainings();
+		initTrainings(); // if training table is empty
 		cursor_exe = db.getDataTrainings(null, null, null, null, null, null);
 		initList();  
     }
 	
 	private void initTrainings(){
 		Cursor size = db.getDataTrainings(null, null, null, null, null, null);
-		if (size.getCount() < 1) {
+		if (size.getCount() < 1) { 
 			Cursor c = db.getDataExe(null, null, null, DB.TRA_NAME, null, null);
-			Log.d(LOG_TAG, "cursor length: "+ c.getCount());
 			if (c.moveToFirst()){	
 				do {
 					String[] args = {c.getString(1)};
@@ -68,7 +67,7 @@ public class StartTrainingActivity extends BasicMenuActivity {
 		}
 	}
 	
-    @SuppressWarnings("deprecation")
+
 	private void initList () {
     	String[] from = new String[] { DB.TRA_NAME };
 		int[] to = new int[] { R.id.tvText, };

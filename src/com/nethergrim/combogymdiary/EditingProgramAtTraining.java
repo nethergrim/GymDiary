@@ -1,6 +1,7 @@
 package com.nethergrim.combogymdiary;
 
 
+import android.app.Activity;
 import android.content.Intent;
 import android.database.Cursor;
 import android.os.Bundle;
@@ -14,7 +15,7 @@ import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.RelativeLayout;
 
-public class EditingProgramAtTraining extends BasicMenuActivity  {
+public class EditingProgramAtTraining extends Activity  {
 
 	protected ListView lvMain;
 	private DB db;
@@ -26,11 +27,11 @@ public class EditingProgramAtTraining extends BasicMenuActivity  {
 	private boolean ifAddingExe = false;
 	private EditText etName;
 	
-	@SuppressWarnings("deprecation")
+
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		mMenuDrawer.setContentView(R.layout.activity_editing_program_at_training);
+		setContentView(R.layout.activity_editing_program_at_training);
 		lvMain = (ListView)findViewById(R.id.lvExers);
 		lvMain.setChoiceMode(ListView.CHOICE_MODE_MULTIPLE);
 		Intent in = getIntent();
@@ -75,7 +76,7 @@ public class EditingProgramAtTraining extends BasicMenuActivity  {
 			int i = 0;
 			do {
 				for (int j = 0; j < exercisesOld.length; j++) {
-					Log.d(LOG_TAG, "cursor.getString(2) == "+cursor.getString(2)+"\ncursor.getString(2).equals(exercisesOld[j] =="+cursor.getString(2).equals(exercisesOld[j]));
+					
 					if ( cursor.getString(2).equals(exercisesOld[j]) ){
 						lvMain.setItemChecked(i,true);
 					}
@@ -125,7 +126,6 @@ public class EditingProgramAtTraining extends BasicMenuActivity  {
 				for (int j = 0; j < arrIDs.length; j++){
 					if ( cur.getInt(0) == arrIDs[j]){
 						args[i] = cur.getString(2);
-						Log.d(LOG_TAG, "args[i] =="+args[i]);
 						i++;
 					}
 				}
@@ -149,10 +149,7 @@ public class EditingProgramAtTraining extends BasicMenuActivity  {
 		}
 	}
 	
-	@Override
-	public void onClick(View arg0) {
-		pressButton(arg0.getId());		
-	}
+
 	  
 	  protected void onDestroy() {
 		    super.onDestroy();

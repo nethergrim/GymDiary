@@ -18,8 +18,8 @@ public class AddingProgram extends BasicMenuActivity{
 	private DB db;
 	private SimpleCursorAdapter scAdapter;
 	private Cursor cursor;
-	// исправил под версию базы 3
-    @SuppressWarnings("deprecation")
+
+
 	@Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -33,8 +33,7 @@ public class AddingProgram extends BasicMenuActivity{
         db = new DB(this);
 		db.open();
 		String[] cols = {DB.COLUMN_ID,DB.EXE_NAME,DB.TIMER_VALUE};
-		cursor = db.getDataExe(cols, null, null, null, null, DB.EXE_NAME);
-		startManagingCursor(cursor);		
+		cursor = db.getDataExe(cols, null, null, null, null, DB.EXE_NAME);	
 		String[] from = new String[] {DB.EXE_NAME};
 		int[] to = new int[] { android.R.id.text1, };
 		scAdapter = new SimpleCursorAdapter(this, android.R.layout.simple_list_item_multiple_choice,

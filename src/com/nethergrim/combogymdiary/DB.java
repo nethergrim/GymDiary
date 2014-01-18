@@ -164,7 +164,7 @@ public class DB {
 	  return result;
   }
   
-  public void deleteExersiceByName(String name){
+ public void deleteExersiceByName(String name){
 	  Log.d(LOG_TAG, "going to delete exersice "+name);
 	  Cursor c = mDB.query(DB_TRAININGS_TABLE, null, null, null, null, null, null);
 	  if (c.moveToFirst()){
@@ -193,13 +193,10 @@ public class DB {
 			 }
 			 
 			 String newString = convertArrayToString(newArray);
-			 updateRec_Training(c.getInt(0), 2, newString);
 			 
+			 updateRec_Training(c.getInt(0), 2, newString);
 		  } while(c.moveToNext());
-		  
-		  
 	  }
-	  
   }
   
   public int getLastWeight(String _exeName, int _set) {

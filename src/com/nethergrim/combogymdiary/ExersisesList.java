@@ -2,8 +2,10 @@ package com.nethergrim.combogymdiary;
 
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.database.Cursor;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.support.v4.widget.SimpleCursorAdapter;
 import android.util.Log;
 import android.view.ContextMenu;
@@ -15,6 +17,7 @@ import android.widget.AdapterView.AdapterContextMenuInfo;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.Button;
 import android.widget.ListView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 
@@ -29,9 +32,10 @@ public class ExersisesList extends BasicMenuActivity {
 	private SimpleCursorAdapter scAdapter;
 	private Cursor cursor_exe;
 	private Button btnCreate;
+	private SharedPreferences sp;
 	
 	
-    @SuppressWarnings("deprecation")
+
 	@Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -42,11 +46,12 @@ public class ExersisesList extends BasicMenuActivity {
         lvExersices_list = (ListView) findViewById(R.id.listView11);
         db = new DB(this);
 		db.open();
+		sp = PreferenceManager.getDefaultSharedPreferences(this);
 		String[] cols = {DB.COLUMN_ID,DB.EXE_NAME,DB.TIMER_VALUE};
 		cursor_exe = db.getDataExe(cols, null, null, null, null, DB.EXE_NAME);
 		String[] from = new String[] { DB.EXE_NAME };
 		int[] to = new int[] { R.id.tvText, };
-		cursor_exe.requery();
+
 		scAdapter = new SimpleCursorAdapter(this, R.layout.my_list_item2,
 				cursor_exe, from, to);
 		lvExersices_list.setAdapter(scAdapter);
@@ -71,9 +76,12 @@ public class ExersisesList extends BasicMenuActivity {
 
 	public void goToEditExe(int position,long ID) 
 	{
-
-		if (cursor_exe.moveToFirst())
+		if (sp.getBoolean(TRAINING_AT_PROGRESS, false)){
+	    	  Toast.makeText(this, R.string.error_editing_exe, Toast.LENGTH_SHORT).show();
+	      } 
+		else 
 		{
+			cursor_exe.moveToFirst();
 			while (cursor_exe.getPosition() < position) {
 				cursor_exe.moveToNext();
 			}
@@ -92,15 +100,34 @@ public class ExersisesList extends BasicMenuActivity {
 	@SuppressWarnings("deprecation")
 	public boolean onContextItemSelected(MenuItem item) {
 		AdapterContextMenuInfo acmi = (AdapterContextMenuInfo) item.getMenuInfo();
-	    if (item.getItemId() == CM_DELETE_ID) {	      
-	      db.delRec_Exe(acmi.id);
-	      db.deleteExersiceByName( acmi.toString());
-	      Toast.makeText(this, R.string.deleted, Toast.LENGTH_SHORT).show();
-	      cursor_exe.requery();
+	    if (item.getItemId() == CM_DELETE_ID) {
+	    	
+	      TextView tvTmp = (TextView) acmi.targetView;
+	      String exeName = tvTmp.getText().toString();
+	      
+	      Log.d(LOG_TAG, "training in progress == " + sp.getBoolean(TRAINING_AT_PROGRESS, false));
+	      if (sp.getBoolean(TRAINING_AT_PROGRESS, false)){
+	    	  Toast.makeText(this, R.string.error_deleting_exe, Toast.LENGTH_SHORT).show();
+	      } else {
+	    	  db.delRec_Exe(acmi.id);
+		      db.deleteExersiceByName( exeName );
+		      Toast.makeText(this, R.string.deleted, Toast.LENGTH_SHORT).show();
+		      cursor_exe.requery();
+	      }
+	      
+	      
+
+	      
+	      
+	      
 	      return true;
 	    }else if (item.getItemId() == CM_EDIT_ID) 
 	    {
-	    	goToEditExe(acmi.position,acmi.id);
+	    	if (sp.getBoolean(TRAINING_AT_PROGRESS, false)){
+		    	  Toast.makeText(this, R.string.error_editing_exe, Toast.LENGTH_SHORT).show();
+		      } else {
+		    	  goToEditExe(acmi.position,acmi.id);
+		      }
 	    	return true;
 	    }	    
 	    return super.onContextItemSelected(item);
@@ -119,6 +146,7 @@ public class ExersisesList extends BasicMenuActivity {
 	    	break;
 	    }	    
 	}
+	
 	protected void onDestroy() {
 	    super.onDestroy();
 	    db.close();
