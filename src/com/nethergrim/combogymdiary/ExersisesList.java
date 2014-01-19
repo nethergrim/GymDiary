@@ -1,6 +1,10 @@
 package com.nethergrim.combogymdiary;
 
 
+import com.google.android.gms.ads.AdRequest;
+import com.google.android.gms.ads.AdSize;
+import com.google.android.gms.ads.AdView;
+
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.database.Cursor;
@@ -65,6 +69,12 @@ public class ExersisesList extends BasicMenuActivity {
 		          goToEditExe(position, id);    
 		        }
 	    	});
+	    
+	    AdView adView = (AdView)this.findViewById(R.id.adView);
+	    adView.setAdSize(AdSize.BANNER);
+	    adView.setAdUnitId(MY_AD_UNIT_ID);
+	    AdRequest adRequest = new AdRequest.Builder().build();
+	    adView.loadAd(adRequest);
     }
     
 	public void onCreateContextMenu(ContextMenu menu, View v,

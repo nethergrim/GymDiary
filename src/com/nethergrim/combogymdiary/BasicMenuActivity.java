@@ -24,6 +24,7 @@ public abstract class BasicMenuActivity extends FragmentActivity implements OnCl
     public final static String TRAINING_NAME = "training_name";
     public final static String TRA_ID = "training_id";
     public final static String TRAINING_LIST = "training_list";
+    public final static String MY_AD_UNIT_ID = "ca-app-pub-5652589022154086/4102541457";
     protected final  static  String MINUTES = "minutes";
     protected final  static String SECONDS = "seconds";
     protected boolean isTrainingAtProgress;
