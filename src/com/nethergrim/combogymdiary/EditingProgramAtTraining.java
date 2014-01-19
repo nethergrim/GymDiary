@@ -1,23 +1,27 @@
 package com.nethergrim.combogymdiary;
 
 
-import android.app.Activity;
+
+import android.content.Context;
 import android.content.Intent;
+import android.content.res.Configuration;
 import android.database.Cursor;
 import android.os.Bundle;
+import android.support.v4.app.FragmentActivity;
+import android.support.v4.app.LoaderManager.LoaderCallbacks;
+import android.support.v4.content.CursorLoader;
+import android.support.v4.content.Loader;
 import android.support.v4.widget.SimpleCursorAdapter;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.View;
 import android.view.ViewGroup.LayoutParams;
 import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.RelativeLayout;
 
-public class EditingProgramAtTraining extends Activity  {
+public class EditingProgramAtTraining extends FragmentActivity implements LoaderCallbacks<Cursor> {
 
-	protected ListView lvMain;
+	private ListView lvMain;
 	private DB db;
 	private long traID = 0;
 	private SimpleCursorAdapter scAdapter;
@@ -29,8 +33,12 @@ public class EditingProgramAtTraining extends Activity  {
 	
 
 	@Override
-	protected void onCreate(Bundle savedInstanceState) {
-		super.onCreate(savedInstanceState);
+	public void onConfigurationChanged(Configuration newConfig) {
+	  super.onConfigurationChanged(newConfig);
+	  initUi();
+	}
+	
+	private void initUi(){
 		setContentView(R.layout.activity_editing_program_at_training);
 		lvMain = (ListView)findViewById(R.id.lvExers);
 		lvMain.setChoiceMode(ListView.CHOICE_MODE_MULTIPLE);
@@ -44,8 +52,9 @@ public class EditingProgramAtTraining extends Activity  {
 		cursor = db.getDataExe(null, null, null, null, null, DB.EXE_NAME);
 	    String[] from = new String[] { DB.EXE_NAME };
 	    int[] to = new int[] { android.R.id.text1 };
-	    scAdapter = new SimpleCursorAdapter(this, android.R.layout.simple_list_item_multiple_choice,cursor,from,to);
+	    scAdapter = new SimpleCursorAdapter(this, android.R.layout.simple_list_item_multiple_choice,null,from,to,0);
 	    lvMain.setAdapter(scAdapter);
+	    getSupportLoaderManager().initLoader(0, null, this);
 	    if (ifAddingExe) {
 	    	etName.setEnabled(false);
 	    	etName.setText(traName);
@@ -61,6 +70,50 @@ public class EditingProgramAtTraining extends Activity  {
 			}
 		}
 	}
+	
+	@Override
+	protected void onCreate(Bundle savedInstanceState) {
+		super.onCreate(savedInstanceState);
+		initUi();
+		
+	}
+	
+	@Override
+	protected void onResume(){
+		getSupportLoaderManager().getLoader(0).forceLoad();
+		super.onResume();
+	}
+	
+	@Override
+	  public Loader<Cursor> onCreateLoader(int id, Bundle bndl) {
+	    return new MyCursorLoader(this, db);
+	  }
+
+	  @Override
+	  public void onLoadFinished(Loader<Cursor> loader, Cursor cursor) {
+	    scAdapter.swapCursor(cursor);
+	  }
+
+	  @Override
+	  public void onLoaderReset(Loader<Cursor> loader) {
+	  }
+	  
+	  static class MyCursorLoader extends CursorLoader {
+
+	    DB db;
+	    Cursor cursor;
+	    
+	    public MyCursorLoader(Context context, DB db) {
+	      super(context);
+	      this.db = db;
+	    }
+	    
+	    @Override
+	    public Cursor loadInBackground() {
+	    	cursor = db.getDataExe(null, null, null, null, null, DB.EXE_NAME);
+	      return cursor;
+	    }
+	  }
 	
 	private void initData(){
 		String[] args = {""+traID};

@@ -2,14 +2,18 @@ package com.nethergrim.combogymdiary;
 
 
 import com.google.android.gms.ads.AdRequest;
-import com.google.android.gms.ads.AdSize;
 import com.google.android.gms.ads.AdView;
 
+import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.content.res.Configuration;
 import android.database.Cursor;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
+import android.support.v4.app.LoaderManager.LoaderCallbacks;
+import android.support.v4.content.CursorLoader;
+import android.support.v4.content.Loader;
 import android.support.v4.widget.SimpleCursorAdapter;
 import android.util.Log;
 import android.view.ContextMenu;
@@ -26,7 +30,7 @@ import android.widget.Toast;
 
 
 
-public class ExersisesList extends BasicMenuActivity {
+public class ExersisesList extends BasicMenuActivity implements LoaderCallbacks<Cursor>{
 
 
 	private ListView lvExersices_list;
@@ -38,12 +42,14 @@ public class ExersisesList extends BasicMenuActivity {
 	private Button btnCreate;
 	private SharedPreferences sp;
 	
-	
-
 	@Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        mMenuDrawer.setContentView(R.layout.exersises_list); 
+	public void onConfigurationChanged(Configuration newConfig) {
+	  super.onConfigurationChanged(newConfig);
+	  initUi();
+	}
+	
+	private void initUi(){
+		mMenuDrawer.setContentView(R.layout.exersises_list); 
         btnCreate = (Button)findViewById(R.id.btnCreate);
         btnCreate.setOnClickListener(this);
         getActionBar().setTitle(R.string.excersisiesListButtonString);
@@ -56,9 +62,9 @@ public class ExersisesList extends BasicMenuActivity {
 		String[] from = new String[] { DB.EXE_NAME };
 		int[] to = new int[] { R.id.tvText, };
 
-		scAdapter = new SimpleCursorAdapter(this, R.layout.my_list_item2,
-				cursor_exe, from, to);
+		scAdapter = new SimpleCursorAdapter(this, R.layout.my_list_item2,null, from, to,0);
 		lvExersices_list.setAdapter(scAdapter);
+		getSupportLoaderManager().initLoader(0, null, this);
 	    registerForContextMenu(lvExersices_list);
 	    lvExersices_list.setOnItemClickListener(new OnItemClickListener() 
 	    	{
@@ -73,8 +79,55 @@ public class ExersisesList extends BasicMenuActivity {
 	    AdView adView = (AdView)this.findViewById(R.id.adView5);
 	    AdRequest adRequest = new AdRequest.Builder().build();
 	    adView.loadAd(adRequest);
+	    getSupportLoaderManager().getLoader(0).forceLoad();
+	}
+
+	@Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        initUi();
+        
     }
     
+	@Override
+	protected void onResume(){
+		getSupportLoaderManager().getLoader(0).forceLoad();
+		super.onResume();
+	}
+	
+	
+	@Override
+	  public Loader<Cursor> onCreateLoader(int id, Bundle bndl) {
+	    return new MyCursorLoader(this, db);
+	  }
+
+	  @Override
+	  public void onLoadFinished(Loader<Cursor> loader, Cursor cursor) {
+	    scAdapter.swapCursor(cursor);
+	  }
+
+	  @Override
+	  public void onLoaderReset(Loader<Cursor> loader) {
+	  }
+	  
+	  static class MyCursorLoader extends CursorLoader {
+
+	    DB db;
+	    Cursor cursor;
+	    
+	    public MyCursorLoader(Context context, DB db) {
+	      super(context);
+	      this.db = db;
+	    }
+	    
+	    @Override
+	    public Cursor loadInBackground() {
+	    	String[] cols = {DB.COLUMN_ID,DB.EXE_NAME,DB.TIMER_VALUE};
+	    	cursor = db.getDataExe(cols, null, null, null, null, DB.EXE_NAME);
+	      return cursor;
+	    }
+	  }
+	
 	public void onCreateContextMenu(ContextMenu menu, View v,
 		      ContextMenuInfo menuInfo) {
 		    super.onCreateContextMenu(menu, v, menuInfo);
@@ -120,7 +173,7 @@ public class ExersisesList extends BasicMenuActivity {
 	    	  db.delRec_Exe(acmi.id);
 		      db.deleteExersiceByName( exeName );
 		      Toast.makeText(this, R.string.deleted, Toast.LENGTH_SHORT).show();
-		      cursor_exe.requery();
+		      getSupportLoaderManager().getLoader(0).forceLoad();
 	      }
 	      
 	      
@@ -136,8 +189,10 @@ public class ExersisesList extends BasicMenuActivity {
 		      } else {
 		    	  goToEditExe(acmi.position,acmi.id);
 		      }
+	    	getSupportLoaderManager().getLoader(0).forceLoad();
 	    	return true;
 	    }	    
+	    getSupportLoaderManager().getLoader(0).forceLoad();
 	    return super.onContextItemSelected(item);
 	  }
     

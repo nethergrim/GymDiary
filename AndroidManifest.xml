@@ -39,12 +39,14 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.nethergrim.combogymdiary.MainActivity" />
         </activity>
-        <activity android:name="com.nethergrim.combogymdiary.StartTrainingActivity" >
+        <activity android:name="com.nethergrim.combogymdiary.StartTrainingActivity"
+            android:configChanges="keyboardHidden|orientation|screenSize" >
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.nethergrim.combogymdiary.MainActivity" />
         </activity>
-        <activity android:name="com.nethergrim.combogymdiary.ExersisesList" >
+        <activity android:name="com.nethergrim.combogymdiary.ExersisesList"
+            android:configChanges="keyboardHidden|orientation|screenSize" >
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.nethergrim.combogymdiary.MainActivity" />
@@ -56,6 +58,7 @@
                 android:value="com.nethergrim.combogymdiary.ExersisesList" />
         </activity>
         <activity android:name="com.nethergrim.combogymdiary.AddingProgram"
+            android:configChanges="keyboardHidden|orientation|screenSize"
             android:windowSoftInputMode="stateHidden" >
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
@@ -119,6 +122,7 @@
                 android:value="com.nethergrim.combogymdiary.MeasurementsActivity" />
         </activity>
         <activity android:name="com.nethergrim.combogymdiary.EditingProgramAtTraining"
+            android:configChanges="keyboardHidden|orientation|screenSize"
             android:windowSoftInputMode="stateHidden" 
             android:parentActivityName="com.nethergrim.combogymdiary.TrainingAtProgress" >
             <meta-data

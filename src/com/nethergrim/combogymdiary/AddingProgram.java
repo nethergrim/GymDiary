@@ -4,21 +4,23 @@ import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.AdView;
 
 
-import android.content.Context;
-import android.content.CursorLoader;
-import android.content.Loader;
-import android.database.Cursor;
-import android.os.Bundle;
+
 import android.support.v4.app.LoaderManager.LoaderCallbacks;
 import android.support.v4.app.NavUtils;
+import android.support.v4.content.CursorLoader;
+import android.support.v4.content.Loader;
 import android.support.v4.widget.SimpleCursorAdapter;
+import android.content.Context;
+import android.content.res.Configuration;
+import android.database.Cursor;
+import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListView;
 
-public class AddingProgram extends BasicMenuActivity implements LoaderCallbacks<Cursor>{
+public class AddingProgram extends BasicMenuActivity implements LoaderCallbacks<Cursor> {
 
 	private Button btnAdd;
 	private EditText etName;
@@ -27,11 +29,16 @@ public class AddingProgram extends BasicMenuActivity implements LoaderCallbacks<
 	private SimpleCursorAdapter adapter;
 	private Cursor cursor;
 
-
+	
+	
 	@Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        mMenuDrawer.setContentView(R.layout.adding_program);
+	public void onConfigurationChanged(Configuration newConfig) {
+	  super.onConfigurationChanged(newConfig);
+	  initUi();
+	}
+	
+	private void initUi(){
+		mMenuDrawer.setContentView(R.layout.adding_program);
         btnAdd = (Button) findViewById(R.id.buttonAddingProgram);
         btnAdd.setOnClickListener(this);
         etName = (EditText) findViewById(R.id.etTimerValue);
@@ -45,7 +52,7 @@ public class AddingProgram extends BasicMenuActivity implements LoaderCallbacks<
 		cursor = db.getDataExe(null, null, null, null, null, DB.EXE_NAME);	
 		adapter = new SimpleCursorAdapter(this, android.R.layout.simple_list_item_multiple_choice,null, from, to,0);
 		lvExe.setAdapter(adapter);
-
+		getSupportLoaderManager().initLoader(0, null, this);
 		
 		AdView adView = (AdView)this.findViewById(R.id.adView4);
 	    AdRequest adRequest = new AdRequest.Builder()
@@ -53,12 +60,52 @@ public class AddingProgram extends BasicMenuActivity implements LoaderCallbacks<
 	    .addTestDevice("TEST_DEVICE_ID")
 	    .build();
 	    adView.loadAd(adRequest);
+	    getSupportLoaderManager().getLoader(0).forceLoad();
+	}
+	
+	@Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        initUi();
+        
 	    }
 
+	@Override
+	protected void onResume(){
+		getSupportLoaderManager().getLoader(0).forceLoad();
+		super.onResume();
+	}
+		
+	@Override
+	  public Loader<Cursor> onCreateLoader(int id, Bundle bndl) {
+	    return new MyCursorLoader(this, db);
+	  }
 
-		
-		
-		
+	  @Override
+	  public void onLoadFinished(Loader<Cursor> loader, Cursor cursor) {
+		  adapter.swapCursor(cursor);
+	  }
+
+	  @Override
+	  public void onLoaderReset(Loader<Cursor> loader) {
+	  }
+	  
+	  static class MyCursorLoader extends CursorLoader {
+
+	    DB db;
+	    Cursor cursor;
+	    
+	    public MyCursorLoader(Context context, DB db) {
+	      super(context);
+	      this.db = db;
+	    }
+	    
+	    @Override
+	    public Cursor loadInBackground() {
+	    	cursor = db.getDataExe(null, null, null, null, null, DB.EXE_NAME);	
+	    	return cursor;
+	    }
+	  }	
 		
 
 
@@ -70,21 +117,32 @@ public class AddingProgram extends BasicMenuActivity implements LoaderCallbacks<
 	    if (id == R.id.buttonAddingProgram) {
 	    	String prgName = etName.getText().toString();
 			long[] arrIDs = lvExe.getCheckedItemIds();
+			
+			
+			
+			
+							
 			if (!prgName.isEmpty()) 
 			{
-				cursor.moveToFirst();
+				
+				Cursor c = db.getDataExe(null, null, null, null, null, null);
+				c.moveToFirst();
 				String[] exersices = new String[arrIDs.length];
-				for (int i = 0; i < exersices.length; i++) {
-					cursor.moveToPosition( (int)arrIDs[i] - 1 );
-					exersices[i] = cursor.getString(2);
-					Log.d(LOG_TAG, "Added to exersices["+i+"] - "+cursor.getString(1));
-				}
+				int j = 0;
+				do {
+					if (c.getInt(0) ==  arrIDs[j]){
+						Log.d(LOG_TAG, "c id ==  "+ c.getInt(0)+ " exe name == "+c.getString(2));
+						exersices[j] = c.getString(2);
+						
+						j++;
+					}
+				} while (c.moveToNext() && j < arrIDs.length);
+				
 				
 				db.addRec_Trainings(prgName, db.convertArrayToString(exersices) );
+				NavUtils.navigateUpFromSameTask(this);	
 			}
-			NavUtils.navigateUpFromSameTask(this);	
-		} else {
-		}
+		} 
 	}
 		
 	protected void onDestroy() {

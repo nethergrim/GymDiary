@@ -60,6 +60,12 @@ public class MeasurementsActivity extends BasicMenuActivity  implements LoaderCa
 	    adView.loadAd(adRequest);
 	}
 	
+	@Override
+	protected void onResume(){
+		getSupportLoaderManager().getLoader(0).forceLoad();
+		super.onResume();
+	}
+	
 	private void gotoDetailed(int position, long id, String date){
 		Log.d(LOG_TAG, "Clicked date = "+date);
 		Intent gotoDetailed = new Intent (this,MeasurementsDetailedActivity.class);

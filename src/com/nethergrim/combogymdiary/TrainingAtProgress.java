@@ -96,6 +96,19 @@ public class TrainingAtProgress extends BasicMenuActivity  implements MyInterfac
         } else {
         	traName = getIntent().getStringExtra("trainingName");
         }
+        getActionBar().setTitle(traName);
+        String[] strArrExtra = {traName};    
+        
+        cursor = db.getDataTrainings(null, DB.TRA_NAME + "=?", strArrExtra, null, null, null);
+        if (cursor.moveToFirst()){
+        	exersices = db.convertStringToArray(cursor.getString(2)) ;
+        	 for (int i = 0; i < exersices.length; i++) {
+             	alMain.add(exersices[i]);
+             }
+        } else {
+        	Log.d(LOG_TAG, "ERROR curor is empty");
+        }
+        
         sp.edit().putString(TRAINING_NAME, traName).apply();
         startService(new Intent(this, MyService.class));
         Editor ed = sp.edit();
@@ -182,7 +195,7 @@ public class TrainingAtProgress extends BasicMenuActivity  implements MyInterfac
        	ivBack = (ImageView)findViewById(R.id.imageView2);
        	ivForward = (ImageView)findViewById(R.id.imageView3);
        	ed.apply();
-        getActionBar().setTitle(traName);     
+            
         reps = (WheelView) findViewById(R.id.wheelReps);
         reps.setVisibleItems(5); 
         reps.setWheelBackground(R.drawable.wheel_bg_holo);
@@ -195,7 +208,7 @@ public class TrainingAtProgress extends BasicMenuActivity  implements MyInterfac
         weights.setWheelForeground(R.drawable.wheel_val_holo);
         weights.setShadowColor(0xFFFFFF, 0xFFFFFF, 0xFFFFFF);
         weights.setViewAdapter(new WeightsAdapter(this));
-        String[] strArrExtra = {traName};          
+              
         tglTimerOn = (ToggleButton) findViewById(R.id.tglTurnOff);
         tglTimerOn.setOnCheckedChangeListener(this); 
         etTimer = (EditText) findViewById(R.id.etTimerValueAtTraining);
@@ -204,15 +217,7 @@ public class TrainingAtProgress extends BasicMenuActivity  implements MyInterfac
         setInfo = (TextView)findViewById(R.id.tvSetInfo);
         lvMain = (ListView)findViewById(R.id.lvSets);
         lvMain.setChoiceMode(AbsListView.CHOICE_MODE_SINGLE);
-        cursor = db.getDataTrainings(null, DB.TRA_NAME + "=?", strArrExtra, null, null, null);
-        if (cursor.moveToFirst()){
-        	exersices = db.convertStringToArray(cursor.getString(2)) ;
-        	 for (int i = 0; i < exersices.length; i++) {
-             	alMain.add(exersices[i]);
-             }
-        } else {
-        	Log.d(LOG_TAG, "ERROR curor is empty");
-        }
+        
         if (init && isTrainingAtProgress == false) {       
 	        for (int i = 0; i < 200; i++){
 	        	alSet.add(0);

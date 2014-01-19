@@ -2,9 +2,11 @@ package com.nethergrim.combogymdiary;
 
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.database.Cursor;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ProgressBar;
@@ -19,6 +21,7 @@ public class MainActivity extends BasicMenuActivity {
 	private Button btnWorklog;
 	private Button btnCatalog;
 	private Button btnMeasurements;
+	private SharedPreferences sp;
 	private DB db;
 	private Cursor cursor;
 	private ProgressBar pb;
@@ -46,19 +49,21 @@ public class MainActivity extends BasicMenuActivity {
         btnStartT.setOnClickListener(this);
         btnWorklog.setOnClickListener(this);
         ma=this;
-        
+        sp = PreferenceManager.getDefaultSharedPreferences(this);
         getActionBar().setTitle(R.string.app_name);
         db = new DB(this);
 		db.open();
 		cursor = db.getDataExe(null, null, null, null, null, null);
 		if (cursor.getCount() < 10) {
 			pb.setVisibility(View.VISIBLE);
-			
-
 			task = new InitTask();
 			task.execute();
-			
 		}
+		if (sp.getBoolean(TRAINING_AT_PROGRESS, false)){
+			Intent intent_to_trainng = new Intent(this,TrainingAtProgress.class);
+	        startActivity(intent_to_trainng);
+		}
+		
     }
 
     
