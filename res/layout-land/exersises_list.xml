@@ -36,6 +36,8 @@
 		    android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
+		    ads:adSize="BANNER"
+		    ads:adUnitId="ca-app-pub-5652589022154086/4102541457"
 		    android:gravity="center_horizontal"/>
         
 

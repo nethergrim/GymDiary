@@ -1,6 +1,9 @@
 package com.nethergrim.combogymdiary;
 
 
+import com.google.android.gms.ads.AdRequest;
+import com.google.android.gms.ads.AdView;
+
 import android.content.Intent;
 import android.database.Cursor;
 import android.os.Bundle;
@@ -40,6 +43,10 @@ public class StartTrainingActivity extends BasicMenuActivity {
 		initTrainings(); // if training table is empty
 		cursor_exe = db.getDataTrainings(null, null, null, null, null, null);
 		initList();  
+		
+		AdView adView = (AdView)this.findViewById(R.id.adView);
+	    AdRequest adRequest = new AdRequest.Builder().build();
+	    adView.loadAd(adRequest);
     }
 	
 	private void initTrainings(){

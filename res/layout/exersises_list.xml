@@ -13,7 +13,10 @@
 		    android:id="@+id/adView5"
 		    android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-		    android:gravity="center_horizontal"/>
+		    android:gravity="center_horizontal"		    
+		    ads:adSize="BANNER"
+		    ads:adUnitId="ca-app-pub-5652589022154086/4102541457"
+		    />
     
     <ListView
         android:id="@+id/listView11"

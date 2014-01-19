@@ -43,6 +43,8 @@ import android.widget.TextView;
 import android.widget.Toast;
 import android.widget.ToggleButton;
 
+import com.google.android.gms.ads.AdRequest;
+import com.google.android.gms.ads.AdView;
 import com.nethergrim.combogymdiary.Dialog1.MyInterface;
 
 @SuppressLint("SimpleDateFormat")
@@ -239,6 +241,11 @@ public class TrainingAtProgress extends BasicMenuActivity  implements MyInterfac
         setInfo.setTextColor( getResources().getColor(R.color.holo_orange_dark) );
         infoText.setTextColor( getResources().getColor(R.color.holo_orange_dark) );
         tglTimerOn.setChecked(true);
+        
+        AdView adView = (AdView)this.findViewById(R.id.adView1);
+        AdRequest adRequest = new AdRequest.Builder()
+        .build();
+        adView.loadAd(adRequest);
         
 	}
 

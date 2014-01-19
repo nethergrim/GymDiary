@@ -1,5 +1,8 @@
 package com.nethergrim.combogymdiary;
 
+import com.google.android.gms.ads.AdRequest;
+import com.google.android.gms.ads.AdView;
+
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
@@ -57,6 +60,10 @@ public class CatalogActivity extends BasicMenuActivity{
 	        Log.d(LOG_TAG, "onGroupExpand groupPosition = " + groupPosition);
 	      }
 	    });
+        
+        AdView adView = (AdView)this.findViewById(R.id.adView2);
+        AdRequest adRequest = new AdRequest.Builder().build();
+        adView.loadAd(adRequest);
 	}
 	
 	private void gotoDetailed(int groupPosition, int childPosition, long id) {

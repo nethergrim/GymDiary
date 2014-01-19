@@ -23,7 +23,7 @@
             android:value="AEdPqrEAAAAIV4H7afwcMJOgR3ZuDw1eUCyyNdtzLv5evDXyQQ" />
         
         <meta-data android:name="com.google.android.gms.version"
-           android:value="40305500"/>
+           android:value="4132500"/>
 
         <activity android:name="com.nethergrim.combogymdiary.MainActivity"
             android:configChanges="keyboardHidden|orientation|screenSize"

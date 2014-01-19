@@ -7,15 +7,17 @@
     android:background="@drawable/cream_pixels_bitmap"
     android:id="@+id/rl1">
 
-        <com.google.ads.AdView
-            android:id="@+id/adView"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            ads:adSize="BANNER"
-            ads:adUnitId="ca-app-pub-5652589022154086/4102541457"
-            ads:loadAdOnCreate="true"
-            android:gravity="center_horizontal" 
-             />
+
+        
+        
+        <com.google.android.gms.ads.AdView
+		    xmlns:ads="http://schemas.android.com/apk/res-auto"
+		    android:id="@+id/adView"
+		    android:layout_width="match_parent"
+		    android:layout_height="wrap_content"
+		    ads:adUnitId="ca-app-pub-5652589022154086/4102541457"
+		    android:gravity="center_horizontal" 
+		    ads:adSize="BANNER"/>
         
         <ListView
             android:id="@+id/lvStartTraining"

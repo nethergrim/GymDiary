@@ -1,5 +1,8 @@
 package com.nethergrim.combogymdiary;
 
+import com.google.android.gms.ads.AdRequest;
+import com.google.android.gms.ads.AdView;
+
 import android.content.Context;
 import android.content.Intent;
 import android.database.Cursor;
@@ -52,6 +55,10 @@ public class HistoryActivity extends BasicMenuActivity  implements LoaderCallbac
         			goToDetailed(position, id,date,traName);
         		}
         	}); 
+	    
+	    AdView adView = (AdView)this.findViewById(R.id.adView2);
+	    AdRequest adRequest = new AdRequest.Builder().build();
+	    adView.loadAd(adRequest);
 	}
 	
 	@Override

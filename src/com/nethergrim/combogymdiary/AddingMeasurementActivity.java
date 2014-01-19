@@ -3,6 +3,9 @@ package com.nethergrim.combogymdiary;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
+import com.google.android.gms.ads.AdRequest;
+import com.google.android.gms.ads.AdView;
+
 import android.app.backup.BackupManager;
 import android.os.Bundle;
 import android.support.v4.app.NavUtils;
@@ -38,6 +41,12 @@ public class AddingMeasurementActivity extends BasicMenuActivity {
         btnAdd.setOnClickListener(this);
         db = new DB(this);
         db.open();
+        
+        
+        AdView adView = (AdView)this.findViewById(R.id.adView2);
+        AdRequest adRequest = new AdRequest.Builder()
+        .build();
+        adView.loadAd(adRequest);
 	}
 
 	@Override

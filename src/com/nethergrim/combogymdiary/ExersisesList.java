@@ -70,9 +70,7 @@ public class ExersisesList extends BasicMenuActivity {
 		        }
 	    	});
 	    
-	    AdView adView = (AdView)this.findViewById(R.id.adView);
-	    adView.setAdSize(AdSize.BANNER);
-	    adView.setAdUnitId(MY_AD_UNIT_ID);
+	    AdView adView = (AdView)this.findViewById(R.id.adView5);
 	    AdRequest adRequest = new AdRequest.Builder().build();
 	    adView.loadAd(adRequest);
     }

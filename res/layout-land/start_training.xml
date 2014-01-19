@@ -28,26 +28,24 @@
         android:layout_alignParentRight="true"
         android:orientation="horizontal" >
 
-        <com.google.ads.AdView
-            android:id="@+id/adView"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            ads:adSize="BANNER"
-            ads:adUnitId="ca-app-pub-5652589022154086/4102541457"
-            ads:loadAdOnCreate="true"
-            android:gravity="center_horizontal" >
-        </com.google.ads.AdView>
+                <com.google.android.gms.ads.AdView
+                    xmlns:ads="http://schemas.android.com/apk/res-auto"
+                    android:id="@+id/adView"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    ads:adSize="BANNER"
+                    ads:adUnitId="ca-app-pub-5652589022154086/4102541457"
+                    android:gravity="center_horizontal" />
 
         <Button
             android:id="@+id/btnSave"
             style="@style/HabraThemeButton"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="5dp"
-            android:textColor="@android:color/white"
-            android:layout_weight="1"
-            android:text="@string/Add_new" />
+            android:text="@string/Add_new"
+            android:textColor="@android:color/white" />
+
     </LinearLayout>
 
 </RelativeLayout>

@@ -1,5 +1,8 @@
 package com.nethergrim.combogymdiary;
 
+import com.google.android.gms.ads.AdRequest;
+import com.google.android.gms.ads.AdView;
+
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
@@ -45,6 +48,10 @@ public class CatalogDetailedActivity extends BasicMenuActivity {
 		triceps = getResources().getStringArray(R.array.exercisesArrayTriceps);
 		abs = getResources().getStringArray(R.array.exercisesArrayAbs);
 		initInfo();
+		
+		AdView adView = (AdView)this.findViewById(R.id.adView5);
+	    AdRequest adRequest = new AdRequest.Builder().build();
+	    adView.loadAd(adRequest);
 		
 	}
 

@@ -1,7 +1,15 @@
 package com.nethergrim.combogymdiary;
 
+import com.google.android.gms.ads.AdRequest;
+import com.google.android.gms.ads.AdView;
+
+
+import android.content.Context;
+import android.content.CursorLoader;
+import android.content.Loader;
 import android.database.Cursor;
 import android.os.Bundle;
+import android.support.v4.app.LoaderManager.LoaderCallbacks;
 import android.support.v4.app.NavUtils;
 import android.support.v4.widget.SimpleCursorAdapter;
 import android.util.Log;
@@ -10,13 +18,13 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListView;
 
-public class AddingProgram extends BasicMenuActivity{
+public class AddingProgram extends BasicMenuActivity implements LoaderCallbacks<Cursor>{
 
 	private Button btnAdd;
 	private EditText etName;
 	private ListView lvExe;
 	private DB db;
-	private SimpleCursorAdapter scAdapter;
+	private SimpleCursorAdapter adapter;
 	private Cursor cursor;
 
 
@@ -32,14 +40,27 @@ public class AddingProgram extends BasicMenuActivity{
         lvExe.setChoiceMode(ListView.CHOICE_MODE_MULTIPLE);        
         db = new DB(this);
 		db.open();
-		String[] cols = {DB.COLUMN_ID,DB.EXE_NAME,DB.TIMER_VALUE};
-		cursor = db.getDataExe(cols, null, null, null, null, DB.EXE_NAME);	
-		String[] from = new String[] {DB.EXE_NAME};
-		int[] to = new int[] { android.R.id.text1, };
-		scAdapter = new SimpleCursorAdapter(this, android.R.layout.simple_list_item_multiple_choice,
-				cursor, from, to);
-		lvExe.setAdapter(scAdapter);
+ 		String[] from = new String[] {DB.EXE_NAME};
+ 		int[] to = new int[] { android.R.id.text1, };
+		cursor = db.getDataExe(null, null, null, null, null, DB.EXE_NAME);	
+		adapter = new SimpleCursorAdapter(this, android.R.layout.simple_list_item_multiple_choice,null, from, to,0);
+		lvExe.setAdapter(adapter);
+
+		
+		AdView adView = (AdView)this.findViewById(R.id.adView4);
+	    AdRequest adRequest = new AdRequest.Builder()
+	    .addTestDevice(AdRequest.DEVICE_ID_EMULATOR)
+	    .addTestDevice("TEST_DEVICE_ID")
+	    .build();
+	    adView.loadAd(adRequest);
 	    }
+
+
+		
+		
+		
+		
+
 
     
 	@Override
@@ -55,7 +76,7 @@ public class AddingProgram extends BasicMenuActivity{
 				String[] exersices = new String[arrIDs.length];
 				for (int i = 0; i < exersices.length; i++) {
 					cursor.moveToPosition( (int)arrIDs[i] - 1 );
-					exersices[i] = cursor.getString(1);
+					exersices[i] = cursor.getString(2);
 					Log.d(LOG_TAG, "Added to exersices["+i+"] - "+cursor.getString(1));
 				}
 				
@@ -70,4 +91,6 @@ public class AddingProgram extends BasicMenuActivity{
 	    super.onDestroy();
 	    db.close();	    
 	  }
+
+
 }

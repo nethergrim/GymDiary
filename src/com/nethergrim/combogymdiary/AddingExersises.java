@@ -1,5 +1,8 @@
 package com.nethergrim.combogymdiary;
 
+import com.google.android.gms.ads.AdRequest;
+import com.google.android.gms.ads.AdView;
+
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
@@ -23,7 +26,6 @@ public class AddingExersises extends BasicMenuActivity implements OnClickListene
 	private Boolean editOrNot = false;	
 	private DB db;
 	private SharedPreferences sp;
-	// исправил под базу версии 3
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {		
@@ -52,6 +54,10 @@ public class AddingExersises extends BasicMenuActivity implements OnClickListene
 			etTimer.setText(timerV);
 		}
         sp = PreferenceManager.getDefaultSharedPreferences(this);
+        
+        AdView adView = (AdView)this.findViewById(R.id.adView3);
+        AdRequest adRequest = new AdRequest.Builder().build();
+        adView.loadAd(adRequest);
 	}
 	
 	protected void onResume() {

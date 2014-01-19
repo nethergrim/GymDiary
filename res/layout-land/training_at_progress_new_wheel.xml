@@ -23,15 +23,16 @@
 
         </ListView>
 
-        <com.google.ads.AdView
-            android:id="@+id/adView1"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            ads:adSize="BANNER"
-            ads:adUnitId="ca-app-pub-5652589022154086/4102541457"
-            ads:loadAdOnCreate="true"
-            android:gravity="center_horizontal" >
-        </com.google.ads.AdView>
+        
+        	<com.google.android.gms.ads.AdView
+		    xmlns:ads="http://schemas.android.com/apk/res-auto"
+		    android:id="@+id/adView1"
+		    android:layout_width="match_parent"
+		    android:layout_height="wrap_content"
+		    android:layout_weight="1"
+		    ads:adUnitId="ca-app-pub-5652589022154086/4102541457"
+		    android:gravity="center_horizontal"
+		    ads:adSize="BANNER"/>
     </RelativeLayout>
 
      <LinearLayout
