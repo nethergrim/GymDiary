@@ -4,6 +4,7 @@ package com.nethergrim.combogymdiary;
 import com.nethergrim.combogymdiary.DialogRestoreFromBackup.MyInterface;
 
 import android.app.ActionBar;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.preference.Preference;
@@ -57,8 +58,20 @@ public class SettingsActivity extends PreferenceActivity implements MyInterface 
                             return true;
                         }
                     });
+        Preference btnDisk = (Preference)findPreference("btnBackupToDrive");
+        btnDisk.setOnPreferenceClickListener(new Preference.OnPreferenceClickListener() {
+                        @Override
+                        public boolean onPreferenceClick(Preference arg0) { 
+                        	gotoDisk();
+                            return true;
+                        }
+                    });
     }
 
+    private void gotoDisk(){
+    	Intent intent = new Intent (this, DiskActivity.class);
+    	startActivity(intent);
+    }
     
 
 	 @Override

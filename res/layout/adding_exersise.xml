@@ -26,11 +26,9 @@
         android:layout_alignRight="@+id/linearLayout3"
         android:layout_below="@+id/adView3"
         android:layout_margin="5dp"
-        android:orientation="vertical" >
+        android:orientation="horizontal" >
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content" >
+
 
             <TextView
                 android:id="@+id/textView1"
@@ -52,7 +50,7 @@
                 android:singleLine="false"
                 android:textSize="@dimen/text20"
                 android:textStyle="italic" />
-        </LinearLayout>
+ 
     </LinearLayout>
 
     <LinearLayout
@@ -64,9 +62,7 @@
         android:layout_margin="5dp"
         android:orientation="vertical" >
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent" >
+
 
             <EditText
                 android:id="@+id/etTimerValue"
@@ -76,14 +72,14 @@
                 android:ems="5"
                 android:gravity="center_vertical|center_horizontal"
                 android:hint="@string/add_new_exersise"
-                android:inputType="text"
+                android:inputType="textPersonName"
                 android:singleLine="false"
                 android:textSize="@dimen/text20"
                 android:textStyle="italic" >
 
                 <requestFocus />
             </EditText>
-        </LinearLayout>
+
     </LinearLayout>
 
     <LinearLayout
@@ -102,7 +98,6 @@
             android:layout_height="wrap_content"
             android:layout_margin="5dp"
             android:textColor="@android:color/white"
-            android:drawableLeft="@android:drawable/ic_input_add"
             android:text="@string/save" />
     </LinearLayout>
 

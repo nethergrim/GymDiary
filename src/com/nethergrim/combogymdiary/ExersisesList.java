@@ -97,20 +97,20 @@ public class ExersisesList extends BasicMenuActivity implements LoaderCallbacks<
 	
 	
 	@Override
-	  public Loader<Cursor> onCreateLoader(int id, Bundle bndl) {
+	public Loader<Cursor> onCreateLoader(int id, Bundle bndl) {
 	    return new MyCursorLoader(this, db);
 	  }
 
 	  @Override
-	  public void onLoadFinished(Loader<Cursor> loader, Cursor cursor) {
+	public void onLoadFinished(Loader<Cursor> loader, Cursor cursor) {
 	    scAdapter.swapCursor(cursor);
 	  }
 
 	  @Override
-	  public void onLoaderReset(Loader<Cursor> loader) {
+	public void onLoaderReset(Loader<Cursor> loader) {
 	  }
 	  
-	  static class MyCursorLoader extends CursorLoader {
+	static class MyCursorLoader extends CursorLoader {
 
 	    DB db;
 	    Cursor cursor;
