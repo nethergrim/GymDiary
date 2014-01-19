@@ -2,7 +2,6 @@
 <resources>
 
     <string name="sm">(sm)</string>
-    <string name="drive_backup">Backup to Google Drive</string>
     <string name="error_editing_exe">Error editing exercise!\nYou can`t delete exercise during training</string>
     <string name="error_deleting_exe">Error deleting exercise!\nYou can`t delete exercise during training</string>
     <string name="see_last_training">See previous training</string>
@@ -282,6 +281,5 @@
     <string name="ex_6_2"></string>
     <string name="ex_6_3"></string>
     <string name="ex_6_4"></string>
-    <string name="title_activity_drive_backup">DriveBackupActivity</string>
 
 </resources>

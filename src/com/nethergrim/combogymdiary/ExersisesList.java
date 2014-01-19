@@ -1,15 +1,11 @@
 package com.nethergrim.combogymdiary;
 
-import android.content.Context;
+
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.content.res.Configuration;
 import android.database.Cursor;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
-import android.support.v4.app.LoaderManager.LoaderCallbacks;
-import android.support.v4.content.CursorLoader;
-import android.support.v4.content.Loader;
 import android.support.v4.widget.SimpleCursorAdapter;
 import android.util.Log;
 import android.view.ContextMenu;
@@ -24,13 +20,9 @@ import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.google.android.gms.ads.AdRequest;
-import com.google.android.gms.ads.AdSize;
-import com.google.android.gms.ads.AdView;
 
 
-
-public class ExersisesList extends BasicMenuActivity implements LoaderCallbacks<Cursor> {
+public class ExersisesList extends BasicMenuActivity {
 
 
 	private ListView lvExersices_list;
@@ -43,15 +35,11 @@ public class ExersisesList extends BasicMenuActivity implements LoaderCallbacks<
 	private SharedPreferences sp;
 	
 	
+
 	@Override
-	public void onConfigurationChanged(Configuration newConfig) {
-	  super.onConfigurationChanged(newConfig);
-	  initUi();
-	 
-	}
-	
-	private void initUi(){
-		mMenuDrawer.setContentView(R.layout.exersises_list); 
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        mMenuDrawer.setContentView(R.layout.exersises_list); 
         btnCreate = (Button)findViewById(R.id.btnCreate);
         btnCreate.setOnClickListener(this);
         getActionBar().setTitle(R.string.excersisiesListButtonString);
@@ -64,39 +52,21 @@ public class ExersisesList extends BasicMenuActivity implements LoaderCallbacks<
 		String[] from = new String[] { DB.EXE_NAME };
 		int[] to = new int[] { R.id.tvText, };
 
-		scAdapter = new SimpleCursorAdapter(this, R.layout.my_list_item2,null, from, to,0);
+		scAdapter = new SimpleCursorAdapter(this, R.layout.my_list_item2,
+				cursor_exe, from, to);
 		lvExersices_list.setAdapter(scAdapter);
-		getSupportLoaderManager().initLoader(0, null, this);
 	    registerForContextMenu(lvExersices_list);
 	    lvExersices_list.setOnItemClickListener(new OnItemClickListener() 
 	    	{
 	        public void onItemClick(AdapterView<?> parent, View view,
 	            int position, long id) 
 	        	{
+		          Log.d(LOG_TAG, "In ExercisesList itemClick: position = " + position + ", id = "+ id);
 		          goToEditExe(position, id);    
 		        }
 	    	});
-	    AdView adView = (AdView)this.findViewById(R.id.adView5);
-	    adView.setAdUnitId(MY_AD_UNIT_ID);
-	    adView.setAdSize(AdSize.BANNER);
-	    AdRequest adRequest = new AdRequest.Builder().build();
-	    adView.loadAd(adRequest);
-	}
-	
-	@Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        initUi();
-        
-        
     }
     
-	@Override
-	public void onResume(){
-		getSupportLoaderManager().getLoader(0).forceLoad();
-		super.onResume();
-	}
-	
 	public void onCreateContextMenu(ContextMenu menu, View v,
 		      ContextMenuInfo menuInfo) {
 		    super.onCreateContextMenu(menu, v, menuInfo);
@@ -127,7 +97,7 @@ public class ExersisesList extends BasicMenuActivity implements LoaderCallbacks<
 		}		
 	}
 	
-
+	@SuppressWarnings("deprecation")
 	public boolean onContextItemSelected(MenuItem item) {
 		AdapterContextMenuInfo acmi = (AdapterContextMenuInfo) item.getMenuInfo();
 	    if (item.getItemId() == CM_DELETE_ID) {
@@ -142,7 +112,7 @@ public class ExersisesList extends BasicMenuActivity implements LoaderCallbacks<
 	    	  db.delRec_Exe(acmi.id);
 		      db.deleteExersiceByName( exeName );
 		      Toast.makeText(this, R.string.deleted, Toast.LENGTH_SHORT).show();
-		      getSupportLoaderManager().getLoader(0).forceLoad();
+		      cursor_exe.requery();
 	      }
 	      
 	      
@@ -181,37 +151,5 @@ public class ExersisesList extends BasicMenuActivity implements LoaderCallbacks<
 	    super.onDestroy();
 	    db.close();
 	  }
-
 	
-	@Override
-	public Loader<Cursor> onCreateLoader(int id, Bundle bndl) {
-	    return new MyCursorLoader(this, db);
-	  }
-
-	@Override
-	public void onLoadFinished(Loader<Cursor> loader, Cursor cursor) {
-		scAdapter.swapCursor(cursor);
-	  }
-
-	@Override
-	public void onLoaderReset(Loader<Cursor> loader) {
-	  }
-	  
-	static class MyCursorLoader extends CursorLoader {
-
-	    DB db;
-	    Cursor cursor;
-	    
-	    public MyCursorLoader(Context context, DB db) {
-	      super(context);
-	      this.db = db;
-	    }
-	    
-	    @Override
-	    public Cursor loadInBackground() {
-	    	String[] cols = {DB.COLUMN_ID,DB.EXE_NAME,DB.TIMER_VALUE};
-			Cursor c = db.getDataExe(cols, null, null, null, null, DB.EXE_NAME);
-	      return c;
-	    }
-	  }
 }

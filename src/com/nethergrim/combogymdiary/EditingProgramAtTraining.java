@@ -1,23 +1,21 @@
 package com.nethergrim.combogymdiary;
 
 
-import android.content.Context;
+import android.app.Activity;
 import android.content.Intent;
 import android.database.Cursor;
 import android.os.Bundle;
-import android.support.v4.app.FragmentActivity;
-import android.support.v4.app.LoaderManager.LoaderCallbacks;
-import android.support.v4.content.CursorLoader;
-import android.support.v4.content.Loader;
 import android.support.v4.widget.SimpleCursorAdapter;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 import android.view.ViewGroup.LayoutParams;
 import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.RelativeLayout;
 
-public class EditingProgramAtTraining extends FragmentActivity implements LoaderCallbacks<Cursor> {
+public class EditingProgramAtTraining extends Activity  {
 
 	protected ListView lvMain;
 	private DB db;
@@ -46,9 +44,8 @@ public class EditingProgramAtTraining extends FragmentActivity implements Loader
 		cursor = db.getDataExe(null, null, null, null, null, DB.EXE_NAME);
 	    String[] from = new String[] { DB.EXE_NAME };
 	    int[] to = new int[] { android.R.id.text1 };
-	    scAdapter = new SimpleCursorAdapter(this, android.R.layout.simple_list_item_multiple_choice,null,from,to,0);
+	    scAdapter = new SimpleCursorAdapter(this, android.R.layout.simple_list_item_multiple_choice,cursor,from,to);
 	    lvMain.setAdapter(scAdapter);
-	    getSupportLoaderManager().initLoader(0, null, this);
 	    if (ifAddingExe) {
 	    	etName.setEnabled(false);
 	    	etName.setText(traName);
@@ -63,11 +60,6 @@ public class EditingProgramAtTraining extends FragmentActivity implements Loader
 				setClicked();
 			}
 		}
-	}
-	@Override
-	public void onResume(){
-		getSupportLoaderManager().getLoader(0).forceLoad();
-		super.onResume();
 	}
 	
 	private void initData(){
@@ -95,37 +87,6 @@ public class EditingProgramAtTraining extends FragmentActivity implements Loader
 		
 	}
 
-	@Override
-	public Loader<Cursor> onCreateLoader(int id, Bundle bndl) {
-	    return new MyCursorLoader(this, db);
-	  }
-
-	@Override
-	public void onLoadFinished(Loader<Cursor> loader, Cursor cursor) {
-		scAdapter.swapCursor(cursor);
-	  }
-
-	@Override
-	public void onLoaderReset(Loader<Cursor> loader) {
-	  }
-	  
-	static class MyCursorLoader extends CursorLoader {
-
-	    DB db;
-	    Cursor cursor;
-	    
-	    public MyCursorLoader(Context context, DB db) {
-	      super(context);
-	      this.db = db;
-	    }
-	    
-	    @Override
-	    public Cursor loadInBackground() {
-	      cursor = db.getDataExe(null, null, null, null, null, DB.EXE_NAME);
-	      return cursor;
-	    }
-	  }
-	
 	
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {

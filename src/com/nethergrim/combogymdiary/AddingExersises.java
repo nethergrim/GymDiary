@@ -6,17 +6,13 @@ import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.support.v4.app.NavUtils;
 import android.view.View;
+import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.RelativeLayout;
 import android.widget.Toast;
 
-import com.google.android.gms.ads.AdRequest;
-import com.google.android.gms.ads.AdSize;
-import com.google.android.gms.ads.AdView;
 
-
-public class AddingExersises extends BasicMenuActivity  {
+public class AddingExersises extends BasicMenuActivity implements OnClickListener {
 
 	private Button btnCreate; 					
 	private EditText etName, etTimer;		
@@ -27,8 +23,7 @@ public class AddingExersises extends BasicMenuActivity  {
 	private Boolean editOrNot = false;	
 	private DB db;
 	private SharedPreferences sp;
-	private RelativeLayout rl;
-	private AdView adView;
+	// исправил под базу версии 3
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {		
@@ -39,7 +34,7 @@ public class AddingExersises extends BasicMenuActivity  {
 		btnCreate.setOnClickListener(this);
 		etName = (EditText) findViewById(R.id.etTimerValue);
 		etTimer = (EditText) findViewById(R.id.editText2);
-		rl = (RelativeLayout)findViewById(R.id.rlAddingExe);
+		
 		db = new DB(this);
 		db.open();
 
@@ -57,22 +52,12 @@ public class AddingExersises extends BasicMenuActivity  {
 			etTimer.setText(timerV);
 		}
         sp = PreferenceManager.getDefaultSharedPreferences(this);
-        
-
-        adView = new AdView(this);
-        adView.setAdUnitId(MY_AD_UNIT_ID);
-        adView.setAdSize(AdSize.BANNER);
-        rl.addView(adView);
-        AdRequest adRequest = new AdRequest.Builder().build();
-        adView.loadAd(adRequest);
 	}
 	
 	protected void onResume() {
 	    defaultTimer = sp.getString("etDefault", "60" );
 	    etTimer.setText(defaultTimer);
-	    
 	    super.onResume();
-	    adView.resume();
 	  }
 
 
@@ -103,15 +88,7 @@ public class AddingExersises extends BasicMenuActivity  {
 		}
 	}
 
-		
-	@Override
-	  public void onPause() {
-	    adView.pause();
-	    super.onPause();
-	  }
-		
 	protected void onDestroy() {
-		adView.destroy();
 	    super.onDestroy();
 	    db.close();
 	  }		

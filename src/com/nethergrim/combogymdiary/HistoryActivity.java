@@ -10,11 +10,11 @@ import android.support.v4.content.Loader;
 import android.support.v4.widget.SimpleCursorAdapter;
 import android.util.Log;
 import android.view.ContextMenu;
-import android.view.ContextMenu.ContextMenuInfo;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.AdapterView;
+import android.view.ContextMenu.ContextMenuInfo;
 import android.widget.AdapterView.AdapterContextMenuInfo;
+import android.widget.AdapterView;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
@@ -48,6 +48,7 @@ public class HistoryActivity extends BasicMenuActivity  implements LoaderCallbac
         			String date = (String) t.getText();
         			TextView tra = (TextView)par.findViewById(R.id.tvDouble2);
         			String traName = (String) tra.getText();
+        			Log.d(LOG_TAG, "Clicked pos = "+position+" id = "+id+" date == "+date+" tra name == "+traName);
         			goToDetailed(position, id,date,traName);
         		}
         	}); 

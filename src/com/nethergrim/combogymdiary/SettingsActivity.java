@@ -1,25 +1,21 @@
 package com.nethergrim.combogymdiary;
 
 
+import com.nethergrim.combogymdiary.DialogRestoreFromBackup.MyInterface;
+
 import android.app.ActionBar;
-import android.app.DialogFragment;
-import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.preference.Preference;
 import android.preference.PreferenceActivity;
+import android.app.DialogFragment;
 import android.view.MenuItem;
 import android.widget.Toast;
-
-import com.nethergrim.combogymdiary.DialogRestoreFromBackup.MyInterface;
 
 
 
 public class SettingsActivity extends PreferenceActivity implements MyInterface {
 	
-	static final int REQUEST_ACCOUNT_PICKER = 1;
-	  static final int REQUEST_AUTHORIZATION = 2;
-	  static final int CAPTURE_IMAGE = 3;
 
 
 	public static SettingsActivity sa;
@@ -61,22 +57,9 @@ public class SettingsActivity extends PreferenceActivity implements MyInterface 
                             return true;
                         }
                     });
-        
-        Preference btnBackupToDrive = (Preference)findPreference("btnBackupToDrive");
-        btnBackupToDrive.setOnPreferenceClickListener(new Preference.OnPreferenceClickListener() {
-                        @Override
-                        public boolean onPreferenceClick(Preference arg0) { 
-                        	gotoDrive();
-                            return true;
-                        	}
-                    });
     }
 
-    private void gotoDrive (){
-    	Intent intent = new Intent(this,DriveBackupActivity.class);
-    	intent.putExtra(BasicMenuActivity.DRIVE_BACKUP, true);
-    	startActivity(intent);
-    	}
+    
 
 	 @Override
 	public void onChoose() {   
@@ -91,8 +74,7 @@ public class SettingsActivity extends PreferenceActivity implements MyInterface 
  		db.open();
  		db.close();
 	 }
-
-	 
+    
     @Override
    	public boolean onOptionsItemSelected(MenuItem item) {
    		switch (item.getItemId()) {
@@ -102,7 +84,7 @@ public class SettingsActivity extends PreferenceActivity implements MyInterface 
    		}
    		return false;
    	}
-
+    
 
 
 }

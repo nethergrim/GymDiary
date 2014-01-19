@@ -1,14 +1,21 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:ads="http://schemas.android.com/apk/res-auto"
-    android:id="@+id/rlAddingExe"
+    xmlns:ads="http://schemas.android.com/apk/lib/com.google.ads"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/cream_pixels_bitmap"
     android:gravity="right" >
 	
-
     
+    <com.google.ads.AdView
+            android:id="@+id/adView3"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            ads:adSize="BANNER"
+            ads:adUnitId="ca-app-pub-5652589022154086/4102541457"
+            ads:loadAdOnCreate="true"
+            android:gravity="center_horizontal" 
+             />
 
     <LinearLayout
         android:id="@+id/linearLayout2"
@@ -16,6 +23,7 @@
         android:layout_height="wrap_content"
         android:layout_alignLeft="@+id/linearLayout3"
         android:layout_alignRight="@+id/linearLayout3"
+        android:layout_below="@+id/adView3"
         android:layout_margin="5dp"
         android:orientation="vertical" >
 
@@ -61,7 +69,7 @@
 
             <EditText
                 android:id="@+id/etTimerValue"
-                android:layout_width="0dip"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="3.5"
                 android:ems="5"

@@ -1,7 +1,6 @@
 <resources>
 
     <string name="sm">(см)</string>
-    <string name="drive_backup">Сделать резервную копию в Google Drive</string>
     <string name="error_deleting_exe">Ошибка!\nНельзя удалять упражнения во время тренировки</string>
     <string name="error_editing_exe">Ошибка!\nНельзя изменять упражнения во время тренировки</string>
     <string name="resaved">Исправлено</string>

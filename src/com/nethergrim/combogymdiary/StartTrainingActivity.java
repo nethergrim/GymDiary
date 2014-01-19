@@ -1,13 +1,9 @@
 package com.nethergrim.combogymdiary;
 
-import android.content.Context;
+
 import android.content.Intent;
-import android.content.res.Configuration;
 import android.database.Cursor;
 import android.os.Bundle;
-import android.support.v4.app.LoaderManager.LoaderCallbacks;
-import android.support.v4.content.CursorLoader;
-import android.support.v4.content.Loader;
 import android.support.v4.widget.SimpleCursorAdapter;
 import android.util.Log;
 import android.view.ContextMenu;
@@ -21,7 +17,7 @@ import android.widget.Button;
 import android.widget.ListView;
 import android.widget.Toast;
 
-public class StartTrainingActivity extends BasicMenuActivity implements LoaderCallbacks<Cursor> {
+public class StartTrainingActivity extends BasicMenuActivity {
 
 	private static final int CM_DELETE_ID = 1;
 	private static final int CM_EDIT_ID	  = 2;
@@ -32,14 +28,9 @@ public class StartTrainingActivity extends BasicMenuActivity implements LoaderCa
 	private Button btnAddNew;
 
 	@Override
-	public void onConfigurationChanged(Configuration newConfig) {
-	  super.onConfigurationChanged(newConfig);
-	  initUi();
-	 
-	}
-	
-	private void initUi(){
-		mMenuDrawer.setContentView(R.layout.start_training);
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        mMenuDrawer.setContentView(R.layout.start_training);
         lvMain = (ListView) findViewById(R.id.lvStartTraining);        
         getActionBar().setTitle(R.string.startTrainingList);
         btnAddNew = (Button)findViewById(R.id.btnSave);
@@ -49,13 +40,6 @@ public class StartTrainingActivity extends BasicMenuActivity implements LoaderCa
 		initTrainings(); // if training table is empty
 		cursor_exe = db.getDataTrainings(null, null, null, null, null, null);
 		initList();  
-	}
-	
-	@Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        initUi();
-        
     }
 	
 	private void initTrainings(){
@@ -87,9 +71,8 @@ public class StartTrainingActivity extends BasicMenuActivity implements LoaderCa
 	private void initList () {
     	String[] from = new String[] { DB.TRA_NAME };
 		int[] to = new int[] { R.id.tvText, };
-		scAdapter = new SimpleCursorAdapter(this, R.layout.my_list_item, null, from, to,0);		
+		scAdapter = new SimpleCursorAdapter(this, R.layout.my_list_item, cursor_exe, from, to);		
 		lvMain.setAdapter(scAdapter);
-		getSupportLoaderManager().initLoader(0, null, this);
 	    registerForContextMenu(lvMain);  
 	    lvMain.setOnItemClickListener(new OnItemClickListener() {
 	        public void onItemClick(AdapterView<?> parent, View view,
@@ -99,12 +82,12 @@ public class StartTrainingActivity extends BasicMenuActivity implements LoaderCa
 	    });
     }
     
+	@SuppressWarnings("deprecation")
 	@Override
-	public void onResume(){
-		getSupportLoaderManager().getLoader(0).forceLoad();
-		super.onResume();
-	}
-
+    protected void onResume() {
+    	cursor_exe.requery();
+    	super.onResume();
+    }
     
     public void onCreateContextMenu(ContextMenu menu, View v,
 		      ContextMenuInfo menuInfo) {
@@ -113,7 +96,7 @@ public class StartTrainingActivity extends BasicMenuActivity implements LoaderCa
 		    menu.add(1, CM_EDIT_ID, 0, R.string.edit);
 		  }
     
-
+    @SuppressWarnings("deprecation")
 	public boolean onContextItemSelected(MenuItem item) {
 	    if (item.getItemId() == CM_DELETE_ID) {
 	      AdapterContextMenuInfo acmi = (AdapterContextMenuInfo) item.getMenuInfo();
@@ -122,10 +105,12 @@ public class StartTrainingActivity extends BasicMenuActivity implements LoaderCa
 		      {
 		    	  cursor_exe.moveToNext();
 		      }
-		      int id = cursor_exe.getInt(0);
+		      int id = cursor_exe.getInt(0);	      
+		      Log.d(LOG_TAG, "going to delete id == "+id);
+		      
 		      db.delRec_Trainings(id);
 		      Toast.makeText(this, "Deleted", Toast.LENGTH_SHORT).show();
-		      getSupportLoaderManager().getLoader(0).forceLoad();
+		      cursor_exe.requery();
 		      return true;
 	      }
 	    } else if (item.getItemId() == CM_EDIT_ID){
@@ -182,37 +167,5 @@ public class StartTrainingActivity extends BasicMenuActivity implements LoaderCa
 	protected void onDestroy() {
 	    super.onDestroy();
 	    db.close();
-	  }
-	
-	
-	@Override
-	public Loader<Cursor> onCreateLoader(int id, Bundle bndl) {
-	    return new MyCursorLoader(this, db);
-	  }
-
-	@Override
-	public void onLoadFinished(Loader<Cursor> loader, Cursor cursor) {
-		scAdapter.swapCursor(cursor);
-	  }
-
-	@Override
-	public void onLoaderReset(Loader<Cursor> loader) {
-	  }
-	  
-	static class MyCursorLoader extends CursorLoader {
-
-	    DB db;
-	    Cursor cursor;
-	    
-	    public MyCursorLoader(Context context, DB db) {
-	      super(context);
-	      this.db = db;
-	    }
-	    
-	    @Override
-	    public Cursor loadInBackground() {
-	    	cursor = db.getDataTrainings(null, null, null, null, null, null);
-	      return cursor;
-	    }
 	  }
 }
