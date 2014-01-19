@@ -1,8 +1,13 @@
 package com.nethergrim.combogymdiary;
 
+
+import android.content.Context;
 import android.database.Cursor;
 import android.os.Bundle;
+import android.support.v4.app.LoaderManager.LoaderCallbacks;
 import android.support.v4.app.NavUtils;
+import android.support.v4.content.CursorLoader;
+import android.support.v4.content.Loader;
 import android.support.v4.widget.SimpleCursorAdapter;
 import android.util.Log;
 import android.view.View;
@@ -10,13 +15,13 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListView;
 
-public class AddingProgram extends BasicMenuActivity{
+public class AddingProgram extends BasicMenuActivity implements LoaderCallbacks<Cursor>{
 
 	private Button btnAdd;
 	private EditText etName;
 	private ListView lvExe;
 	private DB db;
-	private SimpleCursorAdapter scAdapter;
+	private SimpleCursorAdapter adapter;
 	private Cursor cursor;
 
 
@@ -32,16 +37,52 @@ public class AddingProgram extends BasicMenuActivity{
         lvExe.setChoiceMode(ListView.CHOICE_MODE_MULTIPLE);        
         db = new DB(this);
 		db.open();
-		String[] cols = {DB.COLUMN_ID,DB.EXE_NAME,DB.TIMER_VALUE};
-		cursor = db.getDataExe(cols, null, null, null, null, DB.EXE_NAME);	
+		cursor = db.getDataExe(null, null, null, null, null, DB.EXE_NAME);
 		String[] from = new String[] {DB.EXE_NAME};
 		int[] to = new int[] { android.R.id.text1, };
-		scAdapter = new SimpleCursorAdapter(this, android.R.layout.simple_list_item_multiple_choice,
-				cursor, from, to);
-		lvExe.setAdapter(scAdapter);
+		adapter = new SimpleCursorAdapter(this, android.R.layout.simple_list_item_multiple_choice, null, from, to, 0);
+		lvExe.setAdapter(adapter);
+		getSupportLoaderManager().initLoader(0, null, this);
 	    }
 
-    
+	@Override
+	public void onResume(){
+		getSupportLoaderManager().getLoader(0).forceLoad();
+		super.onResume();
+	}
+	
+	
+	@Override
+	public Loader<Cursor> onCreateLoader(int id, Bundle bndl) {
+	    return new MyCursorLoader(this, db);
+	  }
+
+	@Override
+	public void onLoadFinished(Loader<Cursor> loader, Cursor cursor) {
+		adapter.swapCursor(cursor);
+	  }
+
+	@Override
+	public void onLoaderReset(Loader<Cursor> loader) {
+	  }
+	  
+	static class MyCursorLoader extends CursorLoader {
+
+	    DB db;
+	    Cursor cursor;
+	    
+	    public MyCursorLoader(Context context, DB db) {
+	      super(context);
+	      this.db = db;
+	    }
+	    
+	    @Override
+	    public Cursor loadInBackground() {
+	      cursor = db.getDataExe(null, null, null, null, null, DB.EXE_NAME);
+	      return cursor;
+	    }
+	  }
+	
 	@Override
 	public void onClick(View arg0) {
 	    int id = arg0.getId();
@@ -55,10 +96,9 @@ public class AddingProgram extends BasicMenuActivity{
 				String[] exersices = new String[arrIDs.length];
 				for (int i = 0; i < exersices.length; i++) {
 					cursor.moveToPosition( (int)arrIDs[i] - 1 );
-					exersices[i] = cursor.getString(1);
+					exersices[i] = cursor.getString(2);
 					Log.d(LOG_TAG, "Added to exersices["+i+"] - "+cursor.getString(1));
 				}
-				
 				db.addRec_Trainings(prgName, db.convertArrayToString(exersices) );
 			}
 			NavUtils.navigateUpFromSameTask(this);	

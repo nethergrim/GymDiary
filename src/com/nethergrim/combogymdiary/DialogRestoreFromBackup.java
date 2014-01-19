@@ -1,7 +1,5 @@
 package com.nethergrim.combogymdiary;
 
-import com.nethergrim.combogymdiary.Dialog1.MyInterface;
-
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.Dialog;
