@@ -2368,10 +2368,7 @@ com.google.android.gms.common.ConnectionResult:
     public static final int DEVELOPER_ERROR
     public static final int LICENSE_CHECK_FAILED
     public static final int DATE_INVALID
-    public void startResolutionForResult(android.app.Activity,int)
-    public boolean hasResolution()
     public boolean isSuccess()
-    public int getErrorCode()
     public android.app.PendingIntent getResolution()
 com.google.android.gms.common.GooglePlayServicesClient:
     public abstract void connect()
@@ -2392,16 +2389,10 @@ com.google.android.gms.common.GooglePlayServicesUtil:
     public static final java.lang.String GOOGLE_PLAY_STORE_PACKAGE
     private GooglePlayServicesUtil()
     public static java.lang.String getErrorString(int)
-    public static java.lang.String b(android.content.Context,int,int)
-    public static java.lang.String b(android.content.Context,int)
-    public static android.app.Dialog getErrorDialog(int,android.app.Activity,int)
     public static android.app.PendingIntent getErrorPendingIntent(int,android.content.Context,int)
     public static android.app.Dialog getErrorDialog(int,android.app.Activity,int,android.content.DialogInterface$OnCancelListener)
-    public static android.app.Dialog a(int,android.app.Activity,int,android.content.DialogInterface$OnCancelListener,int)
     public static boolean isUserRecoverableError(int)
     public static java.lang.String getOpenSourceSoftwareLicenseInfo(android.content.Context)
-    public static boolean a(android.content.res.Resources)
-    private static boolean b(android.content.res.Resources)
     public static android.content.res.Resources getRemoteResource(android.content.Context)
 com.google.android.gms.common.OnStatusReceivedCallback
 com.google.android.gms.common.Scopes
@@ -2409,23 +2400,25 @@ com.google.android.gms.common.SignInButton
 com.google.android.gms.common.UserRecoverableException:
     public android.content.Intent getIntent()
 com.google.android.gms.common.annotation.KeepName
-com.google.android.gms.common.api.Api
-com.google.android.gms.common.api.Api$a
-com.google.android.gms.common.api.Api$b
-com.google.android.gms.common.api.GoogleApiClient
-com.google.android.gms.common.api.GoogleApiClient$1
-com.google.android.gms.common.api.GoogleApiClient$2
-com.google.android.gms.common.api.GoogleApiClient$3
-com.google.android.gms.common.api.GoogleApiClient$ApiOptions
-com.google.android.gms.common.api.GoogleApiClient$Builder
-com.google.android.gms.common.api.GoogleApiClient$ConnectionCallbacks
-com.google.android.gms.common.api.GoogleApiClient$OnConnectionFailedListener
-com.google.android.gms.common.api.GoogleApiClient$a
-com.google.android.gms.common.api.PendingResult
-com.google.android.gms.common.api.PendingResult$a
-com.google.android.gms.common.api.Releasable
-com.google.android.gms.common.api.Result
-com.google.android.gms.common.api.Scope
+com.google.android.gms.common.api.GoogleApiClient:
+    public void reconnect()
+    public void registerConnectionCallbacks(com.google.android.gms.common.api.GoogleApiClient$ConnectionCallbacks)
+    public boolean isConnectionCallbacksRegistered(com.google.android.gms.common.api.GoogleApiClient$ConnectionCallbacks)
+    public void unregisterConnectionCallbacks(com.google.android.gms.common.api.GoogleApiClient$ConnectionCallbacks)
+    public void registerConnectionFailedListener(com.google.android.gms.common.api.GoogleApiClient$OnConnectionFailedListener)
+    public boolean isConnectionFailedListenerRegistered(com.google.android.gms.common.api.GoogleApiClient$OnConnectionFailedListener)
+    public void unregisterConnectionFailedListener(com.google.android.gms.common.api.GoogleApiClient$OnConnectionFailedListener)
+com.google.android.gms.common.api.GoogleApiClient$Builder:
+    public GoogleApiClient$Builder(android.content.Context,com.google.android.gms.common.api.GoogleApiClient$ConnectionCallbacks,com.google.android.gms.common.api.GoogleApiClient$OnConnectionFailedListener)
+    public com.google.android.gms.common.api.GoogleApiClient$Builder setViewForPopups(android.view.View)
+    public com.google.android.gms.common.api.GoogleApiClient$Builder setAccountName(java.lang.String)
+    public com.google.android.gms.common.api.GoogleApiClient$Builder useDefaultAccount()
+    public com.google.android.gms.common.api.GoogleApiClient$Builder setGravityForPopups(int)
+com.google.android.gms.common.api.PendingResult:
+    public abstract com.google.android.gms.common.api.Result await()
+    public abstract com.google.android.gms.common.api.Result await(long,java.util.concurrent.TimeUnit)
+    public abstract void release()
+    public abstract com.google.android.gms.common.api.Result b(com.google.android.gms.common.api.Status)
 com.google.android.gms.common.api.Status:
     public static final int SUCCESS_CACHE
     public static final int SUCCESS
@@ -2450,18 +2443,14 @@ com.google.android.gms.common.api.Status:
     public Status(int)
     public void startResolutionForResult(android.app.Activity,int)
     public boolean hasResolution()
-    public boolean isSuccess()
     public boolean isInterrupted()
     public android.app.PendingIntent getResolution()
     public com.google.android.gms.common.ConnectionResult bh()
-    public com.google.android.gms.common.api.Status getStatus()
 com.google.android.gms.common.api.StatusCreator:
     public static final int CONTENT_DESCRIPTION
-com.google.android.gms.common.api.a
-com.google.android.gms.common.api.a$a
-com.google.android.gms.common.api.a$a$1
-com.google.android.gms.common.api.a$b
-com.google.android.gms.common.api.a$c
+com.google.android.gms.common.api.a$a:
+    public final com.google.android.gms.common.api.Result await()
+    public final com.google.android.gms.common.api.Result await(long,java.util.concurrent.TimeUnit)
 com.google.android.gms.common.data.DataBuffer
 com.google.android.gms.common.data.DataBufferUtils
 com.google.android.gms.common.data.DataHolder:
@@ -2543,22 +2532,26 @@ com.google.android.gms.common.images.a:
 com.google.android.gms.common.internal.safeparcel.SafeParcelable:
     public static final java.lang.String NULL
 com.google.android.gms.drive.Contents:
-    public android.os.ParcelFileDescriptor getParcelFileDescriptor()
     public com.google.android.gms.drive.DriveId getDriveId()
     public java.io.InputStream getInputStream()
-    public java.io.OutputStream getOutputStream()
     public int getMode()
-    public int cq()
-    public void close()
-com.google.android.gms.drive.CreateFileActivityBuilder
-com.google.android.gms.drive.Drive
-com.google.android.gms.drive.Drive$1
-com.google.android.gms.drive.DriveApi
-com.google.android.gms.drive.DriveApi$ContentsResult
+com.google.android.gms.drive.CreateFileActivityBuilder:
+    public static final java.lang.String EXTRA_RESPONSE_DRIVE_ID
+    public com.google.android.gms.drive.CreateFileActivityBuilder setActivityStartFolder(com.google.android.gms.drive.DriveId)
+    public com.google.android.gms.drive.CreateFileActivityBuilder setActivityTitle(java.lang.String)
+com.google.android.gms.drive.Drive:
+    private Drive()
+com.google.android.gms.drive.DriveApi:
+    public abstract com.google.android.gms.common.api.PendingResult query(com.google.android.gms.common.api.GoogleApiClient,com.google.android.gms.drive.query.Query)
+    public abstract com.google.android.gms.common.api.PendingResult discardContents(com.google.android.gms.common.api.GoogleApiClient,com.google.android.gms.drive.Contents)
+    public abstract com.google.android.gms.drive.DriveFolder getRootFolder(com.google.android.gms.common.api.GoogleApiClient)
+    public abstract com.google.android.gms.drive.DriveFile getFile(com.google.android.gms.common.api.GoogleApiClient,com.google.android.gms.drive.DriveId)
+    public abstract com.google.android.gms.drive.DriveFolder getFolder(com.google.android.gms.common.api.GoogleApiClient,com.google.android.gms.drive.DriveId)
+    public abstract com.google.android.gms.drive.OpenFileActivityBuilder newOpenFileActivityBuilder()
+    public abstract com.google.android.gms.common.api.PendingResult requestSync(com.google.android.gms.common.api.GoogleApiClient)
 com.google.android.gms.drive.DriveApi$IntentSenderResult
 com.google.android.gms.drive.DriveApi$MetadataBufferResult
 com.google.android.gms.drive.DriveApi$OnContentsDiscardedCallback
-com.google.android.gms.drive.DriveApi$OnNewContentsCallback
 com.google.android.gms.drive.DriveApi$OnSyncFinishCallback
 com.google.android.gms.drive.DriveFile
 com.google.android.gms.drive.DriveFile$DownloadProgressListener
@@ -2583,23 +2576,22 @@ com.google.android.gms.drive.DriveResource$OnMetadataUpdatedCallback
 com.google.android.gms.drive.Metadata
 com.google.android.gms.drive.MetadataBuffer
 com.google.android.gms.drive.MetadataBuffer$a
-com.google.android.gms.drive.MetadataChangeSet
-com.google.android.gms.drive.MetadataChangeSet$1
-com.google.android.gms.drive.MetadataChangeSet$Builder
+com.google.android.gms.drive.MetadataChangeSet:
+    public java.lang.String getTitle()
+    public java.lang.String getMimeType()
+    public java.lang.Boolean isStarred()
+com.google.android.gms.drive.MetadataChangeSet$Builder:
+    public com.google.android.gms.drive.MetadataChangeSet$Builder setStarred(boolean)
 com.google.android.gms.drive.OpenFileActivityBuilder
 com.google.android.gms.drive.b
 com.google.android.gms.drive.internal.CloseContentsRequest:
     public CloseContentsRequest(com.google.android.gms.drive.Contents,boolean)
-com.google.android.gms.drive.internal.CreateFileIntentSenderRequest:
-    public CreateFileIntentSenderRequest(com.google.android.gms.drive.metadata.internal.MetadataBundle,int,java.lang.String,com.google.android.gms.drive.DriveId)
 com.google.android.gms.drive.internal.CreateFileRequest:
     public CreateFileRequest(com.google.android.gms.drive.DriveId,com.google.android.gms.drive.metadata.internal.MetadataBundle,com.google.android.gms.drive.Contents)
 com.google.android.gms.drive.internal.CreateFolderRequest:
     public CreateFolderRequest(com.google.android.gms.drive.DriveId,com.google.android.gms.drive.metadata.internal.MetadataBundle)
 com.google.android.gms.drive.internal.GetMetadataRequest:
     public GetMetadataRequest(com.google.android.gms.drive.DriveId)
-com.google.android.gms.drive.internal.OnContentsResponse:
-    public com.google.android.gms.drive.Contents cx()
 com.google.android.gms.drive.internal.OnDownloadProgressResponse:
     public long cy()
     public long cz()
@@ -2617,23 +2609,28 @@ com.google.android.gms.drive.internal.QueryRequest:
     public QueryRequest(com.google.android.gms.drive.query.Query)
 com.google.android.gms.drive.internal.UpdateMetadataRequest:
     public UpdateMetadataRequest(com.google.android.gms.drive.DriveId,com.google.android.gms.drive.metadata.internal.MetadataBundle)
-com.google.android.gms.drive.internal.a
 com.google.android.gms.drive.internal.g
-com.google.android.gms.drive.internal.h
+com.google.android.gms.drive.internal.h:
+    public com.google.android.gms.common.api.PendingResult query(com.google.android.gms.common.api.GoogleApiClient,com.google.android.gms.drive.query.Query)
+    public com.google.android.gms.common.api.PendingResult discardContents(com.google.android.gms.common.api.GoogleApiClient,com.google.android.gms.drive.Contents)
+    public com.google.android.gms.drive.DriveFile getFile(com.google.android.gms.common.api.GoogleApiClient,com.google.android.gms.drive.DriveId)
+    public com.google.android.gms.drive.DriveFolder getFolder(com.google.android.gms.common.api.GoogleApiClient,com.google.android.gms.drive.DriveId)
+    public com.google.android.gms.drive.DriveFolder getRootFolder(com.google.android.gms.common.api.GoogleApiClient)
+    public com.google.android.gms.drive.OpenFileActivityBuilder newOpenFileActivityBuilder()
+    public com.google.android.gms.common.api.PendingResult requestSync(com.google.android.gms.common.api.GoogleApiClient)
 com.google.android.gms.drive.internal.h$1
-com.google.android.gms.drive.internal.h$2
 com.google.android.gms.drive.internal.h$3
 com.google.android.gms.drive.internal.h$4
-com.google.android.gms.drive.internal.h$a
 com.google.android.gms.drive.internal.h$b
 com.google.android.gms.drive.internal.h$c
-com.google.android.gms.drive.internal.h$d
-com.google.android.gms.drive.internal.h$e
+com.google.android.gms.drive.internal.h$e:
+    public com.google.android.gms.drive.DriveApi$ContentsResult f(com.google.android.gms.common.api.Status)
+    public synthetic com.google.android.gms.common.api.Result b(com.google.android.gms.common.api.Status)
 com.google.android.gms.drive.internal.h$f
 com.google.android.gms.drive.internal.h$g
 com.google.android.gms.drive.internal.h$h
-com.google.android.gms.drive.internal.i
-com.google.android.gms.drive.internal.j
+com.google.android.gms.drive.internal.j:
+    public com.google.android.gms.drive.DriveId cv()
 com.google.android.gms.drive.internal.k
 com.google.android.gms.drive.internal.k$1
 com.google.android.gms.drive.internal.k$2
@@ -2655,12 +2652,6 @@ com.google.android.gms.drive.internal.m$a
 com.google.android.gms.drive.internal.m$b
 com.google.android.gms.drive.internal.m$c
 com.google.android.gms.drive.internal.m$d
-com.google.android.gms.drive.internal.o
-com.google.android.gms.drive.internal.o$a
-com.google.android.gms.drive.internal.o$a$a
-com.google.android.gms.drive.internal.p
-com.google.android.gms.drive.internal.p$a
-com.google.android.gms.drive.internal.p$a$a
 com.google.android.gms.drive.internal.q:
     public com.google.android.gms.drive.internal.q a(com.google.android.gms.internal.hq)
     public static com.google.android.gms.drive.internal.q e(byte[])
@@ -2672,53 +2663,37 @@ com.google.android.gms.drive.metadata.CollectionMetadataField:
 com.google.android.gms.drive.metadata.MetadataField:
     public final java.util.Collection cC()
     public final java.lang.Object d(android.os.Bundle)
-    public final void a(java.lang.Object,android.os.Bundle)
     public final void a(com.google.android.gms.common.data.DataHolder,com.google.android.gms.drive.metadata.internal.MetadataBundle,int,int)
     protected abstract java.lang.Object e(android.os.Bundle)
-    protected abstract void a(android.os.Bundle,java.lang.Object)
     public final java.lang.Object c(com.google.android.gms.common.data.DataHolder,int,int)
     protected abstract java.lang.Object b(com.google.android.gms.common.data.DataHolder,int,int)
 com.google.android.gms.drive.metadata.OrderedMetadataField:
     protected OrderedMetadataField(java.lang.String,java.util.Collection)
 com.google.android.gms.drive.metadata.StringMetadataField:
-    protected void a(android.os.Bundle,java.lang.String)
     protected java.lang.String f(android.os.Bundle)
     protected java.lang.String d(com.google.android.gms.common.data.DataHolder,int,int)
     protected synthetic java.lang.Object b(com.google.android.gms.common.data.DataHolder,int,int)
-    protected bridge synthetic void a(android.os.Bundle,java.lang.Object)
     protected synthetic java.lang.Object e(android.os.Bundle)
 com.google.android.gms.drive.metadata.internal.MetadataBundle:
-    private MetadataBundle(android.os.Bundle)
-    public static com.google.android.gms.drive.metadata.internal.MetadataBundle cE()
-    public static com.google.android.gms.drive.metadata.internal.MetadataBundle a(com.google.android.gms.drive.metadata.internal.MetadataBundle)
     public static com.google.android.gms.drive.metadata.internal.MetadataBundle a(com.google.android.gms.drive.metadata.MetadataField,java.lang.Object)
-    public void b(com.google.android.gms.drive.metadata.MetadataField,java.lang.Object)
     public java.lang.Object a(com.google.android.gms.drive.metadata.MetadataField)
 com.google.android.gms.drive.metadata.internal.a:
-    protected void a(android.os.Bundle,java.lang.Boolean)
     protected java.lang.Boolean g(android.os.Bundle)
     protected java.lang.Boolean e(com.google.android.gms.common.data.DataHolder,int,int)
     protected synthetic java.lang.Object b(com.google.android.gms.common.data.DataHolder,int,int)
-    protected bridge synthetic void a(android.os.Bundle,java.lang.Object)
     protected synthetic java.lang.Object e(android.os.Bundle)
 com.google.android.gms.drive.metadata.internal.b:
-    protected void a(android.os.Bundle,java.util.Date)
     protected java.util.Date h(android.os.Bundle)
     protected java.util.Date f(com.google.android.gms.common.data.DataHolder,int,int)
     protected synthetic java.lang.Object b(com.google.android.gms.common.data.DataHolder,int,int)
-    protected bridge synthetic void a(android.os.Bundle,java.lang.Object)
     protected synthetic java.lang.Object e(android.os.Bundle)
 com.google.android.gms.drive.metadata.internal.c:
     public static java.util.Collection cD()
 com.google.android.gms.drive.metadata.internal.e:
     protected java.util.Collection i(android.os.Bundle)
-    protected void a(android.os.Bundle,java.util.Collection)
-    protected bridge synthetic void a(android.os.Bundle,java.lang.Object)
     protected synthetic java.lang.Object e(android.os.Bundle)
 com.google.android.gms.drive.metadata.internal.f:
-    protected void a(android.os.Bundle,android.os.Parcelable)
     protected android.os.Parcelable j(android.os.Bundle)
-    protected bridge synthetic void a(android.os.Bundle,java.lang.Object)
     protected synthetic java.lang.Object e(android.os.Bundle)
 com.google.android.gms.drive.query.Filters
 com.google.android.gms.drive.query.Query:
@@ -3102,18 +3077,7 @@ com.google.android.gms.internal.dd$a
 com.google.android.gms.internal.dd$a$a
 com.google.android.gms.internal.dg:
     public static void a(boolean,java.lang.Object)
-com.google.android.gms.internal.dh:
-    private final com.google.android.gms.internal.dh$a mt
-    private final android.view.View kQ
-    public dh(java.lang.String,java.util.Collection,int,android.view.View,java.lang.String)
-    public java.lang.String bt()
-    public java.util.List bu()
-com.google.android.gms.internal.dh$a:
-    public dh$a(java.lang.String,java.util.Collection,int,java.lang.String)
-    public java.lang.String bt()
-com.google.android.gms.internal.di
 com.google.android.gms.internal.dk:
-    public final java.lang.String[] bA()
     public final void a(com.google.android.gms.internal.dk$b)
     public void registerConnectionCallbacks(com.google.android.gms.common.api.GoogleApiClient$ConnectionCallbacks)
     public void registerConnectionFailedListener(com.google.android.gms.common.api.GoogleApiClient$OnConnectionFailedListener)
@@ -3123,7 +3087,6 @@ com.google.android.gms.internal.dk:
     public void unregisterConnectionFailedListener(com.google.android.gms.common.GooglePlayServicesClient$OnConnectionFailedListener)
 com.google.android.gms.internal.dk$c
 com.google.android.gms.internal.dl:
-    public dl(android.content.Context,com.google.android.gms.internal.dl$b)
     public boolean isConnectionCallbacksRegistered(com.google.android.gms.common.GooglePlayServicesClient$ConnectionCallbacks)
     public void unregisterConnectionCallbacks(com.google.android.gms.common.GooglePlayServicesClient$ConnectionCallbacks)
     public boolean isConnectionFailedListenerRegistered(com.google.android.gms.common.GooglePlayServicesClient$OnConnectionFailedListener)
@@ -3156,7 +3119,6 @@ com.google.android.gms.internal.ek:
 com.google.android.gms.internal.eo
 com.google.android.gms.internal.es:
     public static boolean cl()
-    public static boolean cm()
     public static boolean cn()
     public static boolean co()
 com.google.android.gms.internal.et$1:
@@ -4889,6 +4851,7 @@ com.nethergrim.combogymdiary.BasicMenuActivity:
     public static final java.lang.String TRA_ID
     public static final java.lang.String TRAINING_LIST
     public static final java.lang.String MY_AD_UNIT_ID
+    public static final java.lang.String MY_ACCOUNT_NAME
     protected static final java.lang.String MINUTES
     protected static final java.lang.String SECONDS
 com.nethergrim.combogymdiary.BuildConfig
@@ -4919,6 +4882,10 @@ com.nethergrim.combogymdiary.DB:
     242:247:public int getIdValueByExerciseName(java.lang.String)
     297:297:public android.database.Cursor getAllData_Main()
     392:393:public void delDB()
+com.nethergrim.combogymdiary.DiskActivity:
+    private static final java.lang.String TAG
+    private static final int REQUEST_CODE_CREATOR
+    private static final int REQUEST_CODE_RESOLUTION
 com.nethergrim.combogymdiary.ExersisesList:
     private static final int CM_DELETE_ID
     private static final int CM_EDIT_ID

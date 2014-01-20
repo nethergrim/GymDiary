@@ -27,8 +27,6 @@
     <string name="calf">Голень</string>
     <string name="arm">Рука</string>
     <string name="continue_training">Продолжить тренировку</string>
-    <string name="md__drawerOpenIndicatorDesc">Close drawer</string>
-    <string name="md__drawerClosedIndicatorDesc">Open drawer</string>
     <string name="Add">Добавить</string>
     <string name="adding_measurements">Добавление замеров</string>
     <string name="backup">Резервная копия базы</string>

@@ -6,6 +6,8 @@ import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.OutputStream;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 import android.app.Activity;
 import android.content.Intent;
@@ -13,6 +15,7 @@ import android.content.IntentSender;
 import android.content.IntentSender.SendIntentException;
 import android.os.Bundle;
 import android.util.Log;
+import android.widget.Toast;
 
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.GooglePlayServicesUtil;
@@ -84,8 +87,11 @@ public class DiskActivity extends Activity implements ConnectionCallbacks,
 	            }
 	            // Create the initial metadata - MIME type and title.
 	            // Note that the user will be able to change the title later.
+	            SimpleDateFormat sdf = new SimpleDateFormat("dd.MM.yyyy");
+	            String date = sdf.format(new Date(System.currentTimeMillis()));
+	            String fileTitle = "Trainings backup "+date+" .db";
 	            MetadataChangeSet metadataChangeSet = new MetadataChangeSet.Builder()
-	                    .setMimeType("text/plain").setTitle("DB Backup.db").build();
+	                    .setMimeType("text/plain").setTitle(fileTitle).build();
 	            // Create an intent for the file chooser, and start it.
 	            IntentSender intentSender = Drive.DriveApi
 	                    .newCreateFileActivityBuilder()
@@ -93,12 +99,12 @@ public class DiskActivity extends Activity implements ConnectionCallbacks,
 	                    .setInitialContents(result.getContents())
 	                    .build(mGoogleApiClient);
 	            try {
-	                startIntentSenderForResult(
-	                        intentSender, REQUEST_CODE_CREATOR, null, 0, 0, 0);
+	                startIntentSenderForResult(intentSender, REQUEST_CODE_CREATOR, null, 0, 0, 0);
 	            } catch (SendIntentException e) {
 	                Log.i(TAG, "Failed to launch file chooser.");
 	            }
-	            finish();
+	            
+	            
 	        }
 	    });
 	}
@@ -107,6 +113,7 @@ public class DiskActivity extends Activity implements ConnectionCallbacks,
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_disk);
+		
 	}
 	
 	@Override
@@ -130,6 +137,7 @@ public class DiskActivity extends Activity implements ConnectionCallbacks,
 	
 	@Override
 	protected void onPause() {
+		
 	    if (mGoogleApiClient != null) {
 	        mGoogleApiClient.disconnect();
 	    }
@@ -142,9 +150,13 @@ public class DiskActivity extends Activity implements ConnectionCallbacks,
 	        case REQUEST_CODE_CREATOR:
 	            // Called after a file is saved to Drive.
 	            if (resultCode == RESULT_OK) {
+	            	Toast.makeText(getApplicationContext(),R.string.saved, Toast.LENGTH_SHORT).show();
 	                Log.i(TAG, "File successfully saved.");
+	                
 	            }
+	            finish();
 	            break;
+	            
 	    }
 	}
 	

@@ -154,6 +154,7 @@
         <activity
             android:name="com.nethergrim.combogymdiary.DiskActivity"
             android:label="@string/title_activity_disk"
+            android:theme="@android:style/Theme.DeviceDefault.Dialog.NoActionBar"
             android:parentActivityName="com.nethergrim.combogymdiary.SettingsActivity" >
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
