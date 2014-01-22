@@ -7,6 +7,8 @@
     <dimen name="border_5">5dp</dimen>
     <dimen name="text16">16dp</dimen>
     <dimen name="text14">14dp</dimen>
+        <dimen name="item_height">67dp</dimen>
+    <dimen name="section_div_height">20dp</dimen>
     <dimen name="dip12">12dp</dimen>
     <dimen name="layer_width">100dp</dimen>
         <dimen name="slidingmenu_offset">60dp</dimen>

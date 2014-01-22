@@ -30,7 +30,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
-import android.widget.AbsListView;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.CompoundButton;
@@ -45,6 +44,7 @@ import android.widget.ToggleButton;
 
 import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.AdView;
+import com.mobeta.android.dslv.DragSortListView;
 import com.nethergrim.combogymdiary.Dialog1.MyInterface;
 
 @SuppressLint("SimpleDateFormat")
@@ -53,7 +53,7 @@ public class TrainingAtProgress extends BasicMenuActivity  implements MyInterfac
 	private ToggleButton tglTimerOn;
 	private Boolean tglChecked = true,turnOff = false,vibrate = false;
 	private EditText etTimer;
-	private ListView lvMain;
+	
 	private DB db;
 	private Cursor cursor;	
 	private ArrayAdapter<String> adapter;
@@ -75,11 +75,13 @@ public class TrainingAtProgress extends BasicMenuActivity  implements MyInterfac
 	private LinearLayout llBack, llSave, llForward, llBottom;
 	private ImageView ivBack,ivForward;
 	private Animation anim = null;
+	private DragSortListView list;
+	
 	
 	@Override
 	public void onConfigurationChanged(Configuration newConfig) {
 	  super.onConfigurationChanged(newConfig);
-	  mMenuDrawer.setContentView(R.layout.training_at_progress_new_wheel);
+	  mMenuDrawer.setContentView(R.layout.training_at_progress_new_wheel_new_list);
 	  initUi(false);
 	}
 	
@@ -88,7 +90,7 @@ public class TrainingAtProgress extends BasicMenuActivity  implements MyInterfac
         super.onCreate(savedInstanceState);
         db = new DB(this);
 		db.open();
-        mMenuDrawer.setContentView(R.layout.training_at_progress_new_wheel);
+        mMenuDrawer.setContentView(R.layout.training_at_progress_new_wheel_new_list);
         sp = PreferenceManager.getDefaultSharedPreferences(this); 
         isTrainingProgress = sp.getBoolean(TRAINING_AT_PROGRESS, false);
         if (isTrainingProgress) {
@@ -180,6 +182,23 @@ public class TrainingAtProgress extends BasicMenuActivity  implements MyInterfac
 		sp.edit().putInt(SECONDS, 0).apply();
 	}
 	
+	
+	private DragSortListView.DropListener onDrop =
+	        new DragSortListView.DropListener() {
+	            @Override
+	            public void drop(int from, int to) {
+	                if (from != to) {
+	                    DragSortListView list =(DragSortListView) findViewById(R.id.lvSets);
+	                    String item = adapter.getItem(from);
+	                    adapter.remove(item);
+	                    adapter.insert(item, to);
+	                    list.moveCheckState(from, to);
+	                    Log.d("DSLV", "Selected item is " + list.getCheckedItemPosition());
+	                }
+	            }
+	        };
+	
+	
 	private void initUi(boolean init){
        	Editor ed = sp.edit();
        	llBottom = (LinearLayout)findViewById(R.id.LLBottom);
@@ -215,8 +234,7 @@ public class TrainingAtProgress extends BasicMenuActivity  implements MyInterfac
         etTimer.setOnClickListener(this);       
         infoText = (TextView)findViewById(R.id.infoText);
         setInfo = (TextView)findViewById(R.id.tvSetInfo);
-        lvMain = (ListView)findViewById(R.id.lvSets);
-        lvMain.setChoiceMode(AbsListView.CHOICE_MODE_SINGLE);
+       
         
         if (init && isTrainingAtProgress == false) {       
 	        for (int i = 0; i < 200; i++){
@@ -225,12 +243,19 @@ public class TrainingAtProgress extends BasicMenuActivity  implements MyInterfac
         } else if (init && isTrainingProgress == true) {
         	restoreSetsFromPreferences();
         }
-        adapter = new ArrayAdapter<String>(this,android.R.layout.simple_list_item_single_choice, alMain);
-        lvMain.setAdapter(adapter);      
-        SimpleDateFormat sdf = new SimpleDateFormat("dd.MM.yyyy");
-        date = sdf.format(new Date(System.currentTimeMillis()));      
         
-        lvMain.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+        list =(DragSortListView) findViewById(R.id.lvSets);
+        list.setDropListener(onDrop);
+        list.setChoiceMode(ListView.CHOICE_MODE_SINGLE);
+        adapter = new ArrayAdapter<String>(this, R.layout.list_item_radio, R.id.text, alMain);
+       list.setAdapter(adapter);
+        
+         
+        
+     
+        
+        
+        list.setOnItemClickListener(new AdapterView.OnItemClickListener() {
         	@Override
         	public void onItemClick(AdapterView<?> parent, View itemClicked, int position,long id) {
         		checkedPosition = position;
@@ -238,9 +263,13 @@ public class TrainingAtProgress extends BasicMenuActivity  implements MyInterfac
         		initData(position);
         		}
         	});   
-        initData(0);
-        lvMain.setItemChecked(0, true);
+        list.setItemChecked(0, true);
         
+        initData(0);
+        
+        
+        SimpleDateFormat sdf = new SimpleDateFormat("dd.MM.yyyy");
+        date = sdf.format(new Date(System.currentTimeMillis()));      
         dlg1 = new Dialog1();
         dlg1.setCancelable(false);
         setInfo.setTextColor( getResources().getColor(R.color.holo_orange_dark) );
@@ -303,7 +332,7 @@ public class TrainingAtProgress extends BasicMenuActivity  implements MyInterfac
 		} 
 		initData(0);
 	    turnOff = sp.getBoolean("toTurnOff", false);
-	    lvMain.setKeepScreenOn(!turnOff);
+	    list.setKeepScreenOn(!turnOff);
 	    vibrate = sp.getBoolean("vibrateOn", true);
 	    String vl = sp.getString("vibtateLenght", "2");
 	    vibrateLenght = Integer.parseInt(vl);
