@@ -248,8 +248,23 @@ public class TrainingAtProgress extends BasicMenuActivity  implements MyInterfac
         list.setDropListener(onDrop);
         list.setChoiceMode(ListView.CHOICE_MODE_SINGLE);
         adapter = new ArrayAdapter<String>(this, R.layout.list_item_radio, R.id.text, alMain);
-       list.setAdapter(adapter);
+        list.setAdapter(adapter);
         
+    /*    list.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+
+			@Override
+			public void onItemSelected(AdapterView<?> arg0, View arg1,
+					int position, long id) {
+				
+				
+			}
+
+			@Override
+			public void onNothingSelected(AdapterView<?> arg0) {
+				
+				
+			}
+		});*/
          
         
      
@@ -258,6 +273,7 @@ public class TrainingAtProgress extends BasicMenuActivity  implements MyInterfac
         list.setOnItemClickListener(new AdapterView.OnItemClickListener() {
         	@Override
         	public void onItemClick(AdapterView<?> parent, View itemClicked, int position,long id) {
+        		Log.d(LOG_TAG, "item selected "+position);
         		checkedPosition = position;
         		
         		initData(position);

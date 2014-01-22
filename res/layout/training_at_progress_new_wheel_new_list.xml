@@ -47,8 +47,8 @@
 		    dslv:drag_scroll_start="0.33"
 		    dslv:drag_start_mode="onDown"
 		    dslv:float_alpha="0.6"
-		    dslv:remove_enabled="true"
-		    dslv:remove_mode="clickRemove"
+		    dslv:remove_enabled="false"
+		    
 		    dslv:slide_shuffle_speed="0.3" />
         
     </LinearLayout>
