@@ -4840,6 +4840,61 @@ com.google.gson.stream.JsonWriter
 com.google.gson.stream.JsonWriter$1
 com.google.gson.stream.MalformedJsonException
 com.google.gson.stream.StringPool
+com.mobeta.android.dslv.DragSortController:
+    public static final int ON_DOWN
+    public static final int ON_DRAG
+    public static final int ON_LONG_PRESS
+    public static final int CLICK_REMOVE
+    public static final int FLING_REMOVE
+    public static final int MISS
+    93:94:public DragSortController(com.mobeta.android.dslv.DragSortListView)
+    97:98:public DragSortController(com.mobeta.android.dslv.DragSortListView,int,int,int)
+    101:102:public DragSortController(com.mobeta.android.dslv.DragSortListView,int,int,int,int)
+    128:128:public int getDragInitMode()
+    153:153:public boolean isSortEnabled()
+    166:166:public int getRemoveMode()
+    177:177:public boolean isRemoveEnabled()
+    187:188:public void setDragHandleId(int)
+    197:198:public void setFlingHandleId(int)
+    207:208:public void setClickRemoveId(int)
+com.mobeta.android.dslv.DragSortCursorAdapter
+com.mobeta.android.dslv.DragSortListView:
+    private static final int IDLE
+    private static final int REMOVING
+    private static final int DROPPING
+    private static final int STOPPED
+    private static final int DRAGGING
+    public static final int DRAG_POS_X
+    public static final int DRAG_NEG_X
+    public static final int DRAG_POS_Y
+    public static final int DRAG_NEG_Y
+    private static final int NO_CANCEL
+    private static final int ON_TOUCH_EVENT
+    private static final int ON_INTERCEPT_TOUCH_EVENT
+    private static final int sCacheSize
+    848:850:private void printPosData()
+    1461:1467:public void moveItem(int,int)
+    1873:1878:private void adjustItem(int)
+    2180:2181:private void invalidateFloatView()
+    2678:2696:public void removeCheckState(int)
+com.mobeta.android.dslv.DragSortListView$DragScroller:
+    public static final int STOP
+    public static final int UP
+    public static final int DOWN
+    private int mLastHeader
+    private int mFirstFooter
+com.mobeta.android.dslv.DragSortListView$LiftAnimator:
+    1209:1211:public DragSortListView$LiftAnimator(com.mobeta.android.dslv.DragSortListView,float,int)
+com.mobeta.android.dslv.R:
+    9:9:public R()
+com.mobeta.android.dslv.R$attr
+com.mobeta.android.dslv.R$id
+com.mobeta.android.dslv.R$styleable:
+    37:37:public R$styleable()
+com.mobeta.android.dslv.ResourceDragSortCursorAdapter
+com.mobeta.android.dslv.SimpleDragSortCursorAdapter
+com.mobeta.android.dslv.SimpleDragSortCursorAdapter$CursorToStringConverter
+com.mobeta.android.dslv.SimpleDragSortCursorAdapter$ViewBinder
 com.nethergrim.combogymdiary.AdapterHelper:
     137:137:java.lang.String getGroupText(int)
     141:141:java.lang.String getChildText(int,int)
@@ -4855,6 +4910,8 @@ com.nethergrim.combogymdiary.BasicMenuActivity:
     protected static final java.lang.String MINUTES
     protected static final java.lang.String SECONDS
 com.nethergrim.combogymdiary.BuildConfig
+com.nethergrim.combogymdiary.CheckableLinearLayout:
+    private static final int CHECKABLE_CHILD_INDEX
 com.nethergrim.combogymdiary.DB:
     public static final java.lang.String DB_NAME
     private static final int DB_VERSION

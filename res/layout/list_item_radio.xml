@@ -1,28 +1,27 @@
 <?xml version="1.0" encoding="utf-8"?>
+<com.nethergrim.combogymdiary.CheckableLinearLayout
+  xmlns:android="http://schemas.android.com/apk/res/android"
+  android:layout_width="match_parent"
+  android:minHeight="48dp"
+  android:layout_gravity="center_vertical"
+  android:layout_height="wrap_content"
+  android:orientation="horizontal">
 
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:id="@+id/linearLayout1"
-    android:layout_width="match_parent"
-    android:layout_height="@dimen/item_height"
-    android:orientation="horizontal" >
+  <ImageView
+      android:id="@+id/drag_handle"
+      android:layout_gravity="center_vertical"
+      android:gravity="center_vertical"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:background="@drawable/ic_action_sort" />
 
-    <ImageView
-    android:id="@+id/drag_handle"
-    android:background="@drawable/drag"
-    android:layout_width="wrap_content"
-    android:layout_height="@dimen/item_height"
-    android:layout_weight="0" />
+  <CheckedTextView
+      android:id="@+id/text"
+      android:layout_width="match_parent"
+      android:layout_height="match_parent"
+      android:checkMark="?android:attr/listChoiceIndicatorSingle"
+      android:gravity="center_vertical"
+      android:paddingLeft="4dp"
+      android:textSize="17sp" />
 
-    <CheckedTextView
-    android:checkMark="?android:attr/listChoiceIndicatorSingle"
-    android:id="@+id/text"
-    android:layout_width="wrap_content"
-    android:layout_height="@dimen/item_height"
-    android:layout_weight="1"
-    android:textAppearance="?android:attr/textAppearanceMedium"
-    android:gravity="center_vertical"
-    android:paddingLeft="8dp" />
-
-    
-
-</LinearLayout>
+</com.nethergrim.combogymdiary.CheckableLinearLayout>

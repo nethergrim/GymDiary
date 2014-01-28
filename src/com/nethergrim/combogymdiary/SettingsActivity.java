@@ -6,6 +6,7 @@ import com.nethergrim.combogymdiary.DialogRestoreFromBackup.MyInterface;
 import android.app.ActionBar;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.net.Uri;
 import android.os.Bundle;
 import android.preference.Preference;
 import android.preference.PreferenceActivity;
@@ -66,8 +67,40 @@ public class SettingsActivity extends PreferenceActivity implements MyInterface 
                             return true;
                         }
                     });
+        
+        Preference btnEmail = (Preference)findPreference("btnEmail");
+        btnEmail.setOnPreferenceClickListener(new Preference.OnPreferenceClickListener() {
+                        @Override
+                        public boolean onPreferenceClick(Preference arg0) { 
+                        	sendEmail();
+                            return true;
+                        }
+                    });
+        Preference btnVK = (Preference)findPreference("btnVK");
+        btnVK.setOnPreferenceClickListener(new Preference.OnPreferenceClickListener() {
+                        @Override
+                        public boolean onPreferenceClick(Preference arg0) { 
+                        	gotoVk();
+                            return true;
+                        }
+                    });
     }
 
+    private void gotoVk(){
+    	Intent browser = new Intent(Intent.ACTION_VIEW, Uri.parse("https://vk.com/club_nethergrim"));
+    	startActivity(browser);
+    }
+    
+    private void sendEmail(){
+    	Intent intent = new Intent(Intent.ACTION_SEND);
+    	intent.setType("message/rfc822");
+    	String[] to = {"c2q9450@gmail.com"};
+    	intent.putExtra(Intent.EXTRA_EMAIL, to);
+    	intent.putExtra(Intent.EXTRA_SUBJECT, getResources().getString(R.string.app_name));
+    	startActivity(Intent.createChooser(intent, getResources().getString(R.string.send_email)));
+    	
+    }
+    
     private void gotoDisk(){
     	Intent intent = new Intent (this, DiskActivity.class);
     	startActivity(intent);

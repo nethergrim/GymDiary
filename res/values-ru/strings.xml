@@ -1,6 +1,11 @@
 <resources>
 
     <string name="sm">(см)</string>
+    <string name="vk_group">Вконтакте</string>
+    <string name="send_email">Отправить E-mail</string>
+    <string name="email">E-mail</string>
+    <string name="drive">Google Диск</string>
+    <string name="email_to_dev">Написать разработчику</string>
     <string name="wait">Подождите, пожалуйста\nПодключаемся к Google Drive</string>
     <string name="drive_backup">Сделать резервную копию в Google Drive</string>
     <string name="error_deleting_exe">Ошибка!\nНельзя удалять упражнения во время тренировки</string>

@@ -50,14 +50,12 @@ public class StartTrainingActivity extends BasicMenuActivity  implements LoaderC
         btnAddNew.setOnClickListener(this);
         db = new DB(this);
 		db.open();
-		initTrainings(); // if training table is empty
+		
 		cursor_exe = db.getDataTrainings(null, null, null, null, null, null);
 		initList();  
-		
 		AdView adView = (AdView)this.findViewById(R.id.adView);
 	    AdRequest adRequest = new AdRequest.Builder().build();
 	    adView.loadAd(adRequest);
-	    
 	    getSupportLoaderManager().initLoader(0, null, this);
 	}
 	
@@ -67,30 +65,6 @@ public class StartTrainingActivity extends BasicMenuActivity  implements LoaderC
 		initUi();
     }
 	
-	private void initTrainings(){
-		Cursor size = db.getDataTrainings(null, null, null, null, null, null);
-		if (size.getCount() < 1) { 
-			Cursor c = db.getDataExe(null, null, null, DB.TRA_NAME, null, null);
-			if (c.moveToFirst()){	
-				do {
-					String[] args = {c.getString(1)};
-					Cursor cur_local = db.getDataExe(null, DB.TRA_NAME + "=?", args, null, null, null);
-					if (cur_local.moveToFirst()){
-						String[] exercices = new String[cur_local.getCount()];
-						int i = 0;
-						do {
-							exercices[i] = cur_local.getString(2);
-							i++;
-						} while(cur_local.moveToNext());
-						String exes = db.convertArrayToString(exercices);
-						String tmp = c.getString(1);
-						Log.d(LOG_TAG, "trying to add rec to trainings: "+ tmp+" \n " + exes);
-						db.addRec_Trainings(c.getString(1), exes);
-					}
-				}while (c.moveToNext());
-			}
-		}
-	}
 	
 	private void initList () {
     	String[] from = new String[] { DB.TRA_NAME };
@@ -188,7 +162,7 @@ public class StartTrainingActivity extends BasicMenuActivity  implements LoaderC
     
     public void goToTraining(int id) 
     {
-
+    	
     	Log.d(LOG_TAG, "going to start training ID == "+id);
 
     	if (cursor_exe.moveToFirst()) {
@@ -205,6 +179,7 @@ public class StartTrainingActivity extends BasicMenuActivity  implements LoaderC
     		if (!str.isEmpty())
         		intent_to_trainng.putExtra("trainingName", str);
             startActivity(intent_to_trainng);
+            finish();
     	}
     	
     }

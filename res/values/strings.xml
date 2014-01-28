@@ -2,6 +2,11 @@
 <resources>
 
     <string name="sm">(sm)</string>
+    <string name="vk_group">VK group</string>
+    <string name="send_email">Send E-mail</string>
+    <string name="drive">Google Drive</string>
+    <string name="email">E-mail</string>
+    <string name="email_to_dev">Send e-mail to developer</string>
     <string name="wait">Wait a second, please</string>
     <string name="drive_backup">Backup to Google Drive</string>
     <string name="error_editing_exe">Error editing exercise!\nYou can`t delete exercise during training</string>

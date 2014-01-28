@@ -1,8 +1,5 @@
 package com.nethergrim.combogymdiary;
 
-import com.google.android.gms.ads.AdRequest;
-import com.google.android.gms.ads.AdView;
-
 
 
 import android.support.v4.app.LoaderManager.LoaderCallbacks;
@@ -19,6 +16,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListView;
+import android.widget.Toast;
 
 public class AddingProgram extends BasicMenuActivity implements LoaderCallbacks<Cursor> {
 
@@ -53,14 +51,6 @@ public class AddingProgram extends BasicMenuActivity implements LoaderCallbacks<
 		adapter = new SimpleCursorAdapter(this, android.R.layout.simple_list_item_multiple_choice,null, from, to,0);
 		lvExe.setAdapter(adapter);
 		getSupportLoaderManager().initLoader(0, null, this);
-		
-		AdView adView = (AdView)this.findViewById(R.id.adView4);
-	    AdRequest adRequest = new AdRequest.Builder()
-	    .addTestDevice(AdRequest.DEVICE_ID_EMULATOR)
-	    .addTestDevice("TEST_DEVICE_ID")
-	    .build();
-	    adView.loadAd(adRequest);
-	    getSupportLoaderManager().getLoader(0).forceLoad();
 	}
 	
 	@Override
@@ -106,9 +96,6 @@ public class AddingProgram extends BasicMenuActivity implements LoaderCallbacks<
 	    	return cursor;
 	    }
 	  }	
-		
-
-
     
 	@Override
 	public void onClick(View arg0) {
@@ -122,7 +109,7 @@ public class AddingProgram extends BasicMenuActivity implements LoaderCallbacks<
 			
 			
 							
-			if (!prgName.isEmpty()) 
+			if (!prgName.isEmpty() && arrIDs.length > 0) 
 			{
 				
 				Cursor c = db.getDataExe(null, null, null, null, null, null);
@@ -141,6 +128,8 @@ public class AddingProgram extends BasicMenuActivity implements LoaderCallbacks<
 				
 				db.addRec_Trainings(prgName, db.convertArrayToString(exersices) );
 				NavUtils.navigateUpFromSameTask(this);	
+			} else {
+				Toast.makeText(this,R.string.input_data, Toast.LENGTH_SHORT).show();
 			}
 		} 
 	}

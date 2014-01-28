@@ -9173,6 +9173,383 @@ com.google.android.gms.wallet.l -> com.google.android.gms.wallet.l:
     void a(com.google.android.gms.wallet.ProxyCard,android.os.Parcel,int) -> a
     java.lang.Object[] newArray(int) -> newArray
     java.lang.Object createFromParcel(android.os.Parcel) -> createFromParcel
+com.mobeta.android.dslv.DragSortController -> com.mobeta.android.dslv.a:
+    int mDragInitMode -> a
+    boolean mSortEnabled -> b
+    int mRemoveMode -> c
+    boolean mRemoveEnabled -> d
+    boolean mIsRemoving -> e
+    android.view.GestureDetector mDetector -> f
+    android.view.GestureDetector mFlingRemoveDetector -> g
+    int mTouchSlop -> h
+    int mHitPos -> i
+    int mFlingHitPos -> j
+    int mClickRemoveHitPos -> k
+    int[] mTempLoc -> l
+    int mItemX -> m
+    int mItemY -> n
+    int mCurrX -> o
+    int mCurrY -> p
+    boolean mDragging -> q
+    float mFlingSpeed -> r
+    int mDragHandleId -> s
+    int mClickRemoveId -> t
+    int mFlingHandleId -> u
+    boolean mCanDrag -> v
+    com.mobeta.android.dslv.DragSortListView mDslv -> w
+    int mPositionX -> x
+    android.view.GestureDetector$OnGestureListener mFlingRemoveListener -> y
+    void setDragInitMode(int) -> a
+    void setSortEnabled(boolean) -> a
+    void setRemoveMode(int) -> b
+    void setRemoveEnabled(boolean) -> b
+    boolean startDrag(int,int,int) -> a
+    boolean onTouch(android.view.View,android.view.MotionEvent) -> onTouch
+    void onDragFloatView(android.view.View,android.graphics.Point,android.graphics.Point) -> a
+    int startDragPosition(android.view.MotionEvent) -> a
+    int startFlingPosition(android.view.MotionEvent) -> b
+    int dragHandleHitPosition(android.view.MotionEvent) -> c
+    int flingHandleHitPosition(android.view.MotionEvent) -> d
+    int viewIdHitPosition(android.view.MotionEvent,int) -> a
+    boolean onDown(android.view.MotionEvent) -> onDown
+    boolean onScroll(android.view.MotionEvent,android.view.MotionEvent,float,float) -> onScroll
+    void onLongPress(android.view.MotionEvent) -> onLongPress
+    boolean onFling(android.view.MotionEvent,android.view.MotionEvent,float,float) -> onFling
+    boolean onSingleTapUp(android.view.MotionEvent) -> onSingleTapUp
+    void onShowPress(android.view.MotionEvent) -> onShowPress
+    boolean access$0(com.mobeta.android.dslv.DragSortController) -> a
+    boolean access$1(com.mobeta.android.dslv.DragSortController) -> b
+    com.mobeta.android.dslv.DragSortListView access$2(com.mobeta.android.dslv.DragSortController) -> c
+    float access$3(com.mobeta.android.dslv.DragSortController) -> d
+    int access$4(com.mobeta.android.dslv.DragSortController) -> e
+    void access$5(com.mobeta.android.dslv.DragSortController,boolean) -> a
+com.mobeta.android.dslv.DragSortController$1 -> com.mobeta.android.dslv.b:
+    com.mobeta.android.dslv.DragSortController this$0 -> a
+    boolean onFling(android.view.MotionEvent,android.view.MotionEvent,float,float) -> onFling
+com.mobeta.android.dslv.DragSortItemView -> com.mobeta.android.dslv.c:
+    int mGravity -> a
+    void setGravity(int) -> setGravity
+    int getGravity() -> getGravity
+    void onLayout(boolean,int,int,int,int) -> onLayout
+    void onMeasure(int,int) -> onMeasure
+com.mobeta.android.dslv.DragSortItemViewCheckable -> com.mobeta.android.dslv.d:
+    boolean isChecked() -> isChecked
+    void setChecked(boolean) -> setChecked
+    void toggle() -> toggle
+com.mobeta.android.dslv.DragSortListView -> com.mobeta.android.dslv.DragSortListView:
+    android.view.View mFloatView -> a
+    android.graphics.Point mFloatLoc -> b
+    android.graphics.Point mTouchLoc -> c
+    int mFloatViewMid -> d
+    boolean mFloatViewOnMeasured -> e
+    android.database.DataSetObserver mObserver -> f
+    float mFloatAlpha -> g
+    float mCurrFloatAlpha -> h
+    int mFloatPos -> i
+    int mFirstExpPos -> j
+    int mSecondExpPos -> k
+    boolean mAnimate -> l
+    int mSrcPos -> m
+    int mDragDeltaX -> n
+    int mDragDeltaY -> o
+    int mOffsetX -> p
+    int mOffsetY -> q
+    com.mobeta.android.dslv.DragSortListView$DragListener mDragListener -> r
+    com.mobeta.android.dslv.DragSortListView$DropListener mDropListener -> s
+    com.mobeta.android.dslv.DragSortListView$RemoveListener mRemoveListener -> t
+    boolean mDragEnabled -> u
+    int mDragState -> v
+    int mItemHeightCollapsed -> w
+    int mFloatViewHeight -> x
+    int mFloatViewHeightHalf -> y
+    int mWidthMeasureSpec -> z
+    android.view.View[] mSampleViewTypes -> A
+    com.mobeta.android.dslv.DragSortListView$DragScroller mDragScroller -> B
+    float mDragUpScrollStartFrac -> C
+    float mDragDownScrollStartFrac -> D
+    int mUpScrollStartY -> E
+    int mDownScrollStartY -> F
+    float mDownScrollStartYF -> G
+    float mUpScrollStartYF -> H
+    float mDragUpScrollHeight -> I
+    float mDragDownScrollHeight -> J
+    float mMaxScrollSpeed -> K
+    com.mobeta.android.dslv.DragSortListView$DragScrollProfile mScrollProfile -> L
+    int mX -> M
+    int mY -> N
+    int mLastX -> O
+    int mLastY -> P
+    int mDragStartY -> Q
+    int mDragFlags -> R
+    boolean mLastCallWasIntercept -> S
+    boolean mInTouchEvent -> T
+    com.mobeta.android.dslv.DragSortListView$FloatViewManager mFloatViewManager -> U
+    android.view.MotionEvent mCancelEvent -> V
+    int mCancelMethod -> W
+    float mSlideRegionFrac -> Z
+    float mSlideFrac -> aa
+    com.mobeta.android.dslv.DragSortListView$AdapterWrapper mAdapterWrapper -> ab
+    boolean mTrackDragSort -> ac
+    com.mobeta.android.dslv.DragSortListView$DragSortTracker mDragSortTracker -> ad
+    boolean mBlockLayoutRequests -> ae
+    boolean mIgnoreTouchEvent -> af
+    com.mobeta.android.dslv.DragSortListView$HeightCache mChildHeightCache -> ag
+    com.mobeta.android.dslv.DragSortListView$RemoveAnimator mRemoveAnimator -> ah
+    com.mobeta.android.dslv.DragSortListView$LiftAnimator mLiftAnimator -> ai
+    com.mobeta.android.dslv.DragSortListView$DropAnimator mDropAnimator -> aj
+    boolean mUseRemoveVelocity -> ak
+    float mRemoveVelocityX -> al
+    boolean mListViewIntercepted -> am
+    boolean mFloatViewInvalidated -> an
+    void setFloatAlpha(float) -> setFloatAlpha
+    float getFloatAlpha() -> getFloatAlpha
+    void setMaxScrollSpeed(float) -> setMaxScrollSpeed
+    void setAdapter(android.widget.ListAdapter) -> setAdapter
+    android.widget.ListAdapter getInputAdapter() -> getInputAdapter
+    void drawDivider(int,android.graphics.Canvas) -> a
+    void dispatchDraw(android.graphics.Canvas) -> dispatchDraw
+    int getItemHeight(int) -> b
+    int getShuffleEdge(int,int) -> b
+    boolean updatePositions() -> d
+    void onDraw(android.graphics.Canvas) -> onDraw
+    void removeItem(int) -> a
+    void removeItem(int,float) -> a
+    void cancelDrag() -> a
+    void clearPositions() -> e
+    void dropFloatView() -> f
+    void doRemoveItem() -> g
+    void doRemoveItem(int) -> c
+    void adjustOnReorder() -> h
+    boolean stopDrag(boolean) -> a
+    boolean stopDragWithVelocity(boolean,float) -> a
+    boolean stopDrag(boolean,float) -> b
+    boolean onTouchEvent(android.view.MotionEvent) -> onTouchEvent
+    void doActionUpOrCancel() -> i
+    void saveTouchCoords(android.view.MotionEvent) -> b
+    boolean listViewIntercepted() -> b
+    boolean onInterceptTouchEvent(android.view.MotionEvent) -> onInterceptTouchEvent
+    void setDragScrollStart(float) -> setDragScrollStart
+    void setDragScrollStarts(float,float) -> a
+    void continueDrag(int,int) -> c
+    void updateScrollStarts() -> j
+    void onSizeChanged(int,int,int,int) -> onSizeChanged
+    void adjustAllItems() -> k
+    void adjustItem(int,android.view.View,boolean) -> a
+    int getChildHeight(int) -> d
+    int getChildHeight(int,android.view.View,boolean) -> b
+    int calcItemHeight(int,android.view.View,boolean) -> c
+    int calcItemHeight(int,int) -> d
+    void requestLayout() -> requestLayout
+    int adjustScroll(int,android.view.View,int,int) -> a
+    void measureItem(android.view.View) -> a
+    void measureFloatView() -> l
+    void onMeasure(int,int) -> onMeasure
+    void layoutChildren() -> layoutChildren
+    boolean onDragTouchEvent(android.view.MotionEvent) -> a
+    boolean startDrag(int,int,int,int) -> a
+    boolean startDrag(int,android.view.View,int,int,int) -> a
+    void doDragFloatView(boolean) -> b
+    void doDragFloatView(int,android.view.View,boolean) -> d
+    void updateFloatView() -> m
+    void destroyFloatView() -> n
+    void setFloatViewManager(com.mobeta.android.dslv.DragSortListView$FloatViewManager) -> setFloatViewManager
+    void setDragListener(com.mobeta.android.dslv.DragSortListView$DragListener) -> setDragListener
+    void setDragEnabled(boolean) -> setDragEnabled
+    boolean isDragEnabled() -> c
+    void setDropListener(com.mobeta.android.dslv.DragSortListView$DropListener) -> setDropListener
+    void setRemoveListener(com.mobeta.android.dslv.DragSortListView$RemoveListener) -> setRemoveListener
+    void setDragSortListener(com.mobeta.android.dslv.DragSortListView$DragSortListener) -> setDragSortListener
+    void setDragScrollProfile(com.mobeta.android.dslv.DragSortListView$DragScrollProfile) -> setDragScrollProfile
+    void moveCheckState(int,int) -> a
+    int buildRunList(android.util.SparseBooleanArray,int,int,int[],int[]) -> a
+    int rotate(int,int,int,int) -> b
+    int findFirstSetIndex(android.util.SparseBooleanArray,int,int) -> a
+    int insertionIndexForKey(android.util.SparseBooleanArray,int) -> a
+    float access$0(com.mobeta.android.dslv.DragSortListView) -> a
+    void access$1(com.mobeta.android.dslv.DragSortListView,int,android.view.View,boolean) -> a
+    int access$2(com.mobeta.android.dslv.DragSortListView) -> b
+    int access$3(com.mobeta.android.dslv.DragSortListView) -> c
+    int access$4(com.mobeta.android.dslv.DragSortListView) -> d
+    void access$5(com.mobeta.android.dslv.DragSortListView,int) -> a
+    android.graphics.Point access$6(com.mobeta.android.dslv.DragSortListView) -> e
+    int access$7(com.mobeta.android.dslv.DragSortListView) -> f
+    void access$8(com.mobeta.android.dslv.DragSortListView,boolean) -> a
+    int access$9(com.mobeta.android.dslv.DragSortListView) -> g
+    int access$10(com.mobeta.android.dslv.DragSortListView) -> h
+    void access$11(com.mobeta.android.dslv.DragSortListView,int) -> b
+    int access$12(com.mobeta.android.dslv.DragSortListView) -> i
+    int access$13(com.mobeta.android.dslv.DragSortListView) -> j
+    void access$14(com.mobeta.android.dslv.DragSortListView) -> k
+    int access$15(com.mobeta.android.dslv.DragSortListView) -> l
+    int access$16(com.mobeta.android.dslv.DragSortListView) -> m
+    boolean access$17(com.mobeta.android.dslv.DragSortListView) -> n
+    float access$18(com.mobeta.android.dslv.DragSortListView) -> o
+    void access$19(com.mobeta.android.dslv.DragSortListView,float) -> a
+    void access$20(com.mobeta.android.dslv.DragSortListView) -> p
+    int access$21(com.mobeta.android.dslv.DragSortListView,int,android.view.View,boolean) -> b
+    void access$22(com.mobeta.android.dslv.DragSortListView) -> q
+    int access$23(com.mobeta.android.dslv.DragSortListView) -> r
+    com.mobeta.android.dslv.DragSortListView$DragScrollProfile access$24(com.mobeta.android.dslv.DragSortListView) -> s
+    float access$25(com.mobeta.android.dslv.DragSortListView) -> t
+    float access$26(com.mobeta.android.dslv.DragSortListView) -> u
+    float access$27(com.mobeta.android.dslv.DragSortListView) -> v
+    float access$28(com.mobeta.android.dslv.DragSortListView) -> w
+    void access$29(com.mobeta.android.dslv.DragSortListView,boolean) -> b
+    void access$30(com.mobeta.android.dslv.DragSortListView,int,android.view.View,boolean) -> c
+    int access$31(com.mobeta.android.dslv.DragSortListView,int) -> c
+    int access$32(com.mobeta.android.dslv.DragSortListView,int) -> d
+    int access$33(com.mobeta.android.dslv.DragSortListView) -> x
+    int access$34(com.mobeta.android.dslv.DragSortListView,int,int) -> a
+com.mobeta.android.dslv.DragSortListView$1 -> com.mobeta.android.dslv.e:
+    com.mobeta.android.dslv.DragSortListView this$0 -> a
+    float getSpeed(float,long) -> a
+com.mobeta.android.dslv.DragSortListView$2 -> com.mobeta.android.dslv.f:
+    com.mobeta.android.dslv.DragSortListView this$0 -> a
+    void cancel() -> a
+    void onChanged() -> onChanged
+    void onInvalidated() -> onInvalidated
+com.mobeta.android.dslv.DragSortListView$AdapterWrapper -> com.mobeta.android.dslv.g:
+    android.widget.ListAdapter mAdapter -> b
+    com.mobeta.android.dslv.DragSortListView this$0 -> a
+    android.widget.ListAdapter getAdapter() -> a
+    long getItemId(int) -> getItemId
+    java.lang.Object getItem(int) -> getItem
+    int getCount() -> getCount
+    boolean areAllItemsEnabled() -> areAllItemsEnabled
+    boolean isEnabled(int) -> isEnabled
+    int getItemViewType(int) -> getItemViewType
+    int getViewTypeCount() -> getViewTypeCount
+    boolean hasStableIds() -> hasStableIds
+    boolean isEmpty() -> isEmpty
+    android.view.View getView(int,android.view.View,android.view.ViewGroup) -> getView
+com.mobeta.android.dslv.DragSortListView$AdapterWrapper$1 -> com.mobeta.android.dslv.h:
+    com.mobeta.android.dslv.DragSortListView$AdapterWrapper this$1 -> a
+    void onChanged() -> onChanged
+    void onInvalidated() -> onInvalidated
+com.mobeta.android.dslv.DragSortListView$DragListener -> com.mobeta.android.dslv.i:
+    void drag(int,int) -> a
+com.mobeta.android.dslv.DragSortListView$DragScrollProfile -> com.mobeta.android.dslv.j:
+    float getSpeed(float,long) -> a
+com.mobeta.android.dslv.DragSortListView$DragScroller -> com.mobeta.android.dslv.k:
+    boolean mAbort -> b
+    long mPrevTime -> c
+    long mCurrTime -> d
+    int dy -> e
+    float dt -> f
+    long tStart -> g
+    int scrollDir -> h
+    float mScrollSpeed -> i
+    boolean mScrolling -> j
+    com.mobeta.android.dslv.DragSortListView this$0 -> a
+    boolean isScrolling() -> a
+    int getScrollDir() -> b
+    void startScrolling(int) -> a
+    void stopScrolling(boolean) -> a
+    void run() -> run
+com.mobeta.android.dslv.DragSortListView$DragSortListener -> com.mobeta.android.dslv.l:
+com.mobeta.android.dslv.DragSortListView$DragSortTracker -> com.mobeta.android.dslv.m:
+    java.lang.StringBuilder mBuilder -> a
+    java.io.File mFile -> b
+    int mNumInBuffer -> d
+    int mNumFlushes -> e
+    boolean mTracking -> f
+    com.mobeta.android.dslv.DragSortListView this$0 -> c
+    void startTracking() -> a
+    void appendState() -> b
+    void flush() -> c
+    void stopTracking() -> d
+com.mobeta.android.dslv.DragSortListView$DropAnimator -> com.mobeta.android.dslv.n:
+    int mDropPos -> d
+    int srcPos -> e
+    float mInitDeltaY -> f
+    float mInitDeltaX -> g
+    com.mobeta.android.dslv.DragSortListView this$0 -> a
+    void onStart() -> a
+    int getTargetY() -> e
+    void onUpdate(float,float) -> a
+    void onStop() -> b
+com.mobeta.android.dslv.DragSortListView$DropListener -> com.mobeta.android.dslv.o:
+    void drop(int,int) -> a_
+com.mobeta.android.dslv.DragSortListView$FloatViewManager -> com.mobeta.android.dslv.p:
+    android.view.View onCreateFloatView(int) -> c
+    void onDragFloatView(android.view.View,android.graphics.Point,android.graphics.Point) -> a
+    void onDestroyFloatView(android.view.View) -> a
+com.mobeta.android.dslv.DragSortListView$HeightCache -> com.mobeta.android.dslv.q:
+    android.util.SparseIntArray mMap -> b
+    java.util.ArrayList mOrder -> c
+    int mMaxSize -> d
+    com.mobeta.android.dslv.DragSortListView this$0 -> a
+    void add(int,int) -> a
+    int get(int) -> a
+    void clear() -> a
+com.mobeta.android.dslv.DragSortListView$LiftAnimator -> com.mobeta.android.dslv.r:
+    float mInitDragDeltaY -> d
+    float mFinalDragDeltaY -> e
+    com.mobeta.android.dslv.DragSortListView this$0 -> a
+    void onStart() -> a
+    void onUpdate(float,float) -> a
+com.mobeta.android.dslv.DragSortListView$RemoveAnimator -> com.mobeta.android.dslv.s:
+    float mFloatLocX -> d
+    float mFirstStartBlank -> e
+    float mSecondStartBlank -> f
+    int mFirstChildHeight -> g
+    int mSecondChildHeight -> h
+    int mFirstPos -> i
+    int mSecondPos -> j
+    int srcPos -> k
+    com.mobeta.android.dslv.DragSortListView this$0 -> a
+    void onStart() -> a
+    void onUpdate(float,float) -> a
+    void onStop() -> b
+com.mobeta.android.dslv.DragSortListView$RemoveListener -> com.mobeta.android.dslv.t:
+    void remove(int) -> a
+com.mobeta.android.dslv.DragSortListView$SmoothAnimator -> com.mobeta.android.dslv.u:
+    long mStartTime -> b
+    float mDurationF -> a
+    float mAlpha -> d
+    float mA -> e
+    float mB -> f
+    float mC -> g
+    float mD -> h
+    boolean mCanceled -> i
+    com.mobeta.android.dslv.DragSortListView this$0 -> c
+    float transform(float) -> a
+    void start() -> c
+    void cancel() -> d
+    void onStart() -> a
+    void onUpdate(float,float) -> a
+    void onStop() -> b
+    void run() -> run
+com.mobeta.android.dslv.R -> com.mobeta.android.dslv.v:
+com.mobeta.android.dslv.R$styleable -> com.mobeta.android.dslv.w:
+    int[] DragSortListView -> DragSortListView
+    int DragSortListView_click_remove_id -> DragSortListView_click_remove_id
+    int DragSortListView_collapsed_height -> DragSortListView_collapsed_height
+    int DragSortListView_drag_enabled -> DragSortListView_drag_enabled
+    int DragSortListView_drag_handle_id -> DragSortListView_drag_handle_id
+    int DragSortListView_drag_scroll_start -> DragSortListView_drag_scroll_start
+    int DragSortListView_drag_start_mode -> DragSortListView_drag_start_mode
+    int DragSortListView_drop_animation_duration -> DragSortListView_drop_animation_duration
+    int DragSortListView_fling_handle_id -> DragSortListView_fling_handle_id
+    int DragSortListView_float_alpha -> DragSortListView_float_alpha
+    int DragSortListView_float_background_color -> DragSortListView_float_background_color
+    int DragSortListView_max_drag_scroll_speed -> DragSortListView_max_drag_scroll_speed
+    int DragSortListView_remove_animation_duration -> DragSortListView_remove_animation_duration
+    int DragSortListView_remove_enabled -> DragSortListView_remove_enabled
+    int DragSortListView_remove_mode -> DragSortListView_remove_mode
+    int DragSortListView_slide_shuffle_speed -> DragSortListView_slide_shuffle_speed
+    int DragSortListView_sort_enabled -> DragSortListView_sort_enabled
+    int DragSortListView_track_drag_sort -> DragSortListView_track_drag_sort
+    int DragSortListView_use_default_controller -> DragSortListView_use_default_controller
+com.mobeta.android.dslv.SimpleFloatViewManager -> com.mobeta.android.dslv.x:
+    android.graphics.Bitmap mFloatBitmap -> a
+    android.widget.ImageView mImageView -> b
+    int mFloatBGColor -> c
+    android.widget.ListView mListView -> d
+    void setBackgroundColor(int) -> d
+    android.view.View onCreateFloatView(int) -> c
+    void onDragFloatView(android.view.View,android.graphics.Point,android.graphics.Point) -> a
+    void onDestroyFloatView(android.view.View) -> a
 com.nethergrim.combogymdiary.AdapterHelper -> com.nethergrim.combogymdiary.a:
     java.lang.String ATTR_GROUP_NAME -> a
     java.lang.String ATTR_BODY_NAME -> b
@@ -9317,6 +9694,12 @@ com.nethergrim.combogymdiary.CatalogDetailedActivity -> com.nethergrim.combogymd
     void initGroup5() -> l
     void initGroup6() -> m
     void onClick(android.view.View) -> onClick
+com.nethergrim.combogymdiary.CheckableLinearLayout -> com.nethergrim.combogymdiary.CheckableLinearLayout:
+    android.widget.Checkable child -> a
+    void onFinishInflate() -> onFinishInflate
+    boolean isChecked() -> isChecked
+    void setChecked(boolean) -> setChecked
+    void toggle() -> toggle
 com.nethergrim.combogymdiary.DB -> com.nethergrim.combogymdiary.i:
     java.lang.String LOG_TAG -> a
     java.lang.String strSeparator -> b
@@ -9497,6 +9880,7 @@ com.nethergrim.combogymdiary.MainActivity -> com.nethergrim.combogymdiary.MainAc
     com.nethergrim.combogymdiary.MainActivity ma -> n
     void onConfigurationChanged(android.content.res.Configuration) -> onConfigurationChanged
     void initUi() -> f
+    void onResume() -> onResume
     void onCreate(android.os.Bundle) -> onCreate
     void initTable() -> g
     void onClick(android.view.View) -> onClick
@@ -9563,10 +9947,14 @@ com.nethergrim.combogymdiary.MyService -> com.nethergrim.combogymdiary.MyService
 com.nethergrim.combogymdiary.SettingsActivity -> com.nethergrim.combogymdiary.SettingsActivity:
     android.app.DialogFragment dlg2 -> a
     void onCreate(android.os.Bundle) -> onCreate
-    void gotoDisk() -> b
+    void gotoVk() -> b
+    void sendEmail() -> c
+    void gotoDisk() -> d
     void onChoose() -> a
     boolean onOptionsItemSelected(android.view.MenuItem) -> onOptionsItemSelected
     void access$0(com.nethergrim.combogymdiary.SettingsActivity) -> a
+    void access$1(com.nethergrim.combogymdiary.SettingsActivity) -> b
+    void access$2(com.nethergrim.combogymdiary.SettingsActivity) -> c
 com.nethergrim.combogymdiary.SettingsActivity$1 -> com.nethergrim.combogymdiary.x:
     com.nethergrim.combogymdiary.SettingsActivity this$0 -> a
     boolean onPreferenceClick(android.preference.Preference) -> onPreferenceClick
@@ -9574,6 +9962,12 @@ com.nethergrim.combogymdiary.SettingsActivity$2 -> com.nethergrim.combogymdiary.
     com.nethergrim.combogymdiary.SettingsActivity this$0 -> a
     boolean onPreferenceClick(android.preference.Preference) -> onPreferenceClick
 com.nethergrim.combogymdiary.SettingsActivity$3 -> com.nethergrim.combogymdiary.z:
+    com.nethergrim.combogymdiary.SettingsActivity this$0 -> a
+    boolean onPreferenceClick(android.preference.Preference) -> onPreferenceClick
+com.nethergrim.combogymdiary.SettingsActivity$4 -> com.nethergrim.combogymdiary.aa:
+    com.nethergrim.combogymdiary.SettingsActivity this$0 -> a
+    boolean onPreferenceClick(android.preference.Preference) -> onPreferenceClick
+com.nethergrim.combogymdiary.SettingsActivity$5 -> com.nethergrim.combogymdiary.ab:
     com.nethergrim.combogymdiary.SettingsActivity this$0 -> a
     boolean onPreferenceClick(android.preference.Preference) -> onPreferenceClick
 com.nethergrim.combogymdiary.StartTrainingActivity -> com.nethergrim.combogymdiary.StartTrainingActivity:
@@ -9585,8 +9979,7 @@ com.nethergrim.combogymdiary.StartTrainingActivity -> com.nethergrim.combogymdia
     void onConfigurationChanged(android.content.res.Configuration) -> onConfigurationChanged
     void initUi() -> f
     void onCreate(android.os.Bundle) -> onCreate
-    void initTrainings() -> g
-    void initList() -> h
+    void initList() -> g
     void onResume() -> onResume
     android.support.v4.content.Loader onCreateLoader(int,android.os.Bundle) -> a
     void onLoadFinished(android.support.v4.content.Loader,android.database.Cursor) -> a
@@ -9598,10 +9991,10 @@ com.nethergrim.combogymdiary.StartTrainingActivity -> com.nethergrim.combogymdia
     void onClick(android.view.View) -> onClick
     void onDestroy() -> onDestroy
     void onLoadFinished(android.support.v4.content.Loader,java.lang.Object) -> a
-com.nethergrim.combogymdiary.StartTrainingActivity$1 -> com.nethergrim.combogymdiary.aa:
+com.nethergrim.combogymdiary.StartTrainingActivity$1 -> com.nethergrim.combogymdiary.ac:
     com.nethergrim.combogymdiary.StartTrainingActivity this$0 -> a
     void onItemClick(android.widget.AdapterView,android.view.View,int,long) -> onItemClick
-com.nethergrim.combogymdiary.StartTrainingActivity$MyCursorLoader -> com.nethergrim.combogymdiary.ab:
+com.nethergrim.combogymdiary.StartTrainingActivity$MyCursorLoader -> com.nethergrim.combogymdiary.ad:
     com.nethergrim.combogymdiary.DB db -> u
     android.database.Cursor cursor -> v
     android.database.Cursor loadInBackground() -> f
@@ -9617,9 +10010,9 @@ com.nethergrim.combogymdiary.TrainingAtProgress -> com.nethergrim.combogymdiary.
     java.lang.Boolean turnOff -> q
     java.lang.Boolean vibrate -> r
     android.widget.EditText etTimer -> s
-    android.widget.ListView lvMain -> t
-    com.nethergrim.combogymdiary.DB db -> u
-    android.database.Cursor cursor -> v
+    com.nethergrim.combogymdiary.DB db -> t
+    android.database.Cursor cursor -> u
+    int trainingIdAtTable -> v
     android.widget.ArrayAdapter adapter -> w
     java.lang.String[] exersices -> x
     java.lang.String traName -> y
@@ -9658,7 +10051,9 @@ com.nethergrim.combogymdiary.TrainingAtProgress -> com.nethergrim.combogymdiary.
     android.widget.ImageView ivBack -> ap
     android.widget.ImageView ivForward -> aq
     android.view.animation.Animation anim -> ar
+    com.mobeta.android.dslv.DragSortListView list -> as
     java.lang.Runnable timerRunnable -> n
+    com.mobeta.android.dslv.DragSortListView$DropListener onDrop -> at
     void onConfigurationChanged(android.content.res.Configuration) -> onConfigurationChanged
     void onCreate(android.os.Bundle) -> onCreate
     void onChoose() -> a
@@ -9689,28 +10084,35 @@ com.nethergrim.combogymdiary.TrainingAtProgress -> com.nethergrim.combogymdiary.
     android.widget.TextView access$7(com.nethergrim.combogymdiary.TrainingAtProgress) -> f
     int access$8(com.nethergrim.combogymdiary.TrainingAtProgress) -> g
     android.os.Handler access$9(com.nethergrim.combogymdiary.TrainingAtProgress) -> h
-    void access$10(com.nethergrim.combogymdiary.TrainingAtProgress,int) -> c
-    void access$11(com.nethergrim.combogymdiary.TrainingAtProgress,int) -> d
-    android.app.ProgressDialog access$12(com.nethergrim.combogymdiary.TrainingAtProgress) -> i
-    android.os.Handler access$13(com.nethergrim.combogymdiary.TrainingAtProgress) -> j
-    java.lang.Boolean access$14(com.nethergrim.combogymdiary.TrainingAtProgress) -> k
-    int access$15(com.nethergrim.combogymdiary.TrainingAtProgress) -> l
-com.nethergrim.combogymdiary.TrainingAtProgress$1 -> com.nethergrim.combogymdiary.ac:
+    android.widget.ArrayAdapter access$10(com.nethergrim.combogymdiary.TrainingAtProgress) -> i
+    java.util.ArrayList access$11(com.nethergrim.combogymdiary.TrainingAtProgress) -> j
+    com.nethergrim.combogymdiary.DB access$12(com.nethergrim.combogymdiary.TrainingAtProgress) -> k
+    int access$13(com.nethergrim.combogymdiary.TrainingAtProgress) -> l
+    void access$14(com.nethergrim.combogymdiary.TrainingAtProgress,int) -> c
+    void access$15(com.nethergrim.combogymdiary.TrainingAtProgress,int) -> d
+    android.app.ProgressDialog access$16(com.nethergrim.combogymdiary.TrainingAtProgress) -> m
+    android.os.Handler access$17(com.nethergrim.combogymdiary.TrainingAtProgress) -> n
+    java.lang.Boolean access$18(com.nethergrim.combogymdiary.TrainingAtProgress) -> o
+    int access$19(com.nethergrim.combogymdiary.TrainingAtProgress) -> p
+com.nethergrim.combogymdiary.TrainingAtProgress$1 -> com.nethergrim.combogymdiary.ae:
     com.nethergrim.combogymdiary.TrainingAtProgress this$0 -> a
     void run() -> run
-com.nethergrim.combogymdiary.TrainingAtProgress$2 -> com.nethergrim.combogymdiary.ad:
+com.nethergrim.combogymdiary.TrainingAtProgress$2 -> com.nethergrim.combogymdiary.af:
+    com.nethergrim.combogymdiary.TrainingAtProgress this$0 -> a
+    void drop(int,int) -> a_
+com.nethergrim.combogymdiary.TrainingAtProgress$3 -> com.nethergrim.combogymdiary.ag:
     com.nethergrim.combogymdiary.TrainingAtProgress this$0 -> a
     void onItemClick(android.widget.AdapterView,android.view.View,int,long) -> onItemClick
-com.nethergrim.combogymdiary.TrainingAtProgress$3 -> com.nethergrim.combogymdiary.ae:
+com.nethergrim.combogymdiary.TrainingAtProgress$4 -> com.nethergrim.combogymdiary.ah:
     com.nethergrim.combogymdiary.TrainingAtProgress this$0 -> a
     void handleMessage(android.os.Message) -> handleMessage
-com.nethergrim.combogymdiary.TrainingAtProgress$RepsAdapter -> com.nethergrim.combogymdiary.af:
+com.nethergrim.combogymdiary.TrainingAtProgress$RepsAdapter -> com.nethergrim.combogymdiary.ai:
     java.util.ArrayList reps -> a
     com.nethergrim.combogymdiary.TrainingAtProgress this$0 -> b
     android.view.View getItem(int,android.view.View,android.view.ViewGroup) -> a
     int getItemsCount() -> a
     java.lang.CharSequence getItemText(int) -> a
-com.nethergrim.combogymdiary.TrainingAtProgress$WeightsAdapter -> com.nethergrim.combogymdiary.ag:
+com.nethergrim.combogymdiary.TrainingAtProgress$WeightsAdapter -> com.nethergrim.combogymdiary.aj:
     java.util.ArrayList weights -> a
     com.nethergrim.combogymdiary.TrainingAtProgress this$0 -> b
     android.view.View getItem(int,android.view.View,android.view.ViewGroup) -> a

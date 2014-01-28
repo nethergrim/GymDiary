@@ -6,18 +6,6 @@
     android:background="@drawable/cream_pixels_bitmap"
     android:layout_height="match_parent"
     tools:context=".AddingProgram" >
-
-    
-
-    
-    <com.google.android.gms.ads.AdView
-		    xmlns:ads="http://schemas.android.com/apk/res-auto"
-		    android:id="@+id/adView4"
-		    android:layout_width="match_parent"
-		    android:layout_height="wrap_content"
-		    ads:adUnitId="ca-app-pub-5652589022154086/4102541457"
-		    android:gravity="center_horizontal" 
-		    ads:adSize="BANNER"/>
     
     
     <EditText
@@ -44,7 +32,6 @@
         android:layout_alignParentRight="true"
         android:layout_margin="5dp"
         android:textColor="@android:color/white"
-        android:drawableLeft="@android:drawable/ic_input_add"
         android:text="@string/Create" />
 
     <ListView
@@ -65,9 +52,9 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignLeft="@+id/listView1"
-        android:layout_below="@+id/adView4"
         android:gravity="center_vertical|center_horizontal"
         android:text="@string/check_exe"
-        android:textAppearance="?android:attr/textAppearanceSmall" />
+        android:textAppearance="?android:attr/textAppearanceSmall"
+        android:textSize="18sp" />
 
 </RelativeLayout>

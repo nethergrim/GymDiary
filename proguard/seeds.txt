@@ -1219,6 +1219,66 @@ com.google.gson.stream.JsonScope: com.google.gson.stream.JsonScope[] values()
 com.google.gson.stream.JsonScope: com.google.gson.stream.JsonScope valueOf(java.lang.String)
 com.google.gson.stream.JsonToken: com.google.gson.stream.JsonToken[] values()
 com.google.gson.stream.JsonToken: com.google.gson.stream.JsonToken valueOf(java.lang.String)
+com.mobeta.android.dslv.DragSortItemView: void setGravity(int)
+com.mobeta.android.dslv.DragSortItemView: int getGravity()
+com.mobeta.android.dslv.DragSortItemViewCheckable: void setChecked(boolean)
+com.mobeta.android.dslv.DragSortListView
+com.mobeta.android.dslv.DragSortListView: DragSortListView(android.content.Context,android.util.AttributeSet)
+com.mobeta.android.dslv.DragSortListView: void setFloatAlpha(float)
+com.mobeta.android.dslv.DragSortListView: float getFloatAlpha()
+com.mobeta.android.dslv.DragSortListView: void setMaxScrollSpeed(float)
+com.mobeta.android.dslv.DragSortListView: void setAdapter(android.widget.ListAdapter)
+com.mobeta.android.dslv.DragSortListView: android.widget.ListAdapter getInputAdapter()
+com.mobeta.android.dslv.DragSortListView: void setDragScrollStart(float)
+com.mobeta.android.dslv.DragSortListView: void setFloatViewManager(com.mobeta.android.dslv.DragSortListView$FloatViewManager)
+com.mobeta.android.dslv.DragSortListView: void setDragListener(com.mobeta.android.dslv.DragSortListView$DragListener)
+com.mobeta.android.dslv.DragSortListView: void setDragEnabled(boolean)
+com.mobeta.android.dslv.DragSortListView: void setDropListener(com.mobeta.android.dslv.DragSortListView$DropListener)
+com.mobeta.android.dslv.DragSortListView: void setRemoveListener(com.mobeta.android.dslv.DragSortListView$RemoveListener)
+com.mobeta.android.dslv.DragSortListView: void setDragSortListener(com.mobeta.android.dslv.DragSortListView$DragSortListener)
+com.mobeta.android.dslv.DragSortListView: void setDragScrollProfile(com.mobeta.android.dslv.DragSortListView$DragScrollProfile)
+com.mobeta.android.dslv.R$attr: int click_remove_id
+com.mobeta.android.dslv.R$attr: int collapsed_height
+com.mobeta.android.dslv.R$attr: int drag_enabled
+com.mobeta.android.dslv.R$attr: int drag_handle_id
+com.mobeta.android.dslv.R$attr: int drag_scroll_start
+com.mobeta.android.dslv.R$attr: int drag_start_mode
+com.mobeta.android.dslv.R$attr: int drop_animation_duration
+com.mobeta.android.dslv.R$attr: int fling_handle_id
+com.mobeta.android.dslv.R$attr: int float_alpha
+com.mobeta.android.dslv.R$attr: int float_background_color
+com.mobeta.android.dslv.R$attr: int max_drag_scroll_speed
+com.mobeta.android.dslv.R$attr: int remove_animation_duration
+com.mobeta.android.dslv.R$attr: int remove_enabled
+com.mobeta.android.dslv.R$attr: int remove_mode
+com.mobeta.android.dslv.R$attr: int slide_shuffle_speed
+com.mobeta.android.dslv.R$attr: int sort_enabled
+com.mobeta.android.dslv.R$attr: int track_drag_sort
+com.mobeta.android.dslv.R$attr: int use_default_controller
+com.mobeta.android.dslv.R$id: int clickRemove
+com.mobeta.android.dslv.R$id: int flingRemove
+com.mobeta.android.dslv.R$id: int onDown
+com.mobeta.android.dslv.R$id: int onLongPress
+com.mobeta.android.dslv.R$id: int onMove
+com.mobeta.android.dslv.R$styleable: int[] DragSortListView
+com.mobeta.android.dslv.R$styleable: int DragSortListView_click_remove_id
+com.mobeta.android.dslv.R$styleable: int DragSortListView_collapsed_height
+com.mobeta.android.dslv.R$styleable: int DragSortListView_drag_enabled
+com.mobeta.android.dslv.R$styleable: int DragSortListView_drag_handle_id
+com.mobeta.android.dslv.R$styleable: int DragSortListView_drag_scroll_start
+com.mobeta.android.dslv.R$styleable: int DragSortListView_drag_start_mode
+com.mobeta.android.dslv.R$styleable: int DragSortListView_drop_animation_duration
+com.mobeta.android.dslv.R$styleable: int DragSortListView_fling_handle_id
+com.mobeta.android.dslv.R$styleable: int DragSortListView_float_alpha
+com.mobeta.android.dslv.R$styleable: int DragSortListView_float_background_color
+com.mobeta.android.dslv.R$styleable: int DragSortListView_max_drag_scroll_speed
+com.mobeta.android.dslv.R$styleable: int DragSortListView_remove_animation_duration
+com.mobeta.android.dslv.R$styleable: int DragSortListView_remove_enabled
+com.mobeta.android.dslv.R$styleable: int DragSortListView_remove_mode
+com.mobeta.android.dslv.R$styleable: int DragSortListView_slide_shuffle_speed
+com.mobeta.android.dslv.R$styleable: int DragSortListView_sort_enabled
+com.mobeta.android.dslv.R$styleable: int DragSortListView_track_drag_sort
+com.mobeta.android.dslv.R$styleable: int DragSortListView_use_default_controller
 com.nethergrim.combogymdiary.AddingExersises
 com.nethergrim.combogymdiary.AddingExersises: AddingExersises()
 com.nethergrim.combogymdiary.AddingExersises: void onClick(android.view.View)
@@ -1235,6 +1295,9 @@ com.nethergrim.combogymdiary.CatalogActivity: void onClick(android.view.View)
 com.nethergrim.combogymdiary.CatalogDetailedActivity
 com.nethergrim.combogymdiary.CatalogDetailedActivity: CatalogDetailedActivity()
 com.nethergrim.combogymdiary.CatalogDetailedActivity: void onClick(android.view.View)
+com.nethergrim.combogymdiary.CheckableLinearLayout
+com.nethergrim.combogymdiary.CheckableLinearLayout: CheckableLinearLayout(android.content.Context,android.util.AttributeSet)
+com.nethergrim.combogymdiary.CheckableLinearLayout: void setChecked(boolean)
 com.nethergrim.combogymdiary.DiskActivity
 com.nethergrim.combogymdiary.DiskActivity: DiskActivity()
 com.nethergrim.combogymdiary.EditingProgramAtTraining
@@ -1307,14 +1370,24 @@ com.nethergrim.combogymdiary.R$attr: int cameraTargetLat
 com.nethergrim.combogymdiary.R$attr: int cameraTargetLng
 com.nethergrim.combogymdiary.R$attr: int cameraTilt
 com.nethergrim.combogymdiary.R$attr: int cameraZoom
+com.nethergrim.combogymdiary.R$attr: int click_remove_id
+com.nethergrim.combogymdiary.R$attr: int collapsed_height
 com.nethergrim.combogymdiary.R$attr: int customNavigationLayout
 com.nethergrim.combogymdiary.R$attr: int displayOptions
 com.nethergrim.combogymdiary.R$attr: int divider
 com.nethergrim.combogymdiary.R$attr: int dividerVertical
+com.nethergrim.combogymdiary.R$attr: int drag_enabled
+com.nethergrim.combogymdiary.R$attr: int drag_handle_id
+com.nethergrim.combogymdiary.R$attr: int drag_scroll_start
+com.nethergrim.combogymdiary.R$attr: int drag_start_mode
 com.nethergrim.combogymdiary.R$attr: int dropDownHintAppearance
 com.nethergrim.combogymdiary.R$attr: int dropDownListViewStyle
+com.nethergrim.combogymdiary.R$attr: int drop_animation_duration
 com.nethergrim.combogymdiary.R$attr: int dropdownListPreferredItemHeight
 com.nethergrim.combogymdiary.R$attr: int expandActivityOverflowButtonDrawable
+com.nethergrim.combogymdiary.R$attr: int fling_handle_id
+com.nethergrim.combogymdiary.R$attr: int float_alpha
+com.nethergrim.combogymdiary.R$attr: int float_background_color
 com.nethergrim.combogymdiary.R$attr: int headerBackground
 com.nethergrim.combogymdiary.R$attr: int height
 com.nethergrim.combogymdiary.R$attr: int homeAsUpIndicator
@@ -1334,6 +1407,7 @@ com.nethergrim.combogymdiary.R$attr: int listPreferredItemPaddingLeft
 com.nethergrim.combogymdiary.R$attr: int listPreferredItemPaddingRight
 com.nethergrim.combogymdiary.R$attr: int logo
 com.nethergrim.combogymdiary.R$attr: int mapType
+com.nethergrim.combogymdiary.R$attr: int max_drag_scroll_speed
 com.nethergrim.combogymdiary.R$attr: int mdActiveIndicator
 com.nethergrim.combogymdiary.R$attr: int mdAllowIndicatorAnimation
 com.nethergrim.combogymdiary.R$attr: int mdContentBackground
@@ -1357,6 +1431,9 @@ com.nethergrim.combogymdiary.R$attr: int preserveIconSpacing
 com.nethergrim.combogymdiary.R$attr: int progressBarPadding
 com.nethergrim.combogymdiary.R$attr: int progressBarStyle
 com.nethergrim.combogymdiary.R$attr: int queryHint
+com.nethergrim.combogymdiary.R$attr: int remove_animation_duration
+com.nethergrim.combogymdiary.R$attr: int remove_enabled
+com.nethergrim.combogymdiary.R$attr: int remove_mode
 com.nethergrim.combogymdiary.R$attr: int searchAutoCompleteTextView
 com.nethergrim.combogymdiary.R$attr: int searchDropdownBackground
 com.nethergrim.combogymdiary.R$attr: int searchResultListItemHeight
@@ -1369,6 +1446,8 @@ com.nethergrim.combogymdiary.R$attr: int searchViewTextField
 com.nethergrim.combogymdiary.R$attr: int searchViewTextFieldRight
 com.nethergrim.combogymdiary.R$attr: int searchViewVoiceIcon
 com.nethergrim.combogymdiary.R$attr: int selectableItemBackground
+com.nethergrim.combogymdiary.R$attr: int slide_shuffle_speed
+com.nethergrim.combogymdiary.R$attr: int sort_enabled
 com.nethergrim.combogymdiary.R$attr: int spinnerDropDownItemStyle
 com.nethergrim.combogymdiary.R$attr: int spinnerItemStyle
 com.nethergrim.combogymdiary.R$attr: int subtitle
@@ -1385,6 +1464,7 @@ com.nethergrim.combogymdiary.R$attr: int textColorPrimaryInverse
 com.nethergrim.combogymdiary.R$attr: int textColorSearchUrl
 com.nethergrim.combogymdiary.R$attr: int title
 com.nethergrim.combogymdiary.R$attr: int titleTextStyle
+com.nethergrim.combogymdiary.R$attr: int track_drag_sort
 com.nethergrim.combogymdiary.R$attr: int uiCompass
 com.nethergrim.combogymdiary.R$attr: int uiRotateGestures
 com.nethergrim.combogymdiary.R$attr: int uiScrollGestures
@@ -1392,6 +1472,7 @@ com.nethergrim.combogymdiary.R$attr: int uiTiltGestures
 com.nethergrim.combogymdiary.R$attr: int uiZoomControls
 com.nethergrim.combogymdiary.R$attr: int uiZoomGestures
 com.nethergrim.combogymdiary.R$attr: int useViewLifecycle
+com.nethergrim.combogymdiary.R$attr: int use_default_controller
 com.nethergrim.combogymdiary.R$attr: int verticalDivider
 com.nethergrim.combogymdiary.R$attr: int windowActionBar
 com.nethergrim.combogymdiary.R$attr: int windowActionBarOverlay
@@ -1465,8 +1546,10 @@ com.nethergrim.combogymdiary.R$dimen: int activity_horizontal_margin
 com.nethergrim.combogymdiary.R$dimen: int activity_vertical_margin
 com.nethergrim.combogymdiary.R$dimen: int border_5
 com.nethergrim.combogymdiary.R$dimen: int dip12
+com.nethergrim.combogymdiary.R$dimen: int item_height
 com.nethergrim.combogymdiary.R$dimen: int layer_width
 com.nethergrim.combogymdiary.R$dimen: int list_padding
+com.nethergrim.combogymdiary.R$dimen: int section_div_height
 com.nethergrim.combogymdiary.R$dimen: int shadow_width
 com.nethergrim.combogymdiary.R$dimen: int slidingmenu_offset
 com.nethergrim.combogymdiary.R$dimen: int text14
@@ -1633,6 +1716,7 @@ com.nethergrim.combogymdiary.R$drawable: int common_signin_btn_text_pressed_ligh
 com.nethergrim.combogymdiary.R$drawable: int cream_pixels
 com.nethergrim.combogymdiary.R$drawable: int cream_pixels_bitmap
 com.nethergrim.combogymdiary.R$drawable: int create_contact
+com.nethergrim.combogymdiary.R$drawable: int drag
 com.nethergrim.combogymdiary.R$drawable: int edit_query
 com.nethergrim.combogymdiary.R$drawable: int ex_0_0
 com.nethergrim.combogymdiary.R$drawable: int ex_0_1
@@ -1706,6 +1790,7 @@ com.nethergrim.combogymdiary.R$drawable: int ic_action_back
 com.nethergrim.combogymdiary.R$drawable: int ic_action_forward
 com.nethergrim.combogymdiary.R$drawable: int ic_action_new
 com.nethergrim.combogymdiary.R$drawable: int ic_action_save
+com.nethergrim.combogymdiary.R$drawable: int ic_action_sort
 com.nethergrim.combogymdiary.R$drawable: int ic_action_undo
 com.nethergrim.combogymdiary.R$drawable: int ic_cab_done_holo_light
 com.nethergrim.combogymdiary.R$drawable: int ic_drawer
@@ -1734,6 +1819,7 @@ com.nethergrim.combogymdiary.R$drawable: int progress_primary_mybarstyle
 com.nethergrim.combogymdiary.R$drawable: int progress_secondary_mybarstyle
 com.nethergrim.combogymdiary.R$drawable: int rect
 com.nethergrim.combogymdiary.R$drawable: int rounded
+com.nethergrim.combogymdiary.R$drawable: int section_div
 com.nethergrim.combogymdiary.R$drawable: int selectable_background_mybarstyle
 com.nethergrim.combogymdiary.R$drawable: int shadow
 com.nethergrim.combogymdiary.R$drawable: int shadowright
@@ -1828,7 +1914,9 @@ com.nethergrim.combogymdiary.R$id: int buttonExcersisesList
 com.nethergrim.combogymdiary.R$id: int buttonSettings
 com.nethergrim.combogymdiary.R$id: int buttonStartTraining
 com.nethergrim.combogymdiary.R$id: int city_name
+com.nethergrim.combogymdiary.R$id: int clickRemove
 com.nethergrim.combogymdiary.R$id: int disableHome
+com.nethergrim.combogymdiary.R$id: int drag_handle
 com.nethergrim.combogymdiary.R$id: int editText2
 com.nethergrim.combogymdiary.R$id: int edit_query
 com.nethergrim.combogymdiary.R$id: int elvMain
@@ -1844,6 +1932,7 @@ com.nethergrim.combogymdiary.R$id: int etMeasureWeight
 com.nethergrim.combogymdiary.R$id: int etNewNameOfProgram
 com.nethergrim.combogymdiary.R$id: int etTimerValue
 com.nethergrim.combogymdiary.R$id: int etTimerValueAtTraining
+com.nethergrim.combogymdiary.R$id: int flingRemove
 com.nethergrim.combogymdiary.R$id: int homeAsUp
 com.nethergrim.combogymdiary.R$id: int hybrid
 com.nethergrim.combogymdiary.R$id: int imageCat
@@ -1887,6 +1976,9 @@ com.nethergrim.combogymdiary.R$id: int md__translationY
 com.nethergrim.combogymdiary.R$id: int menu_frame
 com.nethergrim.combogymdiary.R$id: int none
 com.nethergrim.combogymdiary.R$id: int normal
+com.nethergrim.combogymdiary.R$id: int onDown
+com.nethergrim.combogymdiary.R$id: int onLongPress
+com.nethergrim.combogymdiary.R$id: int onMove
 com.nethergrim.combogymdiary.R$id: int progressBar1
 com.nethergrim.combogymdiary.R$id: int right
 com.nethergrim.combogymdiary.R$id: int rl1
@@ -1898,6 +1990,7 @@ com.nethergrim.combogymdiary.R$id: int showTitle
 com.nethergrim.combogymdiary.R$id: int start
 com.nethergrim.combogymdiary.R$id: int tabMode
 com.nethergrim.combogymdiary.R$id: int terrain
+com.nethergrim.combogymdiary.R$id: int text
 com.nethergrim.combogymdiary.R$id: int textView1
 com.nethergrim.combogymdiary.R$id: int textView10
 com.nethergrim.combogymdiary.R$id: int textView1_
@@ -1974,6 +2067,7 @@ com.nethergrim.combogymdiary.R$layout: int adding_program
 com.nethergrim.combogymdiary.R$layout: int city_holo_layout
 com.nethergrim.combogymdiary.R$layout: int dialog_exit
 com.nethergrim.combogymdiary.R$layout: int exersises_list
+com.nethergrim.combogymdiary.R$layout: int list_item_radio
 com.nethergrim.combogymdiary.R$layout: int list_with_arrow
 com.nethergrim.combogymdiary.R$layout: int list_with_arrow_double_textview
 com.nethergrim.combogymdiary.R$layout: int menu_frame
@@ -1984,6 +2078,7 @@ com.nethergrim.combogymdiary.R$layout: int sherlock_spinner_dropdown_item
 com.nethergrim.combogymdiary.R$layout: int sherlock_spinner_item
 com.nethergrim.combogymdiary.R$layout: int start_training
 com.nethergrim.combogymdiary.R$layout: int training_at_progress_new_wheel
+com.nethergrim.combogymdiary.R$layout: int training_at_progress_new_wheel_new_list
 com.nethergrim.combogymdiary.R$menu: int adding_measurement
 com.nethergrim.combogymdiary.R$menu: int catalog
 com.nethergrim.combogymdiary.R$menu: int catalog_detailed
@@ -2068,9 +2163,12 @@ com.nethergrim.combogymdiary.R$string: int delete_record
 com.nethergrim.combogymdiary.R$string: int deleted
 com.nethergrim.combogymdiary.R$string: int display_data_prev
 com.nethergrim.combogymdiary.R$string: int do_not_turnoff_display
+com.nethergrim.combogymdiary.R$string: int drive
 com.nethergrim.combogymdiary.R$string: int drive_backup
 com.nethergrim.combogymdiary.R$string: int edit
 com.nethergrim.combogymdiary.R$string: int editing_program
+com.nethergrim.combogymdiary.R$string: int email
+com.nethergrim.combogymdiary.R$string: int email_to_dev
 com.nethergrim.combogymdiary.R$string: int empty
 com.nethergrim.combogymdiary.R$string: int error_deleting_exe
 com.nethergrim.combogymdiary.R$string: int error_editing_exe
@@ -2182,6 +2280,7 @@ com.nethergrim.combogymdiary.R$string: int save_data
 com.nethergrim.combogymdiary.R$string: int saved
 com.nethergrim.combogymdiary.R$string: int screen_off
 com.nethergrim.combogymdiary.R$string: int see_last_training
+com.nethergrim.combogymdiary.R$string: int send_email
 com.nethergrim.combogymdiary.R$string: int set_number
 com.nethergrim.combogymdiary.R$string: int settingsButtonString
 com.nethergrim.combogymdiary.R$string: int sm
@@ -2212,6 +2311,7 @@ com.nethergrim.combogymdiary.R$string: int turn_off_screen
 com.nethergrim.combogymdiary.R$string: int vibrate
 com.nethergrim.combogymdiary.R$string: int vibrate_lenght
 com.nethergrim.combogymdiary.R$string: int vibrate_on_save
+com.nethergrim.combogymdiary.R$string: int vk_group
 com.nethergrim.combogymdiary.R$string: int waist
 com.nethergrim.combogymdiary.R$string: int wait
 com.nethergrim.combogymdiary.R$string: int weight
@@ -2324,6 +2424,25 @@ com.nethergrim.combogymdiary.R$styleable: int[] AdsAttrs
 com.nethergrim.combogymdiary.R$styleable: int AdsAttrs_adSize
 com.nethergrim.combogymdiary.R$styleable: int AdsAttrs_adSizes
 com.nethergrim.combogymdiary.R$styleable: int AdsAttrs_adUnitId
+com.nethergrim.combogymdiary.R$styleable: int[] DragSortListView
+com.nethergrim.combogymdiary.R$styleable: int DragSortListView_click_remove_id
+com.nethergrim.combogymdiary.R$styleable: int DragSortListView_collapsed_height
+com.nethergrim.combogymdiary.R$styleable: int DragSortListView_drag_enabled
+com.nethergrim.combogymdiary.R$styleable: int DragSortListView_drag_handle_id
+com.nethergrim.combogymdiary.R$styleable: int DragSortListView_drag_scroll_start
+com.nethergrim.combogymdiary.R$styleable: int DragSortListView_drag_start_mode
+com.nethergrim.combogymdiary.R$styleable: int DragSortListView_drop_animation_duration
+com.nethergrim.combogymdiary.R$styleable: int DragSortListView_fling_handle_id
+com.nethergrim.combogymdiary.R$styleable: int DragSortListView_float_alpha
+com.nethergrim.combogymdiary.R$styleable: int DragSortListView_float_background_color
+com.nethergrim.combogymdiary.R$styleable: int DragSortListView_max_drag_scroll_speed
+com.nethergrim.combogymdiary.R$styleable: int DragSortListView_remove_animation_duration
+com.nethergrim.combogymdiary.R$styleable: int DragSortListView_remove_enabled
+com.nethergrim.combogymdiary.R$styleable: int DragSortListView_remove_mode
+com.nethergrim.combogymdiary.R$styleable: int DragSortListView_slide_shuffle_speed
+com.nethergrim.combogymdiary.R$styleable: int DragSortListView_sort_enabled
+com.nethergrim.combogymdiary.R$styleable: int DragSortListView_track_drag_sort
+com.nethergrim.combogymdiary.R$styleable: int DragSortListView_use_default_controller
 com.nethergrim.combogymdiary.R$styleable: int[] MapAttrs
 com.nethergrim.combogymdiary.R$styleable: int MapAttrs_cameraBearing
 com.nethergrim.combogymdiary.R$styleable: int MapAttrs_cameraTargetLat

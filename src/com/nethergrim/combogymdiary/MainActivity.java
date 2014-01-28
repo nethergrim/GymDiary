@@ -36,31 +36,37 @@ public class MainActivity extends BasicMenuActivity {
 	}
 	
 	private void initUi(){
-		 mMenuDrawer.setContentView(R.layout.activity_main);
-	        btnSettings   = (Button) findViewById(R.id.buttonSettings);
-	        btnStartT     = (Button) findViewById(R.id.buttonStartTraining);
-	        btnExcersises = (Button) findViewById(R.id.buttonExcersisesList);
-	        btnWorklog    = (Button) findViewById(R.id.btnWorklog);
-	        btnCatalog	  = (Button) findViewById(R.id.btnCataloginMain);
-	        btnMeasurements=(Button) findViewById(R.id.btnMeasurementsS);
-	        pb = (ProgressBar)findViewById(R.id.progressBar1);
-	        pb.setVisibility(View.GONE);
-	        btnMeasurements.setOnClickListener(this);
-	        btnCatalog.setOnClickListener(this);
-	        btnSettings.setOnClickListener(this);
-	        btnExcersises.setOnClickListener(this);
-	        btnStartT.setOnClickListener(this);
-	        btnWorklog.setOnClickListener(this);
-	        db = new DB(this);
-			db.open();
-			cursor = db.getDataExe(null, null, null, null, null, null);
-	        ma=this;
-	        sp = PreferenceManager.getDefaultSharedPreferences(this);
-	        getActionBar().setTitle(R.string.app_name);
-	        if (sp.getBoolean(TRAINING_AT_PROGRESS, false)){
-				Intent intent_to_trainng = new Intent(this,TrainingAtProgress.class);
-		        startActivity(intent_to_trainng);
-			}
+		mMenuDrawer.setContentView(R.layout.activity_main);
+		getActionBar().setTitle(R.string.app_name);
+        btnSettings   = (Button) findViewById(R.id.buttonSettings);
+        btnStartT     = (Button) findViewById(R.id.buttonStartTraining);
+        btnExcersises = (Button) findViewById(R.id.buttonExcersisesList);
+        btnWorklog    = (Button) findViewById(R.id.btnWorklog);
+        btnCatalog	  = (Button) findViewById(R.id.btnCataloginMain);
+        btnMeasurements=(Button) findViewById(R.id.btnMeasurementsS);
+        pb = (ProgressBar)findViewById(R.id.progressBar1);
+        pb.setVisibility(View.GONE);
+        btnMeasurements.setOnClickListener(this);
+        btnCatalog.setOnClickListener(this);
+        btnSettings.setOnClickListener(this);
+        btnExcersises.setOnClickListener(this);
+        btnStartT.setOnClickListener(this);
+        btnWorklog.setOnClickListener(this);
+        db = new DB(this);
+		db.open();
+		cursor = db.getDataExe(null, null, null, null, null, null);
+        ma=this;
+        
+	}
+	
+	@Override
+	public void onResume(){
+		sp = PreferenceManager.getDefaultSharedPreferences(this);
+        if (sp.getBoolean(TRAINING_AT_PROGRESS, false)){
+			Intent intent_to_trainng = new Intent(this,TrainingAtProgress.class);
+	        startActivity(intent_to_trainng);
+		}
+		super.onResume();
 	}
 
 	@Override
@@ -73,8 +79,6 @@ public class MainActivity extends BasicMenuActivity {
 			task = new InitTask();
 			task.execute();
 		}
-		
-		
     }
 
     

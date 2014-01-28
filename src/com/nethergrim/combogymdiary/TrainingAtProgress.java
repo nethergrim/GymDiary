@@ -53,9 +53,9 @@ public class TrainingAtProgress extends BasicMenuActivity  implements MyInterfac
 	private ToggleButton tglTimerOn;
 	private Boolean tglChecked = true,turnOff = false,vibrate = false;
 	private EditText etTimer;
-	
 	private DB db;
 	private Cursor cursor;	
+	private int trainingIdAtTable = 0;
 	private ArrayAdapter<String> adapter;
 	private String[] exersices;
 	private String traName = "", exeName = "",date = "",tValue="";
@@ -82,15 +82,18 @@ public class TrainingAtProgress extends BasicMenuActivity  implements MyInterfac
 	public void onConfigurationChanged(Configuration newConfig) {
 	  super.onConfigurationChanged(newConfig);
 	  mMenuDrawer.setContentView(R.layout.training_at_progress_new_wheel_new_list);
-	  initUi(false);
+	  Log.d(LOG_TAG, "onConfigurationChanged");
+	  initUi(false);  
 	}
 	
 	@Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        Log.d(LOG_TAG, "onCreate");
         db = new DB(this);
 		db.open();
         mMenuDrawer.setContentView(R.layout.training_at_progress_new_wheel_new_list);
+        
         sp = PreferenceManager.getDefaultSharedPreferences(this); 
         isTrainingProgress = sp.getBoolean(TRAINING_AT_PROGRESS, false);
         if (isTrainingProgress) {
@@ -103,6 +106,7 @@ public class TrainingAtProgress extends BasicMenuActivity  implements MyInterfac
         
         cursor = db.getDataTrainings(null, DB.TRA_NAME + "=?", strArrExtra, null, null, null);
         if (cursor.moveToFirst()){
+        	trainingIdAtTable = cursor.getInt(0);
         	exersices = db.convertStringToArray(cursor.getString(2)) ;
         	 for (int i = 0; i < exersices.length; i++) {
              	alMain.add(exersices[i]);
@@ -162,11 +166,20 @@ public class TrainingAtProgress extends BasicMenuActivity  implements MyInterfac
 
 	@Override
 	public void onPause() {
+		Log.d(LOG_TAG, "onPause");
 	    	saveSetsToPreferences();
 	    	saveTimerToPregerences();
 	    	sp.edit().putString(TRAINING_NAME, traName);
 	    	timerHandler.removeCallbacks(timerRunnable);
+	    	
+	    	
+	    	
+	    	
+	    	
+	    	
 	        super.onPause();
+	        
+	        
 	        
 	    }
 	  
@@ -182,7 +195,6 @@ public class TrainingAtProgress extends BasicMenuActivity  implements MyInterfac
 		sp.edit().putInt(SECONDS, 0).apply();
 	}
 	
-	
 	private DragSortListView.DropListener onDrop =
 	        new DragSortListView.DropListener() {
 	            @Override
@@ -193,14 +205,20 @@ public class TrainingAtProgress extends BasicMenuActivity  implements MyInterfac
 	                    adapter.remove(item);
 	                    adapter.insert(item, to);
 	                    list.moveCheckState(from, to);
-	                    Log.d("DSLV", "Selected item is " + list.getCheckedItemPosition());
+	                    Log.d("DSLV", "Dropped item is " + list.getCheckedItemPosition());
+	                    
+	                    String[] tmp = new String[alMain.size()];//saving position to DB TODO convert into asynctask
+	        		    for (int i = 0; i < alMain.size(); i++){
+	        		    	tmp[i] = alMain.get(i);
+	        		    }
+	        		    db.updateRec_Training(trainingIdAtTable, 2, db.convertArrayToString(tmp));
+	        		    Log.d(LOG_TAG, "Dropped :\n"+db.convertArrayToString(tmp));
+	                    
 	                }
 	            }
 	        };
 	
-	
 	private void initUi(boolean init){
-       	Editor ed = sp.edit();
        	llBottom = (LinearLayout)findViewById(R.id.LLBottom);
        	anim = AnimationUtils.loadAnimation(this, R.anim.setfortraining);
        	llBack = (LinearLayout) findViewById(R.id.llBtnBack);
@@ -213,8 +231,6 @@ public class TrainingAtProgress extends BasicMenuActivity  implements MyInterfac
        	llForward.setEnabled(false);
        	ivBack = (ImageView)findViewById(R.id.imageView2);
        	ivForward = (ImageView)findViewById(R.id.imageView3);
-       	ed.apply();
-            
         reps = (WheelView) findViewById(R.id.wheelReps);
         reps.setVisibleItems(5); 
         reps.setWheelBackground(R.drawable.wheel_bg_holo);
@@ -227,14 +243,17 @@ public class TrainingAtProgress extends BasicMenuActivity  implements MyInterfac
         weights.setWheelForeground(R.drawable.wheel_val_holo);
         weights.setShadowColor(0xFFFFFF, 0xFFFFFF, 0xFFFFFF);
         weights.setViewAdapter(new WeightsAdapter(this));
-              
         tglTimerOn = (ToggleButton) findViewById(R.id.tglTurnOff);
         tglTimerOn.setOnCheckedChangeListener(this); 
         etTimer = (EditText) findViewById(R.id.etTimerValueAtTraining);
         etTimer.setOnClickListener(this);       
         infoText = (TextView)findViewById(R.id.infoText);
         setInfo = (TextView)findViewById(R.id.tvSetInfo);
-       
+        list =(DragSortListView) findViewById(R.id.lvSets);
+        list.setDropListener(onDrop);
+        list.setChoiceMode(ListView.CHOICE_MODE_SINGLE);
+        
+        
         
         if (init && isTrainingAtProgress == false) {       
 	        for (int i = 0; i < 200; i++){
@@ -244,32 +263,10 @@ public class TrainingAtProgress extends BasicMenuActivity  implements MyInterfac
         	restoreSetsFromPreferences();
         }
         
-        list =(DragSortListView) findViewById(R.id.lvSets);
-        list.setDropListener(onDrop);
-        list.setChoiceMode(ListView.CHOICE_MODE_SINGLE);
+        
+        
         adapter = new ArrayAdapter<String>(this, R.layout.list_item_radio, R.id.text, alMain);
         list.setAdapter(adapter);
-        
-    /*    list.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-
-			@Override
-			public void onItemSelected(AdapterView<?> arg0, View arg1,
-					int position, long id) {
-				
-				
-			}
-
-			@Override
-			public void onNothingSelected(AdapterView<?> arg0) {
-				
-				
-			}
-		});*/
-         
-        
-     
-        
-        
         list.setOnItemClickListener(new AdapterView.OnItemClickListener() {
         	@Override
         	public void onItemClick(AdapterView<?> parent, View itemClicked, int position,long id) {
@@ -280,7 +277,6 @@ public class TrainingAtProgress extends BasicMenuActivity  implements MyInterfac
         		}
         	});   
         list.setItemChecked(0, true);
-        
         initData(0);
         
         
@@ -339,12 +335,15 @@ public class TrainingAtProgress extends BasicMenuActivity  implements MyInterfac
 				infoText.setText(getResources().getString(R.string.new_set));
 				}
 	}
-
+	
 	protected void onResume() {
+		Log.d(LOG_TAG, "onResume");
+		
 		if (isTrainingProgress ){
 			
 			restoreTimerFromPreferences();
 			restoreSetsFromPreferences();
+			
 		} 
 		initData(0);
 	    turnOff = sp.getBoolean("toTurnOff", false);
@@ -354,6 +353,11 @@ public class TrainingAtProgress extends BasicMenuActivity  implements MyInterfac
 	    vibrateLenght = Integer.parseInt(vl);
 	    vibrateLenght *= 1000;
 	    timerHandler.postDelayed(timerRunnable, 0);
+	    
+	    
+	   
+	   
+	    
 	    super.onResume();
 	  }
 	
@@ -429,16 +433,24 @@ public class TrainingAtProgress extends BasicMenuActivity  implements MyInterfac
 	@Override
 	protected void onActivityResult(int requestCode, int resultCode, Intent data) {
 	    if (data == null) {return;}
+	    
 	    long[] itemsChecked = data.getLongArrayExtra("return_array_of_exersices");
 	    for (int i = 0; i < itemsChecked.length; i++) {
-	    	Log.d(LOG_TAG, "***** returned item checked: "+itemsChecked[i] + "  "+db.getExerciseByID((int) itemsChecked[i]));
+	    	
 	    	alMain.add( db.getExerciseByID( (int) itemsChecked[i]) );
+	    	Log.d(LOG_TAG, "adding exersice :"+db.getExerciseByID( (int) itemsChecked[i]) );
 	    	alSet.add(0);
 	    }
 	    for (int j = 0; j < 100; j++) {
 	    	alSet.add(0);
 	    }
 	    adapter.notifyDataSetChanged();
+	    
+	    String[] tmp = new String[alMain.size()];//saving position to DB TODO convert into asynctask
+	    for (int i = 0; i < alMain.size(); i++){
+	    	tmp[i] = alMain.get(i);
+	    }
+	    db.updateRec_Training(trainingIdAtTable, 2, db.convertArrayToString(tmp));
 	    
 	  }
 
@@ -488,6 +500,9 @@ public class TrainingAtProgress extends BasicMenuActivity  implements MyInterfac
 	@Override
 	public void onClick(View arg0) {
 		int id = arg0.getId();	
+		if (id == R.id.btnMenu2  || id == R.id.btnMenu3 || id == R.id.btnMenu4 || id == R.id.btnCatalog || id == R.id.btnMeasure){
+			finish();
+		}
 		if (id == R.id.btnMenu1) {
 			mMenuDrawer.closeMenu();
 		}else {
@@ -565,7 +580,10 @@ public class TrainingAtProgress extends BasicMenuActivity  implements MyInterfac
 		}
 	}
 	
+
+	
 	protected void onDestroy(){
+		
 		 db.close();
 	    super.onDestroy();
 	   

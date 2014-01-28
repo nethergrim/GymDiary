@@ -33,11 +33,11 @@
         <com.mobeta.android.dslv.DragSortListView 
 		    xmlns:dslv="http://schemas.android.com/apk/res/com.nethergrim.combogymdiary"
 		    android:id="@+id/lvSets"
-		    android:layout_width="wrap_content"
+		    android:layout_width="match_parent"
 		    android:layout_height="match_parent"
 		    android:layout_weight="1"
 		    android:layout_margin="3dp"
-		    android:choiceMode="multipleChoice"
+		    android:choiceMode="singleChoice"
 		    android:background="@drawable/rounded"
 		    android:dividerHeight="1px"
 		    android:padding="3dp"
@@ -64,7 +64,7 @@
             android:id="@+id/ll2"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
+            android:layout_marginTop="3dp"
             android:orientation="vertical" >
 
             <TextView

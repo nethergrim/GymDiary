@@ -12,6 +12,7 @@ import android.support.v4.app.LoaderManager.LoaderCallbacks;
 import android.support.v4.content.CursorLoader;
 import android.support.v4.content.Loader;
 import android.support.v4.widget.SimpleCursorAdapter;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.ViewGroup.LayoutParams;
@@ -61,12 +62,7 @@ public class EditingProgramAtTraining extends FragmentActivity implements Loader
 			getActionBar().setTitle(getResources().getString(R.string.add_an_exercise));
 		} else {
 			if (traID > 0) {
-				etName.setAlpha(1);
-				RelativeLayout.LayoutParams lp = new RelativeLayout.LayoutParams(LayoutParams.WRAP_CONTENT, LayoutParams.WRAP_CONTENT);
-				lp.addRule(RelativeLayout.BELOW, R.id.etNewNameOfProgram);
-				lvMain.setLayoutParams(lp);
 				initData();
-				setClicked();
 			}
 		}
 	}
@@ -81,6 +77,7 @@ public class EditingProgramAtTraining extends FragmentActivity implements Loader
 	@Override
 	protected void onResume(){
 		getSupportLoaderManager().getLoader(0).forceLoad();
+		
 		super.onResume();
 	}
 	
@@ -92,6 +89,10 @@ public class EditingProgramAtTraining extends FragmentActivity implements Loader
 	  @Override
 	  public void onLoadFinished(Loader<Cursor> loader, Cursor cursor) {
 	    scAdapter.swapCursor(cursor);
+	    if (!ifAddingExe) {
+	    	setClicked(cursor);
+	    }
+	    
 	  }
 
 	  @Override
@@ -111,6 +112,9 @@ public class EditingProgramAtTraining extends FragmentActivity implements Loader
 	    @Override
 	    public Cursor loadInBackground() {
 	    	cursor = db.getDataExe(null, null, null, null, null, DB.EXE_NAME);
+	    	
+	    	
+	    	
 	      return cursor;
 	    }
 	  }
@@ -124,18 +128,20 @@ public class EditingProgramAtTraining extends FragmentActivity implements Loader
 	    exercisesOld = db.convertStringToArray(c.getString(2)) ;
 	}
 	
-	private void setClicked() {
-		if (cursor.moveToFirst()){
+	private void setClicked(Cursor c) {
+		
+		if (c.moveToFirst()){
 			int i = 0;
 			do {
 				for (int j = 0; j < exercisesOld.length; j++) {
 					
-					if ( cursor.getString(2).equals(exercisesOld[j]) ){
+					if ( c.getString(2).equals(exercisesOld[j]) ){
+						Log.d("myLogs", " c.getString(2) == "+c.getString(2)+" == exercisesOld[j] == "+exercisesOld[j]);
 						lvMain.setItemChecked(i,true);
 					}
 				}
 				i++;
-			} while(cursor.moveToNext());
+			} while(c.moveToNext());
 		}
 		
 	}

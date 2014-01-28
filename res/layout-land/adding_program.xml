@@ -15,15 +15,6 @@
         android:layout_alignParentRight="true"
         android:layout_alignParentTop="true"
         android:orientation="vertical" >
-
-<com.google.android.gms.ads.AdView
-		    xmlns:ads="http://schemas.android.com/apk/res-auto"
-		    android:id="@+id/adView4"
-		    android:layout_width="match_parent"
-		    android:layout_height="wrap_content"
-		    ads:adUnitId="ca-app-pub-5652589022154086/4102541457"
-		    android:gravity="center_horizontal" 
-		    ads:adSize="BANNER"/>
 	
         <Space
             android:layout_width="match_parent"
@@ -51,7 +42,6 @@
             android:layout_height="wrap_content"
             android:textColor="@android:color/white"
             android:layout_margin="5dp"
-            android:drawableLeft="@android:drawable/ic_input_add"
             android:text="@string/Create" />
 
     </LinearLayout>
