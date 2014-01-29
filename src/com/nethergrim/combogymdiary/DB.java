@@ -153,7 +153,7 @@ public class DB {
 		if (result > 0) {
 			return result;
 		} else {
-			return 1;
+			return 0;
 		}
 	}
 
@@ -219,7 +219,7 @@ public class DB {
 		if (result > 0) {
 			return result;
 		} else {
-			return 1;
+			return 0;
 		}
 	}
 
