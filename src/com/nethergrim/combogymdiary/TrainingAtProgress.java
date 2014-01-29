@@ -24,17 +24,21 @@ import android.os.Message;
 import android.os.Vibrator;
 import android.preference.PreferenceManager;
 import android.util.Log;
+import android.view.ContextMenu;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.ContextMenu.ContextMenuInfo;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.Checkable;
 import android.widget.CompoundButton;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.AdapterView.AdapterContextMenuInfo;
 import android.widget.CompoundButton.OnCheckedChangeListener;
 import android.widget.EditText;
 import android.widget.ListView;
@@ -58,6 +62,7 @@ public class TrainingAtProgress extends BasicMenuActivity implements
 	private Cursor cursor;
 	private int trainingIdAtTable = 0;
 	private ArrayAdapter<String> adapter;
+	private static final int CM_DELETE_ID = 1;
 	private String[] exersices;
 	private String traName = "", exeName = "", date = "", tValue = "";
 	private SharedPreferences sp;
@@ -272,6 +277,7 @@ public class TrainingAtProgress extends BasicMenuActivity implements
 			}
 		});
 		list.setItemChecked(0, true);
+		registerForContextMenu(list);
 		initData(0);
 
 		SimpleDateFormat sdf = new SimpleDateFormat("dd.MM.yyyy");
@@ -297,6 +303,28 @@ public class TrainingAtProgress extends BasicMenuActivity implements
 		AdRequest adRequest = new AdRequest.Builder().build();
 		adView.loadAd(adRequest);
 
+	}
+
+	public void onCreateContextMenu(ContextMenu menu, View v,
+			ContextMenuInfo menuInfo) {
+		super.onCreateContextMenu(menu, v, menuInfo);
+		menu.add(0, CM_DELETE_ID, 0, R.string.delete_record);
+	}
+
+	public boolean onContextItemSelected(MenuItem item) {
+		AdapterContextMenuInfo acmi = (AdapterContextMenuInfo) item
+				.getMenuInfo();
+		if (item.getItemId() == CM_DELETE_ID) {
+			String nameToDelete = alMain.get(acmi.position);
+			alMain.remove(acmi.position);
+			alSet.remove(acmi.position);
+			Log.d(LOG_TAG,"deleting "+nameToDelete);
+			db.deleteExersiceByName(nameToDelete);
+			adapter.notifyDataSetChanged();
+			initData(0);
+			return true;
+		}
+		return super.onContextItemSelected(item);
 	}
 
 	private void initSetButtons() {
