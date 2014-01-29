@@ -1892,7 +1892,6 @@ com.nethergrim.combogymdiary.R$id: int adView
 com.nethergrim.combogymdiary.R$id: int adView1
 com.nethergrim.combogymdiary.R$id: int adView2
 com.nethergrim.combogymdiary.R$id: int adView3
-com.nethergrim.combogymdiary.R$id: int adView4
 com.nethergrim.combogymdiary.R$id: int adView5
 com.nethergrim.combogymdiary.R$id: int bottom
 com.nethergrim.combogymdiary.R$id: int btnAddingMeasurementsToDB

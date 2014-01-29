@@ -151,17 +151,21 @@ public class DB {
 		  c.moveToPosition(positionLastDay);
 		  _set++;
 		  if (size > _set + 1) {
-			  if (c.getInt(1) < _set ) { 
-			  } else if (c.getInt(1) == _set){ 
+			  if (c.getInt(1) == _set){ 
 			  		result =  c.getInt(0);
+			  		return result;
 			  } else if ( c.getInt(1) > _set ) { 
 				  while ( c.getInt(1) > _set && c.moveToPrevious()) {
 					result =  c.getInt(0);
 				  }
 			  }
 		  }		  
-	  }	  
-	  return result;
+	  }
+	  if (result > 0) {
+		  return result;
+	  } else {
+		  return 1;
+	  }
   }
   
  public void deleteExersiceByName(String name){
@@ -210,9 +214,9 @@ public class DB {
 		  c.moveToPosition(positionLastDay);
 		  _set++;
 		  if (size > _set + 1) {
-			  if (c.getInt(1) < _set ) { 
-			  } else if (c.getInt(1) == _set){ 
+			  if (c.getInt(1) == _set){ 
 			  		result =  c.getInt(0);
+			  		return result;
 			  } else if ( c.getInt(1) > _set ) { 
 				  while ( c.getInt(1) > _set &&  c.moveToPrevious()) {
 					result =  c.getInt(0);
@@ -220,7 +224,11 @@ public class DB {
 			  }
 		  }		  
 	  }	  
-	  return result;
+	  if (result > 0) {
+		  return result;
+	  } else {
+		  return 1;
+	  }
   }
   
   public String getTimerValueByExerciseName (String exeName) 

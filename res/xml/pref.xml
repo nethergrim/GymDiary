@@ -1,7 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <PreferenceScreen
  xmlns:android="http://schemas.android.com/apk/res/android">
-			<CheckBoxPreference
+ 
+    <PreferenceCategory  
+			    android:title="@string/training"
+			    >
+			    
+        <CheckBoxPreference
 			 android:key="toTurnOff"
 			 android:summary="@string/turn_off_screen"
 			 android:title="@string/screen_off" 
@@ -9,8 +14,17 @@
 			 android:defaultValue="false"
 			 >
 			</CheckBoxPreference>
+        
+			</PreferenceCategory >
+    		
+    
 			
-			<EditTextPreference
+			
+			<PreferenceCategory  
+			    android:title="@string/timer"
+			    >
+			    
+			    <EditTextPreference
 			 android:key="etDefault"
 			 android:summary="@string/default_timer_value_prop"
 			 android:title="@string/default_timer" 
@@ -18,7 +32,18 @@
 			 android:enabled="true"
 			 >
 			</EditTextPreference>
-			<CheckBoxPreference 
+			
+			    
+			    
+			    <CheckBoxPreference 
+			    android:title="@string/timer"
+			    android:summary="@string/timer_default_state"	 
+			    android:defaultValue="false"
+			    android:key="timerIsOn"
+			    />
+			    
+			    
+			    <CheckBoxPreference 
 			    android:title="@string/vibrate"
 			    android:summary="@string/vibrate_on_save"	 
 			    android:defaultValue="true"
@@ -31,7 +56,15 @@
 			 	android:defaultValue="2" 
 			    android:dialogTitle="@string/default_vibrate_lenght"/>
 			
-			<Preference android:title="@string/backup"
+			    
+			</PreferenceCategory>
+			
+			
+			<PreferenceCategory
+			    android:title="@string/backupAndRestore"
+			    >
+			    
+			    <Preference android:title="@string/backup"
                 android:key="btnBackup"
                 android:summary="@string/backup_database_to_sd"/>
 			
@@ -45,7 +78,14 @@
                 android:key="btnBackupToDrive"
                 android:icon="@drawable/google_drive_icon"
                 />
+			    
+			</PreferenceCategory>
 			
+			
+			<PreferenceCategory
+			    android:title="@string/feedback"
+			    >
+			    
 			<Preference 
 			    android:title="@string/vk_group"
                 android:key="btnVK"
@@ -56,6 +96,14 @@
 			    android:summary="@string/email_to_dev"
                 android:key="btnEmail"
                 />
+			    
+			</PreferenceCategory>
+			
+			
+			
+			
+			
+			
 			
 			
 			

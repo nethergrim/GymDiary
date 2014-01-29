@@ -1,7 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <string name="sm">(sm)</string>
+    <string name="sm">(cm)</string>
+    <string name="feedback">Feedback</string>
+    <string name="backupAndRestore">Backup and restore</string>
+    <string name="timer_default_state">Timer On at default</string>
     <string name="vk_group">VK group</string>
     <string name="send_email">Send E-mail</string>
     <string name="drive">Google Drive</string>

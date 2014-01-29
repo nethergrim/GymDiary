@@ -2280,6 +2280,7 @@ com.google.android.gms.ads.AdRequest:
 com.google.android.gms.ads.AdRequest$Builder:
     public com.google.android.gms.ads.AdRequest$Builder addKeyword(java.lang.String)
     public com.google.android.gms.ads.AdRequest$Builder addNetworkExtras(com.google.android.gms.ads.mediation.NetworkExtras)
+    public com.google.android.gms.ads.AdRequest$Builder addTestDevice(java.lang.String)
     public com.google.android.gms.ads.AdRequest$Builder setBirthday(java.util.Date)
     public com.google.android.gms.ads.AdRequest$Builder setGender(int)
     public com.google.android.gms.ads.AdRequest$Builder setLocation(android.location.Location)
@@ -3015,6 +3016,7 @@ com.google.android.gms.gcm.GoogleCloudMessaging$1
 com.google.android.gms.internal.af$a:
     public void g(java.lang.String)
     public void a(com.google.android.gms.ads.mediation.NetworkExtras)
+    public void h(java.lang.String)
     public void a(java.util.Date)
     public void d(int)
     public void a(android.location.Location)

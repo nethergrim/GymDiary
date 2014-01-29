@@ -3969,7 +3969,6 @@ com.google.android.gms.ads.AdRequest -> com.google.android.gms.ads.b:
 com.google.android.gms.ads.AdRequest$1 -> com.google.android.gms.ads.c:
 com.google.android.gms.ads.AdRequest$Builder -> com.google.android.gms.ads.d:
     com.google.android.gms.internal.af$a dX -> a
-    com.google.android.gms.ads.AdRequest$Builder addTestDevice(java.lang.String) -> a
     com.google.android.gms.ads.AdRequest build() -> a
     com.google.android.gms.internal.af$a a(com.google.android.gms.ads.AdRequest$Builder) -> a
 com.google.android.gms.ads.AdSize -> com.google.android.gms.ads.e:
@@ -5626,7 +5625,6 @@ com.google.android.gms.internal.af$a -> com.google.android.gms.internal.p:
     boolean eN -> g
     java.lang.String eP -> h
     int eR -> i
-    void h(java.lang.String) -> a
     java.util.Date a(com.google.android.gms.internal.af$a) -> a
     int b(com.google.android.gms.internal.af$a) -> b
     java.util.HashSet c(com.google.android.gms.internal.af$a) -> c
@@ -9793,11 +9791,11 @@ com.nethergrim.combogymdiary.EditingProgramAtTraining -> com.nethergrim.combogym
     void onLoadFinished(android.support.v4.content.Loader,android.database.Cursor) -> a
     void onLoaderReset(android.support.v4.content.Loader) -> a
     void initData() -> g
-    void setClicked() -> h
+    void setClicked(android.database.Cursor) -> a
     boolean onCreateOptionsMenu(android.view.Menu) -> onCreateOptionsMenu
     boolean onOptionsItemSelected(android.view.MenuItem) -> onOptionsItemSelected
-    void addExe() -> i
-    void editProgram() -> j
+    void addExe() -> h
+    void editProgram() -> i
     void onBackPressed() -> onBackPressed
     void onDestroy() -> onDestroy
     void onLoadFinished(android.support.v4.content.Loader,java.lang.Object) -> a

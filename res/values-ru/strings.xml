@@ -1,6 +1,9 @@
 <resources>
 
     <string name="sm">(см)</string>
+    <string name="feedback">Обратная связь</string>
+    <string name="backupAndRestore">Сохранение и восстановление</string>
+    <string name="timer_default_state">Таймер включен по умолчанию</string>
     <string name="vk_group">Вконтакте</string>
     <string name="send_email">Отправить E-mail</string>
     <string name="email">E-mail</string>

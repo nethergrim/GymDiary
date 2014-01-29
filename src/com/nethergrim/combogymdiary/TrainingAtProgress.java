@@ -286,7 +286,21 @@ public class TrainingAtProgress extends BasicMenuActivity  implements MyInterfac
         dlg1.setCancelable(false);
         setInfo.setTextColor( getResources().getColor(R.color.holo_orange_dark) );
         infoText.setTextColor( getResources().getColor(R.color.holo_orange_dark) );
-        tglTimerOn.setChecked(true);
+        
+        boolean isTimerOn =  sp.getBoolean(TIMER_IS_ON, false);
+        if (isTimerOn) {
+        	tglTimerOn.setChecked(true);
+        	tglChecked = true;
+			etTimer.setEnabled(true);
+        	
+        }else {
+        	tglTimerOn.setChecked(false);
+        	tglChecked = false;
+			etTimer.setEnabled(false);
+        }
+       
+        
+        
         
         AdView adView = (AdView)this.findViewById(R.id.adView1);
         AdRequest adRequest = new AdRequest.Builder()
