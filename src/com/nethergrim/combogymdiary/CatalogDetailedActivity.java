@@ -12,51 +12,48 @@ import android.widget.TextView;
 
 public class CatalogDetailedActivity extends BasicMenuActivity {
 
-	
 	TextView tvMain;
 	ImageView imageV;
-	int groupPosition,childPosition;
+	int groupPosition, childPosition;
 	long id;
-	 String[] pectoral = null;
-	 String[] legs = null;
-	 String[] back = null;
-	 String[] deltoids = null;
-	 String[] biceps = null;
-	 String[] triceps = null;
-	 String[] abs = null;
-	
-	
-	
+	String[] pectoral = null;
+	String[] legs = null;
+	String[] back = null;
+	String[] deltoids = null;
+	String[] biceps = null;
+	String[] triceps = null;
+	String[] abs = null;
+
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		mMenuDrawer.setContentView(R.layout.activity_catalog_detailed);
-		tvMain = (TextView)findViewById(R.id.tvInfoExe);
-		imageV = (ImageView)findViewById(R.id.ivMain);
-		Intent intent = getIntent();	    
+		tvMain = (TextView) findViewById(R.id.tvInfoExe);
+		imageV = (ImageView) findViewById(R.id.ivMain);
+		Intent intent = getIntent();
 		groupPosition = intent.getIntExtra("groupPosition", 0);
 		childPosition = intent.getIntExtra("childPosition", 0);
-		id 			  = intent.getLongExtra("id", 0);
-		Log.d(LOG_TAG, "got intent: groupPosition = "+groupPosition
-				+" childPosition = " + childPosition 
-				+" id = "+id);
+		id = intent.getLongExtra("id", 0);
+		Log.d(LOG_TAG, "got intent: groupPosition = " + groupPosition
+				+ " childPosition = " + childPosition + " id = " + id);
 		pectoral = getResources().getStringArray(R.array.exercisesArrayChest);
 		legs = getResources().getStringArray(R.array.exercisesArrayLegs);
 		back = getResources().getStringArray(R.array.exercisesArrayBack);
-		deltoids = getResources().getStringArray(R.array.exercisesArrayShoulders);
+		deltoids = getResources().getStringArray(
+				R.array.exercisesArrayShoulders);
 		biceps = getResources().getStringArray(R.array.exercisesArrayBiceps);
 		triceps = getResources().getStringArray(R.array.exercisesArrayTriceps);
 		abs = getResources().getStringArray(R.array.exercisesArrayAbs);
 		initInfo();
-		
-		AdView adView = (AdView)this.findViewById(R.id.adView5);
-	    AdRequest adRequest = new AdRequest.Builder().build();
-	    adView.loadAd(adRequest);
-		
+
+		AdView adView = (AdView) this.findViewById(R.id.adView5);
+		AdRequest adRequest = new AdRequest.Builder().build();
+		adView.loadAd(adRequest);
+
 	}
 
-	private void initInfo(){
-		switch (groupPosition){
+	private void initInfo() {
+		switch (groupPosition) {
 		case 0:
 			initGroup0();
 			getActionBar().setTitle(pectoral[childPosition]);
@@ -87,308 +84,376 @@ public class CatalogDetailedActivity extends BasicMenuActivity {
 			break;
 		}
 	}
-	
-	private void initGroup0(){
-		switch (childPosition){
+
+	private void initGroup0() {
+		switch (childPosition) {
 		case 0:
-			imageV.setImageDrawable(getResources().getDrawable(R.drawable.ex_0_0));
+			imageV.setImageDrawable(getResources().getDrawable(
+					R.drawable.ex_0_0));
 			tvMain.setText(getResources().getString(R.string.ex_0_0));
 			break;
 		case 1:
-			imageV.setImageDrawable(getResources().getDrawable(R.drawable.ex_0_1));
+			imageV.setImageDrawable(getResources().getDrawable(
+					R.drawable.ex_0_1));
 			tvMain.setText(getResources().getString(R.string.ex_0_1));
 			break;
 		case 2:
-			imageV.setImageDrawable(getResources().getDrawable(R.drawable.ex_0_2));
+			imageV.setImageDrawable(getResources().getDrawable(
+					R.drawable.ex_0_2));
 			tvMain.setText(getResources().getString(R.string.ex_0_2));
 			break;
 		case 3:
-			imageV.setImageDrawable(getResources().getDrawable(R.drawable.ex_0_3));
+			imageV.setImageDrawable(getResources().getDrawable(
+					R.drawable.ex_0_3));
 			tvMain.setText(getResources().getString(R.string.ex_0_3));
 			break;
 		case 4:
-			imageV.setImageDrawable(getResources().getDrawable(R.drawable.ex_0_4));
+			imageV.setImageDrawable(getResources().getDrawable(
+					R.drawable.ex_0_4));
 			tvMain.setText(getResources().getString(R.string.ex_0_4));
 			break;
 		case 5:
-			imageV.setImageDrawable(getResources().getDrawable(R.drawable.ex_0_5));
+			imageV.setImageDrawable(getResources().getDrawable(
+					R.drawable.ex_0_5));
 			tvMain.setText(getResources().getString(R.string.ex_0_5));
 			break;
 		case 6:
-			imageV.setImageDrawable(getResources().getDrawable(R.drawable.ex_0_6));
+			imageV.setImageDrawable(getResources().getDrawable(
+					R.drawable.ex_0_6));
 			tvMain.setText(getResources().getString(R.string.ex_0_6));
 			break;
 		case 7:
-			imageV.setImageDrawable(getResources().getDrawable(R.drawable.ex_0_7));
+			imageV.setImageDrawable(getResources().getDrawable(
+					R.drawable.ex_0_7));
 			tvMain.setText(getResources().getString(R.string.ex_0_7));
 			break;
 		case 8:
-			imageV.setImageDrawable(getResources().getDrawable(R.drawable.ex_0_8));
+			imageV.setImageDrawable(getResources().getDrawable(
+					R.drawable.ex_0_8));
 			tvMain.setText(getResources().getString(R.string.ex_0_8));
 			break;
 		case 9:
-			imageV.setImageDrawable(getResources().getDrawable(R.drawable.ex_0_9));
+			imageV.setImageDrawable(getResources().getDrawable(
+					R.drawable.ex_0_9));
 			tvMain.setText(getResources().getString(R.string.ex_0_9));
 			break;
 		case 10:
-			imageV.setImageDrawable(getResources().getDrawable(R.drawable.ex_0_10));
+			imageV.setImageDrawable(getResources().getDrawable(
+					R.drawable.ex_0_10));
 			tvMain.setText(getResources().getString(R.string.ex_0_10));
 			break;
 		case 11:
-			imageV.setImageDrawable(getResources().getDrawable(R.drawable.ex_0_11));
+			imageV.setImageDrawable(getResources().getDrawable(
+					R.drawable.ex_0_11));
 			tvMain.setText(getResources().getString(R.string.ex_0_11));
 			break;
 		case 12:
-			imageV.setImageDrawable(getResources().getDrawable(R.drawable.ex_0_12));
+			imageV.setImageDrawable(getResources().getDrawable(
+					R.drawable.ex_0_12));
 			tvMain.setText(getResources().getString(R.string.ex_0_12));
 			break;
 		case 13:
-			imageV.setImageDrawable(getResources().getDrawable(R.drawable.ex_0_13));
+			imageV.setImageDrawable(getResources().getDrawable(
+					R.drawable.ex_0_13));
 			tvMain.setText(getResources().getString(R.string.ex_0_13));
-			break;			
+			break;
 		}
 	}
-	private void initGroup1(){
-		switch (childPosition){
+
+	private void initGroup1() {
+		switch (childPosition) {
 		case 0:
-			imageV.setImageDrawable(getResources().getDrawable(R.drawable.ex_1_0));
+			imageV.setImageDrawable(getResources().getDrawable(
+					R.drawable.ex_1_0));
 			tvMain.setText(getResources().getString(R.string.ex_1_0));
 			break;
 		case 1:
-			imageV.setImageDrawable(getResources().getDrawable(R.drawable.ex_1_1));
+			imageV.setImageDrawable(getResources().getDrawable(
+					R.drawable.ex_1_1));
 			tvMain.setText(getResources().getString(R.string.ex_1_1));
 			break;
 		case 2:
-			imageV.setImageDrawable(getResources().getDrawable(R.drawable.ex_1_2));
+			imageV.setImageDrawable(getResources().getDrawable(
+					R.drawable.ex_1_2));
 			tvMain.setText(getResources().getString(R.string.ex_1_2));
 			break;
 		case 3:
-			imageV.setImageDrawable(getResources().getDrawable(R.drawable.ex_1_3));
+			imageV.setImageDrawable(getResources().getDrawable(
+					R.drawable.ex_1_3));
 			tvMain.setText(getResources().getString(R.string.ex_1_3));
 			break;
 		case 4:
-			imageV.setImageDrawable(getResources().getDrawable(R.drawable.ex_1_4));
+			imageV.setImageDrawable(getResources().getDrawable(
+					R.drawable.ex_1_4));
 			tvMain.setText(getResources().getString(R.string.ex_1_4));
 			break;
 		case 5:
-			imageV.setImageDrawable(getResources().getDrawable(R.drawable.ex_1_5));
+			imageV.setImageDrawable(getResources().getDrawable(
+					R.drawable.ex_1_5));
 			tvMain.setText(getResources().getString(R.string.ex_1_5));
 			break;
 		case 6:
-			imageV.setImageDrawable(getResources().getDrawable(R.drawable.ex_1_6));
+			imageV.setImageDrawable(getResources().getDrawable(
+					R.drawable.ex_1_6));
 			tvMain.setText(getResources().getString(R.string.ex_1_6));
 			break;
 		case 7:
-			imageV.setImageDrawable(getResources().getDrawable(R.drawable.ex_1_7));
+			imageV.setImageDrawable(getResources().getDrawable(
+					R.drawable.ex_1_7));
 			tvMain.setText(getResources().getString(R.string.ex_1_7));
 			break;
 		case 8:
-			imageV.setImageDrawable(getResources().getDrawable(R.drawable.ex_1_8));
+			imageV.setImageDrawable(getResources().getDrawable(
+					R.drawable.ex_1_8));
 			tvMain.setText(getResources().getString(R.string.ex_1_8));
 			break;
 		case 9:
-			imageV.setImageDrawable(getResources().getDrawable(R.drawable.ex_1_9));
+			imageV.setImageDrawable(getResources().getDrawable(
+					R.drawable.ex_1_9));
 			tvMain.setText(getResources().getString(R.string.ex_1_9));
 			break;
 		case 10:
-			imageV.setImageDrawable(getResources().getDrawable(R.drawable.ex_1_10));
+			imageV.setImageDrawable(getResources().getDrawable(
+					R.drawable.ex_1_10));
 			tvMain.setText(getResources().getString(R.string.ex_1_10));
 			break;
 		case 11:
-			imageV.setImageDrawable(getResources().getDrawable(R.drawable.ex_1_11));
+			imageV.setImageDrawable(getResources().getDrawable(
+					R.drawable.ex_1_11));
 			tvMain.setText(getResources().getString(R.string.ex_1_11));
 			break;
 		case 12:
-			imageV.setImageDrawable(getResources().getDrawable(R.drawable.ex_1_12));
+			imageV.setImageDrawable(getResources().getDrawable(
+					R.drawable.ex_1_12));
 			tvMain.setText(getResources().getString(R.string.ex_1_12));
 			break;
 		case 13:
-			imageV.setImageDrawable(getResources().getDrawable(R.drawable.ex_1_13));
+			imageV.setImageDrawable(getResources().getDrawable(
+					R.drawable.ex_1_13));
 			tvMain.setText(getResources().getString(R.string.ex_1_13));
-			break;			
+			break;
 		}
 	}
-	private void initGroup2(){
-		switch (childPosition){
+
+	private void initGroup2() {
+		switch (childPosition) {
 		case 0:
-			imageV.setImageDrawable(getResources().getDrawable(R.drawable.ex_2_0));
+			imageV.setImageDrawable(getResources().getDrawable(
+					R.drawable.ex_2_0));
 			tvMain.setText(getResources().getString(R.string.ex_2_0));
 			break;
 		case 1:
-			imageV.setImageDrawable(getResources().getDrawable(R.drawable.ex_2_1));
+			imageV.setImageDrawable(getResources().getDrawable(
+					R.drawable.ex_2_1));
 			tvMain.setText(getResources().getString(R.string.ex_2_1));
 			break;
 		case 2:
-			imageV.setImageDrawable(getResources().getDrawable(R.drawable.ex_2_2));
+			imageV.setImageDrawable(getResources().getDrawable(
+					R.drawable.ex_2_2));
 			tvMain.setText(getResources().getString(R.string.ex_2_2));
 			break;
 		case 3:
-			imageV.setImageDrawable(getResources().getDrawable(R.drawable.ex_2_3));
+			imageV.setImageDrawable(getResources().getDrawable(
+					R.drawable.ex_2_3));
 			tvMain.setText(getResources().getString(R.string.ex_2_3));
 			break;
 		case 4:
-			imageV.setImageDrawable(getResources().getDrawable(R.drawable.ex_2_4));
+			imageV.setImageDrawable(getResources().getDrawable(
+					R.drawable.ex_2_4));
 			tvMain.setText(getResources().getString(R.string.ex_2_4));
 			break;
 		case 5:
-			imageV.setImageDrawable(getResources().getDrawable(R.drawable.ex_2_5));
+			imageV.setImageDrawable(getResources().getDrawable(
+					R.drawable.ex_2_5));
 			tvMain.setText(getResources().getString(R.string.ex_2_5));
 			break;
 		case 6:
-			imageV.setImageDrawable(getResources().getDrawable(R.drawable.ex_2_6));
+			imageV.setImageDrawable(getResources().getDrawable(
+					R.drawable.ex_2_6));
 			tvMain.setText(getResources().getString(R.string.ex_2_6));
 			break;
 		case 7:
-			imageV.setImageDrawable(getResources().getDrawable(R.drawable.ex_2_7));
+			imageV.setImageDrawable(getResources().getDrawable(
+					R.drawable.ex_2_7));
 			tvMain.setText(getResources().getString(R.string.ex_2_7));
 			break;
 		case 8:
-			imageV.setImageDrawable(getResources().getDrawable(R.drawable.ex_2_8));
+			imageV.setImageDrawable(getResources().getDrawable(
+					R.drawable.ex_2_8));
 			tvMain.setText(getResources().getString(R.string.ex_2_8));
 			break;
 		case 9:
-			imageV.setImageDrawable(getResources().getDrawable(R.drawable.ex_2_9));
+			imageV.setImageDrawable(getResources().getDrawable(
+					R.drawable.ex_2_9));
 			tvMain.setText(getResources().getString(R.string.ex_2_9));
 			break;
 		case 10:
-			imageV.setImageDrawable(getResources().getDrawable(R.drawable.ex_2_10));
+			imageV.setImageDrawable(getResources().getDrawable(
+					R.drawable.ex_2_10));
 			tvMain.setText(getResources().getString(R.string.ex_2_10));
 			break;
 		case 11:
-			imageV.setImageDrawable(getResources().getDrawable(R.drawable.ex_2_11));
+			imageV.setImageDrawable(getResources().getDrawable(
+					R.drawable.ex_2_11));
 			tvMain.setText(getResources().getString(R.string.ex_2_11));
-			break;			
+			break;
 		}
 	}
-	private void initGroup3(){
-		switch (childPosition){
+
+	private void initGroup3() {
+		switch (childPosition) {
 		case 0:
-			imageV.setImageDrawable(getResources().getDrawable(R.drawable.ex_3_0));
+			imageV.setImageDrawable(getResources().getDrawable(
+					R.drawable.ex_3_0));
 			tvMain.setText(getResources().getString(R.string.ex_3_0));
 			break;
 		case 1:
-			imageV.setImageDrawable(getResources().getDrawable(R.drawable.ex_3_1));
+			imageV.setImageDrawable(getResources().getDrawable(
+					R.drawable.ex_3_1));
 			tvMain.setText(getResources().getString(R.string.ex_3_1));
 			break;
 		case 2:
-			imageV.setImageDrawable(getResources().getDrawable(R.drawable.ex_3_2));
+			imageV.setImageDrawable(getResources().getDrawable(
+					R.drawable.ex_3_2));
 			tvMain.setText(getResources().getString(R.string.ex_3_2));
 			break;
 		case 3:
-			imageV.setImageDrawable(getResources().getDrawable(R.drawable.ex_3_3));
+			imageV.setImageDrawable(getResources().getDrawable(
+					R.drawable.ex_3_3));
 			tvMain.setText(getResources().getString(R.string.ex_3_3));
 			break;
 		case 4:
-			imageV.setImageDrawable(getResources().getDrawable(R.drawable.ex_3_4));
+			imageV.setImageDrawable(getResources().getDrawable(
+					R.drawable.ex_3_4));
 			tvMain.setText(getResources().getString(R.string.ex_3_4));
 			break;
 		case 5:
-			imageV.setImageDrawable(getResources().getDrawable(R.drawable.ex_3_5));
+			imageV.setImageDrawable(getResources().getDrawable(
+					R.drawable.ex_3_5));
 			tvMain.setText(getResources().getString(R.string.ex_3_5));
 			break;
 		case 6:
-			imageV.setImageDrawable(getResources().getDrawable(R.drawable.ex_3_6));
+			imageV.setImageDrawable(getResources().getDrawable(
+					R.drawable.ex_3_6));
 			tvMain.setText(getResources().getString(R.string.ex_3_6));
 			break;
 		case 7:
-			imageV.setImageDrawable(getResources().getDrawable(R.drawable.ex_3_7));
+			imageV.setImageDrawable(getResources().getDrawable(
+					R.drawable.ex_3_7));
 			tvMain.setText(getResources().getString(R.string.ex_3_7));
 			break;
 		case 8:
-			imageV.setImageDrawable(getResources().getDrawable(R.drawable.ex_3_8));
+			imageV.setImageDrawable(getResources().getDrawable(
+					R.drawable.ex_3_8));
 			tvMain.setText(getResources().getString(R.string.ex_3_8));
-			break;		
+			break;
 		case 9:
-			imageV.setImageDrawable(getResources().getDrawable(R.drawable.ex_3_9));
+			imageV.setImageDrawable(getResources().getDrawable(
+					R.drawable.ex_3_9));
 			tvMain.setText(getResources().getString(R.string.ex_3_9));
 			break;
 		}
 	}
-	private void initGroup4(){
-		switch (childPosition){
+
+	private void initGroup4() {
+		switch (childPosition) {
 		case 0:
-			imageV.setImageDrawable(getResources().getDrawable(R.drawable.ex_4_0));
+			imageV.setImageDrawable(getResources().getDrawable(
+					R.drawable.ex_4_0));
 			tvMain.setText(getResources().getString(R.string.ex_4_0));
 			break;
 		case 1:
-			imageV.setImageDrawable(getResources().getDrawable(R.drawable.ex_4_1));
+			imageV.setImageDrawable(getResources().getDrawable(
+					R.drawable.ex_4_1));
 			tvMain.setText(getResources().getString(R.string.ex_4_1));
 			break;
 		case 2:
-			imageV.setImageDrawable(getResources().getDrawable(R.drawable.ex_4_2));
+			imageV.setImageDrawable(getResources().getDrawable(
+					R.drawable.ex_4_2));
 			tvMain.setText(getResources().getString(R.string.ex_4_2));
 			break;
 		case 3:
-			imageV.setImageDrawable(getResources().getDrawable(R.drawable.ex_4_3));
+			imageV.setImageDrawable(getResources().getDrawable(
+					R.drawable.ex_4_3));
 			tvMain.setText(getResources().getString(R.string.ex_4_3));
 			break;
 		case 4:
-			imageV.setImageDrawable(getResources().getDrawable(R.drawable.ex_4_4));
+			imageV.setImageDrawable(getResources().getDrawable(
+					R.drawable.ex_4_4));
 			tvMain.setText(getResources().getString(R.string.ex_4_4));
 			break;
 		case 5:
-			imageV.setImageDrawable(getResources().getDrawable(R.drawable.ex_4_5));
+			imageV.setImageDrawable(getResources().getDrawable(
+					R.drawable.ex_4_5));
 			tvMain.setText(getResources().getString(R.string.ex_4_5));
 			break;
 		case 6:
-			imageV.setImageDrawable(getResources().getDrawable(R.drawable.ex_4_6));
+			imageV.setImageDrawable(getResources().getDrawable(
+					R.drawable.ex_4_6));
 			tvMain.setText(getResources().getString(R.string.ex_4_6));
-			break;			
+			break;
 		}
 	}
-	private void initGroup5(){
-		switch (childPosition){
+
+	private void initGroup5() {
+		switch (childPosition) {
 		case 0:
-			imageV.setImageDrawable(getResources().getDrawable(R.drawable.ex_5_0));
+			imageV.setImageDrawable(getResources().getDrawable(
+					R.drawable.ex_5_0));
 			tvMain.setText(getResources().getString(R.string.ex_5_0));
 			break;
 		case 1:
-			imageV.setImageDrawable(getResources().getDrawable(R.drawable.ex_5_1));
+			imageV.setImageDrawable(getResources().getDrawable(
+					R.drawable.ex_5_1));
 			tvMain.setText(getResources().getString(R.string.ex_5_1));
 			break;
 		case 2:
-			imageV.setImageDrawable(getResources().getDrawable(R.drawable.ex_5_2));
+			imageV.setImageDrawable(getResources().getDrawable(
+					R.drawable.ex_5_2));
 			tvMain.setText(getResources().getString(R.string.ex_5_2));
 			break;
 		case 3:
-			imageV.setImageDrawable(getResources().getDrawable(R.drawable.ex_5_3));
+			imageV.setImageDrawable(getResources().getDrawable(
+					R.drawable.ex_5_3));
 			tvMain.setText(getResources().getString(R.string.ex_5_3));
-			break;		
+			break;
 		}
 	}
-	private void initGroup6(){
-		switch (childPosition){
+
+	private void initGroup6() {
+		switch (childPosition) {
 		case 0:
-			imageV.setImageDrawable(getResources().getDrawable(R.drawable.ex_6_0));
+			imageV.setImageDrawable(getResources().getDrawable(
+					R.drawable.ex_6_0));
 			tvMain.setText(getResources().getString(R.string.ex_6_0));
 			break;
 		case 1:
-			imageV.setImageDrawable(getResources().getDrawable(R.drawable.ex_6_1));
+			imageV.setImageDrawable(getResources().getDrawable(
+					R.drawable.ex_6_1));
 			tvMain.setText(getResources().getString(R.string.ex_6_1));
-			break;		
+			break;
 		case 2:
-			imageV.setImageDrawable(getResources().getDrawable(R.drawable.ex_6_2));
+			imageV.setImageDrawable(getResources().getDrawable(
+					R.drawable.ex_6_2));
 			tvMain.setText(getResources().getString(R.string.ex_6_2));
-			break;	
+			break;
 		case 3:
-			imageV.setImageDrawable(getResources().getDrawable(R.drawable.ex_6_3));
+			imageV.setImageDrawable(getResources().getDrawable(
+					R.drawable.ex_6_3));
 			tvMain.setText(getResources().getString(R.string.ex_6_3));
-			break;	
+			break;
 		case 4:
-			imageV.setImageDrawable(getResources().getDrawable(R.drawable.ex_6_4));
+			imageV.setImageDrawable(getResources().getDrawable(
+					R.drawable.ex_6_4));
 			tvMain.setText(getResources().getString(R.string.ex_6_4));
-			break;	
+			break;
 		}
 	}
-	
-	
-	
+
 	@Override
 	public void onClick(View arg0) {
 		int id = arg0.getId();
-		pressButton(id);		
+		pressButton(id);
 	}
-
-
 
 }

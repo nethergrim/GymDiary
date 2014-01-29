@@ -1,6 +1,5 @@
 package com.nethergrim.combogymdiary;
 
-
 import android.app.Notification;
 import android.app.NotificationManager;
 import android.app.PendingIntent;
@@ -14,50 +13,51 @@ import android.util.Log;
 import android.widget.Toast;
 
 public class MyService extends Service {
-	
-  NotificationManager nm;
-  protected final String LOG_TAG = "myLogs";
-  private SharedPreferences sp;
-  String trainingNAME;
-  
-  @Override
-  public void onCreate() {
-    super.onCreate();
-    sp = PreferenceManager.getDefaultSharedPreferences(this); 
-    trainingNAME = sp.getString(BasicMenuActivity.TRAINING_NAME, ""); 
-    nm = (NotificationManager) getSystemService(NOTIFICATION_SERVICE);
-  }
 
-  public int onStartCommand(Intent intent, int flags, int startId) {
-	trainingNAME = sp.getString(BasicMenuActivity.TRAINING_NAME, ""); 
-    sendNotif(startId);
-    return super.onStartCommand(intent, flags, startId);
-  }
-  
-  void sendNotif(int ID) {
+	NotificationManager nm;
+	protected final String LOG_TAG = "myLogs";
+	private SharedPreferences sp;
+	String trainingNAME;
 
-    Notification notif = new Notification(R.drawable.ic_launcher, getResources().getString(R.string.training_started) , System.currentTimeMillis());
+	@Override
+	public void onCreate() {
+		super.onCreate();
+		sp = PreferenceManager.getDefaultSharedPreferences(this);
+		trainingNAME = sp.getString(BasicMenuActivity.TRAINING_NAME, "");
+		nm = (NotificationManager) getSystemService(NOTIFICATION_SERVICE);
+	}
 
-    Intent intent = new Intent(this, MainActivity.class);
-    Editor ed = sp.edit();
-	ed.putInt(BasicMenuActivity.TRA_ID, ID);
-	ed.apply();
-    
-    intent.putExtra("trainingName", trainingNAME);
-    PendingIntent pIntent = PendingIntent.getActivity(this, 0, intent, 0);
+	public int onStartCommand(Intent intent, int flags, int startId) {
+		trainingNAME = sp.getString(BasicMenuActivity.TRAINING_NAME, "");
+		sendNotif(startId);
+		return super.onStartCommand(intent, flags, startId);
+	}
 
-    notif.setLatestEventInfo(this, getResources().getString(R.string.finish_training), "", pIntent);
+	void sendNotif(int ID) {
 
-    notif.flags |= Notification.FLAG_AUTO_CANCEL;
-    notif.flags |= Notification.FLAG_NO_CLEAR;
-    
+		Notification notif = new Notification(R.drawable.ic_launcher,
+				getResources().getString(R.string.training_started),
+				System.currentTimeMillis());
 
-    nm.notify(1, notif);
-    
-  }
+		Intent intent = new Intent(this, MainActivity.class);
+		Editor ed = sp.edit();
+		ed.putInt(BasicMenuActivity.TRA_ID, ID);
+		ed.apply();
 
-  
-  public IBinder onBind(Intent arg0) {
-    return null;
-  }
+		intent.putExtra("trainingName", trainingNAME);
+		PendingIntent pIntent = PendingIntent.getActivity(this, 0, intent, 0);
+
+		notif.setLatestEventInfo(this,
+				getResources().getString(R.string.finish_training), "", pIntent);
+
+		notif.flags |= Notification.FLAG_AUTO_CANCEL;
+		notif.flags |= Notification.FLAG_NO_CLEAR;
+
+		nm.notify(1, notif);
+
+	}
+
+	public IBinder onBind(Intent arg0) {
+		return null;
+	}
 }

@@ -1,110 +1,65 @@
 <?xml version="1.0" encoding="utf-8"?>
-<PreferenceScreen
- xmlns:android="http://schemas.android.com/apk/res/android">
- 
-    <PreferenceCategory  
-			    android:title="@string/training"
-			    >
-			    
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android" >
+
+    <PreferenceCategory android:title="@string/training" >
         <CheckBoxPreference
-			 android:key="toTurnOff"
-			 android:summary="@string/turn_off_screen"
-			 android:title="@string/screen_off" 
-			 android:enabled="true"
-			 android:defaultValue="false"
-			 >
-			</CheckBoxPreference>
-        
-			</PreferenceCategory >
-    		
-    
-			
-			
-			<PreferenceCategory  
-			    android:title="@string/timer"
-			    >
-			    
-			    <EditTextPreference
-			 android:key="etDefault"
-			 android:summary="@string/default_timer_value_prop"
-			 android:title="@string/default_timer" 
-			 android:defaultValue="60" 
-			 android:enabled="true"
-			 >
-			</EditTextPreference>
-			
-			    
-			    
-			    <CheckBoxPreference 
-			    android:title="@string/timer"
-			    android:summary="@string/timer_default_state"	 
-			    android:defaultValue="false"
-			    android:key="timerIsOn"
-			    />
-			    
-			    
-			    <CheckBoxPreference 
-			    android:title="@string/vibrate"
-			    android:summary="@string/vibrate_on_save"	 
-			    android:defaultValue="true"
-			    android:key="vibrateOn"
-			    />
-			<EditTextPreference 
-			    android:key="vibtateLenght"
-			    android:summary="@string/default_vibrate_lenght"
-				android:title="@string/vibrate_lenght" 
-			 	android:defaultValue="2" 
-			    android:dialogTitle="@string/default_vibrate_lenght"/>
-			
-			    
-			</PreferenceCategory>
-			
-			
-			<PreferenceCategory
-			    android:title="@string/backupAndRestore"
-			    >
-			    
-			    <Preference android:title="@string/backup"
-                android:key="btnBackup"
-                android:summary="@string/backup_database_to_sd"/>
-			
-			<Preference android:title="@string/restore"
-                android:key="btnRestore"
-                android:summary="@string/replace_from_backup"/>
-			
-			<Preference 
-			    android:title="@string/drive"
-			    android:summary="@string/drive_backup"
-                android:key="btnBackupToDrive"
-                android:icon="@drawable/google_drive_icon"
-                />
-			    
-			</PreferenceCategory>
-			
-			
-			<PreferenceCategory
-			    android:title="@string/feedback"
-			    >
-			    
-			<Preference 
-			    android:title="@string/vk_group"
-                android:key="btnVK"
-                />
-			
-			<Preference 
-			    android:title="@string/email"
-			    android:summary="@string/email_to_dev"
-                android:key="btnEmail"
-                />
-			    
-			</PreferenceCategory>
-			
-			
-			
-			
-			
-			
-			
-			
-			
+            android:defaultValue="false"
+            android:enabled="true"
+            android:key="toTurnOff"
+            android:summary="@string/turn_off_screen"
+            android:title="@string/screen_off" >
+        </CheckBoxPreference>
+    </PreferenceCategory>
+    <PreferenceCategory android:title="@string/timer" >
+        <EditTextPreference
+            android:defaultValue="60"
+            android:enabled="true"
+            android:key="etDefault"
+            android:summary="@string/default_timer_value_prop"
+            android:title="@string/default_timer" >
+        </EditTextPreference>
+
+        <CheckBoxPreference
+            android:defaultValue="false"
+            android:key="timerIsOn"
+            android:summary="@string/timer_default_state"
+            android:title="@string/timer" />
+        <CheckBoxPreference
+            android:defaultValue="true"
+            android:key="vibrateOn"
+            android:summary="@string/vibrate_on_save"
+            android:title="@string/vibrate" />
+
+        <EditTextPreference
+            android:defaultValue="2"
+            android:dialogTitle="@string/default_vibrate_lenght"
+            android:key="vibtateLenght"
+            android:summary="@string/default_vibrate_lenght"
+            android:title="@string/vibrate_lenght" />
+    </PreferenceCategory>
+    <PreferenceCategory android:title="@string/backupAndRestore" >
+        <Preference
+            android:key="btnBackup"
+            android:summary="@string/backup_database_to_sd"
+            android:title="@string/backup" />
+        <Preference
+            android:key="btnRestore"
+            android:summary="@string/replace_from_backup"
+            android:title="@string/restore" />
+        <Preference
+            android:icon="@drawable/google_drive_icon"
+            android:key="btnBackupToDrive"
+            android:summary="@string/drive_backup"
+            android:title="@string/drive" />
+    </PreferenceCategory>
+    <PreferenceCategory android:title="@string/feedback" >
+        <Preference
+            android:key="btnVK"
+            android:title="@string/vk_group" />
+        <Preference
+            android:key="btnEmail"
+            android:summary="@string/email_to_dev"
+            android:title="@string/email" />
+    </PreferenceCategory>
+
 </PreferenceScreen>
