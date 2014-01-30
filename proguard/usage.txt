@@ -4898,15 +4898,16 @@ com.mobeta.android.dslv.SimpleDragSortCursorAdapter
 com.mobeta.android.dslv.SimpleDragSortCursorAdapter$CursorToStringConverter
 com.mobeta.android.dslv.SimpleDragSortCursorAdapter$ViewBinder
 com.nethergrim.combogymdiary.AdapterHelper:
-    137:137:java.lang.String getGroupText(int)
-    141:141:java.lang.String getChildText(int,int)
-    145:145:java.lang.String getGroupChildText(int,int)
+    131:131:java.lang.String getGroupText(int)
+    136:136:java.lang.String getChildText(int,int)
+    141:141:java.lang.String getGroupChildText(int,int)
 com.nethergrim.combogymdiary.BasicMenuActivity:
     protected static final java.lang.String TRAINING_AT_PROGRESS
     protected static final java.lang.String LIST_OF_SETS
     public static final java.lang.String TRAINING_NAME
     public static final java.lang.String TRA_ID
     public static final java.lang.String TRAINING_LIST
+    public static final java.lang.String TIMER_IS_ON
     public static final java.lang.String MY_AD_UNIT_ID
     public static final java.lang.String MY_ACCOUNT_NAME
     protected static final java.lang.String MINUTES
@@ -4935,12 +4936,12 @@ com.nethergrim.combogymdiary.DB:
     private static final java.lang.String DB_MAIN_CREATE
     private static final java.lang.String DB_MEASURE_CREATE
     private static final java.lang.String DB_TRAININGS_CREATE
-    118:118:public android.database.Cursor getAllData_Exe()
-    123:123:public android.database.Cursor getData_Exe_GroupBy(java.lang.String)
-    128:134:public int getExeIdByName(java.lang.String)
-    242:247:public int getIdValueByExerciseName(java.lang.String)
-    297:297:public android.database.Cursor getAllData_Main()
-    392:393:public void delDB()
+    105:105:public android.database.Cursor getAllData_Exe()
+    110:110:public android.database.Cursor getData_Exe_GroupBy(java.lang.String)
+    115:122:public int getExeIdByName(java.lang.String)
+    241:247:public int getIdValueByExerciseName(java.lang.String)
+    300:300:public android.database.Cursor getAllData_Main()
+    390:391:public void delDB()
 com.nethergrim.combogymdiary.DiskActivity:
     private static final java.lang.String TAG
     private static final int REQUEST_CODE_CREATOR
@@ -4975,6 +4976,8 @@ com.nethergrim.combogymdiary.StartTrainingActivity:
 com.nethergrim.combogymdiary.TheBackupAgent:
     private static final java.lang.String DB_NAME
     static final java.lang.String FILES_BACKUP_KEY
+com.nethergrim.combogymdiary.TrainingAtProgress:
+    private static final int CM_DELETE_ID
 javax.annotation.CheckForNull
 javax.annotation.CheckForSigned
 javax.annotation.CheckReturnValue

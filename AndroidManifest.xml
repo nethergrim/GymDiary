@@ -2,8 +2,8 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.nethergrim.combogymdiary"
     android:installLocation="auto"
-    android:versionCode="48"
-    android:versionName="1.3.11" >
+    android:versionCode="49"
+    android:versionName="1.3.12" >
 
     <uses-sdk
         android:minSdkVersion="15"
@@ -153,16 +153,23 @@
 
         <activity
             android:name="com.nethergrim.combogymdiary.DiskActivity"
-            android:label="@string/title_activity_disk"
-            android:theme="@android:style/Theme.DeviceDefault.Dialog.NoActionBar"
+            android:parentActivityName="com.nethergrim.combogymdiary.SettingsActivity"
+            android:theme="@android:style/Theme.DeviceDefault.Dialog.NoActionBar" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.nethergrim.combogymdiary.SettingsActivity" />
+        </activity>
+        <activity
+            android:name="com.nethergrim.combogymdiary.DiskRestoreActivity"
+            android:theme="@android:style/Theme.DeviceDefault.Dialog.NoActionBar" 
             android:parentActivityName="com.nethergrim.combogymdiary.SettingsActivity" >
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.nethergrim.combogymdiary.SettingsActivity" />
         </activity>
     </application>
-    
-	<uses-permission android:name="android.permission.GET_ACCOUNTS"/>
+
+    <uses-permission android:name="android.permission.GET_ACCOUNTS" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.VIBRATE" />
     <uses-permission android:name="android.permission.INTERNET" />

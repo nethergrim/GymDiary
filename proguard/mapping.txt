@@ -9572,12 +9572,11 @@ com.nethergrim.combogymdiary.AddingExersises -> com.nethergrim.combogymdiary.Add
     android.widget.EditText etTimer -> p
     java.lang.String exeName -> q
     java.lang.String timerV -> r
-    int exePosition -> s
-    long exeID -> t
-    java.lang.String defaultTimer -> u
-    java.lang.Boolean editOrNot -> v
-    com.nethergrim.combogymdiary.DB db -> w
-    android.content.SharedPreferences sp -> x
+    long exeID -> s
+    java.lang.String defaultTimer -> t
+    java.lang.Boolean editOrNot -> u
+    com.nethergrim.combogymdiary.DB db -> v
+    android.content.SharedPreferences sp -> w
     void onCreate(android.os.Bundle) -> onCreate
     void onResume() -> onResume
     void onClick(android.view.View) -> onClick
@@ -9611,7 +9610,6 @@ com.nethergrim.combogymdiary.AddingProgram -> com.nethergrim.combogymdiary.Addin
     android.widget.ListView lvExe -> p
     com.nethergrim.combogymdiary.DB db -> q
     android.support.v4.widget.SimpleCursorAdapter adapter -> r
-    android.database.Cursor cursor -> s
     void onConfigurationChanged(android.content.res.Configuration) -> onConfigurationChanged
     void initUi() -> f
     void onCreate(android.os.Bundle) -> onCreate
@@ -9778,11 +9776,10 @@ com.nethergrim.combogymdiary.EditingProgramAtTraining -> com.nethergrim.combogym
     com.nethergrim.combogymdiary.DB db -> o
     long traID -> p
     android.support.v4.widget.SimpleCursorAdapter scAdapter -> q
-    android.database.Cursor cursor -> r
-    java.lang.String traName -> s
-    java.lang.String[] exercisesOld -> t
-    boolean ifAddingExe -> u
-    android.widget.EditText etName -> v
+    java.lang.String traName -> r
+    java.lang.String[] exercisesOld -> s
+    boolean ifAddingExe -> t
+    android.widget.EditText etName -> u
     void onConfigurationChanged(android.content.res.Configuration) -> onConfigurationChanged
     void initUi() -> f
     void onCreate(android.os.Bundle) -> onCreate
@@ -10059,6 +10056,8 @@ com.nethergrim.combogymdiary.TrainingAtProgress -> com.nethergrim.combogymdiary.
     void saveTimerToPregerences() -> f
     void restoreTimerFromPreferences() -> g
     void initUi(boolean) -> b
+    void onCreateContextMenu(android.view.ContextMenu,android.view.View,android.view.ContextMenu$ContextMenuInfo) -> onCreateContextMenu
+    boolean onContextItemSelected(android.view.MenuItem) -> onContextItemSelected
     void initSetButtons() -> j
     void initData(int) -> b
     void onResume() -> onResume

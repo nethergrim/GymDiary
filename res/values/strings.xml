@@ -292,5 +292,6 @@
     <string name="ex_6_3"></string>
     <string name="ex_6_4"></string>
     <string name="title_activity_disk">DiskActivity</string>
+    <string name="title_activity_disk_restore">DiskRestoreActivity</string>
 
 </resources>

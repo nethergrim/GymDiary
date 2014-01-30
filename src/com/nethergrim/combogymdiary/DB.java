@@ -158,7 +158,6 @@ public class DB {
 	}
 
 	public void deleteExersiceByName(String name) {
-		Log.d(LOG_TAG, "going to delete exersice " + name);
 		Cursor c = mDB.query(DB_TRAININGS_TABLE, null, null, null, null, null,
 				null);
 		if (c.moveToFirst()) {
@@ -191,6 +190,39 @@ public class DB {
 
 				updateRec_Training(c.getInt(0), 2, newString);
 			} while (c.moveToNext());
+		}
+	}
+
+	public void deleteExersiceByName(String name, String trainingName) {
+		String[] args = { trainingName };
+		Cursor c = mDB.query(DB_TRAININGS_TABLE, null, TRA_NAME + "=?", args,
+				(String) null, (String) null, (String) null);
+		if (c.moveToFirst()) {
+			int delta = 0;
+			String tmp = c.getString(2);
+			String[] tmpArray = convertStringToArray(tmp);
+			int[] intArray = new int[tmpArray.length];
+			for (int i = 0; i < intArray.length; i++)
+				intArray[i] = 0;
+			for (int i = 0; i < tmpArray.length; i++) {
+				if (tmpArray[i].equals(name)) {
+					intArray[i] = 1;
+					delta++;
+				}
+			}
+			String[] newArray = new String[tmpArray.length - delta];
+			for (int i = 0, j = 0; i < tmpArray.length; i++) {
+				if (intArray[i] == 0) {
+					newArray[j] = tmpArray[i];
+					j++;
+				} else if (intArray[i] == 1) {
+					continue;
+				}
+			}
+
+			String newString = convertArrayToString(newArray);
+
+			updateRec_Training(c.getInt(0), 2, newString);
 		}
 	}
 

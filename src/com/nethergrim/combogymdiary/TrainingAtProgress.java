@@ -23,7 +23,6 @@ import android.os.Handler;
 import android.os.Message;
 import android.os.Vibrator;
 import android.preference.PreferenceManager;
-import android.util.Log;
 import android.view.ContextMenu;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -34,7 +33,6 @@ import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
-import android.widget.Checkable;
 import android.widget.CompoundButton;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -118,8 +116,6 @@ public class TrainingAtProgress extends BasicMenuActivity implements
 			for (int i = 0; i < exersices.length; i++) {
 				alMain.add(exersices[i]);
 			}
-		} else {
-			Log.d(LOG_TAG, "ERROR curor is empty");
 		}
 
 		sp.edit().putString(TRAINING_NAME, traName).apply();
@@ -270,7 +266,6 @@ public class TrainingAtProgress extends BasicMenuActivity implements
 			@Override
 			public void onItemClick(AdapterView<?> parent, View itemClicked,
 					int position, long id) {
-				Log.d(LOG_TAG, "item selected " + position);
 				checkedPosition = position;
 
 				initData(position);
@@ -278,7 +273,9 @@ public class TrainingAtProgress extends BasicMenuActivity implements
 		});
 		list.setItemChecked(0, true);
 		registerForContextMenu(list);
-		initData(0);
+		if (alMain.size() > 0) {
+			initData(0);
+		}
 
 		SimpleDateFormat sdf = new SimpleDateFormat("dd.MM.yyyy");
 		date = sdf.format(new Date(System.currentTimeMillis()));
@@ -318,10 +315,12 @@ public class TrainingAtProgress extends BasicMenuActivity implements
 			String nameToDelete = alMain.get(acmi.position);
 			alMain.remove(acmi.position);
 			alSet.remove(acmi.position);
-			Log.d(LOG_TAG,"deleting "+nameToDelete);
-			db.deleteExersiceByName(nameToDelete);
+			db.deleteExersiceByName(nameToDelete, traName);
 			adapter.notifyDataSetChanged();
-			initData(0);
+			if (alMain.size() > 0) {
+				initData(0);
+				list.setItemChecked(0, true);
+			}
 			return true;
 		}
 		return super.onContextItemSelected(item);
@@ -428,7 +427,6 @@ public class TrainingAtProgress extends BasicMenuActivity implements
 			Intent intent = new Intent(this, EditingProgramAtTraining.class);
 			intent.putExtra("trName", traName);
 			intent.putExtra("ifAddingExe", true);
-			Log.d(LOG_TAG, "started activity for result with extra: " + traName);
 			startActivityForResult(intent, 1);
 		} else if (itemId == android.R.id.home) {
 			if (mMenuDrawer.isActivated()) {
@@ -459,7 +457,6 @@ public class TrainingAtProgress extends BasicMenuActivity implements
 				startActivity(intent_history_detailed);
 
 			} else {
-				Log.d(LOG_TAG, "empty cursor");
 				Toast.makeText(
 						this,
 						getResources().getString(R.string.no_history) + traName,
@@ -480,16 +477,12 @@ public class TrainingAtProgress extends BasicMenuActivity implements
 		for (int i = 0; i < itemsChecked.length; i++) {
 
 			alMain.add(db.getExerciseByID((int) itemsChecked[i]));
-			Log.d(LOG_TAG,
-					"adding exersice :"
-							+ db.getExerciseByID((int) itemsChecked[i]));
 			alSet.add(0);
 		}
 		for (int j = 0; j < 100; j++) {
 			alSet.add(0);
 		}
 		adapter.notifyDataSetChanged();
-
 		String[] tmp = new String[alMain.size()];// saving position to DB TODO
 													// convert into asynctask
 		for (int i = 0; i < alMain.size(); i++) {
@@ -521,11 +514,9 @@ public class TrainingAtProgress extends BasicMenuActivity implements
 
 		StringBuilder str = new StringBuilder();
 		for (int i = 0; i < alSet.size(); i++) {
-
 			str.append(alSet.get(i)).append(",");
 		}
 		sp.edit().putString(LIST_OF_SETS, str.toString()).apply();
-
 	}
 
 	public void restoreSetsFromPreferences() {

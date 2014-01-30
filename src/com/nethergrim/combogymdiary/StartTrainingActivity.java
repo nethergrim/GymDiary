@@ -21,7 +21,9 @@ import android.widget.AdapterView;
 import android.widget.AdapterView.AdapterContextMenuInfo;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.Button;
+import android.widget.LinearLayout;
 import android.widget.ListView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 public class StartTrainingActivity extends BasicMenuActivity implements
@@ -42,7 +44,6 @@ public class StartTrainingActivity extends BasicMenuActivity implements
 	}
 
 	private void initUi() {
-
 		mMenuDrawer.setContentView(R.layout.start_training);
 		lvMain = (ListView) findViewById(R.id.lvStartTraining);
 		getActionBar().setTitle(R.string.startTrainingList);
@@ -50,7 +51,6 @@ public class StartTrainingActivity extends BasicMenuActivity implements
 		btnAddNew.setOnClickListener(this);
 		db = new DB(this);
 		db.open();
-
 		cursor_exe = db.getDataTrainings(null, null, null, null, null, null);
 		initList();
 		AdView adView = (AdView) this.findViewById(R.id.adView);
@@ -71,7 +71,6 @@ public class StartTrainingActivity extends BasicMenuActivity implements
 		scAdapter = new SimpleCursorAdapter(this, R.layout.my_list_item, null,
 				from, to, 0);
 		lvMain.setAdapter(scAdapter);
-
 		registerForContextMenu(lvMain);
 		lvMain.setOnItemClickListener(new OnItemClickListener() {
 			public void onItemClick(AdapterView<?> parent, View view,
@@ -102,7 +101,6 @@ public class StartTrainingActivity extends BasicMenuActivity implements
 	}
 
 	static class MyCursorLoader extends CursorLoader {
-
 		DB db;
 		Cursor cursor;
 
@@ -126,22 +124,30 @@ public class StartTrainingActivity extends BasicMenuActivity implements
 	}
 
 	public boolean onContextItemSelected(MenuItem item) {
+		AdapterContextMenuInfo acmi = (AdapterContextMenuInfo) item
+				.getMenuInfo();
+
 		if (item.getItemId() == CM_DELETE_ID) {
-			AdapterContextMenuInfo acmi = (AdapterContextMenuInfo) item
-					.getMenuInfo();
+			LinearLayout llTmp = (LinearLayout) acmi.targetView;
+			TextView tvTmp = (TextView) llTmp.findViewById(R.id.tvText);
+			String traName = tvTmp.getText().toString();
+
+			Log.d(LOG_TAG, "Going to delete " + traName);
+
 			if (cursor_exe.moveToFirst()) {
-				for (int i = 0; i < acmi.position; i++) {
-					cursor_exe.moveToNext();
-				}
-				int id = cursor_exe.getInt(0);
-				db.delRec_Trainings(id);
-				Toast.makeText(this, "Deleted", Toast.LENGTH_SHORT).show();
-				getSupportLoaderManager().getLoader(0).forceLoad();
+				do {
+					if (cursor_exe.getString(1).equals(traName)) {
+						db.delRec_Trainings(cursor_exe.getInt(0));
+						Toast.makeText(this,
+								getResources().getString(R.string.deleted),
+								Toast.LENGTH_SHORT).show();
+						getSupportLoaderManager().getLoader(0).forceLoad();
+					}
+				} while (cursor_exe.moveToNext());
 				return true;
 			}
+
 		} else if (item.getItemId() == CM_EDIT_ID) {
-			AdapterContextMenuInfo acmi = (AdapterContextMenuInfo) item
-					.getMenuInfo();
 			long id = acmi.id;
 			Intent intent = new Intent(this, EditingProgramAtTraining.class);
 			intent.putExtra("trID", id);
@@ -153,15 +159,7 @@ public class StartTrainingActivity extends BasicMenuActivity implements
 		return super.onContextItemSelected(item);
 	}
 
-	@Override
-	protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-
-	}
-
 	public void goToTraining(int id) {
-
-		Log.d(LOG_TAG, "going to start training ID == " + id);
-
 		if (cursor_exe.moveToFirst()) {
 			String str = null;
 			do {
@@ -177,7 +175,6 @@ public class StartTrainingActivity extends BasicMenuActivity implements
 			startActivity(intent_to_trainng);
 			finish();
 		}
-
 	}
 
 	@Override

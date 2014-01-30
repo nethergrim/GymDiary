@@ -2121,6 +2121,7 @@ com.nethergrim.combogymdiary.R$string: int auth_client_play_services_err_notific
 com.nethergrim.combogymdiary.R$string: int auth_client_requested_by_msg
 com.nethergrim.combogymdiary.R$string: int auth_client_using_bad_version_title
 com.nethergrim.combogymdiary.R$string: int backup
+com.nethergrim.combogymdiary.R$string: int backupAndRestore
 com.nethergrim.combogymdiary.R$string: int backup_database_to_sd
 com.nethergrim.combogymdiary.R$string: int backup_error
 com.nethergrim.combogymdiary.R$string: int backuped
@@ -2244,6 +2245,7 @@ com.nethergrim.combogymdiary.R$string: int excersisiesListButtonString
 com.nethergrim.combogymdiary.R$string: int exe_catalog
 com.nethergrim.combogymdiary.R$string: int exit
 com.nethergrim.combogymdiary.R$string: int exit_workout
+com.nethergrim.combogymdiary.R$string: int feedback
 com.nethergrim.combogymdiary.R$string: int finish_training
 com.nethergrim.combogymdiary.R$string: int happy_new_year
 com.nethergrim.combogymdiary.R$string: int hello_world
@@ -2290,6 +2292,7 @@ com.nethergrim.combogymdiary.R$string: int stop
 com.nethergrim.combogymdiary.R$string: int tall
 com.nethergrim.combogymdiary.R$string: int timer
 com.nethergrim.combogymdiary.R$string: int timer_between_sets
+com.nethergrim.combogymdiary.R$string: int timer_default_state
 com.nethergrim.combogymdiary.R$string: int title_activity_disk
 com.nethergrim.combogymdiary.R$string: int title_activity_temp
 com.nethergrim.combogymdiary.R$string: int title_training_detail
