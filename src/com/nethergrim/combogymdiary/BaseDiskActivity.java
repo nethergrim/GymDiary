@@ -16,7 +16,8 @@ public abstract class BaseDiskActivity extends Activity implements
 		GoogleApiClient.ConnectionCallbacks,
 		GoogleApiClient.OnConnectionFailedListener {
 
-	private static final String TAG = "BaseDriveActivity";
+	protected static final String TAG = "BaseDriveActivity";
+	protected static final String DRIVE_ID = "drive_id";
 
 	/**
 	 * Extra for account name.

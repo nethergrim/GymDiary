@@ -2,6 +2,8 @@
 <resources>
 
     <string name="sm">(cm)</string>
+    <string name="error_restoring">Error!\nYou can`t restore database during training!</string>
+    <string name="restore_from_google_drive">Restore from Google Drive</string>
     <string name="feedback">Feedback</string>
     <string name="backupAndRestore">Backup and restore</string>
     <string name="timer_default_state">Timer On at default</string>
@@ -293,5 +295,6 @@
     <string name="ex_6_4"></string>
     <string name="title_activity_disk">DiskActivity</string>
     <string name="title_activity_disk_restore">DiskRestoreActivity</string>
+    <string name="title_activity_disk_file_download">DiskFileDownloadActivity</string>
 
 </resources>

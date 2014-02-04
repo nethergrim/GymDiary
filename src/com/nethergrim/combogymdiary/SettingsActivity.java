@@ -9,6 +9,7 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.preference.Preference;
 import android.preference.PreferenceActivity;
+import android.preference.PreferenceManager;
 import android.app.DialogFragment;
 import android.view.MenuItem;
 import android.widget.Toast;
@@ -87,6 +88,31 @@ public class SettingsActivity extends PreferenceActivity implements MyInterface 
 				return true;
 			}
 		});
+
+		Preference btnDriveRestore = (Preference) findPreference("btnDriveRestore");
+		btnDriveRestore
+				.setOnPreferenceClickListener(new Preference.OnPreferenceClickListener() {
+					@Override
+					public boolean onPreferenceClick(Preference arg0) {
+						gotoDriveRestore();
+						return true;
+					}
+				});
+	}
+
+	protected void gotoDriveRestore() {
+		SharedPreferences sp = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
+		Boolean isAtTraining =  sp.getBoolean("training_at_progress", false);
+		if (!isAtTraining) {
+			Intent intent = new Intent(this,DiskRestoreActivity.class);
+			startActivity(intent);
+		} else {
+			Toast.makeText(getApplicationContext(),
+					getResources().getString(R.string.error_restoring),
+					Toast.LENGTH_SHORT).show();
+		}
+		
+		
 	}
 
 	private void gotoVk() {

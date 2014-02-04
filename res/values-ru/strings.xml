@@ -1,6 +1,8 @@
 <resources>
 
     <string name="sm">(см)</string>
+    <string name="error_restoring">Ошибка!\nНельзя восстановить базу данных пока идет тренировка!</string>
+    <string name="restore_from_google_drive">Восстановить из Google Drive</string>
     <string name="feedback">Обратная связь</string>
     <string name="backupAndRestore">Сохранение и восстановление</string>
     <string name="timer_default_state">Таймер включен по умолчанию</string>

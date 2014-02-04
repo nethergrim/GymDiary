@@ -18,9 +18,7 @@ public class Backuper {
 			File data = Environment.getDataDirectory();
 			if (sd.canWrite()) {
 				String currentDBPath = "//data//com.nethergrim.combogymdiary//databases//mydb";
-				Log.d(LOG_TAG, "current path is: " + currentDBPath);
 				String backupDBPath = "Workout_diary_backup.db";
-				Log.d(LOG_TAG, "backup path is: " + backupDBPath);
 
 				File currentDB = new File(data, currentDBPath);
 				File backupDB = new File(sd, backupDBPath);

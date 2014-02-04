@@ -1288,6 +1288,7 @@ com.nethergrim.combogymdiary.AddingMeasurementActivity: void onClick(android.vie
 com.nethergrim.combogymdiary.AddingProgram
 com.nethergrim.combogymdiary.AddingProgram: AddingProgram()
 com.nethergrim.combogymdiary.AddingProgram: void onClick(android.view.View)
+com.nethergrim.combogymdiary.BaseDiskActivity: BaseDiskActivity()
 com.nethergrim.combogymdiary.BasicMenuActivity: BasicMenuActivity()
 com.nethergrim.combogymdiary.CatalogActivity
 com.nethergrim.combogymdiary.CatalogActivity: CatalogActivity()
@@ -1300,6 +1301,10 @@ com.nethergrim.combogymdiary.CheckableLinearLayout: CheckableLinearLayout(androi
 com.nethergrim.combogymdiary.CheckableLinearLayout: void setChecked(boolean)
 com.nethergrim.combogymdiary.DiskActivity
 com.nethergrim.combogymdiary.DiskActivity: DiskActivity()
+com.nethergrim.combogymdiary.DiskFileDownloadActivity
+com.nethergrim.combogymdiary.DiskFileDownloadActivity: DiskFileDownloadActivity()
+com.nethergrim.combogymdiary.DiskRestoreActivity
+com.nethergrim.combogymdiary.DiskRestoreActivity: DiskRestoreActivity()
 com.nethergrim.combogymdiary.EditingProgramAtTraining
 com.nethergrim.combogymdiary.EditingProgramAtTraining: EditingProgramAtTraining()
 com.nethergrim.combogymdiary.ExersisesList
@@ -2056,6 +2061,8 @@ com.nethergrim.combogymdiary.R$layout: int activity_adding_measurement
 com.nethergrim.combogymdiary.R$layout: int activity_catalog
 com.nethergrim.combogymdiary.R$layout: int activity_catalog_detailed
 com.nethergrim.combogymdiary.R$layout: int activity_disk
+com.nethergrim.combogymdiary.R$layout: int activity_disk_file_download
+com.nethergrim.combogymdiary.R$layout: int activity_disk_restore
 com.nethergrim.combogymdiary.R$layout: int activity_editing_program_at_training
 com.nethergrim.combogymdiary.R$layout: int activity_history
 com.nethergrim.combogymdiary.R$layout: int activity_main
@@ -2082,6 +2089,8 @@ com.nethergrim.combogymdiary.R$menu: int adding_measurement
 com.nethergrim.combogymdiary.R$menu: int catalog
 com.nethergrim.combogymdiary.R$menu: int catalog_detailed
 com.nethergrim.combogymdiary.R$menu: int disk
+com.nethergrim.combogymdiary.R$menu: int disk_file_download
+com.nethergrim.combogymdiary.R$menu: int disk_restore
 com.nethergrim.combogymdiary.R$menu: int editing_program_at_training
 com.nethergrim.combogymdiary.R$menu: int history
 com.nethergrim.combogymdiary.R$menu: int main
@@ -2172,6 +2181,7 @@ com.nethergrim.combogymdiary.R$string: int email_to_dev
 com.nethergrim.combogymdiary.R$string: int empty
 com.nethergrim.combogymdiary.R$string: int error_deleting_exe
 com.nethergrim.combogymdiary.R$string: int error_editing_exe
+com.nethergrim.combogymdiary.R$string: int error_restoring
 com.nethergrim.combogymdiary.R$string: int ex_0_0
 com.nethergrim.combogymdiary.R$string: int ex_0_1
 com.nethergrim.combogymdiary.R$string: int ex_0_10
@@ -2273,6 +2283,7 @@ com.nethergrim.combogymdiary.R$string: int resting_for
 com.nethergrim.combogymdiary.R$string: int restore
 com.nethergrim.combogymdiary.R$string: int restoreAreYouSure
 com.nethergrim.combogymdiary.R$string: int restore_error
+com.nethergrim.combogymdiary.R$string: int restore_from_google_drive
 com.nethergrim.combogymdiary.R$string: int restored
 com.nethergrim.combogymdiary.R$string: int save
 com.nethergrim.combogymdiary.R$string: int save_and_exit
@@ -2294,6 +2305,8 @@ com.nethergrim.combogymdiary.R$string: int timer
 com.nethergrim.combogymdiary.R$string: int timer_between_sets
 com.nethergrim.combogymdiary.R$string: int timer_default_state
 com.nethergrim.combogymdiary.R$string: int title_activity_disk
+com.nethergrim.combogymdiary.R$string: int title_activity_disk_file_download
+com.nethergrim.combogymdiary.R$string: int title_activity_disk_restore
 com.nethergrim.combogymdiary.R$string: int title_activity_temp
 com.nethergrim.combogymdiary.R$string: int title_training_detail
 com.nethergrim.combogymdiary.R$string: int title_training_list

@@ -46,11 +46,21 @@
             android:key="btnRestore"
             android:summary="@string/replace_from_backup"
             android:title="@string/restore" />
+        
+        
+        
         <Preference
             android:icon="@drawable/google_drive_icon"
             android:key="btnBackupToDrive"
             android:summary="@string/drive_backup"
             android:title="@string/drive" />
+        
+        <Preference
+            android:icon="@drawable/google_drive_icon"
+            android:key="btnDriveRestore"
+            android:summary="@string/restore_from_google_drive"
+            android:title="@string/restore" />
+        
     </PreferenceCategory>
     <PreferenceCategory android:title="@string/feedback" >
         <Preference

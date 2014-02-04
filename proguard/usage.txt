@@ -2416,10 +2416,8 @@ com.google.android.gms.common.api.GoogleApiClient$Builder:
     public com.google.android.gms.common.api.GoogleApiClient$Builder useDefaultAccount()
     public com.google.android.gms.common.api.GoogleApiClient$Builder setGravityForPopups(int)
 com.google.android.gms.common.api.PendingResult:
-    public abstract com.google.android.gms.common.api.Result await()
     public abstract com.google.android.gms.common.api.Result await(long,java.util.concurrent.TimeUnit)
     public abstract void release()
-    public abstract com.google.android.gms.common.api.Result b(com.google.android.gms.common.api.Status)
 com.google.android.gms.common.api.Status:
     public static final int SUCCESS_CACHE
     public static final int SUCCESS
@@ -2450,7 +2448,6 @@ com.google.android.gms.common.api.Status:
 com.google.android.gms.common.api.StatusCreator:
     public static final int CONTENT_DESCRIPTION
 com.google.android.gms.common.api.a$a:
-    public final com.google.android.gms.common.api.Result await()
     public final com.google.android.gms.common.api.Result await(long,java.util.concurrent.TimeUnit)
 com.google.android.gms.common.data.DataBuffer
 com.google.android.gms.common.data.DataBufferUtils
@@ -2534,7 +2531,6 @@ com.google.android.gms.common.internal.safeparcel.SafeParcelable:
     public static final java.lang.String NULL
 com.google.android.gms.drive.Contents:
     public com.google.android.gms.drive.DriveId getDriveId()
-    public java.io.InputStream getInputStream()
     public int getMode()
 com.google.android.gms.drive.CreateFileActivityBuilder:
     public static final java.lang.String EXTRA_RESPONSE_DRIVE_ID
@@ -2546,18 +2542,19 @@ com.google.android.gms.drive.DriveApi:
     public abstract com.google.android.gms.common.api.PendingResult query(com.google.android.gms.common.api.GoogleApiClient,com.google.android.gms.drive.query.Query)
     public abstract com.google.android.gms.common.api.PendingResult discardContents(com.google.android.gms.common.api.GoogleApiClient,com.google.android.gms.drive.Contents)
     public abstract com.google.android.gms.drive.DriveFolder getRootFolder(com.google.android.gms.common.api.GoogleApiClient)
-    public abstract com.google.android.gms.drive.DriveFile getFile(com.google.android.gms.common.api.GoogleApiClient,com.google.android.gms.drive.DriveId)
     public abstract com.google.android.gms.drive.DriveFolder getFolder(com.google.android.gms.common.api.GoogleApiClient,com.google.android.gms.drive.DriveId)
-    public abstract com.google.android.gms.drive.OpenFileActivityBuilder newOpenFileActivityBuilder()
     public abstract com.google.android.gms.common.api.PendingResult requestSync(com.google.android.gms.common.api.GoogleApiClient)
 com.google.android.gms.drive.DriveApi$IntentSenderResult
 com.google.android.gms.drive.DriveApi$MetadataBufferResult
 com.google.android.gms.drive.DriveApi$OnContentsDiscardedCallback
 com.google.android.gms.drive.DriveApi$OnSyncFinishCallback
-com.google.android.gms.drive.DriveFile
-com.google.android.gms.drive.DriveFile$DownloadProgressListener
+com.google.android.gms.drive.DriveFile:
+    public static final int MODE_READ_ONLY
+    public static final int MODE_READ_WRITE
+    public static final int MODE_WRITE_ONLY
+    public abstract com.google.android.gms.common.api.PendingResult commitAndCloseContents(com.google.android.gms.common.api.GoogleApiClient,com.google.android.gms.drive.Contents)
+    public abstract com.google.android.gms.common.api.PendingResult discardContents(com.google.android.gms.common.api.GoogleApiClient,com.google.android.gms.drive.Contents)
 com.google.android.gms.drive.DriveFile$OnContentsClosedCallback
-com.google.android.gms.drive.DriveFile$OnContentsOpenedCallback
 com.google.android.gms.drive.DriveFolder
 com.google.android.gms.drive.DriveFolder$DriveFileResult
 com.google.android.gms.drive.DriveFolder$DriveFolderResult
@@ -2568,8 +2565,6 @@ com.google.android.gms.drive.DriveId:
     public static com.google.android.gms.drive.DriveId createFromResourceId(java.lang.String)
     public java.lang.String getResourceId()
     public DriveId(java.lang.String,long,long)
-    public static com.google.android.gms.drive.DriveId decodeFromString(java.lang.String)
-    static com.google.android.gms.drive.DriveId d(byte[])
 com.google.android.gms.drive.DriveResource
 com.google.android.gms.drive.DriveResource$MetadataResult
 com.google.android.gms.drive.DriveResource$OnMetadataRetrievedCallback
@@ -2583,7 +2578,10 @@ com.google.android.gms.drive.MetadataChangeSet:
     public java.lang.Boolean isStarred()
 com.google.android.gms.drive.MetadataChangeSet$Builder:
     public com.google.android.gms.drive.MetadataChangeSet$Builder setStarred(boolean)
-com.google.android.gms.drive.OpenFileActivityBuilder
+com.google.android.gms.drive.OpenFileActivityBuilder:
+    public static final java.lang.String EXTRA_RESPONSE_DRIVE_ID
+    public com.google.android.gms.drive.OpenFileActivityBuilder setActivityTitle(java.lang.String)
+    public com.google.android.gms.drive.OpenFileActivityBuilder setActivityStartFolder(com.google.android.gms.drive.DriveId)
 com.google.android.gms.drive.b
 com.google.android.gms.drive.internal.CloseContentsRequest:
     public CloseContentsRequest(com.google.android.gms.drive.Contents,boolean)
@@ -2593,19 +2591,12 @@ com.google.android.gms.drive.internal.CreateFolderRequest:
     public CreateFolderRequest(com.google.android.gms.drive.DriveId,com.google.android.gms.drive.metadata.internal.MetadataBundle)
 com.google.android.gms.drive.internal.GetMetadataRequest:
     public GetMetadataRequest(com.google.android.gms.drive.DriveId)
-com.google.android.gms.drive.internal.OnDownloadProgressResponse:
-    public long cy()
-    public long cz()
 com.google.android.gms.drive.internal.OnDriveIdResponse:
     public com.google.android.gms.drive.DriveId getDriveId()
 com.google.android.gms.drive.internal.OnListEntriesResponse:
     public com.google.android.gms.common.data.DataHolder cA()
 com.google.android.gms.drive.internal.OnMetadataResponse:
     public com.google.android.gms.drive.metadata.internal.MetadataBundle cB()
-com.google.android.gms.drive.internal.OpenContentsRequest:
-    public OpenContentsRequest(com.google.android.gms.drive.DriveId,int)
-com.google.android.gms.drive.internal.OpenFileIntentSenderRequest:
-    public OpenFileIntentSenderRequest(java.lang.String,java.lang.String[],com.google.android.gms.drive.DriveId)
 com.google.android.gms.drive.internal.QueryRequest:
     public QueryRequest(com.google.android.gms.drive.query.Query)
 com.google.android.gms.drive.internal.UpdateMetadataRequest:
@@ -2614,30 +2605,24 @@ com.google.android.gms.drive.internal.g
 com.google.android.gms.drive.internal.h:
     public com.google.android.gms.common.api.PendingResult query(com.google.android.gms.common.api.GoogleApiClient,com.google.android.gms.drive.query.Query)
     public com.google.android.gms.common.api.PendingResult discardContents(com.google.android.gms.common.api.GoogleApiClient,com.google.android.gms.drive.Contents)
-    public com.google.android.gms.drive.DriveFile getFile(com.google.android.gms.common.api.GoogleApiClient,com.google.android.gms.drive.DriveId)
     public com.google.android.gms.drive.DriveFolder getFolder(com.google.android.gms.common.api.GoogleApiClient,com.google.android.gms.drive.DriveId)
     public com.google.android.gms.drive.DriveFolder getRootFolder(com.google.android.gms.common.api.GoogleApiClient)
-    public com.google.android.gms.drive.OpenFileActivityBuilder newOpenFileActivityBuilder()
     public com.google.android.gms.common.api.PendingResult requestSync(com.google.android.gms.common.api.GoogleApiClient)
 com.google.android.gms.drive.internal.h$1
 com.google.android.gms.drive.internal.h$3
 com.google.android.gms.drive.internal.h$4
 com.google.android.gms.drive.internal.h$b
 com.google.android.gms.drive.internal.h$c
-com.google.android.gms.drive.internal.h$e:
-    public com.google.android.gms.drive.DriveApi$ContentsResult f(com.google.android.gms.common.api.Status)
-    public synthetic com.google.android.gms.common.api.Result b(com.google.android.gms.common.api.Status)
 com.google.android.gms.drive.internal.h$f
 com.google.android.gms.drive.internal.h$g
 com.google.android.gms.drive.internal.h$h
 com.google.android.gms.drive.internal.j:
     public com.google.android.gms.drive.DriveId cv()
-com.google.android.gms.drive.internal.k
-com.google.android.gms.drive.internal.k$1
+com.google.android.gms.drive.internal.k:
+    public com.google.android.gms.common.api.PendingResult commitAndCloseContents(com.google.android.gms.common.api.GoogleApiClient,com.google.android.gms.drive.Contents)
+    public com.google.android.gms.common.api.PendingResult discardContents(com.google.android.gms.common.api.GoogleApiClient,com.google.android.gms.drive.Contents)
 com.google.android.gms.drive.internal.k$2
 com.google.android.gms.drive.internal.k$a
-com.google.android.gms.drive.internal.k$b
-com.google.android.gms.drive.internal.k$c
 com.google.android.gms.drive.internal.l
 com.google.android.gms.drive.internal.l$1
 com.google.android.gms.drive.internal.l$2
@@ -2646,17 +2631,16 @@ com.google.android.gms.drive.internal.l$b
 com.google.android.gms.drive.internal.l$c
 com.google.android.gms.drive.internal.l$d
 com.google.android.gms.drive.internal.l$e
-com.google.android.gms.drive.internal.m
+com.google.android.gms.drive.internal.m:
+    public com.google.android.gms.common.api.PendingResult getMetadata(com.google.android.gms.common.api.GoogleApiClient)
+    public com.google.android.gms.common.api.PendingResult updateMetadata(com.google.android.gms.common.api.GoogleApiClient,com.google.android.gms.drive.MetadataChangeSet)
+    static synthetic com.google.android.gms.drive.DriveId a(com.google.android.gms.drive.internal.m)
 com.google.android.gms.drive.internal.m$1
 com.google.android.gms.drive.internal.m$2
 com.google.android.gms.drive.internal.m$a
 com.google.android.gms.drive.internal.m$b
 com.google.android.gms.drive.internal.m$c
 com.google.android.gms.drive.internal.m$d
-com.google.android.gms.drive.internal.q:
-    public com.google.android.gms.drive.internal.q a(com.google.android.gms.internal.hq)
-    public static com.google.android.gms.drive.internal.q e(byte[])
-    public synthetic com.google.android.gms.internal.ht b(com.google.android.gms.internal.hq)
 com.google.android.gms.drive.internal.z
 com.google.android.gms.drive.metadata.CollectionMetadataField:
     protected java.util.Collection a(com.google.android.gms.common.data.DataHolder,int,int)
@@ -3447,16 +3431,6 @@ com.google.android.gms.internal.hn$a
 com.google.android.gms.internal.hn$a$a
 com.google.android.gms.internal.ho
 com.google.android.gms.internal.ho$a
-com.google.android.gms.internal.hq
-com.google.android.gms.internal.hs
-com.google.android.gms.internal.ht:
-    public abstract com.google.android.gms.internal.ht b(com.google.android.gms.internal.hq)
-    public static final com.google.android.gms.internal.ht a(com.google.android.gms.internal.ht,byte[])
-    public static final com.google.android.gms.internal.ht b(com.google.android.gms.internal.ht,byte[],int,int)
-com.google.android.gms.internal.hv:
-    static int bz(int)
-    public static int bA(int)
-    public static boolean a(com.google.android.gms.internal.hq,int)
 com.google.android.gms.internal.o
 com.google.android.gms.internal.o$a
 com.google.android.gms.internal.o$a$a
@@ -4901,6 +4875,12 @@ com.nethergrim.combogymdiary.AdapterHelper:
     131:131:java.lang.String getGroupText(int)
     136:136:java.lang.String getChildText(int,int)
     141:141:java.lang.String getGroupChildText(int,int)
+com.nethergrim.combogymdiary.BaseDiskActivity:
+    protected static final java.lang.String TAG
+    protected static final java.lang.String DRIVE_ID
+    protected static final java.lang.String EXTRA_ACCOUNT_NAME
+    protected static final int REQUEST_CODE_RESOLUTION
+    protected static final int NEXT_AVAILABLE_REQUEST_CODE
 com.nethergrim.combogymdiary.BasicMenuActivity:
     protected static final java.lang.String TRAINING_AT_PROGRESS
     protected static final java.lang.String LIST_OF_SETS
@@ -4939,13 +4919,15 @@ com.nethergrim.combogymdiary.DB:
     105:105:public android.database.Cursor getAllData_Exe()
     110:110:public android.database.Cursor getData_Exe_GroupBy(java.lang.String)
     115:122:public int getExeIdByName(java.lang.String)
-    241:247:public int getIdValueByExerciseName(java.lang.String)
-    300:300:public android.database.Cursor getAllData_Main()
-    390:391:public void delDB()
+    273:279:public int getIdValueByExerciseName(java.lang.String)
+    332:332:public android.database.Cursor getAllData_Main()
+    422:423:public void delDB()
 com.nethergrim.combogymdiary.DiskActivity:
     private static final java.lang.String TAG
     private static final int REQUEST_CODE_CREATOR
     private static final int REQUEST_CODE_RESOLUTION
+com.nethergrim.combogymdiary.DiskRestoreActivity:
+    private static final int REQUEST_CODE_OPENER
 com.nethergrim.combogymdiary.ExersisesList:
     private static final int CM_DELETE_ID
     private static final int CM_EDIT_ID
