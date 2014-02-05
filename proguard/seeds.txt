@@ -1301,6 +1301,10 @@ com.nethergrim.combogymdiary.CheckableLinearLayout: CheckableLinearLayout(androi
 com.nethergrim.combogymdiary.CheckableLinearLayout: void setChecked(boolean)
 com.nethergrim.combogymdiary.DiskActivity
 com.nethergrim.combogymdiary.DiskActivity: DiskActivity()
+com.nethergrim.combogymdiary.DiskAutoBackupActivity
+com.nethergrim.combogymdiary.DiskAutoBackupActivity: DiskAutoBackupActivity()
+com.nethergrim.combogymdiary.DiskCreateFolderActivity
+com.nethergrim.combogymdiary.DiskCreateFolderActivity: DiskCreateFolderActivity()
 com.nethergrim.combogymdiary.DiskFileDownloadActivity
 com.nethergrim.combogymdiary.DiskFileDownloadActivity: DiskFileDownloadActivity()
 com.nethergrim.combogymdiary.DiskRestoreActivity
@@ -1795,6 +1799,7 @@ com.nethergrim.combogymdiary.R$drawable: int ic_action_back
 com.nethergrim.combogymdiary.R$drawable: int ic_action_forward
 com.nethergrim.combogymdiary.R$drawable: int ic_action_new
 com.nethergrim.combogymdiary.R$drawable: int ic_action_save
+com.nethergrim.combogymdiary.R$drawable: int ic_action_sd_storage
 com.nethergrim.combogymdiary.R$drawable: int ic_action_sort
 com.nethergrim.combogymdiary.R$drawable: int ic_action_undo
 com.nethergrim.combogymdiary.R$drawable: int ic_cab_done_holo_light
@@ -2089,6 +2094,8 @@ com.nethergrim.combogymdiary.R$menu: int adding_measurement
 com.nethergrim.combogymdiary.R$menu: int catalog
 com.nethergrim.combogymdiary.R$menu: int catalog_detailed
 com.nethergrim.combogymdiary.R$menu: int disk
+com.nethergrim.combogymdiary.R$menu: int disk_auto_backup
+com.nethergrim.combogymdiary.R$menu: int disk_create_folder
 com.nethergrim.combogymdiary.R$menu: int disk_file_download
 com.nethergrim.combogymdiary.R$menu: int disk_restore
 com.nethergrim.combogymdiary.R$menu: int editing_program_at_training
@@ -2129,6 +2136,8 @@ com.nethergrim.combogymdiary.R$string: int auth_client_needs_update_title
 com.nethergrim.combogymdiary.R$string: int auth_client_play_services_err_notification_msg
 com.nethergrim.combogymdiary.R$string: int auth_client_requested_by_msg
 com.nethergrim.combogymdiary.R$string: int auth_client_using_bad_version_title
+com.nethergrim.combogymdiary.R$string: int auto_backup_to_disk
+com.nethergrim.combogymdiary.R$string: int auto_backup_to_disk_detailed
 com.nethergrim.combogymdiary.R$string: int backup
 com.nethergrim.combogymdiary.R$string: int backupAndRestore
 com.nethergrim.combogymdiary.R$string: int backup_database_to_sd
@@ -2174,6 +2183,7 @@ com.nethergrim.combogymdiary.R$string: int display_data_prev
 com.nethergrim.combogymdiary.R$string: int do_not_turnoff_display
 com.nethergrim.combogymdiary.R$string: int drive
 com.nethergrim.combogymdiary.R$string: int drive_backup
+com.nethergrim.combogymdiary.R$string: int drive_backuped_true
 com.nethergrim.combogymdiary.R$string: int edit
 com.nethergrim.combogymdiary.R$string: int editing_program
 com.nethergrim.combogymdiary.R$string: int email
@@ -2305,6 +2315,8 @@ com.nethergrim.combogymdiary.R$string: int timer
 com.nethergrim.combogymdiary.R$string: int timer_between_sets
 com.nethergrim.combogymdiary.R$string: int timer_default_state
 com.nethergrim.combogymdiary.R$string: int title_activity_disk
+com.nethergrim.combogymdiary.R$string: int title_activity_disk_auto_backup
+com.nethergrim.combogymdiary.R$string: int title_activity_disk_create_folder
 com.nethergrim.combogymdiary.R$string: int title_activity_disk_file_download
 com.nethergrim.combogymdiary.R$string: int title_activity_disk_restore
 com.nethergrim.combogymdiary.R$string: int title_activity_temp

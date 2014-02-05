@@ -40,10 +40,12 @@
     <PreferenceCategory android:title="@string/backupAndRestore" >
         <Preference
             android:key="btnBackup"
+            android:icon="@drawable/ic_action_sd_storage"
             android:summary="@string/backup_database_to_sd"
             android:title="@string/backup" />
         <Preference
             android:key="btnRestore"
+            android:icon="@drawable/ic_action_sd_storage"
             android:summary="@string/replace_from_backup"
             android:title="@string/restore" />
         

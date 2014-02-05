@@ -4487,7 +4487,9 @@ com.google.android.gms.drive.Drive$1 -> com.google.android.gms.drive.c:
     com.google.android.gms.common.api.Api$a b(android.content.Context,com.google.android.gms.internal.dh,com.google.android.gms.common.api.GoogleApiClient$ApiOptions,com.google.android.gms.common.api.GoogleApiClient$ConnectionCallbacks,com.google.android.gms.common.api.GoogleApiClient$OnConnectionFailedListener) -> a
 com.google.android.gms.drive.DriveApi -> com.google.android.gms.drive.d:
     com.google.android.gms.common.api.PendingResult newContents(com.google.android.gms.common.api.GoogleApiClient) -> a
+    com.google.android.gms.drive.DriveFolder getRootFolder(com.google.android.gms.common.api.GoogleApiClient) -> b
     com.google.android.gms.drive.DriveFile getFile(com.google.android.gms.common.api.GoogleApiClient,com.google.android.gms.drive.DriveId) -> a
+    com.google.android.gms.drive.DriveFolder getFolder(com.google.android.gms.common.api.GoogleApiClient,com.google.android.gms.drive.DriveId) -> b
     com.google.android.gms.drive.OpenFileActivityBuilder newOpenFileActivityBuilder() -> a
     com.google.android.gms.drive.CreateFileActivityBuilder newCreateFileActivityBuilder() -> b
 com.google.android.gms.drive.DriveApi$ContentsResult -> com.google.android.gms.drive.e:
@@ -4500,6 +4502,16 @@ com.google.android.gms.drive.DriveFile$DownloadProgressListener -> com.google.an
     void onProgress(long,long) -> a
 com.google.android.gms.drive.DriveFile$OnContentsOpenedCallback -> com.google.android.gms.drive.i:
     void onOpen(com.google.android.gms.drive.DriveApi$ContentsResult) -> a
+com.google.android.gms.drive.DriveFolder -> com.google.android.gms.drive.j:
+    com.google.android.gms.common.api.PendingResult createFile(com.google.android.gms.common.api.GoogleApiClient,com.google.android.gms.drive.MetadataChangeSet,com.google.android.gms.drive.Contents) -> a
+    com.google.android.gms.common.api.PendingResult createFolder(com.google.android.gms.common.api.GoogleApiClient,com.google.android.gms.drive.MetadataChangeSet) -> a
+com.google.android.gms.drive.DriveFolder$DriveFileResult -> com.google.android.gms.drive.k:
+com.google.android.gms.drive.DriveFolder$DriveFolderResult -> com.google.android.gms.drive.l:
+    com.google.android.gms.drive.DriveFolder getDriveFolder() -> b
+com.google.android.gms.drive.DriveFolder$OnCreateFileCallback -> com.google.android.gms.drive.m:
+    void onCreateFile(com.google.android.gms.drive.DriveFolder$DriveFileResult) -> a
+com.google.android.gms.drive.DriveFolder$OnCreateFolderCallback -> com.google.android.gms.drive.n:
+    void onCreateFolder(com.google.android.gms.drive.DriveFolder$DriveFolderResult) -> a
 com.google.android.gms.drive.DriveId -> com.google.android.gms.drive.DriveId:
     android.os.Parcelable$Creator CREATOR -> CREATOR
     int kZ -> a
@@ -4516,28 +4528,32 @@ com.google.android.gms.drive.DriveId -> com.google.android.gms.drive.DriveId:
     java.lang.String toString() -> toString
     com.google.android.gms.drive.DriveId decodeFromString(java.lang.String) -> a
     com.google.android.gms.drive.DriveId d(byte[]) -> a
-com.google.android.gms.drive.MetadataChangeSet -> com.google.android.gms.drive.j:
+com.google.android.gms.drive.DriveResource -> com.google.android.gms.drive.o:
+    com.google.android.gms.drive.DriveId getDriveId() -> a
+com.google.android.gms.drive.MetadataChangeSet -> com.google.android.gms.drive.p:
     com.google.android.gms.drive.metadata.internal.MetadataBundle ok -> a
-    com.google.android.gms.drive.metadata.internal.MetadataBundle ct() -> a
-com.google.android.gms.drive.MetadataChangeSet$1 -> com.google.android.gms.drive.k:
-com.google.android.gms.drive.MetadataChangeSet$Builder -> com.google.android.gms.drive.l:
+    java.lang.String getMimeType() -> a
+    com.google.android.gms.drive.metadata.internal.MetadataBundle ct() -> b
+com.google.android.gms.drive.MetadataChangeSet$1 -> com.google.android.gms.drive.q:
+com.google.android.gms.drive.MetadataChangeSet$Builder -> com.google.android.gms.drive.r:
     com.google.android.gms.drive.metadata.internal.MetadataBundle ok -> a
     com.google.android.gms.drive.MetadataChangeSet$Builder setTitle(java.lang.String) -> a
     com.google.android.gms.drive.MetadataChangeSet$Builder setMimeType(java.lang.String) -> b
+    com.google.android.gms.drive.MetadataChangeSet$Builder setStarred(boolean) -> a
     com.google.android.gms.drive.MetadataChangeSet build() -> a
-com.google.android.gms.drive.OpenFileActivityBuilder -> com.google.android.gms.drive.m:
+com.google.android.gms.drive.OpenFileActivityBuilder -> com.google.android.gms.drive.s:
     java.lang.String oa -> a
     java.lang.String[] ol -> b
     com.google.android.gms.drive.DriveId ob -> c
     com.google.android.gms.drive.OpenFileActivityBuilder setMimeType(java.lang.String[]) -> a
     android.content.IntentSender build(com.google.android.gms.common.api.GoogleApiClient) -> a
-com.google.android.gms.drive.a -> com.google.android.gms.drive.n:
+com.google.android.gms.drive.a -> com.google.android.gms.drive.t:
     com.google.android.gms.drive.Contents u(android.os.Parcel) -> a
     com.google.android.gms.drive.Contents[] L(int) -> a
     void a(com.google.android.gms.drive.Contents,android.os.Parcel,int) -> a
     java.lang.Object[] newArray(int) -> newArray
     java.lang.Object createFromParcel(android.os.Parcel) -> createFromParcel
-com.google.android.gms.drive.c -> com.google.android.gms.drive.o:
+com.google.android.gms.drive.c -> com.google.android.gms.drive.u:
     com.google.android.gms.drive.DriveId v(android.os.Parcel) -> a
     com.google.android.gms.drive.DriveId[] M(int) -> a
     void a(com.google.android.gms.drive.DriveId,android.os.Parcel,int) -> a
@@ -4607,6 +4623,7 @@ com.google.android.gms.drive.internal.OnDriveIdResponse -> com.google.android.gm
     com.google.android.gms.drive.DriveId oF -> b
     int describeContents() -> describeContents
     void writeToParcel(android.os.Parcel,int) -> writeToParcel
+    com.google.android.gms.drive.DriveId getDriveId() -> a
 com.google.android.gms.drive.internal.OnListEntriesResponse -> com.google.android.gms.drive.internal.OnListEntriesResponse:
     android.os.Parcelable$Creator CREATOR -> CREATOR
     int kZ -> a
@@ -4694,6 +4711,8 @@ com.google.android.gms.drive.internal.f -> com.google.android.gms.drive.internal
 com.google.android.gms.drive.internal.h -> com.google.android.gms.drive.internal.h:
     com.google.android.gms.common.api.PendingResult newContents(com.google.android.gms.common.api.GoogleApiClient) -> a
     com.google.android.gms.drive.DriveFile getFile(com.google.android.gms.common.api.GoogleApiClient,com.google.android.gms.drive.DriveId) -> a
+    com.google.android.gms.drive.DriveFolder getFolder(com.google.android.gms.common.api.GoogleApiClient,com.google.android.gms.drive.DriveId) -> b
+    com.google.android.gms.drive.DriveFolder getRootFolder(com.google.android.gms.common.api.GoogleApiClient) -> b
     com.google.android.gms.drive.OpenFileActivityBuilder newOpenFileActivityBuilder() -> a
     com.google.android.gms.drive.CreateFileActivityBuilder newCreateFileActivityBuilder() -> b
 com.google.android.gms.drive.internal.h$2 -> com.google.android.gms.drive.internal.i:
@@ -4724,6 +4743,7 @@ com.google.android.gms.drive.internal.j -> com.google.android.gms.drive.internal
     void a(com.google.android.gms.internal.dq,com.google.android.gms.internal.dk$d) -> a
     java.lang.String am() -> e
     com.google.android.gms.drive.internal.o cu() -> f
+    com.google.android.gms.drive.DriveId cv() -> g
     void a(int,android.os.IBinder,android.os.Bundle) -> a
     android.os.IInterface p(android.os.IBinder) -> b
 com.google.android.gms.drive.internal.k -> com.google.android.gms.drive.internal.o:
@@ -4746,16 +4766,57 @@ com.google.android.gms.drive.internal.k$c -> com.google.android.gms.drive.intern
     com.google.android.gms.drive.DriveApi$ContentsResult f(com.google.android.gms.common.api.Status) -> b
     void a(java.lang.Object,com.google.android.gms.common.api.Result) -> a
     com.google.android.gms.common.api.Result b(com.google.android.gms.common.api.Status) -> a
-com.google.android.gms.drive.internal.m -> com.google.android.gms.drive.internal.s:
+com.google.android.gms.drive.internal.l -> com.google.android.gms.drive.internal.s:
+    com.google.android.gms.common.api.PendingResult createFile(com.google.android.gms.common.api.GoogleApiClient,com.google.android.gms.drive.MetadataChangeSet,com.google.android.gms.drive.Contents) -> a
+    com.google.android.gms.common.api.PendingResult createFolder(com.google.android.gms.common.api.GoogleApiClient,com.google.android.gms.drive.MetadataChangeSet) -> a
+com.google.android.gms.drive.internal.l$1 -> com.google.android.gms.drive.internal.t:
+    com.google.android.gms.drive.Contents os -> a
+    com.google.android.gms.drive.MetadataChangeSet oz -> b
+    com.google.android.gms.drive.internal.l oA -> c
+    void a(com.google.android.gms.drive.internal.j) -> a
+    void a(com.google.android.gms.drive.DriveFolder$OnCreateFileCallback,com.google.android.gms.drive.DriveFolder$DriveFileResult) -> a
+    com.google.android.gms.drive.DriveFolder$DriveFileResult h(com.google.android.gms.common.api.Status) -> b
+    void a(java.lang.Object,com.google.android.gms.common.api.Result) -> a
+    void b(com.google.android.gms.common.api.Api$a) -> b
+    com.google.android.gms.common.api.Result b(com.google.android.gms.common.api.Status) -> a
+com.google.android.gms.drive.internal.l$2 -> com.google.android.gms.drive.internal.u:
+    com.google.android.gms.drive.MetadataChangeSet oz -> a
+    com.google.android.gms.drive.internal.l oA -> b
+    void a(com.google.android.gms.drive.internal.j) -> a
+    void b(com.google.android.gms.common.api.Api$a) -> b
+com.google.android.gms.drive.internal.l$a -> com.google.android.gms.drive.internal.v:
+    com.google.android.gms.common.api.a$c jN -> a
+    void a(com.google.android.gms.drive.internal.OnDriveIdResponse) -> a
+    void d(com.google.android.gms.common.api.Status) -> a
+com.google.android.gms.drive.internal.l$b -> com.google.android.gms.drive.internal.w:
+    com.google.android.gms.common.api.a$c jN -> a
+    void a(com.google.android.gms.drive.internal.OnDriveIdResponse) -> a
+    void d(com.google.android.gms.common.api.Status) -> a
+com.google.android.gms.drive.internal.l$c -> com.google.android.gms.drive.internal.x:
+    com.google.android.gms.drive.internal.l oA -> c
+    void a(com.google.android.gms.drive.DriveFolder$OnCreateFolderCallback,com.google.android.gms.drive.DriveFolder$DriveFolderResult) -> a
+    com.google.android.gms.drive.DriveFolder$DriveFolderResult i(com.google.android.gms.common.api.Status) -> b
+    void a(java.lang.Object,com.google.android.gms.common.api.Result) -> a
+    com.google.android.gms.common.api.Result b(com.google.android.gms.common.api.Status) -> a
+com.google.android.gms.drive.internal.l$d -> com.google.android.gms.drive.internal.y:
+    com.google.android.gms.common.api.Status jP -> a
+    com.google.android.gms.drive.DriveFile oB -> b
+    com.google.android.gms.common.api.Status getStatus() -> a
+com.google.android.gms.drive.internal.l$e -> com.google.android.gms.drive.internal.z:
+    com.google.android.gms.common.api.Status jP -> a
+    com.google.android.gms.drive.DriveFolder oC -> b
+    com.google.android.gms.common.api.Status getStatus() -> a
+    com.google.android.gms.drive.DriveFolder getDriveFolder() -> b
+com.google.android.gms.drive.internal.m -> com.google.android.gms.drive.internal.aa:
     com.google.android.gms.drive.DriveId nV -> a
     com.google.android.gms.drive.DriveId getDriveId() -> a
-com.google.android.gms.drive.internal.n -> com.google.android.gms.drive.internal.t:
+com.google.android.gms.drive.internal.n -> com.google.android.gms.drive.internal.ab:
     com.google.android.gms.drive.internal.GetMetadataRequest B(android.os.Parcel) -> a
     com.google.android.gms.drive.internal.GetMetadataRequest[] S(int) -> a
     void a(com.google.android.gms.drive.internal.GetMetadataRequest,android.os.Parcel,int) -> a
     java.lang.Object[] newArray(int) -> newArray
     java.lang.Object createFromParcel(android.os.Parcel) -> createFromParcel
-com.google.android.gms.drive.internal.o -> com.google.android.gms.drive.internal.u:
+com.google.android.gms.drive.internal.o -> com.google.android.gms.drive.internal.ac:
     void a(com.google.android.gms.drive.internal.GetMetadataRequest,com.google.android.gms.drive.internal.p) -> a
     void a(com.google.android.gms.drive.internal.QueryRequest,com.google.android.gms.drive.internal.p) -> a
     void a(com.google.android.gms.drive.internal.UpdateMetadataRequest,com.google.android.gms.drive.internal.p) -> a
@@ -4767,10 +4828,10 @@ com.google.android.gms.drive.internal.o -> com.google.android.gms.drive.internal
     void a(com.google.android.gms.drive.internal.p) -> a
     android.content.IntentSender a(com.google.android.gms.drive.internal.OpenFileIntentSenderRequest) -> a
     android.content.IntentSender a(com.google.android.gms.drive.internal.CreateFileIntentSenderRequest) -> a
-com.google.android.gms.drive.internal.o$a -> com.google.android.gms.drive.internal.v:
+com.google.android.gms.drive.internal.o$a -> com.google.android.gms.drive.internal.ad:
     com.google.android.gms.drive.internal.o A(android.os.IBinder) -> a
     boolean onTransact(int,android.os.Parcel,android.os.Parcel,int) -> onTransact
-com.google.android.gms.drive.internal.o$a$a -> com.google.android.gms.drive.internal.w:
+com.google.android.gms.drive.internal.o$a$a -> com.google.android.gms.drive.internal.ae:
     android.os.IBinder dU -> a
     android.os.IBinder asBinder() -> asBinder
     void a(com.google.android.gms.drive.internal.GetMetadataRequest,com.google.android.gms.drive.internal.p) -> a
@@ -4784,7 +4845,7 @@ com.google.android.gms.drive.internal.o$a$a -> com.google.android.gms.drive.inte
     void a(com.google.android.gms.drive.internal.p) -> a
     android.content.IntentSender a(com.google.android.gms.drive.internal.OpenFileIntentSenderRequest) -> a
     android.content.IntentSender a(com.google.android.gms.drive.internal.CreateFileIntentSenderRequest) -> a
-com.google.android.gms.drive.internal.p -> com.google.android.gms.drive.internal.x:
+com.google.android.gms.drive.internal.p -> com.google.android.gms.drive.internal.af:
     void a(com.google.android.gms.drive.internal.OnDownloadProgressResponse) -> a
     void a(com.google.android.gms.drive.internal.OnListEntriesResponse) -> a
     void a(com.google.android.gms.drive.internal.OnDriveIdResponse) -> a
@@ -4792,11 +4853,11 @@ com.google.android.gms.drive.internal.p -> com.google.android.gms.drive.internal
     void a(com.google.android.gms.drive.internal.OnContentsResponse) -> a
     void d(com.google.android.gms.common.api.Status) -> a
     void onSuccess() -> a
-com.google.android.gms.drive.internal.p$a -> com.google.android.gms.drive.internal.y:
+com.google.android.gms.drive.internal.p$a -> com.google.android.gms.drive.internal.ag:
     com.google.android.gms.drive.internal.p B(android.os.IBinder) -> a
     android.os.IBinder asBinder() -> asBinder
     boolean onTransact(int,android.os.Parcel,android.os.Parcel,int) -> onTransact
-com.google.android.gms.drive.internal.p$a$a -> com.google.android.gms.drive.internal.z:
+com.google.android.gms.drive.internal.p$a$a -> com.google.android.gms.drive.internal.ah:
     android.os.IBinder dU -> a
     android.os.IBinder asBinder() -> asBinder
     void a(com.google.android.gms.drive.internal.OnDownloadProgressResponse) -> a
@@ -4806,7 +4867,7 @@ com.google.android.gms.drive.internal.p$a$a -> com.google.android.gms.drive.inte
     void a(com.google.android.gms.drive.internal.OnContentsResponse) -> a
     void d(com.google.android.gms.common.api.Status) -> a
     void onSuccess() -> a
-com.google.android.gms.drive.internal.q -> com.google.android.gms.drive.internal.aa:
+com.google.android.gms.drive.internal.q -> com.google.android.gms.drive.internal.ai:
     com.google.android.gms.drive.internal.q[] oG -> a
     int versionCode -> b
     java.lang.String oH -> c
@@ -4818,49 +4879,49 @@ com.google.android.gms.drive.internal.q -> com.google.android.gms.drive.internal
     com.google.android.gms.drive.internal.q a(com.google.android.gms.internal.hq) -> a
     com.google.android.gms.drive.internal.q e(byte[]) -> a
     com.google.android.gms.internal.ht b(com.google.android.gms.internal.hq) -> b
-com.google.android.gms.drive.internal.r -> com.google.android.gms.drive.internal.ab:
+com.google.android.gms.drive.internal.r -> com.google.android.gms.drive.internal.aj:
     com.google.android.gms.drive.internal.OnContentsResponse C(android.os.Parcel) -> a
     com.google.android.gms.drive.internal.OnContentsResponse[] T(int) -> a
     void a(com.google.android.gms.drive.internal.OnContentsResponse,android.os.Parcel,int) -> a
     java.lang.Object[] newArray(int) -> newArray
     java.lang.Object createFromParcel(android.os.Parcel) -> createFromParcel
-com.google.android.gms.drive.internal.s -> com.google.android.gms.drive.internal.ac:
+com.google.android.gms.drive.internal.s -> com.google.android.gms.drive.internal.ak:
     com.google.android.gms.drive.internal.OnDownloadProgressResponse D(android.os.Parcel) -> a
     com.google.android.gms.drive.internal.OnDownloadProgressResponse[] U(int) -> a
     void a(com.google.android.gms.drive.internal.OnDownloadProgressResponse,android.os.Parcel,int) -> a
     java.lang.Object[] newArray(int) -> newArray
     java.lang.Object createFromParcel(android.os.Parcel) -> createFromParcel
-com.google.android.gms.drive.internal.t -> com.google.android.gms.drive.internal.ad:
+com.google.android.gms.drive.internal.t -> com.google.android.gms.drive.internal.al:
     com.google.android.gms.drive.internal.OnDriveIdResponse E(android.os.Parcel) -> a
     com.google.android.gms.drive.internal.OnDriveIdResponse[] V(int) -> a
     void a(com.google.android.gms.drive.internal.OnDriveIdResponse,android.os.Parcel,int) -> a
     java.lang.Object[] newArray(int) -> newArray
     java.lang.Object createFromParcel(android.os.Parcel) -> createFromParcel
-com.google.android.gms.drive.internal.u -> com.google.android.gms.drive.internal.ae:
+com.google.android.gms.drive.internal.u -> com.google.android.gms.drive.internal.am:
     com.google.android.gms.drive.internal.OnListEntriesResponse F(android.os.Parcel) -> a
     com.google.android.gms.drive.internal.OnListEntriesResponse[] W(int) -> a
     void a(com.google.android.gms.drive.internal.OnListEntriesResponse,android.os.Parcel,int) -> a
     java.lang.Object[] newArray(int) -> newArray
     java.lang.Object createFromParcel(android.os.Parcel) -> createFromParcel
-com.google.android.gms.drive.internal.v -> com.google.android.gms.drive.internal.af:
+com.google.android.gms.drive.internal.v -> com.google.android.gms.drive.internal.an:
     com.google.android.gms.drive.internal.OnMetadataResponse G(android.os.Parcel) -> a
     com.google.android.gms.drive.internal.OnMetadataResponse[] X(int) -> a
     void a(com.google.android.gms.drive.internal.OnMetadataResponse,android.os.Parcel,int) -> a
     java.lang.Object[] newArray(int) -> newArray
     java.lang.Object createFromParcel(android.os.Parcel) -> createFromParcel
-com.google.android.gms.drive.internal.w -> com.google.android.gms.drive.internal.ag:
+com.google.android.gms.drive.internal.w -> com.google.android.gms.drive.internal.ao:
     com.google.android.gms.drive.internal.OpenContentsRequest H(android.os.Parcel) -> a
     com.google.android.gms.drive.internal.OpenContentsRequest[] Y(int) -> a
     void a(com.google.android.gms.drive.internal.OpenContentsRequest,android.os.Parcel,int) -> a
     java.lang.Object[] newArray(int) -> newArray
     java.lang.Object createFromParcel(android.os.Parcel) -> createFromParcel
-com.google.android.gms.drive.internal.x -> com.google.android.gms.drive.internal.ah:
+com.google.android.gms.drive.internal.x -> com.google.android.gms.drive.internal.ap:
     com.google.android.gms.drive.internal.OpenFileIntentSenderRequest I(android.os.Parcel) -> a
     com.google.android.gms.drive.internal.OpenFileIntentSenderRequest[] Z(int) -> a
     void a(com.google.android.gms.drive.internal.OpenFileIntentSenderRequest,android.os.Parcel,int) -> a
     java.lang.Object[] newArray(int) -> newArray
     java.lang.Object createFromParcel(android.os.Parcel) -> createFromParcel
-com.google.android.gms.drive.internal.y -> com.google.android.gms.drive.internal.ai:
+com.google.android.gms.drive.internal.y -> com.google.android.gms.drive.internal.aq:
     com.google.android.gms.drive.internal.QueryRequest J(android.os.Parcel) -> a
     com.google.android.gms.drive.internal.QueryRequest[] aa(int) -> a
     void a(com.google.android.gms.drive.internal.QueryRequest,android.os.Parcel,int) -> a
@@ -4871,13 +4932,17 @@ com.google.android.gms.drive.metadata.MetadataField -> com.google.android.gms.dr
     java.lang.String oQ -> a
     java.util.Set oR -> b
     java.lang.String getName() -> a
+    java.lang.Object d(android.os.Bundle) -> a
     void a(java.lang.Object,android.os.Bundle) -> a
+    java.lang.Object e(android.os.Bundle) -> b
     void a(android.os.Bundle,java.lang.Object) -> a
     java.lang.String toString() -> toString
 com.google.android.gms.drive.metadata.OrderedMetadataField -> com.google.android.gms.drive.metadata.c:
 com.google.android.gms.drive.metadata.StringMetadataField -> com.google.android.gms.drive.metadata.d:
     void a(android.os.Bundle,java.lang.String) -> a
+    java.lang.String f(android.os.Bundle) -> c
     void a(android.os.Bundle,java.lang.Object) -> a
+    java.lang.Object e(android.os.Bundle) -> b
 com.google.android.gms.drive.metadata.internal.MetadataBundle -> com.google.android.gms.drive.metadata.internal.MetadataBundle:
     android.os.Parcelable$Creator CREATOR -> CREATOR
     int kZ -> a
@@ -4885,6 +4950,7 @@ com.google.android.gms.drive.metadata.internal.MetadataBundle -> com.google.andr
     com.google.android.gms.drive.metadata.internal.MetadataBundle cE() -> a
     com.google.android.gms.drive.metadata.internal.MetadataBundle a(com.google.android.gms.drive.metadata.internal.MetadataBundle) -> a
     void b(com.google.android.gms.drive.metadata.MetadataField,java.lang.Object) -> a
+    java.lang.Object a(com.google.android.gms.drive.metadata.MetadataField) -> a
     java.util.Set cF() -> b
     int hashCode() -> hashCode
     boolean equals(java.lang.Object) -> equals
@@ -4893,10 +4959,14 @@ com.google.android.gms.drive.metadata.internal.MetadataBundle -> com.google.andr
     void writeToParcel(android.os.Parcel,int) -> writeToParcel
 com.google.android.gms.drive.metadata.internal.a -> com.google.android.gms.drive.metadata.internal.a:
     void a(android.os.Bundle,java.lang.Boolean) -> a
+    java.lang.Boolean g(android.os.Bundle) -> c
     void a(android.os.Bundle,java.lang.Object) -> a
+    java.lang.Object e(android.os.Bundle) -> b
 com.google.android.gms.drive.metadata.internal.b -> com.google.android.gms.drive.metadata.internal.b:
     void a(android.os.Bundle,java.util.Date) -> a
+    java.util.Date h(android.os.Bundle) -> c
     void a(android.os.Bundle,java.lang.Object) -> a
+    java.lang.Object e(android.os.Bundle) -> b
 com.google.android.gms.drive.metadata.internal.c -> com.google.android.gms.drive.metadata.internal.c:
     java.util.Map oS -> a
     void b(com.google.android.gms.drive.metadata.MetadataField) -> a
@@ -4908,11 +4978,15 @@ com.google.android.gms.drive.metadata.internal.d -> com.google.android.gms.drive
     java.lang.Object[] newArray(int) -> newArray
     java.lang.Object createFromParcel(android.os.Parcel) -> createFromParcel
 com.google.android.gms.drive.metadata.internal.e -> com.google.android.gms.drive.metadata.internal.e:
+    java.util.Collection i(android.os.Bundle) -> c
     void a(android.os.Bundle,java.util.Collection) -> a
     void a(android.os.Bundle,java.lang.Object) -> a
+    java.lang.Object e(android.os.Bundle) -> b
 com.google.android.gms.drive.metadata.internal.f -> com.google.android.gms.drive.metadata.internal.f:
     void a(android.os.Bundle,android.os.Parcelable) -> a
+    android.os.Parcelable j(android.os.Bundle) -> c
     void a(android.os.Bundle,java.lang.Object) -> a
+    java.lang.Object e(android.os.Bundle) -> b
 com.google.android.gms.drive.query.Filter -> com.google.android.gms.drive.query.a:
 com.google.android.gms.drive.query.Query -> com.google.android.gms.drive.query.Query:
     android.os.Parcelable$Creator CREATOR -> CREATOR
@@ -6952,16 +7026,16 @@ com.google.android.gms.internal.dk -> com.google.android.gms.internal.ga:
     android.os.IInterface p(android.os.IBinder) -> b
     void connect() -> a_
     boolean isConnected() -> b_
-    boolean isConnecting() -> g
+    boolean isConnecting() -> h
     void disconnect() -> b
-    android.content.Context getContext() -> h
-    java.lang.String[] bA() -> i
+    android.content.Context getContext() -> i
+    java.lang.String[] bA() -> j
     void u(android.os.IBinder) -> c
     void a(com.google.android.gms.internal.dq,com.google.android.gms.internal.dk$d) -> a
     void a(int,android.os.IBinder,android.os.Bundle) -> a
-    void bB() -> j
+    void bB() -> k
     android.os.Bundle bc() -> c
-    android.os.IInterface bC() -> k
+    android.os.IInterface bC() -> l
     boolean bb() -> a
     void registerConnectionCallbacks(com.google.android.gms.common.GooglePlayServicesClient$ConnectionCallbacks) -> a
     void registerConnectionFailedListener(com.google.android.gms.common.GooglePlayServicesClient$OnConnectionFailedListener) -> a
@@ -9642,65 +9716,65 @@ com.mobeta.android.dslv.SimpleFloatViewManager -> com.mobeta.android.dslv.x:
 com.nethergrim.combogymdiary.AdapterHelper -> com.nethergrim.combogymdiary.a:
     java.lang.String ATTR_GROUP_NAME -> a
     java.lang.String ATTR_BODY_NAME -> b
-    java.util.ArrayList groupData -> c
-    java.util.ArrayList childDataItem -> d
-    java.util.ArrayList childData -> e
-    java.util.Map m -> f
-    java.lang.String[] groups -> g
-    java.lang.String[] pectoral -> h
-    java.lang.String[] legs -> i
-    java.lang.String[] back -> j
-    java.lang.String[] deltoids -> k
-    java.lang.String[] biceps -> l
-    java.lang.String[] triceps -> m
-    java.lang.String[] abs -> n
-    android.content.Context ctx -> o
-    android.widget.SimpleExpandableListAdapter adapter -> p
+    java.util.ArrayList groupData -> e
+    java.util.ArrayList childDataItem -> f
+    java.util.ArrayList childData -> g
+    java.util.Map m -> h
+    java.lang.String[] groups -> i
+    java.lang.String[] pectoral -> j
+    java.lang.String[] legs -> k
+    java.lang.String[] back -> l
+    java.lang.String[] deltoids -> m
+    java.lang.String[] biceps -> n
+    java.lang.String[] triceps -> o
+    java.lang.String[] abs -> p
+    android.content.Context ctx -> c
+    android.widget.SimpleExpandableListAdapter adapter -> d
     android.widget.SimpleExpandableListAdapter getAdapter() -> a
 com.nethergrim.combogymdiary.AddingExersises -> com.nethergrim.combogymdiary.AddingExersises:
-    android.widget.Button btnCreate -> n
-    android.widget.EditText etName -> o
-    android.widget.EditText etTimer -> p
-    java.lang.String exeName -> q
-    java.lang.String timerV -> r
-    long exeID -> s
-    java.lang.String defaultTimer -> t
-    java.lang.Boolean editOrNot -> u
-    com.nethergrim.combogymdiary.DB db -> v
-    android.content.SharedPreferences sp -> w
+    android.widget.Button btnCreate -> x
+    android.widget.EditText etName -> y
+    android.widget.EditText etTimer -> z
+    java.lang.String exeName -> A
+    java.lang.String timerV -> B
+    long exeID -> C
+    java.lang.String defaultTimer -> D
+    java.lang.Boolean editOrNot -> E
+    com.nethergrim.combogymdiary.DB db -> F
+    android.content.SharedPreferences sp -> G
     void onCreate(android.os.Bundle) -> onCreate
     void onResume() -> onResume
     void onClick(android.view.View) -> onClick
     void onDestroy() -> onDestroy
 com.nethergrim.combogymdiary.AddingMeasurementActivity -> com.nethergrim.combogymdiary.AddingMeasurementActivity:
-    android.widget.EditText etWeight -> n
-    android.widget.EditText etTall -> o
-    android.widget.EditText etChest -> p
-    android.widget.EditText etWaist -> q
-    android.widget.EditText etHip -> r
-    android.widget.EditText etLeg -> s
-    android.widget.EditText etCalf -> t
-    android.widget.EditText etArm -> u
-    java.lang.String date -> v
-    android.widget.Button btnAdd -> w
-    java.lang.String weight_m -> x
-    java.lang.String tall_m -> y
-    java.lang.String chest_m -> z
-    java.lang.String waist_m -> A
-    java.lang.String hip_m -> B
-    java.lang.String leg_m -> C
-    java.lang.String calf_m -> D
-    java.lang.String arm_m -> E
-    com.nethergrim.combogymdiary.DB db -> F
+    android.widget.EditText etWeight -> x
+    android.widget.EditText etTall -> y
+    android.widget.EditText etChest -> z
+    android.widget.EditText etWaist -> A
+    android.widget.EditText etHip -> B
+    android.widget.EditText etLeg -> C
+    android.widget.EditText etCalf -> D
+    android.widget.EditText etArm -> E
+    java.lang.String date -> F
+    android.widget.Button btnAdd -> G
+    java.lang.String weight_m -> H
+    java.lang.String tall_m -> I
+    java.lang.String chest_m -> J
+    java.lang.String waist_m -> K
+    java.lang.String hip_m -> L
+    java.lang.String leg_m -> M
+    java.lang.String calf_m -> N
+    java.lang.String arm_m -> O
+    com.nethergrim.combogymdiary.DB db -> P
     void onCreate(android.os.Bundle) -> onCreate
     void onClick(android.view.View) -> onClick
     void onDestroy() -> onDestroy
 com.nethergrim.combogymdiary.AddingProgram -> com.nethergrim.combogymdiary.AddingProgram:
-    android.widget.Button btnAdd -> n
-    android.widget.EditText etName -> o
-    android.widget.ListView lvExe -> p
-    com.nethergrim.combogymdiary.DB db -> q
-    android.support.v4.widget.SimpleCursorAdapter adapter -> r
+    android.widget.Button btnAdd -> x
+    android.widget.EditText etName -> y
+    android.widget.ListView lvExe -> z
+    com.nethergrim.combogymdiary.DB db -> A
+    android.support.v4.widget.SimpleCursorAdapter adapter -> B
     void onConfigurationChanged(android.content.res.Configuration) -> onConfigurationChanged
     void initUi() -> f
     void onCreate(android.os.Bundle) -> onCreate
@@ -9731,16 +9805,16 @@ com.nethergrim.combogymdiary.BaseDiskActivity -> com.nethergrim.combogymdiary.d:
     void showMessage(java.lang.String) -> a
     com.google.android.gms.common.api.GoogleApiClient getGoogleApiClient() -> b
 com.nethergrim.combogymdiary.BasicMenuActivity -> com.nethergrim.combogymdiary.e:
-    net.simonvt.menudrawer.MenuDrawer mMenuDrawer -> G
-    java.lang.String LOG_TAG -> H
-    android.widget.Button btnMenu1 -> I
-    android.widget.Button btnMenu2 -> J
-    android.widget.Button btnMenu3 -> K
-    android.widget.Button btnMenu4 -> L
-    android.widget.Button btnMenuCatalog -> M
-    android.widget.Button btnMenuMeasurements -> N
-    android.content.SharedPreferences sPref -> O
-    boolean isTrainingAtProgress -> P
+    net.simonvt.menudrawer.MenuDrawer mMenuDrawer -> n
+    java.lang.String LOG_TAG -> o
+    android.widget.Button btnMenu1 -> p
+    android.widget.Button btnMenu2 -> q
+    android.widget.Button btnMenu3 -> r
+    android.widget.Button btnMenu4 -> s
+    android.widget.Button btnMenuCatalog -> t
+    android.widget.Button btnMenuMeasurements -> u
+    android.content.SharedPreferences sPref -> v
+    boolean isTrainingAtProgress -> w
     void onCreate(android.os.Bundle) -> onCreate
     void onResume() -> onResume
     void initMenuButtons() -> f
@@ -9748,10 +9822,10 @@ com.nethergrim.combogymdiary.BasicMenuActivity -> com.nethergrim.combogymdiary.e
     void onBackPressed() -> onBackPressed
     boolean pressButton(int) -> a
 com.nethergrim.combogymdiary.CatalogActivity -> com.nethergrim.combogymdiary.CatalogActivity:
-    java.lang.String LOG_TAG -> n
-    android.widget.ExpandableListView elvMain -> o
-    com.nethergrim.combogymdiary.AdapterHelper ah -> p
-    android.widget.SimpleExpandableListAdapter adapter -> q
+    java.lang.String LOG_TAG -> x
+    android.widget.ExpandableListView elvMain -> y
+    com.nethergrim.combogymdiary.AdapterHelper ah -> z
+    android.widget.SimpleExpandableListAdapter adapter -> A
     void onCreate(android.os.Bundle) -> onCreate
     void gotoDetailed(int,int,long) -> a
     void onClick(android.view.View) -> onClick
@@ -9769,18 +9843,18 @@ com.nethergrim.combogymdiary.CatalogActivity$4 -> com.nethergrim.combogymdiary.i
     com.nethergrim.combogymdiary.CatalogActivity this$0 -> a
     void onGroupExpand(int) -> onGroupExpand
 com.nethergrim.combogymdiary.CatalogDetailedActivity -> com.nethergrim.combogymdiary.CatalogDetailedActivity:
-    android.widget.TextView tvMain -> n
-    android.widget.ImageView imageV -> o
-    int groupPosition -> p
-    int childPosition -> q
-    long id -> r
-    java.lang.String[] pectoral -> s
-    java.lang.String[] legs -> t
-    java.lang.String[] back -> u
-    java.lang.String[] deltoids -> v
-    java.lang.String[] biceps -> w
-    java.lang.String[] triceps -> x
-    java.lang.String[] abs -> y
+    android.widget.TextView tvMain -> x
+    android.widget.ImageView imageV -> y
+    int groupPosition -> z
+    int childPosition -> A
+    long id -> B
+    java.lang.String[] pectoral -> C
+    java.lang.String[] legs -> D
+    java.lang.String[] back -> E
+    java.lang.String[] deltoids -> F
+    java.lang.String[] biceps -> G
+    java.lang.String[] triceps -> H
+    java.lang.String[] abs -> I
     void onCreate(android.os.Bundle) -> onCreate
     void initInfo() -> f
     void initGroup0() -> g
@@ -9798,22 +9872,20 @@ com.nethergrim.combogymdiary.CheckableLinearLayout -> com.nethergrim.combogymdia
     void setChecked(boolean) -> setChecked
     void toggle() -> toggle
 com.nethergrim.combogymdiary.DB -> com.nethergrim.combogymdiary.j:
-    java.lang.String LOG_TAG -> a
-    java.lang.String strSeparator -> b
-    android.content.Context mCtx -> d
-    com.nethergrim.combogymdiary.DB$DBHelper mDBHelper -> e
-    android.database.sqlite.SQLiteDatabase mDB -> c
+    java.lang.String strSeparator -> a
+    android.content.Context mCtx -> c
+    com.nethergrim.combogymdiary.DB$DBHelper mDBHelper -> d
+    android.database.sqlite.SQLiteDatabase mDB -> b
     java.lang.String convertArrayToString(java.lang.String[]) -> a
     java.lang.String[] convertStringToArray(java.lang.String) -> a
     void open() -> a
     java.lang.String getExerciseByID(int) -> a
     void close() -> b
-    android.database.Cursor getData_Main_GroupBy(java.lang.String) -> b
     int getLastReps(java.lang.String,int) -> a
-    void deleteExersiceByName(java.lang.String) -> c
+    void deleteExersiceByName(java.lang.String) -> b
     void deleteExersiceByName(java.lang.String,java.lang.String) -> a
     int getLastWeight(java.lang.String,int) -> b
-    java.lang.String getTimerValueByExerciseName(java.lang.String) -> d
+    java.lang.String getTimerValueByExerciseName(java.lang.String) -> c
     int getThisWeight(int,java.lang.String) -> a
     int getThisReps(int,java.lang.String) -> b
     int getThisId(int,java.lang.String) -> c
@@ -9873,6 +9945,24 @@ com.nethergrim.combogymdiary.DiskActivity -> com.nethergrim.combogymdiary.DiskAc
 com.nethergrim.combogymdiary.DiskActivity$1 -> com.nethergrim.combogymdiary.p:
     com.nethergrim.combogymdiary.DiskActivity this$0 -> a
     void onNewContents(com.google.android.gms.drive.DriveApi$ContentsResult) -> a
+com.nethergrim.combogymdiary.DiskAutoBackupActivity -> com.nethergrim.combogymdiary.DiskAutoBackupActivity:
+    android.content.SharedPreferences sp -> a
+    java.lang.String folderDriveIdStr -> b
+    java.lang.String fileTitle -> c
+    com.google.android.gms.drive.DriveId folderDriveId -> d
+    java.io.File db -> e
+    void onCreate(android.os.Bundle) -> onCreate
+    void onResume() -> onResume
+    void onConnected(android.os.Bundle) -> a
+    void onCreateFile(com.google.android.gms.drive.DriveFolder$DriveFileResult) -> a
+    void onNewContents(com.google.android.gms.drive.DriveApi$ContentsResult) -> a
+com.nethergrim.combogymdiary.DiskCreateFolderActivity -> com.nethergrim.combogymdiary.DiskCreateFolderActivity:
+    android.content.SharedPreferences sp -> a
+    java.lang.Boolean toCreateFolder -> b
+    void onCreate(android.os.Bundle) -> onCreate
+    void onResume() -> onResume
+    void onConnected(android.os.Bundle) -> a
+    void onCreateFolder(com.google.android.gms.drive.DriveFolder$DriveFolderResult) -> a
 com.nethergrim.combogymdiary.DiskFileDownloadActivity -> com.nethergrim.combogymdiary.DiskFileDownloadActivity:
     com.google.android.gms.drive.DriveId driveId -> a
     java.lang.String driveIdStr -> b
@@ -9928,12 +10018,12 @@ com.nethergrim.combogymdiary.EditingProgramAtTraining$MyCursorLoader -> com.neth
     android.database.Cursor cursor -> v
     android.database.Cursor loadInBackground() -> f
 com.nethergrim.combogymdiary.ExersisesList -> com.nethergrim.combogymdiary.ExersisesList:
-    android.widget.ListView lvExersices_list -> n
-    com.nethergrim.combogymdiary.DB db -> o
-    android.support.v4.widget.SimpleCursorAdapter scAdapter -> p
-    android.database.Cursor cursor_exe -> q
-    android.widget.Button btnCreate -> r
-    android.content.SharedPreferences sp -> s
+    android.widget.ListView lvExersices_list -> x
+    com.nethergrim.combogymdiary.DB db -> y
+    android.support.v4.widget.SimpleCursorAdapter scAdapter -> z
+    android.database.Cursor cursor_exe -> A
+    android.widget.Button btnCreate -> B
+    android.content.SharedPreferences sp -> C
     void onConfigurationChanged(android.content.res.Configuration) -> onConfigurationChanged
     void initUi() -> f
     void onCreate(android.os.Bundle) -> onCreate
@@ -9955,9 +10045,9 @@ com.nethergrim.combogymdiary.ExersisesList$MyCursorLoader -> com.nethergrim.comb
     android.database.Cursor cursor -> v
     android.database.Cursor loadInBackground() -> f
 com.nethergrim.combogymdiary.HistoryActivity -> com.nethergrim.combogymdiary.HistoryActivity:
-    android.widget.ListView lvMain -> n
-    com.nethergrim.combogymdiary.DB db -> o
-    android.support.v4.widget.SimpleCursorAdapter adapter -> p
+    android.widget.ListView lvMain -> x
+    com.nethergrim.combogymdiary.DB db -> y
+    android.support.v4.widget.SimpleCursorAdapter adapter -> z
     void onCreate(android.os.Bundle) -> onCreate
     void onResume() -> onResume
     void onCreateContextMenu(android.view.ContextMenu,android.view.View,android.view.ContextMenu$ContextMenuInfo) -> onCreateContextMenu
@@ -9977,10 +10067,10 @@ com.nethergrim.combogymdiary.HistoryActivity$MyCursorLoader -> com.nethergrim.co
     android.database.Cursor cursor -> v
     android.database.Cursor loadInBackground() -> f
 com.nethergrim.combogymdiary.HistoryDetailedActivity -> com.nethergrim.combogymdiary.HistoryDetailedActivity:
-    com.nethergrim.combogymdiary.DB db -> n
-    android.database.Cursor cursor -> o
-    java.lang.String trName -> p
-    java.lang.String trDate -> q
+    com.nethergrim.combogymdiary.DB db -> x
+    android.database.Cursor cursor -> y
+    java.lang.String trName -> z
+    java.lang.String trDate -> A
     void onCreate(android.os.Bundle) -> onCreate
     void setupActionBar() -> f
     void setupCursor() -> g
@@ -9988,18 +10078,18 @@ com.nethergrim.combogymdiary.HistoryDetailedActivity -> com.nethergrim.combogymd
     void onDestroy() -> onDestroy
     void onClick(android.view.View) -> onClick
 com.nethergrim.combogymdiary.MainActivity -> com.nethergrim.combogymdiary.MainActivity:
-    android.widget.Button btnSettings -> o
-    android.widget.Button btnStartT -> p
-    android.widget.Button btnExcersises -> q
-    android.widget.Button btnWorklog -> r
-    android.widget.Button btnCatalog -> s
-    android.widget.Button btnMeasurements -> t
-    android.content.SharedPreferences sp -> u
-    com.nethergrim.combogymdiary.DB db -> v
-    android.database.Cursor cursor -> w
-    android.widget.ProgressBar pb -> x
-    com.nethergrim.combogymdiary.MainActivity$InitTask task -> y
-    com.nethergrim.combogymdiary.MainActivity ma -> n
+    android.widget.Button btnSettings -> y
+    android.widget.Button btnStartT -> z
+    android.widget.Button btnExcersises -> A
+    android.widget.Button btnWorklog -> B
+    android.widget.Button btnCatalog -> C
+    android.widget.Button btnMeasurements -> D
+    android.content.SharedPreferences sp -> E
+    com.nethergrim.combogymdiary.DB db -> F
+    android.database.Cursor cursor -> G
+    android.widget.ProgressBar pb -> H
+    com.nethergrim.combogymdiary.MainActivity$InitTask task -> I
+    com.nethergrim.combogymdiary.MainActivity ma -> x
     void onConfigurationChanged(android.content.res.Configuration) -> onConfigurationChanged
     void initUi() -> f
     void onResume() -> onResume
@@ -10017,9 +10107,9 @@ com.nethergrim.combogymdiary.MainActivity$InitTask -> com.nethergrim.combogymdia
     void onPostExecute(java.lang.Object) -> onPostExecute
     java.lang.Object doInBackground(java.lang.Object[]) -> doInBackground
 com.nethergrim.combogymdiary.MeasurementsActivity -> com.nethergrim.combogymdiary.MeasurementsActivity:
-    android.widget.ListView lvMeasurements -> n
-    com.nethergrim.combogymdiary.DB db -> o
-    android.support.v4.widget.SimpleCursorAdapter scAdapter -> p
+    android.widget.ListView lvMeasurements -> x
+    com.nethergrim.combogymdiary.DB db -> y
+    android.support.v4.widget.SimpleCursorAdapter scAdapter -> z
     void onCreate(android.os.Bundle) -> onCreate
     void onResume() -> onResume
     void gotoDetailed(int,long,java.lang.String) -> a
@@ -10040,27 +10130,26 @@ com.nethergrim.combogymdiary.MeasurementsActivity$MyCursorLoader -> com.nethergr
     android.database.Cursor cursor -> v
     android.database.Cursor loadInBackground() -> f
 com.nethergrim.combogymdiary.MeasurementsDetailedActivity -> com.nethergrim.combogymdiary.MeasurementsDetailedActivity:
-    java.lang.String date -> n
-    com.nethergrim.combogymdiary.DB db -> o
-    android.database.Cursor c -> p
-    android.widget.TextView tv1 -> q
-    android.widget.TextView tv2 -> r
-    android.widget.TextView tv3 -> s
-    android.widget.TextView tv4 -> t
-    android.widget.TextView tv5 -> u
-    android.widget.TextView tv6 -> v
-    android.widget.TextView tv7 -> w
-    android.widget.TextView tv8 -> x
-    java.lang.String weightValue -> y
-    java.lang.String longValue -> z
+    java.lang.String date -> x
+    com.nethergrim.combogymdiary.DB db -> y
+    android.database.Cursor c -> z
+    android.widget.TextView tv1 -> A
+    android.widget.TextView tv2 -> B
+    android.widget.TextView tv3 -> C
+    android.widget.TextView tv4 -> D
+    android.widget.TextView tv5 -> E
+    android.widget.TextView tv6 -> F
+    android.widget.TextView tv7 -> G
+    android.widget.TextView tv8 -> H
+    java.lang.String weightValue -> I
+    java.lang.String longValue -> J
     void onCreate(android.os.Bundle) -> onCreate
     void initTv() -> f
     void onClick(android.view.View) -> onClick
     void onDestroy() -> onDestroy
 com.nethergrim.combogymdiary.MyService -> com.nethergrim.combogymdiary.MyService:
     android.app.NotificationManager nm -> a
-    java.lang.String LOG_TAG -> b
-    android.content.SharedPreferences sp -> d
+    android.content.SharedPreferences sp -> b
     java.lang.String trainingNAME -> c
     void onCreate() -> onCreate
     int onStartCommand(android.content.Intent,int,int) -> onStartCommand
@@ -10068,6 +10157,7 @@ com.nethergrim.combogymdiary.MyService -> com.nethergrim.combogymdiary.MyService
     android.os.IBinder onBind(android.content.Intent) -> onBind
 com.nethergrim.combogymdiary.SettingsActivity -> com.nethergrim.combogymdiary.SettingsActivity:
     android.app.DialogFragment dlg2 -> a
+    com.nethergrim.combogymdiary.DB db -> b
     void onCreate(android.os.Bundle) -> onCreate
     void gotoDriveRestore() -> b
     void gotoVk() -> c
@@ -10075,6 +10165,7 @@ com.nethergrim.combogymdiary.SettingsActivity -> com.nethergrim.combogymdiary.Se
     void gotoDisk() -> e
     void onChoose() -> a
     boolean onOptionsItemSelected(android.view.MenuItem) -> onOptionsItemSelected
+    void onDestroy() -> onDestroy
     void access$0(com.nethergrim.combogymdiary.SettingsActivity) -> a
     void access$1(com.nethergrim.combogymdiary.SettingsActivity) -> b
     void access$2(com.nethergrim.combogymdiary.SettingsActivity) -> c
@@ -10097,11 +10188,11 @@ com.nethergrim.combogymdiary.SettingsActivity$6 -> com.nethergrim.combogymdiary.
     com.nethergrim.combogymdiary.SettingsActivity this$0 -> a
     boolean onPreferenceClick(android.preference.Preference) -> onPreferenceClick
 com.nethergrim.combogymdiary.StartTrainingActivity -> com.nethergrim.combogymdiary.StartTrainingActivity:
-    com.nethergrim.combogymdiary.DB db -> n
-    android.support.v4.widget.SimpleCursorAdapter scAdapter -> o
-    android.database.Cursor cursor_exe -> p
-    android.widget.ListView lvMain -> q
-    android.widget.Button btnAddNew -> r
+    com.nethergrim.combogymdiary.DB db -> x
+    android.support.v4.widget.SimpleCursorAdapter scAdapter -> y
+    android.database.Cursor cursor_exe -> z
+    android.widget.ListView lvMain -> A
+    android.widget.Button btnAddNew -> B
     void onConfigurationChanged(android.content.res.Configuration) -> onConfigurationChanged
     void initUi() -> f
     void onCreate(android.os.Bundle) -> onCreate
@@ -10130,24 +10221,24 @@ com.nethergrim.combogymdiary.TheBackupAgent -> com.nethergrim.combogymdiary.TheB
     void onCreate() -> onCreate
     java.io.File getFilesDir() -> getFilesDir
 com.nethergrim.combogymdiary.TrainingAtProgress -> com.nethergrim.combogymdiary.TrainingAtProgress:
-    android.widget.ToggleButton tglTimerOn -> o
-    java.lang.Boolean tglChecked -> p
-    java.lang.Boolean turnOff -> q
-    java.lang.Boolean vibrate -> r
-    android.widget.EditText etTimer -> s
-    com.nethergrim.combogymdiary.DB db -> t
-    android.database.Cursor cursor -> u
-    int trainingIdAtTable -> v
-    android.widget.ArrayAdapter adapter -> w
-    java.lang.String[] exersices -> x
-    java.lang.String traName -> y
-    java.lang.String exeName -> z
-    java.lang.String date -> A
-    java.lang.String tValue -> B
-    android.content.SharedPreferences sp -> C
-    int checkedPosition -> D
-    int set -> E
-    int currentSet -> F
+    android.widget.ToggleButton tglTimerOn -> y
+    java.lang.Boolean tglChecked -> z
+    java.lang.Boolean turnOff -> A
+    java.lang.Boolean vibrate -> B
+    android.widget.EditText etTimer -> C
+    com.nethergrim.combogymdiary.DB db -> D
+    android.database.Cursor cursor -> E
+    int trainingIdAtTable -> F
+    android.widget.ArrayAdapter adapter -> G
+    java.lang.String[] exersices -> H
+    java.lang.String traName -> I
+    java.lang.String exeName -> J
+    java.lang.String date -> K
+    java.lang.String tValue -> L
+    android.content.SharedPreferences sp -> M
+    int checkedPosition -> N
+    int set -> O
+    int currentSet -> P
     int oldReps -> Q
     int oldWeight -> R
     int timerValue -> S
@@ -10168,17 +10259,18 @@ com.nethergrim.combogymdiary.TrainingAtProgress -> com.nethergrim.combogymdiary.
     int secDelta -> ah
     int minDelta -> ai
     boolean isTrainingProgress -> aj
-    android.os.Handler timerHandler -> ak
-    android.widget.LinearLayout llBack -> al
-    android.widget.LinearLayout llSave -> am
-    android.widget.LinearLayout llForward -> an
-    android.widget.LinearLayout llBottom -> ao
-    android.widget.ImageView ivBack -> ap
-    android.widget.ImageView ivForward -> aq
-    android.view.animation.Animation anim -> ar
-    com.mobeta.android.dslv.DragSortListView list -> as
-    java.lang.Runnable timerRunnable -> n
-    com.mobeta.android.dslv.DragSortListView$DropListener onDrop -> at
+    boolean autoBackup -> ak
+    android.os.Handler timerHandler -> al
+    android.widget.LinearLayout llBack -> am
+    android.widget.LinearLayout llSave -> an
+    android.widget.LinearLayout llForward -> ao
+    android.widget.LinearLayout llBottom -> ap
+    android.widget.ImageView ivBack -> aq
+    android.widget.ImageView ivForward -> ar
+    android.view.animation.Animation anim -> as
+    com.mobeta.android.dslv.DragSortListView list -> at
+    java.lang.Runnable timerRunnable -> x
+    com.mobeta.android.dslv.DragSortListView$DropListener onDrop -> au
     void onConfigurationChanged(android.content.res.Configuration) -> onConfigurationChanged
     void onCreate(android.os.Bundle) -> onCreate
     void onChoose() -> a
