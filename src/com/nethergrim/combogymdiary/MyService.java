@@ -9,15 +9,12 @@ import android.content.SharedPreferences;
 import android.content.SharedPreferences.Editor;
 import android.os.IBinder;
 import android.preference.PreferenceManager;
-import android.util.Log;
-import android.widget.Toast;
 
 public class MyService extends Service {
 
-	NotificationManager nm;
-	protected final String LOG_TAG = "myLogs";
+	private NotificationManager nm;
 	private SharedPreferences sp;
-	String trainingNAME;
+	private String trainingNAME;
 
 	@Override
 	public void onCreate() {

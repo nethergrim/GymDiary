@@ -75,7 +75,7 @@ public class TrainingAtProgress extends BasicMenuActivity implements
 	private ArrayList<String> alMain = new ArrayList<String>();
 	private ArrayList<Integer> alSet = new ArrayList<Integer>();
 	private int seconds, minutes, secDelta = 0, minDelta = 0;
-	private boolean isTrainingProgress = false;
+	private boolean isTrainingProgress = false, autoBackup = true;
 	private Handler timerHandler = new Handler();
 	private LinearLayout llBack, llSave, llForward, llBottom;
 	private ImageView ivBack, ivForward;
@@ -150,6 +150,10 @@ public class TrainingAtProgress extends BasicMenuActivity implements
 		notificationManager.cancel(sp.getInt(BasicMenuActivity.TRA_ID, 1));
 
 		finish();
+		if(autoBackup){
+			Intent intent = new Intent (this,DiskCreateFolderActivity.class);
+			startActivity(intent);
+		}
 	}
 
 	Runnable timerRunnable = new Runnable() {
@@ -202,10 +206,7 @@ public class TrainingAtProgress extends BasicMenuActivity implements
 				adapter.remove(item);
 				adapter.insert(item, to);
 				list.moveCheckState(from, to);
-
-				String[] tmp = new String[alMain.size()];// saving position to
-															// DB TODO convert
-															// into asynctask
+				String[] tmp = new String[alMain.size()];
 				for (int i = 0; i < alMain.size(); i++) {
 					tmp[i] = alMain.get(i);
 				}
@@ -387,7 +388,7 @@ public class TrainingAtProgress extends BasicMenuActivity implements
 		vibrateLenght = Integer.parseInt(vl);
 		vibrateLenght *= 1000;
 		timerHandler.postDelayed(timerRunnable, 0);
-
+		autoBackup = sp.getBoolean(AUTO_BACKUP_TO_DRIVE, true);
 		super.onResume();
 	}
 
@@ -483,8 +484,8 @@ public class TrainingAtProgress extends BasicMenuActivity implements
 			alSet.add(0);
 		}
 		adapter.notifyDataSetChanged();
-		String[] tmp = new String[alMain.size()];// saving position to DB TODO
-													// convert into asynctask
+		String[] tmp = new String[alMain.size()];
+
 		for (int i = 0; i < alMain.size(); i++) {
 			tmp[i] = alMain.get(i);
 		}

@@ -142,7 +142,7 @@ public class HistoryActivity extends BasicMenuActivity implements
 
 		@Override
 		public Cursor loadInBackground() {
-			cursor = db.getData_Main_GroupBy(DB.DATE);
+			cursor = db.getDataMain(null, null, null, DB.DATE, null, DB.COLUMN_ID);
 			return cursor;
 		}
 	}

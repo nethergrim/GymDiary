@@ -23,9 +23,9 @@ import android.widget.TextView;
 public class MeasurementsActivity extends BasicMenuActivity implements
 		LoaderCallbacks<Cursor> {
 
-	ListView lvMeasurements;
-	DB db;
-	SimpleCursorAdapter scAdapter;
+	private ListView lvMeasurements;
+	private DB db;
+	private SimpleCursorAdapter scAdapter;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -42,8 +42,6 @@ public class MeasurementsActivity extends BasicMenuActivity implements
 				null, from, to, 0);
 		lvMeasurements.setAdapter(scAdapter);
 		getSupportLoaderManager().initLoader(0, null, this);
-		getSupportLoaderManager().getLoader(0).forceLoad();
-
 		lvMeasurements
 				.setOnItemClickListener(new AdapterView.OnItemClickListener() {
 					@Override
@@ -73,7 +71,6 @@ public class MeasurementsActivity extends BasicMenuActivity implements
 	}
 
 	private void gotoDetailed(int position, long id, String date) {
-		Log.d(LOG_TAG, "Clicked date = " + date);
 		Intent gotoDetailed = new Intent(this,
 				MeasurementsDetailedActivity.class);
 		gotoDetailed.putExtra("clicked_position_of_measurements", position);
@@ -98,8 +95,8 @@ public class MeasurementsActivity extends BasicMenuActivity implements
 
 	static class MyCursorLoader extends CursorLoader {
 
-		DB db;
-		Cursor cursor;
+		private DB db;
+		private Cursor cursor;
 
 		public MyCursorLoader(Context context, DB db) {
 			super(context);

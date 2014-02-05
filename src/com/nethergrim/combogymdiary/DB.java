@@ -10,7 +10,7 @@ import android.util.Log;
 
 public class DB {
 
-	final String LOG_TAG = "myLogs";
+	public static final String LOG_TAG = "myLogs";
 	public static final String DB_NAME = "mydb";
 	private static final int DB_VERSION = 3;
 
@@ -73,7 +73,15 @@ public class DB {
 		}
 		return str;
 	}
-
+	
+	public Boolean isDatabaseBlockedByCurrentThread(){
+		return mDB.isDbLockedByCurrentThread();
+	}
+	
+	public Boolean isDatabaseBlockedByOtherThread(){
+		return mDB.isDbLockedByOtherThreads();
+	}
+	
 	public String[] convertStringToArray(String str) {
 		String[] arr = str.split(strSeparator);
 		return arr;

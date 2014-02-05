@@ -61,6 +61,17 @@
             android:summary="@string/restore_from_google_drive"
             android:title="@string/restore" />
         
+
+        
+        <CheckBoxPreference
+            android:icon="@drawable/google_drive_icon"
+            android:defaultValue="true"
+            android:key="settingAutoBackup"
+            android:summary="@string/auto_backup_to_disk_detailed"
+            android:title="@string/auto_backup_to_disk" />
+        
+        
+        
     </PreferenceCategory>
     <PreferenceCategory android:title="@string/feedback" >
         <Preference

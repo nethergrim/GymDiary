@@ -9,12 +9,12 @@ import android.widget.TextView;
 
 public class MeasurementsDetailedActivity extends BasicMenuActivity {
 
-	String date;
-	DB db;
-	Cursor c;
-	TextView tv1, tv2, tv3, tv4, tv5, tv6, tv7, tv8;
-	String weightValue;
-	String longValue;
+	private String date;
+	private DB db;
+	private Cursor c;
+	private TextView tv1, tv2, tv3, tv4, tv5, tv6, tv7, tv8;
+	private String weightValue;
+	private String longValue;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {

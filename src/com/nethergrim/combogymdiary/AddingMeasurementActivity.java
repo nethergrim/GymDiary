@@ -16,11 +16,13 @@ import android.widget.Toast;
 
 public class AddingMeasurementActivity extends BasicMenuActivity {
 
-	EditText etWeight, etTall, etChest, etWaist, etHip, etLeg, etCalf, etArm;
-	String date;
-	Button btnAdd;
-	String weight_m, tall_m, chest_m, waist_m, hip_m, leg_m, calf_m, arm_m;
-	DB db;
+	private EditText etWeight, etTall, etChest, etWaist, etHip, etLeg, etCalf,
+			etArm;
+	private String date;
+	private Button btnAdd;
+	private String weight_m, tall_m, chest_m, waist_m, hip_m, leg_m, calf_m,
+			arm_m;
+	private DB db;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {

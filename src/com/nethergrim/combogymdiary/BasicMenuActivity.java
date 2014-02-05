@@ -16,7 +16,7 @@ public abstract class BasicMenuActivity extends FragmentActivity implements
 		OnClickListener {
 
 	protected MenuDrawer mMenuDrawer;
-	protected final String LOG_TAG = "myLogs";
+	public final String LOG_TAG = "myLogs";
 	protected Button btnMenu1, btnMenu2, btnMenu3, btnMenu4, btnMenuCatalog,
 			btnMenuMeasurements;
 	protected SharedPreferences sPref;
@@ -28,6 +28,9 @@ public abstract class BasicMenuActivity extends FragmentActivity implements
 	public final static String TIMER_IS_ON = "timerIsOn";
 	public final static String MY_AD_UNIT_ID = "ca-app-pub-5652589022154086/4102541457";
 	public final static String MY_ACCOUNT_NAME = "account_name";
+	public final static String DRIVE_FOLDER_ID_ENCODED_TO_STRING = "drive_folder_id"; 
+	public final static String DRIVE_EXISTS = "drive_exists"; 
+	public final static String AUTO_BACKUP_TO_DRIVE = "settingAutoBackup"; 
 	protected final static String MINUTES = "minutes";
 	protected final static String SECONDS = "seconds";
 	protected boolean isTrainingAtProgress;
@@ -36,21 +39,17 @@ public abstract class BasicMenuActivity extends FragmentActivity implements
 	protected void onCreate(Bundle inState) {
 		super.onCreate(inState);
 		mMenuDrawer = MenuDrawer.attach(this);
-
 		mMenuDrawer.setMenuView(R.layout.menu_frame);
 		mMenuDrawer.setSlideDrawable(R.drawable.ic_drawer);
 		mMenuDrawer.setDrawerIndicatorEnabled(true);
 		mMenuDrawer.setTouchBezelSize(3000);
 		getActionBar().setDisplayShowHomeEnabled(true);
 		initMenuButtons();
-
-		sPref = PreferenceManager.getDefaultSharedPreferences(this);
-
 	}
 
 	@Override
 	protected void onResume() {
-
+		sPref = PreferenceManager.getDefaultSharedPreferences(this);
 		if (sPref.contains(TRAINING_AT_PROGRESS)) {
 			isTrainingAtProgress = sPref
 					.getBoolean(TRAINING_AT_PROGRESS, false);

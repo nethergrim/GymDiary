@@ -16,10 +16,10 @@ import android.widget.SimpleExpandableListAdapter;
 
 public class CatalogActivity extends BasicMenuActivity {
 
-	final String LOG_TAG = "myLogs";
-	ExpandableListView elvMain;
-	AdapterHelper ah;
-	SimpleExpandableListAdapter adapter;
+	private final String LOG_TAG = "myLogs";
+	private ExpandableListView elvMain;
+	private AdapterHelper ah;
+	private SimpleExpandableListAdapter adapter;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -34,8 +34,6 @@ public class CatalogActivity extends BasicMenuActivity {
 
 			public boolean onChildClick(ExpandableListView parent, View v,
 					int groupPosition, int childPosition, long id) {
-				Log.d(LOG_TAG, "onChildClick groupPosition = " + groupPosition
-						+ " childPosition = " + childPosition + " id = " + id);
 				gotoDetailed(groupPosition, childPosition, id);
 				return false;
 			}
@@ -43,20 +41,15 @@ public class CatalogActivity extends BasicMenuActivity {
 		elvMain.setOnGroupClickListener(new OnGroupClickListener() {
 			public boolean onGroupClick(ExpandableListView parent, View v,
 					int groupPosition, long id) {
-				Log.d(LOG_TAG, "onGroupClick groupPosition = " + groupPosition
-						+ " id = " + id);
 				return false;
 			}
 		});
 		elvMain.setOnGroupCollapseListener(new OnGroupCollapseListener() {
 			public void onGroupCollapse(int groupPosition) {
-				Log.d(LOG_TAG, "onGroupCollapse groupPosition = "
-						+ groupPosition);
 			}
 		});
 		elvMain.setOnGroupExpandListener(new OnGroupExpandListener() {
 			public void onGroupExpand(int groupPosition) {
-				Log.d(LOG_TAG, "onGroupExpand groupPosition = " + groupPosition);
 			}
 		});
 

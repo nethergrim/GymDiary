@@ -2,6 +2,9 @@
 <resources>
 
     <string name="sm">(cm)</string>
+    <string name="auto_backup_to_disk">Auto backup</string>
+    <string name="auto_backup_to_disk_detailed">Auto backup to Google Drive at the end of training</string>
+    <string name="drive_backuped_true">You had just backuped all your data to Google Drive\nYou can find it at: "GoogleDrive/Workout Diary Backups/"</string>
     <string name="error_restoring">Error!\nYou can`t restore database during training!</string>
     <string name="restore_from_google_drive">Restore from Google Drive</string>
     <string name="feedback">Feedback</string>
@@ -296,5 +299,7 @@
     <string name="title_activity_disk">DiskActivity</string>
     <string name="title_activity_disk_restore">DiskRestoreActivity</string>
     <string name="title_activity_disk_file_download">DiskFileDownloadActivity</string>
+    <string name="title_activity_disk_create_folder">DiskCreateFolderActivity</string>
+    <string name="title_activity_disk_auto_backup">DiskAutoBackupActivity</string>
 
 </resources>

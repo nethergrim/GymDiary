@@ -11,6 +11,7 @@ import android.preference.Preference;
 import android.preference.PreferenceActivity;
 import android.preference.PreferenceManager;
 import android.app.DialogFragment;
+import android.util.Log;
 import android.view.MenuItem;
 import android.widget.Toast;
 
@@ -19,6 +20,7 @@ public class SettingsActivity extends PreferenceActivity implements MyInterface 
 	public static SettingsActivity sa;
 	DialogFragment dlg2;
 	protected SharedPreferences sPref;
+	DB db;
 
 	@SuppressWarnings("deprecation")
 	@Override
@@ -26,6 +28,8 @@ public class SettingsActivity extends PreferenceActivity implements MyInterface 
 		super.onCreate(savedInstanceState);
 		addPreferencesFromResource(R.xml.pref);
 		ActionBar bar = getActionBar();
+		db = new DB(this);
+		db.open();
 		bar.setDisplayHomeAsUpEnabled(true);
 		bar.setTitle(R.string.settingsButtonString);
 		dlg2 = new DialogRestoreFromBackup();
@@ -84,6 +88,7 @@ public class SettingsActivity extends PreferenceActivity implements MyInterface 
 		btnVK.setOnPreferenceClickListener(new Preference.OnPreferenceClickListener() {
 			@Override
 			public boolean onPreferenceClick(Preference arg0) {
+
 				gotoVk();
 				return true;
 			}
@@ -101,18 +106,18 @@ public class SettingsActivity extends PreferenceActivity implements MyInterface 
 	}
 
 	protected void gotoDriveRestore() {
-		SharedPreferences sp = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
-		Boolean isAtTraining =  sp.getBoolean("training_at_progress", false);
+		SharedPreferences sp = PreferenceManager
+				.getDefaultSharedPreferences(getApplicationContext());
+		Boolean isAtTraining = sp.getBoolean("training_at_progress", false);
 		if (!isAtTraining) {
-			Intent intent = new Intent(this,DiskRestoreActivity.class);
+			Intent intent = new Intent(this, DiskRestoreActivity.class);
 			startActivity(intent);
 		} else {
 			Toast.makeText(getApplicationContext(),
 					getResources().getString(R.string.error_restoring),
 					Toast.LENGTH_SHORT).show();
 		}
-		
-		
+
 	}
 
 	private void gotoVk() {
@@ -163,6 +168,12 @@ public class SettingsActivity extends PreferenceActivity implements MyInterface 
 			return true;
 		}
 		return false;
+	}
+
+	@Override
+	public void onDestroy() {
+		super.onDestroy();
+		db.close();
 	}
 
 }

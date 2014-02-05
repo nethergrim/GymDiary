@@ -12,18 +12,18 @@ public class AdapterHelper {
 	final String ATTR_GROUP_NAME = "groupName";
 	final String ATTR_BODY_NAME = "bodyName";
 
-	ArrayList<Map<String, String>> groupData;
-	ArrayList<Map<String, String>> childDataItem;
-	ArrayList<ArrayList<Map<String, String>>> childData;
-	Map<String, String> m;
-	String[] groups;
-	String[] pectoral;
-	String[] legs;
-	String[] back;
-	String[] deltoids;
-	String[] biceps;
-	String[] triceps;
-	String[] abs;
+	private ArrayList<Map<String, String>> groupData;
+	private ArrayList<Map<String, String>> childDataItem;
+	private ArrayList<ArrayList<Map<String, String>>> childData;
+	private Map<String, String> m;
+	private String[] groups;
+	private String[] pectoral;
+	private String[] legs;
+	private String[] back;
+	private String[] deltoids;
+	private String[] biceps;
+	private String[] triceps;
+	private String[] abs;
 
 	Context ctx;
 

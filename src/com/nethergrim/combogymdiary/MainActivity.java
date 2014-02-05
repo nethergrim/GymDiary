@@ -174,7 +174,9 @@ public class MainActivity extends BasicMenuActivity {
 
 		@Override
 		protected Void doInBackground(Void... params) {
+
 			initTable();
+
 			return null;
 		}
 

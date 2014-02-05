@@ -48,7 +48,6 @@ public class DiskFileDownloadActivity extends BaseDiskActivity {
 		super.onConnected(connectionHint);
 		restoreTask = new RestoreTask();
 		restoreTask.execute();
-
 	}
 
 	class RestoreTask extends AsyncTask<Void, Void, Void> {
@@ -111,5 +110,7 @@ public class DiskFileDownloadActivity extends BaseDiskActivity {
 
 		}
 	}
+	
+
 
 }

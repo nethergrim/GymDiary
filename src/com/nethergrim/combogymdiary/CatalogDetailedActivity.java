@@ -12,17 +12,17 @@ import android.widget.TextView;
 
 public class CatalogDetailedActivity extends BasicMenuActivity {
 
-	TextView tvMain;
-	ImageView imageV;
-	int groupPosition, childPosition;
-	long id;
-	String[] pectoral = null;
-	String[] legs = null;
-	String[] back = null;
-	String[] deltoids = null;
-	String[] biceps = null;
-	String[] triceps = null;
-	String[] abs = null;
+	private TextView tvMain;
+	private ImageView imageV;
+	private int groupPosition, childPosition;
+	private long id;
+	private String[] pectoral = null;
+	private String[] legs = null;
+	private String[] back = null;
+	private String[] deltoids = null;
+	private String[] biceps = null;
+	private String[] triceps = null;
+	private String[] abs = null;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
