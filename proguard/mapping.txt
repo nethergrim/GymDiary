@@ -10834,11 +10834,11 @@ com.nethergrim.combogymdiary.SettingsActivity$6 -> com.nethergrim.combogymdiary.
     com.nethergrim.combogymdiary.SettingsActivity this$0 -> a
     boolean onPreferenceClick(android.preference.Preference) -> onPreferenceClick
 com.nethergrim.combogymdiary.StartTrainingActivity -> com.nethergrim.combogymdiary.StartTrainingActivity:
-    com.nethergrim.combogymdiary.DB db -> x
-    android.support.v4.widget.SimpleCursorAdapter scAdapter -> y
-    android.database.Cursor cursor_exe -> z
-    android.widget.ListView lvMain -> A
-    android.widget.Button btnAddNew -> B
+    com.nethergrim.combogymdiary.DB db -> y
+    android.support.v4.widget.SimpleCursorAdapter scAdapter -> z
+    android.database.Cursor cursor_exe -> A
+    android.widget.ListView lvMain -> B
+    com.startad.lib.SADView sadView -> x
     void onConfigurationChanged(android.content.res.Configuration) -> onConfigurationChanged
     void initUi() -> f
     void onCreate(android.os.Bundle) -> onCreate
@@ -10852,6 +10852,8 @@ com.nethergrim.combogymdiary.StartTrainingActivity -> com.nethergrim.combogymdia
     void goToTraining(int) -> b
     void onClick(android.view.View) -> onClick
     void onDestroy() -> onDestroy
+    boolean onOptionsItemSelected(android.view.MenuItem) -> onOptionsItemSelected
+    boolean onCreateOptionsMenu(android.view.Menu) -> onCreateOptionsMenu
     void onLoadFinished(android.support.v4.content.Loader,java.lang.Object) -> a
 com.nethergrim.combogymdiary.StartTrainingActivity$1 -> com.nethergrim.combogymdiary.ac:
     com.nethergrim.combogymdiary.StartTrainingActivity this$0 -> a
@@ -11058,6 +11060,114 @@ com.nethergrim.combogymdiary.drive.DiskRestoreActivity -> com.nethergrim.combogy
     void onConnected(android.os.Bundle) -> a
     void onActivityResult(int,int,android.content.Intent) -> onActivityResult
     void gotoDownloadActivity(com.google.android.gms.drive.DriveId) -> a
+com.startad.lib.SADBannerData -> com.a.a.a:
+    java.lang.String html -> a
+    java.lang.String appPackage -> b
+    java.lang.String appId -> c
+com.startad.lib.SADInstallManager -> com.a.a.b:
+    java.lang.String SHARED_PREF_NAME_CLICKS -> a
+    android.content.SharedPreferences sharedPrefs -> b
+    void saveInstall(java.lang.String) -> a
+    java.lang.Boolean isInstalled(java.lang.String) -> b
+    void checkInstall(java.lang.String,java.lang.String) -> a
+com.startad.lib.SADInstallManager$1 -> com.a.a.c:
+    com.startad.lib.SADInstallManager this$0 -> a
+    java.lang.String val$publisherAppId -> b
+    java.lang.String val$deviceId -> c
+    void run() -> run
+com.startad.lib.SADView -> com.a.a.d:
+    android.os.Handler handler -> a
+    java.lang.String applicationId -> b
+    int showedAdIndex -> c
+    java.lang.String showedLanguage -> d
+    java.util.ArrayList bannerList -> e
+    int adPlaceSize -> f
+    com.startad.lib.SADView$SADListener listener -> g
+    com.startad.lib.SADInstallManager installManager -> h
+    java.lang.String deviceId -> i
+    void setApplicationId(java.lang.String) -> setApplicationId
+    void setAdListener(com.startad.lib.SADView$SADListener) -> setAdListener
+    void loadAd(java.lang.String) -> a
+    void loadAd(java.lang.String,java.lang.String) -> a
+    void openUrl(java.lang.String) -> b
+    void clearAdPlaceData() -> a
+    void prepareAdPlaceData(org.json.JSONObject) -> a
+    void updateHeight() -> b
+    void showAd() -> c
+    com.startad.lib.SADInstallManager getInstallManager() -> getInstallManager
+    java.lang.String getDeviceId() -> getDeviceId
+    java.lang.String md5(java.lang.String) -> c
+com.startad.lib.SADView$1 -> com.a.a.e:
+    com.startad.lib.SADView this$0 -> a
+    boolean shouldOverrideUrlLoading(android.webkit.WebView,java.lang.String) -> shouldOverrideUrlLoading
+    void onPageFinished(android.webkit.WebView,java.lang.String) -> onPageFinished
+com.startad.lib.SADView$2 -> com.a.a.f:
+    com.startad.lib.SADView this$0 -> a
+    java.lang.String val$placeId -> b
+    java.lang.String val$language -> c
+    void run() -> run
+    com.startad.lib.SADView access$0(com.startad.lib.SADView$2) -> a
+com.startad.lib.SADView$2$1 -> com.a.a.g:
+    com.startad.lib.SADView$2 this$1 -> a
+    void run() -> run
+com.startad.lib.SADView$ErrorCode -> com.a.a.h:
+    com.startad.lib.SADView$ErrorCode INTERNAL_ERROR -> a
+    com.startad.lib.SADView$ErrorCode RECEIVEAD_ERROR -> b
+    com.startad.lib.SADView$ErrorCode SHOWAD_ERROR -> c
+    com.startad.lib.SADView$ErrorCode[] ENUM$VALUES -> d
+    com.startad.lib.SADView$ErrorCode[] values() -> values
+    com.startad.lib.SADView$ErrorCode valueOf(java.lang.String) -> valueOf
+com.startad.lib.SADView$SADListener -> com.a.a.i:
+    void onReceiveAd() -> a
+    void onShowedAd() -> b
+    void onError(com.startad.lib.SADView$ErrorCode) -> a
+    void onAdClicked() -> c
+    void noAdFound() -> d
+com.startad.lib.utils.Base64 -> com.a.a.a.a:
+    byte[] _STANDARD_ALPHABET -> b
+    byte[] _STANDARD_DECODABET -> c
+    byte[] _URL_SAFE_ALPHABET -> d
+    byte[] _URL_SAFE_DECODABET -> e
+    byte[] _ORDERED_ALPHABET -> f
+    byte[] _ORDERED_DECODABET -> g
+    boolean $assertionsDisabled -> a
+    byte[] getAlphabet(int) -> b
+    byte[] getDecodabet(int) -> c
+    byte[] encode3to4(byte[],byte[],int,int) -> b
+    byte[] encode3to4(byte[],int,int,byte[],int,int) -> a
+    java.lang.String encodeBytes(byte[],int) -> a
+    java.lang.String encodeBytes(byte[],int,int,int) -> a
+    byte[] encodeBytesToBytes(byte[],int,int,int) -> b
+    int decode4to3(byte[],int,byte[],int,int) -> b
+    byte[] access$0(int) -> a
+    int access$2(byte[],int,byte[],int,int) -> a
+    byte[] access$3(byte[],byte[],int,int) -> a
+com.startad.lib.utils.Base64$OutputStream -> com.a.a.a.b:
+    boolean encode -> a
+    int position -> b
+    byte[] buffer -> c
+    int bufferLength -> d
+    int lineLength -> e
+    boolean breakLines -> f
+    byte[] b4 -> g
+    boolean suspendEncoding -> h
+    int options -> i
+    byte[] decodabet -> j
+    void write(int) -> write
+    void write(byte[],int,int) -> write
+    void flushBase64() -> a
+    void close() -> close
+com.startad.lib.utils.UrlLoader -> com.a.a.a.c:
+    boolean compressionEnambled -> a
+    org.json.JSONObject loadUrlJSONObjectData(java.lang.String) -> a
+    java.lang.String loadUrlData(java.lang.String) -> b
+    java.lang.String loadUrlData(java.lang.String,java.lang.String) -> a
+    java.lang.String sendRawRequest(java.lang.String,java.lang.String) -> b
+    void processNetworkException(int,java.io.IOException) -> a
+    java.lang.String convertStreamToString(java.io.InputStream) -> a
+com.startad.lib.utils.Utils -> com.a.a.a.d:
+    int convertDpToPixel(float,android.content.Context) -> a
+    java.util.ArrayList removeInstalledApps(android.app.Activity,java.util.ArrayList) -> a
 kankan.wheel.R -> kankan.wheel.a:
 kankan.wheel.R$drawable -> kankan.wheel.b:
     int wheel_bg -> wheel_bg

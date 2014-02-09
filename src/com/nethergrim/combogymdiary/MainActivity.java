@@ -19,6 +19,7 @@ public class MainActivity extends BasicMenuActivity {
 	private Button btnWorklog;
 	private Button btnCatalog;
 	private Button btnMeasurements;
+	private Button btnStat;
 	private SharedPreferences sp;
 	private DB db;
 	private Cursor cursor;
@@ -42,6 +43,8 @@ public class MainActivity extends BasicMenuActivity {
 		btnCatalog = (Button) findViewById(R.id.btnCataloginMain);
 		btnMeasurements = (Button) findViewById(R.id.btnMeasurementsS);
 		pb = (ProgressBar) findViewById(R.id.progressBar1);
+		btnStat = (Button)findViewById(R.id.btnStatistics);
+		btnStat.setOnClickListener(this);
 		pb.setVisibility(View.GONE);
 		btnMeasurements.setOnClickListener(this);
 		btnCatalog.setOnClickListener(this);
@@ -157,6 +160,9 @@ public class MainActivity extends BasicMenuActivity {
 			Intent gotoMeasurements = new Intent(this,
 					MeasurementsActivity.class);
 			startActivity(gotoMeasurements);
+		} else if (id == R.id.btnStatistics){
+			Intent intent = new Intent (this,GraphsActivity.class);
+			startActivity(intent);
 		}
 	}
 

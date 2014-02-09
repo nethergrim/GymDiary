@@ -1945,7 +1945,6 @@ com.nethergrim.combogymdiary.R$id: int abs__up
 com.nethergrim.combogymdiary.R$id: int actionSaveEdited
 com.nethergrim.combogymdiary.R$id: int action_add_measurements
 com.nethergrim.combogymdiary.R$id: int action_settings
-com.nethergrim.combogymdiary.R$id: int adView
 com.nethergrim.combogymdiary.R$id: int adView1
 com.nethergrim.combogymdiary.R$id: int adView2
 com.nethergrim.combogymdiary.R$id: int adView3
@@ -1989,6 +1988,7 @@ com.nethergrim.combogymdiary.R$id: int etNewNameOfProgram
 com.nethergrim.combogymdiary.R$id: int etTimerValue
 com.nethergrim.combogymdiary.R$id: int etTimerValueAtTraining
 com.nethergrim.combogymdiary.R$id: int flingRemove
+com.nethergrim.combogymdiary.R$id: int frameAd
 com.nethergrim.combogymdiary.R$id: int homeAsUp
 com.nethergrim.combogymdiary.R$id: int hybrid
 com.nethergrim.combogymdiary.R$id: int imageCat
@@ -1996,6 +1996,7 @@ com.nethergrim.combogymdiary.R$id: int imageView1
 com.nethergrim.combogymdiary.R$id: int imageView2
 com.nethergrim.combogymdiary.R$id: int imageView3
 com.nethergrim.combogymdiary.R$id: int infoText
+com.nethergrim.combogymdiary.R$id: int itemAddNewProgramm
 com.nethergrim.combogymdiary.R$id: int itemEditTrainings
 com.nethergrim.combogymdiary.R$id: int itemExit
 com.nethergrim.combogymdiary.R$id: int itemSeePreviousTraining
@@ -2151,6 +2152,7 @@ com.nethergrim.combogymdiary.R$menu: int main
 com.nethergrim.combogymdiary.R$menu: int measurements
 com.nethergrim.combogymdiary.R$menu: int measurements_detailed
 com.nethergrim.combogymdiary.R$menu: int menu_add_delete_edit
+com.nethergrim.combogymdiary.R$menu: int start_training_activity
 com.nethergrim.combogymdiary.R$menu: int temp
 com.nethergrim.combogymdiary.R$string: int Add
 com.nethergrim.combogymdiary.R$string: int Add_new
@@ -2726,6 +2728,12 @@ com.nethergrim.combogymdiary.drive.DiskFileDownloadActivity
 com.nethergrim.combogymdiary.drive.DiskFileDownloadActivity: DiskFileDownloadActivity()
 com.nethergrim.combogymdiary.drive.DiskRestoreActivity
 com.nethergrim.combogymdiary.drive.DiskRestoreActivity: DiskRestoreActivity()
+com.startad.lib.SADView: void setApplicationId(java.lang.String)
+com.startad.lib.SADView: void setAdListener(com.startad.lib.SADView$SADListener)
+com.startad.lib.SADView: com.startad.lib.SADInstallManager getInstallManager()
+com.startad.lib.SADView: java.lang.String getDeviceId()
+com.startad.lib.SADView$ErrorCode: com.startad.lib.SADView$ErrorCode[] values()
+com.startad.lib.SADView$ErrorCode: com.startad.lib.SADView$ErrorCode valueOf(java.lang.String)
 javax.annotation.meta.When: javax.annotation.meta.When[] values()
 javax.annotation.meta.When: javax.annotation.meta.When valueOf(java.lang.String)
 kankan.wheel.R$drawable: int wheel_bg

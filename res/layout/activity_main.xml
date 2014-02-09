@@ -13,42 +13,40 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context=".MainActivity"
     tools:ignore="NewApi" >
-    
+
     <Button
         android:id="@+id/buttonStartTraining"
-        android:background="@drawable/button_start_training"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="left"
-        android:textColor="@android:color/white"
         android:layout_margin="8dp"
-        android:layout_marginTop="70dp"
+        android:layout_marginTop="50dp"
+        android:background="@drawable/button_start_training"
         android:text="@string/startTrainingButtonString"
-        android:textSize="@dimen/text20" />
-    
+        android:textColor="@android:color/white"
+        android:textSize="18sp" />
+
     <Button
         android:id="@+id/buttonExcersisesList"
         style="@style/HabraThemeButton"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="left"
-        android:textColor="@android:color/white"
         android:layout_margin="8dp"
         android:layout_marginTop="-4dp"
         android:text="@string/excersisiesListButtonString"
-        android:textSize="@dimen/text20" />
+        android:textColor="@android:color/white" />
 
     <Button
         android:id="@+id/btnWorklog"
         style="@style/HabraThemeButton"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:textColor="@android:color/white"
         android:layout_gravity="left"
         android:layout_margin="8dp"
         android:layout_marginTop="-4dp"
         android:text="@string/worklogString"
-        android:textSize="@dimen/text20" />
+        android:textColor="@android:color/white" />
 
     <Button
         android:id="@+id/btnMeasurementsS"
@@ -56,11 +54,10 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="left"
-        android:textColor="@android:color/white"
         android:layout_margin="8dp"
         android:layout_marginTop="-4dp"
-        android:text="@string/measurements" 
-        android:textSize="@dimen/text20"/>
+        android:text="@string/measurements"
+        android:textColor="@android:color/white" />
 
     <Button
         android:id="@+id/btnCataloginMain"
@@ -69,8 +66,16 @@
         android:layout_margin="8dp"
         android:layout_marginTop="-4dp"
         android:text="@string/exe_catalog"
-        android:textColor="@android:color/white"
-        android:textSize="@dimen/text20" />
+        android:textColor="@android:color/white" />
+
+    <Button
+        android:id="@+id/btnStatistics"
+        style="@style/HabraThemeButton"
+        android:layout_width="match_parent"
+        android:layout_gravity="left"
+        android:layout_margin="8dp"
+        android:layout_marginTop="-4dp"
+        android:text="@string/statistics" />
 
     <Button
         android:id="@+id/buttonSettings"
@@ -78,16 +83,15 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="left"
-        android:textColor="@android:color/white"
         android:layout_margin="8dp"
         android:layout_marginTop="-4dp"
         android:text="@string/settingsButtonString"
-        android:textSize="@dimen/text20" />
+        android:textColor="@android:color/white" />
 
     <ProgressBar
         android:id="@+id/progressBar1"
         android:layout_column="0"
-        android:layout_gravity="center"
-        android:layout_row="5" />
+        android:layout_gravity="center_horizontal|top"
+        android:layout_row="0" />
 
 </GridLayout>

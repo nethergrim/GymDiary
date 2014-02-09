@@ -185,6 +185,13 @@
             android:configChanges="keyboardHidden|orientation|screenSize"
             android:theme="@android:style/Theme.DeviceDefault.Dialog.NoActionBar" >
         </activity>
+        <activity
+            android:name="com.nethergrim.combogymdiary.GraphsActivity"
+            android:parentActivityName="com.nethergrim.combogymdiary.MainActivity" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.nethergrim.combogymdiary.MainActivity" />
+        </activity>
     </application>
 
     <uses-permission android:name="android.permission.GET_ACCOUNTS" />

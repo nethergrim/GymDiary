@@ -1,6 +1,7 @@
 <resources>
 
     <string name="sm">(см)</string>
+    <string name="statistics">Статистика</string>
     <string name="auto_backup_to_disk">Автоматически</string>
     <string name="auto_backup_to_disk_detailed">Автоматически отсылать резевную копию в Google Drive после тренировки</string>
     <string name="drive_backuped_true">Сделана резервная копия данных на Google Drive\nЕе можно найти здесь: "GoogleDrive/Workout Diary Backups/"</string>

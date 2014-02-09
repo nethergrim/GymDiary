@@ -209,6 +209,12 @@ public class StartTrainingActivity extends BasicMenuActivity implements
 			startActivity(gotoAddingProgramActivity);
 
 			return true;
+		} else if (id == android.R.id.home){
+			if (mMenuDrawer.isActivated()) {
+				mMenuDrawer.closeMenu();
+			} else
+				mMenuDrawer.toggleMenu();
+			return true;
 		}
 
 		return false;

@@ -8,23 +8,23 @@
 
     <Button
         android:id="@+id/buttonStartTraining"
-        android:background="@drawable/button_start_training"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="left"
         android:layout_marginBottom="8dp"
         android:layout_marginLeft="30dp"
+        android:textSize="18sp"
         android:layout_marginRight="30dp"
         android:layout_marginTop="10dp"
+        android:background="@drawable/button_start_training"
         android:text="@string/startTrainingButtonString"
-        android:textColor="@android:color/white"
-        android:textSize="@dimen/text20" />
+        android:textColor="@android:color/white" />
 
     <LinearLayout
         android:id="@+id/linearLayout1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/buttonSettings"
+        android:layout_alignLeft="@+id/buttonStartTraining"
         android:layout_alignRight="@+id/buttonStartTraining"
         android:layout_below="@+id/buttonStartTraining"
         android:orientation="horizontal" >
@@ -37,8 +37,7 @@
             android:layout_marginBottom="8dp"
             android:layout_weight="1"
             android:text="@string/excersisiesListButtonString"
-            android:textColor="@android:color/white"
-            android:textSize="@dimen/text20" />
+            android:textColor="@android:color/white" />
 
         <Button
             android:id="@+id/btnWorklog"
@@ -49,8 +48,7 @@
             android:layout_marginLeft="8dp"
             android:layout_weight="1"
             android:text="@string/worklogString"
-            android:textColor="@android:color/white"
-            android:textSize="@dimen/text20" />
+            android:textColor="@android:color/white"/>
     </LinearLayout>
 
     <LinearLayout
@@ -63,14 +61,13 @@
 
         <Button
             android:id="@+id/btnCataloginMain"
-            android:layout_marginBottom="8dp"
-            android:layout_width="0dp"
-            android:layout_weight="1"
             style="@style/HabraThemeButton"
-            android:textSize="@dimen/text20"
-            android:textColor="@android:color/white"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:text="@string/exe_catalog" />
+            android:layout_marginBottom="8dp"
+            android:layout_weight="1"
+            android:text="@string/exe_catalog"
+            android:textColor="@android:color/white" />
 
         <Button
             android:id="@+id/btnMeasurementsS"
@@ -82,28 +79,44 @@
             android:layout_marginLeft="8dp"
             android:layout_weight="1"
             android:text="@string/measurements"
-            android:textColor="@android:color/white"
-            android:textSize="@dimen/text20" />
-
+            android:textColor="@android:color/white"/>
     </LinearLayout>
-
-    <Button
-        android:id="@+id/buttonSettings"
-        style="@style/HabraThemeButton"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/buttonStartTraining"
-        android:layout_alignRight="@+id/buttonStartTraining"
-        android:layout_below="@+id/linearLayout2"
-        android:text="@string/settingsButtonString"
-        android:textColor="@android:color/white"
-        android:textSize="@dimen/text20" />
 
     <ProgressBar
         android:id="@+id/progressBar1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/buttonSettings"
+        android:layout_below="@+id/linearLayout2"
         android:layout_centerHorizontal="true" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/linearLayout2"
+        android:layout_alignRight="@+id/linearLayout2"
+        android:layout_below="@+id/linearLayout2"
+        android:orientation="horizontal"
+        android:weightSum="2" >
+
+        <Button
+            android:id="@+id/btnStatistics"
+            style="@style/HabraThemeButton"
+            android:layout_width="0dip"
+            android:layout_height="wrap_content"
+            
+            android:layout_weight="1"
+            android:text="@string/statistics" />
+
+        <Button
+            android:id="@+id/buttonSettings"
+            style="@style/HabraThemeButton"
+            android:layout_width="0dip"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="8dp"
+            android:layout_weight="1"
+            android:text="@string/settingsButtonString"
+            android:textColor="@android:color/white" />
+
+    </LinearLayout>
 
 </RelativeLayout>

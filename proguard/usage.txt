@@ -1295,7 +1295,7 @@ com.actionbarsherlock.internal.ActionBarSherlockCompat:
     273:277:public boolean dispatchOpenOptionsMenu()
     284:291:public boolean dispatchCloseOptionsMenu()
     298:305:public void dispatchPostCreate(android.os.Bundle)
-    310:313:public boolean dispatchCreateOptionsMenu(android.view.Menu)
+    313:313:public boolean dispatchCreateOptionsMenu(android.view.Menu)
     320:345:public boolean dispatchPrepareOptionsMenu(android.view.Menu)
     350:350:public boolean dispatchOptionsItemSelected(android.view.MenuItem)
     357:364:public boolean dispatchMenuOpened(int,android.view.Menu)
@@ -5401,6 +5401,7 @@ com.nethergrim.combogymdiary.BasicMenuActivity:
     public static final java.lang.String DRIVE_FOLDER_ID_ENCODED_TO_STRING
     public static final java.lang.String DRIVE_EXISTS
     public static final java.lang.String AUTO_BACKUP_TO_DRIVE
+    protected static final java.lang.String APPLICAITON_ID
     protected static final java.lang.String MINUTES
     protected static final java.lang.String SECONDS
 com.nethergrim.combogymdiary.BuildConfig
@@ -5484,6 +5485,72 @@ com.nethergrim.combogymdiary.drive.DiskBackupActivity:
     private static final int REQUEST_CODE_RESOLUTION
 com.nethergrim.combogymdiary.drive.DiskRestoreActivity:
     private static final int REQUEST_CODE_OPENER
+com.startad.lib.SADBannerData:
+    private static final long serialVersionUID
+com.startad.lib.SADView:
+    public static final java.lang.String LANGUAGE_RU
+    public static final java.lang.String LANGUAGE_EN
+    public static final java.lang.String PLACE_ID_DEFAULT
+    public static final int BANNERSIZE_80
+    public static final int BANNERSIZE_120
+    protected static final java.lang.String URL_GET_AD
+    protected static final java.lang.String URL_INSTALL
+    protected static final java.lang.String TAG
+    protected static final java.lang.String FIELD_ADPLACESIZE
+    protected static final java.lang.String FIELD_BANNERLIST
+    236:241:public void saveInstanceState(android.os.Bundle)
+    243:253:public void restoreInstanceState(android.os.Bundle)
+com.startad.lib.utils.Base64:
+    public static final int NO_OPTIONS
+    public static final int ENCODE
+    public static final int DECODE
+    public static final int GZIP
+    public static final int DONT_GUNZIP
+    public static final int DO_BREAK_LINES
+    public static final int URL_SAFE
+    public static final int ORDERED
+    private static final int MAX_LINE_LENGTH
+    private static final byte EQUALS_SIGN
+    private static final byte NEW_LINE
+    private static final java.lang.String PREFERRED_ENCODING
+    private static final byte WHITE_SPACE_ENC
+    private static final byte EQUALS_SIGN_ENC
+    558:567:public static void encode(java.nio.ByteBuffer,java.nio.ByteBuffer)
+    582:593:public static void encode(java.nio.ByteBuffer,java.nio.CharBuffer)
+    618:618:public static java.lang.String encodeObject(java.io.Serializable)
+    655:698:public static java.lang.String encodeObject(java.io.Serializable,int)
+    718:725:public static java.lang.String encodeBytes(byte[])
+    786:793:public static java.lang.String encodeBytes(byte[],int,int)
+    858:864:public static byte[] encodeBytesToBytes(byte[])
+    1120:1126:public static byte[] decode(byte[])
+    1152:1208:public static byte[] decode(byte[],int,int,int)
+    1224:1224:public static byte[] decode(java.lang.String)
+    1242:1297:public static byte[] decode(java.lang.String,int)
+    1316:1316:public static java.lang.Object decodeToObject(java.lang.String)
+    1341:1385:public static java.lang.Object decodeToObject(java.lang.String,int,java.lang.ClassLoader)
+    1407:1424:public static void encodeToFile(byte[],java.lang.String)
+    1443:1456:public static void decodeToFile(java.lang.String,java.lang.String)
+    1478:1517:public static byte[] decodeFromFile(java.lang.String)
+    1539:1570:public static java.lang.String encodeFromFile(java.lang.String)
+    1584:1598:public static void encodeFileToFile(java.lang.String,java.lang.String)
+    1612:1626:public static void decodeFileToFile(java.lang.String,java.lang.String)
+    495:495:static synthetic byte[] access$1(byte[],int,int,byte[],int,int)
+com.startad.lib.utils.Base64$1
+com.startad.lib.utils.Base64$InputStream
+com.startad.lib.utils.Base64$OutputStream:
+    1874:1875:public Base64$OutputStream(java.io.OutputStream)
+    2044:2046:public void suspendEncoding()
+    2057:2058:public void resumeEncoding()
+com.startad.lib.utils.UrlLoader:
+    protected static final int MAX_TRIES
+    protected static final java.lang.String TAG
+    32:33:public void setCompressionEnabled(java.lang.Boolean)
+    36:36:public org.json.JSONArray loadUrlJSONArrayData(java.lang.String)
+    44:44:public org.json.JSONArray loadUrlJSONArrayData(java.lang.String,java.lang.String)
+    48:48:public org.json.JSONObject loadUrlJSONObjectData(java.lang.String,java.lang.String)
+com.startad.lib.utils.Utils:
+    16:16:public Utils()
+    18:22:public static boolean isNetworkAvailable(android.content.Context)
 javax.annotation.CheckForNull
 javax.annotation.CheckForSigned
 javax.annotation.CheckReturnValue

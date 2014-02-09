@@ -1,4 +1,4 @@
-<resources>
+<resources xmlns:android="http://schemas.android.com/apk/res/android">
 
     <!--
         Base application theme, dependent on API level. This theme is replaced
@@ -23,7 +23,10 @@
     </style>-->
     
     <style name="HabraThemeButton" parent="@android:style/Widget.Button">
-    	<item name="android:background">@drawable/button</item>    
+    	<item name="android:background">@drawable/button</item>
+    	<item name="android:textColor">@android:color/white</item>
+    	<item name="android:textSize">18sp</item>
+    	
     </style>
 
 </resources>
