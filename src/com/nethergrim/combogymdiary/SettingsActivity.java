@@ -1,6 +1,8 @@
 package com.nethergrim.combogymdiary;
 
 import com.nethergrim.combogymdiary.DialogRestoreFromBackup.MyInterface;
+import com.nethergrim.combogymdiary.drive.DiskBackupActivity;
+import com.nethergrim.combogymdiary.drive.DiskRestoreActivity;
 
 import android.app.ActionBar;
 import android.content.Intent;
@@ -139,7 +141,7 @@ public class SettingsActivity extends PreferenceActivity implements MyInterface 
 	}
 
 	private void gotoDisk() {
-		Intent intent = new Intent(this, DiskActivity.class);
+		Intent intent = new Intent(this, DiskBackupActivity.class);
 		startActivity(intent);
 	}
 

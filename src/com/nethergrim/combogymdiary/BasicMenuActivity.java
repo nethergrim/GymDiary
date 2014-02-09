@@ -1,5 +1,7 @@
 package com.nethergrim.combogymdiary;
 
+import com.google.analytics.tracking.android.EasyTracker;
+
 import net.simonvt.menudrawer.MenuDrawer;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -31,6 +33,7 @@ public abstract class BasicMenuActivity extends FragmentActivity implements
 	public final static String DRIVE_FOLDER_ID_ENCODED_TO_STRING = "drive_folder_id"; 
 	public final static String DRIVE_EXISTS = "drive_exists"; 
 	public final static String AUTO_BACKUP_TO_DRIVE = "settingAutoBackup"; 
+	protected final static String APPLICAITON_ID = "52ebc42807089e0f00000000";
 	protected final static String MINUTES = "minutes";
 	protected final static String SECONDS = "seconds";
 	protected boolean isTrainingAtProgress;
@@ -45,6 +48,18 @@ public abstract class BasicMenuActivity extends FragmentActivity implements
 		mMenuDrawer.setTouchBezelSize(3000);
 		getActionBar().setDisplayShowHomeEnabled(true);
 		initMenuButtons();
+	}
+	
+	@Override
+	protected void onStart(){
+		super.onStart();
+		EasyTracker.getInstance(this).activityStart(this);
+	}
+	
+	@Override
+	protected void onStop(){
+		super.onStop();
+		EasyTracker.getInstance(this).activityStop(this);
 	}
 
 	@Override

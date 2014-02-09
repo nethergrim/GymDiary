@@ -48,6 +48,7 @@ import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.AdView;
 import com.mobeta.android.dslv.DragSortListView;
 import com.nethergrim.combogymdiary.Dialog1.MyInterface;
+import com.nethergrim.combogymdiary.drive.DiskCreateFolderActivity;
 
 @SuppressLint("SimpleDateFormat")
 public class TrainingAtProgress extends BasicMenuActivity implements
@@ -131,16 +132,12 @@ public class TrainingAtProgress extends BasicMenuActivity implements
 	public void onChoose() {
 		sp.edit().putString(TRAINING_NAME, "").apply();
 		BackupManager bm = new BackupManager(this);
+		bm.dataChanged();
 		Cursor tmpCursor = db.getDataMain(null, null, null, null, null, null);
 		if (tmpCursor.getCount() > 10) {
-			bm.dataChanged();
+			
 			Backuper backUP = new Backuper();
-			boolean yes = backUP.backupToSd();
-			if (yes) {
-				Toast.makeText(getApplicationContext(),
-						getResources().getString(R.string.backuped),
-						Toast.LENGTH_LONG).show();
-			}
+			backUP.backupToSd();
 		}
 		Editor ed = sp.edit();
 		ed.putBoolean(TRAINING_AT_PROGRESS, false);

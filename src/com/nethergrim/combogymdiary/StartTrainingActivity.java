@@ -1,7 +1,10 @@
 package com.nethergrim.combogymdiary;
 
+import java.util.Locale;
+
 import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.AdView;
+import com.startad.lib.SADView;
 
 import android.content.Context;
 import android.content.Intent;
@@ -15,12 +18,14 @@ import android.support.v4.widget.SimpleCursorAdapter;
 import android.util.Log;
 import android.view.ContextMenu;
 import android.view.ContextMenu.ContextMenuInfo;
+import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.AdapterView.AdapterContextMenuInfo;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.Button;
+import android.widget.FrameLayout;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
@@ -35,7 +40,7 @@ public class StartTrainingActivity extends BasicMenuActivity implements
 	private SimpleCursorAdapter scAdapter;
 	private Cursor cursor_exe;
 	private ListView lvMain;
-	private Button btnAddNew;
+	protected SADView sadView;
 
 	@Override
 	public void onConfigurationChanged(Configuration newConfig) {
@@ -47,15 +52,20 @@ public class StartTrainingActivity extends BasicMenuActivity implements
 		mMenuDrawer.setContentView(R.layout.start_training);
 		lvMain = (ListView) findViewById(R.id.lvStartTraining);
 		getActionBar().setTitle(R.string.startTrainingList);
-		btnAddNew = (Button) findViewById(R.id.btnSave);
-		btnAddNew.setOnClickListener(this);
 		db = new DB(this);
 		db.open();
 		cursor_exe = db.getDataTrainings(null, null, null, null, null, null);
 		initList();
-		AdView adView = (AdView) this.findViewById(R.id.adView);
-		AdRequest adRequest = new AdRequest.Builder().build();
-		adView.loadAd(adRequest);
+
+		FrameLayout fl = (FrameLayout) findViewById(R.id.frameAd);
+		this.sadView = new SADView(this, APPLICAITON_ID);
+		fl.addView(sadView);
+		String lang = Locale.getDefault().getLanguage();
+		if (lang.equals("ru")) {
+			this.sadView.loadAd(SADView.LANGUAGE_RU);
+		} else {
+			this.sadView.loadAd(SADView.LANGUAGE_EN);
+		}
 		getSupportLoaderManager().initLoader(0, null, this);
 	}
 
@@ -180,20 +190,33 @@ public class StartTrainingActivity extends BasicMenuActivity implements
 	@Override
 	public void onClick(View arg0) {
 		int id = arg0.getId();
-		switch (id) {
-		case R.id.btnSave:
-			Intent gotoAddingProgramActivity = new Intent(this,
-					AddingProgram.class);
-			startActivity(gotoAddingProgramActivity);
-			break;
-		default:
-			pressButton(id);
-			break;
-		}
+
+		pressButton(id);
+
 	}
 
 	protected void onDestroy() {
 		super.onDestroy();
 		db.close();
+	}
+
+	@Override
+	public boolean onOptionsItemSelected(MenuItem item) {
+		int id = item.getItemId();
+		if (id == R.id.itemAddNewProgramm) {
+			Intent gotoAddingProgramActivity = new Intent(this,
+					AddingProgram.class);
+			startActivity(gotoAddingProgramActivity);
+
+			return true;
+		}
+
+		return false;
+	}
+
+	@Override
+	public boolean onCreateOptionsMenu(Menu menu) {
+		getMenuInflater().inflate(R.menu.start_training_activity, menu);
+		return true;
 	}
 }

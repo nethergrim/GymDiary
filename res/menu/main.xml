@@ -1,31 +1,23 @@
 <?xml version="1.0" encoding="utf-8"?>
-<menu
- xmlns:android="http://schemas.android.com/apk/res/android">
-		
-    
-    
-		<item
-		    android:id="@+id/itemSeePreviousTraining"
-		    android:showAsAction="ifRoom"
-		    android:title="@string/see_last_training"
-		    android:icon="@drawable/ic_action_undo"
-		    
-		    ></item>
-    
-		<item android:id="@+id/itemEditTrainings"
-		    android:showAsAction="ifRoom"
-		    android:title="@string/add_an_exercise"
-		    android:icon="@drawable/ic_action_new"
-		    
-		    ></item>
-		
-	
-		
-		<item
-		 android:id="@+id/itemExit"
-		 android:showAsAction="always"
-		 android:title="@string/exit"
-		 android:icon="@drawable/ic_action_accept"
-		 >
-		</item>
+<menu xmlns:android="http://schemas.android.com/apk/res/android" >
+
+    <item
+        android:id="@+id/itemSeePreviousTraining"
+        android:icon="@drawable/ic_action_undo"
+        android:showAsAction="ifRoom"
+        android:title="@string/see_last_training">
+    </item>
+    <item
+        android:id="@+id/itemEditTrainings"
+        android:icon="@drawable/ic_action_new"
+        android:showAsAction="ifRoom"
+        android:title="@string/add_an_exercise">
+    </item>
+    <item
+        android:id="@+id/itemExit"
+        android:icon="@drawable/ic_action_accept"
+        android:showAsAction="always"
+        android:title="@string/exit">
+    </item>
+
 </menu>

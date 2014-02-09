@@ -2,8 +2,8 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.nethergrim.combogymdiary"
     android:installLocation="auto"
-    android:versionCode="51"
-    android:versionName="1.3.14" >
+    android:versionCode="53"
+    android:versionName="1.3.16" >
 
     <uses-sdk
         android:minSdkVersion="15"
@@ -151,7 +151,7 @@
         </service>
 
         <activity
-            android:name="com.nethergrim.combogymdiary.DiskActivity"
+            android:name="com.nethergrim.combogymdiary.drive.DiskBackupActivity"
             android:parentActivityName="com.nethergrim.combogymdiary.SettingsActivity"
             android:theme="@android:style/Theme.DeviceDefault.Dialog.NoActionBar" >
             <meta-data
@@ -159,29 +159,29 @@
                 android:value="com.nethergrim.combogymdiary.SettingsActivity" />
         </activity>
         <activity
-            android:name="com.nethergrim.combogymdiary.DiskRestoreActivity"
+            android:name="com.nethergrim.combogymdiary.drive.DiskRestoreActivity"
             android:parentActivityName="com.nethergrim.combogymdiary.SettingsActivity"
-            android:theme="@android:style/Theme.DeviceDefault.Dialog.NoActionBar" >
+            android:theme="@android:style/Theme.DeviceDefault.Light.NoActionBar.Fullscreen" >
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.nethergrim.combogymdiary.SettingsActivity" />
         </activity>
         <activity
-            android:name="com.nethergrim.combogymdiary.DiskFileDownloadActivity"
+            android:name="com.nethergrim.combogymdiary.drive.DiskFileDownloadActivity"
             android:configChanges="keyboardHidden|orientation|screenSize"
-            android:parentActivityName="com.nethergrim.combogymdiary.DiskRestoreActivity"
-            android:theme="@android:style/Theme.DeviceDefault.Dialog.NoActionBar" >
+            android:parentActivityName="com.nethergrim.combogymdiary.drive.DiskRestoreActivity"
+            android:theme="@android:style/Theme.DeviceDefault.Light.NoActionBar.Fullscreen" >
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.nethergrim.combogymdiary.DiskRestoreActivity" />
         </activity>
         <activity
-            android:name="com.nethergrim.combogymdiary.DiskCreateFolderActivity"
+            android:name="com.nethergrim.combogymdiary.drive.DiskCreateFolderActivity"
             android:configChanges="keyboardHidden|orientation|screenSize"
             android:theme="@android:style/Theme.DeviceDefault.Dialog.NoActionBar" >
         </activity>
         <activity
-            android:name="com.nethergrim.combogymdiary.DiskAutoBackupActivity"
+            android:name="com.nethergrim.combogymdiary.drive.DiskAutoBackupActivity"
             android:configChanges="keyboardHidden|orientation|screenSize"
             android:theme="@android:style/Theme.DeviceDefault.Dialog.NoActionBar" >
         </activity>

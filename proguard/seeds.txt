@@ -894,6 +894,40 @@ com.google.ads.AdRequest$ErrorCode: com.google.ads.AdRequest$ErrorCode[] values(
 com.google.ads.AdRequest$ErrorCode: com.google.ads.AdRequest$ErrorCode valueOf(java.lang.String)
 com.google.ads.AdRequest$Gender: com.google.ads.AdRequest$Gender[] values()
 com.google.ads.AdRequest$Gender: com.google.ads.AdRequest$Gender valueOf(java.lang.String)
+com.google.analytics.containertag.common.FunctionType: com.google.analytics.containertag.common.FunctionType[] values()
+com.google.analytics.containertag.common.FunctionType: com.google.analytics.containertag.common.FunctionType valueOf(java.lang.String)
+com.google.analytics.containertag.common.Key: com.google.analytics.containertag.common.Key[] values()
+com.google.analytics.containertag.common.Key: com.google.analytics.containertag.common.Key valueOf(java.lang.String)
+com.google.analytics.containertag.proto.Debug$EventInfo$EventType: com.google.analytics.containertag.proto.Debug$EventInfo$EventType[] values()
+com.google.analytics.containertag.proto.Debug$EventInfo$EventType: com.google.analytics.containertag.proto.Debug$EventInfo$EventType valueOf(java.lang.String)
+com.google.analytics.containertag.proto.MutableDebug$EventInfo$EventType: com.google.analytics.containertag.proto.MutableDebug$EventInfo$EventType[] values()
+com.google.analytics.containertag.proto.MutableDebug$EventInfo$EventType: com.google.analytics.containertag.proto.MutableDebug$EventInfo$EventType valueOf(java.lang.String)
+com.google.analytics.containertag.proto.MutableServing$CacheOption$CacheLevel: com.google.analytics.containertag.proto.MutableServing$CacheOption$CacheLevel[] values()
+com.google.analytics.containertag.proto.MutableServing$CacheOption$CacheLevel: com.google.analytics.containertag.proto.MutableServing$CacheOption$CacheLevel valueOf(java.lang.String)
+com.google.analytics.containertag.proto.MutableServing$ResourceState: com.google.analytics.containertag.proto.MutableServing$ResourceState[] values()
+com.google.analytics.containertag.proto.MutableServing$ResourceState: com.google.analytics.containertag.proto.MutableServing$ResourceState valueOf(java.lang.String)
+com.google.analytics.containertag.proto.MutableServing$ResourceType: com.google.analytics.containertag.proto.MutableServing$ResourceType[] values()
+com.google.analytics.containertag.proto.MutableServing$ResourceType: com.google.analytics.containertag.proto.MutableServing$ResourceType valueOf(java.lang.String)
+com.google.analytics.containertag.proto.Serving$CacheOption$CacheLevel: com.google.analytics.containertag.proto.Serving$CacheOption$CacheLevel[] values()
+com.google.analytics.containertag.proto.Serving$CacheOption$CacheLevel: com.google.analytics.containertag.proto.Serving$CacheOption$CacheLevel valueOf(java.lang.String)
+com.google.analytics.containertag.proto.Serving$ResourceState: com.google.analytics.containertag.proto.Serving$ResourceState[] values()
+com.google.analytics.containertag.proto.Serving$ResourceState: com.google.analytics.containertag.proto.Serving$ResourceState valueOf(java.lang.String)
+com.google.analytics.containertag.proto.Serving$ResourceType: com.google.analytics.containertag.proto.Serving$ResourceType[] values()
+com.google.analytics.containertag.proto.Serving$ResourceType: com.google.analytics.containertag.proto.Serving$ResourceType valueOf(java.lang.String)
+com.google.analytics.midtier.proto.containertag.MutableTypeSystem$Value$Escaping: com.google.analytics.midtier.proto.containertag.MutableTypeSystem$Value$Escaping[] values()
+com.google.analytics.midtier.proto.containertag.MutableTypeSystem$Value$Escaping: com.google.analytics.midtier.proto.containertag.MutableTypeSystem$Value$Escaping valueOf(java.lang.String)
+com.google.analytics.midtier.proto.containertag.MutableTypeSystem$Value$Type: com.google.analytics.midtier.proto.containertag.MutableTypeSystem$Value$Type[] values()
+com.google.analytics.midtier.proto.containertag.MutableTypeSystem$Value$Type: com.google.analytics.midtier.proto.containertag.MutableTypeSystem$Value$Type valueOf(java.lang.String)
+com.google.analytics.midtier.proto.containertag.TypeSystem$Value$Escaping: com.google.analytics.midtier.proto.containertag.TypeSystem$Value$Escaping[] values()
+com.google.analytics.midtier.proto.containertag.TypeSystem$Value$Escaping: com.google.analytics.midtier.proto.containertag.TypeSystem$Value$Escaping valueOf(java.lang.String)
+com.google.analytics.midtier.proto.containertag.TypeSystem$Value$Type: com.google.analytics.midtier.proto.containertag.TypeSystem$Value$Type[] values()
+com.google.analytics.midtier.proto.containertag.TypeSystem$Value$Type: com.google.analytics.midtier.proto.containertag.TypeSystem$Value$Type valueOf(java.lang.String)
+com.google.analytics.tracking.android.GAServiceProxy$ConnectState: com.google.analytics.tracking.android.GAServiceProxy$ConnectState[] values()
+com.google.analytics.tracking.android.GAServiceProxy$ConnectState: com.google.analytics.tracking.android.GAServiceProxy$ConnectState valueOf(java.lang.String)
+com.google.analytics.tracking.android.GAUsage$Field: com.google.analytics.tracking.android.GAUsage$Field[] values()
+com.google.analytics.tracking.android.GAUsage$Field: com.google.analytics.tracking.android.GAUsage$Field valueOf(java.lang.String)
+com.google.analytics.tracking.android.Logger$LogLevel: com.google.analytics.tracking.android.Logger$LogLevel[] values()
+com.google.analytics.tracking.android.Logger$LogLevel: com.google.analytics.tracking.android.Logger$LogLevel valueOf(java.lang.String)
 com.google.android.gms.R$attr: int adSize
 com.google.android.gms.R$attr: int adSizes
 com.google.android.gms.R$attr: int adUnitId
@@ -1029,6 +1063,8 @@ com.google.android.gms.ads.search.SearchAdView: java.lang.String getAdUnitId()
 com.google.android.gms.ads.search.SearchAdView: void setAdListener(com.google.android.gms.ads.AdListener)
 com.google.android.gms.ads.search.SearchAdView: void setAdSize(com.google.android.gms.ads.AdSize)
 com.google.android.gms.ads.search.SearchAdView: void setAdUnitId(java.lang.String)
+com.google.android.gms.analytics.internal.Command
+com.google.android.gms.analytics.internal.Command: android.os.Parcelable$Creator CREATOR
 com.google.android.gms.common.SignInButton: void setSize(int)
 com.google.android.gms.common.SignInButton: void setColorScheme(int)
 com.google.android.gms.common.SignInButton: void setOnClickListener(android.view.View$OnClickListener)
@@ -1219,6 +1255,26 @@ com.google.gson.stream.JsonScope: com.google.gson.stream.JsonScope[] values()
 com.google.gson.stream.JsonScope: com.google.gson.stream.JsonScope valueOf(java.lang.String)
 com.google.gson.stream.JsonToken: com.google.gson.stream.JsonToken[] values()
 com.google.gson.stream.JsonToken: com.google.gson.stream.JsonToken valueOf(java.lang.String)
+com.google.tagmanager.Container$RefreshFailure: com.google.tagmanager.Container$RefreshFailure[] values()
+com.google.tagmanager.Container$RefreshFailure: com.google.tagmanager.Container$RefreshFailure valueOf(java.lang.String)
+com.google.tagmanager.Container$RefreshType: com.google.tagmanager.Container$RefreshType[] values()
+com.google.tagmanager.Container$RefreshType: com.google.tagmanager.Container$RefreshType valueOf(java.lang.String)
+com.google.tagmanager.ContainerOpener$OpenType: com.google.tagmanager.ContainerOpener$OpenType[] values()
+com.google.tagmanager.ContainerOpener$OpenType: com.google.tagmanager.ContainerOpener$OpenType valueOf(java.lang.String)
+com.google.tagmanager.JoinerMacro$EscapeType: com.google.tagmanager.JoinerMacro$EscapeType[] values()
+com.google.tagmanager.JoinerMacro$EscapeType: com.google.tagmanager.JoinerMacro$EscapeType valueOf(java.lang.String)
+com.google.tagmanager.LoadCallback$Failure: com.google.tagmanager.LoadCallback$Failure[] values()
+com.google.tagmanager.LoadCallback$Failure: com.google.tagmanager.LoadCallback$Failure valueOf(java.lang.String)
+com.google.tagmanager.Logger$LogLevel: com.google.tagmanager.Logger$LogLevel[] values()
+com.google.tagmanager.Logger$LogLevel: com.google.tagmanager.Logger$LogLevel valueOf(java.lang.String)
+com.google.tagmanager.PreviewManager$PreviewMode: com.google.tagmanager.PreviewManager$PreviewMode[] values()
+com.google.tagmanager.PreviewManager$PreviewMode: com.google.tagmanager.PreviewManager$PreviewMode valueOf(java.lang.String)
+com.google.tagmanager.TagManager$RefreshMode: com.google.tagmanager.TagManager$RefreshMode[] values()
+com.google.tagmanager.TagManager$RefreshMode: com.google.tagmanager.TagManager$RefreshMode valueOf(java.lang.String)
+com.google.tagmanager.protobuf.WireFormat$FieldType: com.google.tagmanager.protobuf.WireFormat$FieldType[] values()
+com.google.tagmanager.protobuf.WireFormat$FieldType: com.google.tagmanager.protobuf.WireFormat$FieldType valueOf(java.lang.String)
+com.google.tagmanager.protobuf.WireFormat$JavaType: com.google.tagmanager.protobuf.WireFormat$JavaType[] values()
+com.google.tagmanager.protobuf.WireFormat$JavaType: com.google.tagmanager.protobuf.WireFormat$JavaType valueOf(java.lang.String)
 com.mobeta.android.dslv.DragSortItemView: void setGravity(int)
 com.mobeta.android.dslv.DragSortItemView: int getGravity()
 com.mobeta.android.dslv.DragSortItemViewCheckable: void setChecked(boolean)
@@ -1288,7 +1344,6 @@ com.nethergrim.combogymdiary.AddingMeasurementActivity: void onClick(android.vie
 com.nethergrim.combogymdiary.AddingProgram
 com.nethergrim.combogymdiary.AddingProgram: AddingProgram()
 com.nethergrim.combogymdiary.AddingProgram: void onClick(android.view.View)
-com.nethergrim.combogymdiary.BaseDiskActivity: BaseDiskActivity()
 com.nethergrim.combogymdiary.BasicMenuActivity: BasicMenuActivity()
 com.nethergrim.combogymdiary.CatalogActivity
 com.nethergrim.combogymdiary.CatalogActivity: CatalogActivity()
@@ -1299,16 +1354,6 @@ com.nethergrim.combogymdiary.CatalogDetailedActivity: void onClick(android.view.
 com.nethergrim.combogymdiary.CheckableLinearLayout
 com.nethergrim.combogymdiary.CheckableLinearLayout: CheckableLinearLayout(android.content.Context,android.util.AttributeSet)
 com.nethergrim.combogymdiary.CheckableLinearLayout: void setChecked(boolean)
-com.nethergrim.combogymdiary.DiskActivity
-com.nethergrim.combogymdiary.DiskActivity: DiskActivity()
-com.nethergrim.combogymdiary.DiskAutoBackupActivity
-com.nethergrim.combogymdiary.DiskAutoBackupActivity: DiskAutoBackupActivity()
-com.nethergrim.combogymdiary.DiskCreateFolderActivity
-com.nethergrim.combogymdiary.DiskCreateFolderActivity: DiskCreateFolderActivity()
-com.nethergrim.combogymdiary.DiskFileDownloadActivity
-com.nethergrim.combogymdiary.DiskFileDownloadActivity: DiskFileDownloadActivity()
-com.nethergrim.combogymdiary.DiskRestoreActivity
-com.nethergrim.combogymdiary.DiskRestoreActivity: DiskRestoreActivity()
 com.nethergrim.combogymdiary.EditingProgramAtTraining
 com.nethergrim.combogymdiary.EditingProgramAtTraining: EditingProgramAtTraining()
 com.nethergrim.combogymdiary.ExersisesList
@@ -1499,6 +1544,8 @@ com.nethergrim.combogymdiary.R$bool: int abs__config_actionMenuItemAllCaps
 com.nethergrim.combogymdiary.R$bool: int abs__config_allowActionMenuItemTextWithIcon
 com.nethergrim.combogymdiary.R$bool: int abs__config_showMenuShortcutsWhenKeyboardPresent
 com.nethergrim.combogymdiary.R$bool: int abs__split_action_bar_is_narrow
+com.nethergrim.combogymdiary.R$bool: int ga_autoActivityTracking
+com.nethergrim.combogymdiary.R$bool: int ga_reportUncaughtExceptions
 com.nethergrim.combogymdiary.R$bool: int true_
 com.nethergrim.combogymdiary.R$color: int abs__background_holo_dark
 com.nethergrim.combogymdiary.R$color: int abs__background_holo_light
@@ -2267,6 +2314,7 @@ com.nethergrim.combogymdiary.R$string: int exit
 com.nethergrim.combogymdiary.R$string: int exit_workout
 com.nethergrim.combogymdiary.R$string: int feedback
 com.nethergrim.combogymdiary.R$string: int finish_training
+com.nethergrim.combogymdiary.R$string: int ga_trackingId
 com.nethergrim.combogymdiary.R$string: int happy_new_year
 com.nethergrim.combogymdiary.R$string: int hello_world
 com.nethergrim.combogymdiary.R$string: int hip
@@ -2667,6 +2715,17 @@ com.nethergrim.combogymdiary.TheBackupAgent: TheBackupAgent()
 com.nethergrim.combogymdiary.TrainingAtProgress
 com.nethergrim.combogymdiary.TrainingAtProgress: TrainingAtProgress()
 com.nethergrim.combogymdiary.TrainingAtProgress: void onClick(android.view.View)
+com.nethergrim.combogymdiary.drive.BaseDiskActivity: BaseDiskActivity()
+com.nethergrim.combogymdiary.drive.DiskAutoBackupActivity
+com.nethergrim.combogymdiary.drive.DiskAutoBackupActivity: DiskAutoBackupActivity()
+com.nethergrim.combogymdiary.drive.DiskBackupActivity
+com.nethergrim.combogymdiary.drive.DiskBackupActivity: DiskBackupActivity()
+com.nethergrim.combogymdiary.drive.DiskCreateFolderActivity
+com.nethergrim.combogymdiary.drive.DiskCreateFolderActivity: DiskCreateFolderActivity()
+com.nethergrim.combogymdiary.drive.DiskFileDownloadActivity
+com.nethergrim.combogymdiary.drive.DiskFileDownloadActivity: DiskFileDownloadActivity()
+com.nethergrim.combogymdiary.drive.DiskRestoreActivity
+com.nethergrim.combogymdiary.drive.DiskRestoreActivity: DiskRestoreActivity()
 javax.annotation.meta.When: javax.annotation.meta.When[] values()
 javax.annotation.meta.When: javax.annotation.meta.When valueOf(java.lang.String)
 kankan.wheel.R$drawable: int wheel_bg
