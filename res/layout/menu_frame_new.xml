@@ -1,0 +1,134 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/menu_frame"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/wild_oliva_bitmap" >
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" >
+    </RelativeLayout>
+
+    <ScrollView
+        android:id="@+id/scrollView1"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" >
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="8dp"
+            android:layout_marginRight="8dp"
+            android:orientation="vertical" >
+
+            <Button
+                android:id="@+id/btnMenu1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"                
+                android:background="?android:attr/selectableItemBackground"
+                android:drawableLeft="@android:drawable/ic_media_play"
+                android:gravity="center_vertical"
+                android:text="@string/startTrainingButtonString"
+                android:textColor="@android:color/white" />
+
+            <View
+                android:id="@+id/view2"
+                android:layout_width="match_parent"
+                android:layout_height="1dip"
+                android:background="@android:color/holo_blue_light" />
+
+            <Button
+                android:id="@+id/btnMenu2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="?android:attr/selectableItemBackground"
+                android:drawableLeft="@android:drawable/ic_menu_more"
+                android:gravity="center_vertical"
+                android:text="@string/excersisiesListButtonString"
+                android:textColor="@android:color/white" />
+
+            <View
+                android:id="@+id/view3"
+                android:layout_width="match_parent"
+                android:layout_height="1dip"
+                android:background="@android:color/holo_blue_light" />
+
+            <Button
+                android:id="@+id/btnMenu3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="?android:attr/selectableItemBackground"
+                android:drawableLeft="@android:drawable/ic_menu_info_details"
+                android:gravity="center_vertical"
+                android:text="@string/worklogString"
+                android:textColor="@android:color/white" />
+
+            <View
+                android:id="@+id/view5"
+                android:layout_width="match_parent"
+                android:layout_height="1dip"
+                android:background="@android:color/holo_blue_light" />
+
+            <Button
+                android:id="@+id/btnMeasure"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="?android:attr/selectableItemBackground"
+                android:drawableLeft="@android:drawable/ic_menu_edit"
+                android:gravity="center_vertical"
+                android:text="@string/measurements"
+                android:textColor="@android:color/white" />
+
+            <View
+                android:id="@+id/view6"
+                android:layout_width="match_parent"
+                android:layout_height="1dip"
+                android:background="@android:color/holo_blue_light" />
+
+            <Button
+                android:id="@+id/btnCatalog"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="?android:attr/selectableItemBackground"
+                android:drawableLeft="@android:drawable/ic_menu_gallery"
+                android:gravity="center_vertical"
+                android:text="@string/exe_catalog"
+                android:textColor="@android:color/white" />
+
+            <View
+                android:id="@+id/view1"
+                android:layout_width="match_parent"
+                android:layout_height="1dip"
+                android:background="@android:color/holo_blue_light" />
+
+            <Button
+                android:id="@+id/btnMenuGraphs"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="?android:attr/selectableItemBackground"
+                android:drawableLeft="@drawable/ic_chart"
+                android:gravity="center_vertical"
+                android:text="@string/statistics"
+                android:textColor="@android:color/white" />
+
+            <View
+                android:id="@+id/view4"
+                android:layout_width="match_parent"
+                android:layout_height="1dip"
+                android:background="@android:color/holo_blue_light" />
+
+            <Button
+                android:id="@+id/btnMenu4"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="?android:attr/selectableItemBackground"
+                android:drawableLeft="@android:drawable/ic_menu_manage"
+                android:gravity="center_vertical"
+                android:text="@string/settingsButtonString"
+                android:textColor="@android:color/white" />
+
+        </LinearLayout>
+    </ScrollView>
+
+</FrameLayout>

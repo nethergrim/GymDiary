@@ -8,7 +8,6 @@ import android.content.res.Configuration;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
-import android.provider.Settings;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ProgressBar;
@@ -196,6 +195,7 @@ public class MainActivity extends BasicMenuActivity {
 			btnMenu4.setVisibility(View.GONE);
 			btnMenuCatalog.setVisibility(View.GONE);
 			btnMenuMeasurements.setVisibility(View.GONE);
+			btnMenuGraphs.setVisibility(View.GONE);
 
 			super.onPreExecute();
 		}
@@ -230,6 +230,7 @@ public class MainActivity extends BasicMenuActivity {
 			btnMenu4.setVisibility(View.VISIBLE);
 			btnMenuCatalog.setVisibility(View.VISIBLE);
 			btnMenuMeasurements.setVisibility(View.VISIBLE);
+			btnMenuGraphs.setVisibility(View.VISIBLE);
 		
 		}
 	}

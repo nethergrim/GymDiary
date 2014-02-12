@@ -1,7 +1,6 @@
 package com.nethergrim.combogymdiary;
 
 import java.util.ArrayList;
-import java.util.Date;
 
 import com.jjoe64.graphview.CustomLabelFormatter;
 import com.jjoe64.graphview.GraphView;
@@ -50,6 +49,7 @@ public class GraphsActivity extends BasicMenuActivity {
 		adapter.addAll(alExersices);
 		adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
 		spinner.setAdapter(adapter);
+		
 
 		spinner.setOnItemSelectedListener(new OnItemSelectedListener() {
 			@Override
@@ -72,13 +72,15 @@ public class GraphsActivity extends BasicMenuActivity {
 		graphView.getGraphViewStyle().setLegendBorder(20);
 		graphView.getGraphViewStyle().setLegendSpacing(30);
 		graphView.getGraphViewStyle().setLegendWidth(300);
+		((LineGraphView) graphView).setDrawDataPoints(true);
+		((LineGraphView) graphView).setDataPointsRadius(10f);
 
 		content.addView(graphView);
 
 	}
 
 	private void selected(int pos, long id, String name) {
-		Log.d(LOG_TAG, "id == "+id);
+		Log.d(LOG_TAG, "id == " + id);
 		graphView.removeAllSeries();
 		String[] args = { name };
 		dataCursor = db.getDataMain(null, DB.EXE_NAME + "=?", args, null, null,
@@ -122,9 +124,7 @@ public class GraphsActivity extends BasicMenuActivity {
 					.getString(R.string.Reeps), new GraphViewSeriesStyle(
 					Color.rgb(255, 136, 00), 4), repsArray);
 			graphView.addSeries(repsSeries);
-			
-			
-			
+
 			graphView.setCustomLabelFormatter(new CustomLabelFormatter() {
 				@Override
 				public String formatLabel(double value, boolean isValueX) {
@@ -133,11 +133,14 @@ public class GraphsActivity extends BasicMenuActivity {
 						if (pos > 0 && pos < dataCursor.getCount()) {
 							dataCursor.moveToPosition(pos);
 							return dataCursor.getString(3);
-						}else 
+						} else
 							return null;
-						
+
+					} else {
+						int tmp = (int) value;
+						String result = String.valueOf(tmp);
+						return result;
 					}
-					return null; // let graphview generate Y-axis label for us
 				}
 			});
 
@@ -195,8 +198,6 @@ public class GraphsActivity extends BasicMenuActivity {
 
 	@Override
 	public void onClick(View arg0) {
-		// TODO Auto-generated method stub
-
 	}
 
 }

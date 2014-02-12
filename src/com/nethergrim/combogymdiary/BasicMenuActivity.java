@@ -21,7 +21,7 @@ public abstract class BasicMenuActivity extends FragmentActivity implements
 	protected MenuDrawer mMenuDrawer;
 	public final String LOG_TAG = "myLogs";
 	protected Button btnMenu1, btnMenu2, btnMenu3, btnMenu4, btnMenuCatalog,
-			btnMenuMeasurements;
+			btnMenuMeasurements,btnMenuGraphs;
 	protected SharedPreferences sPref;
 	protected final static String TRAINING_AT_PROGRESS = "training_at_progress";
 	protected final static String LIST_OF_SETS = "list_of_sets";
@@ -44,7 +44,7 @@ public abstract class BasicMenuActivity extends FragmentActivity implements
 	protected void onCreate(Bundle inState) {
 		super.onCreate(inState);
 		mMenuDrawer = MenuDrawer.attach(this);
-		mMenuDrawer.setMenuView(R.layout.menu_frame);
+		mMenuDrawer.setMenuView(R.layout.menu_frame_new);
 		mMenuDrawer.setSlideDrawable(R.drawable.ic_drawer);
 		mMenuDrawer.setDrawerIndicatorEnabled(true);
 		mMenuDrawer.setTouchBezelSize(3000);
@@ -103,6 +103,8 @@ public abstract class BasicMenuActivity extends FragmentActivity implements
 		btnMenuCatalog.setOnClickListener(this);
 		btnMenuMeasurements = (Button) findViewById(R.id.btnMeasure);
 		btnMenuMeasurements.setOnClickListener(this);
+		btnMenuGraphs = (Button)findViewById(R.id.btnMenuGraphs);
+		btnMenuGraphs.setOnClickListener(this);		
 	}
 
 	@Override
@@ -163,11 +165,15 @@ public abstract class BasicMenuActivity extends FragmentActivity implements
 			startActivity(gotoCatalog);
 			return true;
 		} else if (id == R.id.btnMeasure) {
-			mMenuDrawer.closeMenu();
+			
 			Intent gotoMeasurements = new Intent(this,
 					MeasurementsActivity.class);
 			startActivity(gotoMeasurements);
 			return true;
+		} else if (id == R.id.btnMenuGraphs){
+			mMenuDrawer.closeMenu();
+			Intent intent = new Intent(this, GraphsActivity.class);
+			startActivity(intent);
 		}
 		return false;
 	}
