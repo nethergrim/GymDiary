@@ -5,6 +5,7 @@ import com.yandex.metrica.Counter;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.res.Configuration;
+import android.database.Cursor;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
@@ -57,7 +58,14 @@ public class MainActivity extends BasicMenuActivity {
 		db.open();
 		ma = this;
 
-		if (!sp.contains(DATABASE_FILLED)) {
+		Cursor tmp = db.getDataExe(null, null, null, null, null, null);
+		if (tmp.getCount() < 5) {
+			sp.edit().putBoolean(DATABASE_FILLED, false).apply();
+		} else {
+			sp.edit().putBoolean(DATABASE_FILLED, true).apply();
+		}
+
+		if (!sp.getBoolean(DATABASE_FILLED, false)) {
 			sp.edit().putBoolean(DATABASE_FILLED, true).apply();
 			task = new InitTask();
 			task.execute();
@@ -179,7 +187,6 @@ public class MainActivity extends BasicMenuActivity {
 		@Override
 		protected void onPreExecute() {
 
-
 			pb.setVisibility(View.VISIBLE);
 			btnCatalog.setVisibility(View.GONE);
 			btnExcersises.setVisibility(View.GONE);
@@ -231,7 +238,7 @@ public class MainActivity extends BasicMenuActivity {
 			btnMenuCatalog.setVisibility(View.VISIBLE);
 			btnMenuMeasurements.setVisibility(View.VISIBLE);
 			btnMenuGraphs.setVisibility(View.VISIBLE);
-		
+
 		}
 	}
 }
