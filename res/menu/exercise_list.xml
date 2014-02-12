@@ -2,10 +2,10 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android" >
 
     <item
-        android:id="@+id/itemSaveMeasure"
-        android:icon="@drawable/ic_action_save"
+        android:id="@+id/itemAddNewExe"
+        android:icon="@drawable/ic_action_new"
         android:showAsAction="always"
-        android:title="@string/save">
+        android:title="@string/Add_new">
     </item>
 
 </menu>

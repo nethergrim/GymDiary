@@ -11,6 +11,7 @@ import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.GooglePlayServicesUtil;
 import com.google.android.gms.common.api.GoogleApiClient;
 import com.google.android.gms.drive.Drive;
+import com.yandex.metrica.Counter;
 
 public abstract class BaseDiskActivity extends Activity implements
 		GoogleApiClient.ConnectionCallbacks,
@@ -58,11 +59,16 @@ public abstract class BaseDiskActivity extends Activity implements
 					.addOnConnectionFailedListener(this).build();
 		}
 		mGoogleApiClient.connect();
+		Counter.sharedInstance().onResumeActivity(this);
 	}
 
 	/**
 	 * Handles resolution callbacks.
 	 */
+	
+
+
+	
 	@Override
 	protected void onActivityResult(int requestCode, int resultCode, Intent data) {
 		super.onActivityResult(requestCode, resultCode, data);
@@ -81,6 +87,7 @@ public abstract class BaseDiskActivity extends Activity implements
 			mGoogleApiClient.disconnect();
 		}
 		super.onPause();
+		Counter.sharedInstance().onPauseActivity(this);
 	}
 
 	/**

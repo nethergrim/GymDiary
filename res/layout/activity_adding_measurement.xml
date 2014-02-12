@@ -4,13 +4,13 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/cream_pixels_bitmap"
-    android:padding="8dp"
     tools:context=".AddingMeasurementActivity" >
 
     <ScrollView
         android:id="@+id/scrollView1"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content" >
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true" >
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -20,9 +20,9 @@
             <com.google.android.gms.ads.AdView
                 xmlns:ads="http://schemas.android.com/apk/res-auto"
                 android:id="@+id/adView2"
-                android:layout_width="match_parent"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                ads:adSize="BANNER"
+                ads:adSize="SMART_BANNER"
                 ads:adUnitId="ca-app-pub-5652589022154086/4102541457"
                 android:gravity="center_horizontal" />
 
@@ -249,16 +249,6 @@
     <Space
         android:layout_width="wrap_content"
         android:layout_height="wrap_content" />
-
-    <Button
-        android:id="@+id/btnAddingMeasurementsToDB"
-        style="@style/HabraThemeButton"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/scrollView1"
-        android:layout_alignParentBottom="true"
-        android:text="@string/save"
-        android:textColor="@android:color/white" />
 
     <Space
         android:layout_width="wrap_content"

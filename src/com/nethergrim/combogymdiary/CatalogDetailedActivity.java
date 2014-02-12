@@ -45,7 +45,6 @@ public class CatalogDetailedActivity extends BasicMenuActivity {
 		triceps = getResources().getStringArray(R.array.exercisesArrayTriceps);
 		abs = getResources().getStringArray(R.array.exercisesArrayAbs);
 		initInfo();
-
 		AdView adView = (AdView) this.findViewById(R.id.adView5);
 		AdRequest adRequest = new AdRequest.Builder().build();
 		adView.loadAd(adRequest);
@@ -452,8 +451,13 @@ public class CatalogDetailedActivity extends BasicMenuActivity {
 
 	@Override
 	public void onClick(View arg0) {
-		int id = arg0.getId();
-		pressButton(id);
+		pressButton(arg0.getId());
+		finish();
 	}
+	
 
+	@Override
+	public void onBackPressed() {
+		finish();
+	}
 }

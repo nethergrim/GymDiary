@@ -1,12 +1,14 @@
 package com.nethergrim.combogymdiary;
 
+import com.yandex.metrica.Counter;
+
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.res.Configuration;
-import android.database.Cursor;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
+import android.provider.Settings;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ProgressBar;
@@ -22,7 +24,6 @@ public class MainActivity extends BasicMenuActivity {
 	private Button btnStat;
 	private SharedPreferences sp;
 	private DB db;
-	private Cursor cursor;
 	private ProgressBar pb;
 	private InitTask task;
 	public static MainActivity ma;
@@ -34,6 +35,7 @@ public class MainActivity extends BasicMenuActivity {
 	}
 
 	private void initUi() {
+		sp = PreferenceManager.getDefaultSharedPreferences(this);
 		mMenuDrawer.setContentView(R.layout.activity_main);
 		getActionBar().setTitle(R.string.app_name);
 		btnSettings = (Button) findViewById(R.id.buttonSettings);
@@ -43,7 +45,7 @@ public class MainActivity extends BasicMenuActivity {
 		btnCatalog = (Button) findViewById(R.id.btnCataloginMain);
 		btnMeasurements = (Button) findViewById(R.id.btnMeasurementsS);
 		pb = (ProgressBar) findViewById(R.id.progressBar1);
-		btnStat = (Button)findViewById(R.id.btnStatistics);
+		btnStat = (Button) findViewById(R.id.btnStatistics);
 		btnStat.setOnClickListener(this);
 		pb.setVisibility(View.GONE);
 		btnMeasurements.setOnClickListener(this);
@@ -54,32 +56,34 @@ public class MainActivity extends BasicMenuActivity {
 		btnWorklog.setOnClickListener(this);
 		db = new DB(this);
 		db.open();
-		cursor = db.getDataExe(null, null, null, null, null, null);
 		ma = this;
+
+		if (!sp.contains(DATABASE_FILLED)) {
+			sp.edit().putBoolean(DATABASE_FILLED, true).apply();
+			task = new InitTask();
+			task.execute();
+		}
 
 	}
 
 	@Override
 	public void onResume() {
-		sp = PreferenceManager.getDefaultSharedPreferences(this);
+
 		if (sp.getBoolean(TRAINING_AT_PROGRESS, false)) {
 			Intent intent_to_trainng = new Intent(this,
 					TrainingAtProgress.class);
 			startActivity(intent_to_trainng);
 		}
 		super.onResume();
+
 	}
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
+		Counter.initialize(getApplicationContext());
 		initUi();
 
-		if (cursor.getCount() < 10) {
-			pb.setVisibility(View.VISIBLE);
-			task = new InitTask();
-			task.execute();
-		}
 	}
 
 	private void initTable() {
@@ -160,8 +164,8 @@ public class MainActivity extends BasicMenuActivity {
 			Intent gotoMeasurements = new Intent(this,
 					MeasurementsActivity.class);
 			startActivity(gotoMeasurements);
-		} else if (id == R.id.btnStatistics){
-			Intent intent = new Intent (this,GraphsActivity.class);
+		} else if (id == R.id.btnStatistics) {
+			Intent intent = new Intent(this, GraphsActivity.class);
 			startActivity(intent);
 		}
 	}
@@ -175,13 +179,35 @@ public class MainActivity extends BasicMenuActivity {
 
 		@Override
 		protected void onPreExecute() {
+
+
+			pb.setVisibility(View.VISIBLE);
+			btnCatalog.setVisibility(View.GONE);
+			btnExcersises.setVisibility(View.GONE);
+			btnMeasurements.setVisibility(View.GONE);
+			btnSettings.setVisibility(View.GONE);
+			btnStartT.setVisibility(View.GONE);
+			btnStat.setVisibility(View.GONE);
+			btnWorklog.setVisibility(View.GONE);
+
+			btnMenu1.setVisibility(View.GONE);
+			btnMenu2.setVisibility(View.GONE);
+			btnMenu3.setVisibility(View.GONE);
+			btnMenu4.setVisibility(View.GONE);
+			btnMenuCatalog.setVisibility(View.GONE);
+			btnMenuMeasurements.setVisibility(View.GONE);
+
 			super.onPreExecute();
 		}
 
 		@Override
 		protected Void doInBackground(Void... params) {
 
-			initTable();
+			try {
+				initTable();
+			} catch (Exception e) {
+
+			}
 
 			return null;
 		}
@@ -190,6 +216,21 @@ public class MainActivity extends BasicMenuActivity {
 		protected void onPostExecute(Void result) {
 			super.onPostExecute(result);
 			pb.setVisibility(View.GONE);
+			btnCatalog.setVisibility(View.VISIBLE);
+			btnExcersises.setVisibility(View.VISIBLE);
+			btnMeasurements.setVisibility(View.VISIBLE);
+			btnSettings.setVisibility(View.VISIBLE);
+			btnStartT.setVisibility(View.VISIBLE);
+			btnStat.setVisibility(View.VISIBLE);
+			btnWorklog.setVisibility(View.VISIBLE);
+
+			btnMenu1.setVisibility(View.VISIBLE);
+			btnMenu2.setVisibility(View.VISIBLE);
+			btnMenu3.setVisibility(View.VISIBLE);
+			btnMenu4.setVisibility(View.VISIBLE);
+			btnMenuCatalog.setVisibility(View.VISIBLE);
+			btnMenuMeasurements.setVisibility(View.VISIBLE);
+		
 		}
 	}
 }

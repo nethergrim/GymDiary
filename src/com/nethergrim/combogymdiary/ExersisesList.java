@@ -17,12 +17,12 @@ import android.support.v4.widget.SimpleCursorAdapter;
 import android.util.Log;
 import android.view.ContextMenu;
 import android.view.ContextMenu.ContextMenuInfo;
+import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.AdapterView.AdapterContextMenuInfo;
 import android.widget.AdapterView.OnItemClickListener;
-import android.widget.Button;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -36,7 +36,6 @@ public class ExersisesList extends BasicMenuActivity implements
 	private DB db;
 	private SimpleCursorAdapter scAdapter;
 	private Cursor cursor_exe;
-	private Button btnCreate;
 	private SharedPreferences sp;
 
 	@Override
@@ -47,8 +46,6 @@ public class ExersisesList extends BasicMenuActivity implements
 
 	private void initUi() {
 		mMenuDrawer.setContentView(R.layout.exersises_list);
-		btnCreate = (Button) findViewById(R.id.btnCreate);
-		btnCreate.setOnClickListener(this);
 		getActionBar().setTitle(R.string.excersisiesListButtonString);
 		lvExersices_list = (ListView) findViewById(R.id.listView11);
 		db = new DB(this);
@@ -152,7 +149,6 @@ public class ExersisesList extends BasicMenuActivity implements
 		}
 	}
 
-
 	public boolean onContextItemSelected(MenuItem item) {
 		AdapterContextMenuInfo acmi = (AdapterContextMenuInfo) item
 				.getMenuInfo();
@@ -192,17 +188,7 @@ public class ExersisesList extends BasicMenuActivity implements
 
 	@Override
 	public void onClick(View arg0) {
-		int id = arg0.getId();
-		switch (id) {
-		case R.id.btnCreate:
-			Intent gotoAddingExersisesActivity = new Intent(this,
-					AddingExersises.class);
-			startActivity(gotoAddingExersisesActivity);
-			break;
-		default:
-			pressButton(id);
-			break;
-		}
+		pressButton(arg0.getId());
 	}
 
 	protected void onDestroy() {
@@ -210,4 +196,29 @@ public class ExersisesList extends BasicMenuActivity implements
 		db.close();
 	}
 
+	@Override
+	public boolean onCreateOptionsMenu(Menu menu) {
+		getMenuInflater().inflate(R.menu.exercise_list, menu);
+		return true;
+	}
+
+	@Override
+	public boolean onOptionsItemSelected(MenuItem item) {
+		int id = item.getItemId();
+		if (id == R.id.itemAddNewExe) {
+			Intent gotoAddingExersisesActivity = new Intent(this,
+					AddingExersises.class);
+			startActivity(gotoAddingExersisesActivity);
+
+			return true;
+		} else if (id == android.R.id.home) {
+			if (mMenuDrawer.isActivated()) {
+				mMenuDrawer.closeMenu();
+			} else
+				mMenuDrawer.toggleMenu();
+			return true;
+		}
+
+		return false;
+	}
 }

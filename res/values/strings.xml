@@ -2,6 +2,7 @@
 <resources>
 
     <string name="sm">(cm)</string>
+    <string name="Reeps">Reps</string>
     <string name="statistics">Statistics</string>
     <string name="auto_backup_to_disk">Auto backup</string>
     <string name="auto_backup_to_disk_detailed">Auto backup to Google Drive at the end of training</string>
