@@ -52,6 +52,8 @@ public abstract class BasicMenuActivity extends FragmentActivity implements
 		mMenuDrawer.setDrawerIndicatorEnabled(true);
 		mMenuDrawer.setTouchBezelSize(3000);
 		getActionBar().setDisplayShowHomeEnabled(true);
+		Counter.initialize(getApplicationContext());
+		Counter.sharedInstance().setTrackLocationEnabled(false);
 		initMenuButtons();
 	}
 	

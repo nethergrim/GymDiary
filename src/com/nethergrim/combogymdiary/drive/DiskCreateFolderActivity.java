@@ -108,13 +108,13 @@ public class DiskCreateFolderActivity extends BaseDiskActivity implements
 		mdb = result.getMetadataBuffer();
 		if (mdb.getCount() < 1) {
 			sp.edit().putBoolean(DRIVE_EXISTS, false).apply();
-			sp.edit().putString(DRIVE_FOLDER_ID_ENCODED_TO_STRING, "").apply();
 			showMessage("re-creating a folder in Google Drive");
 			MetadataChangeSet changeSet = new MetadataChangeSet.Builder()
 					.setTitle(DRIVE_FOLDER_NAME).build();
 			Drive.DriveApi.getRootFolder(getGoogleApiClient())
 					.createFolder(getGoogleApiClient(), changeSet)
 					.addResultCallback(this);
+			sp.edit().putBoolean(DRIVE_EXISTS, true).apply();
 
 		} else {
 			
