@@ -86,8 +86,9 @@ public abstract class BaseDiskActivity extends Activity implements
 		if (mGoogleApiClient != null) {
 			mGoogleApiClient.disconnect();
 		}
-		super.onPause();
 		Counter.sharedInstance().onPauseActivity(this);
+		super.onPause();
+		
 	}
 
 	/**

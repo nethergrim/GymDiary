@@ -1,6 +1,8 @@
 <resources>
 
     <string name="sm">(см)</string>
+    <string name="feedback_leave">Отзыв</string>
+    <string name="feedback_detail">Оставить отзыв в Play Market</string>
     <string name="Reeps">Повторений</string>
     <string name="statistics">Статистика</string>
     <string name="auto_backup_to_disk">Автоматически</string>
@@ -205,7 +207,6 @@
     <string name="exe_catalog">Справочник упражнений</string>
     <string name="traAbs">Тренировка пресса</string>
     <string name="previous_result_was">Новый подход! Предыдущий результат: </string>
-    <string name="new_set">Новый подход!</string>
     <string name="set_number">Подход №</string>
     <string name="backup_database_to_sd">Сделать резервную копию данных на SD карточку</string>
     <string name="replace_from_backup">Восстановить данные с SD карточки</string>

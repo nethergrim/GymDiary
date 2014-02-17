@@ -27,7 +27,7 @@ public class AdapterHelper {
 
 	Context ctx;
 
-	AdapterHelper(Context _ctx) {
+	public AdapterHelper(Context _ctx) {
 		ctx = _ctx;
 
 		groups = ctx.getResources().getStringArray(R.array.MuscleGroupsArray);
@@ -46,7 +46,7 @@ public class AdapterHelper {
 
 	SimpleExpandableListAdapter adapter;
 
-	SimpleExpandableListAdapter getAdapter() {
+	public SimpleExpandableListAdapter getAdapter() {
 
 		groupData = new ArrayList<Map<String, String>>();
 		for (String group : groups) {
@@ -127,11 +127,13 @@ public class AdapterHelper {
 		return adapter;
 	}
 
+	@SuppressWarnings("unchecked")
 	String getGroupText(int groupPos) {
 		return ((Map<String, String>) (adapter.getGroup(groupPos)))
 				.get(ATTR_GROUP_NAME);
 	}
 
+	@SuppressWarnings("unchecked")
 	String getChildText(int groupPos, int childPos) {
 		return ((Map<String, String>) (adapter.getChild(groupPos, childPos)))
 				.get(ATTR_BODY_NAME);

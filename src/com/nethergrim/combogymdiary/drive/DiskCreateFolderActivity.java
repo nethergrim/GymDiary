@@ -4,7 +4,6 @@ import java.util.ArrayList;
 
 import com.google.android.gms.drive.Drive;
 import com.google.android.gms.drive.DriveApi.MetadataBufferResult;
-import com.google.android.gms.drive.DriveFolder;
 import com.google.android.gms.drive.DriveFolder.DriveFolderResult;
 import com.google.android.gms.drive.DriveFolder.OnChildrenRetrievedCallback;
 import com.google.android.gms.drive.DriveFolder.OnCreateFolderCallback;
@@ -12,12 +11,11 @@ import com.google.android.gms.drive.DriveId;
 import com.google.android.gms.drive.Metadata;
 import com.google.android.gms.drive.MetadataBuffer;
 import com.google.android.gms.drive.MetadataChangeSet;
-import com.google.android.gms.drive.metadata.StringMetadataField;
 import com.google.android.gms.drive.query.Filters;
 import com.google.android.gms.drive.query.Query;
 import com.google.android.gms.drive.query.SearchableField;
-import com.nethergrim.combogymdiary.BasicMenuActivity;
 import com.nethergrim.combogymdiary.R;
+import com.nethergrim.combogymdiary.activities.BasicMenuActivity;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -34,7 +32,6 @@ public class DiskCreateFolderActivity extends BaseDiskActivity implements
 
 	private static Query[] sQueries = new Query[] {
 
-	// files starred and with text/plain mimetype
 	new Query.Builder().addFilter(
 			Filters.and(Filters.eq(SearchableField.MIME_TYPE,
 					"application/vnd.google-apps.folder"), Filters.eq(
@@ -120,24 +117,18 @@ public class DiskCreateFolderActivity extends BaseDiskActivity implements
 					.addResultCallback(this);
 
 		} else {
+			
+			ArrayList<Metadata> mdArray = new ArrayList<Metadata>();
+			for (int i = 0; i < mdb.getCount(); i++) {
+				mdArray.add(mdb.get(i));
+			}
+			if (mdb.getCount() > 0){
+				String newDriveId = mdArray.get(0).getDriveId().encodeToString();
+				sp.edit().putString(DRIVE_FOLDER_ID_ENCODED_TO_STRING, newDriveId).apply();
+			}
+			
 			gotoAutoBackup();
 		}
-
-		ArrayList<Metadata> mdArray = new ArrayList<Metadata>();
-		for (int i = 0; i < mdb.getCount(); i++) {
-			mdArray.add(mdb.get(i));
-		}
-		for (int i = 0; i < mdArray.size(); i++) {
-			Metadata tmp = mdArray.get(i);
-			Log.d(TAG,
-					"for item #" + i + " mimetype == " + tmp.getMimeType()
-							+ " title == " + tmp.getTitle()
-							+ " createdDate == " + tmp.getCreatedDate()
-							+ " is folder == " + tmp.isFolder()
-							+ " is trashed == " + tmp.isTrashed()
-							+ " is data valid == " + tmp.isDataValid());
-		}
-
 	}
 
 }

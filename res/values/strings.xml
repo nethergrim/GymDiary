@@ -2,6 +2,8 @@
 <resources>
 
     <string name="sm">(cm)</string>
+    <string name="feedback_leave">Leave feedback</string>
+    <string name="feedback_detail">Leave feedback on Play Market</string>
     <string name="Reeps">Reps</string>
     <string name="statistics">Statistics</string>
     <string name="auto_backup_to_disk">Auto backup</string>
@@ -224,7 +226,6 @@
     <string name="exe_catalog">Exercises catalog</string>
     <string name="set_number">Set №</string>
     <string name="previous_result_was">New set! Previous result was: </string>
-    <string name="new_set">New set!</string>
     <string name="backup_database_to_sd">Backup database to SD card</string>
     <string name="replace_from_backup">Replase database from SD card</string>
     <string name="title_activity_temp">TempActivity</string>

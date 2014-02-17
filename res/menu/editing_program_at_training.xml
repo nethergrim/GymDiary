@@ -4,7 +4,7 @@
         android:id="@+id/actionSaveEdited"
         android:showAsAction="always"
 		android:icon="@drawable/ic_action_save"
-        
+        android:title="@string/save"
         />
 
 </menu>

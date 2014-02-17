@@ -17,8 +17,8 @@ import com.google.android.gms.drive.DriveFolder.OnCreateFileCallback;
 import com.google.android.gms.drive.DriveId;
 import com.google.android.gms.drive.MetadataChangeSet;
 import com.nethergrim.combogymdiary.Backuper;
-import com.nethergrim.combogymdiary.BasicMenuActivity;
 import com.nethergrim.combogymdiary.R;
+import com.nethergrim.combogymdiary.activities.BasicMenuActivity;
 
 import android.os.Bundle;
 import android.preference.PreferenceManager;

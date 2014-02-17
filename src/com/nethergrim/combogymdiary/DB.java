@@ -73,15 +73,11 @@ public class DB {
 		}
 		return str;
 	}
-	
-	public Boolean isDatabaseBlockedByCurrentThread(){
+
+	public Boolean isDatabaseBlockedByCurrentThread() {
 		return mDB.isDbLockedByCurrentThread();
 	}
-	
-	public Boolean isDatabaseBlockedByOtherThread(){
-		return mDB.isDbLockedByOtherThreads();
-	}
-	
+
 	public String[] convertStringToArray(String str) {
 		String[] arr = str.split(strSeparator);
 		return arr;

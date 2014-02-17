@@ -1311,48 +1311,9 @@ com.mobeta.android.dslv.R$styleable: int DragSortListView_slide_shuffle_speed
 com.mobeta.android.dslv.R$styleable: int DragSortListView_sort_enabled
 com.mobeta.android.dslv.R$styleable: int DragSortListView_track_drag_sort
 com.mobeta.android.dslv.R$styleable: int DragSortListView_use_default_controller
-com.nethergrim.combogymdiary.AddingExersises
-com.nethergrim.combogymdiary.AddingExersises: AddingExersises()
-com.nethergrim.combogymdiary.AddingExersises: void onClick(android.view.View)
-com.nethergrim.combogymdiary.AddingMeasurementActivity
-com.nethergrim.combogymdiary.AddingMeasurementActivity: AddingMeasurementActivity()
-com.nethergrim.combogymdiary.AddingMeasurementActivity: void onClick(android.view.View)
-com.nethergrim.combogymdiary.AddingProgram
-com.nethergrim.combogymdiary.AddingProgram: AddingProgram()
-com.nethergrim.combogymdiary.AddingProgram: void onClick(android.view.View)
-com.nethergrim.combogymdiary.BasicMenuActivity: BasicMenuActivity()
-com.nethergrim.combogymdiary.CatalogActivity
-com.nethergrim.combogymdiary.CatalogActivity: CatalogActivity()
-com.nethergrim.combogymdiary.CatalogActivity: void onClick(android.view.View)
-com.nethergrim.combogymdiary.CatalogDetailedActivity
-com.nethergrim.combogymdiary.CatalogDetailedActivity: CatalogDetailedActivity()
-com.nethergrim.combogymdiary.CatalogDetailedActivity: void onClick(android.view.View)
 com.nethergrim.combogymdiary.CheckableLinearLayout
 com.nethergrim.combogymdiary.CheckableLinearLayout: CheckableLinearLayout(android.content.Context,android.util.AttributeSet)
 com.nethergrim.combogymdiary.CheckableLinearLayout: void setChecked(boolean)
-com.nethergrim.combogymdiary.EditingProgramAtTraining
-com.nethergrim.combogymdiary.EditingProgramAtTraining: EditingProgramAtTraining()
-com.nethergrim.combogymdiary.ExersisesList
-com.nethergrim.combogymdiary.ExersisesList: ExersisesList()
-com.nethergrim.combogymdiary.ExersisesList: void onClick(android.view.View)
-com.nethergrim.combogymdiary.GraphsActivity
-com.nethergrim.combogymdiary.GraphsActivity: GraphsActivity()
-com.nethergrim.combogymdiary.GraphsActivity: void onClick(android.view.View)
-com.nethergrim.combogymdiary.HistoryActivity
-com.nethergrim.combogymdiary.HistoryActivity: HistoryActivity()
-com.nethergrim.combogymdiary.HistoryActivity: void onClick(android.view.View)
-com.nethergrim.combogymdiary.HistoryDetailedActivity
-com.nethergrim.combogymdiary.HistoryDetailedActivity: HistoryDetailedActivity()
-com.nethergrim.combogymdiary.HistoryDetailedActivity: void onClick(android.view.View)
-com.nethergrim.combogymdiary.MainActivity
-com.nethergrim.combogymdiary.MainActivity: MainActivity()
-com.nethergrim.combogymdiary.MainActivity: void onClick(android.view.View)
-com.nethergrim.combogymdiary.MeasurementsActivity
-com.nethergrim.combogymdiary.MeasurementsActivity: MeasurementsActivity()
-com.nethergrim.combogymdiary.MeasurementsActivity: void onClick(android.view.View)
-com.nethergrim.combogymdiary.MeasurementsDetailedActivity
-com.nethergrim.combogymdiary.MeasurementsDetailedActivity: MeasurementsDetailedActivity()
-com.nethergrim.combogymdiary.MeasurementsDetailedActivity: void onClick(android.view.View)
 com.nethergrim.combogymdiary.MyService
 com.nethergrim.combogymdiary.MyService: MyService()
 com.nethergrim.combogymdiary.R$anim: int myalpha
@@ -2031,7 +1992,6 @@ com.nethergrim.combogymdiary.R$id: int tabMode
 com.nethergrim.combogymdiary.R$id: int terrain
 com.nethergrim.combogymdiary.R$id: int text
 com.nethergrim.combogymdiary.R$id: int textView1
-com.nethergrim.combogymdiary.R$id: int textView10
 com.nethergrim.combogymdiary.R$id: int textView1_
 com.nethergrim.combogymdiary.R$id: int textView2
 com.nethergrim.combogymdiary.R$id: int textView2_
@@ -2049,7 +2009,6 @@ com.nethergrim.combogymdiary.R$id: int textView7
 com.nethergrim.combogymdiary.R$id: int textView7_
 com.nethergrim.combogymdiary.R$id: int textView8
 com.nethergrim.combogymdiary.R$id: int textView8_
-com.nethergrim.combogymdiary.R$id: int textView9
 com.nethergrim.combogymdiary.R$id: int tglTurnOff
 com.nethergrim.combogymdiary.R$id: int top
 com.nethergrim.combogymdiary.R$id: int tvCatName
@@ -2301,6 +2260,8 @@ com.nethergrim.combogymdiary.R$string: int exe_catalog
 com.nethergrim.combogymdiary.R$string: int exit
 com.nethergrim.combogymdiary.R$string: int exit_workout
 com.nethergrim.combogymdiary.R$string: int feedback
+com.nethergrim.combogymdiary.R$string: int feedback_detail
+com.nethergrim.combogymdiary.R$string: int feedback_leave
 com.nethergrim.combogymdiary.R$string: int finish_training
 com.nethergrim.combogymdiary.R$string: int happy_new_year
 com.nethergrim.combogymdiary.R$string: int hello_world
@@ -2691,19 +2652,53 @@ com.nethergrim.combogymdiary.R$styleable: int SherlockTheme_windowSplitActionBar
 com.nethergrim.combogymdiary.R$styleable: int[] SherlockView
 com.nethergrim.combogymdiary.R$styleable: int SherlockView_android_focusable
 com.nethergrim.combogymdiary.R$xml: int pref
-com.nethergrim.combogymdiary.SettingsActivity
-com.nethergrim.combogymdiary.SettingsActivity: SettingsActivity()
-com.nethergrim.combogymdiary.StartTrainingActivity
-com.nethergrim.combogymdiary.StartTrainingActivity: StartTrainingActivity()
-com.nethergrim.combogymdiary.StartTrainingActivity: void onClick(android.view.View)
-com.nethergrim.combogymdiary.TempActivity
-com.nethergrim.combogymdiary.TempActivity: TempActivity()
-com.nethergrim.combogymdiary.TempActivity: void onClick(android.view.View)
-com.nethergrim.combogymdiary.TheBackupAgent
-com.nethergrim.combogymdiary.TheBackupAgent: TheBackupAgent()
-com.nethergrim.combogymdiary.TrainingAtProgress
-com.nethergrim.combogymdiary.TrainingAtProgress: TrainingAtProgress()
-com.nethergrim.combogymdiary.TrainingAtProgress: void onClick(android.view.View)
+com.nethergrim.combogymdiary.activities.AddingExersisesActivity
+com.nethergrim.combogymdiary.activities.AddingExersisesActivity: AddingExersisesActivity()
+com.nethergrim.combogymdiary.activities.AddingExersisesActivity: void onClick(android.view.View)
+com.nethergrim.combogymdiary.activities.AddingMeasurementActivity
+com.nethergrim.combogymdiary.activities.AddingMeasurementActivity: AddingMeasurementActivity()
+com.nethergrim.combogymdiary.activities.AddingMeasurementActivity: void onClick(android.view.View)
+com.nethergrim.combogymdiary.activities.AddingProgramActivity
+com.nethergrim.combogymdiary.activities.AddingProgramActivity: AddingProgramActivity()
+com.nethergrim.combogymdiary.activities.AddingProgramActivity: void onClick(android.view.View)
+com.nethergrim.combogymdiary.activities.BasicMenuActivity: BasicMenuActivity()
+com.nethergrim.combogymdiary.activities.CatalogActivity
+com.nethergrim.combogymdiary.activities.CatalogActivity: CatalogActivity()
+com.nethergrim.combogymdiary.activities.CatalogActivity: void onClick(android.view.View)
+com.nethergrim.combogymdiary.activities.CatalogDetailedActivity
+com.nethergrim.combogymdiary.activities.CatalogDetailedActivity: CatalogDetailedActivity()
+com.nethergrim.combogymdiary.activities.CatalogDetailedActivity: void onClick(android.view.View)
+com.nethergrim.combogymdiary.activities.EditingProgramAtTrainingActivity
+com.nethergrim.combogymdiary.activities.EditingProgramAtTrainingActivity: EditingProgramAtTrainingActivity()
+com.nethergrim.combogymdiary.activities.ExersisesListActivity
+com.nethergrim.combogymdiary.activities.ExersisesListActivity: ExersisesListActivity()
+com.nethergrim.combogymdiary.activities.ExersisesListActivity: void onClick(android.view.View)
+com.nethergrim.combogymdiary.activities.GraphsActivity
+com.nethergrim.combogymdiary.activities.GraphsActivity: GraphsActivity()
+com.nethergrim.combogymdiary.activities.GraphsActivity: void onClick(android.view.View)
+com.nethergrim.combogymdiary.activities.HistoryActivity
+com.nethergrim.combogymdiary.activities.HistoryActivity: HistoryActivity()
+com.nethergrim.combogymdiary.activities.HistoryActivity: void onClick(android.view.View)
+com.nethergrim.combogymdiary.activities.HistoryDetailedActivity
+com.nethergrim.combogymdiary.activities.HistoryDetailedActivity: HistoryDetailedActivity()
+com.nethergrim.combogymdiary.activities.HistoryDetailedActivity: void onClick(android.view.View)
+com.nethergrim.combogymdiary.activities.MainActivity
+com.nethergrim.combogymdiary.activities.MainActivity: MainActivity()
+com.nethergrim.combogymdiary.activities.MainActivity: void onClick(android.view.View)
+com.nethergrim.combogymdiary.activities.MeasurementsActivity
+com.nethergrim.combogymdiary.activities.MeasurementsActivity: MeasurementsActivity()
+com.nethergrim.combogymdiary.activities.MeasurementsActivity: void onClick(android.view.View)
+com.nethergrim.combogymdiary.activities.MeasurementsDetailedActivity
+com.nethergrim.combogymdiary.activities.MeasurementsDetailedActivity: MeasurementsDetailedActivity()
+com.nethergrim.combogymdiary.activities.MeasurementsDetailedActivity: void onClick(android.view.View)
+com.nethergrim.combogymdiary.activities.SettingsActivity
+com.nethergrim.combogymdiary.activities.SettingsActivity: SettingsActivity()
+com.nethergrim.combogymdiary.activities.StartTrainingActivity
+com.nethergrim.combogymdiary.activities.StartTrainingActivity: StartTrainingActivity()
+com.nethergrim.combogymdiary.activities.StartTrainingActivity: void onClick(android.view.View)
+com.nethergrim.combogymdiary.activities.TrainingAtProgress
+com.nethergrim.combogymdiary.activities.TrainingAtProgress: TrainingAtProgress()
+com.nethergrim.combogymdiary.activities.TrainingAtProgress: void onClick(android.view.View)
 com.nethergrim.combogymdiary.drive.BaseDiskActivity: BaseDiskActivity()
 com.nethergrim.combogymdiary.drive.DiskAutoBackupActivity
 com.nethergrim.combogymdiary.drive.DiskAutoBackupActivity: DiskAutoBackupActivity()

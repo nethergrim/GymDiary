@@ -1,5 +1,8 @@
 package com.nethergrim.combogymdiary;
 
+import com.nethergrim.combogymdiary.activities.BasicMenuActivity;
+import com.nethergrim.combogymdiary.activities.MainActivity;
+
 import android.app.Notification;
 import android.app.NotificationManager;
 import android.app.PendingIntent;
@@ -30,6 +33,7 @@ public class MyService extends Service {
 		return super.onStartCommand(intent, flags, startId);
 	}
 
+	@SuppressWarnings("deprecation")
 	void sendNotif(int ID) {
 
 		Notification notif = new Notification(R.drawable.ic_launcher,

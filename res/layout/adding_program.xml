@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:background="@drawable/cream_pixels_bitmap"
     android:layout_height="match_parent"
-    tools:context=".AddingProgram" >
+    tools:context=".AddingProgramActivity" >
     
     
     <EditText

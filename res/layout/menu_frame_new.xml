@@ -5,10 +5,7 @@
     android:layout_height="match_parent"
     android:background="@drawable/wild_oliva_bitmap" >
 
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent" >
-    </RelativeLayout>
+   
 
     <ScrollView
         android:id="@+id/scrollView1"
@@ -17,15 +14,15 @@
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
             android:layout_marginLeft="8dp"
             android:layout_marginRight="8dp"
             android:orientation="vertical" >
 
             <Button
                 android:id="@+id/btnMenu1"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"                
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
                 android:background="?android:attr/selectableItemBackground"
                 android:drawableLeft="@android:drawable/ic_media_play"
                 android:gravity="center_vertical"
@@ -40,7 +37,7 @@
 
             <Button
                 android:id="@+id/btnMenu2"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="?android:attr/selectableItemBackground"
                 android:drawableLeft="@android:drawable/ic_menu_more"
@@ -56,7 +53,7 @@
 
             <Button
                 android:id="@+id/btnMenu3"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="?android:attr/selectableItemBackground"
                 android:drawableLeft="@android:drawable/ic_menu_info_details"
@@ -72,7 +69,7 @@
 
             <Button
                 android:id="@+id/btnMeasure"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="?android:attr/selectableItemBackground"
                 android:drawableLeft="@android:drawable/ic_menu_edit"
@@ -88,7 +85,7 @@
 
             <Button
                 android:id="@+id/btnCatalog"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="?android:attr/selectableItemBackground"
                 android:drawableLeft="@android:drawable/ic_menu_gallery"
@@ -104,7 +101,7 @@
 
             <Button
                 android:id="@+id/btnMenuGraphs"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="?android:attr/selectableItemBackground"
                 android:drawableLeft="@drawable/ic_chart"
@@ -120,7 +117,7 @@
 
             <Button
                 android:id="@+id/btnMenu4"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="?android:attr/selectableItemBackground"
                 android:drawableLeft="@android:drawable/ic_menu_manage"

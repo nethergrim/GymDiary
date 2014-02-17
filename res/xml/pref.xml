@@ -83,6 +83,11 @@
             android:key="btnEmail"
             android:summary="@string/email_to_dev"
             android:title="@string/email" />
+         <Preference
+            android:key="btnGoToMarket"
+            android:title="@string/feedback_leave"
+            android:summary="@string/feedback_detail" />
+        
     </PreferenceCategory>
 
 </PreferenceScreen>

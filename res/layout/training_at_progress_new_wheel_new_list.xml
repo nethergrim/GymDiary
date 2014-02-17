@@ -14,8 +14,6 @@
         android:layout_height="match_parent"
         android:layout_weight="1"
         android:orientation="vertical" >
-
-
         
         <com.google.android.gms.ads.AdView
 		    xmlns:ads="http://schemas.android.com/apk/res-auto"
@@ -23,12 +21,11 @@
 		    android:layout_width="match_parent"
 		    android:layout_height="wrap_content"
 		    android:layout_weight="1"
+		    android:visibility="gone"
             android:minHeight="110dp"
 		    ads:adUnitId="ca-app-pub-5652589022154086/4102541457"
 		    android:gravity="center_horizontal"
 		    ads:adSize="BANNER"/>
-
-
         
         <com.mobeta.android.dslv.DragSortListView 
 		    xmlns:dslv="http://schemas.android.com/apk/res/com.nethergrim.combogymdiary"
@@ -90,13 +87,7 @@
             android:layout_marginLeft="12dp"
             android:layout_marginRight="5dp" >
 
-            <LinearLayout
-                android:layout_marginLeft="-12dp"
-                android:layout_width="0dip"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:orientation="vertical" >
-            </LinearLayout>
+            
             
             <TextView
                 android:id="@+id/textView4__"

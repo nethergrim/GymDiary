@@ -45,17 +45,16 @@ public class Backuper {
 	}
 
 	@SuppressWarnings("resource")
-	public boolean restoreBackup() {
-
+	public boolean restoreBackup(String path) {
+		Log.d(LOG_TAG, "backuping path " + path);
 		try {
-			File sd = Environment.getExternalStorageDirectory();
+			File sd1 = Environment.getExternalStorageDirectory();
+			Log.d(LOG_TAG, "sd1 path: " + sd1.getAbsolutePath());
 			File data = Environment.getDataDirectory();
-
-			if (sd.canWrite()) {
+			if (sd1.canWrite()) {
 				String restroredDBPath = "//data//com.nethergrim.combogymdiary//databases//mydb";
-				String backupDBPath = "Workout_diary_backup.db";
 				File restoredDB = new File(data, restroredDBPath);
-				File backupedDB = new File(sd, backupDBPath);
+				File backupedDB = new File(path);
 				if (backupedDB.exists()) {
 					FileChannel src = new FileInputStream(backupedDB)
 							.getChannel();
@@ -66,12 +65,15 @@ public class Backuper {
 					dst.close();
 					Log.d(LOG_TAG, "restored OK");
 					return true;
-				} else
+				} else{
+					Log.d(LOG_TAG, "backupedDB.exists() == false");
 					return false;
+				}
 			} else
+				Log.d(LOG_TAG, "sd.canWrite  == false");
 				return false;
 		} catch (Exception e) {
-			Log.d(LOG_TAG, "" + e);
+			Log.d(LOG_TAG, "error restoring DB: " + e);
 			return false;
 		}
 

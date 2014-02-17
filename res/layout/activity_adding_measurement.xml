@@ -10,7 +10,12 @@
         android:id="@+id/scrollView1"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_alignParentRight="true" >
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentTop="true"
+        android:background="@drawable/cream_pixels_bitmap" 
+        
+        >
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -224,21 +229,6 @@
             <Space
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content" />
-
-            <TextView
-                android:id="@+id/textView9"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:alpha="0"
-                android:text="1" />
-
-            <TextView
-                android:id="@+id/textView10"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:alpha="0"
-                android:text="1"
-                android:textAppearance="?android:attr/textAppearanceLarge" />
         </LinearLayout>
     </ScrollView>
 
