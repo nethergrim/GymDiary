@@ -22,6 +22,7 @@ import android.os.Handler;
 import android.os.Message;
 import android.os.Vibrator;
 import android.preference.PreferenceManager;
+import android.util.Log;
 import android.view.ContextMenu;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -35,6 +36,7 @@ import android.widget.ArrayAdapter;
 import android.widget.CompoundButton;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.ProgressBar;
 import android.widget.AdapterView.AdapterContextMenuInfo;
 import android.widget.CompoundButton.OnCheckedChangeListener;
 import android.widget.EditText;
@@ -73,17 +75,18 @@ public class TrainingAtProgress extends BasicMenuActivity implements
 	private int checkedPosition = 0, set = 0, currentSet = 0, oldReps = 0,
 			oldWeight = 0, timerValue = 0, vibrateLenght = 0, currentId = 0;
 	private DialogFragment dlg1;
-	private ProgressDialog pd;
+	private Boolean isProgressBarActive = false;
 	private long startTime = 0;
 	private Handler h;
 	private WheelView reps, weights;
-	private TextView infoText, setInfo;
+	private ProgressBar pb;
+	private TextView infoText, setInfo, tvTimerCountdown;
 	private ArrayList<String> alMain = new ArrayList<String>();
 	private ArrayList<Integer> alSet = new ArrayList<Integer>();
 	private int seconds, minutes, secDelta = 0, minDelta = 0;
 	private boolean isTrainingProgress = false, autoBackup = true;
 	private Handler timerHandler = new Handler();
-	private LinearLayout llBack, llSave, llForward, llBottom;
+	private LinearLayout llBack, llSave, llForward, llBottom, llTimerProgress;
 	private ImageView ivBack, ivForward;
 	private Animation anim = null;
 	private DragSortListView list;
@@ -149,11 +152,21 @@ public class TrainingAtProgress extends BasicMenuActivity implements
 		stopService(new Intent(this, MyService.class));
 		NotificationManager notificationManager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
 		notificationManager.cancel(sp.getInt(BasicMenuActivity.TRA_ID, 1));
-		finish();
+
 		if (autoBackup) {
 			Intent intent = new Intent(this, DiskCreateFolderActivity.class);
 			startActivity(intent);
 		}
+
+		if (sp.contains(TRAININGS_DONE_NUM)) {
+			int tmp = sp.getInt(TRAININGS_DONE_NUM, 0);
+			tmp++;
+			sp.edit().putInt(TRAININGS_DONE_NUM, tmp).apply();
+		} else {
+			sp.edit().putInt(TRAININGS_DONE_NUM, 1).apply();
+		}
+
+		finish();
 	}
 
 	Runnable timerRunnable = new Runnable() {
@@ -182,7 +195,6 @@ public class TrainingAtProgress extends BasicMenuActivity implements
 		sp.edit().putString(TRAINING_NAME, traName);
 		timerHandler.removeCallbacks(timerRunnable);
 		super.onPause();
-
 	}
 
 	public void saveTimerToPregerences() {
@@ -217,6 +229,14 @@ public class TrainingAtProgress extends BasicMenuActivity implements
 	};
 
 	private void initUi(boolean init) {
+		llTimerProgress = (LinearLayout) findViewById(R.id.llProgressShow);
+		if (isProgressBarActive) {
+			llTimerProgress.setVisibility(View.VISIBLE);
+		} else
+			llTimerProgress.setVisibility(View.GONE);
+
+		tvTimerCountdown = (TextView) findViewById(R.id.tvTimerCountdown);
+		pb = (ProgressBar) findViewById(R.id.pbTrainingRest);
 		llBottom = (LinearLayout) findViewById(R.id.LLBottom);
 		anim = AnimationUtils.loadAnimation(this, R.anim.setfortraining);
 		llBack = (LinearLayout) findViewById(R.id.llBtnBack);
@@ -295,7 +315,7 @@ public class TrainingAtProgress extends BasicMenuActivity implements
 		AdView adView = (AdView) this.findViewById(R.id.adView1);
 		AdRequest adRequest = new AdRequest.Builder().build();
 		adView.loadAd(adRequest);
-		if (isNetworkAvailable()){
+		if (isNetworkAvailable()) {
 			adView.setVisibility(View.VISIBLE);
 		}
 	}
@@ -343,6 +363,14 @@ public class TrainingAtProgress extends BasicMenuActivity implements
 
 	private void initData(int position) {
 		exeName = alMain.get(position);
+		try {
+			pb.setMax(Integer.parseInt(db.getTimerValueByExerciseName(exeName)));
+			Log.d(LOG_TAG, "pb.getMax() == " + pb.getMax());
+		} catch (Exception e) {
+			pb.setMax(30);
+			Log.d(LOG_TAG, "error");
+		}
+
 		set = alSet.get(position);
 		currentSet = set;
 		setInfo.setText(String.format("%d:%02d", minutes, seconds) + "  "
@@ -350,21 +378,6 @@ public class TrainingAtProgress extends BasicMenuActivity implements
 				+ (set + 1));
 		tValue = db.getTimerValueByExerciseName(exeName);
 		etTimer.setText(tValue);
-		if (!exeName.isEmpty()) {
-
-			try {
-				timerValue = Integer.parseInt(db
-						.getTimerValueByExerciseName(exeName));
-			} catch (Exception e) {
-				Counter.sharedInstance()
-						.reportError(
-								"getting timerValue by Exe name failed :(\ntrainingAtProgress",
-								e);
-				timerValue = 0;
-			}
-
-		}
-
 		initSetButtons();
 		oldReps = db.getLastReps(exeName, set);
 		oldWeight = db.getLastWeight(exeName, set);
@@ -411,29 +424,45 @@ public class TrainingAtProgress extends BasicMenuActivity implements
 
 	@SuppressLint("HandlerLeak")
 	private void goDialogProgress() {
-		pd = new ProgressDialog(this);
-		pd.setTitle(R.string.resting);
-		pd.setProgressStyle(ProgressDialog.STYLE_HORIZONTAL);
-		pd.setMax(timerValue);
-		pd.setIndeterminate(true);
-		pd.show();
+
+		try {
+			timerValue = Integer.parseInt(db
+					.getTimerValueByExerciseName(exeName));
+		} catch (Exception e) {
+			Counter.sharedInstance().reportError(
+					"getting timerValue by Exe name failed :(\ntrainingAtProgress "
+							+ etTimer.getText().toString(), e);
+			timerValue = 60;
+			Log.d(LOG_TAG, "error parsing timerValue");
+		}
+		pb.setMax(timerValue);
+		Log.d(LOG_TAG, "pb.getMax() == " + pb.getMax());
 		h = new Handler() {
-			public void handleMessage(Message msg) {
-				pd.setIndeterminate(false);
-				if (pd.getProgress() < pd.getMax()) {
-					pd.incrementProgressBy(1);
+			public void handleMessage(Message msg) {		
+												
+				if (pb.getProgress() < pb.getMax()) {
 					h.sendEmptyMessageDelayed(0, 1000);
+					pb.setProgress(sp.getInt(PROGRESS, 0));
+					pb.incrementProgressBy(1);				
+					
+					sp.edit().putInt(PROGRESS, pb.getProgress()).apply();
 				} else {
 					if (vibrate) {
 						Vibrator v = (Vibrator) getSystemService(Context.VIBRATOR_SERVICE);
 						v.vibrate(vibrateLenght);
 					}
-					pd.dismiss();
+					llTimerProgress.setVisibility(View.GONE);
+					pb.setProgress(0);
+					tvTimerCountdown.setText("");
+					isProgressBarActive = false;
 				}
-
 			}
 		};
-		h.sendEmptyMessageDelayed(0, 100);
+		if (!isProgressBarActive) {
+			h.sendEmptyMessageDelayed(0, 10);
+			llTimerProgress.setVisibility(View.VISIBLE);
+		}
+		isProgressBarActive = true;
 	}
 
 	@Override
@@ -515,9 +544,11 @@ public class TrainingAtProgress extends BasicMenuActivity implements
 	@Override
 	public void onCheckedChanged(CompoundButton tglTimerOn, boolean isChecked) {
 		if (isChecked) {
+			sp.edit().putBoolean(TIMER_IS_ON, true).apply();
 			tglChecked = true;
 			etTimer.setEnabled(true);
 		} else {
+			sp.edit().putBoolean(TIMER_IS_ON, false).apply();
 			tglChecked = false;
 			etTimer.setEnabled(false);
 		}
@@ -570,6 +601,15 @@ public class TrainingAtProgress extends BasicMenuActivity implements
 		} else {
 			pressButton(id);
 		}
+
+		String tmpStr = db.getTimerValueByExerciseName(exeName);
+		String timerv = etTimer.getText().toString();
+		if (!tmpStr.equals(timerv)) { // re-write to DB timer value for an
+										// exercise
+			int exe_id = db.getExeIdByName(exeName);
+			db.updateRec_Exe(exe_id, DB.TIMER_VALUE, timerv);
+		}
+
 		if (id == R.id.llBtnSave && currentSet == set) {
 			int wei = (weights.getCurrentItem() + 1);
 			int rep_s = (reps.getCurrentItem() + 1);
@@ -595,7 +635,8 @@ public class TrainingAtProgress extends BasicMenuActivity implements
 			} else {
 				infoText.setText(getResources().getString(R.string.new_set));
 			}
-			if (tglChecked) {
+			if (tglChecked && !isProgressBarActive) {
+				sp.edit().putInt(PROGRESS, 0).apply();
 				goDialogProgress();
 			}
 		} else if (id == R.id.llBtnSave && currentSet < set) {

@@ -1,6 +1,8 @@
 <resources>
 
     <string name="sm">(см)</string>
+    <string name="leave_feedback_market">Пожалуйста, оставьте свой отзыв и 5 звездочек на Google Play Market</string>
+    <string name="later">Позже</string>
     <string name="feedback_leave">Отзыв</string>
     <string name="feedback_detail">Оставить отзыв в Play Market</string>
     <string name="Reeps">Повторений</string>

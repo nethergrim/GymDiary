@@ -12,7 +12,7 @@
         android:id="@+id/LLTop"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_weight="1"
+        android:layout_weight="1.2"
         android:orientation="vertical" >
         
         <com.google.android.gms.ads.AdView
@@ -71,6 +71,31 @@
                 android:gravity="center_vertical|center_horizontal"
                 android:textSize="17sp" />
 
+            <LinearLayout
+                android:id="@+id/llProgressShow"
+                android:layout_width="match_parent"
+                android:layout_gravity="center_vertical"
+                android:layout_marginRight="5dp"
+                android:visibility="gone"
+                android:layout_marginLeft="5dp"
+                android:layout_height="wrap_content" >
+
+                <ProgressBar
+                    android:id="@+id/pbTrainingRest"
+                    style="?android:attr/progressBarStyleHorizontal"
+                    android:layout_width="0dip"
+                    android:layout_weight="1"
+                    android:layout_gravity="center_vertical"
+                    android:layout_height="wrap_content" />
+
+                <TextView
+                    android:id="@+id/tvTimerCountdown"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textAppearance="?android:attr/textAppearanceSmall" />
+
+            </LinearLayout>
+
             <TextView
                 android:id="@+id/tvSetInfo"
                 android:layout_width="match_parent"
@@ -81,19 +106,24 @@
 
         <LinearLayout
             android:id="@+id/LL3"
-            android:layout_width="match_parent"
+            android:layout_width="match_parent"            
+            android:gravity="center_horizontal"
             android:layout_height="wrap_content"
-            android:weightSum="5"
-            android:layout_marginLeft="12dp"
-            android:layout_marginRight="5dp" >
+            android:layout_marginRight="5dp"
+            android:weightSum="5" >
 
-            
+            <TextView
+                android:id="@+id/textView1"
+                android:layout_width="0dip"
+                android:layout_height="wrap_content"
+                android:layout_weight="1" />
             
             <TextView
                 android:id="@+id/textView4__"
                 android:layout_width="0dip"
                 android:layout_height="match_parent"
                 android:layout_marginRight="5dp"
+                android:layout_marginLeft="5dp"
                 android:layout_weight="2"
                 android:background="@android:color/white"
                 android:gravity="center_horizontal"
@@ -110,6 +140,7 @@
                 android:gravity="center_horizontal"
                 android:text="@string/reps"
                 android:textAppearance="?android:attr/textAppearanceSmall" />
+
         </LinearLayout>
 
         <LinearLayout
@@ -173,7 +204,7 @@
             android:orientation="horizontal"
             android:layout_marginTop="3dp"
             android:minHeight="48dp"
-            android:layout_height="wrap_content" >
+            android:layout_height="wrap_content" android:baselineAligned="false">
 
 
             <LinearLayout
@@ -190,7 +221,8 @@
                     android:id="@+id/imageView2"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:src="@drawable/ic_action_back" />
+                    android:src="@drawable/ic_action_back"
+                    tools:ignore="ContentDescription" />
 
             </LinearLayout>
 
@@ -208,7 +240,8 @@
                     android:id="@+id/imageView1"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:src="@drawable/ic_action_save" />
+                    android:src="@drawable/ic_action_save"
+                    tools:ignore="ContentDescription" />
                 
             </LinearLayout>
 
@@ -226,7 +259,8 @@
                     android:id="@+id/imageView3"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:src="@drawable/ic_action_forward" />
+                    android:src="@drawable/ic_action_forward"
+                    tools:ignore="ContentDescription" />
 
             </LinearLayout>
 

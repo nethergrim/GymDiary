@@ -2,6 +2,8 @@
 <resources>
 
     <string name="sm">(cm)</string>
+    <string name="leave_feedback_market">Please, leave your 5 star feedback on Google Play Market </string>
+    <string name="later">Later</string>
     <string name="feedback_leave">Leave feedback</string>
     <string name="feedback_detail">Leave feedback on Play Market</string>
     <string name="Reeps">Reps</string>

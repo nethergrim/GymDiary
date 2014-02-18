@@ -2,8 +2,10 @@ package com.nethergrim.combogymdiary.activities;
 
 import com.nethergrim.combogymdiary.DB;
 import com.nethergrim.combogymdiary.R;
+import com.nethergrim.combogymdiary.dialogs.DialogGoToMarket;
 import com.yandex.metrica.Counter;
 
+import android.app.DialogFragment;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.res.Configuration;
@@ -11,6 +13,7 @@ import android.database.Cursor;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ProgressBar;
@@ -82,13 +85,19 @@ public class MainActivity extends BasicMenuActivity {
 			startActivity(intent_to_trainng);
 		}
 		super.onResume();
-
+		if (sp.contains(TRAININGS_DONE_NUM)
+				&& sp.getInt(TRAININGS_DONE_NUM, 0) > 5
+				&& !sp.contains(MARKET_LEAVED_FEEDBACK)) {
+			Log.d(LOG_TAG, TRAININGS_DONE_NUM + " going to market");
+			DialogFragment dialog = new DialogGoToMarket();
+			dialog.show(getFragmentManager(), "dialog_goto_market");
+		}
 	}
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		
+
 		initUi();
 
 	}
