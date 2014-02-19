@@ -122,6 +122,18 @@
         <item>Leg Press</item>
         <item>Front Squat (Clean Grip)</item>
         <item>Chair Squat (Smith machine)</item>
+<<<<<<< HEAD
+        <item></item>
+        <item></item>
+        <item></item>
+        <item></item>
+        <item></item>
+        <item></item>
+        <item></item>
+        <item></item>
+        <item></item>
+        <item></item>
+=======
         <item>GAKK machine squats</item>
         <item>Leg extention </item>
         <item>Flexion</item>
@@ -132,22 +144,23 @@
         <item>Reduction feet in the simulator</item>
         <item>Breeding feet in the simulator</item>
         <item>Kick their feet in the block</item>
+>>>>>>> 320c70f7ff5c6c94f22b9246204c34bb6d70693c
     </string-array>
     <string-array name="exercisesArrayChest">
-        <item>Bench press (flat bench)</item>
-        <item>Dumbbell bench press (flat bench)</item>
-        <item>Bench press (+30 bench)</item>
-        <item>Dumbbell bench press (+30 bench)</item>
-        <item>Bench press (-30 bench)</item>
-        <item>Dumbbell bench press (-30 bench)</item>
-        <item>Bench press (Smith machine) (flat bench)</item>
-        <item>Bench press (Smith machine) (+30 bench)</item>
-        <item>Bench press (Smith machine) (-30 bench)</item>
-        <item>Breeding dumbbellsй (flat bench)</item>
-        <item>Breeding dumbbells (+30 bench)</item>
-        <item>Bench in the simulator</item>
-        <item>crossover</item>
-        <item>Crossover lying on the bench</item>
+        <item></item>
+        <item></item>
+        <item></item>
+        <item></item>
+        <item></item>
+        <item></item>
+        <item></item>
+        <item></item>
+        <item></item>
+        <item></item>
+        <item></item>
+        <item></item>
+        <item></item>
+        <item></item>
     </string-array>
     <string-array name="exercisesArrayBack">
         <item>Pullups</item>
@@ -232,16 +245,24 @@
     <string name="replace_from_backup">Replase database from SD card</string>
     <string name="title_activity_temp">TempActivity</string>
     <string name="hello_world">Hello world!</string>
+<<<<<<< HEAD
+    <string name="ex_0_0">\nThis exercise is best performed inside a squat rack for safety purposes. To begin, first set the bar on a rack just above shoulder level. Once the correct height is chosen and the bar is loaded, step under the bar and place the back of your shoulders (slightly below the neck) across it.
+=======
     <string name="ex_0_0">
 \nThis exercise is best performed inside a squat rack for safety purposes. To begin, first set the bar on a rack just above shoulder level. Once the correct height is chosen and the bar is loaded, step under the bar and place the back of your shoulders (slightly below the neck) across it.
+>>>>>>> 320c70f7ff5c6c94f22b9246204c34bb6d70693c
 \nHold on to the bar using both arms at each side and lift it off the rack by first pushing with your legs and at the same time straightening your torso.
 \nStep away from the rack and position your legs using a shoulder-width medium stance with the toes slightly pointed out. Keep your head up at all times and maintain a straight back. This will be your starting position.
 \nBegin to slowly lower the bar by bending the knees and sitting back with your hips as you maintain a straight posture with the head up. Continue down until your hamstrings are on your calves. Inhale as you perform this portion of the movement.
 \nBegin to raise the bar as you exhale by pushing the floor with the heel or middle of your foot as you straighten the legs and extend the hips to go back to the starting position.
 \nRepeat for the recommended amount of repetitions.
 \nThis type of squat allows a greater range of motion, and allows the trunk to maintain a more vertical position than other types of squats, due to foot position and the higher bar position.</string>
+<<<<<<< HEAD
+    <string name="ex_0_1">\nUsing a leg press machine, sit down on the machine and place your legs on the platform directly in front of you at a medium (shoulder width) foot stance. (Note: For the purposes of this discussion we will use the medium stance described above which targets overall development; however you can choose any of the three stances described in the foot positioning section).
+=======
     <string name="ex_0_1">
 \nUsing a leg press machine, sit down on the machine and place your legs on the platform directly in front of you at a medium (shoulder width) foot stance. (Note: For the purposes of this discussion we will use the medium stance described above which targets overall development; however you can choose any of the three stances described in the foot positioning section).
+>>>>>>> 320c70f7ff5c6c94f22b9246204c34bb6d70693c
 \nLower the safety bars holding the weighted platform in place and press the platform all the way up until your legs are fully extended in front of you. Tip: Make sure that you do not lock your knees. Your torso and the legs should make a perfect 90-degree angle. This will be your starting position.
 \nAs you inhale, slowly lower the platform until your upper and lower legs make a 90-degree angle.
 \nPushing mainly with the heels of your feet and using the quadriceps go back to the starting position as you exhale.
@@ -249,8 +270,12 @@
 \nCaution: Always check to make sure that when you re-rack the weight the platform is securely locked.
 
 \nVariations: All foot stance variations described in the foot stance section.</string>
+<<<<<<< HEAD
+    <string name="ex_0_2">\nTo begin, first set the bar in a rack slightly below shoulder level. Rest the bar on top of the deltoids, pushing into the clavicles, and lightly touching the throat. Your hands should be in a clean grip, touching the bar only with your fingers to help keep it in position.
+=======
     <string name="ex_0_2">
 \nTo begin, first set the bar in a rack slightly below shoulder level. Rest the bar on top of the deltoids, pushing into the clavicles, and lightly touching the throat. Your hands should be in a clean grip, touching the bar only with your fingers to help keep it in position.
+>>>>>>> 320c70f7ff5c6c94f22b9246204c34bb6d70693c
 \nLift the bar off the rack by first pushing with your legs and at the same time straightening your torso. Step away from the rack and position your legs using a shoulder width medium stance with the toes slightly pointed out. Keep your head and elbows up at all times. This will be your starting position.
 \nBend at the knees, sitting down between your legs. Continue down until your hamstrings are on your calves. Keep your knees aligned with your feet by consciously using your abductors to push your knees out as you squat.
 \nBegin to raise the bar as you exhale by pushing the floor mainly with the heel or middle of your foot as you straighten the legs again and return to the starting position.</string>
@@ -325,11 +350,5 @@
     <string name="ex_6_2"></string>
     <string name="ex_6_3"></string>
     <string name="ex_6_4"></string>
-    <string name="title_activity_disk">DiskActivity</string>
-    <string name="title_activity_disk_restore">DiskRestoreActivity</string>
-    <string name="title_activity_disk_file_download">DiskFileDownloadActivity</string>
-    <string name="title_activity_disk_create_folder">DiskCreateFolderActivity</string>
-    <string name="title_activity_disk_auto_backup">DiskAutoBackupActivity</string>
-    <string name="title_activity_graphs">GraphsActivity</string>
 
 </resources>

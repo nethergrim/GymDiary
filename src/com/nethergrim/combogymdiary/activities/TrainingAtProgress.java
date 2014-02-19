@@ -10,6 +10,7 @@ import kankan.wheel.widget.adapters.AbstractWheelTextAdapter;
 import android.annotation.SuppressLint;
 import android.app.DialogFragment;
 import android.app.NotificationManager;
+import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -437,13 +438,13 @@ public class TrainingAtProgress extends BasicMenuActivity implements
 		pb.setMax(timerValue);
 		Log.d(LOG_TAG, "pb.getMax() == " + pb.getMax());
 		h = new Handler() {
-			public void handleMessage(Message msg) {
-
+			public void handleMessage(Message msg) {		
+												
 				if (pb.getProgress() < pb.getMax()) {
 					h.sendEmptyMessageDelayed(0, 1000);
 					pb.setProgress(sp.getInt(PROGRESS, 0));
-					pb.incrementProgressBy(1);
-
+					pb.incrementProgressBy(1);				
+					
 					sp.edit().putInt(PROGRESS, pb.getProgress()).apply();
 				} else {
 					if (vibrate) {
