@@ -78,13 +78,13 @@ public class MainActivity extends BasicMenuActivity {
 
 	@Override
 	public void onResume() {
-
+		super.onResume();
 		if (sp.getBoolean(TRAINING_AT_PROGRESS, false)) {
 			Intent intent_to_trainng = new Intent(this,
 					TrainingAtProgress.class);
 			startActivity(intent_to_trainng);
 		}
-		super.onResume();
+		
 		if (sp.contains(TRAININGS_DONE_NUM)
 				&& sp.getInt(TRAININGS_DONE_NUM, 0) > 5
 				&& !sp.contains(MARKET_LEAVED_FEEDBACK)) {
@@ -97,9 +97,7 @@ public class MainActivity extends BasicMenuActivity {
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-
 		initUi();
-
 	}
 
 	private void initTable() {

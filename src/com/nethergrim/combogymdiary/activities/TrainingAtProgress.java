@@ -10,7 +10,6 @@ import kankan.wheel.widget.adapters.AbstractWheelTextAdapter;
 import android.annotation.SuppressLint;
 import android.app.DialogFragment;
 import android.app.NotificationManager;
-import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -83,7 +82,7 @@ public class TrainingAtProgress extends BasicMenuActivity implements
 	private TextView infoText, setInfo, tvTimerCountdown;
 	private ArrayList<String> alMain = new ArrayList<String>();
 	private ArrayList<Integer> alSet = new ArrayList<Integer>();
-	private int seconds, minutes, secDelta = 0, minDelta = 0;
+	private int seconds, minutes, secDelta = 0, minDelta = 0, sec, min;
 	private boolean isTrainingProgress = false, autoBackup = true;
 	private Handler timerHandler = new Handler();
 	private LinearLayout llBack, llSave, llForward, llBottom, llTimerProgress;
@@ -436,15 +435,21 @@ public class TrainingAtProgress extends BasicMenuActivity implements
 			Log.d(LOG_TAG, "error parsing timerValue");
 		}
 		pb.setMax(timerValue);
-		Log.d(LOG_TAG, "pb.getMax() == " + pb.getMax());
+		sec = timerValue % 60;
+		min = timerValue / 60;
 		h = new Handler() {
-			public void handleMessage(Message msg) {		
-												
+			public void handleMessage(Message msg) {
+				if (sec > 0) {
+					sec--;
+				} else if (sec == 0 && min > 0) {
+					sec = 59;
+					min--;
+				}
 				if (pb.getProgress() < pb.getMax()) {
 					h.sendEmptyMessageDelayed(0, 1000);
 					pb.setProgress(sp.getInt(PROGRESS, 0));
-					pb.incrementProgressBy(1);				
-					
+					pb.incrementProgressBy(1);
+					tvTimerCountdown.setText("" + min + ":" + sec);
 					sp.edit().putInt(PROGRESS, pb.getProgress()).apply();
 				} else {
 					if (vibrate) {
