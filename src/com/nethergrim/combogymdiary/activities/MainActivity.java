@@ -97,7 +97,7 @@ public class MainActivity extends BasicMenuActivity {
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-
+		Counter.initialize(getApplicationContext());
 		initUi();
 
 	}
