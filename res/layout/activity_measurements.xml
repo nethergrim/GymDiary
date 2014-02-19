@@ -9,8 +9,7 @@
     <ListView
         android:id="@+id/lvMeasurements"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_above="@+id/adView2"
+        android:layout_height="match_parent"
         android:layout_alignParentLeft="true"
         android:layout_alignParentRight="true"
         android:layout_alignParentTop="true"
@@ -25,7 +24,9 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
+        android:visibility="gone"
         android:layout_alignParentLeft="true"
+        android:layout_below="@id/lvMeasurements"
         android:gravity="center_horizontal"
         app:adSize="SMART_BANNER"
         app:adUnitId="ca-app-pub-5652589022154086/4102541457" >

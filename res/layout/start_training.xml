@@ -11,10 +11,10 @@
         android:id="@+id/lvStartTraining"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_alignParentBottom="true"
+        android:layout_above="@+id/frameAd"
         android:layout_alignParentLeft="true"
         android:layout_alignParentRight="true"
-        android:layout_below="@+id/frameAd"
+        android:layout_alignParentTop="true"
         android:layout_margin="5dp"
         android:background="@drawable/rounded" >
 
@@ -24,8 +24,9 @@
         android:id="@+id/frameAd"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentTop="true" >
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentLeft="true" >
+
     </FrameLayout>
 
 </RelativeLayout>

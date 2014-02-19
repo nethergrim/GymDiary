@@ -10024,11 +10024,12 @@ com.nethergrim.combogymdiary.DB -> com.nethergrim.combogymdiary.c:
     void open() -> a
     java.lang.String getExerciseByID(int) -> a
     void close() -> b
+    int getExeIdByName(java.lang.String) -> b
     int getLastReps(java.lang.String,int) -> a
-    void deleteExersiceByName(java.lang.String) -> b
+    void deleteExersiceByName(java.lang.String) -> c
     void deleteExersiceByName(java.lang.String,java.lang.String) -> a
     int getLastWeight(java.lang.String,int) -> b
-    java.lang.String getTimerValueByExerciseName(java.lang.String) -> c
+    java.lang.String getTimerValueByExerciseName(java.lang.String) -> d
     int getThisWeight(int,java.lang.String) -> a
     int getThisReps(int,java.lang.String) -> b
     int getThisId(int,java.lang.String) -> c
@@ -10050,6 +10051,8 @@ com.nethergrim.combogymdiary.DB$DBHelper -> com.nethergrim.combogymdiary.d:
     com.nethergrim.combogymdiary.DB this$0 -> a
     void onCreate(android.database.sqlite.SQLiteDatabase) -> onCreate
     void onUpgrade(android.database.sqlite.SQLiteDatabase,int,int) -> onUpgrade
+com.nethergrim.combogymdiary.MyApp -> com.nethergrim.combogymdiary.MyApp:
+    void onCreate() -> onCreate
 com.nethergrim.combogymdiary.MyService -> com.nethergrim.combogymdiary.MyService:
     android.app.NotificationManager nm -> a
     android.content.SharedPreferences sp -> b
@@ -10473,32 +10476,37 @@ com.nethergrim.combogymdiary.activities.TrainingAtProgress -> com.nethergrim.com
     int vibrateLenght -> U
     int currentId -> V
     android.app.DialogFragment dlg1 -> W
-    android.app.ProgressDialog pd -> X
+    java.lang.Boolean isProgressBarActive -> X
     long startTime -> Y
     android.os.Handler h -> Z
     kankan.wheel.widget.WheelView reps -> aa
     kankan.wheel.widget.WheelView weights -> ab
-    android.widget.TextView infoText -> ac
-    android.widget.TextView setInfo -> ad
-    java.util.ArrayList alMain -> ae
-    java.util.ArrayList alSet -> af
-    int seconds -> ag
-    int minutes -> ah
-    int secDelta -> ai
-    int minDelta -> aj
-    boolean isTrainingProgress -> ak
-    boolean autoBackup -> al
-    android.os.Handler timerHandler -> am
-    android.widget.LinearLayout llBack -> an
-    android.widget.LinearLayout llSave -> ao
-    android.widget.LinearLayout llForward -> ap
-    android.widget.LinearLayout llBottom -> aq
-    android.widget.ImageView ivBack -> ar
-    android.widget.ImageView ivForward -> as
-    android.view.animation.Animation anim -> at
-    com.mobeta.android.dslv.DragSortListView list -> au
+    android.widget.ProgressBar pb -> ac
+    android.widget.TextView infoText -> ad
+    android.widget.TextView setInfo -> ae
+    android.widget.TextView tvTimerCountdown -> af
+    java.util.ArrayList alMain -> ag
+    java.util.ArrayList alSet -> ah
+    int seconds -> ai
+    int minutes -> aj
+    int secDelta -> ak
+    int minDelta -> al
+    int sec -> am
+    int min -> an
+    boolean isTrainingProgress -> ao
+    boolean autoBackup -> ap
+    android.os.Handler timerHandler -> aq
+    android.widget.LinearLayout llBack -> ar
+    android.widget.LinearLayout llSave -> as
+    android.widget.LinearLayout llForward -> at
+    android.widget.LinearLayout llBottom -> au
+    android.widget.LinearLayout llTimerProgress -> av
+    android.widget.ImageView ivBack -> aw
+    android.widget.ImageView ivForward -> ax
+    android.view.animation.Animation anim -> ay
+    com.mobeta.android.dslv.DragSortListView list -> az
     java.lang.Runnable timerRunnable -> y
-    com.mobeta.android.dslv.DragSortListView$DropListener onDrop -> av
+    com.mobeta.android.dslv.DragSortListView$DropListener onDrop -> aA
     void onConfigurationChanged(android.content.res.Configuration) -> onConfigurationChanged
     void onCreate(android.os.Bundle) -> onCreate
     void onChoose() -> g
@@ -10537,10 +10545,18 @@ com.nethergrim.combogymdiary.activities.TrainingAtProgress -> com.nethergrim.com
     int access$13(com.nethergrim.combogymdiary.activities.TrainingAtProgress) -> l
     void access$14(com.nethergrim.combogymdiary.activities.TrainingAtProgress,int) -> c
     void access$15(com.nethergrim.combogymdiary.activities.TrainingAtProgress,int) -> d
-    android.app.ProgressDialog access$16(com.nethergrim.combogymdiary.activities.TrainingAtProgress) -> m
-    android.os.Handler access$17(com.nethergrim.combogymdiary.activities.TrainingAtProgress) -> n
-    java.lang.Boolean access$18(com.nethergrim.combogymdiary.activities.TrainingAtProgress) -> o
-    int access$19(com.nethergrim.combogymdiary.activities.TrainingAtProgress) -> p
+    int access$16(com.nethergrim.combogymdiary.activities.TrainingAtProgress) -> m
+    void access$17(com.nethergrim.combogymdiary.activities.TrainingAtProgress,int) -> e
+    int access$18(com.nethergrim.combogymdiary.activities.TrainingAtProgress) -> n
+    void access$19(com.nethergrim.combogymdiary.activities.TrainingAtProgress,int) -> f
+    android.widget.ProgressBar access$20(com.nethergrim.combogymdiary.activities.TrainingAtProgress) -> o
+    android.os.Handler access$21(com.nethergrim.combogymdiary.activities.TrainingAtProgress) -> p
+    android.content.SharedPreferences access$22(com.nethergrim.combogymdiary.activities.TrainingAtProgress) -> q
+    android.widget.TextView access$23(com.nethergrim.combogymdiary.activities.TrainingAtProgress) -> r
+    java.lang.Boolean access$24(com.nethergrim.combogymdiary.activities.TrainingAtProgress) -> s
+    int access$25(com.nethergrim.combogymdiary.activities.TrainingAtProgress) -> t
+    android.widget.LinearLayout access$26(com.nethergrim.combogymdiary.activities.TrainingAtProgress) -> u
+    void access$27(com.nethergrim.combogymdiary.activities.TrainingAtProgress,java.lang.Boolean) -> a
 com.nethergrim.combogymdiary.activities.TrainingAtProgress$1 -> com.nethergrim.combogymdiary.activities.aa:
     com.nethergrim.combogymdiary.activities.TrainingAtProgress this$0 -> a
     void run() -> run
@@ -10576,7 +10592,11 @@ com.nethergrim.combogymdiary.dialogs.DialogExitFromTraining -> com.nethergrim.co
     void onDetach() -> onDetach
 com.nethergrim.combogymdiary.dialogs.DialogExitFromTraining$MyInterface -> com.nethergrim.combogymdiary.a.b:
     void onChoose() -> g
-com.nethergrim.combogymdiary.dialogs.DialogRestoreFromBackup -> com.nethergrim.combogymdiary.a.c:
+com.nethergrim.combogymdiary.dialogs.DialogGoToMarket -> com.nethergrim.combogymdiary.a.c:
+    android.content.SharedPreferences sp -> a
+    void onClick(android.content.DialogInterface,int) -> onClick
+    android.app.Dialog onCreateDialog(android.os.Bundle) -> onCreateDialog
+com.nethergrim.combogymdiary.dialogs.DialogRestoreFromBackup -> com.nethergrim.combogymdiary.a.d:
     java.lang.String LOG_TAG -> a
     com.nethergrim.combogymdiary.dialogs.DialogRestoreFromBackup$MyInterface mListener -> b
     android.app.Dialog onCreateDialog(android.os.Bundle) -> onCreateDialog
@@ -10584,7 +10604,7 @@ com.nethergrim.combogymdiary.dialogs.DialogRestoreFromBackup -> com.nethergrim.c
     void onCancel(android.content.DialogInterface) -> onCancel
     void onAttach(android.app.Activity) -> onAttach
     void onDetach() -> onDetach
-com.nethergrim.combogymdiary.dialogs.DialogRestoreFromBackup$MyInterface -> com.nethergrim.combogymdiary.a.d:
+com.nethergrim.combogymdiary.dialogs.DialogRestoreFromBackup$MyInterface -> com.nethergrim.combogymdiary.a.e:
     void onChoose() -> b
 com.nethergrim.combogymdiary.drive.BaseDiskActivity -> com.nethergrim.combogymdiary.drive.a:
     com.google.android.gms.common.api.GoogleApiClient mGoogleApiClient -> a
@@ -10626,9 +10646,8 @@ com.nethergrim.combogymdiary.drive.DiskBackupActivity$1 -> com.nethergrim.combog
     void onNewContents(com.google.android.gms.drive.DriveApi$ContentsResult) -> a
 com.nethergrim.combogymdiary.drive.DiskCreateFolderActivity -> com.nethergrim.combogymdiary.drive.DiskCreateFolderActivity:
     android.content.SharedPreferences sp -> a
-    java.lang.Boolean toCreateFolder -> b
-    com.google.android.gms.drive.MetadataBuffer mdb -> c
-    com.google.android.gms.drive.query.Query[] sQueries -> d
+    com.google.android.gms.drive.MetadataBuffer mdb -> b
+    com.google.android.gms.drive.query.Query[] sQueries -> c
     void onCreate(android.os.Bundle) -> onCreate
     void onBackPressed() -> onBackPressed
     void onResume() -> onResume

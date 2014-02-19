@@ -56,6 +56,9 @@ public class CatalogActivity extends BasicMenuActivity {
 		AdView adView = (AdView) this.findViewById(R.id.adView2);
 		AdRequest adRequest = new AdRequest.Builder().build();
 		adView.loadAd(adRequest);
+		if (isNetworkAvailable()) {
+			adView.setVisibility(View.VISIBLE);
+		}
 	}
 
 	private void gotoDetailed(int groupPosition, int childPosition, long id) {

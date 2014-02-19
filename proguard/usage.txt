@@ -1295,7 +1295,7 @@ com.actionbarsherlock.internal.ActionBarSherlockCompat:
     273:277:public boolean dispatchOpenOptionsMenu()
     284:291:public boolean dispatchCloseOptionsMenu()
     298:305:public void dispatchPostCreate(android.os.Bundle)
-    313:313:public boolean dispatchCreateOptionsMenu(android.view.Menu)
+    310:313:public boolean dispatchCreateOptionsMenu(android.view.Menu)
     320:345:public boolean dispatchPrepareOptionsMenu(android.view.Menu)
     350:350:public boolean dispatchOptionsItemSelected(android.view.MenuItem)
     357:364:public boolean dispatchMenuOpened(int,android.view.Menu)
@@ -4897,12 +4897,10 @@ com.nethergrim.combogymdiary.DB:
     78:78:public java.lang.Boolean isDatabaseBlockedByCurrentThread()
     109:109:public android.database.Cursor getAllData_Exe()
     114:114:public android.database.Cursor getData_Exe_GroupBy(java.lang.String)
-    119:126:public int getExeIdByName(java.lang.String)
     132:132:public android.database.Cursor getData_Main_GroupBy(java.lang.String)
     277:283:public int getIdValueByExerciseName(java.lang.String)
     336:336:public android.database.Cursor getAllData_Main()
     426:427:public void delDB()
-com.nethergrim.combogymdiary.MyApp
 com.nethergrim.combogymdiary.R
 com.nethergrim.combogymdiary.R$anim
 com.nethergrim.combogymdiary.R$array
@@ -4930,8 +4928,11 @@ com.nethergrim.combogymdiary.activities.BasicMenuActivity:
     public static final java.lang.String MY_ACCOUNT_NAME
     public static final java.lang.String DRIVE_FOLDER_ID_ENCODED_TO_STRING
     public static final java.lang.String DRIVE_EXISTS
+    public static final java.lang.String MARKET_LEAVED_FEEDBACK
     public static final java.lang.String DATABASE_FILLED
     public static final java.lang.String AUTO_BACKUP_TO_DRIVE
+    public static final java.lang.String PROGRESS
+    public static final java.lang.String TRAININGS_DONE_NUM
     protected static final java.lang.String APPLICAITON_ID
     protected static final java.lang.String MINUTES
     protected static final java.lang.String SECONDS

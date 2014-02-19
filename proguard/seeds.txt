@@ -1314,6 +1314,8 @@ com.mobeta.android.dslv.R$styleable: int DragSortListView_use_default_controller
 com.nethergrim.combogymdiary.CheckableLinearLayout
 com.nethergrim.combogymdiary.CheckableLinearLayout: CheckableLinearLayout(android.content.Context,android.util.AttributeSet)
 com.nethergrim.combogymdiary.CheckableLinearLayout: void setChecked(boolean)
+com.nethergrim.combogymdiary.MyApp
+com.nethergrim.combogymdiary.MyApp: MyApp()
 com.nethergrim.combogymdiary.MyService
 com.nethergrim.combogymdiary.MyService: MyService()
 com.nethergrim.combogymdiary.R$anim: int myalpha
@@ -1958,6 +1960,7 @@ com.nethergrim.combogymdiary.R$id: int llBtnBack
 com.nethergrim.combogymdiary.R$id: int llBtnForward
 com.nethergrim.combogymdiary.R$id: int llBtnSave
 com.nethergrim.combogymdiary.R$id: int llLeft
+com.nethergrim.combogymdiary.R$id: int llProgressShow
 com.nethergrim.combogymdiary.R$id: int llRight
 com.nethergrim.combogymdiary.R$id: int lvExers
 com.nethergrim.combogymdiary.R$id: int lvMainHistory
@@ -1978,6 +1981,7 @@ com.nethergrim.combogymdiary.R$id: int normal
 com.nethergrim.combogymdiary.R$id: int onDown
 com.nethergrim.combogymdiary.R$id: int onLongPress
 com.nethergrim.combogymdiary.R$id: int onMove
+com.nethergrim.combogymdiary.R$id: int pbTrainingRest
 com.nethergrim.combogymdiary.R$id: int progressBar1
 com.nethergrim.combogymdiary.R$id: int right
 com.nethergrim.combogymdiary.R$id: int rl1
@@ -2017,6 +2021,7 @@ com.nethergrim.combogymdiary.R$id: int tvDouble2
 com.nethergrim.combogymdiary.R$id: int tvInfoExe
 com.nethergrim.combogymdiary.R$id: int tvSetInfo
 com.nethergrim.combogymdiary.R$id: int tvText
+com.nethergrim.combogymdiary.R$id: int tvTimerCountdown
 com.nethergrim.combogymdiary.R$id: int useLogo
 com.nethergrim.combogymdiary.R$id: int view1
 com.nethergrim.combogymdiary.R$id: int view2
@@ -2269,6 +2274,8 @@ com.nethergrim.combogymdiary.R$string: int hip
 com.nethergrim.combogymdiary.R$string: int inch
 com.nethergrim.combogymdiary.R$string: int input_data
 com.nethergrim.combogymdiary.R$string: int kg
+com.nethergrim.combogymdiary.R$string: int later
+com.nethergrim.combogymdiary.R$string: int leave_feedback_market
 com.nethergrim.combogymdiary.R$string: int leg
 com.nethergrim.combogymdiary.R$string: int md__drawerClosedIndicatorDesc
 com.nethergrim.combogymdiary.R$string: int md__drawerOpenIndicatorDesc
@@ -2311,12 +2318,6 @@ com.nethergrim.combogymdiary.R$string: int tall
 com.nethergrim.combogymdiary.R$string: int timer
 com.nethergrim.combogymdiary.R$string: int timer_between_sets
 com.nethergrim.combogymdiary.R$string: int timer_default_state
-com.nethergrim.combogymdiary.R$string: int title_activity_disk
-com.nethergrim.combogymdiary.R$string: int title_activity_disk_auto_backup
-com.nethergrim.combogymdiary.R$string: int title_activity_disk_create_folder
-com.nethergrim.combogymdiary.R$string: int title_activity_disk_file_download
-com.nethergrim.combogymdiary.R$string: int title_activity_disk_restore
-com.nethergrim.combogymdiary.R$string: int title_activity_graphs
 com.nethergrim.combogymdiary.R$string: int title_activity_temp
 com.nethergrim.combogymdiary.R$string: int title_training_detail
 com.nethergrim.combogymdiary.R$string: int title_training_list

@@ -64,6 +64,9 @@ public class MeasurementsActivity extends BasicMenuActivity implements
 		AdView adView = (AdView) this.findViewById(R.id.adView2);
 		AdRequest adRequest = new AdRequest.Builder().build();
 		adView.loadAd(adRequest);
+		if (isNetworkAvailable()) {
+			adView.setVisibility(View.VISIBLE);
+		}
 	}
 
 	@Override

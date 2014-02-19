@@ -71,10 +71,12 @@ public class ExersisesListActivity extends BasicMenuActivity implements
 				goToEditExe(position, id);
 			}
 		});
-
 		AdView adView = (AdView) this.findViewById(R.id.adView5);
 		AdRequest adRequest = new AdRequest.Builder().build();
 		adView.loadAd(adRequest);
+		if (isNetworkAvailable()) {
+			adView.setVisibility(View.VISIBLE);
+		}
 		getSupportLoaderManager().getLoader(0).forceLoad();
 	}
 
@@ -82,7 +84,6 @@ public class ExersisesListActivity extends BasicMenuActivity implements
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		initUi();
-
 	}
 
 	@Override
