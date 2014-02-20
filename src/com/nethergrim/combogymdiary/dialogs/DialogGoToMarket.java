@@ -17,24 +17,29 @@ import android.preference.PreferenceManager;
 public class DialogGoToMarket extends DialogFragment implements OnClickListener {
 
 	private SharedPreferences sp;
-	
+
 	@Override
 	public void onClick(DialogInterface dialog, int which) {
 
 		switch (which) {
 		case Dialog.BUTTON_POSITIVE:
-			
-			sp.edit().putBoolean(BasicMenuActivity.MARKET_LEAVED_FEEDBACK, true).apply();
+			sp.edit()
+					.putBoolean(BasicMenuActivity.MARKET_LEAVED_FEEDBACK, true)
+					.apply();
 			try {
-				startActivity(new Intent(Intent.ACTION_VIEW,
+				startActivity(new Intent(
+						Intent.ACTION_VIEW,
 						Uri.parse("market://details?id=com.nethergrim.combogymdiary")));
 			} catch (android.content.ActivityNotFoundException anfe) {
-				startActivity(new Intent(Intent.ACTION_VIEW,
+				startActivity(new Intent(
+						Intent.ACTION_VIEW,
 						Uri.parse("http://play.google.com/store/apps/details?id=com.nethergrim.combogymdiary")));
 			}
 			break;
 		case Dialog.BUTTON_NEGATIVE:
-			sp.edit().putBoolean(BasicMenuActivity.MARKET_LEAVED_FEEDBACK, false).apply();
+			sp.edit()
+					.putBoolean(BasicMenuActivity.MARKET_LEAVED_FEEDBACK, false)
+					.apply();
 			break;
 		case Dialog.BUTTON_NEUTRAL:
 			sp.edit().putInt(BasicMenuActivity.TRAININGS_DONE_NUM, 1).apply();
@@ -43,12 +48,15 @@ public class DialogGoToMarket extends DialogFragment implements OnClickListener 
 	}
 
 	public Dialog onCreateDialog(Bundle savedInstanceState) {
-		sp = PreferenceManager.getDefaultSharedPreferences(getActivity().getApplicationContext());
+		sp = PreferenceManager.getDefaultSharedPreferences(getActivity()
+				.getApplicationContext());
 		AlertDialog.Builder adb = new AlertDialog.Builder(getActivity())
-				.setTitle("Google Play Market").setPositiveButton(R.string.yes, this)
+				.setTitle("Google Play Market")
+				.setPositiveButton(R.string.yes, this)
 				.setNegativeButton(R.string.no, this)
 				.setNeutralButton(R.string.later, this)
-				.setMessage(R.string.leave_feedback_market).setIcon(android.R.drawable.btn_star_big_on);
+				.setMessage(R.string.leave_feedback_market)
+				.setIcon(android.R.drawable.btn_star_big_on);
 		return adb.create();
 	}
 

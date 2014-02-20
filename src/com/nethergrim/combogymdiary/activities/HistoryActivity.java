@@ -161,6 +161,6 @@ public class HistoryActivity extends BasicMenuActivity implements
 	@Override
 	public void onClick(View arg0) {
 		int id = arg0.getId();
-		pressButton(id);
+		pressButton(id,true);
 	}
 }

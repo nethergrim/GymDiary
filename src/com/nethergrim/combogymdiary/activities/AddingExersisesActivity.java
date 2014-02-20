@@ -69,7 +69,7 @@ public class AddingExersisesActivity extends BasicMenuActivity implements
 		String timer = etTimer.getText().toString();
 
 		int id = arg0.getId();
-		pressButton(id);
+		pressButton(id,true);
 		if (id == R.id.btnSave && editOrNot == false) {
 			if (!name.isEmpty() && !timer.isEmpty()) {
 				db.addRec_Exe(name, timer);

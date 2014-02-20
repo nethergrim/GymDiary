@@ -2,6 +2,7 @@
 <resources>
 
     <string name="sm">(cm)</string>
+    <string name="acra_error">There is an error in app "Workout Diary".\nCrash report will be send by email.</string>
     <string name="leave_feedback_market">Please, leave your 5 star feedback on Google Play Market </string>
     <string name="later">Later</string>
     <string name="feedback_leave">Leave feedback</string>

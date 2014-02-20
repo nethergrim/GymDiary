@@ -452,7 +452,7 @@ public class CatalogDetailedActivity extends BasicMenuActivity {
 
 	@Override
 	public void onClick(View arg0) {
-		pressButton(arg0.getId());
+		pressButton(arg0.getId(),true);
 		finish();
 	}
 

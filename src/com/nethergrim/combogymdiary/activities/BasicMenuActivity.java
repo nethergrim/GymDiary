@@ -1,7 +1,6 @@
 package com.nethergrim.combogymdiary.activities;
 
 import com.nethergrim.combogymdiary.R;
-import com.yandex.metrica.Counter;
 
 import net.simonvt.menudrawer.MenuDrawer;
 import android.content.Context;
@@ -55,16 +54,15 @@ public abstract class BasicMenuActivity extends FragmentActivity implements
 		mMenuDrawer.setDrawerIndicatorEnabled(true);
 		mMenuDrawer.setTouchBezelSize(3000);
 		getActionBar().setDisplayShowHomeEnabled(true);
-		
-		Counter.sharedInstance().setTrackLocationEnabled(false);
 		initMenuButtons();
 	}
-	
+
 	protected boolean isNetworkAvailable() {
-	    ConnectivityManager connectivityManager 
-	          = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
-	    NetworkInfo activeNetworkInfo = connectivityManager.getActiveNetworkInfo();
-	    return activeNetworkInfo != null && activeNetworkInfo.isConnected();
+		ConnectivityManager connectivityManager = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
+		NetworkInfo activeNetworkInfo = connectivityManager
+				.getActiveNetworkInfo();
+		Log.d(LOG_TAG, "network available");
+		return activeNetworkInfo != null && activeNetworkInfo.isConnected();
 	}
 
 	@Override
@@ -90,15 +88,12 @@ public abstract class BasicMenuActivity extends FragmentActivity implements
 			btnMenu1.setBackgroundColor(getResources().getColor(
 					R.color.full_alpha));
 		}
-		Counter.sharedInstance().onResumeActivity(this);
 		super.onResume();
 	}
 
 	@Override
 	protected void onPause() {
 		super.onPause();
-		Counter.sharedInstance().onPauseActivity(this);
-
 	}
 
 	private void initMenuButtons() {
@@ -140,52 +135,68 @@ public abstract class BasicMenuActivity extends FragmentActivity implements
 		}
 	}
 
-	protected boolean pressButton(int id) {
+	protected boolean pressButton(int id, boolean toClose) {
 		if (id == R.id.btnMenu1) {
 			mMenuDrawer.closeMenu();
 			if (isTrainingAtProgress) {
 				Intent start = new Intent(this, TrainingAtProgress.class);
 				String str = sPref.getString(TRAINING_NAME, "");
-				Log.d(LOG_TAG, "putting extra: TRA_NAME == " + str);
 				start.putExtra("trainingName", str);
 				startActivity(start);
 			} else {
 				Intent gotoStartTraining = new Intent(this,
 						StartTrainingActivity.class);
 				startActivity(gotoStartTraining);
+				if (toClose)
+					finish();
 			}
 			return true;
 		} else if (id == R.id.btnMenu2) {
 			mMenuDrawer.closeMenu();
-			Intent gotoExersisesList = new Intent(this, ExersisesListActivity.class);
+			Intent gotoExersisesList = new Intent(this,
+					ExersisesListActivity.class);
 			startActivity(gotoExersisesList);
+			if (toClose)
+				finish();
 			return true;
 		} else if (id == R.id.btnMenu3) {
 			mMenuDrawer.closeMenu();
 			Intent gotoWorklog = new Intent(this, HistoryActivity.class);
 			startActivity(gotoWorklog);
+			if (toClose)
+				finish();
 			return true;
 		} else if (id == R.id.btnMenu4) {
 			mMenuDrawer.closeMenu();
 			Intent gotoSettings = new Intent(this, SettingsActivity.class);
 			startActivity(gotoSettings);
+			if (toClose)
+				finish();
 			return true;
 		} else if (id == R.id.btnCatalog) {
 			mMenuDrawer.closeMenu();
 			Intent gotoCatalog = new Intent(this, CatalogActivity.class);
 			startActivity(gotoCatalog);
+			if (toClose)
+				finish();
 			return true;
 		} else if (id == R.id.btnMeasure) {
 
 			Intent gotoMeasurements = new Intent(this,
 					MeasurementsActivity.class);
 			startActivity(gotoMeasurements);
+			if (toClose)
+				finish();
 			return true;
 		} else if (id == R.id.btnMenuGraphs) {
 			mMenuDrawer.closeMenu();
 			Intent intent = new Intent(this, GraphsActivity.class);
 			startActivity(intent);
+			if (toClose)
+				finish();
+			return true;
 		}
+
 		return false;
 	}
 }

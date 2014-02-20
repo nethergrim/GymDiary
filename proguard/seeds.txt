@@ -1314,8 +1314,8 @@ com.mobeta.android.dslv.R$styleable: int DragSortListView_use_default_controller
 com.nethergrim.combogymdiary.CheckableLinearLayout
 com.nethergrim.combogymdiary.CheckableLinearLayout: CheckableLinearLayout(android.content.Context,android.util.AttributeSet)
 com.nethergrim.combogymdiary.CheckableLinearLayout: void setChecked(boolean)
-com.nethergrim.combogymdiary.MyApp
-com.nethergrim.combogymdiary.MyApp: MyApp()
+com.nethergrim.combogymdiary.MyApplication
+com.nethergrim.combogymdiary.MyApplication: MyApplication()
 com.nethergrim.combogymdiary.MyService
 com.nethergrim.combogymdiary.MyService: MyService()
 com.nethergrim.combogymdiary.R$anim: int myalpha
@@ -2121,6 +2121,7 @@ com.nethergrim.combogymdiary.R$string: int abs__searchview_description_submit
 com.nethergrim.combogymdiary.R$string: int abs__searchview_description_voice
 com.nethergrim.combogymdiary.R$string: int abs__shareactionprovider_share_with
 com.nethergrim.combogymdiary.R$string: int abs__shareactionprovider_share_with_application
+com.nethergrim.combogymdiary.R$string: int acra_error
 com.nethergrim.combogymdiary.R$string: int action_settings
 com.nethergrim.combogymdiary.R$string: int add_an_exercise
 com.nethergrim.combogymdiary.R$string: int add_new_exersise
@@ -2711,40 +2712,12 @@ com.nethergrim.combogymdiary.drive.DiskFileDownloadActivity
 com.nethergrim.combogymdiary.drive.DiskFileDownloadActivity: DiskFileDownloadActivity()
 com.nethergrim.combogymdiary.drive.DiskRestoreActivity
 com.nethergrim.combogymdiary.drive.DiskRestoreActivity: DiskRestoreActivity()
-com.nethergrim.combogymdiary.provider.MetricaContentProvider
-com.nethergrim.combogymdiary.provider.MetricaContentProvider: MetricaContentProvider()
 com.startad.lib.SADView: void setApplicationId(java.lang.String)
 com.startad.lib.SADView: void setAdListener(com.startad.lib.SADView$SADListener)
 com.startad.lib.SADView: com.startad.lib.SADInstallManager getInstallManager()
 com.startad.lib.SADView: java.lang.String getDeviceId()
 com.startad.lib.SADView$ErrorCode: com.startad.lib.SADView$ErrorCode[] values()
 com.startad.lib.SADView$ErrorCode: com.startad.lib.SADView$ErrorCode valueOf(java.lang.String)
-com.yandex.metrica.CampaignReceiver
-com.yandex.metrica.CampaignReceiver: CampaignReceiver()
-com.yandex.metrica.CounterConfiguration
-com.yandex.metrica.CounterConfiguration: android.os.Parcelable$Creator CREATOR
-com.yandex.metrica.MetricaContentProvider: MetricaContentProvider()
-com.yandex.metrica.MetricaEventHandler
-com.yandex.metrica.MetricaEventHandler: MetricaEventHandler()
-com.yandex.metrica.MetricaService
-com.yandex.metrica.MetricaService: MetricaService()
-com.yandex.metrica.NativeCrashesHelper
-com.yandex.metrica.NativeCrashesHelper: void setUpNativeUncaughtExceptionHandler(java.lang.String)
-com.yandex.metrica.NativeCrashesHelper: void logsEnabled(boolean)
-com.yandex.metrica.ag$a: com.yandex.metrica.ag$a[] values()
-com.yandex.metrica.ag$a: com.yandex.metrica.ag$a valueOf(java.lang.String)
-com.yandex.metrica.ag$b: com.yandex.metrica.ag$b[] values()
-com.yandex.metrica.ag$b: com.yandex.metrica.ag$b valueOf(java.lang.String)
-com.yandex.metrica.r$a: com.yandex.metrica.r$a[] values()
-com.yandex.metrica.r$a: com.yandex.metrica.r$a valueOf(java.lang.String)
-com.yandex.metrica.t$a$b$b$b: com.yandex.metrica.t$a$b$b$b[] values()
-com.yandex.metrica.t$a$b$b$b: com.yandex.metrica.t$a$b$b$b valueOf(java.lang.String)
-com.yandex.metrica.t$a$b$c$c$c: com.yandex.metrica.t$a$b$c$c$c[] values()
-com.yandex.metrica.t$a$b$c$c$c: com.yandex.metrica.t$a$b$c$c$c valueOf(java.lang.String)
-com.yandex.metrica.z$b: com.yandex.metrica.z$b[] values()
-com.yandex.metrica.z$b: com.yandex.metrica.z$b valueOf(java.lang.String)
-com.yandex.metrica.z$c: com.yandex.metrica.z$c[] values()
-com.yandex.metrica.z$c: com.yandex.metrica.z$c valueOf(java.lang.String)
 javax.annotation.meta.When: javax.annotation.meta.When[] values()
 javax.annotation.meta.When: javax.annotation.meta.When valueOf(java.lang.String)
 kankan.wheel.R$drawable: int wheel_bg
@@ -3454,6 +3427,16 @@ net.simonvt.menudrawer.StaticDrawer: void setSlideDrawable(int)
 net.simonvt.menudrawer.StaticDrawer: void setSlideDrawable(android.graphics.drawable.Drawable)
 net.simonvt.menudrawer.StaticDrawer: void setupUpIndicator(android.app.Activity)
 net.simonvt.menudrawer.StaticDrawer: void setDrawerIndicatorEnabled(boolean)
+org.acra.ReportField: org.acra.ReportField[] values()
+org.acra.ReportField: org.acra.ReportField valueOf(java.lang.String)
+org.acra.ReportingInteractionMode: org.acra.ReportingInteractionMode[] values()
+org.acra.ReportingInteractionMode: org.acra.ReportingInteractionMode valueOf(java.lang.String)
+org.acra.collector.MediaCodecListCollector$CodecType: org.acra.collector.MediaCodecListCollector$CodecType[] values()
+org.acra.collector.MediaCodecListCollector$CodecType: org.acra.collector.MediaCodecListCollector$CodecType valueOf(java.lang.String)
+org.acra.sender.HttpSender$Method: org.acra.sender.HttpSender$Method[] values()
+org.acra.sender.HttpSender$Method: org.acra.sender.HttpSender$Method valueOf(java.lang.String)
+org.acra.sender.HttpSender$Type: org.acra.sender.HttpSender$Type[] values()
+org.acra.sender.HttpSender$Type: org.acra.sender.HttpSender$Type valueOf(java.lang.String)
 org.codehaus.jackson.JsonEncoding: org.codehaus.jackson.JsonEncoding[] values()
 org.codehaus.jackson.JsonEncoding: org.codehaus.jackson.JsonEncoding valueOf(java.lang.String)
 org.codehaus.jackson.JsonGenerator$Feature: org.codehaus.jackson.JsonGenerator$Feature[] values()

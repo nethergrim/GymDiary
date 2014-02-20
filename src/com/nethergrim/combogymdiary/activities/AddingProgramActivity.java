@@ -4,7 +4,6 @@ import com.nethergrim.combogymdiary.DB;
 import com.nethergrim.combogymdiary.R;
 
 import android.support.v4.app.LoaderManager.LoaderCallbacks;
-import android.support.v4.app.NavUtils;
 import android.support.v4.content.CursorLoader;
 import android.support.v4.content.Loader;
 import android.support.v4.widget.SimpleCursorAdapter;
@@ -100,7 +99,7 @@ public class AddingProgramActivity extends BasicMenuActivity implements
 	@Override
 	public void onClick(View arg0) {
 		int id = arg0.getId();
-		pressButton(id);
+		pressButton(id,true);
 		if (id == R.id.buttonAddingProgram) {
 			String prgName = etName.getText().toString();
 			long[] arrIDs = lvExe.getCheckedItemIds();
@@ -122,7 +121,7 @@ public class AddingProgramActivity extends BasicMenuActivity implements
 				} while (c.moveToNext() && j < arrIDs.length);
 
 				db.addRec_Trainings(prgName, db.convertArrayToString(exersices));
-				NavUtils.navigateUpFromSameTask(this);
+				finish();
 			} else {
 				Toast.makeText(this, R.string.input_data, Toast.LENGTH_SHORT)
 						.show();

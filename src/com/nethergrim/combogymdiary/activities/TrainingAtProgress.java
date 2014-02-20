@@ -54,7 +54,6 @@ import com.nethergrim.combogymdiary.R;
 import com.nethergrim.combogymdiary.dialogs.DialogExitFromTraining;
 import com.nethergrim.combogymdiary.dialogs.DialogExitFromTraining.MyInterface;
 import com.nethergrim.combogymdiary.drive.DiskCreateFolderActivity;
-import com.yandex.metrica.Counter;
 
 @SuppressLint("SimpleDateFormat")
 public class TrainingAtProgress extends BasicMenuActivity implements
@@ -408,10 +407,6 @@ public class TrainingAtProgress extends BasicMenuActivity implements
 		try {
 			vibrateLenght = Integer.parseInt(vl);
 		} catch (Exception e) {
-			Counter.sharedInstance()
-					.reportError(
-							"getting vibrateLenght from sp failed :(\ntrainingAtProgress",
-							e);
 			vibrateLenght = 2;
 		}
 
@@ -428,9 +423,6 @@ public class TrainingAtProgress extends BasicMenuActivity implements
 			timerValue = Integer.parseInt(db
 					.getTimerValueByExerciseName(exeName));
 		} catch (Exception e) {
-			Counter.sharedInstance().reportError(
-					"getting timerValue by Exe name failed :(\ntrainingAtProgress "
-							+ etTimer.getText().toString(), e);
 			timerValue = 60;
 			Log.d(LOG_TAG, "error parsing timerValue");
 		}
@@ -585,8 +577,6 @@ public class TrainingAtProgress extends BasicMenuActivity implements
 					array.add(Integer.parseInt(st.nextToken()));
 				} catch (Exception e) {
 					array.add(0);
-					Counter.sharedInstance().reportError(
-							"restoring sets from preferences failed :(", e);
 				}
 
 			}
@@ -604,7 +594,7 @@ public class TrainingAtProgress extends BasicMenuActivity implements
 		if (id == R.id.btnMenu1) {
 			mMenuDrawer.closeMenu();
 		} else {
-			pressButton(id);
+			pressButton(id, false);
 		}
 
 		String tmpStr = db.getTimerValueByExerciseName(exeName);

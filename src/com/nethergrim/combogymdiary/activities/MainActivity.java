@@ -3,7 +3,6 @@ package com.nethergrim.combogymdiary.activities;
 import com.nethergrim.combogymdiary.DB;
 import com.nethergrim.combogymdiary.R;
 import com.nethergrim.combogymdiary.dialogs.DialogGoToMarket;
-import com.yandex.metrica.Counter;
 
 import android.app.DialogFragment;
 import android.content.Intent;
@@ -84,13 +83,14 @@ public class MainActivity extends BasicMenuActivity {
 					TrainingAtProgress.class);
 			startActivity(intent_to_trainng);
 		}
-		
+
 		if (sp.contains(TRAININGS_DONE_NUM)
 				&& sp.getInt(TRAININGS_DONE_NUM, 0) > 5
 				&& !sp.contains(MARKET_LEAVED_FEEDBACK)) {
 			Log.d(LOG_TAG, TRAININGS_DONE_NUM + " going to market");
 			DialogFragment dialog = new DialogGoToMarket();
 			dialog.show(getFragmentManager(), "dialog_goto_market");
+			dialog.setCancelable(false);
 		}
 	}
 
@@ -150,11 +150,13 @@ public class MainActivity extends BasicMenuActivity {
 	@Override
 	public void onClick(View arg0) {
 		int id = arg0.getId();
-		pressButton(id);
+		pressButton(id, false);
 		if (id == R.id.buttonSettings) {
 			Intent gotoSettings = new Intent(this, SettingsActivity.class);
 			startActivity(gotoSettings);
 		} else if (id == R.id.buttonStartTraining) {
+			
+			
 			if (isTrainingAtProgress) {
 				Intent start = new Intent(this, TrainingAtProgress.class);
 				String str = sPref.getString(TRAINING_NAME, "");
@@ -221,8 +223,6 @@ public class MainActivity extends BasicMenuActivity {
 			try {
 				initTable();
 			} catch (Exception e) {
-				Counter.sharedInstance().reportError(
-						"database filling error :(", e);
 			}
 			return null;
 		}

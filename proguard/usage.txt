@@ -5029,149 +5029,6 @@ com.startad.lib.utils.UrlLoader:
 com.startad.lib.utils.Utils:
     16:16:public Utils()
     18:22:public static boolean isNetworkAvailable(android.content.Context)
-com.yandex.metrica.Counter:
-    314:321:public void reportEvent(java.lang.String)
-    513:519:public void reportUnhandledException(java.lang.Throwable)
-    803:804:public void setSessionTimeout(int)
-    812:813:public void startNewSessionManually()
-    828:829:public void setMaxReportsCount(int)
-    843:844:public void setDispatchPeriod(int)
-    858:859:public void setReportsEnabled(boolean)
-    873:875:public void setReportCrashesEnabled(boolean)
-    903:904:public void sendEventsBuffer()
-    915:916:public void setApiKey(java.lang.String)
-    930:931:public void setCustomAppVersion(java.lang.String)
-    945:946:public void setLocation(double,double)
-    967:967:public static java.lang.String getLibraryVersion()
-    987:987:public static boolean isMetricaProcess(android.content.Context)
-com.yandex.metrica.CounterConfiguration:
-    137:138:void a(boolean)
-    153:154:void b(boolean)
-    178:180:void c(java.lang.String)
-    195:197:void a(double,double)
-    279:282:void a(android.content.Context,java.lang.String)
-com.yandex.metrica.a$a:
-    116:116:public com.yandex.metrica.a$a a(com.yandex.metrica.d)
-    public abstract com.yandex.metrica.a$a a(com.yandex.metrica.d,com.yandex.metrica.f)
-    161:161:public com.yandex.metrica.a$a a(byte[])
-    168:176:public com.yandex.metrica.a$a a(byte[],int,int)
-    107:107:public synthetic com.yandex.metrica.k$a b(byte[])
-com.yandex.metrica.c:
-    192:194:public static com.yandex.metrica.c a(byte[],int,int)
-    204:204:public static com.yandex.metrica.c a(byte[])
-com.yandex.metrica.d
-com.yandex.metrica.e$a:
-    private static final long serialVersionUID
-com.yandex.metrica.g:
-    private static final long serialVersionUID
-    71:71:protected boolean a(com.yandex.metrica.d,int)
-    795:795:protected java.lang.Object writeReplace()
-com.yandex.metrica.g$b
-com.yandex.metrica.h
-com.yandex.metrica.k:
-    public abstract byte[] a()
-com.yandex.metrica.k$a:
-    public abstract com.yandex.metrica.k c()
-    public abstract com.yandex.metrica.k$a b(byte[])
-com.yandex.metrica.l:
-    public abstract java.lang.Object a(com.yandex.metrica.d,com.yandex.metrica.f)
-com.yandex.metrica.n:
-    private static final long serialVersionUID
-com.yandex.metrica.t$a:
-    private static final long serialVersionUID
-    504:567:private t$a(com.yandex.metrica.d,com.yandex.metrica.f)
-    5092:5092:protected java.lang.Object writeReplace()
-    482:482:synthetic t$a(com.yandex.metrica.d,com.yandex.metrica.f,byte)
-com.yandex.metrica.t$a$1:
-    571:571:public synthetic java.lang.Object a(com.yandex.metrica.d,com.yandex.metrica.f)
-com.yandex.metrica.t$a$a:
-    5270:5281:public com.yandex.metrica.t$a$a b(com.yandex.metrica.d,com.yandex.metrica.f)
-    5158:5158:public synthetic com.yandex.metrica.a$a a(com.yandex.metrica.d,com.yandex.metrica.f)
-    5158:5158:public synthetic com.yandex.metrica.k c()
-com.yandex.metrica.t$a$b:
-    private static final long serialVersionUID
-    648:703:private t$a$b(com.yandex.metrica.d,com.yandex.metrica.f)
-    4528:4528:protected java.lang.Object writeReplace()
-    626:626:synthetic t$a$b(com.yandex.metrica.d,com.yandex.metrica.f,byte)
-com.yandex.metrica.t$a$b$1:
-    707:707:public synthetic java.lang.Object a(com.yandex.metrica.d,com.yandex.metrica.f)
-com.yandex.metrica.t$a$b$a:
-    4704:4715:public com.yandex.metrica.t$a$b$a b(com.yandex.metrica.d,com.yandex.metrica.f)
-    4594:4594:public synthetic com.yandex.metrica.a$a a(com.yandex.metrica.d,com.yandex.metrica.f)
-    4594:4594:public synthetic com.yandex.metrica.k c()
-com.yandex.metrica.t$a$b$b:
-    private static final long serialVersionUID
-    3536:3591:private t$a$b$b(com.yandex.metrica.d)
-    3927:3927:protected java.lang.Object writeReplace()
-    3514:3514:synthetic t$a$b$b(com.yandex.metrica.d,byte)
-com.yandex.metrica.t$a$b$b$1:
-    3595:3595:public synthetic java.lang.Object a(com.yandex.metrica.d,com.yandex.metrica.f)
-com.yandex.metrica.t$a$b$b$a:
-    4111:4122:public com.yandex.metrica.t$a$b$b$a b(com.yandex.metrica.d,com.yandex.metrica.f)
-    3993:3993:public synthetic com.yandex.metrica.a$a a(com.yandex.metrica.d,com.yandex.metrica.f)
-    3993:3993:public synthetic com.yandex.metrica.k c()
-com.yandex.metrica.t$a$b$b$b:
-    3677:3685:public static com.yandex.metrica.t$a$b$b$b a(int)
-com.yandex.metrica.t$a$b$c:
-    private static final long serialVersionUID
-    794:864:private t$a$b$c(com.yandex.metrica.d,com.yandex.metrica.f)
-    2980:2980:protected java.lang.Object writeReplace()
-    3041:3041:public com.yandex.metrica.t$a$b$c$a n()
-    772:772:synthetic t$a$b$c(com.yandex.metrica.d,com.yandex.metrica.f,byte)
-com.yandex.metrica.t$a$b$c$1:
-    868:868:public synthetic java.lang.Object a(com.yandex.metrica.d,com.yandex.metrica.f)
-com.yandex.metrica.t$a$b$c$a:
-    3165:3176:public com.yandex.metrica.t$a$b$c$a b(com.yandex.metrica.d,com.yandex.metrica.f)
-    3046:3046:public synthetic com.yandex.metrica.a$a a(com.yandex.metrica.d,com.yandex.metrica.f)
-    3046:3046:public synthetic com.yandex.metrica.k c()
-com.yandex.metrica.t$a$b$c$b:
-    private static final long serialVersionUID
-    930:966:private t$a$b$c$b(com.yandex.metrica.d)
-    1071:1071:protected java.lang.Object writeReplace()
-    1132:1132:public com.yandex.metrica.t$a$b$c$b$a j()
-    908:908:synthetic t$a$b$c$b(com.yandex.metrica.d,byte)
-com.yandex.metrica.t$a$b$c$b$1:
-    970:970:public synthetic java.lang.Object a(com.yandex.metrica.d,com.yandex.metrica.f)
-com.yandex.metrica.t$a$b$c$b$a:
-    1220:1231:public com.yandex.metrica.t$a$b$c$b$a b(com.yandex.metrica.d,com.yandex.metrica.f)
-    1137:1137:public synthetic com.yandex.metrica.a$a a(com.yandex.metrica.d,com.yandex.metrica.f)
-    1137:1137:public synthetic com.yandex.metrica.k c()
-com.yandex.metrica.t$a$b$c$c:
-    private static final long serialVersionUID
-    1360:1408:private t$a$b$c$c(com.yandex.metrica.d,com.yandex.metrica.f)
-    2534:2534:protected java.lang.Object writeReplace()
-    2595:2595:public com.yandex.metrica.t$a$b$c$c$a j()
-    1338:1338:synthetic t$a$b$c$c(com.yandex.metrica.d,com.yandex.metrica.f,byte)
-com.yandex.metrica.t$a$b$c$c$1:
-    1412:1412:public synthetic java.lang.Object a(com.yandex.metrica.d,com.yandex.metrica.f)
-com.yandex.metrica.t$a$b$c$c$a:
-    2679:2690:public com.yandex.metrica.t$a$b$c$c$a b(com.yandex.metrica.d,com.yandex.metrica.f)
-    2600:2600:public synthetic com.yandex.metrica.a$a a(com.yandex.metrica.d,com.yandex.metrica.f)
-    2600:2600:public synthetic com.yandex.metrica.k c()
-com.yandex.metrica.t$a$b$c$c$b:
-    private static final long serialVersionUID
-    1590:1651:private t$a$b$c$c$b(com.yandex.metrica.d)
-    1922:1922:protected java.lang.Object writeReplace()
-    1983:1983:public com.yandex.metrica.t$a$b$c$c$b$a t()
-    1568:1568:synthetic t$a$b$c$c$b(com.yandex.metrica.d,byte)
-com.yandex.metrica.t$a$b$c$c$b$1:
-    1655:1655:public synthetic java.lang.Object a(com.yandex.metrica.d,com.yandex.metrica.f)
-com.yandex.metrica.t$a$b$c$c$b$a:
-    2112:2123:public com.yandex.metrica.t$a$b$c$c$b$a b(com.yandex.metrica.d,com.yandex.metrica.f)
-    1988:1988:public synthetic com.yandex.metrica.a$a a(com.yandex.metrica.d,com.yandex.metrica.f)
-    1988:1988:public synthetic com.yandex.metrica.k c()
-com.yandex.metrica.t$b:
-    private static final long serialVersionUID
-    59:95:private t$b(com.yandex.metrica.d)
-    200:200:protected java.lang.Object writeReplace()
-    261:261:public com.yandex.metrica.t$b$a j()
-    37:37:synthetic t$b(com.yandex.metrica.d,byte)
-com.yandex.metrica.t$b$1:
-    99:99:public synthetic java.lang.Object a(com.yandex.metrica.d,com.yandex.metrica.f)
-com.yandex.metrica.t$b$a:
-    349:360:public com.yandex.metrica.t$b$a b(com.yandex.metrica.d,com.yandex.metrica.f)
-    266:266:public synthetic com.yandex.metrica.a$a a(com.yandex.metrica.d,com.yandex.metrica.f)
-    266:266:public synthetic com.yandex.metrica.k c()
 javax.annotation.CheckForNull
 javax.annotation.CheckForSigned
 javax.annotation.CheckReturnValue
@@ -5382,6 +5239,204 @@ net.simonvt.menudrawer.compat.ActionBarHelperCompat:
 net.simonvt.menudrawer.compat.ActionBarHelperNative:
     private static final java.lang.String TAG
     18:19:private ActionBarHelperNative()
+org.acra.ACRA:
+    public static final boolean DEV_LOGGING
+    public static final java.lang.String PREF_DISABLE_ACRA
+    public static final java.lang.String PREF_ENABLE_ACRA
+    public static final java.lang.String PREF_ENABLE_SYSTEM_LOGS
+    public static final java.lang.String PREF_ENABLE_DEVICE_ID
+    public static final java.lang.String PREF_USER_EMAIL_ADDRESS
+    public static final java.lang.String PREF_ALWAYS_ACCEPT
+    public static final java.lang.String PREF_LAST_VERSION_NR
+    281:282:public static void setConfig(org.acra.ACRAConfiguration)
+    317:318:public static void setLog(org.acra.log.ACRALog)
+org.acra.ACRAConfiguration:
+    115:116:public void setHttpHeaders(java.util.Map)
+    134:135:public void setAdditionalDropboxTags(java.lang.String[])
+    142:143:public void setAdditionalSharedPreferences(java.lang.String[])
+    150:151:public void setConnectionTimeout(java.lang.Integer)
+    158:159:public void setCustomReportContent(org.acra.ReportField[])
+    166:167:public void setDeleteUnapprovedReportsOnApplicationStart(java.lang.Boolean)
+    173:174:public void setDeleteOldUnsentReportsOnApplicationStart(java.lang.Boolean)
+    181:182:public void setDropboxCollectionMinutes(java.lang.Integer)
+    189:190:public void setForceCloseDialogAfterToast(java.lang.Boolean)
+    202:203:public void setFormKey(java.lang.String)
+    215:216:public void setFormUri(java.lang.String)
+    223:224:public void setFormUriBasicAuthLogin(java.lang.String)
+    231:232:public void setFormUriBasicAuthPassword(java.lang.String)
+    239:240:public void setIncludeDropboxSystemTags(java.lang.Boolean)
+    247:248:public void setLogcatArguments(java.lang.String[])
+    260:261:public void setMailTo(java.lang.String)
+    268:269:public void setMaxNumberOfRequestRetries(java.lang.Integer)
+    281:283:public void setMode(org.acra.ReportingInteractionMode)
+    295:296:public void setResDialogCommentPrompt(int)
+    308:309:public void setResDialogEmailPrompt(int)
+    320:321:public void setResDialogIcon(int)
+    332:333:public void setResDialogOkToast(int)
+    344:345:public void setResDialogText(int)
+    356:357:public void setResDialogTitle(int)
+    368:369:public void setResNotifIcon(int)
+    380:381:public void setResNotifText(int)
+    393:394:public void setResNotifTickerText(int)
+    405:406:public void setResNotifTitle(int)
+    417:418:public void setResToastText(int)
+    425:426:public void setSharedPreferenceMode(java.lang.Integer)
+    433:434:public void setSharedPreferenceName(java.lang.String)
+    441:442:public void setSocketTimeout(java.lang.Integer)
+    451:452:public void setLogcatFilterByPid(java.lang.Boolean)
+    461:462:public void setSendReportsInDevMode(java.lang.Boolean)
+    472:473:public void setExcludeMatchingSharedPreferencesKeys(java.lang.String[])
+    483:484:public void setExcludeMatchingSettingsKeys(java.lang.String[])
+    493:494:public void setApplicationLogFile(java.lang.String)
+    504:505:public void setApplicationLogFileLines(int)
+    514:515:public void setDisableSSLCertValidation(boolean)
+    523:524:public void setHttpMethod(org.acra.sender.HttpSender$Method)
+    533:534:public void setReportType(org.acra.sender.HttpSender$Type)
+org.acra.ACRAConfigurationException:
+    private static final long serialVersionUID
+org.acra.ACRAConstants:
+    public static final java.lang.String REPORTFILE_EXTENSION
+    static final java.lang.String APPROVED_SUFFIX
+    static final int MAX_SEND_REPORTS
+    protected static final java.lang.String EXTRA_REPORT_FILE_NAME
+    protected static final java.lang.String EXTRA_FORCE_CANCEL
+    static final int NOTIF_CRASH_ID
+    static final int TOAST_WAIT_DURATION
+    public static final java.lang.String NULL_VALUE
+    public static final boolean DEFAULT_FORCE_CLOSE_DIALOG_AFTER_TOAST
+    public static final int DEFAULT_MAX_NUMBER_OF_REQUEST_RETRIES
+    public static final int DEFAULT_SOCKET_TIMEOUT
+    public static final int DEFAULT_CONNECTION_TIMEOUT
+    public static final boolean DEFAULT_DELETE_UNAPPROVED_REPORTS_ON_APPLICATION_START
+    public static final boolean DEFAULT_DELETE_OLD_UNSENT_REPORTS_ON_APPLICATION_START
+    public static final int DEFAULT_DROPBOX_COLLECTION_MINUTES
+    public static final boolean DEFAULT_INCLUDE_DROPBOX_SYSTEM_TAGS
+    public static final int DEFAULT_SHARED_PREFERENCES_MODE
+    public static final int DEFAULT_NOTIFICATION_ICON
+    public static final int DEFAULT_DIALOG_ICON
+    public static final int DEFAULT_RES_VALUE
+    public static final java.lang.String DEFAULT_STRING_VALUE
+    public static final int DEFAULT_LOGCAT_LINES
+    public static final int DEFAULT_BUFFER_SIZE_IN_BYTES
+    public static final boolean DEFAULT_LOGCAT_FILTER_BY_PID
+    public static final boolean DEFAULT_SEND_REPORTS_IN_DEV_MODE
+    public static final java.lang.String DEFAULT_APPLICATION_LOGFILE
+    public static final int DEFAULT_APPLICATION_LOGFILE_LINES
+    public static final java.lang.String DEFAULT_GOOGLE_FORM_URL_FORMAT
+    public static final boolean DEFAULT_DISABLE_SSL_CERT_VALIDATION
+    58:58:public ACRAConstants()
+org.acra.CrashReportDialog:
+    private static final java.lang.String STATE_EMAIL
+    private static final java.lang.String STATE_COMMENT
+org.acra.CrashReportPersister:
+    private static final int NONE
+    private static final int SLASH
+    private static final int UNICODE
+    private static final int CONTINUE
+    private static final int KEY_DONE
+    private static final int IGNORE
+    private static final java.lang.String LINE_SEPARATOR
+org.acra.ErrorReporter:
+    229:230:public void addCustomData(java.lang.String,java.lang.String)
+    254:254:public java.lang.String putCustomData(java.lang.String,java.lang.String)
+    267:267:public java.lang.String removeCustomData(java.lang.String)
+    280:280:public java.lang.String getCustomData(java.lang.String)
+    301:302:public void removeReportSender(org.acra.sender.ReportSender)
+    311:318:public void removeReportSenders(java.lang.Class)
+    426:433:public void handleSilentException(java.lang.Throwable)
+    570:571:public void handleException(java.lang.Throwable,boolean)
+    583:584:public void handleException(java.lang.Throwable)
+org.acra.collector.Compatibility:
+    29:29:public Compatibility()
+org.acra.collector.ConfigurationCollector:
+    private static final java.lang.String SUFFIX_MASK
+    private static final java.lang.String FIELD_SCREENLAYOUT
+    private static final java.lang.String FIELD_UIMODE
+    private static final java.lang.String FIELD_MNC
+    private static final java.lang.String FIELD_MCC
+    private static final java.lang.String PREFIX_UI_MODE
+    private static final java.lang.String PREFIX_TOUCHSCREEN
+    private static final java.lang.String PREFIX_SCREENLAYOUT
+    private static final java.lang.String PREFIX_ORIENTATION
+    private static final java.lang.String PREFIX_NAVIGATIONHIDDEN
+    private static final java.lang.String PREFIX_NAVIGATION
+    private static final java.lang.String PREFIX_KEYBOARDHIDDEN
+    private static final java.lang.String PREFIX_KEYBOARD
+    private static final java.lang.String PREFIX_HARDKEYBOARDHIDDEN
+    42:42:public ConfigurationCollector()
+org.acra.collector.CrashReportData:
+    private static final long serialVersionUID
+org.acra.collector.CrashReportDataFactory:
+    127:127:public java.lang.String putCustomData(java.lang.String,java.lang.String)
+    138:138:public java.lang.String removeCustomData(java.lang.String)
+    149:149:public java.lang.String getCustomData(java.lang.String)
+org.acra.collector.DeviceFeaturesCollector:
+    32:32:DeviceFeaturesCollector()
+org.acra.collector.DisplayManagerCollector:
+    18:18:DisplayManagerCollector()
+org.acra.collector.DropBoxCollector:
+    private static final java.lang.String NO_RESULT
+    40:40:DropBoxCollector()
+org.acra.collector.DumpSysCollector:
+    34:34:DumpSysCollector()
+org.acra.collector.LogCatCollector:
+    private static final int DEFAULT_TAIL_COUNT
+    41:41:LogCatCollector()
+org.acra.collector.LogFileCollector:
+    41:42:private LogFileCollector()
+org.acra.collector.MediaCodecListCollector:
+    private static final java.lang.String COLOR_FORMAT_PREFIX
+    34:35:public MediaCodecListCollector()
+org.acra.collector.ReflectionCollector:
+    32:32:ReflectionCollector()
+org.acra.collector.SettingsCollector:
+    39:39:SettingsCollector()
+org.acra.collector.SharedPreferencesCollector:
+    33:33:SharedPreferencesCollector()
+org.acra.collector.ThreadCollector:
+    25:25:public ThreadCollector()
+org.acra.jraf.android.util.activitylifecyclecallbackscompat.ActivityLifecycleCallbacksAdapter
+org.acra.jraf.android.util.activitylifecyclecallbackscompat.ApplicationHelper:
+    38:38:public ApplicationHelper()
+    80:85:public void unregisterActivityLifecycleCallbacks(android.app.Application,org.acra.jraf.android.util.activitylifecyclecallbackscompat.ActivityLifecycleCallbacksCompat)
+    88:89:private static void preIcsUnregisterActivityLifecycleCallbacks(org.acra.jraf.android.util.activitylifecyclecallbackscompat.ActivityLifecycleCallbacksCompat)
+    93:94:private static void postIcsUnregisterActivityLifecycleCallbacks(android.app.Application,org.acra.jraf.android.util.activitylifecyclecallbackscompat.ActivityLifecycleCallbacksCompat)
+org.acra.jraf.android.util.activitylifecyclecallbackscompat.MainLifecycleDispatcher:
+    58:61:void unregisterActivityLifecycleCallbacks(org.acra.jraf.android.util.activitylifecyclecallbackscompat.ActivityLifecycleCallbacksCompat)
+org.acra.log.ACRALog:
+    public abstract int v(java.lang.String,java.lang.String)
+    public abstract int v(java.lang.String,java.lang.String,java.lang.Throwable)
+    public abstract int d(java.lang.String,java.lang.String,java.lang.Throwable)
+    public abstract int i(java.lang.String,java.lang.String)
+    public abstract int i(java.lang.String,java.lang.String,java.lang.Throwable)
+    public abstract int w(java.lang.String,java.lang.Throwable)
+    public abstract java.lang.String getStackTraceString(java.lang.Throwable)
+org.acra.log.AndroidLogDelegate:
+    14:14:public int v(java.lang.String,java.lang.String)
+    17:17:public int v(java.lang.String,java.lang.String,java.lang.Throwable)
+    23:23:public int d(java.lang.String,java.lang.String,java.lang.Throwable)
+    26:26:public int i(java.lang.String,java.lang.String)
+    29:29:public int i(java.lang.String,java.lang.String,java.lang.Throwable)
+    39:39:public int w(java.lang.String,java.lang.Throwable)
+    48:48:public java.lang.String getStackTraceString(java.lang.Throwable)
+org.acra.sender.GoogleFormSender:
+    65:67:public GoogleFormSender(java.lang.String)
+org.acra.sender.HttpSender:
+    173:178:public HttpSender(org.acra.sender.HttpSender$Method,org.acra.sender.HttpSender$Type,java.lang.String,java.util.Map)
+org.acra.sender.ReportSenderException:
+    49:50:public ReportSenderException(java.lang.String)
+org.acra.util.Installation:
+    private static final java.lang.String INSTALLATION
+    29:29:public Installation()
+org.acra.util.JSONReportBuilder:
+    17:17:public JSONReportBuilder()
+org.acra.util.JSONReportBuilder$JSONReportException:
+    private static final long serialVersionUID
+org.acra.util.ReportUtils:
+    24:24:public ReportUtils()
+    86:105:public static java.lang.String sparseArrayToString(android.util.SparseArray)
+org.acra.util.ToastSender:
+    15:15:public ToastSender()
 org.codehaus.jackson.Base64Variant
 org.codehaus.jackson.Base64Variants
 org.codehaus.jackson.FormatSchema

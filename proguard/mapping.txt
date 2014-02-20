@@ -10051,7 +10051,7 @@ com.nethergrim.combogymdiary.DB$DBHelper -> com.nethergrim.combogymdiary.d:
     com.nethergrim.combogymdiary.DB this$0 -> a
     void onCreate(android.database.sqlite.SQLiteDatabase) -> onCreate
     void onUpgrade(android.database.sqlite.SQLiteDatabase,int,int) -> onUpgrade
-com.nethergrim.combogymdiary.MyApp -> com.nethergrim.combogymdiary.MyApp:
+com.nethergrim.combogymdiary.MyApplication -> com.nethergrim.combogymdiary.MyApplication:
     void onCreate() -> onCreate
 com.nethergrim.combogymdiary.MyService -> com.nethergrim.combogymdiary.MyService:
     android.app.NotificationManager nm -> a
@@ -10140,7 +10140,7 @@ com.nethergrim.combogymdiary.activities.BasicMenuActivity -> com.nethergrim.comb
     void initMenuButtons() -> g
     boolean onOptionsItemSelected(android.view.MenuItem) -> onOptionsItemSelected
     void onBackPressed() -> onBackPressed
-    boolean pressButton(int) -> a
+    boolean pressButton(int,boolean) -> a
 com.nethergrim.combogymdiary.activities.CatalogActivity -> com.nethergrim.combogymdiary.activities.CatalogActivity:
     android.widget.ExpandableListView elvMain -> y
     com.nethergrim.combogymdiary.AdapterHelper ah -> z
@@ -10438,7 +10438,7 @@ com.nethergrim.combogymdiary.activities.StartTrainingActivity -> com.nethergrim.
     void onLoaderReset(android.support.v4.content.Loader) -> a
     void onCreateContextMenu(android.view.ContextMenu,android.view.View,android.view.ContextMenu$ContextMenuInfo) -> onCreateContextMenu
     boolean onContextItemSelected(android.view.MenuItem) -> onContextItemSelected
-    void goToTraining(int) -> b
+    void goToTraining(int) -> a
     void onClick(android.view.View) -> onClick
     void onDestroy() -> onDestroy
     boolean onOptionsItemSelected(android.view.MenuItem) -> onOptionsItemSelected
@@ -10517,7 +10517,7 @@ com.nethergrim.combogymdiary.activities.TrainingAtProgress -> com.nethergrim.com
     void onCreateContextMenu(android.view.ContextMenu,android.view.View,android.view.ContextMenu$ContextMenuInfo) -> onCreateContextMenu
     boolean onContextItemSelected(android.view.MenuItem) -> onContextItemSelected
     void initSetButtons() -> l
-    void initData(int) -> b
+    void initData(int) -> a
     void onResume() -> onResume
     void goDialogProgress() -> m
     boolean onOptionsItemSelected(android.view.MenuItem) -> onOptionsItemSelected
@@ -10681,7 +10681,6 @@ com.nethergrim.combogymdiary.drive.DiskRestoreActivity -> com.nethergrim.combogy
     void onConnected(android.os.Bundle) -> a
     void onActivityResult(int,int,android.content.Intent) -> onActivityResult
     void gotoDownloadActivity(com.google.android.gms.drive.DriveId) -> a
-com.nethergrim.combogymdiary.provider.MetricaContentProvider -> com.nethergrim.combogymdiary.provider.MetricaContentProvider:
 com.startad.lib.SADBannerData -> com.b.a.a:
     java.lang.String html -> a
     java.lang.String appPackage -> b
@@ -10790,1175 +10789,6 @@ com.startad.lib.utils.UrlLoader -> com.b.a.a.c:
 com.startad.lib.utils.Utils -> com.b.a.a.d:
     int convertDpToPixel(float,android.content.Context) -> a
     java.util.ArrayList removeInstalledApps(android.app.Activity,java.util.ArrayList) -> a
-com.yandex.metrica.CampaignReceiver -> com.yandex.metrica.CampaignReceiver:
-    void onReceive(android.content.Context,android.content.Intent) -> onReceive
-com.yandex.metrica.Counter -> com.yandex.metrica.a:
-    android.content.Context a -> a
-    com.yandex.metrica.Counter b -> b
-    com.yandex.metrica.v c -> c
-    boolean d -> d
-    boolean e -> e
-    java.lang.String f -> f
-    boolean g -> g
-    boolean h -> h
-    com.yandex.metrica.CounterConfiguration i -> i
-    java.lang.Thread$UncaughtExceptionHandler j -> j
-    java.lang.Object k -> k
-    java.util.List l -> l
-    java.util.concurrent.ExecutorService m -> m
-    android.os.Handler n -> n
-    java.lang.Runnable o -> o
-    java.lang.Thread$UncaughtExceptionHandler p -> p
-    void a(java.lang.String) -> a
-    com.yandex.metrica.Counter a(android.content.Context) -> b
-    void initialize(android.content.Context) -> a
-    com.yandex.metrica.Counter sharedInstance() -> a
-    void a(com.yandex.metrica.Counter$c) -> a
-    void onResumeActivity(android.app.Activity) -> a
-    void onPauseActivity(android.app.Activity) -> b
-    void reportError(java.lang.String,java.lang.Throwable) -> a
-    void b(java.lang.String) -> b
-    void a(java.lang.Throwable) -> a
-    void a() -> b
-    void b() -> c
-    void setTrackLocationEnabled(boolean) -> a
-    int getLibraryApiLevel() -> d
-    com.yandex.metrica.CounterConfiguration a(com.yandex.metrica.Counter) -> a
-    com.yandex.metrica.v b(com.yandex.metrica.Counter) -> b
-    void a(com.yandex.metrica.Counter,com.yandex.metrica.IMetricaService,com.yandex.metrica.Counter$c) -> a
-    java.util.List c(com.yandex.metrica.Counter) -> c
-    android.content.Context d(com.yandex.metrica.Counter) -> d
-    android.os.Handler e(com.yandex.metrica.Counter) -> e
-    java.lang.Thread$UncaughtExceptionHandler c() -> e
-com.yandex.metrica.Counter$1 -> com.yandex.metrica.b:
-    com.yandex.metrica.Counter a -> a
-    void run() -> run
-com.yandex.metrica.Counter$2 -> com.yandex.metrica.c:
-    com.yandex.metrica.Counter a -> a
-    void uncaughtException(java.lang.Thread,java.lang.Throwable) -> uncaughtException
-com.yandex.metrica.Counter$a -> com.yandex.metrica.d:
-    com.yandex.metrica.Counter a -> a
-    void run() -> run
-com.yandex.metrica.Counter$b -> com.yandex.metrica.e:
-    java.lang.Throwable b -> b
-    com.yandex.metrica.Counter a -> a
-    void run() -> run
-com.yandex.metrica.Counter$c -> com.yandex.metrica.f:
-    java.lang.String a -> a
-    int b -> b
-    java.lang.String c -> c
-    java.lang.String a(com.yandex.metrica.Counter$c) -> a
-    int b(com.yandex.metrica.Counter$c) -> b
-    java.lang.String c(com.yandex.metrica.Counter$c) -> c
-com.yandex.metrica.Counter$d -> com.yandex.metrica.g:
-    com.yandex.metrica.Counter$c b -> b
-    com.yandex.metrica.Counter a -> a
-    void run() -> run
-com.yandex.metrica.CounterConfiguration -> com.yandex.metrica.CounterConfiguration:
-    android.content.ContentValues a -> a
-    android.os.Parcelable$Creator CREATOR -> CREATOR
-    void a(int) -> a
-    int a() -> a
-    void b(int) -> b
-    int b() -> b
-    void c(int) -> c
-    int c() -> c
-    void a(java.lang.String) -> a
-    void b(java.lang.String) -> b
-    java.lang.String d() -> d
-    java.lang.String e() -> e
-    boolean f() -> f
-    boolean g() -> g
-    boolean h() -> h
-    void c(boolean) -> a
-    boolean i() -> i
-    java.lang.String j() -> j
-    java.lang.String k() -> k
-    java.lang.String l() -> l
-    java.lang.Double m() -> m
-    java.lang.Double n() -> n
-    int describeContents() -> describeContents
-    void a(android.os.Parcel) -> a
-    void writeToParcel(android.os.Parcel,int) -> writeToParcel
-    void d(boolean) -> b
-    boolean o() -> o
-    boolean p() -> p
-    boolean q() -> q
-    void a(android.content.Context) -> a
-    void b(android.content.Context) -> b
-    android.os.Bundle r() -> r
-    void a(android.os.Bundle) -> a
-com.yandex.metrica.CounterConfiguration$1 -> com.yandex.metrica.h:
-    java.lang.Object[] newArray(int) -> newArray
-    java.lang.Object createFromParcel(android.os.Parcel) -> createFromParcel
-com.yandex.metrica.IMetricaService -> com.yandex.metrica.i:
-    void reportEvent(java.lang.String,int,java.lang.String,android.os.Bundle) -> a
-com.yandex.metrica.IMetricaService$Stub -> com.yandex.metrica.j:
-    com.yandex.metrica.IMetricaService asInterface(android.os.IBinder) -> a
-    android.os.IBinder asBinder() -> asBinder
-    boolean onTransact(int,android.os.Parcel,android.os.Parcel,int) -> onTransact
-com.yandex.metrica.IMetricaService$Stub$Proxy -> com.yandex.metrica.k:
-    android.os.IBinder a -> a
-    android.os.IBinder asBinder() -> asBinder
-    void reportEvent(java.lang.String,int,java.lang.String,android.os.Bundle) -> a
-com.yandex.metrica.MetricaContentProvider -> com.yandex.metrica.l:
-    java.lang.String a -> a
-    android.content.UriMatcher c -> c
-    java.lang.String b -> b
-    android.database.sqlite.SQLiteOpenHelper d -> d
-    boolean onCreate() -> onCreate
-    android.database.Cursor query(android.net.Uri,java.lang.String[],java.lang.String,java.lang.String[],java.lang.String) -> query
-    java.lang.String getType(android.net.Uri) -> getType
-    android.net.Uri insert(android.net.Uri,android.content.ContentValues) -> insert
-    int delete(android.net.Uri,java.lang.String,java.lang.String[]) -> delete
-    int update(android.net.Uri,android.content.ContentValues,java.lang.String,java.lang.String[]) -> update
-com.yandex.metrica.MetricaContentProvider$1 -> com.yandex.metrica.m:
-    void onCreate(android.database.sqlite.SQLiteDatabase) -> onCreate
-    void onUpgrade(android.database.sqlite.SQLiteDatabase,int,int) -> onUpgrade
-com.yandex.metrica.MetricaEventHandler -> com.yandex.metrica.MetricaEventHandler:
-    void onReceive(android.content.Context,android.content.Intent) -> onReceive
-com.yandex.metrica.MetricaService -> com.yandex.metrica.MetricaService:
-    android.util.SparseArray b -> b
-    java.lang.Object c -> c
-    com.yandex.metrica.z$e a -> a
-    com.yandex.metrica.IMetricaService$Stub d -> d
-    void onCreate() -> onCreate
-    void onStart(android.content.Intent,int) -> onStart
-    int onStartCommand(android.content.Intent,int,int) -> onStartCommand
-    void a(android.content.Intent) -> a
-    android.os.IBinder onBind(android.content.Intent) -> onBind
-    void onRebind(android.content.Intent) -> onRebind
-    void onDestroy() -> onDestroy
-    boolean onUnbind(android.content.Intent) -> onUnbind
-    com.yandex.metrica.p a(java.lang.String,com.yandex.metrica.CounterConfiguration) -> a
-    com.yandex.metrica.p a(com.yandex.metrica.MetricaService,java.lang.String,com.yandex.metrica.CounterConfiguration) -> a
-    android.util.SparseArray a(com.yandex.metrica.MetricaService) -> a
-    java.lang.Object b(com.yandex.metrica.MetricaService) -> b
-com.yandex.metrica.MetricaService$1 -> com.yandex.metrica.n:
-    com.yandex.metrica.MetricaService a -> a
-    com.yandex.metrica.p a(com.yandex.metrica.CounterConfiguration) -> a
-    void reportEvent(java.lang.String,int,java.lang.String,android.os.Bundle) -> a
-com.yandex.metrica.NativeCrashesHelper -> com.yandex.metrica.NativeCrashesHelper:
-    java.lang.String a -> a
-    boolean a() -> a
-    boolean a(android.content.Context) -> a
-    java.lang.String b(android.content.Context) -> b
-    boolean a(boolean) -> a
-    java.lang.String[] a(java.lang.String) -> a
-    void setUpNativeUncaughtExceptionHandler(java.lang.String) -> setUpNativeUncaughtExceptionHandler
-    void logsEnabled(boolean) -> logsEnabled
-com.yandex.metrica.NativeCrashesHelper$1 -> com.yandex.metrica.o:
-    boolean accept(java.io.File,java.lang.String) -> accept
-com.yandex.metrica.NativeCrashesHelper$a -> com.yandex.metrica.p:
-    java.lang.String a -> a
-    com.yandex.metrica.Counter b -> b
-    void run() -> run
-com.yandex.metrica.a -> com.yandex.metrica.q:
-    byte[] a() -> a
-com.yandex.metrica.a$a -> com.yandex.metrica.r:
-    com.yandex.metrica.a$a a() -> a
-    void a(java.lang.Iterable,java.util.Collection) -> a
-    void a(java.lang.Iterable) -> a
-    java.lang.Object clone() -> clone
-com.yandex.metrica.aa -> com.yandex.metrica.s:
-    android.content.SharedPreferences a(android.content.Context,java.lang.String) -> a
-com.yandex.metrica.ab -> com.yandex.metrica.t:
-    long i() -> a
-    long j() -> b
-com.yandex.metrica.ac -> com.yandex.metrica.u:
-    java.lang.String c -> a
-    long i() -> a
-    long j() -> b
-    java.lang.String k() -> c
-com.yandex.metrica.ad -> com.yandex.metrica.v:
-    com.yandex.metrica.u d -> b
-    com.yandex.metrica.t$a e -> c
-    com.yandex.metrica.q f -> d
-    com.yandex.metrica.p g -> e
-    java.util.List h -> f
-    int i -> g
-    boolean a() -> d
-    boolean b() -> e
-    com.yandex.metrica.ad$a l() -> f
-    com.yandex.metrica.t$a$b a(long,com.yandex.metrica.t$b,com.yandex.metrica.t$a$b$c$b,com.yandex.metrica.t$a$b$c$c) -> a
-    com.yandex.metrica.t$a$b$b a(int,long,java.lang.String,com.yandex.metrica.t$a$b$b$b,java.lang.String) -> a
-    com.yandex.metrica.t$b c(long) -> c
-    java.lang.String k() -> c
-    android.database.Cursor m() -> g
-    android.database.Cursor a(long) -> a
-    boolean b(long) -> b
-com.yandex.metrica.ad$1 -> com.yandex.metrica.w:
-    int[] a -> a
-com.yandex.metrica.ad$a -> com.yandex.metrica.x:
-    java.util.List a -> a
-    java.util.List b -> b
-com.yandex.metrica.ae -> com.yandex.metrica.y:
-    long i() -> a
-    long j() -> b
-    com.yandex.metrica.ad$a l() -> f
-    android.database.Cursor m() -> g
-    android.database.Cursor a(long) -> a
-    boolean b(long) -> b
-    java.lang.String k() -> c
-    com.yandex.metrica.t$a$b a(long,com.yandex.metrica.t$b,com.yandex.metrica.t$a$b$c$b,com.yandex.metrica.t$a$b$c$c) -> a
-    com.yandex.metrica.t$a$b$b a(int,long,java.lang.String,com.yandex.metrica.t$a$b$b$b,java.lang.String) -> a
-com.yandex.metrica.af -> com.yandex.metrica.z:
-    android.content.ComponentName a(android.content.Context,java.lang.String) -> a
-    android.content.Intent a(android.content.Context) -> a
-    java.lang.String b(android.content.Context,java.lang.String) -> b
-    android.os.Bundle b(android.content.Context) -> b
-com.yandex.metrica.ag -> com.yandex.metrica.aa:
-com.yandex.metrica.ag$a -> com.yandex.metrica.ab:
-    com.yandex.metrica.ag$a a -> a
-    com.yandex.metrica.ag$a b -> b
-    com.yandex.metrica.ag$a c -> c
-    com.yandex.metrica.ag$a d -> d
-    com.yandex.metrica.ag$a e -> e
-    com.yandex.metrica.ag$a f -> f
-    java.lang.String g -> g
-    com.yandex.metrica.ag$a[] h -> h
-    com.yandex.metrica.ag$a[] values() -> values
-    com.yandex.metrica.ag$a valueOf(java.lang.String) -> valueOf
-    java.lang.String a(java.lang.String) -> a
-    android.content.SharedPreferences a(android.content.Context) -> a
-com.yandex.metrica.ag$b -> com.yandex.metrica.ac:
-    com.yandex.metrica.ag$b a -> a
-    com.yandex.metrica.ag$b b -> b
-    com.yandex.metrica.ag$b c -> c
-    com.yandex.metrica.ag$b d -> d
-    com.yandex.metrica.ag$b e -> e
-    com.yandex.metrica.ag$b f -> f
-    java.lang.String g -> g
-    com.yandex.metrica.ag$b[] h -> h
-    com.yandex.metrica.ag$b[] values() -> values
-    com.yandex.metrica.ag$b valueOf(java.lang.String) -> valueOf
-    java.lang.String a() -> a
-    java.lang.String a(java.lang.String) -> a
-    android.content.SharedPreferences a(android.content.Context) -> a
-com.yandex.metrica.ah -> com.yandex.metrica.ad:
-    com.yandex.metrica.u c -> a
-    android.content.Context d -> b
-    java.lang.String e -> c
-    com.yandex.metrica.p f -> d
-    android.content.SharedPreferences g -> e
-    boolean a() -> d
-    boolean b() -> e
-    int i() -> a
-    java.lang.String j() -> b
-    void a(com.yandex.metrica.u) -> a
-com.yandex.metrica.ai -> com.yandex.metrica.ae:
-    boolean a(java.lang.String) -> a
-com.yandex.metrica.aj -> com.yandex.metrica.af:
-    com.yandex.metrica.q a -> a
-    com.yandex.metrica.p b -> b
-    android.content.Context c -> c
-    com.yandex.metrica.u d -> d
-    com.yandex.metrica.w e -> e
-    com.yandex.metrica.ad f -> f
-    com.yandex.metrica.ac g -> g
-    com.yandex.metrica.ab h -> h
-    java.lang.Object i -> i
-    java.util.TimerTask j -> j
-    java.util.Timer k -> k
-    com.yandex.metrica.ah l -> l
-    void a(com.yandex.metrica.CounterConfiguration) -> a
-    void a() -> a
-    void b() -> b
-    void a(int) -> a
-com.yandex.metrica.aj$1 -> com.yandex.metrica.ag:
-    com.yandex.metrica.aj a -> a
-    void run() -> run
-com.yandex.metrica.aj$2 -> com.yandex.metrica.ah:
-    com.yandex.metrica.aj a -> a
-    void run() -> run
-com.yandex.metrica.ak -> com.yandex.metrica.ai:
-    java.lang.String a(android.content.Context,java.lang.String) -> a
-    java.lang.String b(android.content.Context,java.lang.String) -> b
-    java.lang.String a(java.lang.String,java.lang.Throwable) -> a
-    boolean a(int) -> a
-    void a(java.io.Closeable) -> a
-    void a(android.database.Cursor) -> a
-    void a(java.lang.Object,java.lang.String) -> a
-    void a(java.lang.String,java.lang.String) -> a
-    boolean a(java.lang.String) -> a
-    long a(android.content.pm.PackageManager,java.lang.String) -> a
-    boolean a(android.content.Context) -> a
-    boolean b(android.content.Context) -> b
-    java.lang.Integer b(java.lang.String) -> b
-com.yandex.metrica.al -> com.yandex.metrica.aj:
-    boolean a(org.xmlpull.v1.XmlPullParser) -> a
-com.yandex.metrica.b -> com.yandex.metrica.ak:
-com.yandex.metrica.c -> com.yandex.metrica.al:
-    com.yandex.metrica.c a -> a
-    com.yandex.metrica.c$a a() -> a
-    int b() -> b
-    boolean c() -> c
-    com.yandex.metrica.c a(java.lang.String) -> a
-    void a(byte[],int,int,int) -> a
-    void b(byte[],int,int,int) -> b
-    java.io.InputStream d() -> d
-    int e() -> e
-    int a(int,int,int) -> a
-    java.lang.String toString() -> toString
-    java.util.Iterator iterator() -> iterator
-com.yandex.metrica.c$a -> com.yandex.metrica.am:
-    byte a() -> a
-com.yandex.metrica.e -> com.yandex.metrica.an:
-    byte[] a -> a
-    int b -> b
-    int c -> c
-    java.io.OutputStream d -> d
-    com.yandex.metrica.e a(byte[],int,int) -> a
-    void a(int,double) -> a
-    void a(int,long) -> a
-    void a(int,com.yandex.metrica.k) -> a
-    void a(int,com.yandex.metrica.c) -> a
-    void a(int,int) -> a
-    void b(int,int) -> b
-    void c(int,int) -> c
-    void a(double) -> a
-    void a(long) -> a
-    void a(int) -> a
-    void a(com.yandex.metrica.k) -> a
-    void a(com.yandex.metrica.c) -> a
-    void b(int) -> b
-    void c(int) -> c
-    void d(int) -> d
-    int b(int,long) -> b
-    int b(int,com.yandex.metrica.k) -> b
-    int b(int,com.yandex.metrica.c) -> b
-    int d(int,int) -> d
-    int e(int,int) -> e
-    int f(int,int) -> f
-    void c() -> c
-    int a() -> a
-    void b() -> b
-    void a(byte) -> a
-    void e(int) -> e
-    void b(com.yandex.metrica.c) -> b
-    void a(com.yandex.metrica.c,int,int) -> a
-    void g(int,int) -> g
-    void f(int) -> f
-    int g(int) -> g
-    void b(long) -> b
-    void c(long) -> c
-    int h(int) -> h
-com.yandex.metrica.e$a -> com.yandex.metrica.ao:
-com.yandex.metrica.f -> com.yandex.metrica.ap:
-    boolean a -> a
-    com.yandex.metrica.f b -> b
-    com.yandex.metrica.f a() -> a
-com.yandex.metrica.g -> com.yandex.metrica.aq:
-com.yandex.metrica.g$a -> com.yandex.metrica.ar:
-    com.yandex.metrica.g$a b() -> b
-    com.yandex.metrica.a$a a() -> a
-    java.lang.Object clone() -> clone
-com.yandex.metrica.i -> com.yandex.metrica.as:
-    java.util.List a() -> a
-com.yandex.metrica.j -> com.yandex.metrica.at:
-    byte[] b -> b
-    int c -> c
-    byte a(int) -> a
-    int b() -> b
-    void b(byte[],int,int,int) -> b
-    boolean equals(java.lang.Object) -> equals
-    boolean a(com.yandex.metrica.j,int,int) -> a
-    int hashCode() -> hashCode
-    int e() -> e
-    int a(int,int,int) -> a
-    java.io.InputStream d() -> d
-    com.yandex.metrica.c$a a() -> a
-    int f() -> f
-    java.util.Iterator iterator() -> iterator
-com.yandex.metrica.j$a -> com.yandex.metrica.au:
-    int b -> b
-    int c -> c
-    com.yandex.metrica.j a -> a
-    boolean hasNext() -> hasNext
-    java.lang.Byte b() -> b
-    byte a() -> a
-    void remove() -> remove
-    java.lang.Object next() -> next
-com.yandex.metrica.k -> com.yandex.metrica.av:
-    void a(com.yandex.metrica.e) -> a
-    int b() -> b
-com.yandex.metrica.k$a -> com.yandex.metrica.aw:
-com.yandex.metrica.l -> com.yandex.metrica.ax:
-com.yandex.metrica.m -> com.yandex.metrica.ay:
-    int[] b -> b
-    int c -> c
-    com.yandex.metrica.c d -> d
-    com.yandex.metrica.c e -> e
-    int f -> f
-    int g -> g
-    int b() -> b
-    void b(byte[],int,int,int) -> b
-    boolean equals(java.lang.Object) -> equals
-    int hashCode() -> hashCode
-    int e() -> e
-    int a(int,int,int) -> a
-    java.io.InputStream d() -> d
-    com.yandex.metrica.c$a a() -> a
-    java.util.Iterator iterator() -> iterator
-    com.yandex.metrica.c a(com.yandex.metrica.m) -> a
-    com.yandex.metrica.c b(com.yandex.metrica.m) -> b
-com.yandex.metrica.m$a -> com.yandex.metrica.az:
-    java.util.Stack a -> a
-    com.yandex.metrica.j b -> b
-    com.yandex.metrica.j a(com.yandex.metrica.c) -> a
-    com.yandex.metrica.j b() -> b
-    boolean hasNext() -> hasNext
-    com.yandex.metrica.j a() -> a
-    void remove() -> remove
-    java.lang.Object next() -> next
-com.yandex.metrica.m$b -> com.yandex.metrica.ba:
-    com.yandex.metrica.m$a b -> b
-    com.yandex.metrica.c$a c -> c
-    int a -> a
-    boolean hasNext() -> hasNext
-    java.lang.Byte b() -> b
-    byte a() -> a
-    void remove() -> remove
-    java.lang.Object next() -> next
-com.yandex.metrica.m$c -> com.yandex.metrica.bb:
-    com.yandex.metrica.m$a b -> b
-    com.yandex.metrica.j c -> c
-    int d -> d
-    int e -> e
-    int f -> f
-    int g -> g
-    com.yandex.metrica.m a -> a
-    int read(byte[],int,int) -> read
-    long skip(long) -> skip
-    int a(byte[],int,int) -> a
-    int read() -> read
-    int available() -> available
-    boolean markSupported() -> markSupported
-    void mark(int) -> mark
-    void reset() -> reset
-    void a() -> a
-    void b() -> b
-com.yandex.metrica.n -> com.yandex.metrica.bc:
-com.yandex.metrica.o -> com.yandex.metrica.bd:
-    java.util.WeakHashMap b -> b
-    long c -> c
-    boolean a -> a
-    boolean a(android.app.Activity) -> a
-    void b(android.app.Activity) -> b
-    boolean a() -> a
-com.yandex.metrica.p -> com.yandex.metrica.be:
-    android.content.Context a -> a
-    com.yandex.metrica.aj b -> b
-    boolean c -> c
-    com.yandex.metrica.CounterConfiguration d -> d
-    android.content.SharedPreferences e -> e
-    com.yandex.metrica.q f -> f
-    java.lang.String g -> g
-    java.lang.String h -> h
-    int i -> i
-    int j -> j
-    int k -> k
-    long l -> l
-    int m -> m
-    long n -> n
-    long o -> o
-    java.lang.String p -> p
-    java.lang.String q -> q
-    java.lang.String r -> r
-    java.lang.String s -> s
-    java.lang.String t -> t
-    com.yandex.metrica.q$a u -> u
-    void a(java.lang.String,int,java.lang.String) -> a
-    int h() -> h
-    void a() -> a
-    android.content.Context b() -> b
-    java.lang.String c() -> c
-    long d() -> d
-    long e() -> e
-    boolean i() -> i
-    void j() -> j
-    void k() -> k
-    long f() -> f
-    java.lang.String g() -> g
-    void a(com.yandex.metrica.CounterConfiguration) -> a
-    int a(com.yandex.metrica.p) -> a
-    int b(com.yandex.metrica.p) -> b
-    boolean c(com.yandex.metrica.p) -> c
-    com.yandex.metrica.aj d(com.yandex.metrica.p) -> d
-    boolean a(com.yandex.metrica.p,boolean) -> a
-com.yandex.metrica.p$1 -> com.yandex.metrica.bf:
-    com.yandex.metrica.p a -> a
-    void a() -> a
-com.yandex.metrica.p$a -> com.yandex.metrica.bg:
-    long a -> a
-    int b -> b
-    long c -> c
-    boolean d -> d
-com.yandex.metrica.q -> com.yandex.metrica.bh:
-    java.lang.String a -> a
-    java.util.concurrent.locks.ReentrantReadWriteLock b -> b
-    java.util.concurrent.locks.Lock c -> c
-    java.util.concurrent.locks.Lock d -> d
-    com.yandex.metrica.q$b e -> e
-    com.yandex.metrica.CounterConfiguration f -> f
-    java.util.Map g -> g
-    java.lang.Object h -> h
-    java.util.List i -> i
-    android.content.ContentValues j -> j
-    com.yandex.metrica.q$a k -> k
-    android.content.Context l -> l
-    com.yandex.metrica.q a(java.lang.String,android.content.Context,com.yandex.metrica.q$a,com.yandex.metrica.CounterConfiguration) -> a
-    void a(java.lang.String,com.yandex.metrica.q$a,com.yandex.metrica.CounterConfiguration) -> a
-    void a(long) -> a
-    void a(java.lang.String,int,int,java.lang.String,long,long) -> a
-    void b(long) -> b
-    void a(long,int) -> a
-    android.database.Cursor a() -> a
-    android.database.Cursor c(long) -> c
-    android.database.Cursor d(long) -> d
-    void a(android.content.ContentValues) -> a
-    void a(java.util.List) -> a
-    void e(long) -> e
-    void close() -> close
-    void onCreate(android.database.sqlite.SQLiteDatabase) -> onCreate
-    void onUpgrade(android.database.sqlite.SQLiteDatabase,int,int) -> onUpgrade
-    void a(android.database.sqlite.SQLiteDatabase) -> a
-    void a(com.yandex.metrica.CounterConfiguration) -> a
-    java.util.List a(com.yandex.metrica.q) -> a
-    android.content.ContentValues b(com.yandex.metrica.q) -> b
-    java.lang.Object c(com.yandex.metrica.q) -> c
-    android.content.ContentValues a(com.yandex.metrica.q,android.content.ContentValues) -> a
-    com.yandex.metrica.q$a d(com.yandex.metrica.q) -> d
-com.yandex.metrica.q$a -> com.yandex.metrica.bi:
-    void a() -> a
-com.yandex.metrica.q$b -> com.yandex.metrica.bj:
-    boolean b -> b
-    boolean c -> c
-    java.util.List d -> d
-    com.yandex.metrica.q a -> a
-    void run() -> run
-    boolean a() -> a
-    void start() -> start
-    void destroy() -> destroy
-com.yandex.metrica.r -> com.yandex.metrica.bk:
-    boolean a(int) -> a
-    boolean b(int) -> b
-    boolean c(int) -> c
-    boolean d(int) -> d
-com.yandex.metrica.r$a -> com.yandex.metrica.bl:
-    com.yandex.metrica.r$a a -> a
-    com.yandex.metrica.r$a b -> b
-    com.yandex.metrica.r$a c -> c
-    com.yandex.metrica.r$a d -> d
-    com.yandex.metrica.r$a e -> e
-    com.yandex.metrica.r$a f -> f
-    com.yandex.metrica.r$a g -> g
-    com.yandex.metrica.r$a h -> h
-    com.yandex.metrica.r$a i -> i
-    com.yandex.metrica.r$a j -> j
-    com.yandex.metrica.r$a k -> k
-    com.yandex.metrica.r$a l -> l
-    java.util.Map m -> m
-    int n -> n
-    java.lang.String o -> o
-    com.yandex.metrica.r$a[] p -> p
-    com.yandex.metrica.r$a[] values() -> values
-    com.yandex.metrica.r$a valueOf(java.lang.String) -> valueOf
-    int a() -> a
-    java.lang.String b() -> b
-    com.yandex.metrica.r$a a(int) -> a
-com.yandex.metrica.s -> com.yandex.metrica.bm:
-    java.lang.String a(java.io.InputStream) -> a
-    java.lang.String a(java.lang.String) -> a
-    int a(java.io.Reader,java.io.Writer) -> a
-    java.lang.String b(java.lang.String) -> b
-    java.lang.String c(java.lang.String) -> c
-    byte[] b(java.io.InputStream) -> b
-com.yandex.metrica.t -> com.yandex.metrica.bn:
-com.yandex.metrica.t$a -> com.yandex.metrica.bo:
-    com.yandex.metrica.t$a b -> b
-    com.yandex.metrica.l a -> a
-    int c -> c
-    com.yandex.metrica.t$b d -> d
-    com.yandex.metrica.t$b e -> e
-    java.util.List f -> f
-    byte g -> g
-    int h -> h
-    com.yandex.metrica.t$a c() -> c
-    boolean d() -> d
-    com.yandex.metrica.t$b e() -> e
-    boolean f() -> f
-    com.yandex.metrica.t$b g() -> g
-    java.util.List h() -> h
-    int i() -> i
-    com.yandex.metrica.t$a$b a(int) -> a
-    void l() -> l
-    boolean j() -> j
-    void a(com.yandex.metrica.e) -> a
-    int b() -> b
-    com.yandex.metrica.t$a$a k() -> k
-    com.yandex.metrica.t$b a(com.yandex.metrica.t$a,com.yandex.metrica.t$b) -> a
-    com.yandex.metrica.t$b b(com.yandex.metrica.t$a,com.yandex.metrica.t$b) -> b
-    java.util.List a(com.yandex.metrica.t$a,java.util.List) -> a
-    int a(com.yandex.metrica.t$a,int) -> a
-    java.util.List a(com.yandex.metrica.t$a) -> a
-com.yandex.metrica.t$a$1 -> com.yandex.metrica.bp:
-com.yandex.metrica.t$a$a -> com.yandex.metrica.bq:
-    int a -> a
-    com.yandex.metrica.t$b b -> b
-    com.yandex.metrica.t$b c -> c
-    java.util.List d -> d
-    com.yandex.metrica.t$a$a d() -> c
-    com.yandex.metrica.t$a e() -> d
-    com.yandex.metrica.t$a f() -> e
-    com.yandex.metrica.t$a$a a(com.yandex.metrica.t$a) -> a
-    com.yandex.metrica.t$a$a a(com.yandex.metrica.t$b) -> a
-    com.yandex.metrica.t$a$a b(com.yandex.metrica.t$b) -> b
-    com.yandex.metrica.t$a$a c(com.yandex.metrica.t$b) -> c
-    void h() -> g
-    com.yandex.metrica.t$a$a a(java.lang.Iterable) -> a
-    com.yandex.metrica.g$a b() -> b
-    com.yandex.metrica.a$a a() -> a
-    java.lang.Object clone() -> clone
-    com.yandex.metrica.t$a$a g() -> f
-com.yandex.metrica.t$a$b -> com.yandex.metrica.br:
-    com.yandex.metrica.t$a$b b -> b
-    com.yandex.metrica.l a -> a
-    int c -> c
-    long d -> d
-    com.yandex.metrica.t$a$b$c e -> e
-    java.util.List f -> f
-    byte g -> g
-    int h -> h
-    com.yandex.metrica.t$a$b c() -> c
-    boolean d() -> d
-    long e() -> e
-    boolean f() -> f
-    com.yandex.metrica.t$a$b$c g() -> g
-    int h() -> h
-    com.yandex.metrica.t$a$b$b a(int) -> a
-    void k() -> k
-    boolean i() -> i
-    void a(com.yandex.metrica.e) -> a
-    int b() -> b
-    com.yandex.metrica.t$a$b$a j() -> j
-    long a(com.yandex.metrica.t$a$b,long) -> a
-    com.yandex.metrica.t$a$b$c a(com.yandex.metrica.t$a$b,com.yandex.metrica.t$a$b$c) -> a
-    java.util.List a(com.yandex.metrica.t$a$b,java.util.List) -> a
-    int a(com.yandex.metrica.t$a$b,int) -> a
-    java.util.List a(com.yandex.metrica.t$a$b) -> a
-com.yandex.metrica.t$a$b$1 -> com.yandex.metrica.bs:
-com.yandex.metrica.t$a$b$a -> com.yandex.metrica.bt:
-    int a -> a
-    long b -> b
-    com.yandex.metrica.t$a$b$c c -> c
-    java.util.List d -> d
-    com.yandex.metrica.t$a$b$a d() -> c
-    com.yandex.metrica.t$a$b e() -> d
-    com.yandex.metrica.t$a$b f() -> e
-    com.yandex.metrica.t$a$b$a a(com.yandex.metrica.t$a$b) -> a
-    com.yandex.metrica.t$a$b$a a(long) -> a
-    com.yandex.metrica.t$a$b$a a(com.yandex.metrica.t$a$b$c) -> a
-    com.yandex.metrica.t$a$b$a b(com.yandex.metrica.t$a$b$c) -> b
-    void h() -> g
-    com.yandex.metrica.t$a$b$a a(com.yandex.metrica.t$a$b$b) -> a
-    com.yandex.metrica.g$a b() -> b
-    com.yandex.metrica.a$a a() -> a
-    java.lang.Object clone() -> clone
-    com.yandex.metrica.t$a$b$a g() -> f
-com.yandex.metrica.t$a$b$b -> com.yandex.metrica.bu:
-    com.yandex.metrica.t$a$b$b b -> b
-    com.yandex.metrica.l a -> a
-    int c -> c
-    long d -> d
-    long e -> e
-    com.yandex.metrica.t$a$b$b$b f -> f
-    java.lang.Object g -> g
-    java.lang.Object h -> h
-    byte i -> i
-    int j -> j
-    com.yandex.metrica.t$a$b$b c() -> c
-    boolean d() -> d
-    long e() -> e
-    boolean f() -> f
-    long g() -> g
-    boolean h() -> h
-    com.yandex.metrica.t$a$b$b$b i() -> i
-    boolean j() -> j
-    com.yandex.metrica.c k() -> k
-    boolean l() -> l
-    com.yandex.metrica.c m() -> m
-    void p() -> p
-    boolean n() -> n
-    void a(com.yandex.metrica.e) -> a
-    int b() -> b
-    com.yandex.metrica.t$a$b$b$a o() -> o
-    long a(com.yandex.metrica.t$a$b$b,long) -> a
-    long b(com.yandex.metrica.t$a$b$b,long) -> b
-    com.yandex.metrica.t$a$b$b$b a(com.yandex.metrica.t$a$b$b,com.yandex.metrica.t$a$b$b$b) -> a
-    java.lang.Object a(com.yandex.metrica.t$a$b$b,java.lang.Object) -> a
-    java.lang.Object b(com.yandex.metrica.t$a$b$b,java.lang.Object) -> b
-    int a(com.yandex.metrica.t$a$b$b,int) -> a
-    java.lang.Object a(com.yandex.metrica.t$a$b$b) -> a
-    java.lang.Object b(com.yandex.metrica.t$a$b$b) -> b
-com.yandex.metrica.t$a$b$b$1 -> com.yandex.metrica.bv:
-com.yandex.metrica.t$a$b$b$a -> com.yandex.metrica.bw:
-    int a -> a
-    long b -> b
-    long c -> c
-    com.yandex.metrica.t$a$b$b$b d -> d
-    java.lang.Object e -> e
-    java.lang.Object f -> f
-    com.yandex.metrica.t$a$b$b$a d() -> c
-    com.yandex.metrica.t$a$b$b e() -> d
-    com.yandex.metrica.t$a$b$b f() -> e
-    com.yandex.metrica.t$a$b$b$a a(com.yandex.metrica.t$a$b$b) -> a
-    com.yandex.metrica.t$a$b$b$a a(long) -> a
-    com.yandex.metrica.t$a$b$b$a b(long) -> b
-    com.yandex.metrica.t$a$b$b$a a(com.yandex.metrica.t$a$b$b$b) -> a
-    com.yandex.metrica.t$a$b$b$a a(java.lang.String) -> a
-    com.yandex.metrica.t$a$b$b$a b(java.lang.String) -> b
-    com.yandex.metrica.g$a b() -> b
-    com.yandex.metrica.a$a a() -> a
-    java.lang.Object clone() -> clone
-    com.yandex.metrica.t$a$b$b$a g() -> f
-com.yandex.metrica.t$a$b$b$b -> com.yandex.metrica.bx:
-    com.yandex.metrica.t$a$b$b$b a -> a
-    com.yandex.metrica.t$a$b$b$b b -> b
-    com.yandex.metrica.t$a$b$b$b c -> c
-    com.yandex.metrica.t$a$b$b$b d -> d
-    com.yandex.metrica.t$a$b$b$b e -> e
-    com.yandex.metrica.t$a$b$b$b f -> f
-    com.yandex.metrica.t$a$b$b$b g -> g
-    int h -> h
-    com.yandex.metrica.t$a$b$b$b[] i -> i
-    com.yandex.metrica.t$a$b$b$b[] values() -> values
-    com.yandex.metrica.t$a$b$b$b valueOf(java.lang.String) -> valueOf
-    int a() -> a
-com.yandex.metrica.t$a$b$b$b$1 -> com.yandex.metrica.by:
-com.yandex.metrica.t$a$b$c -> com.yandex.metrica.bz:
-    com.yandex.metrica.t$a$b$c b -> b
-    com.yandex.metrica.l a -> a
-    int c -> c
-    com.yandex.metrica.t$b d -> d
-    java.lang.Object e -> e
-    com.yandex.metrica.t$a$b$c$b f -> f
-    com.yandex.metrica.t$a$b$c$c g -> g
-    byte h -> h
-    int i -> i
-    com.yandex.metrica.t$a$b$c c() -> c
-    boolean d() -> d
-    com.yandex.metrica.t$b e() -> e
-    boolean f() -> f
-    com.yandex.metrica.c g() -> g
-    boolean h() -> h
-    com.yandex.metrica.t$a$b$c$b i() -> i
-    boolean j() -> j
-    com.yandex.metrica.t$a$b$c$c k() -> k
-    void o() -> n
-    boolean l() -> l
-    void a(com.yandex.metrica.e) -> a
-    int b() -> b
-    com.yandex.metrica.t$a$b$c$a m() -> m
-    com.yandex.metrica.t$a$b$c$a a(com.yandex.metrica.t$a$b$c) -> a
-    com.yandex.metrica.t$b a(com.yandex.metrica.t$a$b$c,com.yandex.metrica.t$b) -> a
-    java.lang.Object a(com.yandex.metrica.t$a$b$c,java.lang.Object) -> a
-    com.yandex.metrica.t$a$b$c$b a(com.yandex.metrica.t$a$b$c,com.yandex.metrica.t$a$b$c$b) -> a
-    com.yandex.metrica.t$a$b$c$c a(com.yandex.metrica.t$a$b$c,com.yandex.metrica.t$a$b$c$c) -> a
-    int a(com.yandex.metrica.t$a$b$c,int) -> a
-    java.lang.Object b(com.yandex.metrica.t$a$b$c) -> b
-com.yandex.metrica.t$a$b$c$1 -> com.yandex.metrica.ca:
-com.yandex.metrica.t$a$b$c$a -> com.yandex.metrica.cb:
-    int a -> a
-    com.yandex.metrica.t$b b -> b
-    java.lang.Object c -> c
-    com.yandex.metrica.t$a$b$c$b d -> d
-    com.yandex.metrica.t$a$b$c$c e -> e
-    com.yandex.metrica.t$a$b$c$a d() -> c
-    com.yandex.metrica.t$a$b$c e() -> d
-    com.yandex.metrica.t$a$b$c f() -> e
-    com.yandex.metrica.t$a$b$c$a a(com.yandex.metrica.t$a$b$c) -> a
-    com.yandex.metrica.t$a$b$c$a a(com.yandex.metrica.t$b) -> a
-    com.yandex.metrica.t$a$b$c$a b(com.yandex.metrica.t$b) -> b
-    com.yandex.metrica.t$a$b$c$a a(java.lang.String) -> a
-    com.yandex.metrica.t$a$b$c$a a(com.yandex.metrica.t$a$b$c$b) -> a
-    com.yandex.metrica.t$a$b$c$a b(com.yandex.metrica.t$a$b$c$b) -> b
-    com.yandex.metrica.t$a$b$c$a a(com.yandex.metrica.t$a$b$c$c) -> a
-    com.yandex.metrica.t$a$b$c$a b(com.yandex.metrica.t$a$b$c$c) -> b
-    com.yandex.metrica.g$a b() -> b
-    com.yandex.metrica.a$a a() -> a
-    java.lang.Object clone() -> clone
-    com.yandex.metrica.t$a$b$c$a g() -> f
-com.yandex.metrica.t$a$b$c$b -> com.yandex.metrica.cc:
-    com.yandex.metrica.t$a$b$c$b b -> b
-    com.yandex.metrica.l a -> a
-    int c -> c
-    double d -> d
-    double e -> e
-    byte f -> f
-    int g -> g
-    com.yandex.metrica.t$a$b$c$b c() -> c
-    boolean d() -> d
-    double e() -> e
-    boolean f() -> f
-    double g() -> g
-    void k() -> j
-    boolean h() -> h
-    void a(com.yandex.metrica.e) -> a
-    int b() -> b
-    com.yandex.metrica.t$a$b$c$b$a i() -> i
-    com.yandex.metrica.t$a$b$c$b$a a(com.yandex.metrica.t$a$b$c$b) -> a
-    double a(com.yandex.metrica.t$a$b$c$b,double) -> a
-    double b(com.yandex.metrica.t$a$b$c$b,double) -> b
-    int a(com.yandex.metrica.t$a$b$c$b,int) -> a
-com.yandex.metrica.t$a$b$c$b$1 -> com.yandex.metrica.cd:
-com.yandex.metrica.t$a$b$c$b$a -> com.yandex.metrica.ce:
-    int a -> a
-    double b -> b
-    double c -> c
-    com.yandex.metrica.t$a$b$c$b$a d() -> c
-    com.yandex.metrica.t$a$b$c$b e() -> d
-    com.yandex.metrica.t$a$b$c$b f() -> e
-    com.yandex.metrica.t$a$b$c$b$a a(com.yandex.metrica.t$a$b$c$b) -> a
-    com.yandex.metrica.t$a$b$c$b$a a(double) -> a
-    com.yandex.metrica.t$a$b$c$b$a b(double) -> b
-    com.yandex.metrica.g$a b() -> b
-    com.yandex.metrica.a$a a() -> a
-    java.lang.Object clone() -> clone
-    com.yandex.metrica.t$a$b$c$b$a g() -> f
-com.yandex.metrica.t$a$b$c$c -> com.yandex.metrica.cf:
-    com.yandex.metrica.t$a$b$c$c b -> b
-    com.yandex.metrica.l a -> a
-    int c -> c
-    com.yandex.metrica.t$a$b$c$c$c d -> d
-    com.yandex.metrica.t$a$b$c$c$b e -> e
-    byte f -> f
-    int g -> g
-    com.yandex.metrica.t$a$b$c$c c() -> c
-    boolean d() -> d
-    com.yandex.metrica.t$a$b$c$c$c e() -> e
-    boolean f() -> f
-    com.yandex.metrica.t$a$b$c$c$b g() -> g
-    void k() -> j
-    boolean h() -> h
-    void a(com.yandex.metrica.e) -> a
-    int b() -> b
-    com.yandex.metrica.t$a$b$c$c$a i() -> i
-    com.yandex.metrica.t$a$b$c$c$a a(com.yandex.metrica.t$a$b$c$c) -> a
-    com.yandex.metrica.t$a$b$c$c$c a(com.yandex.metrica.t$a$b$c$c,com.yandex.metrica.t$a$b$c$c$c) -> a
-    com.yandex.metrica.t$a$b$c$c$b a(com.yandex.metrica.t$a$b$c$c,com.yandex.metrica.t$a$b$c$c$b) -> a
-    int a(com.yandex.metrica.t$a$b$c$c,int) -> a
-com.yandex.metrica.t$a$b$c$c$1 -> com.yandex.metrica.cg:
-com.yandex.metrica.t$a$b$c$c$a -> com.yandex.metrica.ch:
-    int a -> a
-    com.yandex.metrica.t$a$b$c$c$c b -> b
-    com.yandex.metrica.t$a$b$c$c$b c -> c
-    com.yandex.metrica.t$a$b$c$c$a d() -> c
-    com.yandex.metrica.t$a$b$c$c e() -> d
-    com.yandex.metrica.t$a$b$c$c f() -> e
-    com.yandex.metrica.t$a$b$c$c$a a(com.yandex.metrica.t$a$b$c$c) -> a
-    com.yandex.metrica.t$a$b$c$c$a a(com.yandex.metrica.t$a$b$c$c$c) -> a
-    com.yandex.metrica.t$a$b$c$c$a a(com.yandex.metrica.t$a$b$c$c$b) -> a
-    com.yandex.metrica.t$a$b$c$c$a b(com.yandex.metrica.t$a$b$c$c$b) -> b
-    com.yandex.metrica.g$a b() -> b
-    com.yandex.metrica.a$a a() -> a
-    java.lang.Object clone() -> clone
-    com.yandex.metrica.t$a$b$c$c$a g() -> f
-com.yandex.metrica.t$a$b$c$c$b -> com.yandex.metrica.ci:
-    com.yandex.metrica.t$a$b$c$c$b b -> b
-    com.yandex.metrica.l a -> a
-    int c -> c
-    java.lang.Object d -> d
-    int e -> e
-    int f -> f
-    int g -> g
-    int h -> h
-    int i -> i
-    java.lang.Object j -> j
-    byte k -> k
-    int l -> l
-    com.yandex.metrica.t$a$b$c$c$b c() -> c
-    boolean d() -> d
-    com.yandex.metrica.c e() -> e
-    boolean f() -> f
-    int g() -> g
-    boolean h() -> h
-    int i() -> i
-    boolean j() -> j
-    int k() -> k
-    boolean l() -> l
-    int m() -> m
-    boolean n() -> n
-    int o() -> o
-    boolean p() -> p
-    com.yandex.metrica.c q() -> q
-    void u() -> t
-    boolean r() -> r
-    void a(com.yandex.metrica.e) -> a
-    int b() -> b
-    com.yandex.metrica.t$a$b$c$c$b$a s() -> s
-    com.yandex.metrica.t$a$b$c$c$b$a a(com.yandex.metrica.t$a$b$c$c$b) -> a
-    java.lang.Object a(com.yandex.metrica.t$a$b$c$c$b,java.lang.Object) -> a
-    int a(com.yandex.metrica.t$a$b$c$c$b,int) -> a
-    int b(com.yandex.metrica.t$a$b$c$c$b,int) -> b
-    int c(com.yandex.metrica.t$a$b$c$c$b,int) -> c
-    int d(com.yandex.metrica.t$a$b$c$c$b,int) -> d
-    int e(com.yandex.metrica.t$a$b$c$c$b,int) -> e
-    java.lang.Object b(com.yandex.metrica.t$a$b$c$c$b,java.lang.Object) -> b
-    int f(com.yandex.metrica.t$a$b$c$c$b,int) -> f
-    java.lang.Object b(com.yandex.metrica.t$a$b$c$c$b) -> b
-    java.lang.Object c(com.yandex.metrica.t$a$b$c$c$b) -> c
-com.yandex.metrica.t$a$b$c$c$b$1 -> com.yandex.metrica.cj:
-com.yandex.metrica.t$a$b$c$c$b$a -> com.yandex.metrica.ck:
-    int a -> a
-    java.lang.Object b -> b
-    int c -> c
-    int d -> d
-    int e -> e
-    int f -> f
-    int g -> g
-    java.lang.Object h -> h
-    com.yandex.metrica.t$a$b$c$c$b$a d() -> c
-    com.yandex.metrica.t$a$b$c$c$b e() -> d
-    com.yandex.metrica.t$a$b$c$c$b f() -> e
-    com.yandex.metrica.t$a$b$c$c$b$a a(com.yandex.metrica.t$a$b$c$c$b) -> a
-    com.yandex.metrica.t$a$b$c$c$b$a a(java.lang.String) -> a
-    com.yandex.metrica.t$a$b$c$c$b$a a(int) -> a
-    com.yandex.metrica.t$a$b$c$c$b$a b(int) -> b
-    com.yandex.metrica.t$a$b$c$c$b$a c(int) -> c
-    com.yandex.metrica.t$a$b$c$c$b$a d(int) -> d
-    com.yandex.metrica.t$a$b$c$c$b$a e(int) -> e
-    com.yandex.metrica.g$a b() -> b
-    com.yandex.metrica.a$a a() -> a
-    java.lang.Object clone() -> clone
-    com.yandex.metrica.t$a$b$c$c$b$a g() -> f
-com.yandex.metrica.t$a$b$c$c$c -> com.yandex.metrica.cl:
-    com.yandex.metrica.t$a$b$c$c$c a -> a
-    com.yandex.metrica.t$a$b$c$c$c b -> b
-    int c -> c
-    com.yandex.metrica.t$a$b$c$c$c[] d -> d
-    com.yandex.metrica.t$a$b$c$c$c[] values() -> values
-    com.yandex.metrica.t$a$b$c$c$c valueOf(java.lang.String) -> valueOf
-    int a() -> a
-    com.yandex.metrica.t$a$b$c$c$c a(int) -> a
-com.yandex.metrica.t$a$b$c$c$c$1 -> com.yandex.metrica.cm:
-com.yandex.metrica.t$b -> com.yandex.metrica.cn:
-    com.yandex.metrica.t$b b -> b
-    com.yandex.metrica.l a -> a
-    int c -> c
-    long d -> d
-    int e -> e
-    byte f -> f
-    int g -> g
-    com.yandex.metrica.t$b c() -> c
-    boolean d() -> d
-    long e() -> e
-    boolean f() -> f
-    int g() -> g
-    void k() -> j
-    boolean h() -> h
-    void a(com.yandex.metrica.e) -> a
-    int b() -> b
-    com.yandex.metrica.t$b$a i() -> i
-    com.yandex.metrica.t$b$a a(com.yandex.metrica.t$b) -> a
-    long a(com.yandex.metrica.t$b,long) -> a
-    int a(com.yandex.metrica.t$b,int) -> a
-    int b(com.yandex.metrica.t$b,int) -> b
-com.yandex.metrica.t$b$1 -> com.yandex.metrica.co:
-com.yandex.metrica.t$b$a -> com.yandex.metrica.cp:
-    int a -> a
-    long b -> b
-    int c -> c
-    com.yandex.metrica.t$b$a d() -> c
-    com.yandex.metrica.t$b e() -> d
-    com.yandex.metrica.t$b f() -> e
-    com.yandex.metrica.t$b$a a(com.yandex.metrica.t$b) -> a
-    com.yandex.metrica.t$b$a a(long) -> a
-    com.yandex.metrica.t$b$a a(int) -> a
-    com.yandex.metrica.g$a b() -> b
-    com.yandex.metrica.a$a a() -> a
-    java.lang.Object clone() -> clone
-    com.yandex.metrica.t$b$a g() -> f
-com.yandex.metrica.u -> com.yandex.metrica.cq:
-    java.lang.String b -> b
-    java.lang.String c -> c
-    java.lang.String d -> d
-    java.lang.String e -> e
-    java.lang.String f -> f
-    java.lang.String g -> g
-    java.lang.String h -> h
-    int i -> i
-    int j -> j
-    int k -> k
-    float l -> l
-    java.lang.String m -> m
-    java.lang.String n -> n
-    java.lang.String o -> o
-    java.lang.String p -> p
-    int q -> q
-    java.lang.String r -> r
-    java.lang.String s -> s
-    java.lang.String t -> t
-    boolean a -> a
-    java.lang.String a() -> a
-    void a(java.lang.String) -> a
-    java.lang.String b() -> b
-    java.lang.String c() -> c
-    java.lang.String d() -> d
-    java.lang.String e() -> e
-    void b(java.lang.String) -> b
-    java.lang.String f() -> f
-    void c(java.lang.String) -> c
-    void g() -> g
-    void h() -> h
-    java.lang.String i() -> i
-    void d(java.lang.String) -> d
-    java.lang.String j() -> j
-    void e(java.lang.String) -> e
-    java.lang.String k() -> k
-    void f(java.lang.String) -> f
-    java.lang.String l() -> l
-    void g(java.lang.String) -> g
-    int m() -> m
-    void a(int) -> a
-    int n() -> n
-    void b(int) -> b
-    int o() -> o
-    void c(int) -> c
-    float p() -> p
-    void a(float) -> a
-    java.lang.String q() -> q
-    void h(java.lang.String) -> h
-    void i(java.lang.String) -> i
-    java.lang.String r() -> r
-    void j(java.lang.String) -> j
-    java.lang.String s() -> s
-    java.lang.String t() -> t
-    void k(java.lang.String) -> k
-    java.lang.String u() -> u
-    java.lang.String v() -> v
-    void l(java.lang.String) -> l
-    void d(int) -> d
-    int w() -> w
-    void a(com.yandex.metrica.z$c) -> a
-    java.lang.String x() -> x
-    void y() -> y
-    boolean z() -> z
-    boolean a(long) -> a
-com.yandex.metrica.v -> com.yandex.metrica.cr:
-    com.yandex.metrica.IMetricaService a -> a
-    android.content.Context b -> b
-    java.util.List c -> c
-    boolean d -> d
-    java.lang.String e -> e
-    android.os.Handler f -> f
-    java.lang.Runnable g -> g
-    android.content.ServiceConnection h -> h
-    void a() -> a
-    void b() -> b
-    void h() -> h
-    boolean c() -> c
-    void d() -> d
-    void e() -> e
-    boolean f() -> f
-    com.yandex.metrica.IMetricaService g() -> g
-    void a(com.yandex.metrica.Counter) -> a
-    android.content.Context a(com.yandex.metrica.v) -> a
-    android.content.ServiceConnection b(com.yandex.metrica.v) -> b
-    void c(com.yandex.metrica.v) -> c
-    boolean a(com.yandex.metrica.v,boolean) -> a
-    com.yandex.metrica.IMetricaService a(com.yandex.metrica.v,com.yandex.metrica.IMetricaService) -> a
-    java.lang.String a(com.yandex.metrica.v,java.lang.String) -> a
-    java.util.List d(com.yandex.metrica.v) -> d
-com.yandex.metrica.v$1 -> com.yandex.metrica.cs:
-    com.yandex.metrica.v a -> a
-    void run() -> run
-com.yandex.metrica.v$2 -> com.yandex.metrica.ct:
-    com.yandex.metrica.v a -> a
-    void onServiceConnected(android.content.ComponentName,android.os.IBinder) -> onServiceConnected
-    void onServiceDisconnected(android.content.ComponentName) -> onServiceDisconnected
-com.yandex.metrica.w -> com.yandex.metrica.cu:
-    java.util.Queue a -> a
-    boolean b -> b
-    boolean c -> c
-    boolean d -> d
-    java.lang.Object e -> e
-    void a(com.yandex.metrica.x) -> a
-    void a() -> a
-    void run() -> run
-com.yandex.metrica.x -> com.yandex.metrica.cv:
-    int a -> h
-    int b -> i
-    java.lang.String c -> a
-    java.lang.String d -> b
-    int e -> c
-    byte[] f -> d
-    int g -> e
-    byte[] h -> f
-    boolean a() -> d
-    boolean b() -> e
-    java.lang.String c() -> h
-    void a(java.lang.String) -> a
-    int d() -> i
-    byte[] e() -> j
-    void a(byte[]) -> a
-    int f() -> k
-    void a(int) -> a
-    byte[] g() -> l
-    void b(byte[]) -> b
-    java.lang.String h() -> m
-    void b(java.lang.String) -> b
-com.yandex.metrica.y -> com.yandex.metrica.cw:
-    boolean a(android.content.pm.PackageManager,java.lang.String,java.lang.String) -> a
-com.yandex.metrica.z -> com.yandex.metrica.cx:
-    java.lang.String[] a -> a
-    int a() -> a
-    com.yandex.metrica.z$c a(android.content.Context) -> a
-    int b(android.content.Context) -> b
-    float c(android.content.Context) -> c
-    java.lang.String b() -> b
-    java.lang.String d(android.content.Context) -> d
-    int e(android.content.Context) -> e
-    int f(android.content.Context) -> f
-    java.lang.String g(android.content.Context) -> g
-    android.location.Location h(android.content.Context) -> h
-    com.yandex.metrica.z$d i(android.content.Context) -> i
-    com.yandex.metrica.z$a j(android.content.Context) -> j
-com.yandex.metrica.z$a -> com.yandex.metrica.cy:
-    java.lang.Integer a -> a
-    java.lang.Integer b -> b
-    java.lang.Integer c -> c
-    java.lang.Integer d -> d
-com.yandex.metrica.z$b -> com.yandex.metrica.cz:
-    com.yandex.metrica.z$b a -> a
-    com.yandex.metrica.z$b b -> b
-    int c -> c
-    com.yandex.metrica.z$b[] d -> d
-    com.yandex.metrica.z$b[] values() -> values
-    com.yandex.metrica.z$b valueOf(java.lang.String) -> valueOf
-    int a() -> a
-com.yandex.metrica.z$c -> com.yandex.metrica.da:
-    com.yandex.metrica.z$c a -> a
-    com.yandex.metrica.z$c b -> b
-    com.yandex.metrica.z$c c -> c
-    com.yandex.metrica.z$c d -> d
-    com.yandex.metrica.z$c[] e -> e
-    com.yandex.metrica.z$c[] values() -> values
-    com.yandex.metrica.z$c valueOf(java.lang.String) -> valueOf
-com.yandex.metrica.z$d -> com.yandex.metrica.db:
-    java.lang.Integer a -> a
-    java.lang.String b -> b
-com.yandex.metrica.z$e -> com.yandex.metrica.dc:
-    android.telephony.TelephonyManager a -> a
-    android.content.Context b -> b
-    android.os.Handler c -> c
-    java.lang.Runnable d -> d
-    void onSignalStrengthsChanged(android.telephony.SignalStrength) -> onSignalStrengthsChanged
-    void a() -> a
-    void b() -> b
-com.yandex.metrica.z$e$1 -> com.yandex.metrica.dd:
-    com.yandex.metrica.z$e a -> a
-    void run() -> run
 kankan.wheel.R -> kankan.wheel.a:
 kankan.wheel.R$drawable -> kankan.wheel.b:
     int wheel_bg -> wheel_bg
@@ -13071,3 +11901,601 @@ net.simonvt.menudrawer.compat.ActionBarHelperNative$SetIndicatorInfo -> net.simo
     java.lang.reflect.Method setHomeAsUpIndicator -> a
     java.lang.reflect.Method setHomeActionContentDescription -> b
     android.widget.ImageView upIndicatorView -> c
+org.acra.ACRA -> a.a.a:
+    java.lang.String LOG_TAG -> a
+    org.acra.log.ACRALog log -> b
+    android.app.Application mApplication -> c
+    org.acra.annotation.ReportsCrashes mReportsCrashes -> d
+    org.acra.ErrorReporter errorReporterSingleton -> e
+    android.content.SharedPreferences$OnSharedPreferenceChangeListener mPrefListener -> f
+    org.acra.ACRAConfiguration configProxy -> g
+    void init(android.app.Application) -> a
+    org.acra.ErrorReporter getErrorReporter() -> a
+    boolean shouldDisableACRA(android.content.SharedPreferences) -> b
+    void checkCrashResources() -> b
+    android.content.SharedPreferences getACRASharedPreferences() -> c
+    org.acra.ACRAConfiguration getConfig() -> d
+    org.acra.ACRAConfiguration getNewDefaultConfig(android.app.Application) -> b
+    boolean isDebuggable() -> e
+    android.app.Application getApplication() -> f
+    boolean access$000(android.content.SharedPreferences) -> a
+org.acra.ACRA$1 -> a.a.b:
+    void onSharedPreferenceChanged(android.content.SharedPreferences,java.lang.String) -> onSharedPreferenceChanged
+org.acra.ACRA$2 -> a.a.c:
+    int[] $SwitchMap$org$acra$ReportingInteractionMode -> a
+org.acra.ACRAConfiguration -> a.a.d:
+    java.lang.String[] mAdditionalDropboxTags -> a
+    java.lang.String[] mAdditionalSharedPreferences -> b
+    java.lang.Integer mConnectionTimeout -> c
+    org.acra.ReportField[] mCustomReportContent -> d
+    java.lang.Boolean mDeleteUnapprovedReportsOnApplicationStart -> e
+    java.lang.Boolean mDeleteOldUnsentReportsOnApplicationStart -> f
+    java.lang.Integer mDropboxCollectionMinutes -> g
+    java.lang.Boolean mForceCloseDialogAfterToast -> h
+    java.lang.String mFormKey -> i
+    java.lang.String mFormUri -> j
+    java.lang.String mFormUriBasicAuthLogin -> k
+    java.lang.String mFormUriBasicAuthPassword -> l
+    java.lang.Boolean mIncludeDropboxSystemTags -> m
+    java.lang.String[] mLogcatArguments -> n
+    java.lang.String mMailTo -> o
+    java.lang.Integer mMaxNumberOfRequestRetries -> p
+    org.acra.ReportingInteractionMode mMode -> q
+    org.acra.annotation.ReportsCrashes mReportsCrashes -> r
+    java.lang.Integer mResDialogCommentPrompt -> s
+    java.lang.Integer mResDialogEmailPrompt -> t
+    java.lang.Integer mResDialogIcon -> u
+    java.lang.Integer mResDialogOkToast -> v
+    java.lang.Integer mResDialogText -> w
+    java.lang.Integer mResDialogTitle -> x
+    java.lang.Integer mResNotifIcon -> y
+    java.lang.Integer mResNotifText -> z
+    java.lang.Integer mResNotifTickerText -> A
+    java.lang.Integer mResNotifTitle -> B
+    java.lang.Integer mResToastText -> C
+    java.lang.Integer mSharedPreferenceMode -> D
+    java.lang.String mSharedPreferenceName -> E
+    java.lang.Integer mSocketTimeout -> F
+    java.lang.Boolean mLogcatFilterByPid -> G
+    java.lang.Boolean mSendReportsInDevMode -> H
+    java.lang.String[] mExcludeMatchingSharedPreferencesKeys -> I
+    java.lang.String[] mExcludeMatchingSettingsKeys -> J
+    java.lang.String mApplicationLogFile -> K
+    java.lang.Integer mApplicationLogFileLines -> L
+    java.lang.String mGoogleFormUrlFormat -> M
+    java.lang.Boolean mDisableSSLCertValidation -> N
+    org.acra.sender.HttpSender$Method mHttpMethod -> O
+    org.acra.sender.HttpSender$Type mReportType -> P
+    java.util.Map mHttpHeaders -> Q
+    java.util.Map getHttpHeaders() -> a
+    java.lang.String[] additionalDropBoxTags() -> b
+    java.lang.String[] additionalSharedPreferences() -> c
+    java.lang.Class annotationType() -> annotationType
+    int connectionTimeout() -> d
+    org.acra.ReportField[] customReportContent() -> e
+    boolean deleteUnapprovedReportsOnApplicationStart() -> f
+    boolean deleteOldUnsentReportsOnApplicationStart() -> g
+    int dropboxCollectionMinutes() -> h
+    boolean forceCloseDialogAfterToast() -> i
+    java.lang.String formKey() -> j
+    java.lang.String formUri() -> k
+    java.lang.String formUriBasicAuthLogin() -> l
+    java.lang.String formUriBasicAuthPassword() -> m
+    boolean includeDropBoxSystemTags() -> n
+    java.lang.String[] logcatArguments() -> o
+    java.lang.String mailTo() -> p
+    int maxNumberOfRequestRetries() -> q
+    org.acra.ReportingInteractionMode mode() -> r
+    int resDialogCommentPrompt() -> s
+    int resDialogEmailPrompt() -> t
+    int resDialogIcon() -> u
+    int resDialogOkToast() -> v
+    int resDialogText() -> w
+    int resDialogTitle() -> x
+    int resNotifIcon() -> y
+    int resNotifText() -> z
+    int resNotifTickerText() -> A
+    int resNotifTitle() -> B
+    int resToastText() -> C
+    int sharedPreferencesMode() -> D
+    java.lang.String sharedPreferencesName() -> E
+    int socketTimeout() -> F
+    boolean logcatFilterByPid() -> G
+    boolean sendReportsInDevMode() -> H
+    java.lang.String[] excludeMatchingSharedPreferencesKeys() -> I
+    java.lang.String[] excludeMatchingSettingsKeys() -> J
+    java.lang.String applicationLogFile() -> K
+    int applicationLogFileLines() -> L
+    java.lang.String googleFormUrlFormat() -> M
+    boolean disableSSLCertValidation() -> N
+    org.acra.sender.HttpSender$Method httpMethod() -> O
+    org.acra.sender.HttpSender$Type reportType() -> P
+    boolean isNull(java.lang.String) -> a
+org.acra.ACRAConfigurationException -> a.a.e:
+org.acra.ACRAConstants -> a.a.f:
+    java.lang.String SILENT_SUFFIX -> a
+    org.acra.ReportField[] DEFAULT_MAIL_REPORT_FIELDS -> b
+    org.acra.ReportField[] DEFAULT_REPORT_FIELDS -> c
+org.acra.CrashReportDialog -> a.a.g:
+    android.content.SharedPreferences prefs -> c
+    android.widget.EditText userComment -> d
+    android.widget.EditText userEmail -> e
+    java.lang.String mReportFileName -> a
+    android.app.AlertDialog mDialog -> b
+    void onCreate(android.os.Bundle) -> onCreate
+    android.view.View buildCustomView(android.os.Bundle) -> a
+    void cancelNotification() -> a
+    void onClick(android.content.DialogInterface,int) -> onClick
+    void cancelReports() -> b
+    void sendCrash() -> c
+    void onSaveInstanceState(android.os.Bundle) -> onSaveInstanceState
+    void onDismiss(android.content.DialogInterface) -> onDismiss
+org.acra.CrashReportFileNameParser -> a.a.h:
+    boolean isSilent(java.lang.String) -> a
+    boolean isApproved(java.lang.String) -> b
+org.acra.CrashReportFinder -> a.a.i:
+    android.content.Context context -> a
+    java.lang.String[] getCrashReportFiles() -> a
+org.acra.CrashReportFinder$1 -> a.a.j:
+    org.acra.CrashReportFinder this$0 -> a
+    boolean accept(java.io.File,java.lang.String) -> accept
+org.acra.CrashReportPersister -> a.a.k:
+    android.content.Context context -> a
+    org.acra.collector.CrashReportData load(java.lang.String) -> a
+    void store(org.acra.collector.CrashReportData,java.lang.String) -> a
+    boolean isEbcdic(java.io.BufferedInputStream) -> a
+    org.acra.collector.CrashReportData load(java.io.Reader) -> a
+    void dumpString(java.lang.StringBuilder,java.lang.String,boolean) -> a
+org.acra.ErrorReporter -> a.a.l:
+    boolean enabled -> a
+    android.app.Application mContext -> b
+    android.content.SharedPreferences prefs -> c
+    java.util.List mReportSenders -> d
+    org.acra.collector.CrashReportDataFactory crashReportDataFactory -> e
+    org.acra.CrashReportFileNameParser fileNameParser -> f
+    java.lang.Thread$UncaughtExceptionHandler mDfltExceptionHandler -> g
+    java.lang.Thread brokenThread -> h
+    java.lang.Throwable unhandledThrowable -> i
+    android.app.Activity lastActivityCreated -> j
+    boolean toastWaitEnded -> k
+    int mNotificationCounter -> l
+    org.acra.ErrorReporter getInstance() -> a
+    void addReportSender(org.acra.sender.ReportSender) -> a
+    void removeAllReportSenders() -> b
+    void setReportSender(org.acra.sender.ReportSender) -> b
+    void uncaughtException(java.lang.Thread,java.lang.Throwable) -> uncaughtException
+    void endApplication() -> g
+    void setEnabled(boolean) -> a
+    org.acra.SendWorker startSendingReports(boolean,boolean) -> a
+    void deletePendingReports() -> c
+    void checkReportsOnApplicationStart() -> d
+    void deletePendingNonApprovedReports(boolean) -> b
+    void handleException(java.lang.Throwable,org.acra.ReportingInteractionMode,boolean,boolean) -> a
+    void notifyDialog(java.lang.String) -> a
+    void notifySendReport(java.lang.String) -> b
+    java.lang.String getReportFileName(org.acra.collector.CrashReportData) -> a
+    void saveCrashReportFile(java.lang.String,org.acra.collector.CrashReportData) -> a
+    java.lang.String getLatestNonSilentReport(java.lang.String[]) -> a
+    void deletePendingReports(boolean,boolean,int) -> a
+    boolean containsOnlySilentOrApprovedReports(java.lang.String[]) -> b
+    void setDefaultReportSenders() -> e
+    android.app.Activity access$002(org.acra.ErrorReporter,android.app.Activity) -> a
+    android.app.Application access$100(org.acra.ErrorReporter) -> a
+    boolean access$202(boolean) -> c
+    boolean access$200() -> f
+    void access$300(org.acra.ErrorReporter) -> b
+org.acra.ErrorReporter$1 -> a.a.m:
+    org.acra.ErrorReporter this$0 -> a
+    void onActivityCreated(android.app.Activity,android.os.Bundle) -> a
+    void onActivityStarted(android.app.Activity) -> a
+    void onActivityResumed(android.app.Activity) -> b
+    void onActivityPaused(android.app.Activity) -> c
+    void onActivityStopped(android.app.Activity) -> d
+    void onActivitySaveInstanceState(android.app.Activity,android.os.Bundle) -> b
+    void onActivityDestroyed(android.app.Activity) -> e
+org.acra.ErrorReporter$2 -> a.a.n:
+    org.acra.ErrorReporter this$0 -> a
+    void run() -> run
+org.acra.ErrorReporter$3 -> a.a.o:
+    org.acra.ErrorReporter this$0 -> a
+    void run() -> run
+org.acra.ErrorReporter$4 -> a.a.p:
+    org.acra.SendWorker val$worker -> a
+    boolean val$showDirectDialog -> b
+    java.lang.String val$reportFileName -> c
+    boolean val$endApplication -> d
+    org.acra.ErrorReporter this$0 -> e
+    void run() -> run
+org.acra.ReportField -> a.a.q:
+    org.acra.ReportField REPORT_ID -> a
+    org.acra.ReportField APP_VERSION_CODE -> b
+    org.acra.ReportField APP_VERSION_NAME -> c
+    org.acra.ReportField PACKAGE_NAME -> d
+    org.acra.ReportField FILE_PATH -> e
+    org.acra.ReportField PHONE_MODEL -> f
+    org.acra.ReportField ANDROID_VERSION -> g
+    org.acra.ReportField BUILD -> h
+    org.acra.ReportField BRAND -> i
+    org.acra.ReportField PRODUCT -> j
+    org.acra.ReportField TOTAL_MEM_SIZE -> k
+    org.acra.ReportField AVAILABLE_MEM_SIZE -> l
+    org.acra.ReportField CUSTOM_DATA -> m
+    org.acra.ReportField STACK_TRACE -> n
+    org.acra.ReportField INITIAL_CONFIGURATION -> o
+    org.acra.ReportField CRASH_CONFIGURATION -> p
+    org.acra.ReportField DISPLAY -> q
+    org.acra.ReportField USER_COMMENT -> r
+    org.acra.ReportField USER_APP_START_DATE -> s
+    org.acra.ReportField USER_CRASH_DATE -> t
+    org.acra.ReportField DUMPSYS_MEMINFO -> u
+    org.acra.ReportField DROPBOX -> v
+    org.acra.ReportField LOGCAT -> w
+    org.acra.ReportField EVENTSLOG -> x
+    org.acra.ReportField RADIOLOG -> y
+    org.acra.ReportField IS_SILENT -> z
+    org.acra.ReportField DEVICE_ID -> A
+    org.acra.ReportField INSTALLATION_ID -> B
+    org.acra.ReportField USER_EMAIL -> C
+    org.acra.ReportField DEVICE_FEATURES -> D
+    org.acra.ReportField ENVIRONMENT -> E
+    org.acra.ReportField SETTINGS_SYSTEM -> F
+    org.acra.ReportField SETTINGS_SECURE -> G
+    org.acra.ReportField SETTINGS_GLOBAL -> H
+    org.acra.ReportField SHARED_PREFERENCES -> I
+    org.acra.ReportField APPLICATION_LOG -> J
+    org.acra.ReportField MEDIA_CODEC_LIST -> K
+    org.acra.ReportField THREAD_DETAILS -> L
+    org.acra.ReportField USER_IP -> M
+    org.acra.ReportField[] $VALUES -> N
+    org.acra.ReportField[] values() -> values
+    org.acra.ReportField valueOf(java.lang.String) -> valueOf
+    boolean containsKeyValuePairs() -> a
+org.acra.ReportField$1 -> a.a.r:
+    boolean containsKeyValuePairs() -> a
+org.acra.ReportField$10 -> a.a.s:
+    boolean containsKeyValuePairs() -> a
+org.acra.ReportField$11 -> a.a.t:
+    boolean containsKeyValuePairs() -> a
+org.acra.ReportField$2 -> a.a.u:
+    boolean containsKeyValuePairs() -> a
+org.acra.ReportField$3 -> a.a.v:
+    boolean containsKeyValuePairs() -> a
+org.acra.ReportField$4 -> a.a.w:
+    boolean containsKeyValuePairs() -> a
+org.acra.ReportField$5 -> a.a.x:
+    boolean containsKeyValuePairs() -> a
+org.acra.ReportField$6 -> a.a.y:
+    boolean containsKeyValuePairs() -> a
+org.acra.ReportField$7 -> a.a.z:
+    boolean containsKeyValuePairs() -> a
+org.acra.ReportField$8 -> a.a.aa:
+    boolean containsKeyValuePairs() -> a
+org.acra.ReportField$9 -> a.a.ab:
+    boolean containsKeyValuePairs() -> a
+org.acra.ReportingInteractionMode -> a.a.ac:
+    org.acra.ReportingInteractionMode SILENT -> a
+    org.acra.ReportingInteractionMode NOTIFICATION -> b
+    org.acra.ReportingInteractionMode TOAST -> c
+    org.acra.ReportingInteractionMode DIALOG -> d
+    org.acra.ReportingInteractionMode[] $VALUES -> e
+    org.acra.ReportingInteractionMode[] values() -> values
+    org.acra.ReportingInteractionMode valueOf(java.lang.String) -> valueOf
+org.acra.SendWorker -> a.a.ad:
+    android.content.Context context -> a
+    boolean sendOnlySilentReports -> b
+    boolean approvePendingReports -> c
+    org.acra.CrashReportFileNameParser fileNameParser -> d
+    java.util.List reportSenders -> e
+    void run() -> run
+    void approvePendingReports() -> a
+    void checkAndSendReports(android.content.Context,boolean) -> a
+    void sendCrashReport(org.acra.collector.CrashReportData) -> a
+    void deleteFile(android.content.Context,java.lang.String) -> a
+org.acra.annotation.ReportsCrashes -> a.a.a.a:
+    java.lang.String formKey() -> j
+    java.lang.String formUri() -> k
+    org.acra.ReportingInteractionMode mode() -> r
+    int resDialogCommentPrompt() -> s
+    int resDialogEmailPrompt() -> t
+    int resDialogIcon() -> u
+    int resDialogOkToast() -> v
+    int resDialogText() -> w
+    int resDialogTitle() -> x
+    int resNotifIcon() -> y
+    int resNotifText() -> z
+    int resNotifTickerText() -> A
+    int resNotifTitle() -> B
+    int resToastText() -> C
+    java.lang.String sharedPreferencesName() -> E
+    int sharedPreferencesMode() -> D
+    boolean includeDropBoxSystemTags() -> n
+    java.lang.String[] additionalDropBoxTags() -> b
+    int dropboxCollectionMinutes() -> h
+    java.lang.String[] logcatArguments() -> o
+    java.lang.String formUriBasicAuthLogin() -> l
+    java.lang.String formUriBasicAuthPassword() -> m
+    org.acra.ReportField[] customReportContent() -> e
+    java.lang.String mailTo() -> p
+    boolean deleteUnapprovedReportsOnApplicationStart() -> f
+    boolean deleteOldUnsentReportsOnApplicationStart() -> g
+    int connectionTimeout() -> d
+    int socketTimeout() -> F
+    int maxNumberOfRequestRetries() -> q
+    boolean forceCloseDialogAfterToast() -> i
+    java.lang.String[] additionalSharedPreferences() -> c
+    boolean logcatFilterByPid() -> G
+    boolean sendReportsInDevMode() -> H
+    java.lang.String[] excludeMatchingSharedPreferencesKeys() -> I
+    java.lang.String[] excludeMatchingSettingsKeys() -> J
+    java.lang.String applicationLogFile() -> K
+    int applicationLogFileLines() -> L
+    java.lang.String googleFormUrlFormat() -> M
+    boolean disableSSLCertValidation() -> N
+    org.acra.sender.HttpSender$Method httpMethod() -> O
+    org.acra.sender.HttpSender$Type reportType() -> P
+org.acra.collector.Compatibility -> a.a.b.a:
+    int getAPILevel() -> a
+    java.lang.String getDropBoxServiceName() -> b
+org.acra.collector.ConfigurationCollector -> a.a.b.b:
+    android.util.SparseArray mHardKeyboardHiddenValues -> a
+    android.util.SparseArray mKeyboardValues -> b
+    android.util.SparseArray mKeyboardHiddenValues -> c
+    android.util.SparseArray mNavigationValues -> d
+    android.util.SparseArray mNavigationHiddenValues -> e
+    android.util.SparseArray mOrientationValues -> f
+    android.util.SparseArray mScreenLayoutValues -> g
+    android.util.SparseArray mTouchScreenValues -> h
+    android.util.SparseArray mUiModeValues -> i
+    java.util.HashMap mValueArrays -> j
+    java.lang.String toString(android.content.res.Configuration) -> a
+    java.lang.String getFieldValueName(android.content.res.Configuration,java.lang.reflect.Field) -> a
+    java.lang.String activeFlags(android.util.SparseArray,int) -> a
+    java.lang.String collectConfiguration(android.content.Context) -> a
+org.acra.collector.CrashReportData -> a.a.b.c:
+    java.lang.String getProperty(org.acra.ReportField) -> a
+    org.json.JSONObject toJSON() -> a
+org.acra.collector.CrashReportDataFactory -> a.a.b.d:
+    android.content.Context context -> a
+    android.content.SharedPreferences prefs -> b
+    java.util.Map customParameters -> c
+    android.text.format.Time appStartDate -> d
+    java.lang.String initialConfiguration -> e
+    org.acra.collector.CrashReportData createCrashData(java.lang.Throwable,boolean,java.lang.Thread) -> a
+    java.lang.String createCustomInfoString() -> a
+    java.lang.String getStackTrace(java.lang.Throwable) -> a
+    java.util.List getReportFields() -> b
+org.acra.collector.DeviceFeaturesCollector -> a.a.b.e:
+    java.lang.String getFeatures(android.content.Context) -> a
+org.acra.collector.DisplayManagerCollector -> a.a.b.f:
+    android.util.SparseArray mFlagsNames -> a
+    android.util.SparseArray mDensities -> b
+    java.lang.String collectDisplays(android.content.Context) -> a
+    java.lang.Object collectDisplayData(android.view.Display) -> a
+    java.lang.Object collectIsValid(android.view.Display) -> b
+    java.lang.Object collectRotation(android.view.Display) -> c
+    java.lang.Object collectRectSize(android.view.Display) -> d
+    java.lang.Object collectSize(android.view.Display,java.lang.String) -> a
+    java.lang.String collectCurrentSizeRange(android.view.Display) -> e
+    java.lang.String collectFlags(android.view.Display) -> f
+    java.lang.String collectName(android.view.Display) -> g
+    java.lang.Object collectMetrics(android.view.Display,java.lang.String) -> b
+    java.lang.String activeFlags(android.util.SparseArray,int) -> a
+org.acra.collector.DropBoxCollector -> a.a.b.g:
+    java.lang.String[] SYSTEM_TAGS -> a
+    java.lang.String read(android.content.Context,java.lang.String[]) -> a
+org.acra.collector.DumpSysCollector -> a.a.b.h:
+    java.lang.String collectMemInfo() -> a
+org.acra.collector.LogCatCollector -> a.a.b.i:
+    java.lang.String collectLogCat(java.lang.String) -> a
+org.acra.collector.LogCatCollector$1 -> a.a.b.j:
+    java.lang.Process val$process -> a
+    void run() -> run
+org.acra.collector.LogFileCollector -> a.a.b.k:
+    java.lang.String collectLogFile(android.content.Context,java.lang.String,int) -> a
+org.acra.collector.MediaCodecListCollector -> a.a.b.l:
+    java.lang.String[] MPEG4_TYPES -> a
+    java.lang.String[] AVC_TYPES -> b
+    java.lang.String[] H263_TYPES -> c
+    java.lang.String[] AAC_TYPES -> d
+    java.lang.Class mediaCodecListClass -> e
+    java.lang.reflect.Method getCodecInfoAtMethod -> f
+    java.lang.Class mediaCodecInfoClass -> g
+    java.lang.reflect.Method getNameMethod -> h
+    java.lang.reflect.Method isEncoderMethod -> i
+    java.lang.reflect.Method getSupportedTypesMethod -> j
+    java.lang.reflect.Method getCapabilitiesForTypeMethod -> k
+    java.lang.Class codecCapabilitiesClass -> l
+    java.lang.reflect.Field colorFormatsField -> m
+    java.lang.reflect.Field profileLevelsField -> n
+    java.lang.reflect.Field profileField -> o
+    java.lang.reflect.Field levelField -> p
+    android.util.SparseArray mColorFormatValues -> q
+    android.util.SparseArray mAVCLevelValues -> r
+    android.util.SparseArray mAVCProfileValues -> s
+    android.util.SparseArray mH263LevelValues -> t
+    android.util.SparseArray mH263ProfileValues -> u
+    android.util.SparseArray mMPEG4LevelValues -> v
+    android.util.SparseArray mMPEG4ProfileValues -> w
+    android.util.SparseArray mAACProfileValues -> x
+    java.lang.String collecMediaCodecList() -> a
+    java.lang.String collectCapabilitiesForType(java.lang.Object,java.lang.String) -> a
+    org.acra.collector.MediaCodecListCollector$CodecType identifyCodecType(java.lang.Object) -> a
+org.acra.collector.MediaCodecListCollector$1 -> a.a.b.m:
+    int[] $SwitchMap$org$acra$collector$MediaCodecListCollector$CodecType -> a
+org.acra.collector.MediaCodecListCollector$CodecType -> a.a.b.n:
+    org.acra.collector.MediaCodecListCollector$CodecType AVC -> a
+    org.acra.collector.MediaCodecListCollector$CodecType H263 -> b
+    org.acra.collector.MediaCodecListCollector$CodecType MPEG4 -> c
+    org.acra.collector.MediaCodecListCollector$CodecType AAC -> d
+    org.acra.collector.MediaCodecListCollector$CodecType[] $VALUES -> e
+    org.acra.collector.MediaCodecListCollector$CodecType[] values() -> values
+    org.acra.collector.MediaCodecListCollector$CodecType valueOf(java.lang.String) -> valueOf
+org.acra.collector.ReflectionCollector -> a.a.b.o:
+    java.lang.String collectConstants(java.lang.Class,java.lang.String) -> a
+    java.lang.String collectStaticGettersResults(java.lang.Class) -> a
+    java.lang.String collectConstants(java.lang.Class) -> b
+org.acra.collector.SettingsCollector -> a.a.b.p:
+    java.lang.String collectSystemSettings(android.content.Context) -> a
+    java.lang.String collectSecureSettings(android.content.Context) -> b
+    java.lang.String collectGlobalSettings(android.content.Context) -> c
+    boolean isAuthorized(java.lang.reflect.Field) -> a
+org.acra.collector.SharedPreferencesCollector -> a.a.b.q:
+    java.lang.String collect(android.content.Context) -> a
+    boolean filteredKey(java.lang.String) -> a
+org.acra.collector.ThreadCollector -> a.a.b.r:
+    java.lang.String collect(java.lang.Thread) -> a
+org.acra.jraf.android.util.activitylifecyclecallbackscompat.ActivityLifecycleCallbacksCompat -> a.a.c.a.a.a.a:
+    void onActivityCreated(android.app.Activity,android.os.Bundle) -> a
+    void onActivityStarted(android.app.Activity) -> a
+    void onActivityResumed(android.app.Activity) -> b
+    void onActivityPaused(android.app.Activity) -> c
+    void onActivityStopped(android.app.Activity) -> d
+    void onActivitySaveInstanceState(android.app.Activity,android.os.Bundle) -> b
+    void onActivityDestroyed(android.app.Activity) -> e
+org.acra.jraf.android.util.activitylifecyclecallbackscompat.ActivityLifecycleCallbacksWrapper -> a.a.c.a.a.a.b:
+    org.acra.jraf.android.util.activitylifecyclecallbackscompat.ActivityLifecycleCallbacksCompat mCallback -> a
+    void onActivityCreated(android.app.Activity,android.os.Bundle) -> onActivityCreated
+    void onActivityStarted(android.app.Activity) -> onActivityStarted
+    void onActivityResumed(android.app.Activity) -> onActivityResumed
+    void onActivityPaused(android.app.Activity) -> onActivityPaused
+    void onActivityStopped(android.app.Activity) -> onActivityStopped
+    void onActivitySaveInstanceState(android.app.Activity,android.os.Bundle) -> onActivitySaveInstanceState
+    void onActivityDestroyed(android.app.Activity) -> onActivityDestroyed
+org.acra.jraf.android.util.activitylifecyclecallbackscompat.ApplicationHelper -> a.a.c.a.a.a.c:
+    boolean PRE_ICS -> a
+    void registerActivityLifecycleCallbacks(android.app.Application,org.acra.jraf.android.util.activitylifecyclecallbackscompat.ActivityLifecycleCallbacksCompat) -> a
+    void preIcsRegisterActivityLifecycleCallbacks(org.acra.jraf.android.util.activitylifecyclecallbackscompat.ActivityLifecycleCallbacksCompat) -> a
+    void postIcsRegisterActivityLifecycleCallbacks(android.app.Application,org.acra.jraf.android.util.activitylifecyclecallbackscompat.ActivityLifecycleCallbacksCompat) -> b
+org.acra.jraf.android.util.activitylifecyclecallbackscompat.MainLifecycleDispatcher -> a.a.c.a.a.a.d:
+    org.acra.jraf.android.util.activitylifecyclecallbackscompat.MainLifecycleDispatcher INSTANCE -> a
+    java.util.ArrayList mActivityLifecycleCallbacks -> b
+    org.acra.jraf.android.util.activitylifecyclecallbackscompat.MainLifecycleDispatcher get() -> a
+    void registerActivityLifecycleCallbacks(org.acra.jraf.android.util.activitylifecyclecallbackscompat.ActivityLifecycleCallbacksCompat) -> a
+    java.lang.Object[] collectActivityLifecycleCallbacks() -> b
+    void onActivityCreated(android.app.Activity,android.os.Bundle) -> a
+    void onActivityStarted(android.app.Activity) -> a
+    void onActivityResumed(android.app.Activity) -> b
+    void onActivityPaused(android.app.Activity) -> c
+    void onActivityStopped(android.app.Activity) -> d
+    void onActivitySaveInstanceState(android.app.Activity,android.os.Bundle) -> b
+    void onActivityDestroyed(android.app.Activity) -> e
+org.acra.log.ACRALog -> a.a.d.a:
+    int d(java.lang.String,java.lang.String) -> a
+    int w(java.lang.String,java.lang.String) -> b
+    int w(java.lang.String,java.lang.String,java.lang.Throwable) -> a
+    int e(java.lang.String,java.lang.String) -> c
+    int e(java.lang.String,java.lang.String,java.lang.Throwable) -> b
+org.acra.log.AndroidLogDelegate -> a.a.d.b:
+    int d(java.lang.String,java.lang.String) -> a
+    int w(java.lang.String,java.lang.String) -> b
+    int w(java.lang.String,java.lang.String,java.lang.Throwable) -> a
+    int e(java.lang.String,java.lang.String) -> c
+    int e(java.lang.String,java.lang.String,java.lang.Throwable) -> b
+org.acra.sender.EmailIntentSender -> a.a.e.a:
+    android.content.Context mContext -> a
+    void send(org.acra.collector.CrashReportData) -> a
+    java.lang.String buildBody(org.acra.collector.CrashReportData) -> b
+org.acra.sender.GoogleFormSender -> a.a.e.b:
+    android.net.Uri mFormUri -> a
+    void send(org.acra.collector.CrashReportData) -> a
+    java.util.Map remap(java.util.Map) -> a
+org.acra.sender.GoogleFormSender$1 -> a.a.e.c:
+    int[] $SwitchMap$org$acra$ReportField -> a
+org.acra.sender.HttpSender -> a.a.e.d:
+    android.net.Uri mFormUri -> a
+    java.util.Map mMapping -> b
+    org.acra.sender.HttpSender$Method mMethod -> c
+    org.acra.sender.HttpSender$Type mType -> d
+    void send(org.acra.collector.CrashReportData) -> a
+    java.util.Map remap(java.util.Map) -> a
+org.acra.sender.HttpSender$1 -> a.a.e.e:
+    int[] $SwitchMap$org$acra$sender$HttpSender$Type -> a
+    int[] $SwitchMap$org$acra$sender$HttpSender$Method -> b
+org.acra.sender.HttpSender$Method -> a.a.e.f:
+    org.acra.sender.HttpSender$Method POST -> a
+    org.acra.sender.HttpSender$Method PUT -> b
+    org.acra.sender.HttpSender$Method[] $VALUES -> c
+    org.acra.sender.HttpSender$Method[] values() -> values
+    org.acra.sender.HttpSender$Method valueOf(java.lang.String) -> valueOf
+org.acra.sender.HttpSender$Type -> a.a.e.g:
+    org.acra.sender.HttpSender$Type FORM -> a
+    org.acra.sender.HttpSender$Type JSON -> b
+    org.acra.sender.HttpSender$Type[] $VALUES -> c
+    org.acra.sender.HttpSender$Type[] values() -> values
+    org.acra.sender.HttpSender$Type valueOf(java.lang.String) -> valueOf
+    java.lang.String getContentType() -> a
+org.acra.sender.HttpSender$Type$1 -> a.a.e.h:
+    java.lang.String getContentType() -> a
+org.acra.sender.HttpSender$Type$2 -> a.a.e.i:
+    java.lang.String getContentType() -> a
+org.acra.sender.ReportSender -> a.a.e.j:
+    void send(org.acra.collector.CrashReportData) -> a
+org.acra.sender.ReportSenderException -> a.a.e.k:
+org.acra.util.BoundedLinkedList -> a.a.f.a:
+    int maxSize -> a
+    boolean add(java.lang.Object) -> add
+    void add(int,java.lang.Object) -> add
+    boolean addAll(java.util.Collection) -> addAll
+    boolean addAll(int,java.util.Collection) -> addAll
+    void addFirst(java.lang.Object) -> addFirst
+    void addLast(java.lang.Object) -> addLast
+    java.lang.String toString() -> toString
+org.acra.util.FakeSocketFactory -> a.a.f.b:
+    javax.net.ssl.SSLContext sslcontext -> a
+    javax.net.ssl.SSLContext createEasySSLContext() -> a
+    javax.net.ssl.SSLContext getSSLContext() -> b
+    java.net.Socket connectSocket(java.net.Socket,java.lang.String,int,java.net.InetAddress,int,org.apache.http.params.HttpParams) -> connectSocket
+    java.net.Socket createSocket() -> createSocket
+    boolean isSecure(java.net.Socket) -> isSecure
+    java.net.Socket createSocket(java.net.Socket,java.lang.String,int,boolean) -> createSocket
+org.acra.util.HttpRequest -> a.a.f.c:
+    java.lang.String login -> a
+    java.lang.String password -> b
+    int connectionTimeOut -> c
+    int socketTimeOut -> d
+    int maxNrRetries -> e
+    java.util.Map headers -> f
+    void setLogin(java.lang.String) -> a
+    void setPassword(java.lang.String) -> b
+    void setConnectionTimeOut(int) -> a
+    void setSocketTimeOut(int) -> b
+    void setHeaders(java.util.Map) -> a
+    void setMaxNrRetries(int) -> c
+    void send(java.net.URL,org.acra.sender.HttpSender$Method,java.lang.String,org.acra.sender.HttpSender$Type) -> a
+    org.apache.http.client.HttpClient getHttpClient() -> a
+    org.apache.http.auth.UsernamePasswordCredentials getCredentials() -> b
+    org.apache.http.client.methods.HttpEntityEnclosingRequestBase getHttpRequest(java.net.URL,org.acra.sender.HttpSender$Method,java.lang.String,org.acra.sender.HttpSender$Type) -> b
+    java.lang.String getParamsAsFormString(java.util.Map) -> b
+org.acra.util.HttpRequest$1 -> a.a.f.d:
+    int[] $SwitchMap$org$acra$sender$HttpSender$Method -> a
+org.acra.util.HttpRequest$SocketTimeOutRetryHandler -> a.a.f.e:
+    org.apache.http.params.HttpParams httpParams -> a
+    int maxNrRetries -> b
+    boolean retryRequest(java.io.IOException,int,org.apache.http.protocol.HttpContext) -> retryRequest
+org.acra.util.Installation -> a.a.f.f:
+    java.lang.String sID -> a
+    java.lang.String id(android.content.Context) -> a
+    java.lang.String readInstallationFile(java.io.File) -> a
+    void writeInstallationFile(java.io.File) -> b
+org.acra.util.JSONReportBuilder -> a.a.f.g:
+    org.json.JSONObject buildJSONReport(org.acra.collector.CrashReportData) -> a
+    void addJSONFromProperty(org.json.JSONObject,java.lang.String) -> a
+    java.lang.Object guessType(java.lang.String) -> a
+    void addJSONSubTree(org.json.JSONObject,java.lang.String[],java.lang.Object) -> a
+org.acra.util.JSONReportBuilder$JSONReportException -> a.a.f.h:
+org.acra.util.NaiveTrustManager -> a.a.f.i:
+    java.security.cert.X509Certificate[] getAcceptedIssuers() -> getAcceptedIssuers
+    void checkClientTrusted(java.security.cert.X509Certificate[],java.lang.String) -> checkClientTrusted
+    void checkServerTrusted(java.security.cert.X509Certificate[],java.lang.String) -> checkServerTrusted
+org.acra.util.PackageManagerWrapper -> a.a.f.j:
+    android.content.Context context -> a
+    boolean hasPermission(java.lang.String) -> a
+    android.content.pm.PackageInfo getPackageInfo() -> a
+org.acra.util.ReportUtils -> a.a.f.k:
+    long getAvailableInternalMemorySize() -> a
+    long getTotalInternalMemorySize() -> b
+    java.lang.String getDeviceId(android.content.Context) -> a
+    java.lang.String getApplicationFilePath(android.content.Context) -> b
+    java.lang.String getLocalIpAddress() -> c
+org.acra.util.ToastSender -> a.a.f.l:
+    void sendToast(android.content.Context,int,int) -> a

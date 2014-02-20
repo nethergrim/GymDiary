@@ -11,15 +11,14 @@ import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.GooglePlayServicesUtil;
 import com.google.android.gms.common.api.GoogleApiClient;
 import com.google.android.gms.drive.Drive;
-import com.yandex.metrica.Counter;
 
 public abstract class BaseDiskActivity extends Activity implements
 		GoogleApiClient.ConnectionCallbacks,
 		GoogleApiClient.OnConnectionFailedListener {
 
 	protected static final String TAG = "BaseDriveActivity";
-	public final static String DRIVE_EXISTS = "drive_exists"; 
-	public final static String DRIVE_FOLDER_ID_ENCODED_TO_STRING = "drive_folder_id"; 
+	public final static String DRIVE_EXISTS = "drive_exists";
+	public final static String DRIVE_FOLDER_ID_ENCODED_TO_STRING = "drive_folder_id";
 	protected static final String DRIVE_FOLDER_NAME = "Workout Diary Backups";
 	protected static final String DRIVE_ID = "drive_id";
 
@@ -59,16 +58,12 @@ public abstract class BaseDiskActivity extends Activity implements
 					.addOnConnectionFailedListener(this).build();
 		}
 		mGoogleApiClient.connect();
-		Counter.sharedInstance().onResumeActivity(this);
 	}
 
 	/**
 	 * Handles resolution callbacks.
 	 */
-	
 
-
-	
 	@Override
 	protected void onActivityResult(int requestCode, int resultCode, Intent data) {
 		super.onActivityResult(requestCode, resultCode, data);
@@ -86,9 +81,8 @@ public abstract class BaseDiskActivity extends Activity implements
 		if (mGoogleApiClient != null) {
 			mGoogleApiClient.disconnect();
 		}
-		Counter.sharedInstance().onPauseActivity(this);
 		super.onPause();
-		
+
 	}
 
 	/**
