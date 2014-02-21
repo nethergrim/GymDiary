@@ -1314,8 +1314,8 @@ com.mobeta.android.dslv.R$styleable: int DragSortListView_use_default_controller
 com.nethergrim.combogymdiary.CheckableLinearLayout
 com.nethergrim.combogymdiary.CheckableLinearLayout: CheckableLinearLayout(android.content.Context,android.util.AttributeSet)
 com.nethergrim.combogymdiary.CheckableLinearLayout: void setChecked(boolean)
-com.nethergrim.combogymdiary.MyApplication
-com.nethergrim.combogymdiary.MyApplication: MyApplication()
+com.nethergrim.combogymdiary.MyApp
+com.nethergrim.combogymdiary.MyApp: MyApp()
 com.nethergrim.combogymdiary.MyService
 com.nethergrim.combogymdiary.MyService: MyService()
 com.nethergrim.combogymdiary.R$anim: int myalpha
@@ -2712,12 +2712,40 @@ com.nethergrim.combogymdiary.drive.DiskFileDownloadActivity
 com.nethergrim.combogymdiary.drive.DiskFileDownloadActivity: DiskFileDownloadActivity()
 com.nethergrim.combogymdiary.drive.DiskRestoreActivity
 com.nethergrim.combogymdiary.drive.DiskRestoreActivity: DiskRestoreActivity()
+com.nethergrim.combogymdiary.provider.MetricaContentProvider
+com.nethergrim.combogymdiary.provider.MetricaContentProvider: MetricaContentProvider()
 com.startad.lib.SADView: void setApplicationId(java.lang.String)
 com.startad.lib.SADView: void setAdListener(com.startad.lib.SADView$SADListener)
 com.startad.lib.SADView: com.startad.lib.SADInstallManager getInstallManager()
 com.startad.lib.SADView: java.lang.String getDeviceId()
 com.startad.lib.SADView$ErrorCode: com.startad.lib.SADView$ErrorCode[] values()
 com.startad.lib.SADView$ErrorCode: com.startad.lib.SADView$ErrorCode valueOf(java.lang.String)
+com.yandex.metrica.CampaignReceiver
+com.yandex.metrica.CampaignReceiver: CampaignReceiver()
+com.yandex.metrica.CounterConfiguration
+com.yandex.metrica.CounterConfiguration: android.os.Parcelable$Creator CREATOR
+com.yandex.metrica.MetricaContentProvider: MetricaContentProvider()
+com.yandex.metrica.MetricaEventHandler
+com.yandex.metrica.MetricaEventHandler: MetricaEventHandler()
+com.yandex.metrica.MetricaService
+com.yandex.metrica.MetricaService: MetricaService()
+com.yandex.metrica.NativeCrashesHelper
+com.yandex.metrica.NativeCrashesHelper: void setUpNativeUncaughtExceptionHandler(java.lang.String)
+com.yandex.metrica.NativeCrashesHelper: void logsEnabled(boolean)
+com.yandex.metrica.ag$a: com.yandex.metrica.ag$a[] values()
+com.yandex.metrica.ag$a: com.yandex.metrica.ag$a valueOf(java.lang.String)
+com.yandex.metrica.ag$b: com.yandex.metrica.ag$b[] values()
+com.yandex.metrica.ag$b: com.yandex.metrica.ag$b valueOf(java.lang.String)
+com.yandex.metrica.r$a: com.yandex.metrica.r$a[] values()
+com.yandex.metrica.r$a: com.yandex.metrica.r$a valueOf(java.lang.String)
+com.yandex.metrica.t$a$b$b$b: com.yandex.metrica.t$a$b$b$b[] values()
+com.yandex.metrica.t$a$b$b$b: com.yandex.metrica.t$a$b$b$b valueOf(java.lang.String)
+com.yandex.metrica.t$a$b$c$c$c: com.yandex.metrica.t$a$b$c$c$c[] values()
+com.yandex.metrica.t$a$b$c$c$c: com.yandex.metrica.t$a$b$c$c$c valueOf(java.lang.String)
+com.yandex.metrica.z$b: com.yandex.metrica.z$b[] values()
+com.yandex.metrica.z$b: com.yandex.metrica.z$b valueOf(java.lang.String)
+com.yandex.metrica.z$c: com.yandex.metrica.z$c[] values()
+com.yandex.metrica.z$c: com.yandex.metrica.z$c valueOf(java.lang.String)
 javax.annotation.meta.When: javax.annotation.meta.When[] values()
 javax.annotation.meta.When: javax.annotation.meta.When valueOf(java.lang.String)
 kankan.wheel.R$drawable: int wheel_bg
