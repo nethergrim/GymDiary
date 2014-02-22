@@ -188,11 +188,12 @@ public class TrainingAtProgress extends BasicMenuActivity implements
 
 	@Override
 	public void onPause() {
+		super.onPause();
+		btnMenu1.setEnabled(false);
 		saveSetsToPreferences();
 		saveTimerToPregerences();
 		sp.edit().putString(TRAINING_NAME, traName);
-		timerHandler.removeCallbacks(timerRunnable);
-		super.onPause();
+		timerHandler.removeCallbacks(timerRunnable);		
 	}
 
 	public void saveTimerToPregerences() {
@@ -227,6 +228,7 @@ public class TrainingAtProgress extends BasicMenuActivity implements
 	};
 
 	private void initUi(boolean init) {
+		Log.d(LOG_TAG, "initUi");
 		llTimerProgress = (LinearLayout) findViewById(R.id.llProgressShow);
 		if (isProgressBarActive) {
 			llTimerProgress.setVisibility(View.VISIBLE);
@@ -284,13 +286,19 @@ public class TrainingAtProgress extends BasicMenuActivity implements
 			public void onItemClick(AdapterView<?> parent, View itemClicked,
 					int position, long id) {
 				checkedPosition = position;
-
+				sp.edit().putInt(USER_CLICKED_POSITION, position).apply();
 				initData(position);
 			}
 		});
-		list.setItemChecked(0, true);
+		
 		registerForContextMenu(list);
-		if (alMain.size() > 0) {
+		if (isTrainingAtProgress == true) {
+			checkedPosition = sp.getInt(USER_CLICKED_POSITION, 0);
+			list.setItemChecked(checkedPosition, true);
+			initData(checkedPosition);
+			list.smoothScrollToPosition(checkedPosition);
+		} else {
+			list.setItemChecked(0, true);
 			initData(0);
 		}
 		SimpleDateFormat sdf = new SimpleDateFormat("dd.MM.yyyy");
@@ -304,7 +312,6 @@ public class TrainingAtProgress extends BasicMenuActivity implements
 			tglTimerOn.setChecked(true);
 			tglChecked = true;
 			etTimer.setEnabled(true);
-
 		} else {
 			tglTimerOn.setChecked(false);
 			tglChecked = false;
@@ -363,10 +370,8 @@ public class TrainingAtProgress extends BasicMenuActivity implements
 		exeName = alMain.get(position);
 		try {
 			pb.setMax(Integer.parseInt(db.getTimerValueByExerciseName(exeName)));
-			Log.d(LOG_TAG, "pb.getMax() == " + pb.getMax());
 		} catch (Exception e) {
 			pb.setMax(30);
-			Log.d(LOG_TAG, "error");
 		}
 
 		set = alSet.get(position);
@@ -392,13 +397,20 @@ public class TrainingAtProgress extends BasicMenuActivity implements
 	}
 
 	protected void onResume() {
+		super.onResume();
+		btnMenu1.setEnabled(false);
+		Log.d(LOG_TAG, "onResume");
 		if (isTrainingProgress) {
 
 			restoreTimerFromPreferences();
 			restoreSetsFromPreferences();
-
+			checkedPosition = sp.getInt(USER_CLICKED_POSITION, 0);
+			list.setItemChecked(checkedPosition, true);
+			initData(checkedPosition);
+			list.smoothScrollToPosition(checkedPosition);
+		} else {
+			list.setItemChecked(0, true);
 		}
-		initData(0);
 		turnOff = sp.getBoolean("toTurnOff", false);
 		list.setKeepScreenOn(!turnOff);
 		vibrate = sp.getBoolean("vibrateOn", true);
@@ -413,7 +425,7 @@ public class TrainingAtProgress extends BasicMenuActivity implements
 		vibrateLenght *= 1000;
 		timerHandler.postDelayed(timerRunnable, 0);
 		autoBackup = sp.getBoolean(AUTO_BACKUP_TO_DRIVE, true);
-		super.onResume();
+
 	}
 
 	@SuppressLint("HandlerLeak")
@@ -578,7 +590,6 @@ public class TrainingAtProgress extends BasicMenuActivity implements
 				} catch (Exception e) {
 					array.add(0);
 				}
-
 			}
 			alSet = array;
 		}
@@ -599,6 +610,7 @@ public class TrainingAtProgress extends BasicMenuActivity implements
 
 		String tmpStr = db.getTimerValueByExerciseName(exeName);
 		String timerv = etTimer.getText().toString();
+		Log.d(LOG_TAG, "tmpStr == " + "timerv == " + timerv);
 		if (!tmpStr.equals(timerv)) { // re-write to DB timer value for an
 										// exercise
 			int exe_id = db.getExeIdByName(exeName);

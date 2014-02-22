@@ -41,6 +41,7 @@ public abstract class BasicMenuActivity extends FragmentActivity implements
 	public final static String AUTO_BACKUP_TO_DRIVE = "settingAutoBackup";
 	public final static String PROGRESS = "progress";
 	public final static String TRAININGS_DONE_NUM = "trainings_done_num";
+	public final static String USER_CLICKED_POSITION = "user_clicked_position";
 	protected final static String APPLICAITON_ID = "52ebc42807089e0f00000000";
 	protected final static String MINUTES = "minutes";
 	protected final static String SECONDS = "seconds";

@@ -485,35 +485,11 @@ android.support.v4.app.LoaderManagerImpl$LoaderInfo -> android.support.v4.app.ab
     void callOnLoadFinished(android.support.v4.content.Loader,java.lang.Object) -> b
     java.lang.String toString() -> toString
     void dump(java.lang.String,java.io.FileDescriptor,java.io.PrintWriter,java.lang.String[]) -> a
-android.support.v4.app.NavUtils -> android.support.v4.app.ac:
-    android.support.v4.app.NavUtils$NavUtilsImpl IMPL -> a
-    void navigateUpFromSameTask(android.app.Activity) -> a
-    void navigateUpTo(android.app.Activity,android.content.Intent) -> a
-    android.content.Intent getParentActivityIntent(android.app.Activity) -> b
-    java.lang.String getParentActivityName(android.app.Activity) -> c
-    java.lang.String getParentActivityName(android.content.Context,android.content.ComponentName) -> a
-android.support.v4.app.NavUtils$NavUtilsImpl -> android.support.v4.app.ad:
-    android.content.Intent getParentActivityIntent(android.app.Activity) -> a
-    void navigateUpTo(android.app.Activity,android.content.Intent) -> a
-    java.lang.String getParentActivityName(android.content.Context,android.content.pm.ActivityInfo) -> a
-android.support.v4.app.NavUtils$NavUtilsImplBase -> android.support.v4.app.ae:
-    android.content.Intent getParentActivityIntent(android.app.Activity) -> a
-    void navigateUpTo(android.app.Activity,android.content.Intent) -> a
-    java.lang.String getParentActivityName(android.content.Context,android.content.pm.ActivityInfo) -> a
-android.support.v4.app.NavUtils$NavUtilsImplJB -> android.support.v4.app.af:
-    android.content.Intent getParentActivityIntent(android.app.Activity) -> a
-    android.content.Intent superGetParentActivityIntent(android.app.Activity) -> b
-    void navigateUpTo(android.app.Activity,android.content.Intent) -> a
-    java.lang.String getParentActivityName(android.content.Context,android.content.pm.ActivityInfo) -> a
-android.support.v4.app.NavUtilsJB -> android.support.v4.app.ag:
-    android.content.Intent getParentActivityIntent(android.app.Activity) -> a
-    void navigateUpTo(android.app.Activity,android.content.Intent) -> a
-    java.lang.String getParentActivityName(android.content.pm.ActivityInfo) -> a
-android.support.v4.app.NoSaveStateFrameLayout -> android.support.v4.app.ah:
+android.support.v4.app.NoSaveStateFrameLayout -> android.support.v4.app.ac:
     android.view.ViewGroup wrap(android.view.View) -> a
     void dispatchSaveInstanceState(android.util.SparseArray) -> dispatchSaveInstanceState
     void dispatchRestoreInstanceState(android.util.SparseArray) -> dispatchRestoreInstanceState
-android.support.v4.app.SuperNotCalledException -> android.support.v4.app.ai:
+android.support.v4.app.SuperNotCalledException -> android.support.v4.app.ad:
 android.support.v4.content.AsyncTaskLoader -> android.support.v4.a.a:
     android.support.v4.content.AsyncTaskLoader$LoadTask mTask -> a
     android.support.v4.content.AsyncTaskLoader$LoadTask mCancellingTask -> b
@@ -557,19 +533,7 @@ android.support.v4.content.CursorLoader -> android.support.v4.a.c:
     java.lang.Object loadInBackground() -> d
     void onCanceled(java.lang.Object) -> a
     void deliverResult(java.lang.Object) -> b
-android.support.v4.content.IntentCompat -> android.support.v4.a.d:
-    android.support.v4.content.IntentCompat$IntentCompatImpl IMPL -> a
-    android.content.Intent makeMainActivity(android.content.ComponentName) -> a
-android.support.v4.content.IntentCompat$IntentCompatImpl -> android.support.v4.a.e:
-    android.content.Intent makeMainActivity(android.content.ComponentName) -> a
-android.support.v4.content.IntentCompat$IntentCompatImplBase -> android.support.v4.a.f:
-    android.content.Intent makeMainActivity(android.content.ComponentName) -> a
-android.support.v4.content.IntentCompat$IntentCompatImplHC -> android.support.v4.a.g:
-    android.content.Intent makeMainActivity(android.content.ComponentName) -> a
-android.support.v4.content.IntentCompat$IntentCompatImplIcsMr1 -> android.support.v4.a.h:
-android.support.v4.content.IntentCompatHoneycomb -> android.support.v4.a.i:
-    android.content.Intent makeMainActivity(android.content.ComponentName) -> a
-android.support.v4.content.Loader -> android.support.v4.a.j:
+android.support.v4.content.Loader -> android.support.v4.a.d:
     int mId -> m
     android.support.v4.content.Loader$OnLoadCompleteListener mListener -> n
     android.content.Context mContext -> o
@@ -600,13 +564,13 @@ android.support.v4.content.Loader -> android.support.v4.a.j:
     java.lang.String dataToString(java.lang.Object) -> c
     java.lang.String toString() -> toString
     void dump(java.lang.String,java.io.FileDescriptor,java.io.PrintWriter,java.lang.String[]) -> a
-android.support.v4.content.Loader$ForceLoadContentObserver -> android.support.v4.a.k:
+android.support.v4.content.Loader$ForceLoadContentObserver -> android.support.v4.a.e:
     android.support.v4.content.Loader this$0 -> a
     boolean deliverSelfNotifications() -> deliverSelfNotifications
     void onChange(boolean) -> onChange
-android.support.v4.content.Loader$OnLoadCompleteListener -> android.support.v4.a.l:
+android.support.v4.content.Loader$OnLoadCompleteListener -> android.support.v4.a.f:
     void onLoadComplete(android.support.v4.content.Loader,java.lang.Object) -> a
-android.support.v4.content.ModernAsyncTask -> android.support.v4.a.m:
+android.support.v4.content.ModernAsyncTask -> android.support.v4.a.g:
     java.util.concurrent.ThreadFactory sThreadFactory -> a
     java.util.concurrent.BlockingQueue sPoolWorkQueue -> b
     java.util.concurrent.Executor THREAD_POOL_EXECUTOR -> d
@@ -632,30 +596,30 @@ android.support.v4.content.ModernAsyncTask -> android.support.v4.a.m:
     java.lang.Object access$300(android.support.v4.content.ModernAsyncTask,java.lang.Object) -> a
     void access$400(android.support.v4.content.ModernAsyncTask,java.lang.Object) -> b
     void access$500(android.support.v4.content.ModernAsyncTask,java.lang.Object) -> c
-android.support.v4.content.ModernAsyncTask$1 -> android.support.v4.a.n:
+android.support.v4.content.ModernAsyncTask$1 -> android.support.v4.a.h:
     java.util.concurrent.atomic.AtomicInteger mCount -> a
     java.lang.Thread newThread(java.lang.Runnable) -> newThread
-android.support.v4.content.ModernAsyncTask$2 -> android.support.v4.a.o:
+android.support.v4.content.ModernAsyncTask$2 -> android.support.v4.a.i:
     android.support.v4.content.ModernAsyncTask this$0 -> a
     java.lang.Object call() -> call
-android.support.v4.content.ModernAsyncTask$3 -> android.support.v4.a.p:
+android.support.v4.content.ModernAsyncTask$3 -> android.support.v4.a.j:
     android.support.v4.content.ModernAsyncTask this$0 -> a
     void done() -> done
-android.support.v4.content.ModernAsyncTask$4 -> android.support.v4.a.q:
+android.support.v4.content.ModernAsyncTask$4 -> android.support.v4.a.k:
     int[] $SwitchMap$android$support$v4$content$ModernAsyncTask$Status -> a
-android.support.v4.content.ModernAsyncTask$AsyncTaskResult -> android.support.v4.a.r:
+android.support.v4.content.ModernAsyncTask$AsyncTaskResult -> android.support.v4.a.l:
     android.support.v4.content.ModernAsyncTask mTask -> a
     java.lang.Object[] mData -> b
-android.support.v4.content.ModernAsyncTask$InternalHandler -> android.support.v4.a.s:
+android.support.v4.content.ModernAsyncTask$InternalHandler -> android.support.v4.a.m:
     void handleMessage(android.os.Message) -> handleMessage
-android.support.v4.content.ModernAsyncTask$Status -> android.support.v4.a.t:
+android.support.v4.content.ModernAsyncTask$Status -> android.support.v4.a.n:
     android.support.v4.content.ModernAsyncTask$Status PENDING -> a
     android.support.v4.content.ModernAsyncTask$Status RUNNING -> b
     android.support.v4.content.ModernAsyncTask$Status FINISHED -> c
     android.support.v4.content.ModernAsyncTask$Status[] $VALUES -> d
     android.support.v4.content.ModernAsyncTask$Status[] values() -> values
     android.support.v4.content.ModernAsyncTask$Status valueOf(java.lang.String) -> valueOf
-android.support.v4.content.ModernAsyncTask$WorkerRunnable -> android.support.v4.a.u:
+android.support.v4.content.ModernAsyncTask$WorkerRunnable -> android.support.v4.a.o:
     java.lang.Object[] mParams -> b
 android.support.v4.os.ParcelableCompat -> android.support.v4.b.a:
     android.os.Parcelable$Creator newCreator(android.support.v4.os.ParcelableCompatCreatorCallbacks) -> a
@@ -10544,14 +10508,14 @@ com.nethergrim.combogymdiary.activities.TrainingAtProgress -> com.nethergrim.com
     com.nethergrim.combogymdiary.DB access$12(com.nethergrim.combogymdiary.activities.TrainingAtProgress) -> k
     int access$13(com.nethergrim.combogymdiary.activities.TrainingAtProgress) -> l
     void access$14(com.nethergrim.combogymdiary.activities.TrainingAtProgress,int) -> c
-    void access$15(com.nethergrim.combogymdiary.activities.TrainingAtProgress,int) -> d
-    int access$16(com.nethergrim.combogymdiary.activities.TrainingAtProgress) -> m
-    void access$17(com.nethergrim.combogymdiary.activities.TrainingAtProgress,int) -> e
-    int access$18(com.nethergrim.combogymdiary.activities.TrainingAtProgress) -> n
-    void access$19(com.nethergrim.combogymdiary.activities.TrainingAtProgress,int) -> f
-    android.widget.ProgressBar access$20(com.nethergrim.combogymdiary.activities.TrainingAtProgress) -> o
-    android.os.Handler access$21(com.nethergrim.combogymdiary.activities.TrainingAtProgress) -> p
-    android.content.SharedPreferences access$22(com.nethergrim.combogymdiary.activities.TrainingAtProgress) -> q
+    android.content.SharedPreferences access$15(com.nethergrim.combogymdiary.activities.TrainingAtProgress) -> m
+    void access$16(com.nethergrim.combogymdiary.activities.TrainingAtProgress,int) -> d
+    int access$17(com.nethergrim.combogymdiary.activities.TrainingAtProgress) -> n
+    void access$18(com.nethergrim.combogymdiary.activities.TrainingAtProgress,int) -> e
+    int access$19(com.nethergrim.combogymdiary.activities.TrainingAtProgress) -> o
+    void access$20(com.nethergrim.combogymdiary.activities.TrainingAtProgress,int) -> f
+    android.widget.ProgressBar access$21(com.nethergrim.combogymdiary.activities.TrainingAtProgress) -> p
+    android.os.Handler access$22(com.nethergrim.combogymdiary.activities.TrainingAtProgress) -> q
     android.widget.TextView access$23(com.nethergrim.combogymdiary.activities.TrainingAtProgress) -> r
     java.lang.Boolean access$24(com.nethergrim.combogymdiary.activities.TrainingAtProgress) -> s
     int access$25(com.nethergrim.combogymdiary.activities.TrainingAtProgress) -> t

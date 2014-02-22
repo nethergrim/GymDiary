@@ -10,7 +10,6 @@ import com.nethergrim.combogymdiary.R;
 
 import android.annotation.SuppressLint;
 import android.os.Bundle;
-import android.support.v4.app.NavUtils;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -123,7 +122,7 @@ public class AddingMeasurementActivity extends BasicMenuActivity {
 			Toast.makeText(this, R.string.input_data, Toast.LENGTH_SHORT)
 					.show();
 		} else {
-			NavUtils.navigateUpFromSameTask(this);
+			finish();
 		}
 	}
 
