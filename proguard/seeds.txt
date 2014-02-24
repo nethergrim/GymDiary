@@ -1314,8 +1314,6 @@ com.mobeta.android.dslv.R$styleable: int DragSortListView_use_default_controller
 com.nethergrim.combogymdiary.CheckableLinearLayout
 com.nethergrim.combogymdiary.CheckableLinearLayout: CheckableLinearLayout(android.content.Context,android.util.AttributeSet)
 com.nethergrim.combogymdiary.CheckableLinearLayout: void setChecked(boolean)
-com.nethergrim.combogymdiary.MyApp
-com.nethergrim.combogymdiary.MyApp: MyApp()
 com.nethergrim.combogymdiary.MyService
 com.nethergrim.combogymdiary.MyService: MyService()
 com.nethergrim.combogymdiary.R$anim: int myalpha
@@ -1677,6 +1675,9 @@ com.nethergrim.combogymdiary.R$drawable: int btn_cab_done_pressed_mybarstyle
 com.nethergrim.combogymdiary.R$drawable: int btn_check_buttonless_on
 com.nethergrim.combogymdiary.R$drawable: int button
 com.nethergrim.combogymdiary.R$drawable: int button_focused
+com.nethergrim.combogymdiary.R$drawable: int button_green
+com.nethergrim.combogymdiary.R$drawable: int button_green_normal
+com.nethergrim.combogymdiary.R$drawable: int button_green_pressed
 com.nethergrim.combogymdiary.R$drawable: int button_normal
 com.nethergrim.combogymdiary.R$drawable: int button_pressed
 com.nethergrim.combogymdiary.R$drawable: int button_start_normal
@@ -1839,7 +1840,6 @@ com.nethergrim.combogymdiary.R$drawable: int wheel_val
 com.nethergrim.combogymdiary.R$drawable: int wheel_val_holo
 com.nethergrim.combogymdiary.R$drawable: int wild_oliva
 com.nethergrim.combogymdiary.R$drawable: int wild_oliva_bitmap
-com.nethergrim.combogymdiary.R$id: int GridLayout1
 com.nethergrim.combogymdiary.R$id: int LL1
 com.nethergrim.combogymdiary.R$id: int LL3
 com.nethergrim.combogymdiary.R$id: int LLBottom
@@ -1893,6 +1893,7 @@ com.nethergrim.combogymdiary.R$id: int adView5
 com.nethergrim.combogymdiary.R$id: int bottom
 com.nethergrim.combogymdiary.R$id: int btnCatalog
 com.nethergrim.combogymdiary.R$id: int btnCataloginMain
+com.nethergrim.combogymdiary.R$id: int btnInfo
 com.nethergrim.combogymdiary.R$id: int btnMeasure
 com.nethergrim.combogymdiary.R$id: int btnMeasurementsS
 com.nethergrim.combogymdiary.R$id: int btnMenu1
@@ -1962,6 +1963,7 @@ com.nethergrim.combogymdiary.R$id: int llBtnSave
 com.nethergrim.combogymdiary.R$id: int llLeft
 com.nethergrim.combogymdiary.R$id: int llProgressShow
 com.nethergrim.combogymdiary.R$id: int llRight
+com.nethergrim.combogymdiary.R$id: int lltmp
 com.nethergrim.combogymdiary.R$id: int lvExers
 com.nethergrim.combogymdiary.R$id: int lvMainHistory
 com.nethergrim.combogymdiary.R$id: int lvMeasurements
@@ -2015,10 +2017,28 @@ com.nethergrim.combogymdiary.R$id: int textView8
 com.nethergrim.combogymdiary.R$id: int textView8_
 com.nethergrim.combogymdiary.R$id: int tglTurnOff
 com.nethergrim.combogymdiary.R$id: int top
+com.nethergrim.combogymdiary.R$id: int tvBold1
+com.nethergrim.combogymdiary.R$id: int tvBold2
+com.nethergrim.combogymdiary.R$id: int tvBold3
+com.nethergrim.combogymdiary.R$id: int tvBold4
+com.nethergrim.combogymdiary.R$id: int tvBold5
+com.nethergrim.combogymdiary.R$id: int tvBold6
+com.nethergrim.combogymdiary.R$id: int tvBold7
+com.nethergrim.combogymdiary.R$id: int tvBold8
+com.nethergrim.combogymdiary.R$id: int tvBold9
 com.nethergrim.combogymdiary.R$id: int tvCatName
 com.nethergrim.combogymdiary.R$id: int tvDouble1
 com.nethergrim.combogymdiary.R$id: int tvDouble2
 com.nethergrim.combogymdiary.R$id: int tvInfoExe
+com.nethergrim.combogymdiary.R$id: int tvRegular1
+com.nethergrim.combogymdiary.R$id: int tvRegular2
+com.nethergrim.combogymdiary.R$id: int tvRegular3
+com.nethergrim.combogymdiary.R$id: int tvRegular4
+com.nethergrim.combogymdiary.R$id: int tvRegular5
+com.nethergrim.combogymdiary.R$id: int tvRegular6
+com.nethergrim.combogymdiary.R$id: int tvRegular7
+com.nethergrim.combogymdiary.R$id: int tvRegular8
+com.nethergrim.combogymdiary.R$id: int tvRegular9
 com.nethergrim.combogymdiary.R$id: int tvSetInfo
 com.nethergrim.combogymdiary.R$id: int tvText
 com.nethergrim.combogymdiary.R$id: int tvTimerCountdown
@@ -2066,12 +2086,14 @@ com.nethergrim.combogymdiary.R$layout: int activity_editing_program_at_training
 com.nethergrim.combogymdiary.R$layout: int activity_graphs
 com.nethergrim.combogymdiary.R$layout: int activity_history
 com.nethergrim.combogymdiary.R$layout: int activity_main
+com.nethergrim.combogymdiary.R$layout: int activity_main_new
 com.nethergrim.combogymdiary.R$layout: int activity_measurements
 com.nethergrim.combogymdiary.R$layout: int activity_measurements_detailed
 com.nethergrim.combogymdiary.R$layout: int adding_exersise
 com.nethergrim.combogymdiary.R$layout: int adding_program
 com.nethergrim.combogymdiary.R$layout: int city_holo_layout
 com.nethergrim.combogymdiary.R$layout: int dialog_exit
+com.nethergrim.combogymdiary.R$layout: int dialog_info
 com.nethergrim.combogymdiary.R$layout: int exersises_list
 com.nethergrim.combogymdiary.R$layout: int list_item_radio
 com.nethergrim.combogymdiary.R$layout: int list_with_arrow
@@ -2273,6 +2295,24 @@ com.nethergrim.combogymdiary.R$string: int happy_new_year
 com.nethergrim.combogymdiary.R$string: int hello_world
 com.nethergrim.combogymdiary.R$string: int hip
 com.nethergrim.combogymdiary.R$string: int inch
+com.nethergrim.combogymdiary.R$string: int info
+com.nethergrim.combogymdiary.R$string: int info_question_2
+com.nethergrim.combogymdiary.R$string: int info_question_3
+com.nethergrim.combogymdiary.R$string: int info_question_4
+com.nethergrim.combogymdiary.R$string: int info_question_5
+com.nethergrim.combogymdiary.R$string: int info_question_6
+com.nethergrim.combogymdiary.R$string: int info_question_7
+com.nethergrim.combogymdiary.R$string: int info_question_8
+com.nethergrim.combogymdiary.R$string: int info_question_9
+com.nethergrim.combogymdiary.R$string: int info_text_1
+com.nethergrim.combogymdiary.R$string: int info_text_2
+com.nethergrim.combogymdiary.R$string: int info_text_3
+com.nethergrim.combogymdiary.R$string: int info_text_4
+com.nethergrim.combogymdiary.R$string: int info_text_5
+com.nethergrim.combogymdiary.R$string: int info_text_6
+com.nethergrim.combogymdiary.R$string: int info_text_7
+com.nethergrim.combogymdiary.R$string: int info_text_8
+com.nethergrim.combogymdiary.R$string: int info_text_9
 com.nethergrim.combogymdiary.R$string: int input_data
 com.nethergrim.combogymdiary.R$string: int kg
 com.nethergrim.combogymdiary.R$string: int later
@@ -2342,6 +2382,7 @@ com.nethergrim.combogymdiary.R$string: int vk_group
 com.nethergrim.combogymdiary.R$string: int waist
 com.nethergrim.combogymdiary.R$string: int wait
 com.nethergrim.combogymdiary.R$string: int weight
+com.nethergrim.combogymdiary.R$string: int why_do_i_need_this
 com.nethergrim.combogymdiary.R$string: int worklogString
 com.nethergrim.combogymdiary.R$string: int yes
 com.nethergrim.combogymdiary.R$style: int ActionBar_Solid_Mybarstyle
@@ -2712,40 +2753,12 @@ com.nethergrim.combogymdiary.drive.DiskFileDownloadActivity
 com.nethergrim.combogymdiary.drive.DiskFileDownloadActivity: DiskFileDownloadActivity()
 com.nethergrim.combogymdiary.drive.DiskRestoreActivity
 com.nethergrim.combogymdiary.drive.DiskRestoreActivity: DiskRestoreActivity()
-com.nethergrim.combogymdiary.provider.MetricaContentProvider
-com.nethergrim.combogymdiary.provider.MetricaContentProvider: MetricaContentProvider()
 com.startad.lib.SADView: void setApplicationId(java.lang.String)
 com.startad.lib.SADView: void setAdListener(com.startad.lib.SADView$SADListener)
 com.startad.lib.SADView: com.startad.lib.SADInstallManager getInstallManager()
 com.startad.lib.SADView: java.lang.String getDeviceId()
 com.startad.lib.SADView$ErrorCode: com.startad.lib.SADView$ErrorCode[] values()
 com.startad.lib.SADView$ErrorCode: com.startad.lib.SADView$ErrorCode valueOf(java.lang.String)
-com.yandex.metrica.CampaignReceiver
-com.yandex.metrica.CampaignReceiver: CampaignReceiver()
-com.yandex.metrica.CounterConfiguration
-com.yandex.metrica.CounterConfiguration: android.os.Parcelable$Creator CREATOR
-com.yandex.metrica.MetricaContentProvider: MetricaContentProvider()
-com.yandex.metrica.MetricaEventHandler
-com.yandex.metrica.MetricaEventHandler: MetricaEventHandler()
-com.yandex.metrica.MetricaService
-com.yandex.metrica.MetricaService: MetricaService()
-com.yandex.metrica.NativeCrashesHelper
-com.yandex.metrica.NativeCrashesHelper: void setUpNativeUncaughtExceptionHandler(java.lang.String)
-com.yandex.metrica.NativeCrashesHelper: void logsEnabled(boolean)
-com.yandex.metrica.ag$a: com.yandex.metrica.ag$a[] values()
-com.yandex.metrica.ag$a: com.yandex.metrica.ag$a valueOf(java.lang.String)
-com.yandex.metrica.ag$b: com.yandex.metrica.ag$b[] values()
-com.yandex.metrica.ag$b: com.yandex.metrica.ag$b valueOf(java.lang.String)
-com.yandex.metrica.r$a: com.yandex.metrica.r$a[] values()
-com.yandex.metrica.r$a: com.yandex.metrica.r$a valueOf(java.lang.String)
-com.yandex.metrica.t$a$b$b$b: com.yandex.metrica.t$a$b$b$b[] values()
-com.yandex.metrica.t$a$b$b$b: com.yandex.metrica.t$a$b$b$b valueOf(java.lang.String)
-com.yandex.metrica.t$a$b$c$c$c: com.yandex.metrica.t$a$b$c$c$c[] values()
-com.yandex.metrica.t$a$b$c$c$c: com.yandex.metrica.t$a$b$c$c$c valueOf(java.lang.String)
-com.yandex.metrica.z$b: com.yandex.metrica.z$b[] values()
-com.yandex.metrica.z$b: com.yandex.metrica.z$b valueOf(java.lang.String)
-com.yandex.metrica.z$c: com.yandex.metrica.z$c[] values()
-com.yandex.metrica.z$c: com.yandex.metrica.z$c valueOf(java.lang.String)
 javax.annotation.meta.When: javax.annotation.meta.When[] values()
 javax.annotation.meta.When: javax.annotation.meta.When valueOf(java.lang.String)
 kankan.wheel.R$drawable: int wheel_bg

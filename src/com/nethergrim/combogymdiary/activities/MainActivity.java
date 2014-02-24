@@ -3,6 +3,7 @@ package com.nethergrim.combogymdiary.activities;
 import com.nethergrim.combogymdiary.DB;
 import com.nethergrim.combogymdiary.R;
 import com.nethergrim.combogymdiary.dialogs.DialogGoToMarket;
+import com.nethergrim.combogymdiary.dialogs.DialogInfo;
 
 import android.app.DialogFragment;
 import android.content.Intent;
@@ -26,6 +27,7 @@ public class MainActivity extends BasicMenuActivity {
 	private Button btnCatalog;
 	private Button btnMeasurements;
 	private Button btnStat;
+	private Button btnInfo;
 	private SharedPreferences sp;
 	private DB db;
 	private ProgressBar pb;
@@ -50,6 +52,8 @@ public class MainActivity extends BasicMenuActivity {
 		btnMeasurements = (Button) findViewById(R.id.btnMeasurementsS);
 		pb = (ProgressBar) findViewById(R.id.progressBar1);
 		btnStat = (Button) findViewById(R.id.btnStatistics);
+		btnInfo = (Button)findViewById(R.id.btnInfo);
+		btnInfo.setOnClickListener(this);
 		btnStat.setOnClickListener(this);
 		pb.setVisibility(View.GONE);
 		btnMeasurements.setOnClickListener(this);
@@ -184,6 +188,9 @@ public class MainActivity extends BasicMenuActivity {
 		} else if (id == R.id.btnStatistics) {
 			Intent intent = new Intent(this, GraphsActivity.class);
 			startActivity(intent);
+		} else if (id == R.id.btnInfo){
+			DialogInfo dialog = new DialogInfo();
+			dialog.show(getFragmentManager(), "info");			
 		}
 	}
 
@@ -205,6 +212,7 @@ public class MainActivity extends BasicMenuActivity {
 			btnStartT.setVisibility(View.GONE);
 			btnStat.setVisibility(View.GONE);
 			btnWorklog.setVisibility(View.GONE);
+			btnInfo.setVisibility(View.GONE);
 
 			btnMenu1.setVisibility(View.GONE);
 			btnMenu2.setVisibility(View.GONE);
@@ -238,6 +246,7 @@ public class MainActivity extends BasicMenuActivity {
 			btnStartT.setVisibility(View.VISIBLE);
 			btnStat.setVisibility(View.VISIBLE);
 			btnWorklog.setVisibility(View.VISIBLE);
+			btnInfo.setVisibility(View.VISIBLE);
 
 			btnMenu1.setVisibility(View.VISIBLE);
 			btnMenu2.setVisibility(View.VISIBLE);

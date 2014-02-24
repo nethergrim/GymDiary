@@ -3,4 +3,13 @@
     <issue id="MissingTranslation">
         <ignore path="res/values/strings.xml" />
     </issue>
+    <issue id="TypographyEllipsis">
+        <ignore path="res/values/strings.xml" />
+    </issue>
+    <issue id="TypographyFractions">
+        <ignore path="res/values/strings.xml" />
+    </issue>
+    <issue id="Typos">
+        <ignore path="res/values/strings.xml" />
+    </issue>
 </lint>

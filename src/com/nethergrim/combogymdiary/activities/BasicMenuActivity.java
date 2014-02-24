@@ -1,7 +1,6 @@
 package com.nethergrim.combogymdiary.activities;
 
 import com.nethergrim.combogymdiary.R;
-import com.yandex.metrica.Counter;
 
 import net.simonvt.menudrawer.MenuDrawer;
 import android.content.Context;
@@ -91,13 +90,11 @@ public abstract class BasicMenuActivity extends FragmentActivity implements
 			btnMenu1.setBackgroundColor(getResources().getColor(
 					R.color.full_alpha));
 		}
-		Counter.sharedInstance().onResumeActivity(this);
 	}
 
 	@Override
 	protected void onPause() {
 		super.onPause();
-		Counter.sharedInstance().onPauseActivity(this);
 	}
 
 	private void initMenuButtons() {

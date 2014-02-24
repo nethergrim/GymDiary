@@ -1,26 +1,19 @@
-<GridLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/GridLayout1"
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:layout_gravity="center_vertical|center_horizontal"
+    android:paddingLeft="16dp"
+    android:paddingRight="16dp"
+    android:paddingTop="8dp"
     android:background="@drawable/cream_pixels_bitmap"
-    android:columnCount="1"
-    android:orientation="horizontal"
-    android:paddingBottom="@dimen/activity_vertical_margin"
-    android:paddingLeft="@dimen/activity_horizontal_margin"
-    android:paddingRight="@dimen/activity_horizontal_margin"
-    android:paddingTop="@dimen/activity_vertical_margin"
-    tools:context=".MainActivity"
-    tools:ignore="NewApi" >
+    android:layout_height="match_parent" >
 
     <Button
         android:id="@+id/buttonStartTraining"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_gravity="left"
-        android:layout_margin="8dp"
-        android:layout_marginTop="50dp"
+        android:layout_marginTop="4dp"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"
         android:background="@drawable/button_start_training"
         android:text="@string/startTrainingButtonString"
         android:textColor="@android:color/white"
@@ -31,40 +24,20 @@
         style="@style/HabraThemeButton"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_gravity="left"
-        android:layout_margin="8dp"
-        android:layout_marginTop="-4dp"
+        android:layout_marginTop="4dp"
+        android:layout_alignParentRight="true"
+        android:layout_below="@+id/buttonStartTraining"
         android:text="@string/excersisiesListButtonString"
-        android:textColor="@android:color/white" />
-
-    <Button
-        android:id="@+id/btnWorklog"
-        style="@style/HabraThemeButton"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_gravity="left"
-        android:layout_margin="8dp"
-        android:layout_marginTop="-4dp"
-        android:text="@string/worklogString"
-        android:textColor="@android:color/white" />
-
-    <Button
-        android:id="@+id/btnMeasurementsS"
-        style="@style/HabraThemeButton"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_gravity="left"
-        android:layout_margin="8dp"
-        android:layout_marginTop="-4dp"
-        android:text="@string/measurements"
         android:textColor="@android:color/white" />
 
     <Button
         android:id="@+id/btnCataloginMain"
         style="@style/HabraThemeButton"
         android:layout_width="match_parent"
-        android:layout_margin="8dp"
-        android:layout_marginTop="-4dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="4dp"
+        android:layout_alignParentLeft="true"
+        android:layout_below="@+id/btnMeasurementsS"
         android:text="@string/exe_catalog"
         android:textColor="@android:color/white" />
 
@@ -72,26 +45,62 @@
         android:id="@+id/btnStatistics"
         style="@style/HabraThemeButton"
         android:layout_width="match_parent"
-        android:layout_gravity="left"
-        android:layout_margin="8dp"
-        android:layout_marginTop="-4dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="4dp"
+        android:layout_alignParentLeft="true"
+        android:layout_below="@+id/btnCataloginMain"
         android:text="@string/statistics" />
 
     <Button
         android:id="@+id/buttonSettings"
         style="@style/HabraThemeButton"
         android:layout_width="match_parent"
+        android:layout_marginTop="4dp"
         android:layout_height="wrap_content"
-        android:layout_gravity="left"
-        android:layout_margin="8dp"
-        android:layout_marginTop="-4dp"
+        android:layout_alignParentLeft="true"
+        android:layout_below="@+id/btnStatistics"
         android:text="@string/settingsButtonString"
+        android:textColor="@android:color/white" />
+
+    <Button
+        android:id="@+id/btnWorklog"
+        style="@style/HabraThemeButton"
+        android:layout_width="match_parent"
+        android:layout_marginTop="4dp"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/buttonExcersisesList"
+        android:layout_below="@+id/buttonExcersisesList"
+        android:text="@string/worklogString"
+        android:textColor="@android:color/white" />
+
+    <Button
+        android:id="@+id/btnInfo"
+        android:layout_width="wrap_content"        
+        android:layout_marginTop="4dp"
+        android:layout_height="wrap_content"
+        android:background="@drawable/button_green"
+        android:layout_alignRight="@+id/buttonSettings"
+        android:textColor="@android:color/white"
+        android:textSize="20sp"
+        android:layout_below="@+id/buttonSettings"
+        android:text="\?" />
+
+    <Button
+        android:id="@+id/btnMeasurementsS"
+        style="@style/HabraThemeButton"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/btnCataloginMain"
+        android:layout_below="@+id/buttonExcersisesList"
+        android:layout_marginTop="56dp"
+        android:text="@string/measurements"
         android:textColor="@android:color/white" />
 
     <ProgressBar
         android:id="@+id/progressBar1"
-        android:layout_column="0"
-        android:layout_gravity="center_horizontal|top"
-        android:layout_row="0" />
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_centerVertical="true" />
 
-</GridLayout>
+</RelativeLayout>

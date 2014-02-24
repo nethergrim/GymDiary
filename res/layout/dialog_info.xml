@@ -1,0 +1,160 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content" >
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="8dp"
+        android:layout_gravity="center_horizontal"
+        android:gravity="center_horizontal"
+        android:orientation="vertical" >
+
+        <TextView
+            android:id="@+id/tvBold1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/why_do_i_need_this"
+            android:textSize="18sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/tvRegular1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/info_text_1"
+            android:textSize="18sp"/>
+
+        <TextView
+            android:id="@+id/tvBold2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="6dp"
+            android:text="@string/info_question_2"
+            android:textSize="18sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/tvRegular2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/info_text_2"
+            android:textSize="18sp"/>
+
+        <TextView
+            android:id="@+id/tvBold3"
+            android:layout_width="wrap_content"
+            android:textSize="18sp"
+            
+            android:layout_marginTop="6dp"
+            android:textStyle="bold"
+            android:layout_height="wrap_content"
+            android:text="@string/info_question_3" />
+
+        <TextView
+            android:id="@+id/tvRegular3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="18sp"
+            android:text="@string/info_text_3" />
+
+        <TextView
+            android:id="@+id/tvBold4"
+            android:layout_width="wrap_content"
+            android:textSize="18sp"            
+            android:layout_marginTop="6dp"
+            android:textStyle="bold"
+            android:layout_height="wrap_content"
+            android:text="@string/info_question_4" />
+
+        <TextView
+            android:id="@+id/tvRegular4"
+            android:layout_width="wrap_content"
+            android:textSize="18sp"
+            android:layout_height="wrap_content"
+            android:text="@string/info_text_4" />
+
+        <TextView
+            android:id="@+id/tvBold5"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="18sp"            
+            android:layout_marginTop="6dp"
+            android:textStyle="bold"
+            android:text="@string/info_question_5" />
+
+        <TextView
+            android:id="@+id/tvRegular5"
+            android:layout_width="wrap_content"
+            android:textSize="18sp"
+            android:layout_height="wrap_content"
+            android:text="@string/info_text_5" />
+
+        <TextView
+            android:id="@+id/tvBold6"
+            android:textSize="18sp"            
+            android:layout_marginTop="6dp"
+            android:textStyle="bold"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/info_question_6" />
+
+        <TextView
+            android:id="@+id/tvRegular6"
+            android:layout_width="wrap_content"
+            android:textSize="18sp"
+            android:layout_height="wrap_content"
+            android:text="@string/info_text_6" />
+
+        <TextView
+            android:id="@+id/tvBold7"
+            android:layout_width="wrap_content"
+            android:textSize="18sp"            
+            android:layout_marginTop="6dp"
+            android:textStyle="bold"
+            android:layout_height="wrap_content"
+            android:text="@string/info_question_7" />
+
+        <TextView
+            android:id="@+id/tvRegular7"
+            android:layout_width="wrap_content"
+            android:textSize="18sp"
+            android:layout_height="wrap_content"
+            android:text="@string/info_text_7" />
+
+        <TextView
+            android:id="@+id/tvBold8"
+            android:layout_width="wrap_content"
+            android:textSize="18sp"            
+            android:layout_marginTop="6dp"
+            android:textStyle="bold"
+            android:layout_height="wrap_content"
+            android:text="@string/info_question_8" />
+
+        <TextView
+            android:id="@+id/tvRegular8"
+            android:layout_width="wrap_content"
+            android:textSize="18sp"
+            android:layout_height="wrap_content"
+            android:text="@string/info_text_8" />
+
+        <TextView
+            android:id="@+id/tvBold9"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="18sp"            
+            android:layout_marginTop="6dp"
+            android:textStyle="bold"
+            android:text="@string/info_question_9" />
+
+        <TextView
+            android:id="@+id/tvRegular9"
+            android:textSize="18sp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/info_text_9" />
+
+    </LinearLayout>
+
+</ScrollView>
