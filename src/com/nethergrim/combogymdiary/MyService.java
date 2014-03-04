@@ -9,7 +9,6 @@ import android.app.PendingIntent;
 import android.app.Service;
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.content.SharedPreferences.Editor;
 import android.os.IBinder;
 import android.preference.PreferenceManager;
 
@@ -22,13 +21,13 @@ public class MyService extends Service {
 	@Override
 	public void onCreate() {
 		super.onCreate();
-		sp = PreferenceManager.getDefaultSharedPreferences(this);
-		trainingNAME = sp.getString(BasicMenuActivity.TRAINING_NAME, "");
 		nm = (NotificationManager) getSystemService(NOTIFICATION_SERVICE);
 	}
 
 	public int onStartCommand(Intent intent, int flags, int startId) {
+		sp = PreferenceManager.getDefaultSharedPreferences(this);
 		trainingNAME = sp.getString(BasicMenuActivity.TRAINING_NAME, "");
+		sp.edit().putInt(BasicMenuActivity.TRA_ID, startId).apply();
 		sendNotif(startId);
 		return super.onStartCommand(intent, flags, startId);
 	}
@@ -41,18 +40,16 @@ public class MyService extends Service {
 				System.currentTimeMillis());
 
 		Intent intent = new Intent(this, MainActivity.class);
-		Editor ed = sp.edit();
-		ed.putInt(BasicMenuActivity.TRA_ID, ID);
-		ed.apply();
-
 		intent.putExtra("trainingName", trainingNAME);
 		PendingIntent pIntent = PendingIntent.getActivity(this, 0, intent, 0);
 
 		notif.setLatestEventInfo(this,
 				getResources().getString(R.string.finish_training), "", pIntent);
 
+		// Notification.Builder
+
 		notif.flags |= Notification.FLAG_AUTO_CANCEL;
-		notif.flags |= Notification.FLAG_NO_CLEAR;
+		notif.flags |= Notification.FLAG_ONGOING_EVENT;
 
 		nm.notify(1, notif);
 

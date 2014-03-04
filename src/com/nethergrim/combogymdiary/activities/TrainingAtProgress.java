@@ -144,12 +144,13 @@ public class TrainingAtProgress extends BasicMenuActivity implements
 			Backuper backUP = new Backuper();
 			backUP.backupToSd();
 		}
-		Editor ed = sp.edit();
-		ed.putBoolean(TRAINING_AT_PROGRESS, false);
-		ed.apply();
+
+		sp.edit().putBoolean(TRAINING_AT_PROGRESS, false).apply();
+
 		stopService(new Intent(this, MyService.class));
+
 		NotificationManager notificationManager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
-		notificationManager.cancel(sp.getInt(BasicMenuActivity.TRA_ID, 1));
+		notificationManager.cancelAll();
 
 		if (autoBackup) {
 			Intent intent = new Intent(this, DiskCreateFolderActivity.class);
@@ -193,7 +194,7 @@ public class TrainingAtProgress extends BasicMenuActivity implements
 		saveSetsToPreferences();
 		saveTimerToPregerences();
 		sp.edit().putString(TRAINING_NAME, traName);
-		timerHandler.removeCallbacks(timerRunnable);		
+		timerHandler.removeCallbacks(timerRunnable);
 	}
 
 	public void saveTimerToPregerences() {
@@ -290,7 +291,7 @@ public class TrainingAtProgress extends BasicMenuActivity implements
 				initData(position);
 			}
 		});
-		
+
 		registerForContextMenu(list);
 		if (isTrainingAtProgress == true) {
 			checkedPosition = sp.getInt(USER_CLICKED_POSITION, 0);

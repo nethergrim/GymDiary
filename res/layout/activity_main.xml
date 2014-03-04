@@ -74,18 +74,6 @@
         android:textColor="@android:color/white" />
 
     <Button
-        android:id="@+id/btnInfo"
-        android:layout_width="wrap_content"        
-        android:layout_marginTop="4dp"
-        android:layout_height="wrap_content"
-        android:background="@drawable/button_green"
-        android:layout_alignRight="@+id/buttonSettings"
-        android:textColor="@android:color/white"
-        android:textSize="20sp"
-        android:layout_below="@+id/buttonSettings"
-        android:text="\?" />
-
-    <Button
         android:id="@+id/btnMeasurementsS"
         style="@style/HabraThemeButton"
         android:layout_width="match_parent"
@@ -102,5 +90,17 @@
         android:layout_height="wrap_content"
         android:layout_alignParentRight="true"
         android:layout_centerVertical="true" />
+
+    <Button
+        android:id="@+id/btnInfo"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="4dp"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:background="@drawable/button_green"
+        android:text="@string/faq"
+        android:textColor="@android:color/white"
+        android:textSize="20sp" />
 
 </RelativeLayout>

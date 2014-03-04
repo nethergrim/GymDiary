@@ -1952,7 +1952,6 @@ com.nethergrim.combogymdiary.R$id: int ivMain
 com.nethergrim.combogymdiary.R$id: int left
 com.nethergrim.combogymdiary.R$id: int linearLayout1
 com.nethergrim.combogymdiary.R$id: int linearLayout2
-com.nethergrim.combogymdiary.R$id: int linearLayout3
 com.nethergrim.combogymdiary.R$id: int listMode
 com.nethergrim.combogymdiary.R$id: int listView1
 com.nethergrim.combogymdiary.R$id: int listView11
@@ -2080,13 +2079,11 @@ com.nethergrim.combogymdiary.R$layout: int activity_adding_measurement
 com.nethergrim.combogymdiary.R$layout: int activity_catalog
 com.nethergrim.combogymdiary.R$layout: int activity_catalog_detailed
 com.nethergrim.combogymdiary.R$layout: int activity_disk
-com.nethergrim.combogymdiary.R$layout: int activity_disk_file_download
 com.nethergrim.combogymdiary.R$layout: int activity_disk_restore
 com.nethergrim.combogymdiary.R$layout: int activity_editing_program_at_training
 com.nethergrim.combogymdiary.R$layout: int activity_graphs
 com.nethergrim.combogymdiary.R$layout: int activity_history
 com.nethergrim.combogymdiary.R$layout: int activity_main
-com.nethergrim.combogymdiary.R$layout: int activity_main_new
 com.nethergrim.combogymdiary.R$layout: int activity_measurements
 com.nethergrim.combogymdiary.R$layout: int activity_measurements_detailed
 com.nethergrim.combogymdiary.R$layout: int adding_exersise
@@ -2098,7 +2095,6 @@ com.nethergrim.combogymdiary.R$layout: int exersises_list
 com.nethergrim.combogymdiary.R$layout: int list_item_radio
 com.nethergrim.combogymdiary.R$layout: int list_with_arrow
 com.nethergrim.combogymdiary.R$layout: int list_with_arrow_double_textview
-com.nethergrim.combogymdiary.R$layout: int menu_frame
 com.nethergrim.combogymdiary.R$layout: int menu_frame_new
 com.nethergrim.combogymdiary.R$layout: int my_list_item
 com.nethergrim.combogymdiary.R$layout: int my_list_item2
@@ -2287,6 +2283,7 @@ com.nethergrim.combogymdiary.R$string: int excersisiesListButtonString
 com.nethergrim.combogymdiary.R$string: int exe_catalog
 com.nethergrim.combogymdiary.R$string: int exit
 com.nethergrim.combogymdiary.R$string: int exit_workout
+com.nethergrim.combogymdiary.R$string: int faq
 com.nethergrim.combogymdiary.R$string: int feedback
 com.nethergrim.combogymdiary.R$string: int feedback_detail
 com.nethergrim.combogymdiary.R$string: int feedback_leave

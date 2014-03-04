@@ -30,7 +30,8 @@
         android:layout_alignParentBottom="true"
         android:layout_alignParentLeft="true"
         android:layout_alignParentRight="true"
-        android:layout_margin="5dp"
+        android:layout_margin="8dp"
+        android:layout_marginTop="-4dp"
         android:textColor="@android:color/white"
         android:text="@string/Create" />
 
@@ -41,9 +42,9 @@
         android:layout_above="@id/etTimerValue"
         android:layout_alignParentLeft="true"
         android:layout_below="@+id/textView1"
-        android:layout_marginBottom="5dp"
-        android:layout_marginLeft="10dp"
-        android:layout_marginRight="10dp"
+        android:layout_marginBottom="4dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginRight="8dp"
         android:background="@drawable/rounded" >
     </ListView>
 
@@ -54,7 +55,6 @@
         android:layout_alignLeft="@+id/listView1"
         android:gravity="center_vertical|center_horizontal"
         android:text="@string/check_exe"
-        android:textAppearance="?android:attr/textAppearanceSmall"
         android:textSize="18sp" />
 
 </RelativeLayout>
