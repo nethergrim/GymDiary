@@ -62,7 +62,7 @@ public class HistoryActivity extends BasicMenuActivity implements
 			}
 		});
 
-		AdView adView = (AdView) this.findViewById(R.id.adView2);
+		adView = (AdView) this.findViewById(R.id.adView2);
 		AdRequest adRequest = new AdRequest.Builder().build();
 		adView.loadAd(adRequest);
 		if (isNetworkAvailable()) {

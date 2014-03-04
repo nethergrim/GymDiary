@@ -46,7 +46,7 @@ public class CatalogDetailedActivity extends BasicMenuActivity {
 		triceps = getResources().getStringArray(R.array.exercisesArrayTriceps);
 		abs = getResources().getStringArray(R.array.exercisesArrayAbs);
 		initInfo();
-		AdView adView = (AdView) this.findViewById(R.id.adView5);
+		adView = (AdView) this.findViewById(R.id.adView5);
 		AdRequest adRequest = new AdRequest.Builder().build();
 		adView.loadAd(adRequest);
 

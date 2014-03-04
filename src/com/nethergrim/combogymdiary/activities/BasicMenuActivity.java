@@ -1,6 +1,8 @@
 package com.nethergrim.combogymdiary.activities;
 
+import com.google.android.gms.ads.AdView;
 import com.nethergrim.combogymdiary.R;
+import com.yandex.metrica.Counter;
 
 import net.simonvt.menudrawer.MenuDrawer;
 import android.content.Context;
@@ -12,7 +14,6 @@ import android.net.NetworkInfo;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.support.v4.app.FragmentActivity;
-import android.util.Log;
 import android.view.MenuItem;
 import android.view.View.OnClickListener;
 import android.widget.Button;
@@ -45,6 +46,7 @@ public abstract class BasicMenuActivity extends FragmentActivity implements
 	protected final static String MINUTES = "minutes";
 	protected final static String SECONDS = "seconds";
 	protected boolean isTrainingAtProgress;
+	protected AdView adView;
 
 	@Override
 	protected void onCreate(Bundle inState) {
@@ -62,7 +64,6 @@ public abstract class BasicMenuActivity extends FragmentActivity implements
 		ConnectivityManager connectivityManager = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
 		NetworkInfo activeNetworkInfo = connectivityManager
 				.getActiveNetworkInfo();
-		Log.d(LOG_TAG, "network available");
 		return activeNetworkInfo != null && activeNetworkInfo.isConnected();
 	}
 
@@ -90,11 +91,19 @@ public abstract class BasicMenuActivity extends FragmentActivity implements
 			btnMenu1.setBackgroundColor(getResources().getColor(
 					R.color.full_alpha));
 		}
+		Counter.sharedInstance().onResumeActivity(this);
+		if (adView != null) {
+			adView.resume();
+		}
 	}
 
 	@Override
 	protected void onPause() {
+		if (adView != null) {
+			adView.pause();
+		}
 		super.onPause();
+		Counter.sharedInstance().onPauseActivity(this);
 	}
 
 	private void initMenuButtons() {
@@ -199,5 +208,13 @@ public abstract class BasicMenuActivity extends FragmentActivity implements
 		}
 
 		return false;
+	}
+
+	protected void onDestroy() {
+		// Destroy the AdView.
+		if (adView != null) {
+			adView.destroy();
+		}
+		super.onDestroy();
 	}
 }

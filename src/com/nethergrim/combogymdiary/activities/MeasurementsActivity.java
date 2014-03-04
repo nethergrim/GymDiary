@@ -1,7 +1,5 @@
 package com.nethergrim.combogymdiary.activities;
 
-import com.google.android.gms.ads.AdRequest;
-import com.google.android.gms.ads.AdView;
 import com.nethergrim.combogymdiary.DB;
 import com.nethergrim.combogymdiary.R;
 
@@ -61,12 +59,6 @@ public class MeasurementsActivity extends BasicMenuActivity implements
 					}
 				});
 
-		AdView adView = (AdView) this.findViewById(R.id.adView2);
-		AdRequest adRequest = new AdRequest.Builder().build();
-		adView.loadAd(adRequest);
-		if (isNetworkAvailable()) {
-			adView.setVisibility(View.VISIBLE);
-		}
 	}
 
 	@Override
@@ -142,7 +134,7 @@ public class MeasurementsActivity extends BasicMenuActivity implements
 
 	@Override
 	public void onClick(View arg0) {
-		pressButton(arg0.getId(),true);
+		pressButton(arg0.getId(), true);
 	}
 
 	protected void onDestroy() {

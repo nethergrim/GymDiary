@@ -318,7 +318,7 @@ public class TrainingAtProgress extends BasicMenuActivity implements
 			tglChecked = false;
 			etTimer.setEnabled(false);
 		}
-		AdView adView = (AdView) this.findViewById(R.id.adView1);
+		adView = (AdView) this.findViewById(R.id.adView1);
 		AdRequest adRequest = new AdRequest.Builder().build();
 		adView.loadAd(adRequest);
 		if (isNetworkAvailable()) {

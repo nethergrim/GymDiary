@@ -71,7 +71,7 @@ public class ExersisesListActivity extends BasicMenuActivity implements
 				goToEditExe(position, id);
 			}
 		});
-		AdView adView = (AdView) this.findViewById(R.id.adView5);
+		adView = (AdView) this.findViewById(R.id.adView5);
 		AdRequest adRequest = new AdRequest.Builder().build();
 		adView.loadAd(adRequest);
 		if (isNetworkAvailable()) {

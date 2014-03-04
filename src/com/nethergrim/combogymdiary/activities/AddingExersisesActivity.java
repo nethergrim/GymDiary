@@ -52,7 +52,7 @@ public class AddingExersisesActivity extends BasicMenuActivity implements
 		}
 		sp = PreferenceManager.getDefaultSharedPreferences(this);
 
-		AdView adView = (AdView) this.findViewById(R.id.adView3);
+		adView = (AdView) this.findViewById(R.id.adView3);
 		AdRequest adRequest = new AdRequest.Builder().build();
 		adView.loadAd(adRequest);
 	}
@@ -85,7 +85,7 @@ public class AddingExersisesActivity extends BasicMenuActivity implements
 			}
 		}
 	}
-
+	
 	protected void onDestroy() {
 		super.onDestroy();
 		db.close();
