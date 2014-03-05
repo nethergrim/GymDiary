@@ -12,7 +12,7 @@ import android.content.SharedPreferences;
 import android.os.IBinder;
 import android.preference.PreferenceManager;
 
-public class MyService extends Service {
+public class TrainingService extends Service {
 
 	private NotificationManager nm;
 	private SharedPreferences sp;

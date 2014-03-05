@@ -49,11 +49,12 @@ import com.google.android.gms.ads.AdView;
 import com.mobeta.android.dslv.DragSortListView;
 import com.nethergrim.combogymdiary.Backuper;
 import com.nethergrim.combogymdiary.DB;
-import com.nethergrim.combogymdiary.MyService;
+import com.nethergrim.combogymdiary.TrainingService;
 import com.nethergrim.combogymdiary.R;
 import com.nethergrim.combogymdiary.dialogs.DialogExitFromTraining;
 import com.nethergrim.combogymdiary.dialogs.DialogExitFromTraining.MyInterface;
-import com.nethergrim.combogymdiary.drive.DiskCreateFolderActivity;
+import com.nethergrim.combogymdiary.drive.DriveAutoBackupService;
+import com.yandex.metrica.Counter;
 
 @SuppressLint("SimpleDateFormat")
 public class TrainingAtProgress extends BasicMenuActivity implements
@@ -127,7 +128,7 @@ public class TrainingAtProgress extends BasicMenuActivity implements
 		cursor.close();
 
 		sp.edit().putString(TRAINING_NAME, traName).apply();
-		startService(new Intent(this, MyService.class));
+		startService(new Intent(this, TrainingService.class));
 		Editor ed = sp.edit();
 		ed.putBoolean(TRAINING_AT_PROGRESS, true);
 		ed.apply();
@@ -144,17 +145,23 @@ public class TrainingAtProgress extends BasicMenuActivity implements
 			Backuper backUP = new Backuper();
 			backUP.backupToSd();
 		}
+		if (tmpCursor.getCount() > 50) {
+			Counter.sharedInstance().reportEvent(
+					"Finished training with " + tmpCursor.getCount()
+							+ " rows in main database with time: "
+							+ String.format("%d:%02d", minutes, seconds));
+		}
 
 		sp.edit().putBoolean(TRAINING_AT_PROGRESS, false).apply();
 
-		stopService(new Intent(this, MyService.class));
+		stopService(new Intent(this, TrainingService.class));
 
 		NotificationManager notificationManager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
 		notificationManager.cancelAll();
 
 		if (autoBackup) {
-			Intent intent = new Intent(this, DiskCreateFolderActivity.class);
-			startActivity(intent);
+			Intent backupIntent = new Intent(this, DriveAutoBackupService.class);
+			startService(backupIntent);
 		}
 
 		if (sp.contains(TRAININGS_DONE_NUM)) {

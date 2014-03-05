@@ -2,6 +2,7 @@ package com.nethergrim.combogymdiary.dialogs;
 
 import com.nethergrim.combogymdiary.R;
 import com.nethergrim.combogymdiary.activities.BasicMenuActivity;
+import com.yandex.metrica.Counter;
 
 import android.app.AlertDialog;
 import android.app.Dialog;
@@ -35,14 +36,17 @@ public class DialogGoToMarket extends DialogFragment implements OnClickListener 
 						Intent.ACTION_VIEW,
 						Uri.parse("http://play.google.com/store/apps/details?id=com.nethergrim.combogymdiary")));
 			}
+			Counter.sharedInstance().reportEvent("Go to martet: YES");
 			break;
 		case Dialog.BUTTON_NEGATIVE:
 			sp.edit()
 					.putBoolean(BasicMenuActivity.MARKET_LEAVED_FEEDBACK, false)
 					.apply();
+			Counter.sharedInstance().reportEvent("Go to martet: NO");
 			break;
 		case Dialog.BUTTON_NEUTRAL:
 			sp.edit().putInt(BasicMenuActivity.TRAININGS_DONE_NUM, 1).apply();
+			Counter.sharedInstance().reportEvent("Go to martet: LATER");
 			break;
 		}
 	}

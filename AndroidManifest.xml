@@ -3,8 +3,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     package="com.nethergrim.combogymdiary"
     android:installLocation="auto"
-    android:versionCode="72"
-    android:versionName="1.3.30" >
+    android:versionCode="73"
+    android:versionName="1.3.31" >
 
     <uses-sdk
         android:minSdkVersion="15"
@@ -106,9 +106,20 @@
         </activity>
 
         <service
-            android:name="com.nethergrim.combogymdiary.MyService"
+            android:name="com.nethergrim.combogymdiary.TrainingService"
             android:process=":myservice" >
         </service>
+        
+        <service 
+            android:name="com.nethergrim.combogymdiary.drive.BasicDriveService"
+            android:process=":driveBackup" >
+            </service>
+            
+        <service 
+            android:name="com.nethergrim.combogymdiary.drive.DriveAutoBackupService"
+            android:process=":driveBackup" >
+            </service>
+        
 
         <activity
             android:name="com.nethergrim.combogymdiary.drive.DiskBackupActivity"
