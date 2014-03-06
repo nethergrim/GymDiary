@@ -72,8 +72,15 @@ public class HistoryActivity extends BasicMenuActivity implements
 
 	@Override
 	public void onResume() {
-		getSupportLoaderManager().getLoader(0).forceLoad();
 		super.onResume();
+		getSupportLoaderManager().getLoader(0).forceLoad();
+		activateButton(btnMenu3);
+	}
+	
+	@Override 
+	public void onPause(){
+		super.onPause();
+		deactivateButton(btnMenu3);
 	}
 
 	public void onCreateContextMenu(ContextMenu menu, View v,

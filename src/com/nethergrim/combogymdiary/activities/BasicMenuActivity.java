@@ -2,6 +2,7 @@ package com.nethergrim.combogymdiary.activities;
 
 import com.google.android.gms.ads.AdView;
 import com.nethergrim.combogymdiary.R;
+import com.nethergrim.combogymdiary.dialogs.DialogInfo;
 import com.yandex.metrica.Counter;
 
 import net.simonvt.menudrawer.MenuDrawer;
@@ -24,7 +25,7 @@ public abstract class BasicMenuActivity extends FragmentActivity implements
 	protected MenuDrawer mMenuDrawer;
 	public final String LOG_TAG = "myLogs";
 	protected Button btnMenu1, btnMenu2, btnMenu3, btnMenu4, btnMenuCatalog,
-			btnMenuMeasurements, btnMenuGraphs;
+			btnMenuMeasurements, btnMenuGraphs, btnFAQ;
 	protected SharedPreferences sPref;
 	protected final static String TRAINING_AT_PROGRESS = "training_at_progress";
 	protected final static String LIST_OF_SETS = "list_of_sets";
@@ -66,7 +67,17 @@ public abstract class BasicMenuActivity extends FragmentActivity implements
 				.getActiveNetworkInfo();
 		return activeNetworkInfo != null && activeNetworkInfo.isConnected();
 	}
-
+	
+	protected void activateButton(Button btn){
+		btn.setBackgroundColor(getResources().getColor(R.color.holo_blue_light));
+		btn.setTextColor(getResources().getColor(R.color.white));
+	}
+	
+	protected void deactivateButton(Button btn){
+		btn.setBackgroundColor(getResources().getColor(R.color.light_gray));
+		btn.setTextColor(getResources().getColor(R.color.abs__bright_foreground_holo_light));	
+	}
+	
 	@Override
 	protected void onResume() {
 		super.onResume();
@@ -99,10 +110,11 @@ public abstract class BasicMenuActivity extends FragmentActivity implements
 
 	@Override
 	protected void onPause() {
+		super.onPause();
 		if (adView != null) {
 			adView.pause();
 		}
-		super.onPause();
+		
 		Counter.sharedInstance().onPauseActivity(this);
 	}
 
@@ -115,6 +127,8 @@ public abstract class BasicMenuActivity extends FragmentActivity implements
 		btnMenu3.setOnClickListener(this);
 		btnMenu4 = (Button) findViewById(R.id.btnMenu4);
 		btnMenu4.setOnClickListener(this);
+		btnFAQ = (Button)findViewById(R.id.btnFAQ);
+		btnFAQ.setOnClickListener(this);
 		btnMenuCatalog = (Button) findViewById(R.id.btnCatalog);
 		btnMenuCatalog.setOnClickListener(this);
 		btnMenuMeasurements = (Button) findViewById(R.id.btnMeasure);
@@ -205,16 +219,20 @@ public abstract class BasicMenuActivity extends FragmentActivity implements
 			if (toClose)
 				finish();
 			return true;
+		} else if (id == R.id.btnFAQ){
+			DialogInfo dialog = new DialogInfo();
+			dialog.show(getFragmentManager(), "info");	
 		}
 
 		return false;
 	}
 
 	protected void onDestroy() {
+		super.onDestroy();
 		// Destroy the AdView.
 		if (adView != null) {
 			adView.destroy();
 		}
-		super.onDestroy();
+		
 	}
 }

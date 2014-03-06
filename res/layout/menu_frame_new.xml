@@ -3,7 +3,7 @@
     android:id="@+id/menu_frame"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/wild_oliva_bitmap" >
+    android:background="@color/light_gray" >
 
    
 
@@ -15,6 +15,7 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+           
             android:layout_marginLeft="8dp"
             android:layout_marginRight="8dp"
             android:orientation="vertical" >
@@ -27,7 +28,7 @@
                 android:drawableLeft="@android:drawable/ic_media_play"
                 android:gravity="center_vertical"
                 android:text="@string/startTrainingButtonString"
-                android:textColor="@android:color/white" />
+                android:textColor="@color/abs__bright_foreground_holo_light" />
 
             <View
                 android:id="@+id/view2"
@@ -43,7 +44,7 @@
                 android:drawableLeft="@android:drawable/ic_menu_more"
                 android:gravity="center_vertical"
                 android:text="@string/excersisiesListButtonString"
-                android:textColor="@android:color/white" />
+                android:textColor="@color/abs__bright_foreground_holo_light" />
 
             <View
                 android:id="@+id/view3"
@@ -59,7 +60,7 @@
                 android:drawableLeft="@android:drawable/ic_menu_info_details"
                 android:gravity="center_vertical"
                 android:text="@string/worklogString"
-                android:textColor="@android:color/white" />
+                android:textColor="@color/abs__bright_foreground_holo_light" />
 
             <View
                 android:id="@+id/view5"
@@ -75,7 +76,7 @@
                 android:drawableLeft="@android:drawable/ic_menu_edit"
                 android:gravity="center_vertical"
                 android:text="@string/measurements"
-                android:textColor="@android:color/white" />
+                android:textColor="@color/abs__bright_foreground_holo_light"  />
 
             <View
                 android:id="@+id/view6"
@@ -91,7 +92,7 @@
                 android:drawableLeft="@android:drawable/ic_menu_gallery"
                 android:gravity="center_vertical"
                 android:text="@string/exe_catalog"
-                android:textColor="@android:color/white" />
+                android:textColor="@color/abs__bright_foreground_holo_light"  />
 
             <View
                 android:id="@+id/view1"
@@ -107,7 +108,7 @@
                 android:drawableLeft="@drawable/ic_chart"
                 android:gravity="center_vertical"
                 android:text="@string/statistics"
-                android:textColor="@android:color/white" />
+                android:textColor="@color/abs__bright_foreground_holo_light"  />
 
             <View
                 android:id="@+id/view4"
@@ -123,7 +124,24 @@
                 android:drawableLeft="@android:drawable/ic_menu_manage"
                 android:gravity="center_vertical"
                 android:text="@string/settingsButtonString"
-                android:textColor="@android:color/white" />
+                android:textColor="@color/abs__bright_foreground_holo_light"  />
+
+            <View
+                android:id="@+id/view7"
+                android:layout_width="wrap_content"
+                android:layout_height="1dip"
+                android:background="@android:color/holo_blue_light" />
+
+            <Button
+                android:id="@+id/btnFAQ"
+                android:layout_width="match_parent"
+                android:layout_marginLeft="32dp"
+                android:layout_height="wrap_content"
+                android:text="@string/faq"
+                android:background="?android:attr/selectableItemBackground"
+                android:gravity="center_vertical"
+                android:textColor="@color/holo_green_dark"
+                 />
 
         </LinearLayout>
     </ScrollView>

@@ -63,8 +63,15 @@ public class MeasurementsActivity extends BasicMenuActivity implements
 
 	@Override
 	protected void onResume() {
-		getSupportLoaderManager().getLoader(0).forceLoad();
 		super.onResume();
+		getSupportLoaderManager().getLoader(0).forceLoad();
+		activateButton(btnMenuMeasurements);		
+	}
+	
+	@Override 
+	public void onPause(){
+		super.onPause();
+		deactivateButton(btnMenuMeasurements);
 	}
 
 	private void gotoDetailed(int position, long id, String date) {

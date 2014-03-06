@@ -88,8 +88,15 @@ public class ExersisesListActivity extends BasicMenuActivity implements
 
 	@Override
 	protected void onResume() {
-		getSupportLoaderManager().getLoader(0).forceLoad();
 		super.onResume();
+		getSupportLoaderManager().getLoader(0).forceLoad();
+		activateButton(btnMenu2);
+	}
+	
+	@Override
+	protected void onPause(){
+		super.onPause();
+		deactivateButton(btnMenu2);
 	}
 
 	@Override

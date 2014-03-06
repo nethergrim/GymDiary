@@ -13,8 +13,8 @@ import android.util.Log;
 import android.widget.Toast;
 
 public class BasicDriveService extends Service implements
-GoogleApiClient.ConnectionCallbacks,
-GoogleApiClient.OnConnectionFailedListener {
+		GoogleApiClient.ConnectionCallbacks,
+		GoogleApiClient.OnConnectionFailedListener {
 
 	protected static final String TAG = "BaseDriveService";
 	public final static String DRIVE_EXISTS = "drive_exists";
@@ -26,7 +26,8 @@ GoogleApiClient.OnConnectionFailedListener {
 	protected static final int REQUEST_CODE_RESOLUTION = 1;
 	protected static final int NEXT_AVAILABLE_REQUEST_CODE = 2;
 	private GoogleApiClient mGoogleApiClient;
-	
+	protected int failCount = 0;
+
 	@Override
 	public void onCreate() {
 		super.onCreate();
@@ -41,19 +42,16 @@ GoogleApiClient.OnConnectionFailedListener {
 					.addOnConnectionFailedListener(this).build();
 		}
 		mGoogleApiClient.connect();
-		
-		
-		
+
 		return super.onStartCommand(intent, flags, startId);
 	}
-	
-	protected void disconnect(){
+
+	protected void disconnect() {
 		if (mGoogleApiClient != null) {
 			mGoogleApiClient.disconnect();
 		}
 	}
-	
-	
+
 	@Override
 	public IBinder onBind(Intent intent) {
 		return null;
@@ -63,7 +61,7 @@ GoogleApiClient.OnConnectionFailedListener {
 	public void onConnected(Bundle arg0) {
 		ifConnected = true;
 		Log.d(TAG, "mGoogleApiClient connected");
-		
+
 	}
 
 	@Override
@@ -75,15 +73,31 @@ GoogleApiClient.OnConnectionFailedListener {
 	@Override
 	public void onConnectionFailed(ConnectionResult result) {
 		ifConnected = false;
-		showMessage("connection error =(");	
-		Log.d(TAG, "mGoogleApiClient connection failed");
+		showMessage("connection error =(");
 		Counter.sharedInstance().reportEvent("onConnectionFailed");
+
+		if (failCount < 5) {
+			if (mGoogleApiClient == null) {
+				mGoogleApiClient = new GoogleApiClient.Builder(this)
+						.addApi(Drive.API).addScope(Drive.SCOPE_FILE)
+						.addConnectionCallbacks(this)
+						.addOnConnectionFailedListener(this).build();
+
+			}
+			failCount++;
+			mGoogleApiClient.connect();
+			Counter.sharedInstance().reportEvent("onConnectionFailed failcount < 5");
+		} else {
+			Counter.sharedInstance().reportEvent("onConnectionFailed, stopping self");
+			stopSelf();
+		}
+		
 	}
-	
+
 	public void showMessage(String message) {
 		Toast.makeText(this, message, Toast.LENGTH_LONG).show();
 	}
-	
+
 	public GoogleApiClient getGoogleApiClient() {
 		return mGoogleApiClient;
 	}

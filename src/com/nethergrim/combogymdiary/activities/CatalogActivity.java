@@ -75,5 +75,17 @@ public class CatalogActivity extends BasicMenuActivity {
 		int id = arg0.getId();
 		pressButton(id,true);
 	}
+	
+	@Override
+	protected void onResume() {
+		super.onResume();
+		activateButton(btnMenuCatalog);		
+	}
+	
+	@Override 
+	public void onPause(){
+		super.onPause();
+		deactivateButton(btnMenuCatalog);
+	}
 
 }

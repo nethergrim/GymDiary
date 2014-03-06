@@ -38,20 +38,16 @@ public class GraphsActivity extends BasicMenuActivity {
 		super.onCreate(savedInstanceState);
 		db = new DB(this);
 		db.open();
-		setContentView(R.layout.activity_graphs);
-		getActionBar().setDisplayShowHomeEnabled(true);
-		getActionBar().setDisplayHomeAsUpEnabled(true);
+		mMenuDrawer.setContentView(R.layout.activity_graphs);
 		getActionBar().setTitle(getResources().getString(R.string.statistics));
 		content = (FrameLayout) findViewById(R.id.frameStatsContent);
 		spinner = (Spinner) findViewById(R.id.spinner1);
 		initExeCursor();
-
 		ArrayAdapter<String> adapter = new ArrayAdapter<String>(this,
 				android.R.layout.simple_spinner_item);
 		adapter.addAll(alExersices);
 		adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
 		spinner.setAdapter(adapter);
-
 		spinner.setOnItemSelectedListener(new OnItemSelectedListener() {
 			@Override
 			public void onNothingSelected(AdapterView<?> parent) {
@@ -75,9 +71,7 @@ public class GraphsActivity extends BasicMenuActivity {
 		graphView.getGraphViewStyle().setLegendWidth(300);
 		((LineGraphView) graphView).setDrawDataPoints(true);
 		((LineGraphView) graphView).setDataPointsRadius(10f);
-
 		content.addView(graphView);
-
 	}
 
 	private void selected(int pos, long id, String name) {
@@ -189,6 +183,20 @@ public class GraphsActivity extends BasicMenuActivity {
 
 	}
 
+	
+	@Override
+	protected void onResume() {
+		super.onResume();
+		activateButton(btnMenuGraphs);		
+	}
+	
+	@Override 
+	public void onPause(){
+		super.onPause();
+		deactivateButton(btnMenuGraphs);
+	}
+	
+	
 	@Override
 	public boolean onOptionsItemSelected(MenuItem item) {
 		switch (item.getItemId()) {
@@ -201,6 +209,7 @@ public class GraphsActivity extends BasicMenuActivity {
 
 	@Override
 	public void onClick(View arg0) {
+		pressButton(arg0.getId(), true);
 	}
 
 }

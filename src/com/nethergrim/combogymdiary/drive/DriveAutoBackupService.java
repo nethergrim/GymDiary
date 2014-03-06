@@ -10,7 +10,9 @@ import java.util.Date;
 
 import android.annotation.SuppressLint;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.util.Log;
 import android.widget.Toast;
 
@@ -83,6 +85,7 @@ public class DriveAutoBackupService extends BasicDriveService implements
 				getResources().getString(R.string.drive_backuped_true),
 				Toast.LENGTH_LONG).show();
 		Counter.sharedInstance().reportEvent("Backuped to Google Drive");
+		disconnect();
 		stopSelf(ID);
 	}
 
@@ -124,8 +127,16 @@ public class DriveAutoBackupService extends BasicDriveService implements
 			Log.i(TAG, "Unable to write file contents.");
 		}
 
-		DriveFolder folder = Drive.DriveApi.getFolder(getGoogleApiClient(),
-				folderDriveId);
+		DriveFolder folder;
+		try{
+			folder = Drive.DriveApi.getFolder(getGoogleApiClient(),
+					folderDriveId);
+		}catch(Exception e){
+			SharedPreferences sp = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
+			folder = Drive.DriveApi.getFolder(getGoogleApiClient(),DriveId.decodeFromString(sp.getString(DRIVE_FOLDER_ID_ENCODED_TO_STRING, "")) );
+			Counter.sharedInstance().reportError("folder = Drive.DriveApi.getFolder(getGoogleApiClient(),folderDriveId); FAILED, not found ID", e);
+		}
+		
 		MetadataChangeSet changeSet = new MetadataChangeSet.Builder()
 				.setTitle(fileTitle).setMimeType("text/plain").setStarred(true)
 				.build();
@@ -152,6 +163,8 @@ public class DriveAutoBackupService extends BasicDriveService implements
 		} else if (mdb.getCount() > 0) { // just get Folder DriveId and upload a
 											// file there
 			folderDriveId = mdb.get(0).getDriveId();
+			SharedPreferences sp = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
+			sp.edit().putString(DRIVE_FOLDER_ID_ENCODED_TO_STRING, folderDriveId.encodeToString()).apply();
 		}
 	}
 

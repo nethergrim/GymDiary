@@ -153,7 +153,7 @@ public class TrainingAtProgress extends BasicMenuActivity implements
 		}
 
 		sp.edit().putBoolean(TRAINING_AT_PROGRESS, false).apply();
-
+		sp.edit().putInt(USER_CLICKED_POSITION, 0).apply();
 		stopService(new Intent(this, TrainingService.class));
 
 		NotificationManager notificationManager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
@@ -413,9 +413,17 @@ public class TrainingAtProgress extends BasicMenuActivity implements
 			restoreTimerFromPreferences();
 			restoreSetsFromPreferences();
 			checkedPosition = sp.getInt(USER_CLICKED_POSITION, 0);
-			list.setItemChecked(checkedPosition, true);
-			initData(checkedPosition);
-			list.smoothScrollToPosition(checkedPosition);
+			
+			try{
+				list.setItemChecked(checkedPosition, true);
+				initData(checkedPosition);
+				list.smoothScrollToPosition(checkedPosition);
+			}catch(Exception e){
+				Counter.sharedInstance().reportEvent("onResume error: initData(checkedPosition), checkedPosition bigger than alMain");
+				initData(0);
+				list.setItemChecked(0, true);
+				list.smoothScrollToPosition(0);
+			}			
 		} else {
 			list.setItemChecked(0, true);
 		}
