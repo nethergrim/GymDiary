@@ -1,5 +1,8 @@
 <resources>
 
+    
+     <string name="drawer_open">Открыть навигацию</string>
+    <string name="drawer_close">Закрыть навигацию</string>
     <string name="sm">(см)</string>
     <string name="faq">Вопросы и ответы</string>
     <string name="info_text_1">Основная задача данного приложения - заменить бумажный дневник тренировок на нечто более удобное и умное\n</string>

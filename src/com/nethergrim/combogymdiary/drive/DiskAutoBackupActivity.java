@@ -19,13 +19,16 @@ import com.google.android.gms.drive.MetadataChangeSet;
 import com.nethergrim.combogymdiary.Backuper;
 import com.nethergrim.combogymdiary.R;
 import com.nethergrim.combogymdiary.activities.BasicMenuActivity;
+import com.yandex.metrica.Counter;
 
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.util.Log;
 import android.widget.Toast;
+import android.annotation.SuppressLint;
 import android.content.SharedPreferences;
 
+@SuppressLint("SimpleDateFormat")
 public class DiskAutoBackupActivity extends BaseDiskActivity implements
 		OnNewContentsCallback, OnCreateFileCallback {
 
@@ -111,16 +114,20 @@ public class DiskAutoBackupActivity extends BaseDiskActivity implements
 			Log.i(TAG, "Unable to write file contents.");
 		}
 		
-		
-		folderDriveId = DriveId.decodeFromString(folderDriveIdStr);
-		DriveFolder folder = Drive.DriveApi.getFolder(getGoogleApiClient(),
-				folderDriveId);
-		MetadataChangeSet changeSet = new MetadataChangeSet.Builder()
-				.setTitle(fileTitle).setMimeType("text/plain").setStarred(true)
-				.build();
+		try{
+			folderDriveId = DriveId.decodeFromString(folderDriveIdStr);
+			DriveFolder folder = Drive.DriveApi.getFolder(getGoogleApiClient(),
+					folderDriveId);
+			MetadataChangeSet changeSet = new MetadataChangeSet.Builder()
+					.setTitle(fileTitle).setMimeType("text/plain").setStarred(true)
+					.build();
 
-		folder.createFile(getGoogleApiClient(), changeSet, result.getContents())
-				.addResultCallback(this);
+			folder.createFile(getGoogleApiClient(), changeSet, result.getContents())
+					.addResultCallback(this);
+		} catch (Exception e){
+			Counter.sharedInstance().reportError("disk auto backup activity fail at creation file", e);
+		}
+		
 
 	}
 

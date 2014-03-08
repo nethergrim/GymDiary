@@ -53,6 +53,13 @@ public class StartTrainingActivity extends BasicMenuActivity implements
 
 	private void initUi() {
 		mMenuDrawer.setContentView(R.layout.start_training);
+
+		// setContentView(R.layout.start_training);
+
+		// RelativeLayout rlMain = (RelativeLayout)findViewById(R.id.rl1);
+		// setView(rlMain);
+		// setContentView(R.layout.menu);
+
 		lvMain = (ListView) findViewById(R.id.lvStartTraining);
 		getActionBar().setTitle(R.string.startTrainingList);
 		db = new DB(this);
@@ -97,8 +104,9 @@ public class StartTrainingActivity extends BasicMenuActivity implements
 	protected void onResume() {
 		super.onResume();
 		getSupportLoaderManager().getLoader(0).forceLoad();
-		activateButton(btnMenu1);	
-		SharedPreferences sp = PreferenceManager.getDefaultSharedPreferences(this);
+		activateButton(btnMenu1);
+		SharedPreferences sp = PreferenceManager
+				.getDefaultSharedPreferences(this);
 		if (sp.contains(TRAININGS_DONE_NUM)
 				&& sp.getInt(TRAININGS_DONE_NUM, 0) > 5
 				&& !sp.contains(MARKET_LEAVED_FEEDBACK)) {
@@ -107,10 +115,9 @@ public class StartTrainingActivity extends BasicMenuActivity implements
 			dialog.setCancelable(false);
 		}
 	}
-	
-	
+
 	@Override
-	protected void onPause(){
+	protected void onPause() {
 		super.onPause();
 		deactivateButton(btnMenu1);
 	}
@@ -200,11 +207,11 @@ public class StartTrainingActivity extends BasicMenuActivity implements
 
 			Intent intent_to_trainng = new Intent(this,
 					TrainingAtProgress.class);
-			if (str != null && !str.isEmpty() ) {
+			if (str != null && !str.isEmpty()) {
 				intent_to_trainng.putExtra("trainingName", str);
-				startActivity(intent_to_trainng);				
-			}			
-			
+				startActivity(intent_to_trainng);
+			}
+
 		}
 	}
 
@@ -212,7 +219,7 @@ public class StartTrainingActivity extends BasicMenuActivity implements
 	public void onClick(View arg0) {
 		int id = arg0.getId();
 
-		pressButton(id,false);
+		pressButton(id, false);
 
 	}
 

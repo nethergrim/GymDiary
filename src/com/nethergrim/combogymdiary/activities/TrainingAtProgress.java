@@ -53,7 +53,7 @@ import com.nethergrim.combogymdiary.TrainingService;
 import com.nethergrim.combogymdiary.R;
 import com.nethergrim.combogymdiary.dialogs.DialogExitFromTraining;
 import com.nethergrim.combogymdiary.dialogs.DialogExitFromTraining.MyInterface;
-import com.nethergrim.combogymdiary.drive.DriveAutoBackupService;
+import com.nethergrim.combogymdiary.drive.DiskAutoBackupActivity;
 import com.yandex.metrica.Counter;
 
 @SuppressLint("SimpleDateFormat")
@@ -160,7 +160,7 @@ public class TrainingAtProgress extends BasicMenuActivity implements
 		notificationManager.cancelAll();
 
 		if (autoBackup) {
-			Intent backupIntent = new Intent(this, DriveAutoBackupService.class);
+			Intent backupIntent = new Intent(this, DiskAutoBackupActivity.class);
 			startService(backupIntent);
 		}
 
@@ -413,17 +413,19 @@ public class TrainingAtProgress extends BasicMenuActivity implements
 			restoreTimerFromPreferences();
 			restoreSetsFromPreferences();
 			checkedPosition = sp.getInt(USER_CLICKED_POSITION, 0);
-			
-			try{
+
+			try {
 				list.setItemChecked(checkedPosition, true);
 				initData(checkedPosition);
 				list.smoothScrollToPosition(checkedPosition);
-			}catch(Exception e){
-				Counter.sharedInstance().reportEvent("onResume error: initData(checkedPosition), checkedPosition bigger than alMain");
+			} catch (Exception e) {
+				Counter.sharedInstance()
+						.reportEvent(
+								"onResume error: initData(checkedPosition), checkedPosition bigger than alMain");
 				initData(0);
 				list.setItemChecked(0, true);
 				list.smoothScrollToPosition(0);
-			}			
+			}
 		} else {
 			list.setItemChecked(0, true);
 		}

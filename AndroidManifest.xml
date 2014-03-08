@@ -109,17 +109,14 @@
             android:name="com.nethergrim.combogymdiary.TrainingService"
             android:process=":myservice" >
         </service>
-        
-        <service 
+        <service
             android:name="com.nethergrim.combogymdiary.drive.BasicDriveService"
             android:process=":driveBackup" >
-            </service>
-            
-        <service 
+        </service>
+        <service
             android:name="com.nethergrim.combogymdiary.drive.DriveAutoBackupService"
             android:process=":driveBackup" >
-            </service>
-        
+        </service>
 
         <activity
             android:name="com.nethergrim.combogymdiary.drive.DiskBackupActivity"
@@ -209,6 +206,9 @@
             android:name="com.nethergrim.combogymdiary.provider.MetricaContentProvider"
             android:authorities="com.nethergrim.combogymdiary.MetricaContentProvider"
             android:exported="true" />
+
+        <activity android:name="com.nethergrim.combogymdiary.activities.BasicMenuActivity" >
+        </activity>
     </application>
 
 </manifest>

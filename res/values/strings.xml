@@ -3,6 +3,9 @@
 
     <string name="sm">(cm)</string>
     
+    <string name="drawer_open">Open navigation drawer</string>
+    <string name="drawer_close">Close navigation drawer</string>
+    
     <string name="faq">F.A.Q.</string>
     
     <string name="info_text_1">The main objective of this application - replace the paper training diary at something more useful and smart \ n</string>
