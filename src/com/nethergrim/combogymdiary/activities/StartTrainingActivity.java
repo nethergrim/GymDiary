@@ -53,13 +53,6 @@ public class StartTrainingActivity extends BasicMenuActivity implements
 
 	private void initUi() {
 		mMenuDrawer.setContentView(R.layout.start_training);
-
-		// setContentView(R.layout.start_training);
-
-		// RelativeLayout rlMain = (RelativeLayout)findViewById(R.id.rl1);
-		// setView(rlMain);
-		// setContentView(R.layout.menu);
-
 		lvMain = (ListView) findViewById(R.id.lvStartTraining);
 		getActionBar().setTitle(R.string.startTrainingList);
 		db = new DB(this);

@@ -58,7 +58,7 @@ public class MainActivity extends Activity {
 			task.execute();
 		} else {
 			Intent gotoStartTraining = new Intent(getApplicationContext(),
-					StartTrainingActivity.class);
+					BasicMenuActivityNew.class);
 			startActivity(gotoStartTraining);
 			finish();
 		}
@@ -148,7 +148,7 @@ public class MainActivity extends Activity {
 			super.onPostExecute(result);
 
 			Intent gotoStartTraining = new Intent(getApplicationContext(),
-					StartTrainingActivity.class);
+					BasicMenuActivityNew.class);
 			startActivity(gotoStartTraining);
 			finish();
 		}

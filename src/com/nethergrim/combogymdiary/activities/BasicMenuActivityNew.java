@@ -2,6 +2,7 @@ package com.nethergrim.combogymdiary.activities;
 
 import com.google.android.gms.ads.AdView;
 import com.nethergrim.combogymdiary.R;
+import com.nethergrim.combogymdiary.fragments.StartTrainingFragment;
 import com.yandex.metrica.Counter;
 
 import android.content.Context;
@@ -31,33 +32,35 @@ public class BasicMenuActivityNew extends FragmentActivity {
 	protected String[] listButtons;
 
 	protected SharedPreferences sPref;
-	protected final static String TRAINING_AT_PROGRESS = "training_at_progress";
-	protected final static String LIST_OF_SETS = "list_of_sets";
-	protected final static String TRAINING_NAME = "training_name";
-	protected final static String TRA_ID = "training_id";
-	protected final static String TRAINING_LIST = "training_list";
-	protected final static String TIMER_IS_ON = "timerIsOn";
-	protected final static String MY_AD_UNIT_ID = "ca-app-pub-5652589022154086/4102541457";
-	protected final static String MY_ACCOUNT_NAME = "account_name";
-	protected final static String DRIVE_FOLDER_ID_ENCODED_TO_STRING = "drive_folder_id";
-	protected final static String DRIVE_EXISTS = "drive_exists";
-	protected final static String MARKET_LEAVED_FEEDBACK = "market_leaved_feedback";
-	protected final static String DATABASE_FILLED = "database_filled";
-	protected final static String AUTO_BACKUP_TO_DRIVE = "settingAutoBackup";
-	protected final static String PROGRESS = "progress";
-	protected final static String TRAININGS_DONE_NUM = "trainings_done_num";
-	protected final static String USER_CLICKED_POSITION = "user_clicked_position";
-	protected final static String APPLICAITON_ID = "52ebc42807089e0f00000000";
-	protected final static String MINUTES = "minutes";
-	protected final static String SECONDS = "seconds";
+	public final static String TRAINING_AT_PROGRESS = "training_at_progress";
+	public final static String LIST_OF_SETS = "list_of_sets";
+	public final static String TRAINING_NAME = "training_name";
+	public final static String TRA_ID = "training_id";
+	public final static String TRAINING_LIST = "training_list";
+	public final static String TIMER_IS_ON = "timerIsOn";
+	public final static String MY_AD_UNIT_ID = "ca-app-pub-5652589022154086/4102541457";
+	public final static String MY_ACCOUNT_NAME = "account_name";
+	public final static String DRIVE_FOLDER_ID_ENCODED_TO_STRING = "drive_folder_id";
+	public final static String DRIVE_EXISTS = "drive_exists";
+	public final static String MARKET_LEAVED_FEEDBACK = "market_leaved_feedback";
+	public final static String DATABASE_FILLED = "database_filled";
+	public final static String AUTO_BACKUP_TO_DRIVE = "settingAutoBackup";
+	public final static String PROGRESS = "progress";
+	public final static String TRAININGS_DONE_NUM = "trainings_done_num";
+	public final static String USER_CLICKED_POSITION = "user_clicked_position";
+	public final static String APPLICAITON_ID = "52ebc42807089e0f00000000";
+	public final static String MINUTES = "minutes";
+	public final static String SECONDS = "seconds";
 	protected AdView adView;
 	protected boolean isTrainingAtProgress;
+	protected FrameLayout content_frame;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.menu);
 		initStrings();
+		content_frame = (FrameLayout) findViewById(R.id.content_frame);
 		mDrawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
 		mDrawerList = (ListView) findViewById(R.id.left_drawer);
 
@@ -89,6 +92,12 @@ public class BasicMenuActivityNew extends FragmentActivity {
 		if (savedInstanceState == null) {
 			selectItem(0);
 		}
+
+		StartTrainingFragment fragment = new StartTrainingFragment();
+		android.app.FragmentTransaction ft = getFragmentManager()
+				.beginTransaction();
+		ft.add(R.id.content_frame, fragment);
+		ft.commit();
 	}
 
 	private void initStrings() {
@@ -122,7 +131,6 @@ public class BasicMenuActivityNew extends FragmentActivity {
 	@Override
 	protected void onPostCreate(Bundle savedInstanceState) {
 		super.onPostCreate(savedInstanceState);
-		// Sync the toggle state after onRestoreInstanceState has occurred.
 		mDrawerToggle.syncState();
 	}
 
@@ -131,12 +139,6 @@ public class BasicMenuActivityNew extends FragmentActivity {
 		NetworkInfo activeNetworkInfo = connectivityManager
 				.getActiveNetworkInfo();
 		return activeNetworkInfo != null && activeNetworkInfo.isConnected();
-	}
-
-	protected void setView(View v) {
-		FrameLayout content_frame = (FrameLayout) findViewById(R.id.content_frame);
-		content_frame = (FrameLayout) findViewById(R.id.content_frame);
-		content_frame.addView(v);
 	}
 
 	@Override
@@ -152,16 +154,8 @@ public class BasicMenuActivityNew extends FragmentActivity {
 			editor.putBoolean(TRAINING_AT_PROGRESS, false);
 			editor.commit();
 		}
-		if (isTrainingAtProgress) { // TODO
-			// btnMenu1.setText(getResources().getString(
-			// R.string.continue_training));
-			// btnMenu1.setBackgroundColor(getResources().getColor(
-			// R.color.holo_orange_dark_alpha_half));
+		if (isTrainingAtProgress) {
 		} else {
-			// btnMenu1.setText(getResources().getString(
-			// R.string.startTrainingButtonString));
-			// btnMenu1.setBackgroundColor(getResources().getColor(
-			// R.color.full_alpha));
 		}
 		Counter.sharedInstance().onResumeActivity(this);
 		if (adView != null) {
