@@ -19,6 +19,7 @@ import android.database.Cursor;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
+import android.os.Parcel;
 import android.os.Vibrator;
 import android.preference.PreferenceManager;
 import android.util.Log;
@@ -54,6 +55,7 @@ import com.nethergrim.combogymdiary.R;
 import com.nethergrim.combogymdiary.dialogs.DialogExitFromTraining;
 import com.nethergrim.combogymdiary.dialogs.DialogExitFromTraining.MyInterface;
 import com.nethergrim.combogymdiary.drive.DiskAutoBackupActivity;
+import com.nethergrim.combogymdiary.drive.DiskCreateFolderActivity;
 import com.yandex.metrica.Counter;
 
 @SuppressLint("SimpleDateFormat")
@@ -108,16 +110,22 @@ public class TrainingAtProgress extends BasicMenuActivity implements
 
 		sp = PreferenceManager.getDefaultSharedPreferences(this);
 		isTrainingProgress = sp.getBoolean(TRAINING_AT_PROGRESS, false);
+		int training_id = 0;
 		if (isTrainingProgress) {
-			traName = sp.getString(TRAINING_NAME, "");
+			traName = sp.getString(TRAINING_NAME, "");			
+			String[] strArrExtra = {traName};
+			cursor = db.getDataTrainings(null, DB.TRA_NAME + "=?", strArrExtra,
+					null, null, null);
+			
 		} else {
-			traName = getIntent().getStringExtra("trainingName");
+			training_id = getIntent().getIntExtra(TRA_ID, 0);
+			String[] args = {String.valueOf(training_id)};
+			cursor = db.getDataTrainings(null, DB.COLUMN_ID+"=?", args, null,null, null);
+			if(cursor.moveToFirst()){
+				traName = cursor.getString(1);
+			}
 		}
 		getActionBar().setTitle(traName);
-		String[] strArrExtra = { traName };
-
-		cursor = db.getDataTrainings(null, DB.TRA_NAME + "=?", strArrExtra,
-				null, null, null);
 		if (cursor.moveToFirst()) {
 			trainingIdAtTable = cursor.getInt(0);
 			exersices = db.convertStringToArray(cursor.getString(2));
@@ -159,9 +167,9 @@ public class TrainingAtProgress extends BasicMenuActivity implements
 		NotificationManager notificationManager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
 		notificationManager.cancelAll();
 
-		if (autoBackup) {
-			Intent backupIntent = new Intent(this, DiskAutoBackupActivity.class);
-			startService(backupIntent);
+		if (PreferenceManager.getDefaultSharedPreferences(this).getBoolean(AUTO_BACKUP_TO_DRIVE, true)) {
+			Intent backupIntent = new Intent(this, DiskCreateFolderActivity.class);
+			startActivity(backupIntent);
 		}
 
 		if (sp.contains(TRAININGS_DONE_NUM)) {
@@ -300,15 +308,21 @@ public class TrainingAtProgress extends BasicMenuActivity implements
 		});
 
 		registerForContextMenu(list);
-		if (isTrainingAtProgress == true) {
-			checkedPosition = sp.getInt(USER_CLICKED_POSITION, 0);
-			list.setItemChecked(checkedPosition, true);
-			initData(checkedPosition);
-			list.smoothScrollToPosition(checkedPosition);
-		} else {
+		try {
+			if (isTrainingAtProgress == true) {
+				checkedPosition = sp.getInt(USER_CLICKED_POSITION, 0);
+				list.setItemChecked(checkedPosition, true);
+				initData(checkedPosition);
+				list.smoothScrollToPosition(checkedPosition);
+			} else {
+				list.setItemChecked(0, true);
+				initData(0);
+			}
+		} catch (Exception e) {
 			list.setItemChecked(0, true);
 			initData(0);
 		}
+
 		SimpleDateFormat sdf = new SimpleDateFormat("dd.MM.yyyy");
 		date = sdf.format(new Date(System.currentTimeMillis()));
 		dlg1 = new DialogExitFromTraining();

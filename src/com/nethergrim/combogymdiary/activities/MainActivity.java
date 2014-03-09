@@ -52,13 +52,14 @@ public class MainActivity extends Activity {
 					TrainingAtProgress.class);
 			startActivity(intent_to_trainng);
 			finish();
+			return;
 		}
 		if (!sp.getBoolean(DATABASE_FILLED, false)) {
 			task = new InitTask();
 			task.execute();
 		} else {
 			Intent gotoStartTraining = new Intent(getApplicationContext(),
-					BasicMenuActivityNew.class);
+					StartTrainingActivity.class);
 			startActivity(gotoStartTraining);
 			finish();
 		}
@@ -148,7 +149,7 @@ public class MainActivity extends Activity {
 			super.onPostExecute(result);
 
 			Intent gotoStartTraining = new Intent(getApplicationContext(),
-					BasicMenuActivityNew.class);
+					StartTrainingActivity.class);
 			startActivity(gotoStartTraining);
 			finish();
 		}

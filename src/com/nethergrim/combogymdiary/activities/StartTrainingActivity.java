@@ -190,22 +190,11 @@ public class StartTrainingActivity extends BasicMenuActivity implements
 	}
 
 	public void goToTraining(int id) {
-		if (cursor_exe.moveToFirst()) {
-			String str = null;
-			do {
-				if (cursor_exe.getInt(0) == id) {
-					str = cursor_exe.getString(1);
-				}
-			} while (cursor_exe.moveToNext());
+		Log.d(LOG_TAG, "going to training with ID == " + id);
 
-			Intent intent_to_trainng = new Intent(this,
-					TrainingAtProgress.class);
-			if (str != null && !str.isEmpty()) {
-				intent_to_trainng.putExtra("trainingName", str);
-				startActivity(intent_to_trainng);
-			}
-
-		}
+		Intent intent_to_trainng = new Intent(this, TrainingAtProgress.class);
+		intent_to_trainng.putExtra(TRA_ID, id);
+		startActivity(intent_to_trainng);
 	}
 
 	@Override
