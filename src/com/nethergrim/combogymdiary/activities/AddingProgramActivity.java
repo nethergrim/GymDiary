@@ -3,6 +3,7 @@ package com.nethergrim.combogymdiary.activities;
 import com.nethergrim.combogymdiary.DB;
 import com.nethergrim.combogymdiary.R;
 
+import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.LoaderManager.LoaderCallbacks;
 import android.support.v4.content.CursorLoader;
 import android.support.v4.content.Loader;
@@ -11,15 +12,15 @@ import android.content.Context;
 import android.content.res.Configuration;
 import android.database.Cursor;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
+import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.Toast;
 
-public class AddingProgramActivity extends BasicMenuActivity implements
-		LoaderCallbacks<Cursor> {
+public class AddingProgramActivity extends FragmentActivity implements
+		LoaderCallbacks<Cursor>, OnClickListener {
 
 	private Button btnAdd;
 	private EditText etName;
@@ -27,18 +28,18 @@ public class AddingProgramActivity extends BasicMenuActivity implements
 	private DB db;
 	private SimpleCursorAdapter adapter;
 
-	@Override
 	public void onConfigurationChanged(Configuration newConfig) {
 		super.onConfigurationChanged(newConfig);
 		initUi();
 	}
 
 	private void initUi() {
-		mMenuDrawer.setContentView(R.layout.adding_program);
+		setContentView(R.layout.adding_program);
 		btnAdd = (Button) findViewById(R.id.buttonAddingProgram);
 		btnAdd.setOnClickListener(this);
 		etName = (EditText) findViewById(R.id.etTimerValue);
 		getActionBar().setTitle(R.string.creating_program);
+		getActionBar().setDisplayShowHomeEnabled(true);
 		lvExe = (ListView) findViewById(R.id.listView1);
 		lvExe.setChoiceMode(ListView.CHOICE_MODE_MULTIPLE);
 		db = new DB(this);
@@ -99,7 +100,6 @@ public class AddingProgramActivity extends BasicMenuActivity implements
 	@Override
 	public void onClick(View arg0) {
 		int id = arg0.getId();
-		pressButton(id,true);
 		if (id == R.id.buttonAddingProgram) {
 			String prgName = etName.getText().toString();
 			long[] arrIDs = lvExe.getCheckedItemIds();
@@ -112,10 +112,7 @@ public class AddingProgramActivity extends BasicMenuActivity implements
 				int j = 0;
 				do {
 					if (c.getInt(0) == arrIDs[j]) {
-						Log.d(LOG_TAG, "c id ==  " + c.getInt(0)
-								+ " exe name == " + c.getString(2));
 						exersices[j] = c.getString(2);
-
 						j++;
 					}
 				} while (c.moveToNext() && j < arrIDs.length);

@@ -19,7 +19,6 @@ import android.database.Cursor;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
-import android.os.Parcel;
 import android.os.Vibrator;
 import android.preference.PreferenceManager;
 import android.util.Log;
@@ -54,7 +53,6 @@ import com.nethergrim.combogymdiary.TrainingService;
 import com.nethergrim.combogymdiary.R;
 import com.nethergrim.combogymdiary.dialogs.DialogExitFromTraining;
 import com.nethergrim.combogymdiary.dialogs.DialogExitFromTraining.MyInterface;
-import com.nethergrim.combogymdiary.drive.DiskAutoBackupActivity;
 import com.nethergrim.combogymdiary.drive.DiskCreateFolderActivity;
 import com.yandex.metrica.Counter;
 
@@ -85,7 +83,7 @@ public class TrainingAtProgress extends BasicMenuActivity implements
 	private ArrayList<String> alMain = new ArrayList<String>();
 	private ArrayList<Integer> alSet = new ArrayList<Integer>();
 	private int seconds, minutes, secDelta = 0, minDelta = 0, sec, min;
-	private boolean isTrainingProgress = false, autoBackup = true;
+	private boolean isTrainingProgress = false;
 	private Handler timerHandler = new Handler();
 	private LinearLayout llBack, llSave, llForward, llBottom, llTimerProgress;
 	private ImageView ivBack, ivForward;
@@ -112,16 +110,17 @@ public class TrainingAtProgress extends BasicMenuActivity implements
 		isTrainingProgress = sp.getBoolean(TRAINING_AT_PROGRESS, false);
 		int training_id = 0;
 		if (isTrainingProgress) {
-			traName = sp.getString(TRAINING_NAME, "");			
-			String[] strArrExtra = {traName};
+			traName = sp.getString(TRAINING_NAME, "");
+			String[] strArrExtra = { traName };
 			cursor = db.getDataTrainings(null, DB.TRA_NAME + "=?", strArrExtra,
 					null, null, null);
-			
+
 		} else {
 			training_id = getIntent().getIntExtra(TRA_ID, 0);
-			String[] args = {String.valueOf(training_id)};
-			cursor = db.getDataTrainings(null, DB.COLUMN_ID+"=?", args, null,null, null);
-			if(cursor.moveToFirst()){
+			String[] args = { String.valueOf(training_id) };
+			cursor = db.getDataTrainings(null, DB.COLUMN_ID + "=?", args, null,
+					null, null);
+			if (cursor.moveToFirst()) {
 				traName = cursor.getString(1);
 			}
 		}
@@ -167,8 +166,10 @@ public class TrainingAtProgress extends BasicMenuActivity implements
 		NotificationManager notificationManager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
 		notificationManager.cancelAll();
 
-		if (PreferenceManager.getDefaultSharedPreferences(this).getBoolean(AUTO_BACKUP_TO_DRIVE, true)) {
-			Intent backupIntent = new Intent(this, DiskCreateFolderActivity.class);
+		if (PreferenceManager.getDefaultSharedPreferences(this).getBoolean(
+				AUTO_BACKUP_TO_DRIVE, true)) {
+			Intent backupIntent = new Intent(this,
+					DiskCreateFolderActivity.class);
 			startActivity(backupIntent);
 		}
 
@@ -421,13 +422,10 @@ public class TrainingAtProgress extends BasicMenuActivity implements
 	protected void onResume() {
 		super.onResume();
 		btnMenu1.setEnabled(false);
-		Log.d(LOG_TAG, "onResume");
 		if (isTrainingProgress) {
-
 			restoreTimerFromPreferences();
 			restoreSetsFromPreferences();
 			checkedPosition = sp.getInt(USER_CLICKED_POSITION, 0);
-
 			try {
 				list.setItemChecked(checkedPosition, true);
 				initData(checkedPosition);
@@ -447,17 +445,13 @@ public class TrainingAtProgress extends BasicMenuActivity implements
 		list.setKeepScreenOn(!turnOff);
 		vibrate = sp.getBoolean("vibrateOn", true);
 		String vl = sp.getString("vibtateLenght", "2");
-
 		try {
 			vibrateLenght = Integer.parseInt(vl);
 		} catch (Exception e) {
 			vibrateLenght = 2;
 		}
-
 		vibrateLenght *= 1000;
 		timerHandler.postDelayed(timerRunnable, 0);
-		autoBackup = sp.getBoolean(AUTO_BACKUP_TO_DRIVE, true);
-
 	}
 
 	@SuppressLint("HandlerLeak")

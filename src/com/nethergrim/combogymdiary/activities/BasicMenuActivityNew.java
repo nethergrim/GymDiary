@@ -18,6 +18,7 @@ import android.support.v4.app.FragmentActivity;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.util.Log;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -67,7 +68,7 @@ public class BasicMenuActivityNew extends FragmentActivity {
 		mDrawerLayout.setDrawerShadow(R.drawable.drawer_shadow,
 				GravityCompat.START);
 		mDrawerList.setAdapter(new ArrayAdapter<String>(this,
-				R.layout.my_list_item2, listButtons));
+				R.layout.menu_list_item, listButtons));
 		mDrawerList.setOnItemClickListener(new DrawerItemClickListener());
 		getActionBar().setDisplayHomeAsUpEnabled(true);
 		getActionBar().setHomeButtonEnabled(true);
@@ -100,6 +101,17 @@ public class BasicMenuActivityNew extends FragmentActivity {
 		ft.commit();
 	}
 
+	@Override
+	public boolean onOptionsItemSelected(MenuItem item) {
+		if (mDrawerToggle.onOptionsItemSelected(item)) {
+			return true;
+		}
+		switch (item.getItemId()) {
+		default:
+			return super.onOptionsItemSelected(item);
+		}
+	}
+
 	private void initStrings() {
 		listButtons = new String[8];
 		listButtons[0] = getResources().getString(
@@ -126,6 +138,8 @@ public class BasicMenuActivityNew extends FragmentActivity {
 
 	public void selectItem(int position) {
 		Log.d(LOG_TAG, "clicked menu position " + position);
+		mDrawerList.setItemChecked(position, true);
+		mDrawerLayout.closeDrawer(mDrawerList);
 	}
 
 	@Override

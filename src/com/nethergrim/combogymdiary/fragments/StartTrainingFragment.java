@@ -4,8 +4,10 @@ import java.util.Locale;
 
 import com.nethergrim.combogymdiary.DB;
 import com.nethergrim.combogymdiary.R;
+import com.nethergrim.combogymdiary.activities.AddingProgramActivity;
 import com.nethergrim.combogymdiary.activities.BasicMenuActivityNew;
 import com.nethergrim.combogymdiary.activities.EditingProgramAtTrainingActivity;
+import com.nethergrim.combogymdiary.activities.TrainingAtProgress;
 import com.nethergrim.combogymdiary.dialogs.DialogGoToMarket;
 import com.startad.lib.SADView;
 
@@ -26,6 +28,8 @@ import android.support.v4.widget.SimpleCursorAdapter;
 import android.util.Log;
 import android.view.ContextMenu;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
@@ -61,7 +65,7 @@ public class StartTrainingFragment extends Fragment implements
 		super.onCreate(savedInstanceState);
 		Log.d(LOG_TAG, "StartTrainingFragment onCreate");
 		setRetainInstance(true);
-
+		setHasOptionsMenu(true);
 		db = new DB(getActivity());
 		db.open();
 		cursor_exe = db.getDataTrainings(null, null, null, null, null, null);
@@ -70,7 +74,7 @@ public class StartTrainingFragment extends Fragment implements
 		int[] to = new int[] { R.id.tvText, };
 		scAdapter = new SimpleCursorAdapter(getActivity(),
 				R.layout.my_list_item, null, from, to, 0);
-		
+
 	}
 
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -108,25 +112,45 @@ public class StartTrainingFragment extends Fragment implements
 	public void onStart() {
 		super.onStart();
 		Log.d(LOG_TAG, "StartTrainingFragment onStart");
-		((FragmentActivity) getActivity()).getSupportLoaderManager().initLoader(0, null, this);
+		((FragmentActivity) getActivity()).getSupportLoaderManager()
+				.initLoader(0, null, this);
 	}
 
 	public void onResume() {
 		super.onResume();
 		Log.d(LOG_TAG, "StartTrainingFragment onResume");
-		((FragmentActivity) getActivity()).getSupportLoaderManager().getLoader(0).forceLoad();
+		((FragmentActivity) getActivity()).getSupportLoaderManager()
+				.getLoader(0).forceLoad();
 		SharedPreferences sp = PreferenceManager
 				.getDefaultSharedPreferences(getActivity());
 		if (sp.contains(BasicMenuActivityNew.TRAININGS_DONE_NUM)
 				&& sp.getInt(BasicMenuActivityNew.TRAININGS_DONE_NUM, 0) > 5
 				&& !sp.contains(BasicMenuActivityNew.MARKET_LEAVED_FEEDBACK)) {
 			DialogFragment dialog = new DialogGoToMarket();
-			dialog.show(getActivity().getFragmentManager(), "dialog_goto_market");
+			dialog.show(getActivity().getFragmentManager(),
+					"dialog_goto_market");
 			dialog.setCancelable(false);
 		}
 	}
-	
-	
+
+	public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
+		inflater.inflate(R.menu.start_training_activity, menu);
+		super.onCreateOptionsMenu(menu, inflater);
+	}
+
+	@Override
+	public boolean onOptionsItemSelected(MenuItem item) {
+		int id = item.getItemId();
+		if (id == R.id.itemAddNewProgramm) {
+			Intent gotoAddingProgramActivity = new Intent(getActivity(),
+					AddingProgramActivity.class);
+			startActivity(gotoAddingProgramActivity);
+
+			return true;
+		}
+		return false;
+	}
+
 	public void onCreateContextMenu(ContextMenu menu, View v,
 			ContextMenuInfo menuInfo) {
 		super.onCreateContextMenu(menu, v, menuInfo);
@@ -152,7 +176,9 @@ public class StartTrainingFragment extends Fragment implements
 						Toast.makeText(getActivity(),
 								getResources().getString(R.string.deleted),
 								Toast.LENGTH_SHORT).show();
-						((FragmentActivity) getActivity()).getSupportLoaderManager().getLoader(0).forceLoad();
+						((FragmentActivity) getActivity())
+								.getSupportLoaderManager().getLoader(0)
+								.forceLoad();
 					}
 				} while (cursor_exe.moveToNext());
 				return true;
@@ -165,7 +191,8 @@ public class StartTrainingFragment extends Fragment implements
 			intent.putExtra("trID", id);
 			intent.putExtra("ifAddingExe", false);
 			startActivityForResult(intent, 1);
-			((FragmentActivity) getActivity()).getSupportLoaderManager().getLoader(0).forceLoad();
+			((FragmentActivity) getActivity()).getSupportLoaderManager()
+					.getLoader(0).forceLoad();
 			return true;
 		}
 		return super.onContextItemSelected(item);
@@ -197,22 +224,22 @@ public class StartTrainingFragment extends Fragment implements
 	}
 
 	public void goToTraining(int id) {
-		// if (cursor_exe.moveToFirst()) {
-		// String str = null;
-		// do {
-		// if (cursor_exe.getInt(0) == id) {
-		// str = cursor_exe.getString(1);
-		// }
-		// } while (cursor_exe.moveToNext());
-		//
-		// Intent intent_to_trainng = new Intent(this,
-		// TrainingAtProgress.class);
-		// if (str != null && !str.isEmpty()) {
-		// intent_to_trainng.putExtra("trainingName", str);
-		// startActivity(intent_to_trainng);
-		// }
-		//
-		// }
+		if (cursor_exe.moveToFirst()) {
+			String str = null;
+			do {
+				if (cursor_exe.getInt(0) == id) {
+					str = cursor_exe.getString(1);
+				}
+			} while (cursor_exe.moveToNext());
+
+			Intent intent_to_trainng = new Intent(getActivity(),
+					TrainingAtProgress.class);
+			if (str != null && !str.isEmpty()) {
+				intent_to_trainng.putExtra("trainingName", str);
+				startActivity(intent_to_trainng);
+			}
+
+		}
 	}
 
 	@Override

@@ -41,7 +41,12 @@ public class MainActivity extends Activity {
 			sp.edit().putBoolean(DATABASE_FILLED, true).apply();
 		}
 		tmp.close();
+	}
 
+	private void goNext() { // TODO здесь менять вызов главной активити
+		Intent gotoStartTraining = new Intent(this,
+				BasicMenuActivityNew.class);
+		startActivity(gotoStartTraining);
 	}
 
 	@Override
@@ -58,9 +63,7 @@ public class MainActivity extends Activity {
 			task = new InitTask();
 			task.execute();
 		} else {
-			Intent gotoStartTraining = new Intent(getApplicationContext(),
-					StartTrainingActivity.class);
-			startActivity(gotoStartTraining);
+			goNext();
 			finish();
 		}
 	}
@@ -148,9 +151,7 @@ public class MainActivity extends Activity {
 		protected void onPostExecute(Void result) {
 			super.onPostExecute(result);
 
-			Intent gotoStartTraining = new Intent(getApplicationContext(),
-					StartTrainingActivity.class);
-			startActivity(gotoStartTraining);
+			goNext();
 			finish();
 		}
 	}
