@@ -26,6 +26,12 @@ public class MainActivity extends Activity {
 		super.onConfigurationChanged(newConfig);
 		initUi();
 	}
+	
+	private void goNext() { // TODO здесь менять вызов главной активити
+		Intent gotoStartTraining = new Intent(this,
+				BasicMenuActivityNew.class);
+		startActivity(gotoStartTraining);
+	}
 
 	private void initUi() {
 		sp = PreferenceManager.getDefaultSharedPreferences(this);
@@ -43,11 +49,7 @@ public class MainActivity extends Activity {
 		tmp.close();
 	}
 
-	private void goNext() { // TODO здесь менять вызов главной активити
-		Intent gotoStartTraining = new Intent(this,
-				BasicMenuActivityNew.class);
-		startActivity(gotoStartTraining);
-	}
+	
 
 	@Override
 	public void onResume() {

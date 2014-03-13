@@ -27,7 +27,7 @@ public abstract class BasicMenuActivity extends FragmentActivity implements
 	protected Button btnMenu1, btnMenu2, btnMenu3, btnMenu4, btnMenuCatalog,
 			btnMenuMeasurements, btnMenuGraphs, btnFAQ;
 	protected SharedPreferences sPref;
-	protected final static String TRAINING_AT_PROGRESS = "training_at_progress";
+	public final static String TRAINING_AT_PROGRESS = "training_at_progress";
 	protected final static String LIST_OF_SETS = "list_of_sets";
 	public final static String TRAINING_NAME = "training_name";
 	public final static String TRA_ID = "training_id";
@@ -74,7 +74,7 @@ public abstract class BasicMenuActivity extends FragmentActivity implements
 	}
 	
 	protected void deactivateButton(Button btn){
-		btn.setBackgroundColor(getResources().getColor(R.color.light_gray));
+		btn.setBackgroundColor(getResources().getColor(R.color.light_gray_google));
 		btn.setTextColor(getResources().getColor(R.color.abs__bright_foreground_holo_light));	
 	}
 	

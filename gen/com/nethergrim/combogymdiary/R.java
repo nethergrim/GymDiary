@@ -1153,10 +1153,10 @@ containing a value of this type.
         public static final int abs__bright_foreground_disabled_holo_light=0x7f07000f;
         public static final int abs__bright_foreground_holo_dark=0x7f07000c;
         public static final int abs__bright_foreground_holo_light=0x7f07000d;
-        public static final int abs__primary_text_disable_only_holo_dark=0x7f070021;
-        public static final int abs__primary_text_disable_only_holo_light=0x7f070022;
-        public static final int abs__primary_text_holo_dark=0x7f070023;
-        public static final int abs__primary_text_holo_light=0x7f070024;
+        public static final int abs__primary_text_disable_only_holo_dark=0x7f070022;
+        public static final int abs__primary_text_disable_only_holo_light=0x7f070023;
+        public static final int abs__primary_text_holo_dark=0x7f070024;
+        public static final int abs__primary_text_holo_light=0x7f070025;
         public static final int common_action_bar_splitter=0x7f070009;
         /**  Sign-in Button Colors 
          */
@@ -1169,9 +1169,10 @@ containing a value of this type.
         public static final int common_signin_btn_light_text_disabled=0x7f070006;
         public static final int common_signin_btn_light_text_focused=0x7f070007;
         public static final int common_signin_btn_light_text_pressed=0x7f070005;
-        public static final int common_signin_btn_text_dark=0x7f070025;
-        public static final int common_signin_btn_text_light=0x7f070026;
-        public static final int dark_gray=0x7f07001e;
+        public static final int common_signin_btn_text_dark=0x7f070026;
+        public static final int common_signin_btn_text_light=0x7f070027;
+        public static final int dark_gray=0x7f070021;
+        public static final int dark_gray_google=0x7f07001e;
         public static final int full_alpha=0x7f070011;
         public static final int holo_blue_dark=0x7f070016;
         public static final int holo_blue_light=0x7f070015;
@@ -1184,7 +1185,7 @@ containing a value of this type.
         public static final int holo_purple_light=0x7f070017;
         public static final int holo_red_dark=0x7f07001d;
         public static final int holo_red_light=0x7f07001c;
-        public static final int light_gray=0x7f070020;
+        public static final int light_gray_google=0x7f070020;
         /**  The default background of the menu. 
          */
         public static final int md__defaultBackground=0x7f070010;
@@ -1635,10 +1636,10 @@ containing a value of this type.
         public static final int wild_oliva_bitmap=0x7f020143;
     }
     public static final class id {
-        public static final int LL1=0x7f0600b9;
-        public static final int LL3=0x7f0600b6;
-        public static final int LLBottom=0x7f0600af;
-        public static final int LLTop=0x7f0600ac;
+        public static final int LL1=0x7f0600ba;
+        public static final int LL3=0x7f0600b7;
+        public static final int LLBottom=0x7f0600b0;
+        public static final int LLTop=0x7f0600ad;
         public static final int abs__action_bar=0x7f060037;
         public static final int abs__action_bar_container=0x7f060036;
         public static final int abs__action_bar_subtitle=0x7f060028;
@@ -1678,9 +1679,9 @@ containing a value of this type.
         public static final int abs__textButton=0x7f06002a;
         public static final int abs__title=0x7f060032;
         public static final int abs__up=0x7f060014;
-        public static final int actionSaveEdited=0x7f0600c4;
-        public static final int action_add_measurements=0x7f0600c9;
-        public static final int adView1=0x7f0600ad;
+        public static final int actionSaveEdited=0x7f0600c5;
+        public static final int action_add_measurements=0x7f0600ca;
+        public static final int adView1=0x7f0600ae;
         public static final int adView2=0x7f06004a;
         public static final int adView3=0x7f06006f;
         public static final int adView5=0x7f06005c;
@@ -1717,26 +1718,26 @@ containing a value of this type.
         public static final int etMeasureWeight=0x7f06004c;
         public static final int etNewNameOfProgram=0x7f060061;
         public static final int etTimerValue=0x7f060072;
-        public static final int etTimerValueAtTraining=0x7f0600ba;
+        public static final int etTimerValueAtTraining=0x7f0600bb;
         public static final int flingRemove=0x7f060001;
-        public static final int frameAd=0x7f0600ab;
+        public static final int frameAd=0x7f0600ac;
         public static final int frameStatsContent=0x7f060063;
         public static final int homeAsUp=0x7f06000f;
         public static final int hybrid=0x7f060009;
         public static final int imageCat=0x7f060092;
         public static final int imageView1=0x7f060065;
-        public static final int imageView2=0x7f0600bf;
-        public static final int imageView3=0x7f0600c2;
-        public static final int infoText=0x7f0600b1;
-        public static final int itemAddNewExe=0x7f0600c5;
-        public static final int itemAddNewProgramm=0x7f0600cd;
-        public static final int itemEditTrainings=0x7f0600c7;
-        public static final int itemExit=0x7f0600c8;
-        public static final int itemSaveMeasure=0x7f0600c3;
-        public static final int itemSeePreviousTraining=0x7f0600c6;
-        public static final int item_Edit=0x7f0600cb;
-        public static final int item_add=0x7f0600cc;
-        public static final int item_delete=0x7f0600ca;
+        public static final int imageView2=0x7f0600c0;
+        public static final int imageView3=0x7f0600c3;
+        public static final int infoText=0x7f0600b2;
+        public static final int itemAddNewExe=0x7f0600c6;
+        public static final int itemAddNewProgramm=0x7f0600ce;
+        public static final int itemEditTrainings=0x7f0600c8;
+        public static final int itemExit=0x7f0600c9;
+        public static final int itemSaveMeasure=0x7f0600c4;
+        public static final int itemSeePreviousTraining=0x7f0600c7;
+        public static final int item_Edit=0x7f0600cc;
+        public static final int item_add=0x7f0600cd;
+        public static final int item_delete=0x7f0600cb;
         public static final int ivMain=0x7f06005d;
         public static final int left=0x7f060019;
         public static final int left_drawer=0x7f060097;
@@ -1745,18 +1746,18 @@ containing a value of this type.
         public static final int listMode=0x7f06000b;
         public static final int listView1=0x7f060075;
         public static final int listView11=0x7f06008d;
-        public static final int ll2=0x7f0600b0;
-        public static final int llBtnBack=0x7f0600be;
-        public static final int llBtnForward=0x7f0600c1;
-        public static final int llBtnSave=0x7f0600c0;
+        public static final int ll2=0x7f0600b1;
+        public static final int llBtnBack=0x7f0600bf;
+        public static final int llBtnForward=0x7f0600c2;
+        public static final int llBtnSave=0x7f0600c1;
         public static final int llLeft=0x7f060077;
-        public static final int llProgressShow=0x7f0600b2;
+        public static final int llProgressShow=0x7f0600b3;
         public static final int llRight=0x7f060076;
         public static final int lvExers=0x7f060060;
         public static final int lvMainHistory=0x7f060064;
         public static final int lvMeasurements=0x7f060066;
-        public static final int lvSets=0x7f0600ae;
-        public static final int lvStartTraining=0x7f0600aa;
+        public static final int lvSets=0x7f0600af;
+        public static final int lvStartTraining=0x7f0600ab;
         /**  Used with View#setTag(int) to specify a position for the active view. 
          */
         public static final int mdActiveViewPosition=0x7f060024;
@@ -1783,10 +1784,10 @@ containing a value of this type.
         public static final int onDown=0x7f060002;
         public static final int onLongPress=0x7f060004;
         public static final int onMove=0x7f060003;
-        public static final int pbTrainingRest=0x7f0600b3;
+        public static final int pbTrainingRest=0x7f0600b4;
         public static final int progressBar1=0x7f06005f;
         public static final int right=0x7f06001b;
-        public static final int rl1=0x7f0600a9;
+        public static final int rl1=0x7f0600aa;
         public static final int satellite=0x7f060007;
         public static final int scrollView1=0x7f060049;
         public static final int showCustom=0x7f060011;
@@ -1803,10 +1804,10 @@ containing a value of this type.
         public static final int textView2_=0x7f060068;
         public static final int textView3=0x7f06004f;
         public static final int textView3_=0x7f060069;
-        public static final int textView3__=0x7f0600b8;
+        public static final int textView3__=0x7f0600b9;
         public static final int textView4=0x7f060051;
         public static final int textView4_=0x7f06006a;
-        public static final int textView4__=0x7f0600b7;
+        public static final int textView4__=0x7f0600b8;
         public static final int textView5=0x7f060053;
         public static final int textView5_=0x7f06006b;
         public static final int textView6=0x7f060055;
@@ -1815,7 +1816,7 @@ containing a value of this type.
         public static final int textView7_=0x7f06006d;
         public static final int textView8=0x7f060059;
         public static final int textView8_=0x7f06006e;
-        public static final int tglTurnOff=0x7f0600bb;
+        public static final int tglTurnOff=0x7f0600bc;
         public static final int top=0x7f06001a;
         public static final int tvBold1=0x7f06007b;
         public static final int tvBold2=0x7f06007d;
@@ -1839,9 +1840,10 @@ containing a value of this type.
         public static final int tvRegular7=0x7f060088;
         public static final int tvRegular8=0x7f06008a;
         public static final int tvRegular9=0x7f06008c;
-        public static final int tvSetInfo=0x7f0600b5;
-        public static final int tvText=0x7f0600a8;
-        public static final int tvTimerCountdown=0x7f0600b4;
+        public static final int tvSetInfo=0x7f0600b6;
+        public static final int tvText=0x7f0600a9;
+        public static final int tvTextMenu=0x7f0600a8;
+        public static final int tvTimerCountdown=0x7f0600b5;
         public static final int useLogo=0x7f06000d;
         public static final int view1=0x7f0600a2;
         public static final int view2=0x7f06009a;
@@ -1850,8 +1852,8 @@ containing a value of this type.
         public static final int view5=0x7f06009e;
         public static final int view6=0x7f0600a0;
         public static final int view7=0x7f0600a6;
-        public static final int wheelReps=0x7f0600bd;
-        public static final int wheelWeight=0x7f0600bc;
+        public static final int wheelReps=0x7f0600be;
+        public static final int wheelWeight=0x7f0600bd;
         public static final int wrap_content=0x7f06000a;
     }
     public static final class integer {

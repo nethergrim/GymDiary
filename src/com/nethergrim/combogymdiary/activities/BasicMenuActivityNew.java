@@ -2,10 +2,13 @@ package com.nethergrim.combogymdiary.activities;
 
 import com.google.android.gms.ads.AdView;
 import com.nethergrim.combogymdiary.R;
+import com.nethergrim.combogymdiary.fragments.ExerciseListFragment;
 import com.nethergrim.combogymdiary.fragments.StartTrainingFragment;
 import com.yandex.metrica.Counter;
 
+import android.app.Fragment;
 import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.SharedPreferences.Editor;
 import android.content.res.Configuration;
@@ -17,7 +20,6 @@ import android.support.v4.app.ActionBarDrawerToggle;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
-import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
@@ -72,7 +74,6 @@ public class BasicMenuActivityNew extends FragmentActivity {
 		mDrawerList.setOnItemClickListener(new DrawerItemClickListener());
 		getActionBar().setDisplayHomeAsUpEnabled(true);
 		getActionBar().setHomeButtonEnabled(true);
-
 		mDrawerToggle = new ActionBarDrawerToggle(this, /* host Activity */
 		mDrawerLayout, /* DrawerLayout object */
 		R.drawable.ic_drawer, /* nav drawer image to replace 'Up' caret */
@@ -80,13 +81,11 @@ public class BasicMenuActivityNew extends FragmentActivity {
 		R.string.drawer_close /* "close drawer" description for accessibility */
 		) {
 			public void onDrawerClosed(View view) {
-				invalidateOptionsMenu(); // creates call to
-											// onPrepareOptionsMenu()
+				invalidateOptionsMenu();
 			}
 
 			public void onDrawerOpened(View drawerView) {
-				invalidateOptionsMenu(); // creates call to
-											// onPrepareOptionsMenu()
+				invalidateOptionsMenu();
 			}
 		};
 		mDrawerLayout.setDrawerListener(mDrawerToggle);
@@ -95,10 +94,8 @@ public class BasicMenuActivityNew extends FragmentActivity {
 		}
 
 		StartTrainingFragment fragment = new StartTrainingFragment();
-		android.app.FragmentTransaction ft = getFragmentManager()
-				.beginTransaction();
-		ft.add(R.id.content_frame, fragment);
-		ft.commit();
+		getFragmentManager().beginTransaction()
+				.add(R.id.content_frame, fragment).commit();
 	}
 
 	@Override
@@ -136,10 +133,29 @@ public class BasicMenuActivityNew extends FragmentActivity {
 		}
 	}
 
-	public void selectItem(int position) {
-		Log.d(LOG_TAG, "clicked menu position " + position);
+	public void selectItem(int position) { // TODO here select fragment to
+											// show!!
 		mDrawerList.setItemChecked(position, true);
 		mDrawerLayout.closeDrawer(mDrawerList);
+
+		Fragment fragment = null;
+		switch (position) {
+		case 0:
+			fragment = new StartTrainingFragment();
+			break;
+		case 1:
+			fragment = new ExerciseListFragment();
+			break;
+		case 6:
+			Intent intent = new Intent(this, SettingsActivity.class);
+			startActivity(intent);
+			break;
+		}
+		if (fragment != null) {
+			getFragmentManager().beginTransaction()
+					.replace(R.id.content_frame, fragment).commit();
+		}
+		invalidateOptionsMenu();
 	}
 
 	@Override
@@ -183,24 +199,20 @@ public class BasicMenuActivityNew extends FragmentActivity {
 		if (adView != null) {
 			adView.pause();
 		}
-
 		Counter.sharedInstance().onPauseActivity(this);
 	}
 
 	protected void onDestroy() {
 		super.onDestroy();
-		// Destroy the AdView.
 		if (adView != null) {
 			adView.destroy();
 		}
-
 	}
 
 	@Override
 	public void onConfigurationChanged(Configuration newConfig) {
 
 		super.onConfigurationChanged(newConfig);
-		// Pass any configuration change to the drawer toggls
 		mDrawerToggle.onConfigurationChanged(newConfig);
 	}
 

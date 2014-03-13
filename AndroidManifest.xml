@@ -4,7 +4,7 @@
     package="com.nethergrim.combogymdiary"
     android:installLocation="auto"
     android:versionCode="76"
-    android:versionName="1.4.0" >
+    android:versionName="1.4.0(test)" >
 
     <uses-sdk
         android:minSdkVersion="15"

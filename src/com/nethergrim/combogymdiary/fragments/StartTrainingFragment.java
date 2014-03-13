@@ -1,7 +1,5 @@
 package com.nethergrim.combogymdiary.fragments;
 
-import java.util.Locale;
-
 import com.nethergrim.combogymdiary.DB;
 import com.nethergrim.combogymdiary.R;
 import com.nethergrim.combogymdiary.activities.AddingProgramActivity;
@@ -9,9 +7,7 @@ import com.nethergrim.combogymdiary.activities.BasicMenuActivityNew;
 import com.nethergrim.combogymdiary.activities.EditingProgramAtTrainingActivity;
 import com.nethergrim.combogymdiary.activities.TrainingAtProgress;
 import com.nethergrim.combogymdiary.dialogs.DialogGoToMarket;
-import com.startad.lib.SADView;
 
-import android.app.Activity;
 import android.app.DialogFragment;
 import android.app.Fragment;
 import android.content.Context;
@@ -51,15 +47,8 @@ public class StartTrainingFragment extends Fragment implements
 	private DB db;
 	private Cursor cursor_exe;
 	private SimpleCursorAdapter scAdapter;
-	private SADView sadView;
-	private static final int CM_DELETE_ID = 1;
-	private static final int CM_EDIT_ID = 2;
-
-	@Override
-	public void onAttach(Activity activity) {
-		super.onAttach(activity);
-		Log.d(LOG_TAG, "StartTrainingFragment onAttach");
-	}
+	private static final int CM_DELETE_ID = 3;
+	private static final int CM_EDIT_ID = 4;
 
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -74,7 +63,12 @@ public class StartTrainingFragment extends Fragment implements
 		int[] to = new int[] { R.id.tvText, };
 		scAdapter = new SimpleCursorAdapter(getActivity(),
 				R.layout.my_list_item, null, from, to, 0);
-
+	}
+	
+	@Override
+	public void onActivityCreated(Bundle savedInstanceState) {
+	  super.onActivityCreated(savedInstanceState);
+	  registerForContextMenu(lvMain);
 	}
 
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -82,19 +76,12 @@ public class StartTrainingFragment extends Fragment implements
 		View v = inflater.inflate(R.layout.start_training, null);
 		Log.d(LOG_TAG, "StartTrainingFragment onCreateView");
 		lvMain = (ListView) v.findViewById(R.id.lvStartTraining);
-		getActivity().getActionBar().setTitle(R.string.startTrainingList);
+		getActivity().getActionBar().setTitle(
+				R.string.startTrainingButtonString);
+
 		FrameLayout fl = (FrameLayout) v.findViewById(R.id.frameAd);
-		this.sadView = new SADView(getActivity(),
-				BasicMenuActivityNew.APPLICAITON_ID);
-		fl.addView(sadView);
-		String lang = Locale.getDefault().getLanguage();
-		if (lang.equals("ru")) {
-			this.sadView.loadAd(SADView.LANGUAGE_RU);
-		} else {
-			this.sadView.loadAd(SADView.LANGUAGE_EN);
-		}
+		fl.setVisibility(View.GONE);
 		lvMain.setAdapter(scAdapter);
-		registerForContextMenu(lvMain);
 		lvMain.setOnItemClickListener(new OnItemClickListener() {
 			public void onItemClick(AdapterView<?> parent, View view,
 					int position, long id) {
@@ -104,9 +91,9 @@ public class StartTrainingFragment extends Fragment implements
 		return v;
 	}
 
-	public void onActivityCreated(Bundle savedInstanceState) {
-		super.onActivityCreated(savedInstanceState);
-		Log.d(LOG_TAG, "StartTrainingFragment onActivityCreated");
+	public void onPause() {
+		super.onPause();
+		unregisterForContextMenu(lvMain);
 	}
 
 	public void onStart() {
@@ -134,6 +121,7 @@ public class StartTrainingFragment extends Fragment implements
 	}
 
 	public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
+		menu.clear();
 		inflater.inflate(R.menu.start_training_activity, menu);
 		super.onCreateOptionsMenu(menu, inflater);
 	}
@@ -161,14 +149,10 @@ public class StartTrainingFragment extends Fragment implements
 	public boolean onContextItemSelected(MenuItem item) {
 		AdapterContextMenuInfo acmi = (AdapterContextMenuInfo) item
 				.getMenuInfo();
-
 		if (item.getItemId() == CM_DELETE_ID) {
 			LinearLayout llTmp = (LinearLayout) acmi.targetView;
 			TextView tvTmp = (TextView) llTmp.findViewById(R.id.tvText);
 			String traName = tvTmp.getText().toString();
-
-			Log.d(LOG_TAG, "Going to delete " + traName);
-
 			if (cursor_exe.moveToFirst()) {
 				do {
 					if (cursor_exe.getString(1).equals(traName)) {
@@ -183,7 +167,6 @@ public class StartTrainingFragment extends Fragment implements
 				} while (cursor_exe.moveToNext());
 				return true;
 			}
-
 		} else if (item.getItemId() == CM_EDIT_ID) {
 			long id = acmi.id;
 			Intent intent = new Intent(getActivity(),
@@ -198,31 +181,6 @@ public class StartTrainingFragment extends Fragment implements
 		return super.onContextItemSelected(item);
 	}
 
-	public void onPause() {
-		super.onPause();
-		Log.d(LOG_TAG, "StartTrainingFragment onPause");
-	}
-
-	public void onStop() {
-		super.onStop();
-		Log.d(LOG_TAG, "StartTrainingFragment onStop");
-	}
-
-	public void onDestroyView() {
-		super.onDestroyView();
-		Log.d(LOG_TAG, "StartTrainingFragment onDestroyView");
-	}
-
-	public void onDestroy() {
-		super.onDestroy();
-		Log.d(LOG_TAG, "StartTrainingFragment onDestroy");
-	}
-
-	public void onDetach() {
-		super.onDetach();
-		Log.d(LOG_TAG, "StartTrainingFragment onDetach");
-	}
-
 	public void goToTraining(int id) {
 		if (cursor_exe.moveToFirst()) {
 			String str = null;
@@ -231,14 +189,12 @@ public class StartTrainingFragment extends Fragment implements
 					str = cursor_exe.getString(1);
 				}
 			} while (cursor_exe.moveToNext());
-
 			Intent intent_to_trainng = new Intent(getActivity(),
 					TrainingAtProgress.class);
 			if (str != null && !str.isEmpty()) {
 				intent_to_trainng.putExtra("trainingName", str);
 				startActivity(intent_to_trainng);
 			}
-
 		}
 	}
 
@@ -271,5 +227,4 @@ public class StartTrainingFragment extends Fragment implements
 			return cursor;
 		}
 	}
-
 }

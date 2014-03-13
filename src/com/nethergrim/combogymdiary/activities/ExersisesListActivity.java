@@ -77,7 +77,6 @@ public class ExersisesListActivity extends BasicMenuActivity implements
 		if (isNetworkAvailable()) {
 			adView.setVisibility(View.VISIBLE);
 		}
-		getSupportLoaderManager().getLoader(0).forceLoad();
 	}
 
 	@Override

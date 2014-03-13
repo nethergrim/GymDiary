@@ -35,9 +35,10 @@
     <color name="holo_red_light">#FF4444</color>
     <color name="holo_red_dark">#CC0000</color>
     
-     <color name="dark_gray">#A6ACAA</color>
+     <color name="dark_gray_google">#A6ACAA</color>
      <color name="white">#ffffff</color>
-     <color name="light_gray">#E3EAE3</color>
+     <color name="light_gray_google">#E3EAE3</color>
+     <color name="dark_gray">#575757</color>
     
     
     
