@@ -3,14 +3,13 @@ package com.nethergrim.combogymdiary.activities;
 import com.nethergrim.combogymdiary.DB;
 import com.nethergrim.combogymdiary.R;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.database.Cursor;
 import android.os.Bundle;
-import android.util.Log;
-import android.view.View;
 import android.widget.TextView;
 
-public class MeasurementsDetailedActivity extends BasicMenuActivity {
+public class MeasurementsDetailedActivity extends Activity {
 
 	private String date;
 	private DB db;
@@ -22,7 +21,7 @@ public class MeasurementsDetailedActivity extends BasicMenuActivity {
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		mMenuDrawer.setContentView(R.layout.activity_measurements_detailed);
+		setContentView(R.layout.activity_measurements_detailed);
 		Intent intent = getIntent();
 		date = intent.getStringExtra("date");
 		db = new DB(this);
@@ -47,7 +46,6 @@ public class MeasurementsDetailedActivity extends BasicMenuActivity {
 		String[] args = { date };
 		c = db.getDataMeasures(cols, DB.DATE + "=?", args, null, null, DB.DATE);
 		if (c.moveToFirst()) {
-			Log.d(LOG_TAG, "found cursor size = " + c.getCount());
 			do {
 				String tmp_type = c.getString(1);
 				if (tmp_type.equals(weight)) {
@@ -81,11 +79,6 @@ public class MeasurementsDetailedActivity extends BasicMenuActivity {
 		tv6 = (TextView) findViewById(R.id.textView6_);
 		tv7 = (TextView) findViewById(R.id.textView7_);
 		tv8 = (TextView) findViewById(R.id.textView8_);
-	}
-
-	@Override
-	public void onClick(View arg0) {
-		pressButton(arg0.getId(),true);
 	}
 
 	protected void onDestroy() {

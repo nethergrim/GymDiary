@@ -3,21 +3,19 @@ package com.nethergrim.combogymdiary.activities;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
-import com.google.android.gms.ads.AdRequest;
-import com.google.android.gms.ads.AdView;
 import com.nethergrim.combogymdiary.DB;
 import com.nethergrim.combogymdiary.R;
 
 import android.annotation.SuppressLint;
+import android.app.Activity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.View;
 import android.widget.EditText;
 import android.widget.Toast;
 
 @SuppressLint("SimpleDateFormat")
-public class AddingMeasurementActivity extends BasicMenuActivity {
+public class AddingMeasurementActivity extends Activity {
 
 	private EditText etWeight, etTall, etChest, etWaist, etHip, etLeg, etCalf,
 			etArm;
@@ -29,7 +27,7 @@ public class AddingMeasurementActivity extends BasicMenuActivity {
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		mMenuDrawer.setContentView(R.layout.activity_adding_measurement);
+		setContentView(R.layout.activity_adding_measurement);
 		getActionBar().setTitle(R.string.adding_measurements);
 		etWeight = (EditText) findViewById(R.id.etMeasureWeight);
 		etTall = (EditText) findViewById(R.id.etMeasureTall);
@@ -43,16 +41,6 @@ public class AddingMeasurementActivity extends BasicMenuActivity {
 		date = sdf.format(new Date(System.currentTimeMillis()));
 		db = new DB(this);
 		db.open();
-
-		adView = (AdView) this.findViewById(R.id.adView2);
-		AdRequest adRequest = new AdRequest.Builder().build();
-		adView.loadAd(adRequest);
-	}
-
-	@Override
-	public void onClick(View arg0) {
-		pressButton(arg0.getId(),true);
-
 	}
 
 	protected void onDestroy() {
@@ -133,10 +121,7 @@ public class AddingMeasurementActivity extends BasicMenuActivity {
 			saveResults();
 			return true;
 		} else if (id == android.R.id.home) {
-			if (mMenuDrawer.isActivated()) {
-				mMenuDrawer.closeMenu();
-			} else
-				mMenuDrawer.toggleMenu();
+			finish();
 			return true;
 		}
 

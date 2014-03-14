@@ -107,7 +107,7 @@
     <string name="settingsButtonString">Settings</string>
     <string name="trainProgramListButtonString">Splits and programs</string>
     <string name="excersisiesListButtonString">Exersices</string>
-    <string name="worklogString">Worklog</string>
+    <string name="worklogString">History</string>
     <string name="startTrainingList">Choose a program:</string>
     <string name="programs_list">Programs list:</string>
     <string name="Add">Add</string>
@@ -270,7 +270,7 @@
     <string name="traBiceps">Biceps training</string>
     <string name="traTriceps">Triceps training</string>
     <string name="traAbs">Abs training</string>
-    <string name="exe_catalog">Exercises catalog</string>
+    <string name="exe_catalog">Сatalog</string>
     <string name="set_number">Set №</string>
     <string name="previous_result_was">New set! Previous result was: </string>
     <string name="backup_database_to_sd">Backup database to SD card</string>

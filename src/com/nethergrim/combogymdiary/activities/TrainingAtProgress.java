@@ -114,7 +114,6 @@ public class TrainingAtProgress extends BasicMenuActivity implements
 			String[] strArrExtra = { traName };
 			cursor = db.getDataTrainings(null, DB.TRA_NAME + "=?", strArrExtra,
 					null, null, null);
-
 		} else {
 			training_id = getIntent().getIntExtra(TRA_ID, 0);
 			String[] args = { String.valueOf(training_id) };

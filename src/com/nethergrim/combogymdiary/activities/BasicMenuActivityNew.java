@@ -2,8 +2,13 @@ package com.nethergrim.combogymdiary.activities;
 
 import com.google.android.gms.ads.AdView;
 import com.nethergrim.combogymdiary.R;
+import com.nethergrim.combogymdiary.dialogs.DialogInfo;
+import com.nethergrim.combogymdiary.fragments.CatalogFragment;
 import com.nethergrim.combogymdiary.fragments.ExerciseListFragment;
+import com.nethergrim.combogymdiary.fragments.HistoryFragment;
+import com.nethergrim.combogymdiary.fragments.MeasurementsFragment;
 import com.nethergrim.combogymdiary.fragments.StartTrainingFragment;
+import com.nethergrim.combogymdiary.fragments.StatisticsFragment;
 import com.yandex.metrica.Counter;
 
 import android.app.Fragment;
@@ -103,10 +108,7 @@ public class BasicMenuActivityNew extends FragmentActivity {
 		if (mDrawerToggle.onOptionsItemSelected(item)) {
 			return true;
 		}
-		switch (item.getItemId()) {
-		default:
-			return super.onOptionsItemSelected(item);
-		}
+		return super.onOptionsItemSelected(item);
 	}
 
 	private void initStrings() {
@@ -133,11 +135,9 @@ public class BasicMenuActivityNew extends FragmentActivity {
 		}
 	}
 
-	public void selectItem(int position) { // TODO here select fragment to
-											// show!!
+	public void selectItem(int position) { // TODO here select fragment
 		mDrawerList.setItemChecked(position, true);
 		mDrawerLayout.closeDrawer(mDrawerList);
-
 		Fragment fragment = null;
 		switch (position) {
 		case 0:
@@ -149,6 +149,22 @@ public class BasicMenuActivityNew extends FragmentActivity {
 		case 6:
 			Intent intent = new Intent(this, SettingsActivity.class);
 			startActivity(intent);
+			break;
+		case 7:
+			DialogInfo dialog = new DialogInfo();
+			dialog.show(getFragmentManager(), "info");
+			break;
+		case 2:
+			fragment = new HistoryFragment();
+			break;
+		case 3:
+			fragment = new MeasurementsFragment();
+			break;
+		case 4:
+			fragment = new CatalogFragment();
+			break;
+		case 5:
+			fragment = new StatisticsFragment();
 			break;
 		}
 		if (fragment != null) {

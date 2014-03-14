@@ -4,6 +4,7 @@ import com.nethergrim.combogymdiary.DB;
 import com.nethergrim.combogymdiary.R;
 
 import android.annotation.SuppressLint;
+import android.app.Activity;
 import android.content.Intent;
 import android.database.Cursor;
 import android.graphics.Color;
@@ -15,7 +16,7 @@ import android.widget.LinearLayout;
 import android.widget.ScrollView;
 import android.widget.TextView;
 
-public class HistoryDetailedActivity extends BasicMenuActivity {
+public class HistoryDetailedActivity extends Activity {
 
 	private DB db;
 	private Cursor cursor;
@@ -62,7 +63,7 @@ public class HistoryDetailedActivity extends BasicMenuActivity {
 		llMain.setOrientation(LinearLayout.VERTICAL);
 		LayoutParams linLayoutParam = new LayoutParams(
 				LayoutParams.MATCH_PARENT, LayoutParams.MATCH_PARENT);
-		mMenuDrawer.setContentView(scrollView, linLayoutParam);
+		setContentView(scrollView, linLayoutParam);
 		scrollView.addView(llMain, linLayoutParam);
 		llMain.setGravity(Gravity.CENTER_HORIZONTAL);
 		if (cursor.moveToFirst()) {
@@ -87,17 +88,11 @@ public class HistoryDetailedActivity extends BasicMenuActivity {
 				llMain.addView(div);
 			} while (cursor.moveToNext());
 		}
+		cursor.close();
 	}
 
 	protected void onDestroy() {
 		super.onDestroy();
 		db.close();
 	}
-
-	@Override
-	public void onClick(View arg0) {
-		int id = arg0.getId();
-		pressButton(id,true);
-	}
-
 }

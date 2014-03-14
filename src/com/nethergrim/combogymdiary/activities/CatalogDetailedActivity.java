@@ -1,22 +1,18 @@
 package com.nethergrim.combogymdiary.activities;
 
-import com.google.android.gms.ads.AdRequest;
-import com.google.android.gms.ads.AdView;
 import com.nethergrim.combogymdiary.R;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
-import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-public class CatalogDetailedActivity extends BasicMenuActivity {
+public class CatalogDetailedActivity extends Activity {
 
 	private TextView tvMain;
 	private ImageView imageV;
 	private int groupPosition, childPosition;
-	private long id;
 	private String[] pectoral = null;
 	private String[] legs = null;
 	private String[] back = null;
@@ -28,15 +24,12 @@ public class CatalogDetailedActivity extends BasicMenuActivity {
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		mMenuDrawer.setContentView(R.layout.activity_catalog_detailed);
+		setContentView(R.layout.activity_catalog_detailed);
 		tvMain = (TextView) findViewById(R.id.tvInfoExe);
 		imageV = (ImageView) findViewById(R.id.ivMain);
 		Intent intent = getIntent();
 		groupPosition = intent.getIntExtra("groupPosition", 0);
 		childPosition = intent.getIntExtra("childPosition", 0);
-		id = intent.getLongExtra("id", 0);
-		Log.d(LOG_TAG, "got intent: groupPosition = " + groupPosition
-				+ " childPosition = " + childPosition + " id = " + id);
 		pectoral = getResources().getStringArray(R.array.exercisesArrayChest);
 		legs = getResources().getStringArray(R.array.exercisesArrayLegs);
 		back = getResources().getStringArray(R.array.exercisesArrayBack);
@@ -46,10 +39,6 @@ public class CatalogDetailedActivity extends BasicMenuActivity {
 		triceps = getResources().getStringArray(R.array.exercisesArrayTriceps);
 		abs = getResources().getStringArray(R.array.exercisesArrayAbs);
 		initInfo();
-		adView = (AdView) this.findViewById(R.id.adView5);
-		AdRequest adRequest = new AdRequest.Builder().build();
-		adView.loadAd(adRequest);
-
 	}
 
 	private void initInfo() {
@@ -448,12 +437,6 @@ public class CatalogDetailedActivity extends BasicMenuActivity {
 			tvMain.setText(getResources().getString(R.string.ex_6_4));
 			break;
 		}
-	}
-
-	@Override
-	public void onClick(View arg0) {
-		pressButton(arg0.getId(),true);
-		finish();
 	}
 
 	@Override

@@ -12,6 +12,7 @@ import android.content.Context;
 import android.content.res.Configuration;
 import android.database.Cursor;
 import android.os.Bundle;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
@@ -39,7 +40,7 @@ public class AddingProgramActivity extends FragmentActivity implements
 		btnAdd.setOnClickListener(this);
 		etName = (EditText) findViewById(R.id.etTimerValue);
 		getActionBar().setTitle(R.string.creating_program);
-		getActionBar().setDisplayShowHomeEnabled(true);
+		getActionBar().setDisplayHomeAsUpEnabled(true);
 		lvExe = (ListView) findViewById(R.id.listView1);
 		lvExe.setChoiceMode(ListView.CHOICE_MODE_MULTIPLE);
 		db = new DB(this);
@@ -126,9 +127,19 @@ public class AddingProgramActivity extends FragmentActivity implements
 		}
 	}
 
-	protected void onDestroy() {
+	protected void onDestroy() {		
 		super.onDestroy();
 		db.close();
+	}
+	
+	@Override
+	public boolean onOptionsItemSelected(MenuItem item) {
+		switch (item.getItemId()) {
+		case android.R.id.home:
+			super.onBackPressed();
+			return true;
+		}
+		return false;
 	}
 
 }

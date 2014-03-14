@@ -1,7 +1,6 @@
 <resources>
 
-    
-     <string name="drawer_open">Открыть навигацию</string>
+    <string name="drawer_open">Открыть навигацию</string>
     <string name="drawer_close">Закрыть навигацию</string>
     <string name="sm">(см)</string>
     <string name="faq">Вопросы и ответы</string>
@@ -141,7 +140,7 @@
     <string name="timer_between_sets">Длительность таймера (сек)</string>
     <string name="trainProgramListButtonString">Тренировочные программы</string>
     <string name="training">Тренировка</string>
-    <string name="worklogString">История тренировок</string>
+    <string name="worklogString">История</string>
     <string name="yes">Да</string>
     <string name="resting">Отдых</string>
     <string name="resting_for">Отдыхаем </string>
@@ -242,14 +241,14 @@
         <item>Скручивания на скамье с наклоном вниз</item>
     </string-array>
 
-    <string name="training_history">История тренировок</string>
+    <string name="training_history">История</string>
     <string name="traLegs">Тренировка ног</string>
     <string name="traChest">Тренировка груди</string>
     <string name="traBack">Тренировка спины</string>
     <string name="traShoulders">Тренировка дельт</string>
     <string name="traBiceps">Тренировка бицепсов</string>
     <string name="traTriceps">Тренировка трицепсов</string>
-    <string name="exe_catalog">Справочник упражнений</string>
+    <string name="exe_catalog">Справочник</string>
     <string name="traAbs">Тренировка пресса</string>
     <string name="previous_result_was">Новый подход! Предыдущий результат: </string>
     <string name="set_number">Подход №</string>

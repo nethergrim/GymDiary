@@ -5,7 +5,6 @@ import com.nethergrim.combogymdiary.R;
 import com.nethergrim.combogymdiary.activities.AddingProgramActivity;
 import com.nethergrim.combogymdiary.activities.BasicMenuActivityNew;
 import com.nethergrim.combogymdiary.activities.EditingProgramAtTrainingActivity;
-import com.nethergrim.combogymdiary.activities.TrainingAtProgress;
 import com.nethergrim.combogymdiary.dialogs.DialogGoToMarket;
 
 import android.app.DialogFragment;
@@ -21,7 +20,6 @@ import android.support.v4.app.LoaderManager.LoaderCallbacks;
 import android.support.v4.content.CursorLoader;
 import android.support.v4.content.Loader;
 import android.support.v4.widget.SimpleCursorAdapter;
-import android.util.Log;
 import android.view.ContextMenu;
 import android.view.LayoutInflater;
 import android.view.Menu;
@@ -42,39 +40,35 @@ import android.widget.AdapterView.OnItemClickListener;
 public class StartTrainingFragment extends Fragment implements
 		LoaderCallbacks<Cursor> {
 
-	final String LOG_TAG = "myLogs";
 	private ListView lvMain;
 	private DB db;
-	private Cursor cursor_exe;
+	private Cursor cursor;
 	private SimpleCursorAdapter scAdapter;
 	private static final int CM_DELETE_ID = 3;
 	private static final int CM_EDIT_ID = 4;
 
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		Log.d(LOG_TAG, "StartTrainingFragment onCreate");
 		setRetainInstance(true);
 		setHasOptionsMenu(true);
 		db = new DB(getActivity());
 		db.open();
-		cursor_exe = db.getDataTrainings(null, null, null, null, null, null);
-
+		cursor = db.getDataTrainings(null, null, null, null, null, null);
 		String[] from = new String[] { DB.TRA_NAME };
 		int[] to = new int[] { R.id.tvText, };
 		scAdapter = new SimpleCursorAdapter(getActivity(),
 				R.layout.my_list_item, null, from, to, 0);
 	}
-	
+
 	@Override
 	public void onActivityCreated(Bundle savedInstanceState) {
-	  super.onActivityCreated(savedInstanceState);
-	  registerForContextMenu(lvMain);
+		super.onActivityCreated(savedInstanceState);
+		registerForContextMenu(lvMain);
 	}
 
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
 			Bundle savedInstanceState) {
 		View v = inflater.inflate(R.layout.start_training, null);
-		Log.d(LOG_TAG, "StartTrainingFragment onCreateView");
 		lvMain = (ListView) v.findViewById(R.id.lvStartTraining);
 		getActivity().getActionBar().setTitle(
 				R.string.startTrainingButtonString);
@@ -98,14 +92,12 @@ public class StartTrainingFragment extends Fragment implements
 
 	public void onStart() {
 		super.onStart();
-		Log.d(LOG_TAG, "StartTrainingFragment onStart");
 		((FragmentActivity) getActivity()).getSupportLoaderManager()
 				.initLoader(0, null, this);
 	}
 
 	public void onResume() {
 		super.onResume();
-		Log.d(LOG_TAG, "StartTrainingFragment onResume");
 		((FragmentActivity) getActivity()).getSupportLoaderManager()
 				.getLoader(0).forceLoad();
 		SharedPreferences sp = PreferenceManager
@@ -153,10 +145,10 @@ public class StartTrainingFragment extends Fragment implements
 			LinearLayout llTmp = (LinearLayout) acmi.targetView;
 			TextView tvTmp = (TextView) llTmp.findViewById(R.id.tvText);
 			String traName = tvTmp.getText().toString();
-			if (cursor_exe.moveToFirst()) {
+			if (cursor.moveToFirst()) {
 				do {
-					if (cursor_exe.getString(1).equals(traName)) {
-						db.delRec_Trainings(cursor_exe.getInt(0));
+					if (cursor.getString(1).equals(traName)) {
+						db.delRec_Trainings(cursor.getInt(0));
 						Toast.makeText(getActivity(),
 								getResources().getString(R.string.deleted),
 								Toast.LENGTH_SHORT).show();
@@ -164,7 +156,7 @@ public class StartTrainingFragment extends Fragment implements
 								.getSupportLoaderManager().getLoader(0)
 								.forceLoad();
 					}
-				} while (cursor_exe.moveToNext());
+				} while (cursor.moveToNext());
 				return true;
 			}
 		} else if (item.getItemId() == CM_EDIT_ID) {
@@ -181,21 +173,29 @@ public class StartTrainingFragment extends Fragment implements
 		return super.onContextItemSelected(item);
 	}
 
-	public void goToTraining(int id) {
-		if (cursor_exe.moveToFirst()) {
-			String str = null;
-			do {
-				if (cursor_exe.getInt(0) == id) {
-					str = cursor_exe.getString(1);
-				}
-			} while (cursor_exe.moveToNext());
-			Intent intent_to_trainng = new Intent(getActivity(),
-					TrainingAtProgress.class);
-			if (str != null && !str.isEmpty()) {
-				intent_to_trainng.putExtra("trainingName", str);
-				startActivity(intent_to_trainng);
-			}
-		}
+	public void goToTraining(int id) { // TODO here update to replace fragment
+										// to trainingFragment
+
+		Fragment fragment = new TrainingFragment();
+		getActivity().getFragmentManager().beginTransaction()
+				.replace(R.id.content_frame, fragment).commit();
+		//
+		// if (cursor.moveToFirst()) {
+		// String str = null;
+		// do {
+		// if (cursor.getInt(0) == id) {
+		// str = cursor.getString(1);
+		// }
+		// } while (cursor.moveToNext());
+		// Intent intent_to_trainng = new Intent(getActivity(),
+		// TrainingAtProgress.class);
+		// if (str != null && !str.isEmpty()) {
+		// intent_to_trainng.putExtra("trainingName", str);
+		// startActivity(intent_to_trainng);
+		//
+		//
+		// }
+		// }
 	}
 
 	@Override
