@@ -68,8 +68,7 @@ public class TrainingFragment extends Fragment implements MyInterface,
 	private ImageView ivBack, ivForward;
 	private Animation anim = null;
 	private DragSortListView list;
-	
-	
+
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setHasOptionsMenu(true);
@@ -79,14 +78,14 @@ public class TrainingFragment extends Fragment implements MyInterface,
 		sp = PreferenceManager.getDefaultSharedPreferences(getActivity());
 		isTrainingProgress = sp.getBoolean(TRAINING_AT_PROGRESS, false);
 		int training_id = 0;
-		
+
 		if (isTrainingProgress) {
 			traName = sp.getString(TRAINING_NAME, "");
 			String[] strArrExtra = { traName };
 			cursor = db.getDataTrainings(null, DB.TRA_NAME + "=?", strArrExtra,
 					null, null, null);
 		} else {
-			training_id = getIntent().getIntExtra(TRA_ID, 0);
+//			training_id = getIntent().getIntExtra(TRA_ID, 0);
 			String[] args = { String.valueOf(training_id) };
 			cursor = db.getDataTrainings(null, DB.COLUMN_ID + "=?", args, null,
 					null, null);

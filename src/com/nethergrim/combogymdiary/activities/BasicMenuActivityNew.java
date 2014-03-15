@@ -25,6 +25,7 @@ import android.support.v4.app.ActionBarDrawerToggle;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
+import android.support.v4.widget.ViewDragHelper;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
@@ -101,6 +102,33 @@ public class BasicMenuActivityNew extends FragmentActivity {
 		StartTrainingFragment fragment = new StartTrainingFragment();
 		getFragmentManager().beginTransaction()
 				.add(R.id.content_frame, fragment).commit();
+
+		DrawerLayout mDrawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
+		java.lang.reflect.Field mDragger;
+
+		try {
+			mDragger = mDrawerLayout.getClass()
+					.getDeclaredField("mLeftDragger");
+
+			mDragger.setAccessible(true);
+			ViewDragHelper draggerObj = (ViewDragHelper) mDragger
+					.get(mDrawerLayout);
+
+			java.lang.reflect.Field mEdgeSize = draggerObj.getClass()
+					.getDeclaredField("mEdgeSize");
+			mEdgeSize.setAccessible(true);
+			mEdgeSize.setInt(draggerObj, 999);
+		} catch (NoSuchFieldException e) {
+			Counter.sharedInstance().reportError("error in mDragger == 999", e);
+			e.printStackTrace();
+		} catch (IllegalArgumentException e) {
+			Counter.sharedInstance().reportError("error in mDragger == 999", e);
+			e.printStackTrace();
+		} catch (IllegalAccessException e) {
+			Counter.sharedInstance().reportError("error in mDragger == 999", e);
+			e.printStackTrace();
+		}
+
 	}
 
 	@Override
