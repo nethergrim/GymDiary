@@ -1,7 +1,5 @@
 package com.nethergrim.combogymdiary.fragments;
 
-import java.util.ArrayList;
-
 import com.jjoe64.graphview.CustomLabelFormatter;
 import com.jjoe64.graphview.GraphView;
 import com.jjoe64.graphview.GraphViewDataInterface;
@@ -12,30 +10,36 @@ import com.nethergrim.combogymdiary.DB;
 import com.nethergrim.combogymdiary.R;
 
 import android.app.Fragment;
+import android.content.Context;
 import android.database.Cursor;
 import android.graphics.Color;
 import android.os.Bundle;
+import android.support.v4.app.FragmentActivity;
+import android.support.v4.app.LoaderManager.LoaderCallbacks;
+import android.support.v4.content.CursorLoader;
+import android.support.v4.content.Loader;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
 import android.widget.FrameLayout;
+import android.widget.SimpleCursorAdapter;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.AdapterView.OnItemSelectedListener;
 
-public class StatisticsFragment extends Fragment {
+public class StatisticsFragment extends Fragment implements
+		LoaderCallbacks<Cursor> {
 
 	private FrameLayout content;
 	private Spinner spinner;
+	private SimpleCursorAdapter adapter;
 	private DB db;
-	private Cursor exersicesCursor;
 	private Cursor dataCursor;
-	private ArrayList<String> alExersices = new ArrayList<String>();
 	private GraphView graphView;
+	private int LOADER_ID = 7;
 
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -58,25 +62,12 @@ public class StatisticsFragment extends Fragment {
 				getResources().getString(R.string.statistics));
 		content = (FrameLayout) v.findViewById(R.id.frameStatsContent);
 		spinner = (Spinner) v.findViewById(R.id.spinner1);
-		initExeCursor();
-		ArrayAdapter<String> adapter = new ArrayAdapter<String>(getActivity(),
-				android.R.layout.simple_spinner_item);
-		adapter.addAll(alExersices);
+		String[] from = new String[] { DB.EXE_NAME };
+		int[] to = new int[] { android.R.id.text1 };
+		adapter = new SimpleCursorAdapter(getActivity(),
+				android.R.layout.simple_spinner_item, null, from, to, 0);
 		adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
 		spinner.setAdapter(adapter);
-		spinner.setOnItemSelectedListener(new OnItemSelectedListener() {
-			@Override
-			public void onNothingSelected(AdapterView<?> parent) {
-			}
-
-			@Override
-			public void onItemSelected(AdapterView<?> parent, View view,
-					int pos, long id) {
-				TextView tv = (TextView) view.findViewById(android.R.id.text1);
-				String name = tv.getText().toString();
-				selected(pos, id, name);
-			}
-		});
 
 		graphView = new LineGraphView(getActivity(), "");
 		graphView.setScalable(true);
@@ -90,6 +81,32 @@ public class StatisticsFragment extends Fragment {
 		content.addView(graphView);
 
 		return v;
+	}
+
+	@Override
+	public void onResume() {
+		super.onResume();
+		((FragmentActivity) getActivity()).getSupportLoaderManager()
+				.getLoader(0).forceLoad();
+		spinner.setOnItemSelectedListener(new OnItemSelectedListener() {
+			@Override
+			public void onNothingSelected(AdapterView<?> parent) {
+			}
+
+			@Override
+			public void onItemSelected(AdapterView<?> parent, View view,
+					int pos, long id) {
+				TextView tv = (TextView) view.findViewById(android.R.id.text1);
+				String name = tv.getText().toString();
+				selected(pos, id, name);
+			}
+		});
+	}
+
+	public void onStart() {
+		super.onStart();
+		((FragmentActivity) getActivity()).getSupportLoaderManager()
+				.initLoader(LOADER_ID, null, this);
 	}
 
 	private void selected(int pos, long id, String name) {
@@ -163,17 +180,6 @@ public class StatisticsFragment extends Fragment {
 		}
 	}
 
-	private void initExeCursor() {
-		exersicesCursor = db.getDataExe(null, null, null, null, null,
-				DB.EXE_NAME);
-		if (exersicesCursor.moveToFirst()) {
-			do {
-				alExersices.add(exersicesCursor.getString(2));
-			} while (exersicesCursor.moveToNext());
-		}
-		exersicesCursor.close();
-	}
-
 	public class GraphViewData implements GraphViewDataInterface {
 
 		private int date;
@@ -192,6 +198,36 @@ public class StatisticsFragment extends Fragment {
 		@Override
 		public double getY() {
 			return this.weight;
+		}
+	}
+
+	@Override
+	public Loader<Cursor> onCreateLoader(int id, Bundle bndl) {
+		return new MyCursorLoader(getActivity(), db);
+	}
+
+	@Override
+	public void onLoadFinished(Loader<Cursor> loader, Cursor cursor) {
+		adapter.swapCursor(cursor);
+	}
+
+	@Override
+	public void onLoaderReset(Loader<Cursor> loader) {
+	}
+
+	static class MyCursorLoader extends CursorLoader {
+		DB db;
+		Cursor cursor;
+
+		public MyCursorLoader(Context context, DB db) {
+			super(context);
+			this.db = db;
+		}
+
+		@Override
+		public Cursor loadInBackground() {
+			cursor = db.getDataExe(null, null, null, null, null, DB.EXE_NAME);
+			return cursor;
 		}
 	}
 

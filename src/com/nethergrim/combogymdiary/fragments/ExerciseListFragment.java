@@ -42,11 +42,18 @@ public class ExerciseListFragment extends Fragment implements
 	private DB db;
 	private SimpleCursorAdapter scAdapter;
 	private SharedPreferences sp;
+	private int LOADER_ID = 1;
 
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setHasOptionsMenu(true);
 		setRetainInstance(true);
+		db = new DB(getActivity());
+		db.open();
+		String[] from = new String[] { DB.EXE_NAME };
+		int[] to = new int[] { R.id.tvText, };
+		scAdapter = new SimpleCursorAdapter(getActivity(),
+				R.layout.my_list_item2, null, from, to, 0);
 	}
 
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -55,13 +62,6 @@ public class ExerciseListFragment extends Fragment implements
 		getActivity().getActionBar().setTitle(
 				R.string.excersisiesListButtonString);
 		lvExersices_list = (ListView) v.findViewById(R.id.listView11);
-		db = new DB(getActivity());
-		db.open();
-		String[] from = new String[] { DB.EXE_NAME };
-		int[] to = new int[] { R.id.tvText, };
-		scAdapter = new SimpleCursorAdapter(getActivity(),
-				R.layout.my_list_item2, null, from, to, 0);
-
 		lvExersices_list.setAdapter(scAdapter);
 		lvExersices_list.setOnItemClickListener(new OnItemClickListener() {
 			public void onItemClick(AdapterView<?> parent, View view,
@@ -69,6 +69,7 @@ public class ExerciseListFragment extends Fragment implements
 				goToEditExe(position, id);
 			}
 		});
+
 		return v;
 	}
 
@@ -96,28 +97,28 @@ public class ExerciseListFragment extends Fragment implements
 			intent_exe_edit.putExtra("exePosition", position);
 			intent_exe_edit.putExtra("exeID", ID);
 			startActivity(intent_exe_edit);
+
 		}
 	}
 
 	public void onStart() {
 		super.onStart();
+		((FragmentActivity) getActivity()).getSupportLoaderManager()
+				.initLoader(LOADER_ID, null, this);
 	}
-	
+
 	@Override
 	public void onActivityCreated(Bundle savedInstanceState) {
-	  super.onActivityCreated(savedInstanceState);
-	  registerForContextMenu(lvExersices_list);
+		super.onActivityCreated(savedInstanceState);
+		registerForContextMenu(lvExersices_list);
 	}
 
 	public void onResume() {
 		super.onResume();
 		sp = PreferenceManager.getDefaultSharedPreferences(getActivity());
 		((FragmentActivity) getActivity()).getSupportLoaderManager()
-				.initLoader(1, null, this);
-		((FragmentActivity) getActivity()).getSupportLoaderManager()
-				.getLoader(1).forceLoad();
-		getActivity().invalidateOptionsMenu();
-		
+				.getLoader(LOADER_ID).forceLoad();
+
 	}
 
 	public void onPause() {
@@ -199,7 +200,7 @@ public class ExerciseListFragment extends Fragment implements
 				Toast.makeText(getActivity(), R.string.deleted,
 						Toast.LENGTH_SHORT).show();
 				((FragmentActivity) getActivity()).getSupportLoaderManager()
-						.getLoader(1).forceLoad();
+						.getLoader(LOADER_ID).forceLoad();
 			}
 
 			return true;
@@ -211,11 +212,11 @@ public class ExerciseListFragment extends Fragment implements
 				goToEditExe(acmi.position, acmi.id);
 			}
 			((FragmentActivity) getActivity()).getSupportLoaderManager()
-					.getLoader(1).forceLoad();
+					.getLoader(LOADER_ID).forceLoad();
 			return true;
 		}
 		((FragmentActivity) getActivity()).getSupportLoaderManager()
-				.getLoader(1).forceLoad();
+				.getLoader(LOADER_ID).forceLoad();
 		return super.onContextItemSelected(item);
 	}
 }
