@@ -1911,8 +1911,9 @@ containing a value of this type.
         public static final int my_list_item_3=0x7f03002e;
         public static final int sherlock_spinner_dropdown_item=0x7f03002f;
         public static final int sherlock_spinner_item=0x7f030030;
-        public static final int start_training=0x7f030031;
-        public static final int training_at_progress_new_wheel_new_list=0x7f030032;
+        public static final int simple_expandable_list_item_1=0x7f030031;
+        public static final int start_training=0x7f030032;
+        public static final int training_at_progress_new_wheel_new_list=0x7f030033;
     }
     public static final class menu {
         public static final int adding_measurement=0x7f0e0000;

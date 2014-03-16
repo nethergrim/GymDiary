@@ -120,7 +120,7 @@ public class AdapterHelper {
 		int childTo[] = new int[] { android.R.id.text1 };
 
 		adapter = new SimpleExpandableListAdapter(ctx, groupData,
-				android.R.layout.simple_expandable_list_item_1, groupFrom,
+				R.layout.simple_expandable_list_item_1, groupFrom,
 				groupTo, childData, android.R.layout.simple_list_item_1,
 				childFrom, childTo);
 
