@@ -1,7 +1,7 @@
 package com.nethergrim.combogymdiary;
 
 import com.nethergrim.combogymdiary.activities.BasicMenuActivity;
-import com.nethergrim.combogymdiary.activities.MainActivity;
+import com.nethergrim.combogymdiary.activities.BasicMenuActivityNew;
 
 import android.app.Notification;
 import android.app.NotificationManager;
@@ -39,7 +39,7 @@ public class TrainingService extends Service {
 				getResources().getString(R.string.training_started),
 				System.currentTimeMillis());
 
-		Intent intent = new Intent(this, MainActivity.class);
+		Intent intent = new Intent(this, BasicMenuActivityNew.class);
 		intent.putExtra("trainingName", trainingNAME);
 		PendingIntent pIntent = PendingIntent.getActivity(this, 0, intent, 0);
 

@@ -163,11 +163,11 @@ public abstract class BasicMenuActivity extends FragmentActivity implements
 		if (id == R.id.btnMenu1) {
 			mMenuDrawer.closeMenu();
 			if (isTrainingAtProgress) {
-				Intent start = new Intent(this, TrainingAtProgress.class);
-				String str = sPref.getString(TRAINING_NAME, "");
-				start.putExtra("trainingName", str);
-				startActivity(start);
-			} else {
+//				Intent start = new Intent(this, TrainingAtProgress.class);
+//				String str = sPref.getString(TRAINING_NAME, "");
+//				start.putExtra("trainingName", str);
+//				startActivity(start);
+//			} else {
 				Intent gotoStartTraining = new Intent(this,
 						StartTrainingActivity.class);
 				startActivity(gotoStartTraining);

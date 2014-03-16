@@ -31,6 +31,8 @@ public class MeasurementsDetailedActivity extends Activity {
 
 		getActionBar().setTitle(
 				getResources().getString(R.string.measurements) + " - " + date);
+		getActionBar().setDisplayHomeAsUpEnabled(true);
+		getActionBar().setDisplayShowHomeEnabled(false);
 		initTv();
 		String weight = getResources().getString(R.string.weight);
 		String tall = getResources().getString(R.string.tall);

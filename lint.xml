@@ -3,6 +3,12 @@
     <issue id="MissingTranslation">
         <ignore path="res/values/strings.xml" />
     </issue>
+    <issue id="ResAuto">
+        <ignore path="res/layout-land/training_at_progress_new_wheel_new_list.xml" />
+    </issue>
+    <issue id="SimpleDateFormat">
+        <ignore path="src/com/nethergrim/combogymdiary/fragments/TrainingFragment.java" />
+    </issue>
     <issue id="TypographyEllipsis">
         <ignore path="res/values/strings.xml" />
     </issue>

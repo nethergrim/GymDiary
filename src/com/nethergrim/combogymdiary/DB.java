@@ -131,6 +131,30 @@ public class DB {
 
 		return mDB.query(DB_MAIN_TABLE, null, null, null, groupBy, null, null);
 	}
+	
+	public String getTrainingNameById(int _id){		
+		Cursor c =  mDB.query(DB_TRAININGS_TABLE, null, null, null, null, null, null);
+		if (c.moveToFirst()){
+			do {
+				if (c.getInt(0) == _id){
+					return c.getString(1);
+				}
+			} while ((c.moveToNext()));
+		}
+		return null;
+	}
+	
+	public String getTrainingListById(int _id){
+		Cursor c =  mDB.query(DB_TRAININGS_TABLE, null, null, null, null, null, null);
+		if (c.moveToFirst()){
+			do {
+				if (c.getInt(0) == _id){
+					return c.getString(2);
+				}
+			} while ((c.moveToNext()));
+		}
+		return null;
+	}
 
 	public int getLastReps(String _exeName, int _set) {
 		int result = 0;

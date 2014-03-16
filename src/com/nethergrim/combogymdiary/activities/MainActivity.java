@@ -17,7 +17,6 @@ public class MainActivity extends Activity {
 
 	private SharedPreferences sp;
 	private DB db;
-	private final static String TRAINING_AT_PROGRESS = "training_at_progress";
 	private final static String DATABASE_FILLED = "database_filled";
 	private InitTask task;
 
@@ -26,18 +25,17 @@ public class MainActivity extends Activity {
 		super.onConfigurationChanged(newConfig);
 		initUi();
 	}
-	
+
 	private void goNext() { // TODO здесь менять вызов главной активити
-		Intent gotoStartTraining = new Intent(this,
-				BasicMenuActivityNew.class);
+		Intent gotoStartTraining = new Intent(this, BasicMenuActivityNew.class);
 		startActivity(gotoStartTraining);
 	}
 
 	private void initUi() {
+		getActionBar().setDisplayShowHomeEnabled(false);
 		sp = PreferenceManager.getDefaultSharedPreferences(this);
 		setContentView(R.layout.activity_main);
 		getActionBar().setTitle("");
-		getActionBar().setDisplayUseLogoEnabled(false);
 		db = new DB(this);
 		db.open();
 		Cursor tmp = db.getDataExe(null, null, null, null, null, null);
@@ -49,18 +47,9 @@ public class MainActivity extends Activity {
 		tmp.close();
 	}
 
-	
-
 	@Override
 	public void onResume() {
 		super.onResume();
-		if (sp.getBoolean(TRAINING_AT_PROGRESS, false)) {
-			Intent intent_to_trainng = new Intent(this,
-					TrainingAtProgress.class);
-			startActivity(intent_to_trainng);
-			finish();
-			return;
-		}
 		if (!sp.getBoolean(DATABASE_FILLED, false)) {
 			task = new InitTask();
 			task.execute();

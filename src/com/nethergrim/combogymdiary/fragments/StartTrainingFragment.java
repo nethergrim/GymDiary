@@ -7,6 +7,7 @@ import com.nethergrim.combogymdiary.activities.BasicMenuActivityNew;
 import com.nethergrim.combogymdiary.activities.EditingProgramAtTrainingActivity;
 import com.nethergrim.combogymdiary.dialogs.DialogGoToMarket;
 
+import android.app.Activity;
 import android.app.DialogFragment;
 import android.app.Fragment;
 import android.content.Context;
@@ -46,6 +47,22 @@ public class StartTrainingFragment extends Fragment implements
 	private SimpleCursorAdapter scAdapter;
 	private static final int CM_DELETE_ID = 3;
 	private static final int CM_EDIT_ID = 4;
+	OnSelectedListener mCallback;
+
+	public interface OnSelectedListener {
+		public void onTrainingSelected(int id);
+	}
+
+	@Override
+	public void onAttach(Activity activity) {
+		super.onAttach(activity);
+		try {
+			mCallback = (OnSelectedListener) activity;
+		} catch (ClassCastException e) {
+			throw new ClassCastException(activity.toString()
+					+ " must implement OnHeadlineSelectedListener");
+		}
+	}
 
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -173,29 +190,8 @@ public class StartTrainingFragment extends Fragment implements
 		return super.onContextItemSelected(item);
 	}
 
-	public void goToTraining(int id) { // TODO here update to replace fragment
-										// to trainingFragment
-
-		Fragment fragment = new TrainingFragment();
-		getActivity().getFragmentManager().beginTransaction()
-				.replace(R.id.content_frame, fragment).commit();
-		//
-		// if (cursor.moveToFirst()) {
-		// String str = null;
-		// do {
-		// if (cursor.getInt(0) == id) {
-		// str = cursor.getString(1);
-		// }
-		// } while (cursor.moveToNext());
-		// Intent intent_to_trainng = new Intent(getActivity(),
-		// TrainingAtProgress.class);
-		// if (str != null && !str.isEmpty()) {
-		// intent_to_trainng.putExtra("trainingName", str);
-		// startActivity(intent_to_trainng);
-		//
-		//
-		// }
-		// }
+	public void goToTraining(int id) {
+		mCallback.onTrainingSelected(id);
 	}
 
 	@Override

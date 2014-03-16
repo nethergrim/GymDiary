@@ -41,6 +41,7 @@ public class AddingProgramActivity extends FragmentActivity implements
 		etName = (EditText) findViewById(R.id.etTimerValue);
 		getActionBar().setTitle(R.string.creating_program);
 		getActionBar().setDisplayHomeAsUpEnabled(true);
+		getActionBar().setDisplayShowHomeEnabled(false);
 		lvExe = (ListView) findViewById(R.id.listView1);
 		lvExe.setChoiceMode(ListView.CHOICE_MODE_MULTIPLE);
 		db = new DB(this);

@@ -3,10 +3,10 @@
     xmlns:ads="http://schemas.android.com/apk/lib/com.google.ads"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:orientation="vertical"
     android:layout_height="match_parent"
     android:background="@drawable/cream_pixels_bitmap"
-    android:gravity="center_vertical" >
+    android:gravity="center_vertical"
+    android:orientation="vertical" >
 
     <LinearLayout
         android:id="@+id/LLTop"
@@ -14,40 +14,38 @@
         android:layout_height="match_parent"
         android:layout_weight="1.2"
         android:orientation="vertical" >
-        
+
         <com.google.android.gms.ads.AdView
-		    xmlns:ads="http://schemas.android.com/apk/res-auto"
-		    android:id="@+id/adView1"
-		    android:layout_width="match_parent"
-		    android:layout_height="wrap_content"
-		    android:layout_weight="1"
-		    android:visibility="gone"
+            xmlns:ads="http://schemas.android.com/apk/res-auto"
+            android:id="@+id/adView1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            ads:adSize="BANNER"
+            ads:adUnitId="ca-app-pub-5652589022154086/4102541457"
+            android:gravity="center_horizontal"
             android:minHeight="110dp"
-		    ads:adUnitId="ca-app-pub-5652589022154086/4102541457"
-		    android:gravity="center_horizontal"
-		    ads:adSize="BANNER"/>
-        
-        <com.mobeta.android.dslv.DragSortListView 
-		    xmlns:dslv="http://schemas.android.com/apk/res/com.nethergrim.combogymdiary"
-		    android:id="@+id/lvSets"
-		    android:layout_width="match_parent"
-		    android:layout_height="match_parent"
-		    android:layout_weight="1"
-		    android:layout_margin="4dp"
-		    android:choiceMode="singleChoice"
-		    android:background="@drawable/rounded"
-		    android:dividerHeight="1px"
-		    android:padding="3dp"
-		    dslv:collapsed_height="1px"
-		    dslv:drag_enabled="true"
-		    dslv:drag_handle_id="@id/drag_handle"
-		    dslv:drag_scroll_start="0.33"
-		    dslv:drag_start_mode="onDown"
-		    dslv:float_alpha="0.6"
-		    dslv:remove_enabled="false"
-		    
-		    dslv:slide_shuffle_speed="0.3" />
-        
+            android:visibility="gone" />
+
+        <com.mobeta.android.dslv.DragSortListView
+            xmlns:dslv="http://schemas.android.com/apk/res/com.nethergrim.combogymdiary"
+            android:id="@+id/lvSets"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_margin="4dp"
+            android:layout_weight="1"
+            android:background="@drawable/rounded"
+            android:choiceMode="singleChoice"
+            android:dividerHeight="1px"
+            android:padding="3dp"
+            dslv:collapsed_height="1px"
+            dslv:drag_enabled="true"
+            dslv:drag_handle_id="@id/drag_handle"
+            dslv:drag_scroll_start="0.33"
+            dslv:drag_start_mode="onDown"
+            dslv:float_alpha="0.6"
+            dslv:remove_enabled="false"
+            dslv:slide_shuffle_speed="0.3" />
     </LinearLayout>
 
     <LinearLayout
@@ -74,27 +72,26 @@
             <LinearLayout
                 android:id="@+id/llProgressShow"
                 android:layout_width="match_parent"
+                android:layout_height="wrap_content"
                 android:layout_gravity="center_vertical"
-                android:layout_marginRight="5dp"
-                android:visibility="gone"
                 android:layout_marginLeft="5dp"
-                android:layout_height="wrap_content" >
+                android:layout_marginRight="5dp"
+                android:visibility="gone" >
 
                 <ProgressBar
                     android:id="@+id/pbTrainingRest"
                     style="?android:attr/progressBarStyleHorizontal"
                     android:layout_width="0dip"
-                    android:layout_weight="1"
+                    android:layout_height="wrap_content"
                     android:layout_gravity="center_vertical"
-                    android:layout_height="wrap_content" />
+                    android:layout_weight="1" />
 
                 <TextView
                     android:id="@+id/tvTimerCountdown"
                     android:layout_width="wrap_content"
-                    android:layout_marginLeft="8dp"
                     android:layout_height="wrap_content"
+                    android:layout_marginLeft="8dp"
                     android:textAppearance="?android:attr/textAppearanceSmall" />
-
             </LinearLayout>
 
             <TextView
@@ -107,10 +104,10 @@
 
         <LinearLayout
             android:id="@+id/LL3"
-            android:layout_width="match_parent"            
-            android:gravity="center_horizontal"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginRight="5dp"
+            android:gravity="center_horizontal"
             android:weightSum="5" >
 
             <TextView
@@ -118,13 +115,13 @@
                 android:layout_width="0dip"
                 android:layout_height="wrap_content"
                 android:layout_weight="1" />
-            
+
             <TextView
                 android:id="@+id/textView4__"
                 android:layout_width="0dip"
                 android:layout_height="match_parent"
-                android:layout_marginRight="5dp"
                 android:layout_marginLeft="5dp"
+                android:layout_marginRight="5dp"
                 android:layout_weight="2"
                 android:background="@android:color/white"
                 android:gravity="center_horizontal"
@@ -141,7 +138,6 @@
                 android:gravity="center_horizontal"
                 android:text="@string/reps"
                 android:textAppearance="?android:attr/textAppearanceSmall" />
-
         </LinearLayout>
 
         <LinearLayout
@@ -149,15 +145,15 @@
             android:layout_width="match_parent"
             android:layout_height="0dip"
             android:layout_weight="2"
-            android:weightSum="5"
             android:gravity="center_horizontal"
             android:orientation="horizontal"
+            android:weightSum="5"
             tools:ignore="UselessParent" >
 
             <LinearLayout
                 android:layout_width="0dip"
-                android:layout_weight="1"
                 android:layout_height="match_parent"
+                android:layout_weight="1"
                 android:orientation="vertical" >
 
                 <EditText
@@ -166,20 +162,17 @@
                     android:layout_height="wrap_content"
                     android:gravity="center_horizontal|center_vertical"
                     android:hint="@string/timer"
-                    android:textSize="12sp"
-                    android:inputType="number" >
-
-                    <requestFocus />
+                    android:inputType="number"
+                    android:textSize="12sp" >
                 </EditText>
 
                 <ToggleButton
                     android:id="@+id/tglTurnOff"
                     android:layout_width="match_parent"
-                    android:textSize="12sp"
                     android:layout_height="wrap_content"
                     android:textOff="@string/timer"
-                    android:textOn="@string/timer" />
-
+                    android:textOn="@string/timer"
+                    android:textSize="12sp" />
             </LinearLayout>
 
             <kankan.wheel.widget.WheelView
@@ -197,26 +190,25 @@
                 android:layout_marginLeft="5dp"
                 android:layout_marginRight="5dp"
                 android:layout_weight="2" />
-
         </LinearLayout>
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:orientation="horizontal"
+            android:layout_height="wrap_content"
             android:layout_marginTop="3dp"
+            android:baselineAligned="false"
             android:minHeight="48dp"
-            android:layout_height="wrap_content" android:baselineAligned="false">
-
+            android:orientation="horizontal" >
 
             <LinearLayout
                 android:id="@+id/llBtnBack"
+                style="@style/HabraThemeButton"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
-                style="@style/HabraThemeButton"
                 android:layout_marginLeft="-2dp"
                 android:layout_marginRight="-2dp"
-                android:orientation="horizontal"
-                android:layout_weight="0.2" >
+                android:layout_weight="0.2"
+                android:orientation="horizontal" >
 
                 <ImageView
                     android:id="@+id/imageView2"
@@ -224,18 +216,17 @@
                     android:layout_height="wrap_content"
                     android:src="@drawable/ic_action_back"
                     tools:ignore="ContentDescription" />
-
             </LinearLayout>
 
             <LinearLayout
                 android:id="@+id/llBtnSave"
-                android:layout_width="wrap_content"
                 style="@style/HabraThemeButton"
-                android:orientation="horizontal"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
                 android:layout_marginLeft="-3dp"
-                android:layout_weight="1"
                 android:layout_marginRight="-3dp"
-                android:layout_height="match_parent" >
+                android:layout_weight="1"
+                android:orientation="horizontal" >
 
                 <ImageView
                     android:id="@+id/imageView1"
@@ -243,18 +234,17 @@
                     android:layout_height="wrap_content"
                     android:src="@drawable/ic_action_save"
                     tools:ignore="ContentDescription" />
-                
             </LinearLayout>
 
             <LinearLayout
                 android:id="@+id/llBtnForward"
+                style="@style/HabraThemeButton"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:layout_marginLeft="-2dp"
                 android:layout_marginRight="-2dp"
-                style="@style/HabraThemeButton"
-                android:orientation="horizontal"
-                android:layout_weight="0.2" >
+                android:layout_weight="0.2"
+                android:orientation="horizontal" >
 
                 <ImageView
                     android:id="@+id/imageView3"
@@ -262,11 +252,8 @@
                     android:layout_height="wrap_content"
                     android:src="@drawable/ic_action_forward"
                     tools:ignore="ContentDescription" />
-
             </LinearLayout>
-
         </LinearLayout>
-
     </LinearLayout>
 
 </LinearLayout>

@@ -33,6 +33,7 @@ public class AddingExersisesActivity extends Activity implements
 		setContentView(R.layout.adding_exersise);
 		getActionBar().setTitle(R.string.create_new_exercise);
 		getActionBar().setDisplayHomeAsUpEnabled(true);
+		getActionBar().setDisplayShowHomeEnabled(false);
 		btnCreate = (Button) findViewById(R.id.btnSave);
 		btnCreate.setOnClickListener(this);
 		etName = (EditText) findViewById(R.id.etTimerValue);

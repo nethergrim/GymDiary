@@ -25,6 +25,8 @@ public class CatalogDetailedActivity extends Activity {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_catalog_detailed);
+		getActionBar().setDisplayHomeAsUpEnabled(true);
+		getActionBar().setDisplayShowHomeEnabled(false);
 		tvMain = (TextView) findViewById(R.id.tvInfoExe);
 		imageV = (ImageView) findViewById(R.id.ivMain);
 		Intent intent = getIntent();

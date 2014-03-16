@@ -36,6 +36,7 @@ public class SettingsActivity extends PreferenceActivity implements MyInterface 
 		ActionBar bar = getActionBar();
 		db = new DB(this);
 		db.open();
+		getActionBar().setDisplayShowHomeEnabled(false);
 		bar.setDisplayHomeAsUpEnabled(true);
 		bar.setTitle(R.string.settingsButtonString);
 		dlg2 = new DialogRestoreFromBackup();

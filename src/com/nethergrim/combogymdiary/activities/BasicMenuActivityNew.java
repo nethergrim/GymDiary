@@ -1,22 +1,31 @@
 package com.nethergrim.combogymdiary.activities;
 
 import com.google.android.gms.ads.AdView;
+import com.nethergrim.combogymdiary.Backuper;
+import com.nethergrim.combogymdiary.DB;
 import com.nethergrim.combogymdiary.R;
+import com.nethergrim.combogymdiary.TrainingService;
+import com.nethergrim.combogymdiary.dialogs.DialogExitFromTraining.MyInterface;
 import com.nethergrim.combogymdiary.dialogs.DialogInfo;
+import com.nethergrim.combogymdiary.drive.DiskCreateFolderActivity;
 import com.nethergrim.combogymdiary.fragments.CatalogFragment;
 import com.nethergrim.combogymdiary.fragments.ExerciseListFragment;
 import com.nethergrim.combogymdiary.fragments.HistoryFragment;
 import com.nethergrim.combogymdiary.fragments.MeasurementsFragment;
 import com.nethergrim.combogymdiary.fragments.StartTrainingFragment;
 import com.nethergrim.combogymdiary.fragments.StatisticsFragment;
+import com.nethergrim.combogymdiary.fragments.TrainingFragment;
+import com.nethergrim.combogymdiary.fragments.StartTrainingFragment.OnSelectedListener;
 import com.yandex.metrica.Counter;
 
 import android.app.Fragment;
+import android.app.NotificationManager;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.SharedPreferences.Editor;
 import android.content.res.Configuration;
+import android.database.Cursor;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.Bundle;
@@ -32,7 +41,8 @@ import android.widget.ArrayAdapter;
 import android.widget.FrameLayout;
 import android.widget.ListView;
 
-public class BasicMenuActivityNew extends FragmentActivity {
+public class BasicMenuActivityNew extends FragmentActivity implements
+		OnSelectedListener, MyInterface {
 	protected final String LOG_TAG = "myLogs";
 	protected DrawerLayout mDrawerLayout;
 	protected ListView mDrawerList;
@@ -42,8 +52,9 @@ public class BasicMenuActivityNew extends FragmentActivity {
 	protected SharedPreferences sPref;
 	public final static String TRAINING_AT_PROGRESS = "training_at_progress";
 	public final static String LIST_OF_SETS = "list_of_sets";
+	public final static String TRAINING_ID = "training_id";
 	public final static String TRAINING_NAME = "training_name";
-	public final static String TRA_ID = "training_id";
+	public final static String TRA_ID = "tra_id";
 	public final static String TRAINING_LIST = "training_list";
 	public final static String TIMER_IS_ON = "timerIsOn";
 	public final static String MY_AD_UNIT_ID = "ca-app-pub-5652589022154086/4102541457";
@@ -64,6 +75,9 @@ public class BasicMenuActivityNew extends FragmentActivity {
 	protected FrameLayout content_frame;
 	private int FRAGMENT_NUMBER = 0;
 	private final static String FRAGMENT_ID = "fragment_id";
+	private static boolean IF_TRAINING_STARTED = false;
+	private SharedPreferences sp;
+	private ArrayAdapter<String> adapter;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -76,10 +90,12 @@ public class BasicMenuActivityNew extends FragmentActivity {
 
 		mDrawerLayout.setDrawerShadow(R.drawable.drawer_shadow,
 				GravityCompat.START);
-		mDrawerList.setAdapter(new ArrayAdapter<String>(this,
-				R.layout.menu_list_item, listButtons));
+		adapter = new ArrayAdapter<String>(this, R.layout.menu_list_item,
+				listButtons);
+		mDrawerList.setAdapter(adapter);
 		mDrawerList.setOnItemClickListener(new DrawerItemClickListener());
 		getActionBar().setDisplayHomeAsUpEnabled(true);
+		getActionBar().setDisplayShowHomeEnabled(false);
 		getActionBar().setHomeButtonEnabled(true);
 		mDrawerToggle = new ActionBarDrawerToggle(this, /* host Activity */
 		mDrawerLayout, /* DrawerLayout object */
@@ -99,10 +115,23 @@ public class BasicMenuActivityNew extends FragmentActivity {
 		if (savedInstanceState == null) {
 			selectItem(0);
 		}
-
-		StartTrainingFragment fragment = new StartTrainingFragment();
-		getFragmentManager().beginTransaction()
-				.add(R.id.content_frame, fragment).commit();
+		sp = PreferenceManager.getDefaultSharedPreferences(this);
+		Fragment frag = null;
+		if (sp.getBoolean(TRAINING_AT_PROGRESS, false)) {
+			frag = new TrainingFragment();
+			Bundle args = new Bundle();
+			args.putInt(TRAINING_ID, sp.getInt(TRA_ID, 0));
+			frag.setArguments(args);
+			listButtons[0] = getResources().getString(
+					R.string.continue_training);
+			adapter.notifyDataSetChanged();
+			set_TRAINING_STARTED(true);
+		} else {
+			frag = new StartTrainingFragment();
+		}
+		if (frag != null)
+			getFragmentManager().beginTransaction()
+					.add(R.id.content_frame, frag).commit();
 
 	}
 
@@ -138,26 +167,34 @@ public class BasicMenuActivityNew extends FragmentActivity {
 		}
 	}
 
-	public void selectItem(int position) { // TODO here select fragment
+	public void selectItem(int position) {
 		mDrawerList.setItemChecked(position, true);
 		mDrawerLayout.closeDrawer(mDrawerList);
 		Fragment fragment = null;
 		switch (position) {
 		case 0:
 			FRAGMENT_NUMBER = 0;
-			fragment = new StartTrainingFragment();
+			if (get_TRAINING_STARTED()) {
+				fragment = new TrainingFragment();
+				Bundle args = new Bundle();
+				args.putInt(TRAINING_ID, sp.getInt(TRA_ID, 0));
+				fragment.setArguments(args);
+				listButtons[0] = getResources().getString(
+						R.string.continue_training);
+				adapter.notifyDataSetChanged();
+			} else {
+				fragment = new StartTrainingFragment();
+			}
 			break;
 		case 1:
 			FRAGMENT_NUMBER = 1;
 			fragment = new ExerciseListFragment();
 			break;
 		case 6:
-			FRAGMENT_NUMBER = 6;
 			Intent intent = new Intent(this, SettingsActivity.class);
 			startActivity(intent);
 			break;
 		case 7:
-			FRAGMENT_NUMBER = 7;
 			DialogInfo dialog = new DialogInfo();
 			dialog.show(getFragmentManager(), "info");
 			break;
@@ -205,7 +242,6 @@ public class BasicMenuActivityNew extends FragmentActivity {
 		if (sPref.contains(TRAINING_AT_PROGRESS)) {
 			isTrainingAtProgress = sPref
 					.getBoolean(TRAINING_AT_PROGRESS, false);
-
 		} else {
 			Editor editor = sPref.edit();
 			editor.putBoolean(TRAINING_AT_PROGRESS, false);
@@ -215,9 +251,7 @@ public class BasicMenuActivityNew extends FragmentActivity {
 		} else {
 		}
 		Counter.sharedInstance().onResumeActivity(this);
-		if (adView != null) {
-			adView.resume();
-		}
+
 	}
 
 	@Override
@@ -252,5 +286,67 @@ public class BasicMenuActivityNew extends FragmentActivity {
 	public void onRestoreInstanceState(Bundle restore) {
 		selectItem(restore.getInt(FRAGMENT_ID));
 		super.onRestoreInstanceState(restore);
+	}
+
+	@Override
+	public void onTrainingSelected(int id) {
+		TrainingFragment newFragment = new TrainingFragment();
+		Bundle args = new Bundle();
+		args.putInt(TRAINING_ID, id);
+		newFragment.setArguments(args);
+
+		getFragmentManager().beginTransaction()
+				.replace(R.id.content_frame, newFragment).commit();
+		set_TRAINING_STARTED(true);
+		listButtons[0] = getResources().getString(R.string.continue_training);
+		adapter.notifyDataSetChanged();
+	}
+
+	public static boolean get_TRAINING_STARTED() {
+		return IF_TRAINING_STARTED;
+	}
+
+	public static void set_TRAINING_STARTED(boolean iF_TRAINING_STARTED) {
+		IF_TRAINING_STARTED = iF_TRAINING_STARTED;
+	}
+
+	@Override
+	public void onChoose() {
+		DB db = new DB(this);
+		db.open();
+		Cursor tmpCursor = db.getDataMain(null, null, null, null, null, null);
+		if (tmpCursor.getCount() > 10) {
+			Backuper backUP = new Backuper();
+			backUP.backupToSd();
+		}
+
+		sp.edit().putBoolean(TRAINING_AT_PROGRESS, false).apply();
+		sp.edit().putInt(USER_CLICKED_POSITION, 0).apply();
+		stopService(new Intent(this, TrainingService.class));
+
+		NotificationManager notificationManager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
+		notificationManager.cancelAll();
+
+		if (PreferenceManager.getDefaultSharedPreferences(this)
+				.getBoolean(AUTO_BACKUP_TO_DRIVE, true)) {
+			Intent backupIntent = new Intent(this,
+					DiskCreateFolderActivity.class);
+			startActivity(backupIntent);
+		}
+
+		if (sp.contains(TRAININGS_DONE_NUM)) {
+			int tmp = sp.getInt(TRAININGS_DONE_NUM, 0);
+			tmp++;
+			sp.edit().putInt(TRAININGS_DONE_NUM, tmp).apply();
+		} else {
+			sp.edit().putInt(TRAININGS_DONE_NUM, 1).apply();
+		}
+		set_TRAINING_STARTED(false);
+		getFragmentManager().beginTransaction()
+		.replace(R.id.content_frame, new StartTrainingFragment()).commit();
+		listButtons[0] = getResources().getString(
+				R.string.startTrainingButtonString);
+		adapter.notifyDataSetChanged();
+
 	}
 }

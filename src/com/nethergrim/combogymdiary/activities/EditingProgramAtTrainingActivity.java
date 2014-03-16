@@ -48,6 +48,8 @@ public class EditingProgramAtTrainingActivity extends FragmentActivity
 		ifAddingExe = in.getBooleanExtra("ifAddingExe", false);
 		traName = in.getStringExtra("trName");
 		traID = in.getLongExtra("trID", 0);
+		getActionBar().setDisplayHomeAsUpEnabled(true);
+		getActionBar().setDisplayShowHomeEnabled(false);
 		String[] from = new String[] { DB.EXE_NAME };
 		int[] to = new int[] { android.R.id.text1 };
 		scAdapter = new SimpleCursorAdapter(this,

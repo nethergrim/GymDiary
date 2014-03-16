@@ -38,6 +38,8 @@ public class HistoryDetailedActivity extends Activity {
 
 	private void setupActionBar() {
 		getActionBar().setTitle(trName + " (" + trDate + ")");
+		getActionBar().setDisplayHomeAsUpEnabled(true);
+		getActionBar().setDisplayShowHomeEnabled(false);
 	}
 
 	private void setupCursor() {

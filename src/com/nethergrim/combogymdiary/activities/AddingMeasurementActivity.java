@@ -29,6 +29,8 @@ public class AddingMeasurementActivity extends Activity {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_adding_measurement);
 		getActionBar().setTitle(R.string.adding_measurements);
+		getActionBar().setDisplayHomeAsUpEnabled(true);
+		getActionBar().setDisplayShowHomeEnabled(false);
 		etWeight = (EditText) findViewById(R.id.etMeasureWeight);
 		etTall = (EditText) findViewById(R.id.etMeasureTall);
 		etChest = (EditText) findViewById(R.id.etMeasureChest);
