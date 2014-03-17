@@ -5,6 +5,7 @@
     android:paddingLeft="16dp"
     android:paddingRight="56dp"
     android:layout_height="48dp"
+    android:background="@drawable/list_selector"
     android:gravity="left|center_vertical"
     android:textColor="@color/white"
     android:textSize="18sp" >

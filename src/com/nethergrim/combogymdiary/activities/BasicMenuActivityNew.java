@@ -78,6 +78,7 @@ public class BasicMenuActivityNew extends FragmentActivity implements
 	private static boolean IF_TRAINING_STARTED = false;
 	private SharedPreferences sp;
 	private ArrayAdapter<String> adapter;
+	private int previouslyChecked = 0;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -132,7 +133,7 @@ public class BasicMenuActivityNew extends FragmentActivity implements
 		if (frag != null)
 			getFragmentManager().beginTransaction()
 					.add(R.id.content_frame, frag).commit();
-
+		mDrawerList.setItemChecked(0, true);		
 	}
 
 	@Override
@@ -168,7 +169,7 @@ public class BasicMenuActivityNew extends FragmentActivity implements
 	}
 
 	public void selectItem(int position) {
-		mDrawerList.setItemChecked(position, true);
+
 		mDrawerLayout.closeDrawer(mDrawerList);
 		Fragment fragment = null;
 		switch (position) {
@@ -185,37 +186,46 @@ public class BasicMenuActivityNew extends FragmentActivity implements
 			} else {
 				fragment = new StartTrainingFragment();
 			}
+			previouslyChecked = 0;
 			break;
 		case 1:
 			FRAGMENT_NUMBER = 1;
 			fragment = new ExerciseListFragment();
+			previouslyChecked = 1;
 			break;
 		case 6:
 			Intent intent = new Intent(this, SettingsActivity.class);
 			startActivity(intent);
+			mDrawerList.setItemChecked(previouslyChecked, true);
 			break;
 		case 7:
 			DialogInfo dialog = new DialogInfo();
 			dialog.show(getFragmentManager(), "info");
+			mDrawerList.setItemChecked(previouslyChecked, true);
 			break;
 		case 2:
 			FRAGMENT_NUMBER = 2;
 			fragment = new HistoryFragment();
+			previouslyChecked = 2;			
 			break;
 		case 3:
 			FRAGMENT_NUMBER = 3;
 			fragment = new MeasurementsFragment();
+			previouslyChecked = 3;
 			break;
 		case 4:
 			FRAGMENT_NUMBER = 4;
 			fragment = new CatalogFragment();
+			previouslyChecked = 4;
 			break;
 		case 5:
 			FRAGMENT_NUMBER = 5;
 			fragment = new StatisticsFragment();
+			previouslyChecked = 5;
 			break;
 		}
 		if (fragment != null) {
+			mDrawerList.setItemChecked(position, true);
 			getFragmentManager().beginTransaction()
 					.replace(R.id.content_frame, fragment).commit();
 		}
@@ -327,8 +337,8 @@ public class BasicMenuActivityNew extends FragmentActivity implements
 		NotificationManager notificationManager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
 		notificationManager.cancelAll();
 
-		if (PreferenceManager.getDefaultSharedPreferences(this)
-				.getBoolean(AUTO_BACKUP_TO_DRIVE, true)) {
+		if (PreferenceManager.getDefaultSharedPreferences(this).getBoolean(
+				AUTO_BACKUP_TO_DRIVE, true)) {
 			Intent backupIntent = new Intent(this,
 					DiskCreateFolderActivity.class);
 			startActivity(backupIntent);
@@ -343,7 +353,8 @@ public class BasicMenuActivityNew extends FragmentActivity implements
 		}
 		set_TRAINING_STARTED(false);
 		getFragmentManager().beginTransaction()
-		.replace(R.id.content_frame, new StartTrainingFragment()).commit();
+				.replace(R.id.content_frame, new StartTrainingFragment())
+				.commit();
 		listButtons[0] = getResources().getString(
 				R.string.startTrainingButtonString);
 		adapter.notifyDataSetChanged();
