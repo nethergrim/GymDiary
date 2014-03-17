@@ -47,7 +47,8 @@ public class StartTrainingFragment extends Fragment implements
 	private SimpleCursorAdapter scAdapter;
 	private static final int CM_DELETE_ID = 3;
 	private static final int CM_EDIT_ID = 4;
-	OnSelectedListener mCallback;
+	private OnSelectedListener mCallback;
+	private int LOADER_ID = 0;
 
 	public interface OnSelectedListener {
 		public void onTrainingSelected(int id);
@@ -99,6 +100,8 @@ public class StartTrainingFragment extends Fragment implements
 				goToTraining((int) id);
 			}
 		});
+		((FragmentActivity) getActivity()).getSupportLoaderManager()
+				.initLoader(LOADER_ID, null, this);
 		return v;
 	}
 
@@ -109,14 +112,13 @@ public class StartTrainingFragment extends Fragment implements
 
 	public void onStart() {
 		super.onStart();
-		((FragmentActivity) getActivity()).getSupportLoaderManager()
-				.initLoader(0, null, this);
+
 	}
 
 	public void onResume() {
 		super.onResume();
 		((FragmentActivity) getActivity()).getSupportLoaderManager()
-				.getLoader(0).forceLoad();
+				.getLoader(LOADER_ID).forceLoad();
 		SharedPreferences sp = PreferenceManager
 				.getDefaultSharedPreferences(getActivity());
 		if (sp.contains(BasicMenuActivityNew.TRAININGS_DONE_NUM)
@@ -169,11 +171,10 @@ public class StartTrainingFragment extends Fragment implements
 						Toast.makeText(getActivity(),
 								getResources().getString(R.string.deleted),
 								Toast.LENGTH_SHORT).show();
-						((FragmentActivity) getActivity())
-								.getSupportLoaderManager().getLoader(0)
-								.forceLoad();
 					}
 				} while (cursor.moveToNext());
+				((FragmentActivity) getActivity()).getSupportLoaderManager()
+						.getLoader(LOADER_ID).forceLoad();
 				return true;
 			}
 		} else if (item.getItemId() == CM_EDIT_ID) {
@@ -184,7 +185,7 @@ public class StartTrainingFragment extends Fragment implements
 			intent.putExtra("ifAddingExe", false);
 			startActivityForResult(intent, 1);
 			((FragmentActivity) getActivity()).getSupportLoaderManager()
-					.getLoader(0).forceLoad();
+					.getLoader(LOADER_ID).forceLoad();
 			return true;
 		}
 		return super.onContextItemSelected(item);

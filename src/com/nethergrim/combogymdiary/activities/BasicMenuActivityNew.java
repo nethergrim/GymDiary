@@ -133,7 +133,7 @@ public class BasicMenuActivityNew extends FragmentActivity implements
 		if (frag != null)
 			getFragmentManager().beginTransaction()
 					.add(R.id.content_frame, frag).commit();
-		mDrawerList.setItemChecked(0, true);		
+		mDrawerList.setItemChecked(0, true);
 	}
 
 	@Override
@@ -206,7 +206,7 @@ public class BasicMenuActivityNew extends FragmentActivity implements
 		case 2:
 			FRAGMENT_NUMBER = 2;
 			fragment = new HistoryFragment();
-			previouslyChecked = 2;			
+			previouslyChecked = 2;
 			break;
 		case 3:
 			FRAGMENT_NUMBER = 3;
@@ -261,7 +261,6 @@ public class BasicMenuActivityNew extends FragmentActivity implements
 		} else {
 		}
 		Counter.sharedInstance().onResumeActivity(this);
-
 	}
 
 	@Override

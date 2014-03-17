@@ -208,7 +208,9 @@
             android:exported="true" />
         
         
-        <activity android:name=".activities.BasicMenuActivityNew"></activity>
+        <activity android:name=".activities.BasicMenuActivityNew"
+            android:configChanges="keyboardHidden|orientation|screenSize"
+            ></activity>
 
 
     </application>
