@@ -4,7 +4,7 @@
     package="com.nethergrim.combogymdiary"
     android:installLocation="auto"
     android:versionCode="76"
-    android:versionName="1.4.0(test)" >
+    android:versionName="1.4.0.1" >
 
     <uses-sdk
         android:minSdkVersion="15"
@@ -206,13 +206,9 @@
             android:name="com.nethergrim.combogymdiary.provider.MetricaContentProvider"
             android:authorities="com.nethergrim.combogymdiary.MetricaContentProvider"
             android:exported="true" />
-        
-        
-        <activity android:name=".activities.BasicMenuActivityNew"
-            android:configChanges="keyboardHidden|orientation|screenSize"
-            ></activity>
 
-
+        <activity android:name=".activities.BasicMenuActivityNew" >
+        </activity>
     </application>
 
 </manifest>

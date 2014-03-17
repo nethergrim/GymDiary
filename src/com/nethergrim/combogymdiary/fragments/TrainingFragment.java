@@ -3,6 +3,7 @@ package com.nethergrim.combogymdiary.fragments;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.StringTokenizer;
 
 import kankan.wheel.widget.WheelView;
 import kankan.wheel.widget.adapters.AbstractWheelTextAdapter;
@@ -60,9 +61,12 @@ public class TrainingFragment extends Fragment implements
 	public final static String TRAINING_NAME = "training_name";
 	public final static String TRA_ID = "tra_id";
 	public final static String TRAININGS_DONE_NUM = "trainings_done_num";
+	protected final static String MINUTES = "minutes";
+	protected final static String SECONDS = "seconds";
 	public final static String AUTO_BACKUP_TO_DRIVE = "settingAutoBackup";
 	public final static String USER_CLICKED_POSITION = "user_clicked_position";
 	public final static String TRAINING_LIST = "training_list";
+	protected final static String LIST_OF_SETS = "list_of_sets";
 	public final static String PROGRESS = "progress";
 	public final static String TIMER_IS_ON = "timerIsOn";
 	private ToggleButton tglTimerOn;
@@ -92,6 +96,7 @@ public class TrainingFragment extends Fragment implements
 	private Animation anim = null;
 	private DragSortListView list;
 	private int trainingId = 0;
+	private boolean isTrainingAtProgress = false;
 
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -101,6 +106,7 @@ public class TrainingFragment extends Fragment implements
 		db.open();
 		sp = PreferenceManager.getDefaultSharedPreferences(getActivity());
 		trainingId = getArguments().getInt(BasicMenuActivityNew.TRAINING_ID);
+		isTrainingAtProgress = sp.getBoolean(TRAINING_AT_PROGRESS, false);
 		sp.edit().putInt(TRA_ID, trainingId).apply();
 		sp.edit().putBoolean(TRAINING_AT_PROGRESS, true).apply();
 		traName = db.getTrainingNameById(trainingId);
@@ -282,6 +288,10 @@ public class TrainingFragment extends Fragment implements
 		}
 		vibrateLenght *= 1000;
 		timerHandler.postDelayed(timerRunnable, 0);
+		if (isTrainingAtProgress) {
+			restoreTimerFromPreferences();
+			restoreSetsFromPreferences();
+		}
 	}
 
 	@SuppressLint("HandlerLeak")
@@ -333,6 +343,9 @@ public class TrainingFragment extends Fragment implements
 	public void onPause() {
 		super.onPause();
 		timerHandler.removeCallbacks(timerRunnable);
+		saveSetsToPreferences();
+		saveTimerToPregerences();
+		isTrainingAtProgress = true;
 	}
 
 	public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
@@ -605,5 +618,43 @@ public class TrainingFragment extends Fragment implements
 			timerHandler.postDelayed(this, 500);
 		}
 	};
+
+	public void saveTimerToPregerences() {
+		sp.edit().putInt(SECONDS, seconds).apply();
+		sp.edit().putInt(MINUTES, minutes).apply();
+	}
+
+	public void restoreTimerFromPreferences() {
+		minDelta = sp.getInt(MINUTES, 0);
+		secDelta = sp.getInt(SECONDS, 0);
+		sp.edit().putInt(MINUTES, 0).apply();
+		sp.edit().putInt(SECONDS, 0).apply();
+	}
+
+	public void saveSetsToPreferences() {
+
+		StringBuilder str = new StringBuilder();
+		for (int i = 0; i < alSet.size(); i++) {
+			str.append(alSet.get(i)).append(",");
+		}
+		sp.edit().putString(LIST_OF_SETS, str.toString()).apply();
+	}
+
+	public void restoreSetsFromPreferences() {
+		if (sp.contains(LIST_OF_SETS)) {
+			String savedString = sp.getString(LIST_OF_SETS, "");
+			StringTokenizer st = new StringTokenizer(savedString, ",");
+			ArrayList<Integer> array = new ArrayList<Integer>();
+			int size = st.countTokens();
+			for (int i = 0; i < size; i++) {
+				try {
+					array.add(Integer.parseInt(st.nextToken()));
+				} catch (Exception e) {
+					array.add(0);
+				}
+			}
+			alSet = array;
+		}
+	}
 
 }

@@ -69,8 +69,7 @@ public class ExerciseListFragment extends Fragment implements
 				goToEditExe(position, id);
 			}
 		});
-		((FragmentActivity) getActivity()).getSupportLoaderManager()
-				.initLoader(LOADER_ID, null, this);
+
 		return v;
 	}
 
@@ -116,6 +115,8 @@ public class ExerciseListFragment extends Fragment implements
 	public void onResume() {
 		super.onResume();
 		sp = PreferenceManager.getDefaultSharedPreferences(getActivity());
+		((FragmentActivity) getActivity()).getSupportLoaderManager()
+				.initLoader(LOADER_ID, null, this);
 		((FragmentActivity) getActivity()).getSupportLoaderManager()
 				.getLoader(LOADER_ID).forceLoad();
 

@@ -71,7 +71,6 @@ public class BasicMenuActivityNew extends FragmentActivity implements
 	public final static String MINUTES = "minutes";
 	public final static String SECONDS = "seconds";
 	protected AdView adView;
-	protected boolean isTrainingAtProgress;
 	protected FrameLayout content_frame;
 	private int FRAGMENT_NUMBER = 0;
 	private final static String FRAGMENT_ID = "fragment_id";
@@ -81,6 +80,12 @@ public class BasicMenuActivityNew extends FragmentActivity implements
 	private int previouslyChecked = 0;
 
 	@Override
+	public void onConfigurationChanged(Configuration newConfig) {
+		super.onConfigurationChanged(newConfig);
+		mDrawerToggle.onConfigurationChanged(newConfig);
+	}
+
+	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.menu);
@@ -88,7 +93,6 @@ public class BasicMenuActivityNew extends FragmentActivity implements
 		content_frame = (FrameLayout) findViewById(R.id.content_frame);
 		mDrawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
 		mDrawerList = (ListView) findViewById(R.id.left_drawer);
-
 		mDrawerLayout.setDrawerShadow(R.drawable.drawer_shadow,
 				GravityCompat.START);
 		adapter = new ArrayAdapter<String>(this, R.layout.menu_list_item,
@@ -113,9 +117,6 @@ public class BasicMenuActivityNew extends FragmentActivity implements
 			}
 		};
 		mDrawerLayout.setDrawerListener(mDrawerToggle);
-		if (savedInstanceState == null) {
-			selectItem(0);
-		}
 		sp = PreferenceManager.getDefaultSharedPreferences(this);
 		Fragment frag = null;
 		if (sp.getBoolean(TRAINING_AT_PROGRESS, false)) {
@@ -134,6 +135,11 @@ public class BasicMenuActivityNew extends FragmentActivity implements
 			getFragmentManager().beginTransaction()
 					.add(R.id.content_frame, frag).commit();
 		mDrawerList.setItemChecked(0, true);
+
+		if (savedInstanceState == null) {
+			selectItem(0);
+		}
+
 	}
 
 	@Override
@@ -248,42 +254,13 @@ public class BasicMenuActivityNew extends FragmentActivity implements
 	@Override
 	protected void onResume() {
 		super.onResume();
-		sPref = PreferenceManager.getDefaultSharedPreferences(this);
-		if (sPref.contains(TRAINING_AT_PROGRESS)) {
-			isTrainingAtProgress = sPref
-					.getBoolean(TRAINING_AT_PROGRESS, false);
-		} else {
-			Editor editor = sPref.edit();
-			editor.putBoolean(TRAINING_AT_PROGRESS, false);
-			editor.commit();
-		}
-		if (isTrainingAtProgress) {
-		} else {
-		}
 		Counter.sharedInstance().onResumeActivity(this);
 	}
 
 	@Override
 	protected void onPause() {
 		super.onPause();
-		if (adView != null) {
-			adView.pause();
-		}
 		Counter.sharedInstance().onPauseActivity(this);
-	}
-
-	protected void onDestroy() {
-		super.onDestroy();
-		if (adView != null) {
-			adView.destroy();
-		}
-	}
-
-	@Override
-	public void onConfigurationChanged(Configuration newConfig) {
-
-		super.onConfigurationChanged(newConfig);
-		mDrawerToggle.onConfigurationChanged(newConfig);
 	}
 
 	@Override
@@ -328,6 +305,7 @@ public class BasicMenuActivityNew extends FragmentActivity implements
 			Backuper backUP = new Backuper();
 			backUP.backupToSd();
 		}
+		db.close();
 
 		sp.edit().putBoolean(TRAINING_AT_PROGRESS, false).apply();
 		sp.edit().putInt(USER_CLICKED_POSITION, 0).apply();
