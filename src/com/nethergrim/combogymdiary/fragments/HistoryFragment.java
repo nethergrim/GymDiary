@@ -76,7 +76,6 @@ public class HistoryFragment extends Fragment implements
 				goToDetailed(position, id, date, traName);
 			}
 		});
-
 		return v;
 	}
 

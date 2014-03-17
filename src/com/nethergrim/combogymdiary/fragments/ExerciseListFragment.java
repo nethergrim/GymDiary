@@ -2,12 +2,11 @@ package com.nethergrim.combogymdiary.fragments;
 
 import com.nethergrim.combogymdiary.DB;
 import com.nethergrim.combogymdiary.R;
-import com.nethergrim.combogymdiary.activities.AddingExersisesActivity;
 import com.nethergrim.combogymdiary.activities.BasicMenuActivity;
+import com.nethergrim.combogymdiary.dialogs.DialogAddExercise;
 
 import android.app.Fragment;
 import android.content.Context;
-import android.content.Intent;
 import android.content.SharedPreferences;
 import android.database.Cursor;
 import android.os.Bundle;
@@ -69,7 +68,8 @@ public class ExerciseListFragment extends Fragment implements
 				goToEditExe(position, id);
 			}
 		});
-
+		((FragmentActivity) getActivity()).getSupportLoaderManager()
+				.initLoader(LOADER_ID, null, this);
 		return v;
 	}
 
@@ -86,18 +86,15 @@ public class ExerciseListFragment extends Fragment implements
 				cursor_exe.moveToNext();
 			}
 			String name = cursor_exe.getString(1);
-			Toast.makeText(getActivity(), "Editing: " + name,
-					Toast.LENGTH_SHORT).show();
 			String timV = cursor_exe.getString(2);
-			cursor_exe.close();
-			Intent intent_exe_edit = new Intent(getActivity(),
-					AddingExersisesActivity.class);
-			intent_exe_edit.putExtra("exeName", name);
-			intent_exe_edit.putExtra("timerValue", timV);
-			intent_exe_edit.putExtra("exePosition", position);
-			intent_exe_edit.putExtra("exeID", ID);
-			startActivity(intent_exe_edit);
-
+			Bundle args = new Bundle();
+			args.putString("exeName", name);
+			args.putString("timerValue", timV);
+			args.putInt("exePosition", position);
+			args.putLong("exeID", ID);
+			DialogAddExercise dialog = new DialogAddExercise();
+			dialog.setArguments(args);
+			dialog.show(getFragmentManager(), "tag");
 		}
 	}
 
@@ -116,10 +113,7 @@ public class ExerciseListFragment extends Fragment implements
 		super.onResume();
 		sp = PreferenceManager.getDefaultSharedPreferences(getActivity());
 		((FragmentActivity) getActivity()).getSupportLoaderManager()
-				.initLoader(LOADER_ID, null, this);
-		((FragmentActivity) getActivity()).getSupportLoaderManager()
 				.getLoader(LOADER_ID).forceLoad();
-
 	}
 
 	public void onPause() {
@@ -138,10 +132,11 @@ public class ExerciseListFragment extends Fragment implements
 	public boolean onOptionsItemSelected(MenuItem item) {
 		int id = item.getItemId();
 		if (id == R.id.itemAddNewExe) {
-			Intent gotoAddingExersisesActivity = new Intent(getActivity(),
-					AddingExersisesActivity.class);
-			startActivity(gotoAddingExersisesActivity);
-
+			// Intent gotoAddingExersisesActivity = new Intent(getActivity(),
+			// AddingExersisesActivity.class);
+			// startActivity(gotoAddingExersisesActivity);
+			DialogAddExercise dialog = new DialogAddExercise();
+			dialog.show(getFragmentManager(), "tag");
 			return true;
 		}
 		return false;
@@ -154,7 +149,9 @@ public class ExerciseListFragment extends Fragment implements
 
 	@Override
 	public void onLoadFinished(Loader<Cursor> loader, Cursor cursor) {
-		scAdapter.swapCursor(cursor);
+		if (!cursor.isClosed()) {
+			scAdapter.swapCursor(cursor);
+		}
 	}
 
 	@Override
@@ -172,8 +169,8 @@ public class ExerciseListFragment extends Fragment implements
 
 		@Override
 		public Cursor loadInBackground() {
-			cursor = db.getDataExe(null, null, null, null, null, DB.EXE_NAME);
-			return cursor;
+
+			return db.getDataExe(null, null, null, null, null, DB.EXE_NAME);
 		}
 	}
 
@@ -216,8 +213,6 @@ public class ExerciseListFragment extends Fragment implements
 					.getLoader(LOADER_ID).forceLoad();
 			return true;
 		}
-		((FragmentActivity) getActivity()).getSupportLoaderManager()
-				.getLoader(LOADER_ID).forceLoad();
 		return super.onContextItemSelected(item);
 	}
 }

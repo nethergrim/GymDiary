@@ -1686,7 +1686,7 @@ containing a value of this type.
         public static final int action_add_measurements=0x7f0600ca;
         public static final int adView1=0x7f0600ae;
         public static final int adView2=0x7f06004a;
-        public static final int adView3=0x7f06006f;
+        public static final int adView3=0x7f060072;
         public static final int adView5=0x7f06005c;
         public static final int bottom=0x7f06001c;
         public static final int btnCatalog=0x7f0600a1;
@@ -1698,7 +1698,7 @@ containing a value of this type.
         public static final int btnMenu4=0x7f0600a5;
         public static final int btnMenuGraphs=0x7f0600a3;
         public static final int btnNo=0x7f06007a;
-        public static final int btnSave=0x7f060073;
+        public static final int btnSave=0x7f060071;
         public static final int btnYes=0x7f060079;
         public static final int buttonAddingProgram=0x7f060074;
         public static final int city_name=0x7f060078;
@@ -1707,7 +1707,7 @@ containing a value of this type.
         public static final int disableHome=0x7f060012;
         public static final int drag_handle=0x7f06008e;
         public static final int drawer_layout=0x7f060095;
-        public static final int editText2=0x7f060071;
+        public static final int editText2=0x7f060070;
         public static final int edit_query=0x7f06003d;
         public static final int elvMain=0x7f06005b;
         public static final int end=0x7f06001e;
@@ -1720,7 +1720,7 @@ containing a value of this type.
         public static final int etMeasureWaist=0x7f060052;
         public static final int etMeasureWeight=0x7f06004c;
         public static final int etNewNameOfProgram=0x7f060061;
-        public static final int etTimerValue=0x7f060072;
+        public static final int etTimerValue=0x7f06006f;
         public static final int etTimerValueAtTraining=0x7f0600bb;
         public static final int flingRemove=0x7f060001;
         public static final int frameAd=0x7f0600ac;
@@ -1745,7 +1745,7 @@ containing a value of this type.
         public static final int left=0x7f060019;
         public static final int left_drawer=0x7f060097;
         public static final int linearLayout1=0x7f060090;
-        public static final int linearLayout2=0x7f060070;
+        public static final int linearLayout2=0x7f060073;
         public static final int listMode=0x7f06000b;
         public static final int listView1=0x7f060075;
         public static final int listView11=0x7f06008d;
