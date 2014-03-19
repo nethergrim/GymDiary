@@ -207,6 +207,7 @@ public class StartTrainingFragment extends Fragment implements
 
 	@Override
 	public void onLoaderReset(Loader<Cursor> loader) {
+		scAdapter.swapCursor(null);
 	}
 
 	static class MyCursorLoader extends CursorLoader {

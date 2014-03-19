@@ -308,6 +308,7 @@ public class BasicMenuActivityNew extends FragmentActivity implements
 
 		sp.edit().putBoolean(TRAINING_AT_PROGRESS, false).apply();
 		sp.edit().putInt(USER_CLICKED_POSITION, 0).apply();
+		sp.edit().putInt(TrainingFragment.CHECKED_POSITION, 0).apply();
 		stopService(new Intent(this, TrainingService.class));
 
 		NotificationManager notificationManager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);

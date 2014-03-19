@@ -60,6 +60,7 @@ public class TrainingFragment extends Fragment implements
 	public final static String TRAINING_AT_PROGRESS = "training_at_progress";
 	public final static String TRAINING_NAME = "training_name";
 	public final static String TRA_ID = "tra_id";
+	public final static String CHECKED_POSITION = "checked_pos";
 	public final static String TRAININGS_DONE_NUM = "trainings_done_num";
 	protected final static String MINUTES = "minutes";
 	protected final static String SECONDS = "seconds";
@@ -178,13 +179,13 @@ public class TrainingFragment extends Fragment implements
 			public void onItemClick(AdapterView<?> parent, View itemClicked,
 					int position, long id) {
 				checkedPosition = position;
-				sp.edit().putInt(USER_CLICKED_POSITION, position).apply();
+				sp.edit().putInt(CHECKED_POSITION, position).apply();
 				initData(position);
 			}
 		});
 		registerForContextMenu(list);
-		list.setItemChecked(0, true);
-		initData(0);
+		list.setItemChecked(sp.getInt(CHECKED_POSITION, 0), true);
+		initData(sp.getInt(CHECKED_POSITION, 0));
 		SimpleDateFormat sdf = new SimpleDateFormat("dd.MM.yyyy");
 		date = sdf.format(new Date(System.currentTimeMillis()));
 		dlg1 = new DialogExitFromTraining();
@@ -291,6 +292,13 @@ public class TrainingFragment extends Fragment implements
 		if (isTrainingAtProgress) {
 			restoreTimerFromPreferences();
 			restoreSetsFromPreferences();
+			try {
+				list.setItemChecked(sp.getInt(CHECKED_POSITION, 0), true);
+				initData(sp.getInt(CHECKED_POSITION, 0));
+			} catch (Exception e) {
+				list.setItemChecked(0, true);
+				initData(0);
+			}
 		}
 	}
 

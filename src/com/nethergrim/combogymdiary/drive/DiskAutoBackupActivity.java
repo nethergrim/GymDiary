@@ -18,7 +18,6 @@ import com.google.android.gms.drive.DriveId;
 import com.google.android.gms.drive.MetadataChangeSet;
 import com.nethergrim.combogymdiary.Backuper;
 import com.nethergrim.combogymdiary.R;
-import com.nethergrim.combogymdiary.activities.BasicMenuActivity;
 import com.yandex.metrica.Counter;
 
 import android.os.Bundle;
@@ -52,12 +51,11 @@ public class DiskAutoBackupActivity extends BaseDiskActivity implements
 	protected void onResume() {
 		super.onResume();
 		sp = PreferenceManager.getDefaultSharedPreferences(this);
-		folderDriveIdStr = sp.getString(
-				BasicMenuActivity.DRIVE_FOLDER_ID_ENCODED_TO_STRING, "");
+		folderDriveIdStr = sp.getString(DRIVE_FOLDER_ID_ENCODED_TO_STRING, "");
 		if (folderDriveIdStr.isEmpty()) {
 			finish();
 			return;
-		} 
+		}
 	}
 
 	@Override
@@ -85,18 +83,15 @@ public class DiskAutoBackupActivity extends BaseDiskActivity implements
 			showMessage("Error while trying to create new file contents");
 			return;
 		}
-		
-		OutputStream outputStream = result.getContents()
-				.getOutputStream();
-		
-		
+
+		OutputStream outputStream = result.getContents().getOutputStream();
+
 		Backuper back = new Backuper();
 		db = back.getDbFile();
-		
+
 		byte[] b = new byte[(int) db.length()];
 		try {
-			FileInputStream fileInputStream = new FileInputStream(
-					db);
+			FileInputStream fileInputStream = new FileInputStream(db);
 			fileInputStream.read(b);
 			for (int i = 0; i < b.length; i++) {
 				System.out.print((char) b[i]);
@@ -107,27 +102,27 @@ public class DiskAutoBackupActivity extends BaseDiskActivity implements
 		} catch (IOException e1) {
 			e1.printStackTrace();
 		}
-		
+
 		try {
 			outputStream.write(b);
 		} catch (IOException e1) {
 			Log.i(TAG, "Unable to write file contents.");
 		}
-		
-		try{
+
+		try {
 			folderDriveId = DriveId.decodeFromString(folderDriveIdStr);
 			DriveFolder folder = Drive.DriveApi.getFolder(getGoogleApiClient(),
 					folderDriveId);
 			MetadataChangeSet changeSet = new MetadataChangeSet.Builder()
-					.setTitle(fileTitle).setMimeType("text/plain").setStarred(true)
-					.build();
+					.setTitle(fileTitle).setMimeType("text/plain")
+					.setStarred(true).build();
 
-			folder.createFile(getGoogleApiClient(), changeSet, result.getContents())
-					.addResultCallback(this);
-		} catch (Exception e){
-			Counter.sharedInstance().reportError("disk auto backup activity fail at creation file", e);
+			folder.createFile(getGoogleApiClient(), changeSet,
+					result.getContents()).addResultCallback(this);
+		} catch (Exception e) {
+			Counter.sharedInstance().reportError(
+					"disk auto backup activity fail at creation file", e);
 		}
-		
 
 	}
 

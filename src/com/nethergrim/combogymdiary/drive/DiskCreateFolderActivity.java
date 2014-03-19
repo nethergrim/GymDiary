@@ -12,7 +12,6 @@ import com.google.android.gms.drive.query.Filters;
 import com.google.android.gms.drive.query.Query;
 import com.google.android.gms.drive.query.SearchableField;
 import com.nethergrim.combogymdiary.R;
-import com.nethergrim.combogymdiary.activities.BasicMenuActivity;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -74,8 +73,8 @@ public class DiskCreateFolderActivity extends BaseDiskActivity implements
 		DriveId FolderDriveId = result.getDriveFolder().getDriveId();
 		String FolderDriveIdStr = FolderDriveId.encodeToString();
 		sp.edit()
-				.putString(BasicMenuActivity.DRIVE_FOLDER_ID_ENCODED_TO_STRING,
-						FolderDriveIdStr).apply();
+				.putString(DRIVE_FOLDER_ID_ENCODED_TO_STRING, FolderDriveIdStr)
+				.apply();
 		gotoAutoBackup();
 	}
 
@@ -96,7 +95,8 @@ public class DiskCreateFolderActivity extends BaseDiskActivity implements
 					.addResultCallback(this);
 			sp.edit().putBoolean(DRIVE_EXISTS, true).apply();
 
-		} else if (mdb.getCount() > 0) { // just get Folder DriveId and upload a file there
+		} else if (mdb.getCount() > 0) { // just get Folder DriveId and upload a
+											// file there
 			sp.edit()
 					.putString(DRIVE_FOLDER_ID_ENCODED_TO_STRING,
 							mdb.get(0).getDriveId().encodeToString()).apply();

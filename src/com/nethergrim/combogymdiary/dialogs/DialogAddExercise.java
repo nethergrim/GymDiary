@@ -70,6 +70,7 @@ public class DialogAddExercise extends DialogFragment implements
 				db.addRec_Exe(name, timer);
 				Toast.makeText(getActivity(), R.string.saved,
 						Toast.LENGTH_SHORT).show();
+				dismiss();
 			}
 		} else if (id == R.id.btnSave && editOrNot == true) {
 			if (!name.isEmpty() && !timer.isEmpty()) {
@@ -77,11 +78,12 @@ public class DialogAddExercise extends DialogFragment implements
 				db.updateRec_Exe((int) exeID, DB.TIMER_VALUE, timer);
 				Toast.makeText(getActivity(), R.string.saved,
 						Toast.LENGTH_SHORT).show();
+				dismiss();
 			}
 		}
 		((FragmentActivity) getActivity()).getSupportLoaderManager()
-		.getLoader(1).forceLoad();
-		dismiss();
+				.getLoader(1).forceLoad();
+
 	}
 
 	public void onResume() {

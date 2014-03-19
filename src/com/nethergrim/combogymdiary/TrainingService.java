@@ -1,6 +1,5 @@
 package com.nethergrim.combogymdiary;
 
-import com.nethergrim.combogymdiary.activities.BasicMenuActivity;
 import com.nethergrim.combogymdiary.activities.BasicMenuActivityNew;
 
 import android.app.Notification;
@@ -17,6 +16,8 @@ public class TrainingService extends Service {
 	private NotificationManager nm;
 	private SharedPreferences sp;
 	private String trainingNAME;
+	public final static String TRAINING_NAME = "training_name";
+	public final static String TRA_ID = "training_id";
 
 	@Override
 	public void onCreate() {
@@ -26,8 +27,8 @@ public class TrainingService extends Service {
 
 	public int onStartCommand(Intent intent, int flags, int startId) {
 		sp = PreferenceManager.getDefaultSharedPreferences(this);
-		trainingNAME = sp.getString(BasicMenuActivity.TRAINING_NAME, "");
-		sp.edit().putInt(BasicMenuActivity.TRA_ID, startId).apply();
+		trainingNAME = sp.getString(TRAINING_NAME, "");
+		sp.edit().putInt(TRA_ID, startId).apply();
 		sendNotif(startId);
 		return super.onStartCommand(intent, flags, startId);
 	}
@@ -45,8 +46,6 @@ public class TrainingService extends Service {
 
 		notif.setLatestEventInfo(this,
 				getResources().getString(R.string.finish_training), "", pIntent);
-
-		// Notification.Builder
 
 		notif.flags |= Notification.FLAG_AUTO_CANCEL;
 		notif.flags |= Notification.FLAG_ONGOING_EVENT;

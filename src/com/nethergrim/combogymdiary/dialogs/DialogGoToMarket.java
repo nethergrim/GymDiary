@@ -1,7 +1,6 @@
 package com.nethergrim.combogymdiary.dialogs;
 
 import com.nethergrim.combogymdiary.R;
-import com.nethergrim.combogymdiary.activities.BasicMenuActivity;
 import com.yandex.metrica.Counter;
 
 import android.app.AlertDialog;
@@ -18,15 +17,15 @@ import android.preference.PreferenceManager;
 public class DialogGoToMarket extends DialogFragment implements OnClickListener {
 
 	private SharedPreferences sp;
+	public final static String MARKET_LEAVED_FEEDBACK = "market_leaved_feedback";
+	public final static String TRAININGS_DONE_NUM = "trainings_done_num";
 
 	@Override
 	public void onClick(DialogInterface dialog, int which) {
 
 		switch (which) {
 		case Dialog.BUTTON_POSITIVE:
-			sp.edit()
-					.putBoolean(BasicMenuActivity.MARKET_LEAVED_FEEDBACK, true)
-					.apply();
+			sp.edit().putBoolean(MARKET_LEAVED_FEEDBACK, true).apply();
 			try {
 				startActivity(new Intent(
 						Intent.ACTION_VIEW,
@@ -39,13 +38,11 @@ public class DialogGoToMarket extends DialogFragment implements OnClickListener 
 			Counter.sharedInstance().reportEvent("Go to martet: YES");
 			break;
 		case Dialog.BUTTON_NEGATIVE:
-			sp.edit()
-					.putBoolean(BasicMenuActivity.MARKET_LEAVED_FEEDBACK, false)
-					.apply();
+			sp.edit().putBoolean(MARKET_LEAVED_FEEDBACK, false).apply();
 			Counter.sharedInstance().reportEvent("Go to martet: NO");
 			break;
 		case Dialog.BUTTON_NEUTRAL:
-			sp.edit().putInt(BasicMenuActivity.TRAININGS_DONE_NUM, 1).apply();
+			sp.edit().putInt(TRAININGS_DONE_NUM, 1).apply();
 			Counter.sharedInstance().reportEvent("Go to martet: LATER");
 			break;
 		}

@@ -2,7 +2,6 @@ package com.nethergrim.combogymdiary.fragments;
 
 import com.nethergrim.combogymdiary.DB;
 import com.nethergrim.combogymdiary.R;
-import com.nethergrim.combogymdiary.activities.BasicMenuActivity;
 import com.nethergrim.combogymdiary.dialogs.DialogAddExercise;
 
 import android.app.Fragment;
@@ -35,7 +34,7 @@ public class ExerciseListFragment extends Fragment implements
 		LoaderCallbacks<Cursor> {
 
 	private ListView lvExersices_list;
-	private String TRAINING_AT_PROGRESS = BasicMenuActivity.TRAINING_AT_PROGRESS;
+	public final static String TRAINING_AT_PROGRESS = "training_at_progress";
 	private static final int CM_DELETE_ID = 1;
 	private static final int CM_EDIT_ID = 2;
 	private DB db;
@@ -74,7 +73,7 @@ public class ExerciseListFragment extends Fragment implements
 	}
 
 	private void goToEditExe(int position, long ID) {
-		if (sp.getBoolean(BasicMenuActivity.TRAINING_AT_PROGRESS, false)) {
+		if (sp.getBoolean(TRAINING_AT_PROGRESS, false)) {
 			Toast.makeText(getActivity(), R.string.error_editing_exe,
 					Toast.LENGTH_SHORT).show();
 		} else {
@@ -132,9 +131,6 @@ public class ExerciseListFragment extends Fragment implements
 	public boolean onOptionsItemSelected(MenuItem item) {
 		int id = item.getItemId();
 		if (id == R.id.itemAddNewExe) {
-			// Intent gotoAddingExersisesActivity = new Intent(getActivity(),
-			// AddingExersisesActivity.class);
-			// startActivity(gotoAddingExersisesActivity);
 			DialogAddExercise dialog = new DialogAddExercise();
 			dialog.show(getFragmentManager(), "tag");
 			return true;
@@ -144,7 +140,10 @@ public class ExerciseListFragment extends Fragment implements
 
 	@Override
 	public Loader<Cursor> onCreateLoader(int id, Bundle bndl) {
-		return new MyCursorLoader(getActivity(), db);
+		if (id == LOADER_ID)
+			return new MyCursorLoader(getActivity(), db);
+		else
+			return null;
 	}
 
 	@Override
@@ -156,6 +155,7 @@ public class ExerciseListFragment extends Fragment implements
 
 	@Override
 	public void onLoaderReset(Loader<Cursor> loader) {
+		scAdapter.swapCursor(null);
 	}
 
 	static class MyCursorLoader extends CursorLoader {
@@ -169,7 +169,6 @@ public class ExerciseListFragment extends Fragment implements
 
 		@Override
 		public Cursor loadInBackground() {
-
 			return db.getDataExe(null, null, null, null, null, DB.EXE_NAME);
 		}
 	}
