@@ -1,5 +1,7 @@
 package com.nethergrim.combogymdiary;
 
+import com.yandex.metrica.Counter;
+
 import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
@@ -141,7 +143,8 @@ public class DB {
 				}
 			} while ((c.moveToNext()));
 		}
-		return null;
+		Counter.sharedInstance().reportEvent("DB.getTrainingNameById  ERROR!! not found id that matches col_id");
+		return "name_not_found";
 	}
 	
 	public String getTrainingListById(int _id){

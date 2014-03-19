@@ -112,7 +112,15 @@ public class TrainingFragment extends Fragment implements
 		sp.edit().putInt(TRA_ID, trainingId).apply();
 		sp.edit().putBoolean(TRAINING_AT_PROGRESS, true).apply();
 		traName = db.getTrainingNameById(trainingId);
-		exersices = db.convertStringToArray(db.getTrainingListById(trainingId));
+		if (db.getTrainingListById(trainingId) != null) {
+			exersices = db.convertStringToArray(db
+					.getTrainingListById(trainingId));
+		} else {
+			Counter.sharedInstance()
+					.reportEvent(
+							"ERROR in db.getTrainingListById(trainingId) at TrainingFragment!!");
+		}
+
 		for (int i = 0; i < exersices.length; i++) {
 			alMain.add(exersices[i]);
 		}
