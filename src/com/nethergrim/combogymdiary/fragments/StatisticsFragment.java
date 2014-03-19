@@ -87,7 +87,7 @@ public class StatisticsFragment extends Fragment implements
 	public void onResume() {
 		super.onResume();
 		((FragmentActivity) getActivity()).getSupportLoaderManager()
-				.getLoader(0).forceLoad();
+				.getLoader(LOADER_ID).forceLoad();
 		spinner.setOnItemSelectedListener(new OnItemSelectedListener() {
 			@Override
 			public void onNothingSelected(AdapterView<?> parent) {
