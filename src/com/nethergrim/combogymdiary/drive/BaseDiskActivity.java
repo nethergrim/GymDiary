@@ -101,6 +101,7 @@ public abstract class BaseDiskActivity extends Activity implements
 	@Override
 	public void onDisconnected() {
 		Log.i(TAG, "GoogleApiClient disconnected");
+		getGoogleApiClient().connect();
 	}
 
 	/**

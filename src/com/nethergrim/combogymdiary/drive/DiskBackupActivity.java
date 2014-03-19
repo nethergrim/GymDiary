@@ -27,9 +27,10 @@ import com.google.android.gms.drive.DriveApi.OnNewContentsCallback;
 import com.google.android.gms.drive.MetadataChangeSet;
 import com.nethergrim.combogymdiary.Backuper;
 import com.nethergrim.combogymdiary.R;
+import com.yandex.metrica.Counter;
 
-public class DiskBackupActivity extends Activity implements ConnectionCallbacks,
-		OnConnectionFailedListener {
+public class DiskBackupActivity extends Activity implements
+		ConnectionCallbacks, OnConnectionFailedListener {
 
 	private static final String TAG = "android-drive-quickstart";
 	private static final int REQUEST_CODE_CREATOR = 2;
@@ -98,16 +99,37 @@ public class DiskBackupActivity extends Activity implements ConnectionCallbacks,
 								.setMimeType("text/plain").setTitle(fileTitle)
 								.build();
 						// Create an intent for the file chooser, and start it.
-						IntentSender intentSender = Drive.DriveApi
-								.newCreateFileActivityBuilder()
-								.setInitialMetadata(metadataChangeSet)
-								.setInitialContents(result.getContents())
-								.build(mGoogleApiClient);
+
 						try {
-							startIntentSenderForResult(intentSender,
-									REQUEST_CODE_CREATOR, null, 0, 0, 0);
-						} catch (SendIntentException e) {
-							Log.i(TAG, "Failed to launch file chooser.");
+							IntentSender intentSender = Drive.DriveApi
+									.newCreateFileActivityBuilder()
+									.setInitialMetadata(metadataChangeSet)
+									.setInitialContents(result.getContents())
+									.build(mGoogleApiClient);
+							try {
+								startIntentSenderForResult(intentSender,
+										REQUEST_CODE_CREATOR, null, 0, 0, 0);
+							} catch (SendIntentException e) {
+								Log.i(TAG, "Failed to launch file chooser.");
+							}
+						} catch (Exception e) {
+
+							Counter.sharedInstance().reportError(
+									"ERROR at DiskBackupActivity", e);
+							mGoogleApiClient.connect();
+
+							IntentSender intentSender = Drive.DriveApi
+									.newCreateFileActivityBuilder()
+									.setInitialMetadata(metadataChangeSet)
+									.setInitialContents(result.getContents())
+									.build(mGoogleApiClient);
+							try {
+								startIntentSenderForResult(intentSender,
+										REQUEST_CODE_CREATOR, null, 0, 0, 0);
+							} catch (SendIntentException EE) {
+								Log.i(TAG, "Failed to launch file chooser.");
+							}
+
 						}
 
 					}
