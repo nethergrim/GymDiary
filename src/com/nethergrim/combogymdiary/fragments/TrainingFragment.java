@@ -16,6 +16,7 @@ import com.nethergrim.combogymdiary.activities.BasicMenuActivityNew;
 import com.nethergrim.combogymdiary.activities.EditingProgramAtTrainingActivity;
 import com.nethergrim.combogymdiary.activities.HistoryDetailedActivity;
 import com.nethergrim.combogymdiary.dialogs.DialogExitFromTraining;
+import com.yandex.metrica.Counter;
 
 import android.annotation.SuppressLint;
 import android.app.DialogFragment;
@@ -330,9 +331,14 @@ public class TrainingFragment extends Fragment implements
 					sp.edit().putInt(PROGRESS, pb.getProgress()).apply();
 				} else {
 					if (vibrate) {
-						Vibrator v = (Vibrator) getActivity().getSystemService(
-								Context.VIBRATOR_SERVICE);
-						v.vibrate(vibrateLenght);
+						try {
+							Vibrator v = (Vibrator) getActivity()
+									.getSystemService(Context.VIBRATOR_SERVICE);
+							v.vibrate(vibrateLenght);
+						} catch (Exception e) {
+							Counter.sharedInstance().reportError(
+									"error vibrating", e);
+						}
 					}
 					llTimerProgress.setVisibility(View.GONE);
 					pb.setProgress(0);
