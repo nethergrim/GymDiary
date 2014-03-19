@@ -1,5 +1,6 @@
 package com.nethergrim.combogymdiary.drive;
 
+import com.google.android.gms.common.api.GoogleApiClient;
 import com.google.android.gms.drive.Drive;
 import com.google.android.gms.drive.DriveApi.MetadataBufferResult;
 import com.google.android.gms.drive.DriveFolder.DriveFolderResult;
@@ -12,6 +13,7 @@ import com.google.android.gms.drive.query.Filters;
 import com.google.android.gms.drive.query.Query;
 import com.google.android.gms.drive.query.SearchableField;
 import com.nethergrim.combogymdiary.R;
+import com.yandex.metrica.Counter;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -90,10 +92,25 @@ public class DiskCreateFolderActivity extends BaseDiskActivity implements
 			showMessage("creating a folder in Google Drive");
 			MetadataChangeSet changeSet = new MetadataChangeSet.Builder()
 					.setTitle(DRIVE_FOLDER_NAME).build();
-			Drive.DriveApi.getRootFolder(getGoogleApiClient())
-					.createFolder(getGoogleApiClient(), changeSet)
-					.addResultCallback(this);
-			sp.edit().putBoolean(DRIVE_EXISTS, true).apply();
+			try {
+				Drive.DriveApi.getRootFolder(getGoogleApiClient())
+						.createFolder(getGoogleApiClient(), changeSet)
+						.addResultCallback(this);
+				sp.edit().putBoolean(DRIVE_EXISTS, true).apply();
+			} catch (Exception e) {
+				GoogleApiClient gac = getGoogleApiClient();
+				gac.connect();
+
+				Drive.DriveApi.getRootFolder(gac)
+						.createFolder(getGoogleApiClient(), changeSet)
+						.addResultCallback(this);
+				sp.edit().putBoolean(DRIVE_EXISTS, true).apply();
+
+				Counter.sharedInstance()
+						.reportError(
+								"ERROR in DiskCreateFolderActivity when creating folder. disconnected. repaired.",
+								e);
+			}
 
 		} else if (mdb.getCount() > 0) { // just get Folder DriveId and upload a
 											// file there
