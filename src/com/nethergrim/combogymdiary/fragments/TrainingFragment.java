@@ -8,7 +8,6 @@ import java.util.StringTokenizer;
 import kankan.wheel.widget.WheelView;
 import kankan.wheel.widget.adapters.AbstractWheelTextAdapter;
 
-import com.mobeta.android.dslv.DragSortListView;
 import com.nethergrim.combogymdiary.DB;
 import com.nethergrim.combogymdiary.R;
 import com.nethergrim.combogymdiary.TrainingService;
@@ -96,7 +95,7 @@ public class TrainingFragment extends Fragment implements
 	private LinearLayout llBack, llSave, llForward, llBottom, llTimerProgress;
 	private ImageView ivBack, ivForward;
 	private Animation anim = null;
-	private DragSortListView list;
+	private ListView list;
 	private int trainingId = 0;
 	private boolean isTrainingAtProgress = false;
 
@@ -120,7 +119,6 @@ public class TrainingFragment extends Fragment implements
 					.reportEvent(
 							"ERROR in db.getTrainingListById(trainingId) at TrainingFragment!!");
 		}
-
 		for (int i = 0; i < exersices.length; i++) {
 			alMain.add(exersices[i]);
 		}
@@ -160,13 +158,13 @@ public class TrainingFragment extends Fragment implements
 		ivBack = (ImageView) v.findViewById(R.id.imageView2);
 		ivForward = (ImageView) v.findViewById(R.id.imageView3);
 		reps = (WheelView) v.findViewById(R.id.wheelReps);
-		reps.setVisibleItems(5);
+		reps.setVisibleItems(7);
 		reps.setWheelBackground(R.drawable.wheel_bg_holo);
 		reps.setWheelForeground(R.drawable.wheel_val_holo);
 		reps.setShadowColor(0xFFFFFF, 0xFFFFFF, 0xFFFFFF);
 		reps.setViewAdapter(new RepsAdapter(getActivity()));
 		weights = (WheelView) v.findViewById(R.id.wheelWeight);
-		weights.setVisibleItems(5);
+		weights.setVisibleItems(7);
 		weights.setWheelBackground(R.drawable.wheel_bg_holo);
 		weights.setWheelForeground(R.drawable.wheel_val_holo);
 		weights.setShadowColor(0xFFFFFF, 0xFFFFFF, 0xFFFFFF);
@@ -177,8 +175,7 @@ public class TrainingFragment extends Fragment implements
 		etTimer.setOnClickListener(this);
 		infoText = (TextView) v.findViewById(R.id.infoText);
 		setInfo = (TextView) v.findViewById(R.id.tvSetInfo);
-		list = (DragSortListView) v.findViewById(R.id.lvSets);
-		list.setDropListener(onDrop);
+		list = (ListView) v.findViewById(R.id.lvSets);
 		list.setChoiceMode(ListView.CHOICE_MODE_SINGLE);
 		adapter = new ArrayAdapter<String>(getActivity(),
 				R.layout.list_item_radio, R.id.text, alMain);
@@ -602,28 +599,7 @@ public class TrainingFragment extends Fragment implements
 		}
 	}
 
-	private DragSortListView.DropListener onDrop = new DragSortListView.DropListener() {
-		@Override
-		public void drop(int from, int to) {
-			if (from != to) {
-				DragSortListView list = (DragSortListView) getActivity()
-						.findViewById(R.id.lvSets);
-				String item = adapter.getItem(from);
-				adapter.remove(item);
-				adapter.insert(item, to);
-				list.moveCheckState(from, to);
-				String[] tmp = new String[alMain.size()];
-				for (int i = 0; i < alMain.size(); i++) {
-					tmp[i] = alMain.get(i);
-				}
-				db.updateRec_Training(trainingId, 2,
-						db.convertArrayToString(tmp));
-			}
-		}
-	};
-
 	Runnable timerRunnable = new Runnable() {
-
 		@Override
 		public void run() {
 			long millis = System.currentTimeMillis() - startTime;
