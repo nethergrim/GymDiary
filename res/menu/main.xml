@@ -4,19 +4,19 @@
     <item
         android:id="@+id/itemSeePreviousTraining"
         android:icon="@drawable/ic_action_undo"
-        android:showAsAction="ifRoom"
+        android:showAsAction="collapseActionView"
         android:title="@string/see_last_training">
     </item>
     <item
         android:id="@+id/itemEditTrainings"
         android:icon="@drawable/ic_action_new"
-        android:showAsAction="ifRoom"
+        android:showAsAction="collapseActionView"
         android:title="@string/add_an_exercise">
     </item>
     <item
         android:id="@+id/itemExit"
         android:icon="@drawable/ic_action_accept"
-        android:showAsAction="always"
+        android:showAsAction="collapseActionView"
         android:title="@string/exit">
     </item>
 

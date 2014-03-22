@@ -87,7 +87,7 @@ public class TrainingFragment extends Fragment implements
 	private Handler h;
 	private WheelView reps, weights;
 	private ProgressBar pb;
-	private TextView infoText, setInfo, tvTimerCountdown;
+	private TextView infoText, tvTimerCountdown;
 	private ArrayList<String> alMain = new ArrayList<String>();
 	private ArrayList<Integer> alSet = new ArrayList<Integer>();
 	private int seconds, minutes, secDelta = 0, minDelta = 0, sec, min;
@@ -174,11 +174,10 @@ public class TrainingFragment extends Fragment implements
 		etTimer = (EditText) v.findViewById(R.id.etTimerValueAtTraining);
 		etTimer.setOnClickListener(this);
 		infoText = (TextView) v.findViewById(R.id.infoText);
-		setInfo = (TextView) v.findViewById(R.id.tvSetInfo);
 		list = (ListView) v.findViewById(R.id.lvSets);
 		list.setChoiceMode(ListView.CHOICE_MODE_SINGLE);
 		adapter = new ArrayAdapter<String>(getActivity(),
-				R.layout.list_item_radio, R.id.text, alMain);
+				R.layout.my_training_list_item, R.id.tvText, alMain);
 		list.setAdapter(adapter);
 		list.setOnItemClickListener(new AdapterView.OnItemClickListener() {
 			@Override
@@ -196,7 +195,6 @@ public class TrainingFragment extends Fragment implements
 		date = sdf.format(new Date(System.currentTimeMillis()));
 		dlg1 = new DialogExitFromTraining();
 		dlg1.setCancelable(false);
-		setInfo.setTextColor(getResources().getColor(R.color.holo_orange_dark));
 		infoText.setTextColor(getResources().getColor(R.color.holo_orange_dark));
 		boolean isTimerOn = sp.getBoolean(TIMER_IS_ON, false);
 		if (isTimerOn) {
@@ -263,9 +261,7 @@ public class TrainingFragment extends Fragment implements
 
 		set = alSet.get(position);
 		currentSet = set;
-		setInfo.setText(String.format("%d:%02d", minutes, seconds) + "  "
-				+ getResources().getString(R.string.set_number) + " "
-				+ (set + 1));
+
 		tValue = db.getTimerValueByExerciseName(exeName);
 		etTimer.setText(tValue);
 		initSetButtons();
@@ -278,7 +274,8 @@ public class TrainingFragment extends Fragment implements
 			weights.setCurrentItem(oldWeight - 1);
 			reps.setCurrentItem(oldReps - 1);
 		} else {
-			infoText.setText(getResources().getString(R.string.new_set));
+			infoText.setText(getResources().getString(R.string.new_set) + " ("
+					+ (set + 1) + ")");
 		}
 	}
 
@@ -459,9 +456,7 @@ public class TrainingFragment extends Fragment implements
 			tmp++;
 			alSet.set(checkedPosition, tmp);
 			set = alSet.get(checkedPosition);
-			setInfo.setText(String.format("%d:%02d", minutes, seconds) + "  "
-					+ getResources().getString(R.string.set_number) + " "
-					+ (set + 1));
+
 			db.addRec_Main(traName, exeName, date, wei, rep_s, set);
 			currentSet = set;
 			initSetButtons();
@@ -476,7 +471,8 @@ public class TrainingFragment extends Fragment implements
 				weights.setCurrentItem(oldWeight - 1);
 				reps.setCurrentItem(oldReps - 1);
 			} else {
-				infoText.setText(getResources().getString(R.string.new_set));
+				infoText.setText(getResources().getString(R.string.new_set)
+						+ " (" + (set + 1) + ")");
 			}
 			if (tglChecked && !isProgressBarActive) {
 				sp.edit().putInt(PROGRESS, 0).apply();
@@ -503,7 +499,11 @@ public class TrainingFragment extends Fragment implements
 				infoText.setText(getResources()
 						.getString(R.string.resaved_text)
 						+ " "
-						+ (weitghsS + 1) + "x" + (repsS + 1));
+						+ (weitghsS + 1)
+						+ "x"
+						+ (repsS + 1)
+						+ " ("
+						+ (currentSet + 1) + ")");
 			}
 
 		} else if (id == R.id.llBtnForward) {
@@ -517,7 +517,11 @@ public class TrainingFragment extends Fragment implements
 				infoText.setText(getResources()
 						.getString(R.string.resaved_text)
 						+ " "
-						+ (weitghsS + 1) + "x" + (repsS + 1));
+						+ (weitghsS + 1)
+						+ "x"
+						+ (repsS + 1)
+						+ " ("
+						+ (currentSet + 1) + ")");
 			} else if (currentSet == set - 1) {
 				llBottom.startAnimation(anim);
 				initData(checkedPosition);
@@ -608,10 +612,9 @@ public class TrainingFragment extends Fragment implements
 			seconds += secDelta;
 			minutes = (seconds / 60);
 			seconds = (seconds % 60);
-
-			setInfo.setText(String.format("%d:%02d", minutes, seconds) + "  "
-					+ getResources().getString(R.string.set_number) + " "
-					+ (currentSet + 1));
+			getActivity().getActionBar().setTitle(
+					traName + " "
+							+ (String.format("%d:%02d", minutes, seconds)));
 
 			timerHandler.postDelayed(this, 500);
 		}
