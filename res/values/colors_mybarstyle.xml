@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<!-- File created by the Android Action Bar Style Generator
+<!--
+     File created by the Android Action Bar Style Generator
 
      Copyright (C) 2011 The Android Open Source Project
      Copyright (C) 2012 readyState Software Ltd
@@ -14,32 +15,28 @@
      distributed under the License is distributed on an "AS IS" BASIS,
      WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
      See the License for the specific language governing permissions and
-     limitations under the License.
+     limitations under the License.
 -->
 
 <resources>
+
     <color name="full_alpha">#0033B5E5</color>
     <color name="pressed_mybarstyle">#CC33B5E5</color>
     <color name="holo_green_light">#99CC00</color>
     <color name="holo_green_dark">#669900</color>
-    
+    <color name="holo_blue_light_half_alpha">#CC33B5E5</color>
     <color name="holo_blue_light">#33B5E5</color>
     <color name="holo_blue_dark">#0099CC</color>
     <color name="holo_purple_light">#AA66CC</color>
     <color name="holo_purple_dark">#9933CC</color>
-    
     <color name="holo_orange_light">#FFBB33</color>
     <color name="holo_orange_dark_alpha_half">#CCFF8800</color>
     <color name="holo_orange_dark">#FF8800</color>
-    
     <color name="holo_red_light">#FF4444</color>
     <color name="holo_red_dark">#CC0000</color>
-    
-     <color name="dark_gray_google">#A6ACAA</color>
-     <color name="white">#ffffff</color>
-     <color name="light_gray_google">#E3EAE3</color>
-     <color name="dark_gray">#575757</color>
-    
-    
-    
+    <color name="dark_gray_google">#A6ACAA</color>
+    <color name="white">#ffffff</color>
+    <color name="light_gray_google">#E3EAE3</color>
+    <color name="dark_gray">#575757</color>
+
 </resources>
