@@ -29,6 +29,7 @@ import android.os.Handler;
 import android.os.Message;
 import android.os.Vibrator;
 import android.preference.PreferenceManager;
+import android.util.Log;
 import android.view.ContextMenu;
 import android.view.LayoutInflater;
 import android.view.Menu;
@@ -57,6 +58,7 @@ import android.widget.CompoundButton.OnCheckedChangeListener;
 public class TrainingFragment extends Fragment implements
 		OnCheckedChangeListener, OnClickListener {
 
+	public final static String LOG_TAG = "myLogs";
 	public final static String TRAINING_AT_PROGRESS = "training_at_progress";
 	public final static String TRAINING_NAME = "training_name";
 	public final static String TRA_ID = "tra_id";
@@ -281,6 +283,7 @@ public class TrainingFragment extends Fragment implements
 
 	public void onResume() {
 		super.onResume();
+		Log.d(LOG_TAG, "TrainingFragment onResume");
 		turnOff = sp.getBoolean("toTurnOff", false);
 		list.setKeepScreenOn(!turnOff);
 		vibrate = sp.getBoolean("vibrateOn", true);
@@ -358,6 +361,7 @@ public class TrainingFragment extends Fragment implements
 
 	public void onPause() {
 		super.onPause();
+		Log.d(LOG_TAG, "TrainingFragment onPause");
 		timerHandler.removeCallbacks(timerRunnable);
 		saveSetsToPreferences();
 		saveTimerToPregerences();

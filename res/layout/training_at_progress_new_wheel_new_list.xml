@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/cream_pixels_bitmap"
+    android:background="@drawable/cream_pixels_bitmap"    
     android:gravity="center_vertical"
     android:orientation="vertical" >
 
@@ -26,9 +26,8 @@
             android:gravity="center_horizontal"
             android:minHeight="110dp"
             android:visibility="gone" />
-	
-        
-        <ListView 
+
+        <ListView
             android:id="@+id/lvSets"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
@@ -37,29 +36,8 @@
             android:background="@drawable/rounded"
             android:choiceMode="singleChoice"
             android:dividerHeight="1px"
-            android:padding="3dp"
-            
-            ></ListView>
-        
-<!--         <com.mobeta.android.dslv.DragSortListView -->
-<!--             xmlns:dslv="http://schemas.android.com/apk/res/com.nethergrim.combogymdiary" -->
-<!--             android:id="@+id/lvSets" -->
-<!--             android:layout_width="match_parent" -->
-<!--             android:layout_height="match_parent" -->
-<!--             android:layout_margin="4dp" -->
-<!--             android:layout_weight="1" -->
-<!--             android:background="@drawable/rounded" -->
-<!--             android:choiceMode="singleChoice" -->
-<!--             android:dividerHeight="1px" -->
-<!--             android:padding="3dp" -->
-<!--             dslv:collapsed_height="1px" -->
-<!--             dslv:drag_enabled="true" -->
-<!--             dslv:drag_handle_id="@id/drag_handle" -->
-<!--             dslv:drag_scroll_start="0.33" -->
-<!--             dslv:drag_start_mode="onDown" -->
-<!--             dslv:float_alpha="0.6" -->
-<!--             dslv:remove_enabled="false" -->
-<!--             dslv:slide_shuffle_speed="0.3" /> -->
+            android:padding="3dp" >
+        </ListView>
     </LinearLayout>
 
     <LinearLayout
@@ -73,7 +51,6 @@
             android:id="@+id/ll2"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="3dp"
             android:orientation="vertical" >
 
             <TextView
@@ -121,7 +98,7 @@
                 android:id="@+id/textView1"
                 android:layout_width="0dip"
                 android:layout_height="wrap_content"
-                android:layout_weight="1" />
+                android:layout_weight="1.2" />
 
             <TextView
                 android:id="@+id/textView4__"
@@ -129,7 +106,7 @@
                 android:layout_height="match_parent"
                 android:layout_marginLeft="5dp"
                 android:layout_marginRight="5dp"
-                android:layout_weight="2"
+                android:layout_weight="1.9"
                 android:background="@android:color/white"
                 android:gravity="center_horizontal"
                 android:text="@string/Weight"
@@ -140,7 +117,7 @@
                 android:layout_width="0dip"
                 android:layout_height="match_parent"
                 android:layout_marginLeft="5dp"
-                android:layout_weight="2"
+                android:layout_weight="1.9"
                 android:background="@android:color/white"
                 android:gravity="center_horizontal"
                 android:text="@string/reps"
@@ -160,7 +137,7 @@
             <LinearLayout
                 android:layout_width="0dip"
                 android:layout_height="match_parent"
-                android:layout_weight="1"
+                android:layout_weight="1.2"
                 android:orientation="vertical" >
 
                 <EditText
@@ -188,7 +165,7 @@
                 android:layout_height="match_parent"
                 android:layout_marginLeft="5dp"
                 android:layout_marginRight="5dp"
-                android:layout_weight="2" />
+                android:layout_weight="1.9" />
 
             <kankan.wheel.widget.WheelView
                 android:id="@+id/wheelReps"
@@ -196,7 +173,7 @@
                 android:layout_height="match_parent"
                 android:layout_marginLeft="5dp"
                 android:layout_marginRight="5dp"
-                android:layout_weight="2" />
+                android:layout_weight="1.9" />
         </LinearLayout>
 
         <LinearLayout
