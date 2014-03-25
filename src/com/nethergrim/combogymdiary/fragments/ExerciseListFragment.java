@@ -33,7 +33,7 @@ import android.widget.AdapterView.OnItemClickListener;
 public class ExerciseListFragment extends Fragment implements
 		LoaderCallbacks<Cursor> {
 
-	private ListView lvExersices_list;
+	private ListView listview;
 	public final static String TRAINING_AT_PROGRESS = "training_at_progress";
 	private static final int CM_DELETE_ID = 1;
 	private static final int CM_EDIT_ID = 2;
@@ -59,9 +59,9 @@ public class ExerciseListFragment extends Fragment implements
 		View v = inflater.inflate(R.layout.exersises_list, null);
 		getActivity().getActionBar().setTitle(
 				R.string.excersisiesListButtonString);
-		lvExersices_list = (ListView) v.findViewById(R.id.listView11);
-		lvExersices_list.setAdapter(scAdapter);
-		lvExersices_list.setOnItemClickListener(new OnItemClickListener() {
+		listview = (ListView) v.findViewById(R.id.listView11);
+		listview.setAdapter(scAdapter);
+		listview.setOnItemClickListener(new OnItemClickListener() {
 			public void onItemClick(AdapterView<?> parent, View view,
 					int position, long id) {
 				goToEditExe(position, id);
@@ -105,7 +105,7 @@ public class ExerciseListFragment extends Fragment implements
 	@Override
 	public void onActivityCreated(Bundle savedInstanceState) {
 		super.onActivityCreated(savedInstanceState);
-		registerForContextMenu(lvExersices_list);
+		registerForContextMenu(listview);
 	}
 
 	public void onResume() {
@@ -117,7 +117,7 @@ public class ExerciseListFragment extends Fragment implements
 
 	public void onPause() {
 		super.onPause();
-		unregisterForContextMenu(lvExersices_list);
+		unregisterForContextMenu(listview);
 	}
 
 	public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {

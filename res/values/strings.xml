@@ -68,6 +68,7 @@
     <string name="email_to_dev">Send e-mail to developer</string>
     <string name="wait">Wait a second, please</string>
     <string name="drive_backup">Backup to Google Drive</string>
+    <string name="error">Error</string>
     <string name="error_editing_exe">Error editing exercise!\nYou can`t delete exercise during training</string>
     <string name="error_deleting_exe">Error deleting exercise!\nYou can`t delete exercise during training</string>
     <string name="see_last_training">See previous training</string>

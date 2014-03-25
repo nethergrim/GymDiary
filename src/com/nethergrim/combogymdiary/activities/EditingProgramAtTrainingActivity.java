@@ -166,9 +166,14 @@ public class EditingProgramAtTrainingActivity extends FragmentActivity
 				editProgram();
 			}
 			break;
+		case android.R.id.home:
+			super.onBackPressed();
+			return true;
 		}
 		return super.onOptionsItemSelected(item);
 	}
+
+
 
 	private void addExe() {
 		long[] arrIDs = lvMain.getCheckedItemIds();

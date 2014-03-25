@@ -106,8 +106,6 @@ public class AddingMeasurementActivity extends Activity {
 					arm_m);
 			areEmpty = false;
 		}
-		// BackupManager bm = new BackupManager(this);
-		// bm.dataChanged();
 		if (areEmpty) {
 			Toast.makeText(this, R.string.input_data, Toast.LENGTH_SHORT)
 					.show();
@@ -126,7 +124,6 @@ public class AddingMeasurementActivity extends Activity {
 			finish();
 			return true;
 		}
-
 		return false;
 	}
 

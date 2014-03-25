@@ -7,6 +7,7 @@ import android.app.Activity;
 import android.content.Intent;
 import android.database.Cursor;
 import android.os.Bundle;
+import android.view.MenuItem;
 import android.widget.TextView;
 
 public class MeasurementsDetailedActivity extends Activity {
@@ -83,6 +84,16 @@ public class MeasurementsDetailedActivity extends Activity {
 		tv8 = (TextView) findViewById(R.id.textView8_);
 	}
 
+	@Override
+	public boolean onOptionsItemSelected(MenuItem item) {
+		switch (item.getItemId()) {
+		case android.R.id.home:
+			super.onBackPressed();
+			return true;
+		}
+		return false;
+	}
+	
 	protected void onDestroy() {
 		super.onDestroy();
 		db.close();

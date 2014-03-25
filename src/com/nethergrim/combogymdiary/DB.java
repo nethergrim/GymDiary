@@ -130,28 +130,54 @@ public class DB {
 	}
 
 	public Cursor getData_Main_GroupBy(String groupBy) {
-
 		return mDB.query(DB_MAIN_TABLE, null, null, null, groupBy, null, null);
 	}
-	
-	public String getTrainingNameById(int _id){		
-		Cursor c =  mDB.query(DB_TRAININGS_TABLE, null, null, null, null, null, null);
-		if (c.moveToFirst()){
+
+	public boolean delRecordMeasurement(String date) {
+		String[] args = { date };
+		// Cursor c = mDB.query(DB_MEASURE_TABLE, null, DATE + "=?", args, null,
+		// null, null);
+		// if (c.moveToFirst()) {
+		// do {
+		// if ( c.getString(1).equals(date)){
+		// mDB.delete(DB_MEASURE_TABLE, whereClause, whereArgs)
+		// }
+		// } while (c.moveToNext());
+		//
+		//
+		// return true;
+		// } else
+		// return false;
+
+		int tmp = mDB.delete(DB_MEASURE_TABLE, DATE + "=?", args);
+		if (tmp > 0) {
+			return true;
+		} else
+			return false;
+	}
+
+	public String getTrainingNameById(int _id) {
+		Cursor c = mDB.query(DB_TRAININGS_TABLE, null, null, null, null, null,
+				null);
+		if (c.moveToFirst()) {
 			do {
-				if (c.getInt(0) == _id){
+				if (c.getInt(0) == _id) {
 					return c.getString(1);
 				}
 			} while ((c.moveToNext()));
 		}
-		Counter.sharedInstance().reportEvent("DB.getTrainingNameById  ERROR!! not found id that matches col_id");
+		Counter.sharedInstance()
+				.reportEvent(
+						"DB.getTrainingNameById  ERROR!! not found id that matches col_id");
 		return "name_not_found";
 	}
-	
-	public String getTrainingListById(int _id){
-		Cursor c =  mDB.query(DB_TRAININGS_TABLE, null, null, null, null, null, null);
-		if (c.moveToFirst()){
+
+	public String getTrainingListById(int _id) {
+		Cursor c = mDB.query(DB_TRAININGS_TABLE, null, null, null, null, null,
+				null);
+		if (c.moveToFirst()) {
 			do {
-				if (c.getInt(0) == _id){
+				if (c.getInt(0) == _id) {
 					return c.getString(2);
 				}
 			} while ((c.moveToNext()));

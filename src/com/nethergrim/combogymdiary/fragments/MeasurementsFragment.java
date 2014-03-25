@@ -15,21 +15,26 @@ import android.support.v4.app.LoaderManager.LoaderCallbacks;
 import android.support.v4.content.CursorLoader;
 import android.support.v4.content.Loader;
 import android.support.v4.widget.SimpleCursorAdapter;
+import android.view.ContextMenu;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.ContextMenu.ContextMenuInfo;
 import android.widget.AdapterView;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
+import android.widget.AdapterView.AdapterContextMenuInfo;
 
 public class MeasurementsFragment extends Fragment implements
 		LoaderCallbacks<Cursor> {
 
-	private ListView lvMeasurements;
+	private static final int CM_DELETE_ID = 8;
+	private ListView listview;
 	private DB db;
 	private static final int LOADER_ID = 4;
 	private SimpleCursorAdapter scAdapter;
@@ -47,30 +52,28 @@ public class MeasurementsFragment extends Fragment implements
 		View v = inflater.inflate(R.layout.activity_measurements, null);
 		getActivity().getActionBar().setTitle(
 				getResources().getString(R.string.measurements));
-		lvMeasurements = (ListView) v.findViewById(R.id.lvMeasurements);
+		listview = (ListView) v.findViewById(R.id.lvMeasurements);
 
 		String[] from = new String[] { DB.DATE };
 		int[] to = new int[] { R.id.tvCatName };
 		scAdapter = new SimpleCursorAdapter(getActivity(),
 				R.layout.list_with_arrow, null, from, to, 0);
-		lvMeasurements.setAdapter(scAdapter);
+		listview.setAdapter(scAdapter);
 		((FragmentActivity) getActivity()).getSupportLoaderManager()
 				.initLoader(LOADER_ID, null, this);
-		lvMeasurements
-				.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-					@Override
-					public void onItemClick(AdapterView<?> parent,
-							View itemClicked, int position, long id) {
-						LinearLayout par = (LinearLayout) itemClicked;
-						TextView t = (TextView) par
-								.findViewById(R.id.tvCatName);
+		listview.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+			@Override
+			public void onItemClick(AdapterView<?> parent, View itemClicked,
+					int position, long id) {
+				LinearLayout par = (LinearLayout) itemClicked;
+				TextView t = (TextView) par.findViewById(R.id.tvCatName);
 
-						String date = (String) t.getText();
-						gotoDetailed(position, id, date);
+				String date = (String) t.getText();
+				gotoDetailed(position, id, date);
 
-					}
-				});
-
+			}
+		});
+		registerForContextMenu(listview);
 		return v;
 	}
 
@@ -88,6 +91,33 @@ public class MeasurementsFragment extends Fragment implements
 		super.onResume();
 		((FragmentActivity) getActivity()).getSupportLoaderManager()
 				.getLoader(LOADER_ID).forceLoad();
+	}
+
+	public void onCreateContextMenu(ContextMenu menu, View v,
+			ContextMenuInfo menuInfo) {
+		super.onCreateContextMenu(menu, v, menuInfo);
+		menu.add(0, CM_DELETE_ID, 0, R.string.delete_record);
+	}
+
+	public boolean onContextItemSelected(MenuItem item) {
+		AdapterContextMenuInfo acmi = (AdapterContextMenuInfo) item
+				.getMenuInfo();
+		if (item.getItemId() == CM_DELETE_ID) {
+			TextView tvTmp = (TextView) acmi.targetView
+					.findViewById(R.id.tvCatName);
+			String exeName = tvTmp.getText().toString();
+			if (db.delRecordMeasurement(exeName)) {
+				Toast.makeText(getActivity(), R.string.deleted,
+						Toast.LENGTH_SHORT).show();
+				((FragmentActivity) getActivity()).getSupportLoaderManager()
+						.getLoader(LOADER_ID).forceLoad();
+			} else {
+				Toast.makeText(getActivity(), R.string.error,
+						Toast.LENGTH_SHORT).show();
+			}
+			return true;
+		}
+		return super.onContextItemSelected(item);
 	}
 
 	@Override

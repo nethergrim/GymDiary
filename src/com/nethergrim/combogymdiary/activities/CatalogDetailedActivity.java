@@ -5,6 +5,7 @@ import com.nethergrim.combogymdiary.R;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.MenuItem;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -20,6 +21,16 @@ public class CatalogDetailedActivity extends Activity {
 	private String[] biceps = null;
 	private String[] triceps = null;
 	private String[] abs = null;
+
+	@Override
+	public boolean onOptionsItemSelected(MenuItem item) {
+		switch (item.getItemId()) {
+		case android.R.id.home:
+			super.onBackPressed();
+			return true;
+		}
+		return false;
+	}
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
