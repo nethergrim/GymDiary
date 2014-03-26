@@ -5,8 +5,10 @@ import com.nethergrim.combogymdiary.R;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.database.Cursor;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.view.MenuItem;
 import android.widget.TextView;
 
@@ -16,7 +18,6 @@ public class MeasurementsDetailedActivity extends Activity {
 	private DB db;
 	private Cursor c;
 	private TextView tv1, tv2, tv3, tv4, tv5, tv6, tv7, tv8;
-	private String weightValue;
 	private String longValue;
 
 	@Override
@@ -27,7 +28,6 @@ public class MeasurementsDetailedActivity extends Activity {
 		date = intent.getStringExtra("date");
 		db = new DB(this);
 		db.open();
-		weightValue = getResources().getString(R.string.kg);
 		longValue = getResources().getString(R.string.sm);
 
 		getActionBar().setTitle(
@@ -48,11 +48,26 @@ public class MeasurementsDetailedActivity extends Activity {
 				DB.MEASURE_VALUE };
 		String[] args = { date };
 		c = db.getDataMeasures(cols, DB.DATE + "=?", args, null, null, DB.DATE);
+
+		SharedPreferences sp = PreferenceManager
+				.getDefaultSharedPreferences(this);
+		String item = sp.getString(BasicMenuActivityNew.MEASURE_ITEM, "1");
+		String measureItem = "";
+		if (item.equals("1")) {
+			measureItem = " ("
+					+ getResources().getStringArray(R.array.measure_items)[0]
+					+ ") ";
+		} else if (item.equals("2")) {
+			measureItem = " ("
+					+ getResources().getStringArray(R.array.measure_items)[1]
+					+ ") ";
+		}
+
 		if (c.moveToFirst()) {
 			do {
 				String tmp_type = c.getString(1);
 				if (tmp_type.equals(weight)) {
-					tv1.setText(tmp_type + " - " + c.getString(2) + weightValue);
+					tv1.setText(tmp_type + " - " + c.getString(2) + measureItem);
 				} else if (tmp_type.equals(tall)) {
 					tv2.setText(tmp_type + " - " + c.getString(2) + longValue);
 				} else if (tmp_type.equals(chest)) {
@@ -93,7 +108,7 @@ public class MeasurementsDetailedActivity extends Activity {
 		}
 		return false;
 	}
-	
+
 	protected void onDestroy() {
 		super.onDestroy();
 		db.close();

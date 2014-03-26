@@ -6,9 +6,11 @@ import com.nethergrim.combogymdiary.R;
 import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.database.Cursor;
 import android.graphics.Color;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.view.Gravity;
 import android.view.MenuItem;
 import android.view.View;
@@ -77,6 +79,15 @@ public class HistoryDetailedActivity extends Activity {
 		LayoutParams linLayoutParam = new LayoutParams(
 				LayoutParams.MATCH_PARENT, LayoutParams.MATCH_PARENT);
 		setContentView(scrollView, linLayoutParam);
+		
+		SharedPreferences sp = PreferenceManager.getDefaultSharedPreferences(this);
+		String item = sp.getString(BasicMenuActivityNew.MEASURE_ITEM, "1");
+		String measureItem = "";
+		if (item.equals("1")){
+			measureItem = " (" + getResources().getStringArray(R.array.measure_items)[0] + ") ";
+		} else if (item.equals("2")){
+			measureItem = " (" + getResources().getStringArray(R.array.measure_items)[1] + ") ";
+		}		
 		scrollView.addView(llMain, linLayoutParam);
 		llMain.setGravity(Gravity.CENTER_HORIZONTAL);
 		if (cursor.moveToFirst()) {
@@ -87,7 +98,7 @@ public class HistoryDetailedActivity extends Activity {
 				llMain.addView(tvNew, lpView);
 				do {
 					TextView tvNewSet = new TextView(this);
-					tvNewSet.setText("" + cursor.getInt(3) + "/"
+					tvNewSet.setText("" + cursor.getInt(3) + measureItem + "/"
 							+ cursor.getInt(4));
 					llMain.addView(tvNewSet, lpView);
 				} while (cursor.moveToNext() && cursor.getInt(5) != 1);

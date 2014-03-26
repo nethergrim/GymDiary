@@ -8,10 +8,13 @@ import com.nethergrim.combogymdiary.R;
 
 import android.annotation.SuppressLint;
 import android.app.Activity;
+import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 @SuppressLint("SimpleDateFormat")
@@ -23,6 +26,7 @@ public class AddingMeasurementActivity extends Activity {
 	private String weight_m, tall_m, chest_m, waist_m, hip_m, leg_m, calf_m,
 			arm_m;
 	private DB db;
+	private TextView tvTmp;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -43,6 +47,21 @@ public class AddingMeasurementActivity extends Activity {
 		date = sdf.format(new Date(System.currentTimeMillis()));
 		db = new DB(this);
 		db.open();
+		tvTmp = (TextView) findViewById(R.id.textView1weight);
+		SharedPreferences sp = PreferenceManager
+				.getDefaultSharedPreferences(this);
+		String item = sp.getString(BasicMenuActivityNew.MEASURE_ITEM, "1");
+		String measureItem = "";
+		if (item.equals("1")) {
+			measureItem = " ("
+					+ getResources().getStringArray(R.array.measure_items)[0]
+					+ ") ";
+		} else if (item.equals("2")) {
+			measureItem = " ("
+					+ getResources().getStringArray(R.array.measure_items)[1]
+					+ ") ";
+		}
+		tvTmp.setText("" + R.string.weight + measureItem);
 	}
 
 	protected void onDestroy() {

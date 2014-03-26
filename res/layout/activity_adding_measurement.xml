@@ -22,22 +22,13 @@
             android:layout_height="wrap_content"
             android:orientation="vertical" >
 
-            <com.google.android.gms.ads.AdView
-                xmlns:ads="http://schemas.android.com/apk/res-auto"
-                android:id="@+id/adView2"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                ads:adSize="SMART_BANNER"
-                ads:adUnitId="ca-app-pub-5652589022154086/4102541457"
-                android:gravity="center_horizontal" />
-
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp" >
 
                 <TextView
-                    android:id="@+id/textView1"
+                    android:id="@+id/textView1weight"
                     android:layout_width="0dip"
                     android:layout_height="match_parent"
                     android:layout_weight="1"
