@@ -1,13 +1,21 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
+    <string-array name="measure_items">
+        <item>kg</item>
+        <item>pound(lb)</item>
+    </string-array>
+    <string-array name="measure_item_values">
+        <item>1</item>
+        <item>2</item>
+    </string-array>
+    <string name="measure_select">Select measure</string>
+
     <string name="sm">(cm)</string>
-    
+    <string name="select_measure">Please, select the measure of weight</string>
     <string name="drawer_open">Open navigation drawer</string>
     <string name="drawer_close">Close navigation drawer</string>
-    
     <string name="faq">About</string>
-    
     <string name="info_text_1">The main objective of this application - replace the paper training diary at something more useful and smart \ n</string>
     <string name="info_question_2">How to use this application?</string>
     <string name="info_text_2">They can be used just like ordinary paper diary and training.

@@ -1,6 +1,17 @@
 <resources>
 
+    <string-array name="measure_items">
+        <item>кг</item>
+        <item>фунт (lb)</item>
+    </string-array>
+    <string-array name="measure_item_values">
+        <item>1</item>
+        <item>2</item>
+    </string-array>
+
+    <string name="measure_select">Выбрать меру веса</string>
     <string name="drawer_open">Открыть навигацию</string>
+    <string name="select_measure">Пожалуйста, выберите меру веса</string>
     <string name="drawer_close">Закрыть навигацию</string>
     <string name="sm">(см)</string>
     <string name="error">Ошибка</string>

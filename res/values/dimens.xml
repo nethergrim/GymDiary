@@ -7,11 +7,11 @@
     <dimen name="border_5">5dp</dimen>
     <dimen name="text16">16dp</dimen>
     <dimen name="text14">14dp</dimen>
-        <dimen name="item_height">60dp</dimen>
+    <dimen name="item_height">60dp</dimen>
     <dimen name="section_div_height">20dp</dimen>
     <dimen name="dip12">12dp</dimen>
     <dimen name="layer_width">100dp</dimen>
-        <dimen name="slidingmenu_offset">60dp</dimen>
+    <dimen name="slidingmenu_offset">60dp</dimen>
     <dimen name="list_padding">10dp</dimen>
     <dimen name="shadow_width">15dp</dimen>
 

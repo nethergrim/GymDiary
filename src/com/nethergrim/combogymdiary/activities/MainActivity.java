@@ -122,7 +122,6 @@ public class MainActivity extends Activity {
 		@Override
 		protected void onPreExecute() {
 			sp.edit().putBoolean(DATABASE_FILLED, true).apply();
-
 			super.onPreExecute();
 		}
 
@@ -141,7 +140,6 @@ public class MainActivity extends Activity {
 		@Override
 		protected void onPostExecute(Void result) {
 			super.onPostExecute(result);
-
 			goNext();
 			finish();
 		}

@@ -9,6 +9,14 @@
             android:summary="@string/turn_off_screen"
             android:title="@string/screen_off" >
         </CheckBoxPreference>
+
+        <ListPreference
+            android:defaultValue="1"
+            android:dialogTitle="@string/select_measure"
+            android:entries="@array/measure_items"
+            android:entryValues="@array/measure_item_values"
+            android:key="measureItem"
+            android:title="@string/measure_select" />
     </PreferenceCategory>
     <PreferenceCategory android:title="@string/timer" >
         <EditTextPreference
@@ -39,41 +47,32 @@
     </PreferenceCategory>
     <PreferenceCategory android:title="@string/backupAndRestore" >
         <Preference
-            android:key="btnBackup"
             android:icon="@drawable/ic_action_sd_storage"
+            android:key="btnBackup"
             android:summary="@string/backup_database_to_sd"
             android:title="@string/backup" />
         <Preference
-            android:key="btnRestore"
             android:icon="@drawable/ic_action_sd_storage"
+            android:key="btnRestore"
             android:summary="@string/replace_from_backup"
             android:title="@string/restore" />
-        
-        
-        
         <Preference
             android:icon="@drawable/google_drive_icon"
             android:key="btnBackupToDrive"
             android:summary="@string/drive_backup"
             android:title="@string/drive" />
-        
         <Preference
             android:icon="@drawable/google_drive_icon"
             android:key="btnDriveRestore"
             android:summary="@string/restore_from_google_drive"
             android:title="@string/restore" />
-        
 
-        
         <CheckBoxPreference
-            android:icon="@drawable/google_drive_icon"
             android:defaultValue="true"
+            android:icon="@drawable/google_drive_icon"
             android:key="settingAutoBackup"
             android:summary="@string/auto_backup_to_disk_detailed"
             android:title="@string/auto_backup_to_disk" />
-        
-        
-        
     </PreferenceCategory>
     <PreferenceCategory android:title="@string/feedback" >
         <Preference
@@ -83,11 +82,10 @@
             android:key="btnEmail"
             android:summary="@string/email_to_dev"
             android:title="@string/email" />
-         <Preference
+        <Preference
             android:key="btnGoToMarket"
-            android:title="@string/feedback_leave"
-            android:summary="@string/feedback_detail" />
-        
+            android:summary="@string/feedback_detail"
+            android:title="@string/feedback_leave" />
     </PreferenceCategory>
 
 </PreferenceScreen>
