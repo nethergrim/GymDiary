@@ -14,14 +14,14 @@ public class DB {
 
 	public static final String LOG_TAG = "myLogs";
 	public static final String DB_NAME = "mydb";
-	private static final int DB_VERSION = 3;
+	private static final int DB_VERSION = 4;
 
 	private static final String DB_EXE_TABLE = "exe_tab";
 	public static final String COLUMN_ID = "_id";
 	public static final String EXE_NAME = "exercise_name";
 	public static final String TRA_NAME = "training_name";
 	public static final String TIMER_VALUE = "timer_value";
-
+	public static final String COMMENT_TO_TRAINING = "comment_to_training";
 	public static final String DB_MAIN_TABLE = "main_tab";
 	public static final String DATE = "Date";
 	public static final String WEIGHT = "Weight";
@@ -54,8 +54,8 @@ public class DB {
 	private static final String DB_TRAININGS_CREATE = "create table "
 			+ DB_TRAININGS_TABLE + "(" + COLUMN_ID
 			+ " integer primary key autoincrement, " + TRA_NAME + " text, "
-			+ EXE_NAME + " text" + ");";
-	public static String strSeparator = "__,__";
+			+ EXE_NAME + " text, " + COMMENT_TO_TRAINING + " text" + ");";
+	public static final String strSeparator = "__,__";
 
 	private Context mCtx;
 	private DBHelper mDBHelper;
@@ -548,6 +548,12 @@ public class DB {
 			if (oldVersion == 2 && newVersion == 3) {
 				Log.d(LOG_TAG, "DB updating from v2 to v3");
 				db.execSQL(DB_TRAININGS_CREATE);
+			}
+			if (oldVersion == 3 && newVersion == 4) {
+
+				String upgradeQuery = "ALTER TABLE " + DB_TRAININGS_TABLE +" ADD COLUMN " + COMMENT_TO_TRAINING + " TEXT";
+				db.execSQL(upgradeQuery);
+
 			}
 		}
 	}
