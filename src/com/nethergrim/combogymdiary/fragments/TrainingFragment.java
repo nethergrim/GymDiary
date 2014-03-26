@@ -99,6 +99,7 @@ public class TrainingFragment extends Fragment implements
 	private Animation anim = null;
 	private ListView list;
 	private int trainingId = 0;
+	private TextView tvWeight;
 	private boolean isTrainingAtProgress = false;
 
 	public void onCreate(Bundle savedInstanceState) {
@@ -157,6 +158,8 @@ public class TrainingFragment extends Fragment implements
 		llForward.setOnClickListener(this);
 		llBack.setEnabled(false);
 		llForward.setEnabled(false);
+		tvWeight = (TextView)v.findViewById(R.id.textView4__);//TODO	
+		
 		ivBack = (ImageView) v.findViewById(R.id.imageView2);
 		ivForward = (ImageView) v.findViewById(R.id.imageView3);
 		reps = (WheelView) v.findViewById(R.id.wheelReps);
@@ -293,6 +296,14 @@ public class TrainingFragment extends Fragment implements
 		} catch (Exception e) {
 			vibrateLenght = 2;
 		}
+		
+		if (sp.getString(BasicMenuActivityNew.MEASURE_ITEM, "1").equals("1")){
+			tvWeight.setText( getResources().getString(R.string.Weight)+" (" + getResources().getStringArray(R.array.measure_items)[0] + ")" );
+		} else if (sp.getString(BasicMenuActivityNew.MEASURE_ITEM, "1").equals("2")){
+			tvWeight.setText( getResources().getString(R.string.Weight) + " ("+ getResources().getStringArray(R.array.measure_items)[1] + ")");
+		}
+		
+		
 		vibrateLenght *= 1000;
 		timerHandler.postDelayed(timerRunnable, 0);
 		if (isTrainingAtProgress) {

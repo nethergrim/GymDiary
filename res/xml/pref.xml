@@ -21,7 +21,7 @@
     <PreferenceCategory android:title="@string/timer" >
         <EditTextPreference
             android:defaultValue="60"
-            android:enabled="true"
+            android:enabled="true"            
             android:key="etDefault"
             android:summary="@string/default_timer_value_prop"
             android:title="@string/default_timer" >

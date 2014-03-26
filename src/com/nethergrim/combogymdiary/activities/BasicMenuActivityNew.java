@@ -50,6 +50,7 @@ public class BasicMenuActivityNew extends FragmentActivity implements
 
 	protected SharedPreferences sPref;
 	public final static String TRAINING_AT_PROGRESS = "training_at_progress";
+	public final static String MEASURE_ITEM = "measureItem";
 	public final static String LIST_OF_SETS = "list_of_sets";
 	public final static String TRAINING_ID = "training_id";
 	public final static String TRAINING_NAME = "training_name";
@@ -138,8 +139,8 @@ public class BasicMenuActivityNew extends FragmentActivity implements
 		if (savedInstanceState == null) {
 			selectItem(0);
 		}
-
 	}
+	
 
 	@Override
 	public boolean onOptionsItemSelected(MenuItem item) {
