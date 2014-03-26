@@ -50,6 +50,7 @@ public class BasicMenuActivityNew extends FragmentActivity implements
 
 	protected SharedPreferences sPref;
 	public final static String TRAINING_AT_PROGRESS = "training_at_progress";
+	public final static String COMMENT_TO_TRAINING = "comment_to_training";
 	public final static String MEASURE_ITEM = "measureItem";
 	public final static String LIST_OF_SETS = "list_of_sets";
 	public final static String TRAINING_ID = "training_id";

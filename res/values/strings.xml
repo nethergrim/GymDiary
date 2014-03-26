@@ -10,7 +10,7 @@
         <item>2</item>
     </string-array>
     <string name="measure_select">Select measure</string>
-
+	<string name="add_comment_to_training">Add comment to training</string>
     <string name="sm">(cm)</string>
     <string name="select_measure">Please, select the measure of weight</string>
     <string name="drawer_open">Open navigation drawer</string>

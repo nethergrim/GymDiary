@@ -158,8 +158,7 @@ public class TrainingFragment extends Fragment implements
 		llForward.setOnClickListener(this);
 		llBack.setEnabled(false);
 		llForward.setEnabled(false);
-		tvWeight = (TextView)v.findViewById(R.id.textView4__);//TODO	
-		
+		tvWeight = (TextView) v.findViewById(R.id.textView4__);
 		ivBack = (ImageView) v.findViewById(R.id.imageView2);
 		ivForward = (ImageView) v.findViewById(R.id.imageView3);
 		reps = (WheelView) v.findViewById(R.id.wheelReps);
@@ -296,14 +295,18 @@ public class TrainingFragment extends Fragment implements
 		} catch (Exception e) {
 			vibrateLenght = 2;
 		}
-		
-		if (sp.getString(BasicMenuActivityNew.MEASURE_ITEM, "1").equals("1")){
-			tvWeight.setText( getResources().getString(R.string.Weight)+" (" + getResources().getStringArray(R.array.measure_items)[0] + ")" );
-		} else if (sp.getString(BasicMenuActivityNew.MEASURE_ITEM, "1").equals("2")){
-			tvWeight.setText( getResources().getString(R.string.Weight) + " ("+ getResources().getStringArray(R.array.measure_items)[1] + ")");
+
+		if (sp.getString(BasicMenuActivityNew.MEASURE_ITEM, "1").equals("1")) {
+			tvWeight.setText(getResources().getString(R.string.Weight) + " ("
+					+ getResources().getStringArray(R.array.measure_items)[0]
+					+ ")");
+		} else if (sp.getString(BasicMenuActivityNew.MEASURE_ITEM, "1").equals(
+				"2")) {
+			tvWeight.setText(getResources().getString(R.string.Weight) + " ("
+					+ getResources().getStringArray(R.array.measure_items)[1]
+					+ ")");
 		}
-		
-		
+
 		vibrateLenght *= 1000;
 		timerHandler.postDelayed(timerRunnable, 0);
 		if (isTrainingAtProgress) {
@@ -422,6 +425,14 @@ public class TrainingFragment extends Fragment implements
 						getActivity(),
 						getResources().getString(R.string.no_history) + traName,
 						Toast.LENGTH_SHORT).show();
+			}
+		} else if (itemId == R.id.itemAddCommentToTraining) { // TODO adding
+																// comment
+
+			if (sp.getString(BasicMenuActivityNew.COMMENT_TO_TRAINING, "").equals("")){
+				
+			} else {
+				
 			}
 		}
 		return false;

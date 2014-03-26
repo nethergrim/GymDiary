@@ -550,10 +550,8 @@ public class DB {
 				db.execSQL(DB_TRAININGS_CREATE);
 			}
 			if (oldVersion == 3 && newVersion == 4) {
-
-				String upgradeQuery = "ALTER TABLE " + DB_TRAININGS_TABLE +" ADD COLUMN " + COMMENT_TO_TRAINING + " TEXT";
-				db.execSQL(upgradeQuery);
-
+				db.execSQL("ALTER TABLE " + DB_MAIN_TABLE + " ADD COLUMN "
+						+ COMMENT_TO_TRAINING + " TEXT");
 			}
 		}
 	}

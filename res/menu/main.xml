@@ -19,5 +19,10 @@
         android:showAsAction="collapseActionView"
         android:title="@string/exit">
     </item>
+    <item 
+        android:id="@+id/itemAddCommentToTraining"
+        android:title="@string/add_comment_to_training"
+        android:showAsAction="collapseActionView"
+        />
 
 </menu>
