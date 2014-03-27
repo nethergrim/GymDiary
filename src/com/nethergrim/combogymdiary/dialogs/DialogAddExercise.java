@@ -67,7 +67,7 @@ public class DialogAddExercise extends DialogFragment implements
 		int id = v.getId();
 		if (id == R.id.btnSave && editOrNot == false) {
 			if (!name.isEmpty() && !timer.isEmpty()) {
-				db.addRec_Exe(name, timer);
+				db.addRecExe(name, timer);
 				Toast.makeText(getActivity(), R.string.saved,
 						Toast.LENGTH_SHORT).show();
 				dismiss();

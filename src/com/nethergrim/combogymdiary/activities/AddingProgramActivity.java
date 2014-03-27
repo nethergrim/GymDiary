@@ -119,7 +119,7 @@ public class AddingProgramActivity extends FragmentActivity implements
 					}
 				} while (c.moveToNext() && j < arrIDs.length);
 
-				db.addRec_Trainings(prgName, db.convertArrayToString(exersices));
+				db.addRecTrainings(prgName, db.convertArrayToString(exersices));
 				finish();
 			} else {
 				Toast.makeText(this, R.string.input_data, Toast.LENGTH_SHORT)

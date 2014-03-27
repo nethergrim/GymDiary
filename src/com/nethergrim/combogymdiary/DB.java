@@ -28,6 +28,9 @@ public class DB {
 	public static final String REPS = "Reps";
 	public static final String SET = "SetsN";
 
+	public static final String DB_COMMENT_TABLE = "comment_table";
+	public static final String TOTAL_WEIGHT_OF_TRAINING = "total_weight";
+
 	public static final String DB_MEASURE_TABLE = "measurements_tab";
 	public static final String PART_OF_BODY_FOR_MEASURING = "part_of_body";
 	public static final String MEASURE_VALUE = "measure_value";
@@ -54,7 +57,14 @@ public class DB {
 	private static final String DB_TRAININGS_CREATE = "create table "
 			+ DB_TRAININGS_TABLE + "(" + COLUMN_ID
 			+ " integer primary key autoincrement, " + TRA_NAME + " text, "
-			+ EXE_NAME + " text, " + COMMENT_TO_TRAINING + " text" + ");";
+			+ EXE_NAME + " text" + ");";
+
+	private static final String DB_COMMENT_CREATE = "create table "
+			+ DB_COMMENT_TABLE + "(" + COLUMN_ID
+			+ " integer primary key autoincrement, " + DATE + " text, "
+			+ COMMENT_TO_TRAINING + " text, " + TOTAL_WEIGHT_OF_TRAINING
+			+ " integer" + ");";
+
 	public static final String strSeparator = "__,__";
 
 	private Context mCtx;
@@ -430,14 +440,14 @@ public class DB {
 				groupBy, having, orderedBy);
 	}
 
-	public void addRec_Exe(String exeName, String timer) {
+	public void addRecExe(String exeName, String timer) {
 		ContentValues cv = new ContentValues();
 		cv.put(EXE_NAME, exeName);
 		cv.put(TIMER_VALUE, timer);
 		mDB.insert(DB_EXE_TABLE, null, cv);
 	}
 
-	public void addRec_Trainings(String traName, String exeName) {
+	public void addRecTrainings(String traName, String exeName) {
 		ContentValues cv = new ContentValues();
 		cv.put(EXE_NAME, exeName);
 		cv.put(TRA_NAME, traName);
@@ -445,7 +455,7 @@ public class DB {
 		Log.d(LOG_TAG, "added record to trainigns: id == " + id);
 	}
 
-	public void addRec_Measure(String date, String part_of_body, String value) {
+	public void addRecMeasure(String date, String part_of_body, String value) {
 		ContentValues cv = new ContentValues();
 		cv.put(DATE, date);
 		cv.put(PART_OF_BODY_FOR_MEASURING, part_of_body);
@@ -455,7 +465,7 @@ public class DB {
 				+ part_of_body + " value = " + value);
 	}
 
-	public void addRec_Main(String traName, String exeName, String date,
+	public void addRecMainTable(String traName, String exeName, String date,
 			int weight, int reps, int set) {
 		ContentValues cv = new ContentValues();
 		cv.put(EXE_NAME, exeName);
@@ -465,6 +475,14 @@ public class DB {
 		cv.put(REPS, reps);
 		cv.put(SET, set);
 		mDB.insert(DB_MAIN_TABLE, null, cv);
+	}
+
+	public void addRecComment(String date, String comment, int totalWeight) {
+		ContentValues cv = new ContentValues();
+		cv.put(DATE, date);
+		cv.put(COMMENT_TO_TRAINING, comment);
+		cv.put(TOTAL_WEIGHT_OF_TRAINING, totalWeight);
+		mDB.insert(DB_COMMENT_TABLE, null, cv);
 	}
 
 	public void updateRec_Exe(int Id, String column, String data) {
@@ -550,8 +568,7 @@ public class DB {
 				db.execSQL(DB_TRAININGS_CREATE);
 			}
 			if (oldVersion == 3 && newVersion == 4) {
-				db.execSQL("ALTER TABLE " + DB_MAIN_TABLE + " ADD COLUMN "
-						+ COMMENT_TO_TRAINING + " TEXT");
+				db.execSQL(DB_COMMENT_CREATE);
 			}
 		}
 	}

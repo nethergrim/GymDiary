@@ -483,7 +483,7 @@ public class TrainingFragment extends Fragment implements
 			alSet.set(checkedPosition, tmp);
 			set = alSet.get(checkedPosition);
 
-			db.addRec_Main(traName, exeName, date, wei, rep_s, set);
+			db.addRecMainTable(traName, exeName, date, wei, rep_s, set);
 			currentSet = set;
 			initSetButtons();
 			Toast.makeText(getActivity(), R.string.saved, Toast.LENGTH_SHORT)

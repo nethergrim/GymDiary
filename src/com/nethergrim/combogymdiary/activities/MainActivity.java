@@ -81,35 +81,35 @@ public class MainActivity extends Activity {
 		String[] exeAbs = getResources().getStringArray(
 				R.array.exercisesArrayAbs);
 
-		db.addRec_Trainings(getString(R.string.traLegs),
+		db.addRecTrainings(getString(R.string.traLegs),
 				db.convertArrayToString(exeLegs));
-		db.addRec_Trainings(getString(R.string.traChest),
+		db.addRecTrainings(getString(R.string.traChest),
 				db.convertArrayToString(exeChest));
-		db.addRec_Trainings(getString(R.string.traBack),
+		db.addRecTrainings(getString(R.string.traBack),
 				db.convertArrayToString(exeBack));
-		db.addRec_Trainings(getString(R.string.traShoulders),
+		db.addRecTrainings(getString(R.string.traShoulders),
 				db.convertArrayToString(exeShoulders));
-		db.addRec_Trainings(getString(R.string.traBiceps),
+		db.addRecTrainings(getString(R.string.traBiceps),
 				db.convertArrayToString(exeBiceps));
-		db.addRec_Trainings(getString(R.string.traTriceps),
+		db.addRecTrainings(getString(R.string.traTriceps),
 				db.convertArrayToString(exeTriceps));
-		db.addRec_Trainings(getString(R.string.traAbs),
+		db.addRecTrainings(getString(R.string.traAbs),
 				db.convertArrayToString(exeAbs));
 
 		for (int i = 0; i < exeLegs.length; i++)
-			db.addRec_Exe(exeLegs[i], "90");
+			db.addRecExe(exeLegs[i], "90");
 		for (int i = 0; i < exeChest.length; i++)
-			db.addRec_Exe(exeChest[i], "60");
+			db.addRecExe(exeChest[i], "60");
 		for (int i = 0; i < exeBiceps.length; i++)
-			db.addRec_Exe(exeBiceps[i], "60");
+			db.addRecExe(exeBiceps[i], "60");
 		for (int i = 0; i < exeTriceps.length; i++)
-			db.addRec_Exe(exeTriceps[i], "60");
+			db.addRecExe(exeTriceps[i], "60");
 		for (int i = 0; i < exeBack.length; i++)
-			db.addRec_Exe(exeBack[i], "60");
+			db.addRecExe(exeBack[i], "60");
 		for (int i = 0; i < exeShoulders.length; i++)
-			db.addRec_Exe(exeShoulders[i], "60");
+			db.addRecExe(exeShoulders[i], "60");
 		for (int i = 0; i < exeAbs.length; i++)
-			db.addRec_Exe(exeAbs[i], "60");
+			db.addRecExe(exeAbs[i], "60");
 	}
 
 	protected void onDestroy() {

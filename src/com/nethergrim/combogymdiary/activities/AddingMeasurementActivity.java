@@ -86,42 +86,42 @@ public class AddingMeasurementActivity extends Activity {
 		arm_m = etArm.getText().toString();
 		boolean areEmpty = true;
 		if (!weight_m.isEmpty()) {
-			db.addRec_Measure(date, getResources().getString(R.string.weight),
+			db.addRecMeasure(date, getResources().getString(R.string.weight),
 					weight_m);
 			areEmpty = false;
 		}
 		if (!tall_m.isEmpty()) {
-			db.addRec_Measure(date, getResources().getString(R.string.tall),
+			db.addRecMeasure(date, getResources().getString(R.string.tall),
 					tall_m);
 			areEmpty = false;
 		}
 		if (!chest_m.isEmpty()) {
-			db.addRec_Measure(date, getResources().getString(R.string.chest),
+			db.addRecMeasure(date, getResources().getString(R.string.chest),
 					chest_m);
 			areEmpty = false;
 		}
 		if (!waist_m.isEmpty()) {
-			db.addRec_Measure(date, getResources().getString(R.string.waist),
+			db.addRecMeasure(date, getResources().getString(R.string.waist),
 					waist_m);
 			areEmpty = false;
 		}
 		if (!hip_m.isEmpty()) {
-			db.addRec_Measure(date, getResources().getString(R.string.hip),
+			db.addRecMeasure(date, getResources().getString(R.string.hip),
 					hip_m);
 			areEmpty = false;
 		}
 		if (!leg_m.isEmpty()) {
-			db.addRec_Measure(date, getResources().getString(R.string.leg),
+			db.addRecMeasure(date, getResources().getString(R.string.leg),
 					leg_m);
 			areEmpty = false;
 		}
 		if (!calf_m.isEmpty()) {
-			db.addRec_Measure(date, getResources().getString(R.string.calf),
+			db.addRecMeasure(date, getResources().getString(R.string.calf),
 					calf_m);
 			areEmpty = false;
 		}
 		if (!arm_m.isEmpty()) {
-			db.addRec_Measure(date, getResources().getString(R.string.arm),
+			db.addRecMeasure(date, getResources().getString(R.string.arm),
 					arm_m);
 			areEmpty = false;
 		}
