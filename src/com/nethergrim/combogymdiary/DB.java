@@ -484,6 +484,10 @@ public class DB {
 		cv.put(TOTAL_WEIGHT_OF_TRAINING, totalWeight);
 		mDB.insert(DB_COMMENT_TABLE, null, cv);
 	}
+	
+	public Cursor getDataComment(String[] cols, String selection, String[] args, String groupby, String having, String orderBy ){
+		return mDB.query(DB_COMMENT_TABLE, cols, selection, args, groupby, having, orderBy);
+	}
 
 	public void updateRec_Exe(int Id, String column, String data) {
 		ContentValues cv1 = new ContentValues();

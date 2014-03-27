@@ -1,5 +1,8 @@
 package com.nethergrim.combogymdiary.activities;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
 import com.google.android.gms.ads.AdView;
 import com.nethergrim.combogymdiary.Backuper;
 import com.nethergrim.combogymdiary.DB;
@@ -18,6 +21,7 @@ import com.nethergrim.combogymdiary.fragments.TrainingFragment;
 import com.nethergrim.combogymdiary.fragments.StartTrainingFragment.OnSelectedListener;
 import com.yandex.metrica.Counter;
 
+import android.annotation.SuppressLint;
 import android.app.Fragment;
 import android.app.NotificationManager;
 import android.content.Context;
@@ -49,6 +53,7 @@ public class BasicMenuActivityNew extends FragmentActivity implements
 	protected String[] listButtons;
 
 	protected SharedPreferences sPref;
+	public final static String TOTAL_WEIGHT = "total_weight";
 	public final static String TRAINING_AT_PROGRESS = "training_at_progress";
 	public final static String COMMENT_TO_TRAINING = "comment_to_training";
 	public final static String MEASURE_ITEM = "measureItem";
@@ -141,7 +146,6 @@ public class BasicMenuActivityNew extends FragmentActivity implements
 			selectItem(0);
 		}
 	}
-	
 
 	@Override
 	public boolean onOptionsItemSelected(MenuItem item) {
@@ -297,6 +301,7 @@ public class BasicMenuActivityNew extends FragmentActivity implements
 		IF_TRAINING_STARTED = iF_TRAINING_STARTED;
 	}
 
+	@SuppressLint("SimpleDateFormat")
 	@Override
 	public void onChoose() {
 		DB db = new DB(this);
@@ -311,6 +316,17 @@ public class BasicMenuActivityNew extends FragmentActivity implements
 		sp.edit().putBoolean(TRAINING_AT_PROGRESS, false).apply();
 		sp.edit().putInt(USER_CLICKED_POSITION, 0).apply();
 		sp.edit().putInt(TrainingFragment.CHECKED_POSITION, 0).apply();
+		int total = sp.getInt(TOTAL_WEIGHT, 0);
+		SimpleDateFormat sdf = new SimpleDateFormat("dd.MM.yyyy");
+		String date = sdf.format(new Date(System.currentTimeMillis()));
+		if (!sp.getString(COMMENT_TO_TRAINING, "").equals("")) {
+			db.addRecComment(date, sp.getString(COMMENT_TO_TRAINING, ""), total);
+		} else {
+			db.addRecComment(date, null, total);// TODO
+		}
+		sp.edit().putString(COMMENT_TO_TRAINING, "").apply();
+		sp.edit().putInt(TOTAL_WEIGHT, 0).apply();
+
 		stopService(new Intent(this, TrainingService.class));
 
 		NotificationManager notificationManager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);

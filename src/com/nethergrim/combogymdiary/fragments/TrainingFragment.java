@@ -14,6 +14,7 @@ import com.nethergrim.combogymdiary.TrainingService;
 import com.nethergrim.combogymdiary.activities.BasicMenuActivityNew;
 import com.nethergrim.combogymdiary.activities.EditingProgramAtTrainingActivity;
 import com.nethergrim.combogymdiary.activities.HistoryDetailedActivity;
+import com.nethergrim.combogymdiary.dialogs.DialogAddCommentToTraining;
 import com.nethergrim.combogymdiary.dialogs.DialogExitFromTraining;
 import com.yandex.metrica.Counter;
 
@@ -426,14 +427,10 @@ public class TrainingFragment extends Fragment implements
 						getResources().getString(R.string.no_history) + traName,
 						Toast.LENGTH_SHORT).show();
 			}
-		} else if (itemId == R.id.itemAddCommentToTraining) { // TODO adding
-																// comment
+		} else if (itemId == R.id.itemAddCommentToTraining) { 																
 
-			if (sp.getString(BasicMenuActivityNew.COMMENT_TO_TRAINING, "").equals("")){
-				
-			} else {
-				
-			}
+			DialogAddCommentToTraining dialog = new DialogAddCommentToTraining();
+			dialog.show(getFragmentManager(), "");
 		}
 		return false;
 	}
@@ -482,7 +479,9 @@ public class TrainingFragment extends Fragment implements
 			tmp++;
 			alSet.set(checkedPosition, tmp);
 			set = alSet.get(checkedPosition);
-
+			int total = wei * rep_s;
+			total += sp.getInt(BasicMenuActivityNew.TOTAL_WEIGHT, 0);
+			sp.edit().putInt(BasicMenuActivityNew.TOTAL_WEIGHT, total).apply();
 			db.addRecMainTable(traName, exeName, date, wei, rep_s, set);
 			currentSet = set;
 			initSetButtons();

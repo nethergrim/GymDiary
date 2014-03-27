@@ -3,7 +3,6 @@ package com.nethergrim.combogymdiary.dialogs;
 import com.nethergrim.combogymdiary.R;
 import com.nethergrim.combogymdiary.activities.BasicMenuActivityNew;
 
-import android.app.Activity;
 import android.app.DialogFragment;
 import android.content.DialogInterface;
 import android.content.SharedPreferences;
@@ -28,9 +27,15 @@ public class DialogAddCommentToTraining extends DialogFragment implements
 		getDialog().setTitle(R.string.add_comment_to_training);
 		View v = inflater
 				.inflate(R.layout.dialog_add_comment_to_training, null);
+		sp = PreferenceManager.getDefaultSharedPreferences(getActivity());
 		et = (EditText) v.findViewById(R.id.editText1AddComment);
 		btn = (Button) v.findViewById(R.id.buttonSave);
 		btn.setOnClickListener(this);
+		if (!sp.getString(BasicMenuActivityNew.COMMENT_TO_TRAINING, "").equals(
+				"")) {
+			et.setText(sp.getString(BasicMenuActivityNew.COMMENT_TO_TRAINING,
+					""));
+		}
 		return v;
 	}
 
@@ -38,8 +43,6 @@ public class DialogAddCommentToTraining extends DialogFragment implements
 	public void onClick(View v) {
 		int id = v.getId();
 		if (id == R.id.buttonSave) {
-			mListener.onAddCommentToTraining(et.getText().toString());
-			sp = PreferenceManager.getDefaultSharedPreferences(getActivity());
 			sp.edit()
 					.putString(BasicMenuActivityNew.COMMENT_TO_TRAINING,
 							et.getText().toString()).apply();
@@ -54,23 +57,4 @@ public class DialogAddCommentToTraining extends DialogFragment implements
 	public void onCancel(DialogInterface dialog) {
 		super.onCancel(dialog);
 	}
-
-	public static interface OnAddComment {
-		public void onAddCommentToTraining(String comment);
-	}
-
-	private OnAddComment mListener;
-
-	@Override
-	public void onAttach(Activity activity) {
-		mListener = (OnAddComment) activity;
-		super.onAttach(activity);
-	}
-
-	@Override
-	public void onDetach() {
-		mListener = null;
-		super.onDetach();
-	}
-
 }
