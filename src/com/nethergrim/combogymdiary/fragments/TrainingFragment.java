@@ -102,6 +102,8 @@ public class TrainingFragment extends Fragment implements
 	private int trainingId = 0;
 	private TextView tvWeight;
 	private boolean isTrainingAtProgress = false;
+	private int total = 0;
+	private String measureItem = "";
 
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -138,8 +140,6 @@ public class TrainingFragment extends Fragment implements
 			Bundle savedInstanceState) {
 		View v = inflater.inflate(
 				R.layout.training_at_progress_new_wheel_new_list, null);
-		getActivity().getActionBar().setTitle(traName);
-
 		llTimerProgress = (LinearLayout) v.findViewById(R.id.llProgressShow);
 		if (isProgressBarActive) {
 			llTimerProgress.setVisibility(View.VISIBLE);
@@ -301,11 +301,13 @@ public class TrainingFragment extends Fragment implements
 			tvWeight.setText(getResources().getString(R.string.Weight) + " ("
 					+ getResources().getStringArray(R.array.measure_items)[0]
 					+ ")");
+			measureItem = getResources().getStringArray(R.array.measure_items)[0];
 		} else if (sp.getString(BasicMenuActivityNew.MEASURE_ITEM, "1").equals(
 				"2")) {
 			tvWeight.setText(getResources().getString(R.string.Weight) + " ("
 					+ getResources().getStringArray(R.array.measure_items)[1]
 					+ ")");
+			measureItem = getResources().getStringArray(R.array.measure_items)[1];
 		}
 
 		vibrateLenght *= 1000;
@@ -427,7 +429,7 @@ public class TrainingFragment extends Fragment implements
 						getResources().getString(R.string.no_history) + traName,
 						Toast.LENGTH_SHORT).show();
 			}
-		} else if (itemId == R.id.itemAddCommentToTraining) { 																
+		} else if (itemId == R.id.itemAddCommentToTraining) {
 
 			DialogAddCommentToTraining dialog = new DialogAddCommentToTraining();
 			dialog.show(getFragmentManager(), "");
@@ -479,7 +481,7 @@ public class TrainingFragment extends Fragment implements
 			tmp++;
 			alSet.set(checkedPosition, tmp);
 			set = alSet.get(checkedPosition);
-			int total = wei * rep_s;
+			total = wei * rep_s;
 			total += sp.getInt(BasicMenuActivityNew.TOTAL_WEIGHT, 0);
 			sp.edit().putInt(BasicMenuActivityNew.TOTAL_WEIGHT, total).apply();
 			db.addRecMainTable(traName, exeName, date, wei, rep_s, set);
@@ -639,7 +641,8 @@ public class TrainingFragment extends Fragment implements
 			seconds = (seconds % 60);
 			getActivity().getActionBar().setTitle(
 					traName + " "
-							+ (String.format("%d:%02d", minutes, seconds)));
+							+ (String.format("%d:%02d", minutes, seconds))
+							+ "  " + total + " " + measureItem);
 
 			timerHandler.postDelayed(this, 500);
 		}
