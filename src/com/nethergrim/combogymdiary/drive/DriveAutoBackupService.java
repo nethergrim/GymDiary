@@ -90,11 +90,6 @@ public class DriveAutoBackupService extends BasicDriveService implements
 	}
 
 	@Override
-	public void onDisconnected() {
-		
-	}
-
-	@Override
 	public void onNewContents(ContentsResult result) {
 		Log.d(TAG, "onNewContents");
 		if (!result.getStatus().isSuccess()) {

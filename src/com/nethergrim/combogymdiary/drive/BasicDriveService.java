@@ -68,25 +68,18 @@ public class BasicDriveService extends Service implements
 	public void onDisconnected() {
 		ifConnected = false;
 		Log.d(TAG, "mGoogleApiClient disconnected");
+		if (mGoogleApiClient != null) {
+			mGoogleApiClient.connect();
+		}
 	}
 
 	@Override
 	public void onConnectionFailed(ConnectionResult result) {
 		ifConnected = false;
-		showMessage("connection error =(");
-		Counter.sharedInstance().reportEvent("onConnectionFailed");
-
 		if (failCount < 5) {
-			if (mGoogleApiClient == null) {
-				mGoogleApiClient = new GoogleApiClient.Builder(this)
-						.addApi(Drive.API).addScope(Drive.SCOPE_FILE)
-						.addConnectionCallbacks(this)
-						.addOnConnectionFailedListener(this).build();
-
+			if (mGoogleApiClient != null) {
+				mGoogleApiClient.connect();
 			}
-			failCount++;
-			mGoogleApiClient.connect();
-			Counter.sharedInstance().reportEvent("onConnectionFailed failcount < 5");
 		} else {
 			Counter.sharedInstance().reportEvent("onConnectionFailed, stopping self");
 			stopSelf();
