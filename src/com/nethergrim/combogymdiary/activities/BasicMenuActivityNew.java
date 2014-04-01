@@ -10,7 +10,8 @@ import com.nethergrim.combogymdiary.R;
 import com.nethergrim.combogymdiary.TrainingService;
 import com.nethergrim.combogymdiary.dialogs.DialogExitFromTraining.MyInterface;
 import com.nethergrim.combogymdiary.dialogs.DialogInfo;
-import com.nethergrim.combogymdiary.drive.DriveCreateFolderActivity;
+import com.nethergrim.combogymdiary.dialogs.DialogUniversalApprove;
+import com.nethergrim.combogymdiary.dialogs.DialogUniversalApprove.OnStartTrainingAccept;
 import com.nethergrim.combogymdiary.drive.DriveAutoBackupService;
 import com.nethergrim.combogymdiary.fragments.CatalogFragment;
 import com.nethergrim.combogymdiary.fragments.ExerciseListFragment;
@@ -46,7 +47,7 @@ import android.widget.FrameLayout;
 import android.widget.ListView;
 
 public class BasicMenuActivityNew extends FragmentActivity implements
-		OnSelectedListener, MyInterface {
+		OnSelectedListener, MyInterface, OnStartTrainingAccept {
 	protected final String LOG_TAG = "myLogs";
 	protected DrawerLayout mDrawerLayout;
 	protected ListView mDrawerList;
@@ -77,6 +78,8 @@ public class BasicMenuActivityNew extends FragmentActivity implements
 	public final static String APPLICAITON_ID = "52ebc42807089e0f00000000";
 	public final static String MINUTES = "minutes";
 	public final static String SECONDS = "seconds";
+	public final static String TYPE_OF_DIALOG  = "type_of_dialog";
+	public final static String ID = "id";
 	protected AdView adView;
 	protected FrameLayout content_frame;
 	private int FRAGMENT_NUMBER = 0;
@@ -282,16 +285,15 @@ public class BasicMenuActivityNew extends FragmentActivity implements
 
 	@Override
 	public void onTrainingSelected(int id) {
-		TrainingFragment newFragment = new TrainingFragment();
+		DialogUniversalApprove approve = new DialogUniversalApprove();
 		Bundle args = new Bundle();
-		args.putInt(TRAINING_ID, id);
-		newFragment.setArguments(args);
-
-		getFragmentManager().beginTransaction()
-				.replace(R.id.content_frame, newFragment).commit();
-		set_TRAINING_STARTED(true);
-		listButtons[0] = getResources().getString(R.string.continue_training);
-		adapter.notifyDataSetChanged();
+		args.putInt(TYPE_OF_DIALOG, 0);
+		args.putInt(ID, id);
+		approve.setArguments(args);	
+		approve.show(getFragmentManager(), "");	
+		
+		
+		
 	}
 
 	public static boolean get_TRAINING_STARTED() {
@@ -358,5 +360,20 @@ public class BasicMenuActivityNew extends FragmentActivity implements
 				R.string.startTrainingButtonString);
 		adapter.notifyDataSetChanged();
 
+	}
+
+	@Override
+	public void onAccept(int id) {
+		TrainingFragment newFragment = new TrainingFragment();
+		Bundle args = new Bundle();
+		args.putInt(TRAINING_ID, id);
+		newFragment.setArguments(args);
+
+		getFragmentManager().beginTransaction()
+				.replace(R.id.content_frame, newFragment).commit();
+		set_TRAINING_STARTED(true);
+		listButtons[0] = getResources().getString(R.string.continue_training);
+		adapter.notifyDataSetChanged();
+		
 	}
 }

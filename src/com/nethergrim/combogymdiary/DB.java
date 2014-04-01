@@ -447,6 +447,14 @@ public class DB {
 		mDB.insert(DB_EXE_TABLE, null, cv);
 	}
 
+	public String getTrainingName(int _id){ // TODO возможно не работаеты
+		String[] args = { String.valueOf(_id) };
+		Cursor c = mDB.query(DB_TRAININGS_TABLE, null, COLUMN_ID + "=?", args, null, null, null);
+		if (c.moveToFirst()){
+			return c.getString(1);
+		} else return "";
+	}
+	
 	public void addRecTrainings(String traName, String exeName) {
 		ContentValues cv = new ContentValues();
 		cv.put(EXE_NAME, exeName);
