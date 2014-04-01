@@ -34,12 +34,13 @@ public class StatisticsFragment extends Fragment implements
 		LoaderCallbacks<Cursor> {
 
 	private FrameLayout content;
-	private Spinner spinner;
-	private SimpleCursorAdapter adapter;
+	private Spinner spinnerExercises, spinnerMeasures;
+	private SimpleCursorAdapter adapterExercise, adaperMeasures;
 	private DB db;
 	private Cursor dataCursor;
 	private GraphView graphView;
-	private int LOADER_ID = 7;
+	private static final int LOADER_EXE_ID = 7;
+	private static final int LOADER_MEASURES_ID = 8;
 
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -56,18 +57,19 @@ public class StatisticsFragment extends Fragment implements
 
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
 			Bundle savedInstanceState) {
-		View v = inflater.inflate(R.layout.activity_graphs, null);
+		View v = inflater.inflate(R.layout.activity_statistics, null);
 
 		getActivity().getActionBar().setTitle(
 				getResources().getString(R.string.statistics));
 		content = (FrameLayout) v.findViewById(R.id.frameStatsContent);
-		spinner = (Spinner) v.findViewById(R.id.spinner1);
+		spinnerExercises = (Spinner) v.findViewById(R.id.spinnerExercises);
+		spinnerMeasures = (Spinner) v.findViewById(R.id.spinnerMeasures);
 		String[] from = new String[] { DB.EXE_NAME };
 		int[] to = new int[] { android.R.id.text1 };
-		adapter = new SimpleCursorAdapter(getActivity(),
+		adapterExercise = new SimpleCursorAdapter(getActivity(),
 				android.R.layout.simple_spinner_item, null, from, to, 0);
-		adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-		spinner.setAdapter(adapter);
+		adapterExercise.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+		spinnerExercises.setAdapter(adapterExercise);
 
 		graphView = new LineGraphView(getActivity(), "");
 		graphView.setScalable(true);
@@ -87,8 +89,8 @@ public class StatisticsFragment extends Fragment implements
 	public void onResume() {
 		super.onResume();
 		((FragmentActivity) getActivity()).getSupportLoaderManager()
-				.getLoader(LOADER_ID).forceLoad();
-		spinner.setOnItemSelectedListener(new OnItemSelectedListener() {
+				.getLoader(LOADER_EXE_ID).forceLoad();
+		spinnerExercises.setOnItemSelectedListener(new OnItemSelectedListener() {
 			@Override
 			public void onNothingSelected(AdapterView<?> parent) {
 			}
@@ -106,7 +108,7 @@ public class StatisticsFragment extends Fragment implements
 	public void onStart() {
 		super.onStart();
 		((FragmentActivity) getActivity()).getSupportLoaderManager()
-				.initLoader(LOADER_ID, null, this);
+				.initLoader(LOADER_EXE_ID, null, this);
 	}
 
 	private void selected(int pos, long id, String name) {
@@ -208,7 +210,7 @@ public class StatisticsFragment extends Fragment implements
 
 	@Override
 	public void onLoadFinished(Loader<Cursor> loader, Cursor cursor) {
-		adapter.swapCursor(cursor);
+		adapterExercise.swapCursor(cursor);
 	}
 
 	@Override
