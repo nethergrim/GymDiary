@@ -73,34 +73,14 @@ public class ExerciseListFragment extends Fragment implements
 	}
 
 	private void goToEditExe(int position, long ID) {
-		if (sp.getBoolean(TRAINING_AT_PROGRESS, false)) {
-			Toast.makeText(getActivity(), R.string.error_editing_exe,
-					Toast.LENGTH_SHORT).show();
-		} else {
-			String[] cols = { DB.COLUMN_ID, DB.EXE_NAME, DB.TIMER_VALUE };
-			Cursor cursor_exe = db.getDataExe(cols, null, null, null, null,
-					DB.EXE_NAME);
-			cursor_exe.moveToFirst();
-			while (cursor_exe.getPosition() < position) {
-				cursor_exe.moveToNext();
-			}
-			String name = cursor_exe.getString(1);
-			String timV = cursor_exe.getString(2);
-			Bundle args = new Bundle();
-			args.putString("exeName", name);
-			args.putString("timerValue", timV);
-			args.putInt("exePosition", position);
-			args.putLong("exeID", ID);
-			DialogAddExercise dialog = new DialogAddExercise();
-			dialog.setArguments(args);
-			dialog.show(getFragmentManager(), "tag");
-		}
+		mListener.onExerciseEdit(position, ID);
 	}
 
-	public void onStart() {
-		super.onStart();
-
+	public static interface OnExerciseEdit {
+		public void onExerciseEdit(int pos, long id);
 	}
+
+	private OnExerciseEdit mListener;
 
 	@Override
 	public void onActivityCreated(Bundle savedInstanceState) {

@@ -9,8 +9,10 @@ import com.nethergrim.combogymdiary.DB;
 import com.nethergrim.combogymdiary.R;
 import com.nethergrim.combogymdiary.TrainingService;
 import com.nethergrim.combogymdiary.dialogs.DialogExitFromTraining.MyInterface;
+import com.nethergrim.combogymdiary.dialogs.DialogAddExercise;
 import com.nethergrim.combogymdiary.dialogs.DialogInfo;
 import com.nethergrim.combogymdiary.dialogs.DialogUniversalApprove;
+import com.nethergrim.combogymdiary.dialogs.DialogUniversalApprove.OnEditExerciseAccept;
 import com.nethergrim.combogymdiary.dialogs.DialogUniversalApprove.OnStartTrainingAccept;
 import com.nethergrim.combogymdiary.drive.DriveAutoBackupService;
 import com.nethergrim.combogymdiary.fragments.CatalogFragment;
@@ -20,6 +22,7 @@ import com.nethergrim.combogymdiary.fragments.MeasurementsFragment;
 import com.nethergrim.combogymdiary.fragments.StartTrainingFragment;
 import com.nethergrim.combogymdiary.fragments.StatisticsFragment;
 import com.nethergrim.combogymdiary.fragments.TrainingFragment;
+import com.nethergrim.combogymdiary.fragments.ExerciseListFragment.OnExerciseEdit;
 import com.nethergrim.combogymdiary.fragments.StartTrainingFragment.OnSelectedListener;
 import com.yandex.metrica.Counter;
 
@@ -45,9 +48,11 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.FrameLayout;
 import android.widget.ListView;
+import android.widget.Toast;
 
 public class BasicMenuActivityNew extends FragmentActivity implements
-		OnSelectedListener, MyInterface, OnStartTrainingAccept {
+		OnSelectedListener, MyInterface, OnStartTrainingAccept, OnExerciseEdit,
+		OnEditExerciseAccept {
 	protected final String LOG_TAG = "myLogs";
 	protected DrawerLayout mDrawerLayout;
 	protected ListView mDrawerList;
@@ -78,8 +83,9 @@ public class BasicMenuActivityNew extends FragmentActivity implements
 	public final static String APPLICAITON_ID = "52ebc42807089e0f00000000";
 	public final static String MINUTES = "minutes";
 	public final static String SECONDS = "seconds";
-	public final static String TYPE_OF_DIALOG  = "type_of_dialog";
+	public final static String TYPE_OF_DIALOG = "type_of_dialog";
 	public final static String ID = "id";
+	public final static String POSITION = "position";
 	protected AdView adView;
 	protected FrameLayout content_frame;
 	private int FRAGMENT_NUMBER = 0;
@@ -289,8 +295,8 @@ public class BasicMenuActivityNew extends FragmentActivity implements
 		Bundle args = new Bundle();
 		args.putInt(TYPE_OF_DIALOG, 0);
 		args.putInt(ID, id);
-		approve.setArguments(args);	
-		approve.show(getFragmentManager(), "");			
+		approve.setArguments(args);
+		approve.show(getFragmentManager(), "");
 	}
 
 	public static boolean get_TRAINING_STARTED() {
@@ -334,12 +340,13 @@ public class BasicMenuActivityNew extends FragmentActivity implements
 
 		if (PreferenceManager.getDefaultSharedPreferences(this).getBoolean(
 				AUTO_BACKUP_TO_DRIVE, true)) {
-//			Intent backupIntent = new Intent(this,
-//					DiskCreateFolderActivity.class);
-//			startActivity(backupIntent);
-			
-			Intent backup = new Intent (this, DriveAutoBackupService.class);
-			startService(backup); // TODO здесь проверить, что бы нормально работал автобекап
+			// Intent backupIntent = new Intent(this,
+			// DiskCreateFolderActivity.class);
+			// startActivity(backupIntent);
+
+			Intent backup = new Intent(this, DriveAutoBackupService.class);
+			startService(backup); // TODO здесь проверить, что бы нормально
+									// работал автобекап
 		}
 
 		if (sp.contains(TRAININGS_DONE_NUM)) {
@@ -365,12 +372,50 @@ public class BasicMenuActivityNew extends FragmentActivity implements
 		Bundle args = new Bundle();
 		args.putInt(TRAINING_ID, id);
 		newFragment.setArguments(args);
-
 		getFragmentManager().beginTransaction()
 				.replace(R.id.content_frame, newFragment).commit();
 		set_TRAINING_STARTED(true);
 		listButtons[0] = getResources().getString(R.string.continue_training);
 		adapter.notifyDataSetChanged();
-		
+
+	}
+
+	@Override
+	public void onExerciseEdit(int pos, long id) {
+		DialogUniversalApprove approve = new DialogUniversalApprove();
+		Bundle args = new Bundle();
+		args.putInt(TYPE_OF_DIALOG, 1);
+		args.putLong(ID, id);
+		args.putInt(POSITION, pos);
+		approve.setArguments(args);
+		approve.show(getFragmentManager(), "");
+	}
+
+	@Override
+	public void onAcceptEditExercise(long id, int pos) {
+
+		if (sp.getBoolean(TRAINING_AT_PROGRESS, false)) {
+			Toast.makeText(this, R.string.error_editing_exe, Toast.LENGTH_SHORT)
+					.show();
+		} else {
+			String[] cols = { DB.COLUMN_ID, DB.EXE_NAME, DB.TIMER_VALUE };
+			Cursor cursor_exe = new DB(this).getDataExe(cols, null, null, null,
+					null, DB.EXE_NAME);
+			cursor_exe.moveToFirst();
+			while (cursor_exe.getPosition() < pos) {
+				cursor_exe.moveToNext();
+			}
+			String name = cursor_exe.getString(1);
+			String timV = cursor_exe.getString(2);
+			Bundle args = new Bundle();
+			args.putString("exeName", name);
+			args.putString("timerValue", timV);
+			args.putInt("exePosition", pos);
+			args.putLong("exeID", id);
+			DialogAddExercise dialog = new DialogAddExercise();
+			dialog.setArguments(args);
+			dialog.show(getFragmentManager(), "tag");
+		}
+
 	}
 }

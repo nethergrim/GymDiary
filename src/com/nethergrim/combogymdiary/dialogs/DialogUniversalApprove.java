@@ -17,6 +17,8 @@ public class DialogUniversalApprove extends DialogFragment implements
 	
 	private int type_of_dialog = 0;
 	private int tra_id = 0;
+	private long id = 0;
+	private int pos = 0;
 
 	public Dialog onCreateDialog(Bundle savedInstanceState) {
 		AlertDialog.Builder adb = null;
@@ -24,15 +26,28 @@ public class DialogUniversalApprove extends DialogFragment implements
 		if (args != null) {
 			type_of_dialog = args.getInt(BasicMenuActivityNew.TYPE_OF_DIALOG);			
 		}
-		if (type_of_dialog == 1){
+		if (type_of_dialog == 0){
 			tra_id = args.getInt(BasicMenuActivityNew.ID);
 			String tra_name = new DB(getActivity()).getTrainingNameById(tra_id);
+			
 			adb = new AlertDialog.Builder(getActivity())
 			.setTitle(R.string.start_training) 
 			.setPositiveButton(R.string.yes, this)
 			.setNegativeButton(R.string.no, this)
 			.setMessage(R.string.start_training + ": " + tra_name + " ?");
-		} else dismiss();
+		} else if (type_of_dialog == 1){
+			id = args.getLong(BasicMenuActivityNew.ID);
+			pos = args.getInt(BasicMenuActivityNew.POSITION);
+			String exe_name = new DB(getActivity()).getExerciseByID((int)id);
+			
+			adb = new AlertDialog.Builder(getActivity())
+			.setTitle(R.string.edit_exercise) 
+			.setPositiveButton(R.string.yes, this)
+			.setNegativeButton(R.string.no, this)
+			.setMessage(R.string.edit_exercise + ": " + exe_name + " ?");
+			
+		}
+		else dismiss();
 		 
 		return adb.create();
 	}
@@ -40,19 +55,28 @@ public class DialogUniversalApprove extends DialogFragment implements
 	public void onClick(DialogInterface dialog, int which) {		
 		switch (which) {
 		case Dialog.BUTTON_POSITIVE: 
-			if (type_of_dialog == 1){
+			if (type_of_dialog == 0){
 				mListener.onAccept(tra_id);
+			} else if (type_of_dialog == 1){
+				listener.onAcceptEditExercise(id, pos);
 			}
+			dismiss();
 			break;
 		case Dialog.BUTTON_NEGATIVE:
+			dismiss();
 			break;
 		}
-
 	}
 	
 	public void onCancel(DialogInterface dialog) {
 		super.onCancel(dialog);		
 	}
+	
+	public static interface OnEditExerciseAccept {
+		public void onAcceptEditExercise(long id, int pos);
+	}
+
+	private OnEditExerciseAccept listener;
 	
 	public static interface OnStartTrainingAccept {
 		public void onAccept(int trainingId);
@@ -63,12 +87,14 @@ public class DialogUniversalApprove extends DialogFragment implements
 	@Override
 	public void onAttach(Activity activity) {
 		mListener = (OnStartTrainingAccept) activity;
+		listener = (OnEditExerciseAccept) activity;
 		super.onAttach(activity);
 	}
 
 	@Override
 	public void onDetach() {
 		mListener = null;
+		listener = null;
 		super.onDetach();
 	}
 
