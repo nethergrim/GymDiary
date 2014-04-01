@@ -75,16 +75,23 @@ public class BasicDriveService extends Service implements
 
 	@Override
 	public void onConnectionFailed(ConnectionResult result) {
+
+		if (!result.hasResolution()) {
+			stopSelf();
+			return;
+		}
+
 		ifConnected = false;
 		if (failCount < 5) {
 			if (mGoogleApiClient != null) {
 				mGoogleApiClient.connect();
 			}
 		} else {
-			Counter.sharedInstance().reportEvent("onConnectionFailed, stopping self");
+			Counter.sharedInstance().reportEvent(
+					"onConnectionFailed, stopping self");
 			stopSelf();
 		}
-		
+
 	}
 
 	public void showMessage(String message) {

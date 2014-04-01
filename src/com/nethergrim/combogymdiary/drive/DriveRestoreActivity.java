@@ -13,7 +13,7 @@ import com.google.android.gms.drive.DriveId;
 import com.google.android.gms.drive.OpenFileActivityBuilder;
 import com.nethergrim.combogymdiary.R;
 
-public class DriveRestoreActivity extends BaseDriveActivity {
+public class DriveRestoreActivity extends BasicDriveActivity {
 
 	private static final int REQUEST_CODE_OPENER = 1;
 	private String LOG_TAG = "drive";

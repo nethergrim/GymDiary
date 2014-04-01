@@ -20,7 +20,7 @@ import android.os.Bundle;
 import android.os.Environment;
 import android.content.Intent;
 
-public class DriveFileDownloadActivity extends BaseDriveActivity {
+public class DriveFileDownloadActivity extends BasicDriveActivity {
 
 	private DriveId driveId;
 	private String driveIdStr;

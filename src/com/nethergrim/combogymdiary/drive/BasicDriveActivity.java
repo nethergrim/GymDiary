@@ -13,7 +13,7 @@ import com.google.android.gms.common.api.GoogleApiClient;
 import com.google.android.gms.drive.Drive;
 import com.yandex.metrica.Counter;
 
-public abstract class BaseDriveActivity extends Activity implements
+public abstract class BasicDriveActivity extends Activity implements
 		GoogleApiClient.ConnectionCallbacks,
 		GoogleApiClient.OnConnectionFailedListener {
 

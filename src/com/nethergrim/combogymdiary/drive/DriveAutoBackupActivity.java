@@ -28,7 +28,7 @@ import android.annotation.SuppressLint;
 import android.content.SharedPreferences;
 
 @SuppressLint("SimpleDateFormat")
-public class DriveAutoBackupActivity extends BaseDriveActivity implements
+public class DriveAutoBackupActivity extends BasicDriveActivity implements
 		OnNewContentsCallback, OnCreateFileCallback {
 
 	private SharedPreferences sp;

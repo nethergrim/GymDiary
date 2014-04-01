@@ -21,7 +21,7 @@ import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.util.Log;
 
-public class DriveCreateFolderActivity extends BaseDriveActivity implements
+public class DriveCreateFolderActivity extends BasicDriveActivity implements
 		OnCreateFolderCallback, OnChildrenRetrievedCallback {
 
 	private SharedPreferences sp;
