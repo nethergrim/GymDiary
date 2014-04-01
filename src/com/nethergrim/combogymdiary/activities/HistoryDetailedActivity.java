@@ -11,10 +11,12 @@ import android.database.Cursor;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
+import android.util.Log;
 import android.view.Gravity;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup.LayoutParams;
+import android.widget.FrameLayout;
 import android.widget.LinearLayout;
 import android.widget.ScrollView;
 import android.widget.TextView;
@@ -25,6 +27,9 @@ public class HistoryDetailedActivity extends Activity {
 	private Cursor cursor;
 	private String trName = null;
 	private String trDate = null;
+	private TextView tvWeight, tvComment;
+	private FrameLayout content_frame;
+	private String measureItem;
 
 	@Override
 	public boolean onOptionsItemSelected(MenuItem item) {
@@ -35,10 +40,14 @@ public class HistoryDetailedActivity extends Activity {
 		}
 		return false;
 	}
-	
+
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
+		setContentView(R.layout.activity_history_detailed);
+		tvComment = (TextView) findViewById(R.id.tvComment);
+		tvWeight = (TextView) findViewById(R.id.textViewWeightTOtal);
+		content_frame = (FrameLayout) findViewById(R.id.content_frame);
 		db = new DB(this);
 		db.open();
 		Intent intent = getIntent();
@@ -47,6 +56,18 @@ public class HistoryDetailedActivity extends Activity {
 		setupActionBar();
 		setupCursor();
 		setupLayout();
+		Cursor c = db.getCommentData(trDate);
+		int total = 0;
+		if (c.moveToFirst()) {
+			Log.d("myLogs", c.getInt(4) + "");
+			total = c.getInt(4);
+			tvComment.setText(getResources().getString(R.string.comment) + " "
+					+ c.getString(2));
+		}
+		tvWeight.setText(getResources().getString(
+				R.string.total_weight_of_training)
+				+ " " + total + measureItem);
+		c.close();
 	}
 
 	private void setupActionBar() {
@@ -69,25 +90,25 @@ public class HistoryDetailedActivity extends Activity {
 				LayoutParams.WRAP_CONTENT);
 		LinearLayout llMain = new LinearLayout(this);
 
-		int currentapiVersion = android.os.Build.VERSION.SDK_INT;
-		if (currentapiVersion >= android.os.Build.VERSION_CODES.JELLY_BEAN) {
-			scrollView.setBackground(getResources().getDrawable(
-					R.drawable.cream_pixels_bitmap));
-		}
-
 		llMain.setOrientation(LinearLayout.VERTICAL);
 		LayoutParams linLayoutParam = new LayoutParams(
 				LayoutParams.MATCH_PARENT, LayoutParams.MATCH_PARENT);
-		setContentView(scrollView, linLayoutParam);
-		
-		SharedPreferences sp = PreferenceManager.getDefaultSharedPreferences(this);
+
+		content_frame.addView(scrollView, linLayoutParam);
+
+		SharedPreferences sp = PreferenceManager
+				.getDefaultSharedPreferences(this);
 		String item = sp.getString(BasicMenuActivityNew.MEASURE_ITEM, "1");
-		String measureItem = "";
-		if (item.equals("1")){
-			measureItem = " (" + getResources().getStringArray(R.array.measure_items)[0] + ") ";
-		} else if (item.equals("2")){
-			measureItem = " (" + getResources().getStringArray(R.array.measure_items)[1] + ") ";
-		}		
+		measureItem = "";
+		if (item.equals("1")) {
+			measureItem = " ("
+					+ getResources().getStringArray(R.array.measure_items)[0]
+					+ ") ";
+		} else if (item.equals("2")) {
+			measureItem = " ("
+					+ getResources().getStringArray(R.array.measure_items)[1]
+					+ ") ";
+		}
 		scrollView.addView(llMain, linLayoutParam);
 		llMain.setGravity(Gravity.CENTER_HORIZONTAL);
 		if (cursor.moveToFirst()) {

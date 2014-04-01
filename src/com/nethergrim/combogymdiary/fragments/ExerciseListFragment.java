@@ -4,6 +4,7 @@ import com.nethergrim.combogymdiary.DB;
 import com.nethergrim.combogymdiary.R;
 import com.nethergrim.combogymdiary.dialogs.DialogAddExercise;
 
+import android.app.Activity;
 import android.app.Fragment;
 import android.content.Context;
 import android.content.SharedPreferences;
@@ -41,6 +42,18 @@ public class ExerciseListFragment extends Fragment implements
 	private SimpleCursorAdapter scAdapter;
 	private SharedPreferences sp;
 	private int LOADER_ID = 1;
+	private OnExerciseEdit mListener;
+
+	@Override
+	public void onAttach(Activity activity) {
+		super.onAttach(activity);
+		try {
+			mListener = (OnExerciseEdit) activity;
+		} catch (ClassCastException e) {
+			throw new ClassCastException(activity.toString()
+					+ " must implement OnHeadlineSelectedListener");
+		}
+	}
 
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -79,8 +92,6 @@ public class ExerciseListFragment extends Fragment implements
 	public static interface OnExerciseEdit {
 		public void onExerciseEdit(int pos, long id);
 	}
-
-	private OnExerciseEdit mListener;
 
 	@Override
 	public void onActivityCreated(Bundle savedInstanceState) {

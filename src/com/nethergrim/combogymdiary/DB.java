@@ -27,7 +27,7 @@ public class DB {
 	public static final String WEIGHT = "Weight";
 	public static final String REPS = "Reps";
 	public static final String SET = "SetsN";
-
+	public static final String TOTAL_TIME_OF_TRAINING = "time_of_training";
 	public static final String DB_COMMENT_TABLE = "comment_table";
 	public static final String TOTAL_WEIGHT_OF_TRAINING = "total_weight";
 
@@ -60,10 +60,12 @@ public class DB {
 			+ EXE_NAME + " text" + ");";
 
 	private static final String DB_COMMENT_CREATE = "create table "
-			+ DB_COMMENT_TABLE + "(" + COLUMN_ID
-			+ " integer primary key autoincrement, " + DATE + " text, "
-			+ COMMENT_TO_TRAINING + " text, " + TOTAL_WEIGHT_OF_TRAINING
-			+ " integer" + ");";
+			+ DB_COMMENT_TABLE + "(" 
+			+ COLUMN_ID	+ " integer primary key autoincrement, " 
+			+ DATE + " text, "
+			+ COMMENT_TO_TRAINING + " text, " 
+			+ TOTAL_TIME_OF_TRAINING+ " text, " 
+			+ TOTAL_WEIGHT_OF_TRAINING + " integer" + ");";
 
 	public static final String strSeparator = "__,__";
 
@@ -144,20 +146,6 @@ public class DB {
 
 	public boolean delRecordMeasurement(String date) {
 		String[] args = { date };
-		// Cursor c = mDB.query(DB_MEASURE_TABLE, null, DATE + "=?", args, null,
-		// null, null);
-		// if (c.moveToFirst()) {
-		// do {
-		// if ( c.getString(1).equals(date)){
-		// mDB.delete(DB_MEASURE_TABLE, whereClause, whereArgs)
-		// }
-		// } while (c.moveToNext());
-		//
-		//
-		// return true;
-		// } else
-		// return false;
-
 		int tmp = mDB.delete(DB_MEASURE_TABLE, DATE + "=?", args);
 		if (tmp > 0) {
 			return true;
@@ -292,6 +280,10 @@ public class DB {
 		}
 	}
 
+	public void deleteComment(String date){
+		mDB.delete(DB_COMMENT_TABLE, DATE + " = " + date, null);
+	}
+	
 	public int getLastWeight(String _exeName, int _set) {
 		int result = 0;
 		String[] cols = { DB.WEIGHT, DB.SET };
@@ -428,6 +420,12 @@ public class DB {
 				groupBy, having, orderedBy);
 	}
 
+	public Cursor getCommentData(String date) {
+		String[] args = {date};
+		Cursor c = mDB.query(DB_COMMENT_TABLE, null, DATE + "=?", args, null, null, null);
+		return c;
+	}	
+	
 	public Cursor getDataMeasures(String[] column, // The columns to return
 			String selection, // The columns for the WHERE clause
 			String[] selectionArgs, // The values for the WHERE clause
@@ -446,14 +444,16 @@ public class DB {
 		mDB.insert(DB_EXE_TABLE, null, cv);
 	}
 
-	public String getTrainingName(int _id){ // TODO возможно не работаеты
+	public String getTrainingName(int _id) { // TODO возможно не работаеты
 		String[] args = { _id + "" };
-		Cursor c = mDB.query(DB_TRAININGS_TABLE, null, COLUMN_ID + "=?", args, null, null, null);
-		if (c.moveToFirst()){
+		Cursor c = mDB.query(DB_TRAININGS_TABLE, null, COLUMN_ID + "=?", args,
+				null, null, null);
+		if (c.moveToFirst()) {
 			return c.getString(1);
-		} else return "";
+		} else
+			return "";
 	}
-	
+
 	public void addRecTrainings(String traName, String exeName) {
 		ContentValues cv = new ContentValues();
 		cv.put(EXE_NAME, exeName);
@@ -484,16 +484,21 @@ public class DB {
 		mDB.insert(DB_MAIN_TABLE, null, cv);
 	}
 
-	public void addRecComment(String date, String comment, int totalWeight) {
+	public void addRecComment(String date, String comment, int totalWeight,
+			String time) {
 		ContentValues cv = new ContentValues();
 		cv.put(DATE, date);
 		cv.put(COMMENT_TO_TRAINING, comment);
 		cv.put(TOTAL_WEIGHT_OF_TRAINING, totalWeight);
+		cv.put(TOTAL_TIME_OF_TRAINING, time);
+
 		mDB.insert(DB_COMMENT_TABLE, null, cv);
 	}
-	
-	public Cursor getDataComment(String[] cols, String selection, String[] args, String groupby, String having, String orderBy ){
-		return mDB.query(DB_COMMENT_TABLE, cols, selection, args, groupby, having, orderBy);
+
+	public Cursor getDataComment(String[] cols, String selection,
+			String[] args, String groupby, String having, String orderBy) {
+		return mDB.query(DB_COMMENT_TABLE, cols, selection, args, groupby,
+				having, orderBy);
 	}
 
 	public void updateRec_Exe(int Id, String column, String data) {
@@ -565,6 +570,7 @@ public class DB {
 			db.execSQL(DB_MAIN_CREATE);
 			db.execSQL(DB_MEASURE_CREATE);
 			db.execSQL(DB_TRAININGS_CREATE);
+			db.execSQL(DB_COMMENT_CREATE);
 
 		}
 

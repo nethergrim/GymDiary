@@ -15,6 +15,7 @@ import com.nethergrim.combogymdiary.dialogs.DialogUniversalApprove;
 import com.nethergrim.combogymdiary.dialogs.DialogUniversalApprove.OnEditExerciseAccept;
 import com.nethergrim.combogymdiary.dialogs.DialogUniversalApprove.OnStartTrainingAccept;
 import com.nethergrim.combogymdiary.drive.DriveAutoBackupService;
+import com.nethergrim.combogymdiary.drive.DriveCreateFolderActivity;
 import com.nethergrim.combogymdiary.fragments.CatalogFragment;
 import com.nethergrim.combogymdiary.fragments.ExerciseListFragment;
 import com.nethergrim.combogymdiary.fragments.HistoryFragment;
@@ -94,6 +95,7 @@ public class BasicMenuActivityNew extends FragmentActivity implements
 	private SharedPreferences sp;
 	private ArrayAdapter<String> adapter;
 	private int previouslyChecked = 0;
+	private DB db;
 
 	@Override
 	public void onConfigurationChanged(Configuration newConfig) {
@@ -104,6 +106,8 @@ public class BasicMenuActivityNew extends FragmentActivity implements
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
+		db = new DB (this);
+		db.open();
 		setContentView(R.layout.menu);
 		initStrings();
 		content_frame = (FrameLayout) findViewById(R.id.content_frame);
@@ -317,7 +321,7 @@ public class BasicMenuActivityNew extends FragmentActivity implements
 			Backuper backUP = new Backuper();
 			backUP.backupToSd();
 		}
-		db.close();
+		getActionBar().setSubtitle("");
 
 		sp.edit().putBoolean(TRAINING_AT_PROGRESS, false).apply();
 		sp.edit().putInt(USER_CLICKED_POSITION, 0).apply();
@@ -325,10 +329,14 @@ public class BasicMenuActivityNew extends FragmentActivity implements
 		int total = sp.getInt(TOTAL_WEIGHT, 0);
 		SimpleDateFormat sdf = new SimpleDateFormat("dd.MM.yyyy");
 		String date = sdf.format(new Date(System.currentTimeMillis()));
+		int tmpSec = sp.getInt(SECONDS, 0);
+		int tmpMin = tmpSec / 60;
+		tmpSec = tmpSec - (tmpMin * 60);		
+		String time = tmpMin + ":" + tmpSec;
 		if (!sp.getString(COMMENT_TO_TRAINING, "").equals("")) {
-			db.addRecComment(date, sp.getString(COMMENT_TO_TRAINING, ""), total);
+			db.addRecComment(date, sp.getString(COMMENT_TO_TRAINING, ""), total, time);
 		} else {
-			db.addRecComment(date, null, total);// TODO
+			db.addRecComment(date, null, total, time);// TODO
 		}
 		sp.edit().putString(COMMENT_TO_TRAINING, "").apply();
 		sp.edit().putInt(TOTAL_WEIGHT, 0).apply();
@@ -340,12 +348,12 @@ public class BasicMenuActivityNew extends FragmentActivity implements
 
 		if (PreferenceManager.getDefaultSharedPreferences(this).getBoolean(
 				AUTO_BACKUP_TO_DRIVE, true)) {
-			// Intent backupIntent = new Intent(this,
-			// DiskCreateFolderActivity.class);
-			// startActivity(backupIntent);
+			 Intent backupIntent = new Intent(this,
+			 DriveCreateFolderActivity.class);
+			 startActivity(backupIntent);
 
-			Intent backup = new Intent(this, DriveAutoBackupService.class);
-			startService(backup); // TODO здесь проверить, что бы нормально
+//			Intent backup = new Intent(this, DriveAutoBackupService.class);
+//			startService(backup); // TODO здесь проверить, что бы нормально
 									// работал автобекап
 		}
 
@@ -363,7 +371,7 @@ public class BasicMenuActivityNew extends FragmentActivity implements
 		listButtons[0] = getResources().getString(
 				R.string.startTrainingButtonString);
 		adapter.notifyDataSetChanged();
-
+		db.close();
 	}
 
 	@Override
@@ -399,7 +407,7 @@ public class BasicMenuActivityNew extends FragmentActivity implements
 					.show();
 		} else {
 			String[] cols = { DB.COLUMN_ID, DB.EXE_NAME, DB.TIMER_VALUE };
-			Cursor cursor_exe = new DB(this).getDataExe(cols, null, null, null,
+			Cursor cursor_exe = db.getDataExe(cols, null, null, null,
 					null, DB.EXE_NAME);
 			cursor_exe.moveToFirst();
 			while (cursor_exe.getPosition() < pos) {

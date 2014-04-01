@@ -14,50 +14,57 @@ import android.os.Bundle;
 
 public class DialogUniversalApprove extends DialogFragment implements
 		OnClickListener {
-	
+
 	private int type_of_dialog = 0;
 	private int tra_id = 0;
 	private long id = 0;
 	private int pos = 0;
+	private DB db;
 
 	public Dialog onCreateDialog(Bundle savedInstanceState) {
+		db = new DB(getActivity());
+		db.open();
 		AlertDialog.Builder adb = null;
 		Bundle args = getArguments();
 		if (args != null) {
-			type_of_dialog = args.getInt(BasicMenuActivityNew.TYPE_OF_DIALOG);			
+			type_of_dialog = args.getInt(BasicMenuActivityNew.TYPE_OF_DIALOG);
 		}
-		if (type_of_dialog == 0){
+		if (type_of_dialog == 0) {
 			tra_id = args.getInt(BasicMenuActivityNew.ID);
-			String tra_name = new DB(getActivity()).getTrainingNameById(tra_id);
-			
+			String tra_name = db.getTrainingNameById(tra_id);
+
 			adb = new AlertDialog.Builder(getActivity())
-			.setTitle(R.string.start_training) 
-			.setPositiveButton(R.string.yes, this)
-			.setNegativeButton(R.string.no, this)
-			.setMessage(R.string.start_training + ": " + tra_name + " ?");
-		} else if (type_of_dialog == 1){
+					.setTitle(R.string.start_training)
+					.setPositiveButton(R.string.yes, this)
+					.setNegativeButton(R.string.no, this)
+					.setMessage(
+							getResources().getString(R.string.start_training)
+									+ ": " + tra_name + " ?");
+		} else if (type_of_dialog == 1) {
 			id = args.getLong(BasicMenuActivityNew.ID);
 			pos = args.getInt(BasicMenuActivityNew.POSITION);
-			String exe_name = new DB(getActivity()).getExerciseByID((int)id);
-			
+			String exe_name = db.getExerciseByID((int) id);
+
 			adb = new AlertDialog.Builder(getActivity())
-			.setTitle(R.string.edit_exercise) 
-			.setPositiveButton(R.string.yes, this)
-			.setNegativeButton(R.string.no, this)
-			.setMessage(R.string.edit_exercise + ": " + exe_name + " ?");
-			
-		}
-		else dismiss();
-		 
+					.setTitle(R.string.edit_exercise)
+					.setPositiveButton(R.string.yes, this)
+					.setNegativeButton(R.string.no, this)
+					.setMessage(
+							getResources().getString(R.string.edit_exercise)
+									+ ": " + exe_name + " ?");
+
+		} else
+			dismiss();
+
 		return adb.create();
 	}
 
-	public void onClick(DialogInterface dialog, int which) {		
+	public void onClick(DialogInterface dialog, int which) {
 		switch (which) {
-		case Dialog.BUTTON_POSITIVE: 
-			if (type_of_dialog == 0){
+		case Dialog.BUTTON_POSITIVE:
+			if (type_of_dialog == 0) {
 				mListener.onAccept(tra_id);
-			} else if (type_of_dialog == 1){
+			} else if (type_of_dialog == 1) {
 				listener.onAcceptEditExercise(id, pos);
 			}
 			dismiss();
@@ -67,23 +74,23 @@ public class DialogUniversalApprove extends DialogFragment implements
 			break;
 		}
 	}
-	
+
 	public void onCancel(DialogInterface dialog) {
-		super.onCancel(dialog);		
+		super.onCancel(dialog);
 	}
-	
+
 	public static interface OnEditExerciseAccept {
 		public void onAcceptEditExercise(long id, int pos);
 	}
 
 	private OnEditExerciseAccept listener;
-	
+
 	public static interface OnStartTrainingAccept {
 		public void onAccept(int trainingId);
 	}
 
 	private OnStartTrainingAccept mListener;
-	
+
 	@Override
 	public void onAttach(Activity activity) {
 		mListener = (OnStartTrainingAccept) activity;

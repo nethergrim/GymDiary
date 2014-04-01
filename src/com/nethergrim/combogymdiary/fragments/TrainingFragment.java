@@ -68,6 +68,7 @@ public class TrainingFragment extends Fragment implements
 	private final static String SECONDS = "seconds";
 	private final static String LIST_OF_SETS = "list_of_sets";
 	private final static String PROGRESS = "progress";
+	private static final String TOTAL_WEIGHT = "total_weight";
 	private final static String TIMER_IS_ON = "timerIsOn";
 	private ToggleButton tglTimerOn;
 	private Boolean tglChecked = true, turnOff = false, vibrate = false;
@@ -89,7 +90,7 @@ public class TrainingFragment extends Fragment implements
 	private TextView infoText, tvTimerCountdown;
 	private ArrayList<String> alMain = new ArrayList<String>();
 	private ArrayList<Integer> alSet = new ArrayList<Integer>();
-	private int seconds, minutes, secDelta = 0,sec, min;
+	private int seconds, minutes, secDelta = 0, sec, min;
 	private Handler timerHandler = new Handler();
 	private LinearLayout llBack, llSave, llForward, llBottom, llTimerProgress;
 	private ImageView ivBack, ivForward;
@@ -112,7 +113,8 @@ public class TrainingFragment extends Fragment implements
 		isTrainingAtProgress = sp.getBoolean(TRAINING_AT_PROGRESS, false);
 		sp.edit().putInt(TRA_ID, trainingId).apply();
 		sp.edit().putBoolean(TRAINING_AT_PROGRESS, true).apply();
-		traName = db.getTrainingNameById(trainingId);
+		traName = db.getTrainingName(trainingId);
+		getActivity().getActionBar().setTitle(traName);
 		if (db.getTrainingListById(trainingId) != null) {
 			exersices = db.convertStringToArray(db
 					.getTrainingListById(trainingId));
@@ -141,7 +143,6 @@ public class TrainingFragment extends Fragment implements
 			llTimerProgress.setVisibility(View.VISIBLE);
 		} else
 			llTimerProgress.setVisibility(View.GONE);
-
 		tvTimerCountdown = (TextView) v.findViewById(R.id.tvTimerCountdown);
 		pb = (ProgressBar) v.findViewById(R.id.pbTrainingRest);
 		llBottom = (LinearLayout) v.findViewById(R.id.LLBottom);
@@ -282,6 +283,7 @@ public class TrainingFragment extends Fragment implements
 	public void onResume() {
 		super.onResume();
 		Log.d(LOG_TAG, "TrainingFragment onResume");
+		
 		turnOff = sp.getBoolean("toTurnOff", false);
 		list.setKeepScreenOn(!turnOff);
 		vibrate = sp.getBoolean("vibrateOn", true);
@@ -308,6 +310,7 @@ public class TrainingFragment extends Fragment implements
 		vibrateLenght *= 1000;
 		timerHandler.postDelayed(timerRunnable, 0);
 		if (isTrainingAtProgress) {
+			total = sp.getInt(TOTAL_WEIGHT, 0);
 			restoreTimerFromPreferences();
 			restoreSetsFromPreferences();
 			try {
@@ -377,6 +380,7 @@ public class TrainingFragment extends Fragment implements
 		timerHandler.removeCallbacks(timerRunnable);
 		saveSetsToPreferences();
 		saveTimerToPregerences();
+		sp.edit().putInt(TOTAL_WEIGHT, total).apply();
 		isTrainingAtProgress = true;
 	}
 
@@ -633,10 +637,11 @@ public class TrainingFragment extends Fragment implements
 			seconds += secDelta;
 			minutes = (seconds / 60);
 			seconds = (seconds % 60);
-			getActivity().getActionBar().setTitle(
-					traName + " "
-							+ (String.format("%d:%02d", minutes, seconds))
-							+ "  " + total + " " + measureItem);
+
+			getActivity().getActionBar().setSubtitle(
+					(String.format("%d:%02d", minutes, seconds)) + "  " + total
+							+ " " + measureItem);
+
 			timerHandler.postDelayed(this, 500);
 		}
 	};
@@ -646,7 +651,7 @@ public class TrainingFragment extends Fragment implements
 		sp.edit().putInt(SECONDS, seconds).apply();
 	}
 
-	public void restoreTimerFromPreferences() {		
+	public void restoreTimerFromPreferences() {
 		secDelta = sp.getInt(SECONDS, 0);
 		sp.edit().putInt(SECONDS, 0).apply();
 	}

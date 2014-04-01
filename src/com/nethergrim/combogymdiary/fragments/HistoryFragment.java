@@ -118,6 +118,7 @@ public class HistoryFragment extends Fragment implements
 					null, null);
 			c.moveToFirst();
 			String dateToDelete = c.getString(3);
+//			db.deleteComment(dateToDelete);
 			String[] argsDate = { dateToDelete };
 			Cursor cur = db.getDataMain(null, DB.DATE + "=?", argsDate, null,
 					null, null);

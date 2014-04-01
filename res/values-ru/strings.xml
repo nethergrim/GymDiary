@@ -9,6 +9,8 @@
         <item>2</item>
     </string-array>
     <string name="start_training">Начать тренировку</string>
+    <string name="total_weight_of_training">Общий поднятый вес на тренировке: </string>
+    <string name="comment">Комментарий: </string>
     <string name="edit_exercise">Редактировать упражнение</string>
 	<string name="add_comment_to_training">Добавить комментарий к тренировке</string>
 	<string name="finish_training">Закончить тренировку</string>

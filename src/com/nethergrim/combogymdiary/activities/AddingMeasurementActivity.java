@@ -61,7 +61,8 @@ public class AddingMeasurementActivity extends Activity {
 					+ getResources().getStringArray(R.array.measure_items)[1]
 					+ ") ";
 		}
-		tvTmp.setText("" + R.string.weight + measureItem);
+		tvTmp.setText(getResources().getString(R.string.weight)
+				+ measureItem);
 	}
 
 	protected void onDestroy() {

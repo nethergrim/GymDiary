@@ -68,9 +68,7 @@ public class BasicDriveService extends Service implements
 	public void onDisconnected() {
 		ifConnected = false;
 		Log.d(TAG, "mGoogleApiClient disconnected");
-		if (mGoogleApiClient != null) {
-			mGoogleApiClient.connect();
-		}
+
 	}
 
 	@Override

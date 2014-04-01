@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<!-- File created by the Android Action Bar Style Generator
+<!--
+     File created by the Android Action Bar Style Generator
 
      Copyright (C) 2011 The Android Open Source Project
      Copyright (C) 2012 readyState Software Ltd
@@ -29,10 +30,15 @@
         <item name="android:actionModeBackground">@drawable/cab_background_top_mynewactionbar</item>
         <item name="android:actionModeSplitBackground">@drawable/cab_background_bottom_mynewactionbar</item>
         <item name="android:actionModeCloseButtonStyle">@style/ActionButton.CloseMode.Mynewactionbar</item>
-        
-                <!-- Light.DarkActionBar specific -->
-        <item name="android:actionBarWidgetTheme">@style/Theme.Mynewactionbar.Widget</item>
 
+        <!-- Light.DarkActionBar specific -->
+        <item name="android:actionBarWidgetTheme">@style/Theme.Mynewactionbar.Widget</item>
+    </style>
+
+
+
+    <style name="MyTheme.ActionBar.TitleTextStyle" parent="@android:style/TextAppearance.Holo.Widget.ActionBar.Title">
+        <item name="android:textColor">@color/white</item>
     </style>
 
     <style name="ActionBar.Solid.Mynewactionbar" parent="@android:style/Widget.Holo.Light.ActionBar.Solid.Inverse">
@@ -40,6 +46,7 @@
         <item name="android:backgroundStacked">@drawable/ab_stacked_solid_mynewactionbar</item>
         <item name="android:backgroundSplit">@drawable/ab_bottom_solid_mynewactionbar</item>
         <item name="android:progressBarStyle">@style/ProgressBar.Mynewactionbar</item>
+         <item name="android:subtitleTextStyle">@style/MyTheme.ActionBar.TitleTextStyle</item>
     </style>
 
     <style name="ActionBar.Transparent.Mynewactionbar" parent="@android:style/Widget.Holo.ActionBar">
@@ -48,7 +55,7 @@
     </style>
 
     <style name="PopupMenu.Mynewactionbar" parent="@android:style/Widget.Holo.ListPopupWindow">
-        <item name="android:popupBackground">@drawable/menu_dropdown_panel_mynewactionbar</item>	
+        <item name="android:popupBackground">@drawable/menu_dropdown_panel_mynewactionbar</item>
     </style>
 
     <style name="DropDownListView.Mynewactionbar" parent="@android:style/Widget.Holo.ListView.DropDown">
@@ -57,6 +64,7 @@
 
     <style name="ActionBarTabStyle.Mynewactionbar" parent="@android:style/Widget.Holo.ActionBar.TabView">
         <item name="android:background">@drawable/tab_indicator_ab_mynewactionbar</item>
+        <item name="android:textColor">@color/white</item>
     </style>
 
     <style name="DropDownNav.Mynewactionbar" parent="@android:style/Widget.Holo.Spinner">
@@ -64,11 +72,11 @@
         <item name="android:popupBackground">@drawable/menu_dropdown_panel_mynewactionbar</item>
         <item name="android:dropDownSelector">@drawable/selectable_background_mynewactionbar</item>
     </style>
-    
+
     <style name="ProgressBar.Mynewactionbar" parent="@android:style/Widget.Holo.ProgressBar.Horizontal">
         <item name="android:progressDrawable">@drawable/progress_horizontal_mynewactionbar</item>
     </style>
-    
+
     <style name="ActionButton.CloseMode.Mynewactionbar" parent="@android:style/Widget.Holo.ActionButton.CloseMode">
         <item name="android:background">@drawable/btn_cab_done_mynewactionbar</item>
     </style>

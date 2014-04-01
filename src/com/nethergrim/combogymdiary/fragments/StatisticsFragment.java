@@ -1,5 +1,7 @@
 package com.nethergrim.combogymdiary.fragments;
 
+import java.util.GregorianCalendar;
+
 import com.jjoe64.graphview.CustomLabelFormatter;
 import com.jjoe64.graphview.GraphView;
 import com.jjoe64.graphview.GraphViewDataInterface;
@@ -24,6 +26,7 @@ import android.view.MenuInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.FrameLayout;
 import android.widget.SimpleCursorAdapter;
 import android.widget.Spinner;
@@ -35,12 +38,12 @@ public class StatisticsFragment extends Fragment implements
 
 	private FrameLayout content;
 	private Spinner spinnerExercises, spinnerMeasures;
-	private SimpleCursorAdapter adapterExercise, adaperMeasures;
+	private SimpleCursorAdapter adapterExercise;
+	private ArrayAdapter<String> adapterMeasures;
 	private DB db;
 	private Cursor dataCursor;
 	private GraphView graphView;
 	private static final int LOADER_EXE_ID = 7;
-	private static final int LOADER_MEASURES_ID = 8;
 
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -64,12 +67,20 @@ public class StatisticsFragment extends Fragment implements
 		content = (FrameLayout) v.findViewById(R.id.frameStatsContent);
 		spinnerExercises = (Spinner) v.findViewById(R.id.spinnerExercises);
 		spinnerMeasures = (Spinner) v.findViewById(R.id.spinnerMeasures);
-		String[] from = new String[] { DB.EXE_NAME };
+		String[] fromExe = new String[] { DB.EXE_NAME };
 		int[] to = new int[] { android.R.id.text1 };
 		adapterExercise = new SimpleCursorAdapter(getActivity(),
-				android.R.layout.simple_spinner_item, null, from, to, 0);
-		adapterExercise.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+				android.R.layout.simple_spinner_item, null, fromExe, to, 0);
+		adapterExercise
+				.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
 		spinnerExercises.setAdapter(adapterExercise);
+
+		String[] partsOfBody = getResources().getStringArray(
+				R.array.partsOfBodyForMeasurementsArray);
+
+		adapterMeasures = new ArrayAdapter<String>(getActivity(),
+				android.R.layout.simple_spinner_item, partsOfBody);
+		spinnerMeasures.setAdapter(adapterMeasures);
 
 		graphView = new LineGraphView(getActivity(), "");
 		graphView.setScalable(true);
@@ -78,6 +89,7 @@ public class StatisticsFragment extends Fragment implements
 		graphView.getGraphViewStyle().setLegendBorder(20);
 		graphView.getGraphViewStyle().setLegendSpacing(30);
 		graphView.getGraphViewStyle().setLegendWidth(300);
+
 		((LineGraphView) graphView).setDrawDataPoints(true);
 		((LineGraphView) graphView).setDataPointsRadius(10f);
 		content.addView(graphView);
@@ -90,7 +102,23 @@ public class StatisticsFragment extends Fragment implements
 		super.onResume();
 		((FragmentActivity) getActivity()).getSupportLoaderManager()
 				.getLoader(LOADER_EXE_ID).forceLoad();
-		spinnerExercises.setOnItemSelectedListener(new OnItemSelectedListener() {
+		spinnerExercises
+				.setOnItemSelectedListener(new OnItemSelectedListener() {
+					@Override
+					public void onNothingSelected(AdapterView<?> parent) {
+					}
+
+					@Override
+					public void onItemSelected(AdapterView<?> parent,
+							View view, int pos, long id) {
+						TextView tv = (TextView) view
+								.findViewById(android.R.id.text1);
+						String name = tv.getText().toString();
+						selected(pos, id, name, 0);
+					}
+				});
+
+		spinnerMeasures.setOnItemSelectedListener(new OnItemSelectedListener() {
 			@Override
 			public void onNothingSelected(AdapterView<?> parent) {
 			}
@@ -100,7 +128,7 @@ public class StatisticsFragment extends Fragment implements
 					int pos, long id) {
 				TextView tv = (TextView) view.findViewById(android.R.id.text1);
 				String name = tv.getText().toString();
-				selected(pos, id, name);
+				selected(pos, id, name, 1);
 			}
 		});
 	}
@@ -111,74 +139,102 @@ public class StatisticsFragment extends Fragment implements
 				.initLoader(LOADER_EXE_ID, null, this);
 	}
 
-	private void selected(int pos, long id, String name) {
-		graphView.removeAllSeries();
-		String[] args = { name };
-		dataCursor = db.getDataMain(null, DB.EXE_NAME + "=?", args, null, null,
-				null);
+	private void selected(int pos, long id, String name, int type) {
 
-		if (dataCursor.moveToFirst()) {
-			graphView.setTitle(name);
-			content.setVisibility(View.VISIBLE);
+		if (type == 0) {
+			graphView.removeAllSeries();
+			String[] args = { name };
+			dataCursor = db.getDataMain(null, DB.EXE_NAME + "=?", args, null,
+					null, null);
 
-			/*******************************************************
-			 * 
-			 * adding weights line on graph
-			 * 
-			 *******************************************************/
-			int i = 0;
-			GraphViewData[] weightsArray = new GraphViewData[dataCursor
-					.getCount()];
-			do {
-				weightsArray[i] = new GraphViewData(i, dataCursor.getInt(4));
-				i++;
-			} while (dataCursor.moveToNext());
-			GraphViewSeries weightsSeries = new GraphViewSeries(getResources()
-					.getString(R.string.weight), new GraphViewSeriesStyle(
-					Color.rgb(153, 51, 204), 4), weightsArray);
-			graphView.addSeries(weightsSeries);
+			if (dataCursor.moveToFirst()) {
+				graphView.setTitle(name);
+				content.setVisibility(View.VISIBLE);
 
-			/*******************************************************
-			 * 
-			 * adding reps line on graph
-			 * 
-			 *******************************************************/
+				/*******************************************************
+				 * 
+				 * adding weights line on graph
+				 * 
+				 *******************************************************/
+				int i = 0;
+				GraphViewData[] weightsArray = new GraphViewData[dataCursor
+						.getCount()];
+				do {
+					weightsArray[i] = new GraphViewData(i, dataCursor.getInt(4));
+					i++;
+				} while (dataCursor.moveToNext());
+				GraphViewSeries weightsSeries = new GraphViewSeries(
+						getResources().getString(R.string.weight),
+						new GraphViewSeriesStyle(Color.rgb(153, 51, 204), 4),
+						weightsArray);
+				graphView.addSeries(weightsSeries);
 
-			int j = 0;
-			GraphViewData[] repsArray = new GraphViewData[dataCursor.getCount()];
-			dataCursor.moveToFirst();
-			do {
-				repsArray[j] = new GraphViewData(j, dataCursor.getInt(5));
-				j++;
-			} while (dataCursor.moveToNext());
-			GraphViewSeries repsSeries = new GraphViewSeries(getResources()
-					.getString(R.string.Reeps), new GraphViewSeriesStyle(
-					Color.rgb(255, 136, 00), 4), repsArray);
-			graphView.addSeries(repsSeries);
+				/*******************************************************
+				 * 
+				 * adding reps line on graph
+				 * 
+				 *******************************************************/
 
-			graphView.setCustomLabelFormatter(new CustomLabelFormatter() {
-				@Override
-				public String formatLabel(double value, boolean isValueX) {
-					if (isValueX) {
-						int pos = (int) value;
-						if (pos > 1 && pos < dataCursor.getCount()) {
-							dataCursor.moveToPosition(pos);
-							return dataCursor.getString(3);
-						} else if (pos > 0 && pos < 1) {
-							dataCursor.moveToPosition(0);
-							return dataCursor.getString(3);
-						} else
-							return null;
+				int j = 0;
+				GraphViewData[] repsArray = new GraphViewData[dataCursor
+						.getCount()];
+				dataCursor.moveToFirst();
+				do {
+					repsArray[j] = new GraphViewData(j, dataCursor.getInt(5));
+					j++;
+				} while (dataCursor.moveToNext());
+				GraphViewSeries repsSeries = new GraphViewSeries(getResources()
+						.getString(R.string.Reeps), new GraphViewSeriesStyle(
+						Color.rgb(255, 136, 00), 4), repsArray);
+				graphView.addSeries(repsSeries);
 
-					} else {
-						int tmp = (int) value;
-						String result = String.valueOf(tmp);
-						return result;
+				graphView.setCustomLabelFormatter(new CustomLabelFormatter() {
+					@Override
+					public String formatLabel(double value, boolean isValueX) {
+						if (isValueX) {
+							int pos = (int) value;
+							if (pos > 1 && pos < dataCursor.getCount()) {
+								dataCursor.moveToPosition(pos);
+								return dataCursor.getString(3);
+							} else if (pos > 0 && pos < 1) {
+								dataCursor.moveToPosition(0);
+								return dataCursor.getString(3);
+							} else
+								return null;
+
+						} else {
+							int tmp = (int) value;
+							String result = String.valueOf(tmp);
+							return result;
+						}
 					}
-				}
-			});
-		} else {
-			content.setVisibility(View.GONE);
+				});
+			} else {
+				content.setVisibility(View.GONE);
+			}
+		} else if (type == 1) {
+			int i = 0;
+			String[] args = { name };
+			Cursor c = db.getDataMeasures(null, DB.PART_OF_BODY_FOR_MEASURING
+					+ "=?", args, null, null, null);
+
+			GraphViewSeries measureSeries = null;
+			if (c.moveToFirst()) {
+				GraphViewData[] weightsArray = new GraphViewData[c.getCount()];
+				do {
+					String tmp = c.getString(3);
+					weightsArray[i] = new GraphViewData(i,
+							Integer.parseInt(tmp));
+					i++;
+				} while (c.moveToNext());
+
+				measureSeries = new GraphViewSeries(name,
+						new GraphViewSeriesStyle(Color.rgb(102, 153, 0), 4),
+						weightsArray);
+
+				graphView.addSeries(measureSeries);
+			} else {
+			}
 		}
 	}
 
@@ -205,7 +261,7 @@ public class StatisticsFragment extends Fragment implements
 
 	@Override
 	public Loader<Cursor> onCreateLoader(int id, Bundle bndl) {
-		return new MyCursorLoader(getActivity(), db);
+		return new MyCursorLoader(getActivity(), db, id);
 	}
 
 	@Override
@@ -220,15 +276,20 @@ public class StatisticsFragment extends Fragment implements
 	static class MyCursorLoader extends CursorLoader {
 		DB db;
 		Cursor cursor;
+		int ID;
 
-		public MyCursorLoader(Context context, DB db) {
+		public MyCursorLoader(Context context, DB db, int id) {
 			super(context);
 			this.db = db;
+			this.ID = id;
 		}
 
 		@Override
 		public Cursor loadInBackground() {
-			cursor = db.getDataExe(null, null, null, null, null, DB.EXE_NAME);
+			if (ID == LOADER_EXE_ID) {
+				cursor = db.getDataExe(null, null, null, null, null,
+						DB.EXE_NAME);
+			}
 			return cursor;
 		}
 	}
