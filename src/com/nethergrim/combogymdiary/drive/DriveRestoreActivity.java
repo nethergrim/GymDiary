@@ -13,7 +13,7 @@ import com.google.android.gms.drive.DriveId;
 import com.google.android.gms.drive.OpenFileActivityBuilder;
 import com.nethergrim.combogymdiary.R;
 
-public class DiskRestoreActivity extends BaseDiskActivity {
+public class DriveRestoreActivity extends BaseDriveActivity {
 
 	private static final int REQUEST_CODE_OPENER = 1;
 	private String LOG_TAG = "drive";
@@ -63,7 +63,7 @@ public class DiskRestoreActivity extends BaseDiskActivity {
 	}
 
 	private void gotoDownloadActivity(DriveId driveId) {
-		Intent intent = new Intent(this, DiskFileDownloadActivity.class);
+		Intent intent = new Intent(this, DriveFileDownloadActivity.class);
 		intent.putExtra(DRIVE_ID, driveId.encodeToString());
 		startActivity(intent);
 	}

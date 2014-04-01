@@ -23,8 +23,7 @@
         android:icon="@drawable/ic_launcher"
         android:label="@string/app_name"
         android:largeHeap="true"
-        android:theme="@style/Theme.Mynewactionbar"
-        android:windowSoftInputMode="adjustPan" >
+        android:theme="@style/Theme.Mynewactionbar">
         <meta-data
             android:name="com.google.android.gms.version"
             android:value="4132500" />
@@ -87,7 +86,7 @@
         </service>
 
         <activity
-            android:name="com.nethergrim.combogymdiary.drive.DiskBackupActivity"
+            android:name="com.nethergrim.combogymdiary.drive.DriveBackupActivity"
             android:parentActivityName="com.nethergrim.combogymdiary.activities.SettingsActivity"
             android:screenOrientation="portrait"
             android:theme="@android:style/Theme.DeviceDefault.Light.NoActionBar.Fullscreen" >
@@ -96,7 +95,7 @@
                 android:value="com.nethergrim.combogymdiary.SettingsActivity" />
         </activity>
         <activity
-            android:name="com.nethergrim.combogymdiary.drive.DiskRestoreActivity"
+            android:name="com.nethergrim.combogymdiary.drive.DriveRestoreActivity"
             android:parentActivityName="com.nethergrim.combogymdiary.activities.SettingsActivity"
             android:screenOrientation="portrait"
             android:theme="@android:style/Theme.DeviceDefault.Light.NoActionBar.Fullscreen" >
@@ -105,9 +104,9 @@
                 android:value="com.nethergrim.combogymdiary.SettingsActivity" />
         </activity>
         <activity
-            android:name="com.nethergrim.combogymdiary.drive.DiskFileDownloadActivity"
+            android:name="com.nethergrim.combogymdiary.drive.DriveFileDownloadActivity"
             android:configChanges="keyboardHidden|orientation|screenSize"
-            android:parentActivityName="com.nethergrim.combogymdiary.drive.DiskRestoreActivity"
+            android:parentActivityName="com.nethergrim.combogymdiary.drive.DriveRestoreActivity"
             android:screenOrientation="portrait"
             android:theme="@android:style/Theme.DeviceDefault.Light.NoActionBar.Fullscreen" >
             <meta-data
@@ -115,13 +114,13 @@
                 android:value="com.nethergrim.combogymdiary.DiskRestoreActivity" />
         </activity>
         <activity
-            android:name="com.nethergrim.combogymdiary.drive.DiskCreateFolderActivity"
+            android:name="com.nethergrim.combogymdiary.drive.DriveCreateFolderActivity"
             android:configChanges="keyboardHidden|orientation|screenSize"
             android:screenOrientation="portrait"
             android:theme="@android:style/Theme.DeviceDefault.Light.NoActionBar.Fullscreen" >
         </activity>
         <activity
-            android:name="com.nethergrim.combogymdiary.drive.DiskAutoBackupActivity"
+            android:name="com.nethergrim.combogymdiary.drive.DriveAutoBackupActivity"
             android:configChanges="keyboardHidden|orientation|screenSize"
             android:screenOrientation="portrait"
             android:theme="@android:style/Theme.DeviceDefault.Light.NoActionBar.Fullscreen" >

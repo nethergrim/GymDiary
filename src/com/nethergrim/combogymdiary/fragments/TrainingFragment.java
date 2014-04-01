@@ -65,14 +65,10 @@ public class TrainingFragment extends Fragment implements
 	public final static String TRA_ID = "tra_id";
 	public final static String CHECKED_POSITION = "checked_pos";
 	public final static String TRAININGS_DONE_NUM = "trainings_done_num";
-	protected final static String MINUTES = "minutes";
-	protected final static String SECONDS = "seconds";
-	public final static String AUTO_BACKUP_TO_DRIVE = "settingAutoBackup";
-	public final static String USER_CLICKED_POSITION = "user_clicked_position";
-	public final static String TRAINING_LIST = "training_list";
-	protected final static String LIST_OF_SETS = "list_of_sets";
-	public final static String PROGRESS = "progress";
-	public final static String TIMER_IS_ON = "timerIsOn";
+	private final static String SECONDS = "seconds";
+	private final static String LIST_OF_SETS = "list_of_sets";
+	private final static String PROGRESS = "progress";
+	private final static String TIMER_IS_ON = "timerIsOn";
 	private ToggleButton tglTimerOn;
 	private Boolean tglChecked = true, turnOff = false, vibrate = false;
 	private EditText etTimer;
@@ -93,7 +89,7 @@ public class TrainingFragment extends Fragment implements
 	private TextView infoText, tvTimerCountdown;
 	private ArrayList<String> alMain = new ArrayList<String>();
 	private ArrayList<Integer> alSet = new ArrayList<Integer>();
-	private int seconds, minutes, secDelta = 0, minDelta = 0, sec, min;
+	private int seconds, minutes, secDelta = 0,sec, min;
 	private Handler timerHandler = new Handler();
 	private LinearLayout llBack, llSave, llForward, llBottom, llTimerProgress;
 	private ImageView ivBack, ivForward;
@@ -211,14 +207,13 @@ public class TrainingFragment extends Fragment implements
 			tglChecked = false;
 			etTimer.setEnabled(false);
 		}
-
 		return v;
 	}
 
 	public void onCreateContextMenu(ContextMenu menu, View v,
 			ContextMenuInfo menuInfo) {
 		super.onCreateContextMenu(menu, v, menuInfo);
-		menu.add(5, CM_DELETE_ID, 0, R.string.delete_record);
+		menu.add(5, CM_DELETE_ID, 0, R.string.delete_from_this_list);
 	}
 
 	public boolean onContextItemSelected(MenuItem item) {
@@ -635,7 +630,6 @@ public class TrainingFragment extends Fragment implements
 		public void run() {
 			long millis = System.currentTimeMillis() - startTime;
 			seconds = (int) (millis / 1000);
-			minutes += minDelta;
 			seconds += secDelta;
 			minutes = (seconds / 60);
 			seconds = (seconds % 60);
@@ -643,20 +637,17 @@ public class TrainingFragment extends Fragment implements
 					traName + " "
 							+ (String.format("%d:%02d", minutes, seconds))
 							+ "  " + total + " " + measureItem);
-
 			timerHandler.postDelayed(this, 500);
 		}
 	};
 
 	public void saveTimerToPregerences() {
+		seconds += minutes * 60;
 		sp.edit().putInt(SECONDS, seconds).apply();
-		sp.edit().putInt(MINUTES, minutes).apply();
 	}
 
-	public void restoreTimerFromPreferences() {
-		minDelta = sp.getInt(MINUTES, 0);
+	public void restoreTimerFromPreferences() {		
 		secDelta = sp.getInt(SECONDS, 0);
-		sp.edit().putInt(MINUTES, 0).apply();
 		sp.edit().putInt(SECONDS, 0).apply();
 	}
 

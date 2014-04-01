@@ -5,8 +5,8 @@ import com.nethergrim.combogymdiary.DB;
 import com.nethergrim.combogymdiary.R;
 import com.nethergrim.combogymdiary.dialogs.DialogRestoreFromBackup;
 import com.nethergrim.combogymdiary.dialogs.DialogRestoreFromBackup.MyInterface;
-import com.nethergrim.combogymdiary.drive.DiskBackupActivity;
-import com.nethergrim.combogymdiary.drive.DiskRestoreActivity;
+import com.nethergrim.combogymdiary.drive.DriveBackupActivity;
+import com.nethergrim.combogymdiary.drive.DriveRestoreActivity;
 
 import android.app.ActionBar;
 import android.content.Intent;
@@ -127,7 +127,7 @@ public class SettingsActivity extends PreferenceActivity implements MyInterface 
 				.getDefaultSharedPreferences(getApplicationContext());
 		Boolean isAtTraining = sp.getBoolean("training_at_progress", false);
 		if (!isAtTraining) {
-			Intent intent = new Intent(this, DiskRestoreActivity.class);
+			Intent intent = new Intent(this, DriveRestoreActivity.class);
 			startActivity(intent);
 		} else {
 			Toast.makeText(getApplicationContext(),
@@ -166,7 +166,7 @@ public class SettingsActivity extends PreferenceActivity implements MyInterface 
 	}
 
 	private void gotoDisk() {
-		Intent intent = new Intent(this, DiskBackupActivity.class);
+		Intent intent = new Intent(this, DriveBackupActivity.class);
 		startActivity(intent);
 	}
 

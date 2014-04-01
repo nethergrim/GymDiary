@@ -29,7 +29,7 @@ import com.nethergrim.combogymdiary.Backuper;
 import com.nethergrim.combogymdiary.R;
 import com.yandex.metrica.Counter;
 
-public class DiskBackupActivity extends Activity implements
+public class DriveBackupActivity extends Activity implements
 		ConnectionCallbacks, OnConnectionFailedListener {
 
 	private static final String TAG = "android-drive-quickstart";

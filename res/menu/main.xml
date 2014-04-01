@@ -16,8 +16,8 @@
     <item
         android:id="@+id/itemExit"
         android:icon="@drawable/ic_action_accept"
-        android:showAsAction="collapseActionView"
-        android:title="@string/exit">
+        android:showAsAction="always"
+        android:title="@string/finish_training">
     </item>
     <item 
         android:id="@+id/itemAddCommentToTraining"

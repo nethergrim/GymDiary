@@ -21,7 +21,7 @@ import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.util.Log;
 
-public class DiskCreateFolderActivity extends BaseDiskActivity implements
+public class DriveCreateFolderActivity extends BaseDriveActivity implements
 		OnCreateFolderCallback, OnChildrenRetrievedCallback {
 
 	private SharedPreferences sp;
@@ -58,7 +58,7 @@ public class DiskCreateFolderActivity extends BaseDiskActivity implements
 	}
 
 	private void gotoAutoBackup() {
-		Intent intent = new Intent(this, DiskAutoBackupActivity.class);
+		Intent intent = new Intent(this, DriveAutoBackupActivity.class);
 		startActivity(intent);
 		finish();
 	}

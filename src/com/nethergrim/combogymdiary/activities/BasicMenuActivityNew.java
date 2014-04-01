@@ -10,7 +10,8 @@ import com.nethergrim.combogymdiary.R;
 import com.nethergrim.combogymdiary.TrainingService;
 import com.nethergrim.combogymdiary.dialogs.DialogExitFromTraining.MyInterface;
 import com.nethergrim.combogymdiary.dialogs.DialogInfo;
-import com.nethergrim.combogymdiary.drive.DiskCreateFolderActivity;
+import com.nethergrim.combogymdiary.drive.DriveCreateFolderActivity;
+import com.nethergrim.combogymdiary.drive.DriveAutoBackupService;
 import com.nethergrim.combogymdiary.fragments.CatalogFragment;
 import com.nethergrim.combogymdiary.fragments.ExerciseListFragment;
 import com.nethergrim.combogymdiary.fragments.HistoryFragment;
@@ -334,9 +335,12 @@ public class BasicMenuActivityNew extends FragmentActivity implements
 
 		if (PreferenceManager.getDefaultSharedPreferences(this).getBoolean(
 				AUTO_BACKUP_TO_DRIVE, true)) {
-			Intent backupIntent = new Intent(this,
-					DiskCreateFolderActivity.class);
-			startActivity(backupIntent);
+//			Intent backupIntent = new Intent(this,
+//					DiskCreateFolderActivity.class);
+//			startActivity(backupIntent);
+			
+			Intent backup = new Intent (this, DriveAutoBackupService.class);
+			startService(backup); // TODO здесь проверить, что бы нормально работал автобекап
 		}
 
 		if (sp.contains(TRAININGS_DONE_NUM)) {
