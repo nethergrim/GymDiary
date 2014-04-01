@@ -108,7 +108,6 @@ public class DB {
 			return c.getString(2);
 		} else
 			return null;
-
 	}
 
 	public void close() {
@@ -448,7 +447,7 @@ public class DB {
 	}
 
 	public String getTrainingName(int _id){ // TODO возможно не работаеты
-		String[] args = { String.valueOf(_id) };
+		String[] args = { _id + "" };
 		Cursor c = mDB.query(DB_TRAININGS_TABLE, null, COLUMN_ID + "=?", args, null, null, null);
 		if (c.moveToFirst()){
 			return c.getString(1);

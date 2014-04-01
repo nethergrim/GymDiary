@@ -290,10 +290,7 @@ public class BasicMenuActivityNew extends FragmentActivity implements
 		args.putInt(TYPE_OF_DIALOG, 0);
 		args.putInt(ID, id);
 		approve.setArguments(args);	
-		approve.show(getFragmentManager(), "");	
-		
-		
-		
+		approve.show(getFragmentManager(), "");			
 	}
 
 	public static boolean get_TRAINING_STARTED() {
