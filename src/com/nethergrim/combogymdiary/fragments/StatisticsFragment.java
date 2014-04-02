@@ -9,7 +9,6 @@ import com.jjoe64.graphview.GraphViewSeries.GraphViewSeriesStyle;
 import com.nethergrim.combogymdiary.DB;
 import com.nethergrim.combogymdiary.R;
 
-import android.app.Fragment;
 import android.content.Context;
 import android.database.Cursor;
 import android.graphics.Color;
@@ -31,8 +30,8 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.AdapterView.OnItemSelectedListener;
 
-public class StatisticsFragment extends Fragment implements
-		LoaderCallbacks<Cursor> {
+public class StatisticsFragment extends android.support.v4.app.Fragment
+		implements LoaderCallbacks<Cursor> {
 
 	private FrameLayout content;
 	private Spinner spinnerExercises, spinnerMeasures;
@@ -46,7 +45,7 @@ public class StatisticsFragment extends Fragment implements
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setHasOptionsMenu(true);
-		setRetainInstance(true);
+//		setRetainInstance(true);
 		db = new DB(getActivity());
 		db.open();
 	}
