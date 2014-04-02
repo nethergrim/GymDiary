@@ -1,6 +1,5 @@
 package com.nethergrim.combogymdiary.drive;
 
-import com.google.android.gms.common.api.GoogleApiClient;
 import com.google.android.gms.drive.Drive;
 import com.google.android.gms.drive.DriveApi.MetadataBufferResult;
 import com.google.android.gms.drive.DriveFolder.DriveFolderResult;
@@ -98,10 +97,9 @@ public class DriveCreateFolderActivity extends BasicDriveActivity implements
 						.addResultCallback(this);
 				sp.edit().putBoolean(DRIVE_EXISTS, true).apply();
 			} catch (Exception e) {
-				GoogleApiClient gac = getGoogleApiClient();
-				gac.connect();
+				getGoogleApiClient().connect();
 
-				Drive.DriveApi.getRootFolder(gac)
+				Drive.DriveApi.getRootFolder(getGoogleApiClient())
 						.createFolder(getGoogleApiClient(), changeSet)
 						.addResultCallback(this);
 				sp.edit().putBoolean(DRIVE_EXISTS, true).apply();

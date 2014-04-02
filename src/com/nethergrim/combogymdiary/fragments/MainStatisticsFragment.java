@@ -32,4 +32,10 @@ public class MainStatisticsFragment extends Fragment {
 				StatisticsFragment.class, null);
 		return rootView;
 	}
+	
+	@Override
+    public void onDestroyView() {
+        super.onDestroyView();
+        mTabHost = null;
+    }
 }
