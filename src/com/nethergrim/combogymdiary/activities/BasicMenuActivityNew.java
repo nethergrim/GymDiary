@@ -14,7 +14,6 @@ import com.nethergrim.combogymdiary.dialogs.DialogInfo;
 import com.nethergrim.combogymdiary.dialogs.DialogUniversalApprove;
 import com.nethergrim.combogymdiary.dialogs.DialogUniversalApprove.OnEditExerciseAccept;
 import com.nethergrim.combogymdiary.dialogs.DialogUniversalApprove.OnStartTrainingAccept;
-import com.nethergrim.combogymdiary.drive.DriveAutoBackupService;
 import com.nethergrim.combogymdiary.drive.DriveCreateFolderActivity;
 import com.nethergrim.combogymdiary.fragments.CatalogFragment;
 import com.nethergrim.combogymdiary.fragments.ExerciseListFragment;
@@ -106,7 +105,7 @@ public class BasicMenuActivityNew extends FragmentActivity implements
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		db = new DB (this);
+		db = new DB(this);
 		db.open();
 		setContentView(R.layout.menu);
 		initStrings();
@@ -331,10 +330,11 @@ public class BasicMenuActivityNew extends FragmentActivity implements
 		String date = sdf.format(new Date(System.currentTimeMillis()));
 		int tmpSec = sp.getInt(SECONDS, 0);
 		int tmpMin = tmpSec / 60;
-		tmpSec = tmpSec - (tmpMin * 60);		
+		tmpSec = tmpSec - (tmpMin * 60);
 		String time = tmpMin + ":" + tmpSec;
 		if (!sp.getString(COMMENT_TO_TRAINING, "").equals("")) {
-			db.addRecComment(date, sp.getString(COMMENT_TO_TRAINING, ""), total, time);
+			db.addRecComment(date, sp.getString(COMMENT_TO_TRAINING, ""),
+					total, time);
 		} else {
 			db.addRecComment(date, null, total, time);// TODO
 		}
@@ -348,13 +348,13 @@ public class BasicMenuActivityNew extends FragmentActivity implements
 
 		if (PreferenceManager.getDefaultSharedPreferences(this).getBoolean(
 				AUTO_BACKUP_TO_DRIVE, true)) {
-			 Intent backupIntent = new Intent(this,
-			 DriveCreateFolderActivity.class);
-			 startActivity(backupIntent);
+			Intent backupIntent = new Intent(this,
+					DriveCreateFolderActivity.class);
+			startActivity(backupIntent);
 
-//			Intent backup = new Intent(this, DriveAutoBackupService.class);
-//			startService(backup); // TODO здесь проверить, что бы нормально
-									// работал автобекап
+			// Intent backup = new Intent(this, DriveAutoBackupService.class);
+			// startService(backup); // TODO здесь проверить, что бы нормально
+			// работал автобекап
 		}
 
 		if (sp.contains(TRAININGS_DONE_NUM)) {
@@ -407,8 +407,8 @@ public class BasicMenuActivityNew extends FragmentActivity implements
 					.show();
 		} else {
 			String[] cols = { DB.COLUMN_ID, DB.EXE_NAME, DB.TIMER_VALUE };
-			Cursor cursor_exe = db.getDataExe(cols, null, null, null,
-					null, DB.EXE_NAME);
+			Cursor cursor_exe = db.getDataExe(cols, null, null, null, null,
+					DB.EXE_NAME);
 			cursor_exe.moveToFirst();
 			while (cursor_exe.getPosition() < pos) {
 				cursor_exe.moveToNext();

@@ -30,6 +30,7 @@ public class HistoryDetailedActivity extends Activity {
 	private TextView tvWeight, tvComment;
 	private FrameLayout content_frame;
 	private String measureItem;
+	private int total = 0;
 
 	@Override
 	public boolean onOptionsItemSelected(MenuItem item) {
@@ -54,20 +55,22 @@ public class HistoryDetailedActivity extends Activity {
 		trName = intent.getStringExtra("trName");
 		trDate = intent.getStringExtra("date");
 		setupActionBar();
-		setupCursor();
-		setupLayout();
-		Cursor c = db.getCommentData(trDate);
-		int total = 0;
+		
+		Cursor c = db.getCommentData(trDate);		
 		if (c.moveToFirst()) {
 			Log.d("myLogs", c.getInt(4) + "");
 			total = c.getInt(4);
 			tvComment.setText(getResources().getString(R.string.comment) + " "
 					+ c.getString(2));
 		}
+		
+		c.close();
+		setupCursor();
+		setupLayout();
+		
 		tvWeight.setText(getResources().getString(
 				R.string.total_weight_of_training)
 				+ " " + total + measureItem);
-		c.close();
 	}
 
 	private void setupActionBar() {
@@ -95,7 +98,11 @@ public class HistoryDetailedActivity extends Activity {
 				LayoutParams.MATCH_PARENT, LayoutParams.MATCH_PARENT);
 
 		content_frame.addView(scrollView, linLayoutParam);
-
+		
+		boolean ifZero = false;
+		if (total == 0)
+			ifZero = true;
+		
 		SharedPreferences sp = PreferenceManager
 				.getDefaultSharedPreferences(this);
 		String item = sp.getString(BasicMenuActivityNew.MEASURE_ITEM, "1");
@@ -121,6 +128,9 @@ public class HistoryDetailedActivity extends Activity {
 					TextView tvNewSet = new TextView(this);
 					tvNewSet.setText("" + cursor.getInt(3) + measureItem + "/"
 							+ cursor.getInt(4));
+					if (ifZero == true){
+						total += cursor.getInt(3) * cursor.getInt(4);
+					}
 					llMain.addView(tvNewSet, lpView);
 				} while (cursor.moveToNext() && cursor.getInt(5) != 1);
 				cursor.moveToPrevious();
