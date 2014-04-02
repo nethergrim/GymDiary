@@ -243,8 +243,11 @@ public class BasicMenuActivityNew extends FragmentActivity implements
 			break;
 		case 5:
 			FRAGMENT_NUMBER = 5;
-			fragment = new MainStatisticsFragment();
 			previouslyChecked = 5;
+//			fragment = new MainStatisticsFragment();
+			fragment = null;
+			mDrawerList.setItemChecked(position, true);
+			getSupportFragmentManager().beginTransaction().replace(R.id.content_frame, new MainStatisticsFragment()).commit();
 			break;
 		}
 		if (fragment != null) {
