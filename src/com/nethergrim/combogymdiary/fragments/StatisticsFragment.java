@@ -1,7 +1,5 @@
 package com.nethergrim.combogymdiary.fragments;
 
-import java.util.GregorianCalendar;
-
 import com.jjoe64.graphview.CustomLabelFormatter;
 import com.jjoe64.graphview.GraphView;
 import com.jjoe64.graphview.GraphViewDataInterface;

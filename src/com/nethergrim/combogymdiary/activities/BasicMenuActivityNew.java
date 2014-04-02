@@ -3,7 +3,6 @@ package com.nethergrim.combogymdiary.activities;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
-import com.google.android.gms.ads.AdView;
 import com.nethergrim.combogymdiary.Backuper;
 import com.nethergrim.combogymdiary.DB;
 import com.nethergrim.combogymdiary.R;
@@ -18,6 +17,7 @@ import com.nethergrim.combogymdiary.drive.DriveCreateFolderActivity;
 import com.nethergrim.combogymdiary.fragments.CatalogFragment;
 import com.nethergrim.combogymdiary.fragments.ExerciseListFragment;
 import com.nethergrim.combogymdiary.fragments.HistoryFragment;
+import com.nethergrim.combogymdiary.fragments.MainStatisticsFragment;
 import com.nethergrim.combogymdiary.fragments.MeasurementsFragment;
 import com.nethergrim.combogymdiary.fragments.StartTrainingFragment;
 import com.nethergrim.combogymdiary.fragments.StatisticsFragment;
@@ -86,8 +86,7 @@ public class BasicMenuActivityNew extends FragmentActivity implements
 	public final static String TYPE_OF_DIALOG = "type_of_dialog";
 	public final static String ID = "id";
 	public final static String POSITION = "position";
-	protected AdView adView;
-	protected FrameLayout content_frame;
+	private FrameLayout content_frame;
 	private int FRAGMENT_NUMBER = 0;
 	private final static String FRAGMENT_ID = "fragment_id";
 	private static boolean IF_TRAINING_STARTED = false;
@@ -244,7 +243,7 @@ public class BasicMenuActivityNew extends FragmentActivity implements
 			break;
 		case 5:
 			FRAGMENT_NUMBER = 5;
-			fragment = new StatisticsFragment();
+			fragment = new MainStatisticsFragment();
 			previouslyChecked = 5;
 			break;
 		}
