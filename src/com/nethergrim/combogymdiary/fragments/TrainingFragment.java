@@ -30,7 +30,6 @@ import android.os.Handler;
 import android.os.Message;
 import android.os.Vibrator;
 import android.preference.PreferenceManager;
-import android.util.Log;
 import android.view.ContextMenu;
 import android.view.LayoutInflater;
 import android.view.Menu;
@@ -65,7 +64,7 @@ public class TrainingFragment extends Fragment implements
 	public final static String TRA_ID = "tra_id";
 	public final static String CHECKED_POSITION = "checked_pos";
 	public final static String TRAININGS_DONE_NUM = "trainings_done_num";
-	private final static String SECONDS = "seconds";
+	private final static String START_TIME = "start_time";
 	private final static String LIST_OF_SETS = "list_of_sets";
 	private final static String PROGRESS = "progress";
 	private static final String TOTAL_WEIGHT = "total_weight";
@@ -90,7 +89,7 @@ public class TrainingFragment extends Fragment implements
 	private TextView infoText, tvTimerCountdown;
 	private ArrayList<String> alMain = new ArrayList<String>();
 	private ArrayList<Integer> alSet = new ArrayList<Integer>();
-	private int seconds, minutes, secDelta = 0, sec, min;
+	private int seconds, minutes, sec, min;
 	private Handler timerHandler = new Handler();
 	private LinearLayout llBack, llSave, llForward, llBottom, llTimerProgress;
 	private ImageView ivBack, ivForward;
@@ -132,6 +131,7 @@ public class TrainingFragment extends Fragment implements
 		getActivity().startService(
 				new Intent(getActivity(), TrainingService.class));
 		startTime = System.currentTimeMillis();
+		sp.edit().putLong(START_TIME, startTime);
 	}
 
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -282,8 +282,6 @@ public class TrainingFragment extends Fragment implements
 
 	public void onResume() {
 		super.onResume();
-		Log.d(LOG_TAG, "TrainingFragment onResume");
-		
 		turnOff = sp.getBoolean("toTurnOff", false);
 		list.setKeepScreenOn(!turnOff);
 		vibrate = sp.getBoolean("vibrateOn", true);
@@ -293,7 +291,6 @@ public class TrainingFragment extends Fragment implements
 		} catch (Exception e) {
 			vibrateLenght = 2;
 		}
-
 		if (sp.getString(BasicMenuActivityNew.MEASURE_ITEM, "1").equals("1")) {
 			tvWeight.setText(getResources().getString(R.string.Weight) + " ("
 					+ getResources().getStringArray(R.array.measure_items)[0]
@@ -306,12 +303,11 @@ public class TrainingFragment extends Fragment implements
 					+ ")");
 			measureItem = getResources().getStringArray(R.array.measure_items)[1];
 		}
-
 		vibrateLenght *= 1000;
-		timerHandler.postDelayed(timerRunnable, 0);
+
 		if (isTrainingAtProgress) {
 			total = sp.getInt(TOTAL_WEIGHT, 0);
-			restoreTimerFromPreferences();
+			startTime = sp.getLong(START_TIME, 0);
 			restoreSetsFromPreferences();
 			try {
 				list.setItemChecked(sp.getInt(CHECKED_POSITION, 0), true);
@@ -321,6 +317,7 @@ public class TrainingFragment extends Fragment implements
 				initData(0);
 			}
 		}
+		timerHandler.postDelayed(timerRunnable, 0);
 	}
 
 	@SuppressLint("HandlerLeak")
@@ -376,10 +373,9 @@ public class TrainingFragment extends Fragment implements
 
 	public void onPause() {
 		super.onPause();
-		Log.d(LOG_TAG, "TrainingFragment onPause");
+		sp.edit().putLong(START_TIME, startTime).apply();
 		timerHandler.removeCallbacks(timerRunnable);
 		saveSetsToPreferences();
-		saveTimerToPregerences();
 		sp.edit().putInt(TOTAL_WEIGHT, total).apply();
 		isTrainingAtProgress = true;
 	}
@@ -634,27 +630,17 @@ public class TrainingFragment extends Fragment implements
 		public void run() {
 			long millis = System.currentTimeMillis() - startTime;
 			seconds = (int) (millis / 1000);
-			seconds += secDelta;
 			minutes = (seconds / 60);
 			seconds = (seconds % 60);
-
 			getActivity().getActionBar().setSubtitle(
-					(String.format("%d:%02d", minutes, seconds)) + "  " + total
-							+ " " + measureItem);
-
+					(String.format("%d:%02d", minutes, seconds)) + " " + total
+							+ " " + measureItem + " "
+							+ getResources().getString(R.string.set_number)
+							+ " "
+							+ ((set == currentSet ? set : currentSet) + 1));
 			timerHandler.postDelayed(this, 500);
 		}
 	};
-
-	public void saveTimerToPregerences() {
-		seconds += minutes * 60;
-		sp.edit().putInt(SECONDS, seconds).apply();
-	}
-
-	public void restoreTimerFromPreferences() {
-		secDelta = sp.getInt(SECONDS, 0);
-		sp.edit().putInt(SECONDS, 0).apply();
-	}
 
 	public void saveSetsToPreferences() {
 

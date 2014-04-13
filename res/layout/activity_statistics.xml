@@ -19,21 +19,15 @@
 
     <FrameLayout
         android:id="@+id/frameStatsContent"
+        android:visibility="gone"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignLeft="@+id/spinnerExercises"
         android:layout_alignParentBottom="true"
         android:layout_alignRight="@+id/spinnerExercises"
-        android:layout_below="@+id/spinnerMeasures" >
+        android:layout_below="@+id/spinnerExercises" >
 
     </FrameLayout>
 
-    <Spinner
-        android:id="@+id/spinnerMeasures"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/frameStatsContent"
-        android:layout_alignParentRight="true"
-        android:layout_below="@+id/spinnerExercises" />
 
 </RelativeLayout>

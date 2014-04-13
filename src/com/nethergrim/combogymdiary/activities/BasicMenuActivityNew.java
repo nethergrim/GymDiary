@@ -6,6 +6,7 @@ import java.util.Date;
 import com.nethergrim.combogymdiary.Backuper;
 import com.nethergrim.combogymdiary.DB;
 import com.nethergrim.combogymdiary.R;
+import com.nethergrim.combogymdiary.StatisticsActivity;
 import com.nethergrim.combogymdiary.TrainingService;
 import com.nethergrim.combogymdiary.dialogs.DialogExitFromTraining.MyInterface;
 import com.nethergrim.combogymdiary.dialogs.DialogAddExercise;
@@ -17,10 +18,8 @@ import com.nethergrim.combogymdiary.drive.DriveCreateFolderActivity;
 import com.nethergrim.combogymdiary.fragments.CatalogFragment;
 import com.nethergrim.combogymdiary.fragments.ExerciseListFragment;
 import com.nethergrim.combogymdiary.fragments.HistoryFragment;
-import com.nethergrim.combogymdiary.fragments.MainStatisticsFragment;
 import com.nethergrim.combogymdiary.fragments.MeasurementsFragment;
 import com.nethergrim.combogymdiary.fragments.StartTrainingFragment;
-import com.nethergrim.combogymdiary.fragments.StatisticsFragment;
 import com.nethergrim.combogymdiary.fragments.TrainingFragment;
 import com.nethergrim.combogymdiary.fragments.ExerciseListFragment.OnExerciseEdit;
 import com.nethergrim.combogymdiary.fragments.StartTrainingFragment.OnSelectedListener;
@@ -63,6 +62,8 @@ public class BasicMenuActivityNew extends FragmentActivity implements
 	public final static String TOTAL_WEIGHT = "total_weight";
 	public final static String TRAINING_AT_PROGRESS = "training_at_progress";
 	public final static String COMMENT_TO_TRAINING = "comment_to_training";
+
+	private final static String START_TIME = "start_time";
 	public final static String MEASURE_ITEM = "measureItem";
 	public final static String LIST_OF_SETS = "list_of_sets";
 	public final static String TRAINING_ID = "training_id";
@@ -242,12 +243,10 @@ public class BasicMenuActivityNew extends FragmentActivity implements
 			previouslyChecked = 4;
 			break;
 		case 5:
-			FRAGMENT_NUMBER = 5;
-			previouslyChecked = 5;
-//			fragment = new MainStatisticsFragment();
 			fragment = null;
-			mDrawerList.setItemChecked(position, true);
-			getSupportFragmentManager().beginTransaction().replace(R.id.content_frame, new MainStatisticsFragment()).commit();
+			Intent intentStats = new Intent(this, StatisticsActivity.class);
+			startActivity(intentStats);
+			mDrawerList.setItemChecked(previouslyChecked, true);
 			break;
 		}
 		if (fragment != null) {
@@ -342,6 +341,7 @@ public class BasicMenuActivityNew extends FragmentActivity implements
 		}
 		sp.edit().putString(COMMENT_TO_TRAINING, "").apply();
 		sp.edit().putInt(TOTAL_WEIGHT, 0).apply();
+		sp.edit().putLong(START_TIME, 0);
 
 		stopService(new Intent(this, TrainingService.class));
 
@@ -353,10 +353,6 @@ public class BasicMenuActivityNew extends FragmentActivity implements
 			Intent backupIntent = new Intent(this,
 					DriveCreateFolderActivity.class);
 			startActivity(backupIntent);
-
-			// Intent backup = new Intent(this, DriveAutoBackupService.class);
-			// startService(backup); // TODO здесь проверить, что бы нормально
-			// работал автобекап
 		}
 
 		if (sp.contains(TRAININGS_DONE_NUM)) {
