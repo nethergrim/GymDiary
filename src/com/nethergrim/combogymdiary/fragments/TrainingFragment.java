@@ -21,6 +21,7 @@ import com.yandex.metrica.Counter;
 import android.annotation.SuppressLint;
 import android.app.DialogFragment;
 import android.app.Fragment;
+import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -99,6 +100,7 @@ public class TrainingFragment extends Fragment implements
 	private TextView tvWeight;
 	private boolean isTrainingAtProgress = false;
 	private int total = 0;
+	private ProgressDialog pd;
 	private String measureItem = "";
 
 	public void onCreate(Bundle savedInstanceState) {
@@ -320,32 +322,67 @@ public class TrainingFragment extends Fragment implements
 		timerHandler.postDelayed(timerRunnable, 0);
 	}
 
+//	@SuppressLint("HandlerLeak")
+//	private void goDialogProgress() {
+//
+//		try {
+//			timerValue = Integer.parseInt(db
+//					.getTimerValueByExerciseName(exeName));
+//		} catch (Exception e) {
+//			timerValue = 60;
+//		}
+//		pb.setMax(timerValue);
+//		sec = timerValue % 60;
+//		min = timerValue / 60;
+//		h = new Handler() {
+//			public void handleMessage(Message msg) {
+//				if (sec > 0) {
+//					sec--;
+//				} else if (sec == 0 && min > 0) {
+//					sec = 59;
+//					min--;
+//				}
+//				if (pb.getProgress() < pb.getMax()) {
+//					h.sendEmptyMessageDelayed(0, 1000);
+//					pb.setProgress(sp.getInt(PROGRESS, 0));
+//					pb.incrementProgressBy(1);
+//					tvTimerCountdown.setText("" + min + ":" + sec);
+//					sp.edit().putInt(PROGRESS, pb.getProgress()).apply();
+//				} else {
+//					if (vibrate) {
+//						
+//					}
+//					llTimerProgress.setVisibility(View.GONE);
+//					pb.setProgress(0);
+//					tvTimerCountdown.setText("");
+//					isProgressBarActive = false;
+//				}
+//			}
+//		};
+//		if (!isProgressBarActive) {
+//			h.sendEmptyMessageDelayed(0, 10);
+//			llTimerProgress.setVisibility(View.VISIBLE);
+//		}
+//		isProgressBarActive = true;
+//	}
+	
+	
 	@SuppressLint("HandlerLeak")
 	private void goDialogProgress() {
-
-		try {
-			timerValue = Integer.parseInt(db
-					.getTimerValueByExerciseName(exeName));
-		} catch (Exception e) {
-			timerValue = 60;
-		}
-		pb.setMax(timerValue);
-		sec = timerValue % 60;
-		min = timerValue / 60;
+		
+		pd = new ProgressDialog(getActivity());
+		pd.setTitle(R.string.resting);
+		pd.setProgressStyle(ProgressDialog.STYLE_HORIZONTAL);
+		pd.setMax(timerValue);
+	
+		pd.setIndeterminate(true);
+		pd.show();
 		h = new Handler() {
 			public void handleMessage(Message msg) {
-				if (sec > 0) {
-					sec--;
-				} else if (sec == 0 && min > 0) {
-					sec = 59;
-					min--;
-				}
-				if (pb.getProgress() < pb.getMax()) {
+				pd.setIndeterminate(false);
+				if (pd.getProgress() < pd.getMax()) {
+					pd.incrementProgressBy(1);
 					h.sendEmptyMessageDelayed(0, 1000);
-					pb.setProgress(sp.getInt(PROGRESS, 0));
-					pb.incrementProgressBy(1);
-					tvTimerCountdown.setText("" + min + ":" + sec);
-					sp.edit().putInt(PROGRESS, pb.getProgress()).apply();
 				} else {
 					if (vibrate) {
 						try {
@@ -357,19 +394,14 @@ public class TrainingFragment extends Fragment implements
 									"error vibrating", e);
 						}
 					}
-					llTimerProgress.setVisibility(View.GONE);
-					pb.setProgress(0);
-					tvTimerCountdown.setText("");
-					isProgressBarActive = false;
+					pd.dismiss();
 				}
+
 			}
 		};
-		if (!isProgressBarActive) {
-			h.sendEmptyMessageDelayed(0, 10);
-			llTimerProgress.setVisibility(View.VISIBLE);
-		}
-		isProgressBarActive = true;
+		h.sendEmptyMessageDelayed(0, 100);
 	}
+
 
 	public void onPause() {
 		super.onPause();
@@ -635,9 +667,10 @@ public class TrainingFragment extends Fragment implements
 			getActivity().getActionBar().setSubtitle(
 					(String.format("%d:%02d", minutes, seconds)) + " " + total
 							+ " " + measureItem + " "
-							+ getResources().getString(R.string.set_number)
-							+ " "
-							+ ((set == currentSet ? set : currentSet) + 1));
+							+ " ["	
+							+ ((set == currentSet ? set : currentSet) + 1)
+							+ getResources().getString(R.string.set) + "] "							
+						);
 			timerHandler.postDelayed(this, 500);
 		}
 	};

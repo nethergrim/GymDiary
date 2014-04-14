@@ -12,7 +12,7 @@
     <string name="weight_reps">Вес/повт</string>
     <string name="measures">Замеры</string>
     <string name="total_weight">Общий вес</string>
-    
+    <string name="set">Подход</string>
     <string name="start_training">Начать тренировку</string>
     <string name="total_weight_of_training">Общий поднятый вес на тренировке: </string>
     <string name="comment">Комментарий: </string>

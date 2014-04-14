@@ -13,6 +13,7 @@
     <string name="weight_reps">Weight/reps</string>
     <string name="measures">Measures</string>
     <string name="total_weight">Total weight</string>
+    <string name="set">Set</string>
     <string name="edit_exercise">Edit exercise</string>
     <string name="total_weight_of_training">Total weight of training: </string>
     <string name="comment">Comment: </string>
