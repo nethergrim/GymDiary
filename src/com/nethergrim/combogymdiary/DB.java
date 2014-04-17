@@ -151,21 +151,21 @@ public class DB {
 			return false;
 	}
 
-	public String getTrainingNameById(int _id) {
-		Cursor c = mDB.query(DB_TRAININGS_TABLE, null, null, null, null, null,
-				null);
-		if (c.moveToFirst()) {
-			do {
-				if (c.getInt(0) == _id) {
-					return c.getString(1);
-				}
-			} while ((c.moveToNext()));
-		}
-		Counter.sharedInstance()
-				.reportEvent(
-						"DB.getTrainingNameById  ERROR!! not found id that matches col_id");
-		return "name_not_found";
-	}
+//	public String getTrainingNameById(int _id) {
+//		Cursor c = mDB.query(DB_TRAININGS_TABLE, null, null, null, null, null,
+//				null);
+//		if (c.moveToFirst()) {
+//			do {
+//				if (c.getInt(0) == _id) {
+//					return c.getString(1);
+//				}
+//			} while ((c.moveToNext()));
+//		}
+//		Counter.sharedInstance()
+//				.reportEvent(
+//						"DB.getTrainingNameById  ERROR!! not found id that matches col_id");
+//		return "name_not_found";
+//	}
 
 	public String getTrainingListById(int _id) {
 		Cursor c = mDB.query(DB_TRAININGS_TABLE, null, null, null, null, null,
@@ -179,35 +179,6 @@ public class DB {
 		}
 		return null;
 	}
-
-	// public int getLastReps(String _exeName, int _set) {
-	// int result = 0;
-	// String[]
-	// String[] tags = { _exeName };
-	// Cursor c = mDB.query(DB_MAIN_TABLE, cols, DB.EXE_NAME + "=?", tags,
-	// null, null, null);
-	// int size = c.getCount();
-	// if (size > 1) {
-	// int positionLastDay = size - _set - 1;
-	// c.moveToPosition(positionLastDay);
-	// _set++;
-	// if (size > _set + 1) {
-	// if (c.getInt(1) == _set) {
-	// result = c.getInt(0);
-	// return result;
-	// } else if (c.getInt(1) > _set) {
-	// while (c.getInt(1) > _set && c.moveToPrevious()) {
-	// result = c.getInt(0);
-	// }
-	// }
-	// }
-	// }
-	// if (result > 0) {
-	// return result;
-	// } else {
-	// return 0;
-	// }
-	// }
 
 	public void deleteExersiceByName(String name) {
 		Cursor c = mDB.query(DB_TRAININGS_TABLE, null, null, null, null, null,
@@ -283,7 +254,6 @@ public class DB {
 	}
 
 	public int getLastWeightOrReps(String _exeName, int _set, boolean ifWeight) {
-		// int result = 0;
 		String[] cols = { DB.WEIGHT, DB.SET };
 		if (ifWeight) {
 			cols[0] = DB.WEIGHT;
@@ -295,20 +265,21 @@ public class DB {
 		Cursor c = mDB.query(DB_MAIN_TABLE, cols, DB.EXE_NAME + "=?", tags,
 				null, null, null);
 		int size = c.getCount();
-		Log.d(LOG_TAG, " cursor size == " + size + " _set == " + _set); 
 		if (size > 1) { // НОВЫЙ алгоритм нахождения
 			if (c.moveToLast() && (size > (_set + 1))) {
-				
-				if (_set > 0 ){
+
+				if (_set > 0) {
 					for (int i = 0; i < _set; i++) {
 						c.moveToPrevious();
 						size--;
 					}
 				}
-				
-				
+
 				int setNumberAtLastTraining = c.getInt(1);
-				int delta = setNumberAtLastTraining - _set;
+				int delta = setNumberAtLastTraining - _set - 1; // TODO здесь
+																// проверить как
+																// точно это
+																// работает
 				if (size > delta) {
 					if (setNumberAtLastTraining > _set) {
 						for (int j = 0; j < delta; j++) {
@@ -321,35 +292,11 @@ public class DB {
 						return 0;
 				} else
 					return 0;
-
-				// do {
-				// if (c.getInt(1) == _set)
-				// return c.getInt(0);
-				// } while (c.moveToPrevious());
 			} else
 				return 0;
 
-			// старый алгоритм нахождения
-			// int positionLastDay = size - _set - 1;
-			// c.moveToPosition(positionLastDay);
-			// _set++;
-			// if (size > _set + 1) {
-			// if (c.getInt(1) == _set) {
-			// result = c.getInt(0);
-			// return result;
-			// } else if (c.getInt(1) > _set) {
-			// while (c.getInt(1) > _set && c.moveToPrevious()) {
-			// result = c.getInt(0);
-			// }
-			// }
-			// }
 		} else
 			return 0;
-		// if (result > 0) {
-		// return result;
-		// } else {
-		// return 0;
-		// }
 	}
 
 	public String getTimerValueByExerciseName(String exeName) {

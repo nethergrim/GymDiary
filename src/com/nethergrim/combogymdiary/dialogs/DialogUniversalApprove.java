@@ -31,7 +31,7 @@ public class DialogUniversalApprove extends DialogFragment implements
 		}
 		if (type_of_dialog == 0) {
 			tra_id = args.getInt(BasicMenuActivityNew.ID);
-			String tra_name = db.getTrainingNameById(tra_id);
+			String tra_name = db.getTrainingName(tra_id);
 
 			adb = new AlertDialog.Builder(getActivity())
 					.setTitle(R.string.start_training)
