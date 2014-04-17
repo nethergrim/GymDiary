@@ -1,8 +1,8 @@
 package com.nethergrim.combogymdiary;
 
-import com.yandex.metrica.Counter;
-
 import android.app.Application;
+
+import com.yandex.metrica.Counter;
 
 public class MyApp extends Application {
 	  

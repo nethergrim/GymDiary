@@ -3,28 +3,6 @@ package com.nethergrim.combogymdiary.activities;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
-import com.nethergrim.combogymdiary.Backuper;
-import com.nethergrim.combogymdiary.DB;
-import com.nethergrim.combogymdiary.R;
-import com.nethergrim.combogymdiary.StatisticsActivity;
-import com.nethergrim.combogymdiary.TrainingService;
-import com.nethergrim.combogymdiary.dialogs.DialogExitFromTraining.MyInterface;
-import com.nethergrim.combogymdiary.dialogs.DialogAddExercise;
-import com.nethergrim.combogymdiary.dialogs.DialogInfo;
-import com.nethergrim.combogymdiary.dialogs.DialogUniversalApprove;
-import com.nethergrim.combogymdiary.dialogs.DialogUniversalApprove.OnEditExerciseAccept;
-import com.nethergrim.combogymdiary.dialogs.DialogUniversalApprove.OnStartTrainingAccept;
-import com.nethergrim.combogymdiary.drive.DriveCreateFolderActivity;
-import com.nethergrim.combogymdiary.fragments.CatalogFragment;
-import com.nethergrim.combogymdiary.fragments.ExerciseListFragment;
-import com.nethergrim.combogymdiary.fragments.HistoryFragment;
-import com.nethergrim.combogymdiary.fragments.MeasurementsFragment;
-import com.nethergrim.combogymdiary.fragments.StartTrainingFragment;
-import com.nethergrim.combogymdiary.fragments.TrainingFragment;
-import com.nethergrim.combogymdiary.fragments.ExerciseListFragment.OnExerciseEdit;
-import com.nethergrim.combogymdiary.fragments.StartTrainingFragment.OnSelectedListener;
-import com.yandex.metrica.Counter;
-
 import android.annotation.SuppressLint;
 import android.app.Fragment;
 import android.app.NotificationManager;
@@ -48,6 +26,30 @@ import android.widget.ArrayAdapter;
 import android.widget.FrameLayout;
 import android.widget.ListView;
 import android.widget.Toast;
+
+import com.google.android.gms.ads.AdRequest;
+import com.google.android.gms.ads.AdView;
+import com.nethergrim.combogymdiary.Backuper;
+import com.nethergrim.combogymdiary.DB;
+import com.nethergrim.combogymdiary.R;
+import com.nethergrim.combogymdiary.StatisticsActivity;
+import com.nethergrim.combogymdiary.TrainingService;
+import com.nethergrim.combogymdiary.dialogs.DialogAddExercise;
+import com.nethergrim.combogymdiary.dialogs.DialogExitFromTraining.MyInterface;
+import com.nethergrim.combogymdiary.dialogs.DialogInfo;
+import com.nethergrim.combogymdiary.dialogs.DialogUniversalApprove;
+import com.nethergrim.combogymdiary.dialogs.DialogUniversalApprove.OnEditExerciseAccept;
+import com.nethergrim.combogymdiary.dialogs.DialogUniversalApprove.OnStartTrainingAccept;
+import com.nethergrim.combogymdiary.drive.DriveCreateFolderActivity;
+import com.nethergrim.combogymdiary.fragments.CatalogFragment;
+import com.nethergrim.combogymdiary.fragments.ExerciseListFragment;
+import com.nethergrim.combogymdiary.fragments.ExerciseListFragment.OnExerciseEdit;
+import com.nethergrim.combogymdiary.fragments.HistoryFragment;
+import com.nethergrim.combogymdiary.fragments.MeasurementsFragment;
+import com.nethergrim.combogymdiary.fragments.StartTrainingFragment;
+import com.nethergrim.combogymdiary.fragments.StartTrainingFragment.OnSelectedListener;
+import com.nethergrim.combogymdiary.fragments.TrainingFragment;
+import com.yandex.metrica.Counter;
 
 public class BasicMenuActivityNew extends FragmentActivity implements
 		OnSelectedListener, MyInterface, OnStartTrainingAccept, OnExerciseEdit,
@@ -87,7 +89,7 @@ public class BasicMenuActivityNew extends FragmentActivity implements
 	public final static String TYPE_OF_DIALOG = "type_of_dialog";
 	public final static String ID = "id";
 	public final static String POSITION = "position";
-	private FrameLayout content_frame;
+	private FrameLayout content;
 	private int FRAGMENT_NUMBER = 0;
 	private final static String FRAGMENT_ID = "fragment_id";
 	private static boolean IF_TRAINING_STARTED = false;
@@ -95,6 +97,7 @@ public class BasicMenuActivityNew extends FragmentActivity implements
 	private ArrayAdapter<String> adapter;
 	private int previouslyChecked = 0;
 	private DB db;
+	private AdView adView;
 
 	@Override
 	public void onConfigurationChanged(Configuration newConfig) {
@@ -109,7 +112,7 @@ public class BasicMenuActivityNew extends FragmentActivity implements
 		db.open();
 		setContentView(R.layout.menu);
 		initStrings();
-		content_frame = (FrameLayout) findViewById(R.id.content_frame);
+		content = (FrameLayout) findViewById(R.id.content);
 		mDrawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
 		mDrawerList = (ListView) findViewById(R.id.left_drawer);
 		mDrawerLayout.setDrawerShadow(R.drawable.drawer_shadow,
@@ -151,13 +154,16 @@ public class BasicMenuActivityNew extends FragmentActivity implements
 			frag = new StartTrainingFragment();
 		}
 		if (frag != null)
-			getFragmentManager().beginTransaction()
-					.add(R.id.content_frame, frag).commit();
+			getFragmentManager().beginTransaction().add(R.id.content, frag)
+					.commit();
 		mDrawerList.setItemChecked(0, true);
 
 		if (savedInstanceState == null) {
 			selectItem(0);
 		}
+		adView = (AdView) this.findViewById(R.id.adView);
+		AdRequest adRequest = new AdRequest.Builder().build();
+		adView.loadAd(adRequest);
 	}
 
 	@Override
@@ -193,7 +199,6 @@ public class BasicMenuActivityNew extends FragmentActivity implements
 	}
 
 	public void selectItem(int position) {
-
 		mDrawerLayout.closeDrawer(mDrawerList);
 		Fragment fragment = null;
 		switch (position) {
@@ -252,7 +257,7 @@ public class BasicMenuActivityNew extends FragmentActivity implements
 		if (fragment != null) {
 			mDrawerList.setItemChecked(position, true);
 			getFragmentManager().beginTransaction()
-					.replace(R.id.content_frame, fragment).commit();
+					.replace(R.id.content, fragment).commit();
 		}
 		invalidateOptionsMenu();
 	}
@@ -273,11 +278,13 @@ public class BasicMenuActivityNew extends FragmentActivity implements
 	@Override
 	protected void onResume() {
 		super.onResume();
+		adView.resume();
 		Counter.sharedInstance().onResumeActivity(this);
 	}
 
 	@Override
 	protected void onPause() {
+		adView.pause();
 		super.onPause();
 		Counter.sharedInstance().onPauseActivity(this);
 	}
@@ -321,7 +328,6 @@ public class BasicMenuActivityNew extends FragmentActivity implements
 			Backuper backUP = new Backuper();
 			backUP.backupToSd();
 		}
-		getActionBar().setSubtitle("");
 
 		sp.edit().putBoolean(TRAINING_AT_PROGRESS, false).apply();
 		sp.edit().putInt(USER_CLICKED_POSITION, 0).apply();
@@ -364,8 +370,8 @@ public class BasicMenuActivityNew extends FragmentActivity implements
 		}
 		set_TRAINING_STARTED(false);
 		getFragmentManager().beginTransaction()
-				.replace(R.id.content_frame, new StartTrainingFragment())
-				.commit();
+				.replace(R.id.content, new StartTrainingFragment()).commit();
+		getActionBar().setSubtitle(" ");
 		listButtons[0] = getResources().getString(
 				R.string.startTrainingButtonString);
 		adapter.notifyDataSetChanged();
@@ -379,7 +385,7 @@ public class BasicMenuActivityNew extends FragmentActivity implements
 		args.putInt(TRAINING_ID, id);
 		newFragment.setArguments(args);
 		getFragmentManager().beginTransaction()
-				.replace(R.id.content_frame, newFragment).commit();
+				.replace(R.id.content, newFragment).commit();
 		set_TRAINING_STARTED(true);
 		listButtons[0] = getResources().getString(R.string.continue_training);
 		adapter.notifyDataSetChanged();
@@ -424,4 +430,11 @@ public class BasicMenuActivityNew extends FragmentActivity implements
 		}
 
 	}
+
+	@Override
+	public void onDestroy() {
+		adView.destroy();
+		super.onDestroy();
+	}
+
 }

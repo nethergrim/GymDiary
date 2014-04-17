@@ -1,9 +1,5 @@
 package com.nethergrim.combogymdiary.activities;
 
-import com.nethergrim.combogymdiary.DB;
-import com.nethergrim.combogymdiary.R;
-import com.yandex.metrica.Counter;
-
 import android.app.Activity;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -12,6 +8,10 @@ import android.database.Cursor;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
+
+import com.nethergrim.combogymdiary.DB;
+import com.nethergrim.combogymdiary.R;
+import com.yandex.metrica.Counter;
 
 public class MainActivity extends Activity {
 

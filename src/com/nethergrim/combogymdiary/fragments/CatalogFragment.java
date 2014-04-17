@@ -1,9 +1,5 @@
 package com.nethergrim.combogymdiary.fragments;
 
-import com.nethergrim.combogymdiary.AdapterHelper;
-import com.nethergrim.combogymdiary.R;
-import com.nethergrim.combogymdiary.activities.CatalogDetailedActivity;
-
 import android.app.Fragment;
 import android.content.Intent;
 import android.os.Bundle;
@@ -13,11 +9,15 @@ import android.view.MenuInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ExpandableListView;
-import android.widget.SimpleExpandableListAdapter;
 import android.widget.ExpandableListView.OnChildClickListener;
 import android.widget.ExpandableListView.OnGroupClickListener;
 import android.widget.ExpandableListView.OnGroupCollapseListener;
 import android.widget.ExpandableListView.OnGroupExpandListener;
+import android.widget.SimpleExpandableListAdapter;
+
+import com.nethergrim.combogymdiary.AdapterHelper;
+import com.nethergrim.combogymdiary.R;
+import com.nethergrim.combogymdiary.activities.CatalogDetailedActivity;
 
 public class CatalogFragment extends Fragment {
 

@@ -1,14 +1,7 @@
 package com.nethergrim.combogymdiary.activities;
 
-import com.nethergrim.combogymdiary.Backuper;
-import com.nethergrim.combogymdiary.DB;
-import com.nethergrim.combogymdiary.R;
-import com.nethergrim.combogymdiary.dialogs.DialogRestoreFromBackup;
-import com.nethergrim.combogymdiary.dialogs.DialogRestoreFromBackup.MyInterface;
-import com.nethergrim.combogymdiary.drive.DriveBackupActivity;
-import com.nethergrim.combogymdiary.drive.DriveRestoreActivity;
-
 import android.app.ActionBar;
+import android.app.DialogFragment;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.net.Uri;
@@ -17,9 +10,16 @@ import android.os.Environment;
 import android.preference.Preference;
 import android.preference.PreferenceActivity;
 import android.preference.PreferenceManager;
-import android.app.DialogFragment;
 import android.view.MenuItem;
 import android.widget.Toast;
+
+import com.nethergrim.combogymdiary.Backuper;
+import com.nethergrim.combogymdiary.DB;
+import com.nethergrim.combogymdiary.R;
+import com.nethergrim.combogymdiary.dialogs.DialogRestoreFromBackup;
+import com.nethergrim.combogymdiary.dialogs.DialogRestoreFromBackup.MyInterface;
+import com.nethergrim.combogymdiary.drive.DriveBackupActivity;
+import com.nethergrim.combogymdiary.drive.DriveRestoreActivity;
 
 public class SettingsActivity extends PreferenceActivity implements MyInterface {
 

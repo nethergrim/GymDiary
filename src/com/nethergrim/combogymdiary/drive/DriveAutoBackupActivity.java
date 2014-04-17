@@ -8,6 +8,13 @@ import java.io.OutputStream;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
+import android.annotation.SuppressLint;
+import android.content.SharedPreferences;
+import android.os.Bundle;
+import android.preference.PreferenceManager;
+import android.util.Log;
+import android.widget.Toast;
+
 import com.google.android.gms.drive.Drive;
 import com.google.android.gms.drive.DriveApi.ContentsResult;
 import com.google.android.gms.drive.DriveApi.OnNewContentsCallback;
@@ -19,13 +26,6 @@ import com.google.android.gms.drive.MetadataChangeSet;
 import com.nethergrim.combogymdiary.Backuper;
 import com.nethergrim.combogymdiary.R;
 import com.yandex.metrica.Counter;
-
-import android.os.Bundle;
-import android.preference.PreferenceManager;
-import android.util.Log;
-import android.widget.Toast;
-import android.annotation.SuppressLint;
-import android.content.SharedPreferences;
 
 @SuppressLint("SimpleDateFormat")
 public class DriveAutoBackupActivity extends BasicDriveActivity implements

@@ -1,14 +1,5 @@
 package com.nethergrim.combogymdiary.fragments;
 
-import com.jjoe64.graphview.CustomLabelFormatter;
-import com.jjoe64.graphview.GraphView;
-import com.jjoe64.graphview.GraphViewDataInterface;
-import com.jjoe64.graphview.GraphViewSeries;
-import com.jjoe64.graphview.LineGraphView;
-import com.jjoe64.graphview.GraphViewSeries.GraphViewSeriesStyle;
-import com.nethergrim.combogymdiary.DB;
-import com.nethergrim.combogymdiary.R;
-
 import android.content.Context;
 import android.database.Cursor;
 import android.graphics.Color;
@@ -23,11 +14,20 @@ import android.view.MenuInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
+import android.widget.AdapterView.OnItemSelectedListener;
 import android.widget.FrameLayout;
 import android.widget.SimpleCursorAdapter;
 import android.widget.Spinner;
 import android.widget.TextView;
-import android.widget.AdapterView.OnItemSelectedListener;
+
+import com.jjoe64.graphview.CustomLabelFormatter;
+import com.jjoe64.graphview.GraphView;
+import com.jjoe64.graphview.GraphViewDataInterface;
+import com.jjoe64.graphview.GraphViewSeries;
+import com.jjoe64.graphview.GraphViewSeries.GraphViewSeriesStyle;
+import com.jjoe64.graphview.LineGraphView;
+import com.nethergrim.combogymdiary.DB;
+import com.nethergrim.combogymdiary.R;
 
 public class StatisticsFragment extends android.support.v4.app.Fragment
 		implements LoaderCallbacks<Cursor> {

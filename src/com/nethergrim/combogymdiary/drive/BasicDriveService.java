@@ -1,16 +1,16 @@
 package com.nethergrim.combogymdiary.drive;
 
-import com.google.android.gms.common.ConnectionResult;
-import com.google.android.gms.common.api.GoogleApiClient;
-import com.google.android.gms.drive.Drive;
-import com.yandex.metrica.Counter;
-
 import android.app.Service;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.IBinder;
 import android.util.Log;
 import android.widget.Toast;
+
+import com.google.android.gms.common.ConnectionResult;
+import com.google.android.gms.common.api.GoogleApiClient;
+import com.google.android.gms.drive.Drive;
+import com.yandex.metrica.Counter;
 
 public class BasicDriveService extends Service implements
 		GoogleApiClient.ConnectionCallbacks,

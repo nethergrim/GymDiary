@@ -7,17 +7,6 @@ import java.util.StringTokenizer;
 
 import kankan.wheel.widget.WheelView;
 import kankan.wheel.widget.adapters.AbstractWheelTextAdapter;
-
-import com.nethergrim.combogymdiary.DB;
-import com.nethergrim.combogymdiary.R;
-import com.nethergrim.combogymdiary.TrainingService;
-import com.nethergrim.combogymdiary.activities.BasicMenuActivityNew;
-import com.nethergrim.combogymdiary.activities.EditingProgramAtTrainingActivity;
-import com.nethergrim.combogymdiary.activities.HistoryDetailedActivity;
-import com.nethergrim.combogymdiary.dialogs.DialogAddCommentToTraining;
-import com.nethergrim.combogymdiary.dialogs.DialogExitFromTraining;
-import com.yandex.metrica.Counter;
-
 import android.annotation.SuppressLint;
 import android.app.DialogFragment;
 import android.app.Fragment;
@@ -32,19 +21,21 @@ import android.os.Message;
 import android.os.Vibrator;
 import android.preference.PreferenceManager;
 import android.view.ContextMenu;
+import android.view.ContextMenu.ContextMenuInfo;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
-import android.view.ViewGroup;
-import android.view.ContextMenu.ContextMenuInfo;
 import android.view.View.OnClickListener;
+import android.view.ViewGroup;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.AdapterView;
+import android.widget.AdapterView.AdapterContextMenuInfo;
 import android.widget.ArrayAdapter;
 import android.widget.CompoundButton;
+import android.widget.CompoundButton.OnCheckedChangeListener;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -53,8 +44,16 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 import android.widget.ToggleButton;
-import android.widget.AdapterView.AdapterContextMenuInfo;
-import android.widget.CompoundButton.OnCheckedChangeListener;
+
+import com.nethergrim.combogymdiary.DB;
+import com.nethergrim.combogymdiary.R;
+import com.nethergrim.combogymdiary.TrainingService;
+import com.nethergrim.combogymdiary.activities.BasicMenuActivityNew;
+import com.nethergrim.combogymdiary.activities.EditingProgramAtTrainingActivity;
+import com.nethergrim.combogymdiary.activities.HistoryDetailedActivity;
+import com.nethergrim.combogymdiary.dialogs.DialogAddCommentToTraining;
+import com.nethergrim.combogymdiary.dialogs.DialogExitFromTraining;
+import com.yandex.metrica.Counter;
 
 public class TrainingFragment extends Fragment implements
 		OnCheckedChangeListener, OnClickListener {
@@ -87,10 +86,10 @@ public class TrainingFragment extends Fragment implements
 	private Handler h;
 	private WheelView reps, weights;
 	private ProgressBar pb;
-	private TextView infoText, tvTimerCountdown;
+	private TextView infoText;
 	private ArrayList<String> alMain = new ArrayList<String>();
 	private ArrayList<Integer> alSet = new ArrayList<Integer>();
-	private int seconds, minutes, sec, min;
+	private int seconds, minutes;
 	private Handler timerHandler = new Handler();
 	private LinearLayout llBack, llSave, llForward, llBottom, llTimerProgress;
 	private ImageView ivBack, ivForward;
@@ -145,7 +144,6 @@ public class TrainingFragment extends Fragment implements
 			llTimerProgress.setVisibility(View.VISIBLE);
 		} else
 			llTimerProgress.setVisibility(View.GONE);
-		tvTimerCountdown = (TextView) v.findViewById(R.id.tvTimerCountdown);
 		pb = (ProgressBar) v.findViewById(R.id.pbTrainingRest);
 		llBottom = (LinearLayout) v.findViewById(R.id.LLBottom);
 		anim = AnimationUtils.loadAnimation(getActivity(),
@@ -268,8 +266,9 @@ public class TrainingFragment extends Fragment implements
 		tValue = db.getTimerValueByExerciseName(exeName);
 		etTimer.setText(tValue);
 		initSetButtons();
-		oldReps = db.getLastReps(exeName, set);
-		oldWeight = db.getLastWeight(exeName, set);
+//		oldReps = db.getLastReps(exeName, set);
+		oldReps = db.getLastWeightOrReps(exeName, set, false);
+		oldWeight = db.getLastWeightOrReps(exeName, set,true);
 		if (oldReps > 0 && oldWeight > 0) {
 			infoText.setText(getResources().getString(
 					R.string.previous_result_was)
@@ -322,51 +321,6 @@ public class TrainingFragment extends Fragment implements
 		timerHandler.postDelayed(timerRunnable, 0);
 	}
 
-//	@SuppressLint("HandlerLeak")
-//	private void goDialogProgress() {
-//
-//		try {
-//			timerValue = Integer.parseInt(db
-//					.getTimerValueByExerciseName(exeName));
-//		} catch (Exception e) {
-//			timerValue = 60;
-//		}
-//		pb.setMax(timerValue);
-//		sec = timerValue % 60;
-//		min = timerValue / 60;
-//		h = new Handler() {
-//			public void handleMessage(Message msg) {
-//				if (sec > 0) {
-//					sec--;
-//				} else if (sec == 0 && min > 0) {
-//					sec = 59;
-//					min--;
-//				}
-//				if (pb.getProgress() < pb.getMax()) {
-//					h.sendEmptyMessageDelayed(0, 1000);
-//					pb.setProgress(sp.getInt(PROGRESS, 0));
-//					pb.incrementProgressBy(1);
-//					tvTimerCountdown.setText("" + min + ":" + sec);
-//					sp.edit().putInt(PROGRESS, pb.getProgress()).apply();
-//				} else {
-//					if (vibrate) {
-//						
-//					}
-//					llTimerProgress.setVisibility(View.GONE);
-//					pb.setProgress(0);
-//					tvTimerCountdown.setText("");
-//					isProgressBarActive = false;
-//				}
-//			}
-//		};
-//		if (!isProgressBarActive) {
-//			h.sendEmptyMessageDelayed(0, 10);
-//			llTimerProgress.setVisibility(View.VISIBLE);
-//		}
-//		isProgressBarActive = true;
-//	}
-	
-	
 	@SuppressLint("HandlerLeak")
 	private void goDialogProgress() {
 		
@@ -374,7 +328,7 @@ public class TrainingFragment extends Fragment implements
 		pd.setTitle(R.string.resting);
 		pd.setProgressStyle(ProgressDialog.STYLE_HORIZONTAL);
 		pd.setMax(timerValue);
-	
+		pd.setCanceledOnTouchOutside(false);
 		pd.setIndeterminate(true);
 		pd.show();
 		h = new Handler() {
@@ -401,7 +355,6 @@ public class TrainingFragment extends Fragment implements
 		};
 		h.sendEmptyMessageDelayed(0, 100);
 	}
-
 
 	public void onPause() {
 		super.onPause();
@@ -490,16 +443,19 @@ public class TrainingFragment extends Fragment implements
 
 	}
 
-	@Override
-	public void onClick(View arg0) {
-		int id = arg0.getId();
+	private void updateTimer(){
 		String tmpStr = db.getTimerValueByExerciseName(exeName);
 		String timerv = etTimer.getText().toString();
-		if (!tmpStr.equals(timerv)) { // re-write to DB timer value for an
-										// exercise
+		if (!tmpStr.equals(timerv)) { 
 			int exe_id = db.getExeIdByName(exeName);
 			db.updateRec_Exe(exe_id, DB.TIMER_VALUE, timerv);
 		}
+	}
+	
+	@Override
+	public void onClick(View arg0) {
+		int id = arg0.getId();
+		updateTimer();
 
 		if (id == R.id.llBtnSave && currentSet == set) {
 			int wei = (weights.getCurrentItem() + 1);
@@ -516,8 +472,9 @@ public class TrainingFragment extends Fragment implements
 			initSetButtons();
 			Toast.makeText(getActivity(), R.string.saved, Toast.LENGTH_SHORT)
 					.show();
-			oldReps = db.getLastReps(exeName, set);
-			oldWeight = db.getLastWeight(exeName, set);
+//			oldReps = db.getLastReps(exeName, set);
+			oldReps = db.getLastWeightOrReps(exeName, set, false);
+			oldWeight = db.getLastWeightOrReps(exeName, set, true);
 			if (oldReps > 0 && oldWeight > 0) {
 				infoText.setText(getResources().getString(
 						R.string.previous_result_was)
@@ -669,7 +626,7 @@ public class TrainingFragment extends Fragment implements
 							+ " " + measureItem + " "
 							+ " ["	
 							+ ((set == currentSet ? set : currentSet) + 1)
-							+ getResources().getString(R.string.set) + "] "							
+							+ " " + getResources().getString(R.string.set) + "] "							
 						);
 			timerHandler.postDelayed(this, 500);
 		}

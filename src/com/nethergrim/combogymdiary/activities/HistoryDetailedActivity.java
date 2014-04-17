@@ -1,8 +1,5 @@
 package com.nethergrim.combogymdiary.activities;
 
-import com.nethergrim.combogymdiary.DB;
-import com.nethergrim.combogymdiary.R;
-
 import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.Intent;
@@ -20,6 +17,9 @@ import android.widget.FrameLayout;
 import android.widget.LinearLayout;
 import android.widget.ScrollView;
 import android.widget.TextView;
+
+import com.nethergrim.combogymdiary.DB;
+import com.nethergrim.combogymdiary.R;
 
 public class HistoryDetailedActivity extends Activity {
 

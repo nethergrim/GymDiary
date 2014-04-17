@@ -1,9 +1,5 @@
 package com.nethergrim.combogymdiary.dialogs;
 
-import com.nethergrim.combogymdiary.DB;
-import com.nethergrim.combogymdiary.R;
-import com.nethergrim.combogymdiary.activities.BasicMenuActivityNew;
-
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.Dialog;
@@ -11,6 +7,10 @@ import android.app.DialogFragment;
 import android.content.DialogInterface;
 import android.content.DialogInterface.OnClickListener;
 import android.os.Bundle;
+
+import com.nethergrim.combogymdiary.DB;
+import com.nethergrim.combogymdiary.R;
+import com.nethergrim.combogymdiary.activities.BasicMenuActivityNew;
 
 public class DialogUniversalApprove extends DialogFragment implements
 		OnClickListener {

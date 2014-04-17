@@ -3,8 +3,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     package="com.nethergrim.combogymdiary"
     android:installLocation="auto"
-    android:versionCode="82"
-    android:versionName="1.4.5" >
+    android:versionCode="83"
+    android:versionName="1.4.6" >
 
     <uses-sdk
         android:minSdkVersion="15"
@@ -180,6 +180,9 @@
             android:name="com.nethergrim.combogymdiary.StatisticsActivity"
             android:label="@string/title_activity_statistics" >
         </activity>
+        
+        <activity android:name="com.google.android.gms.ads.AdActivity"
+             android:configChanges="keyboard|keyboardHidden|orientation|screenLayout|uiMode|screenSize|smallestScreenSize"/>
     </application>
 
 </manifest>

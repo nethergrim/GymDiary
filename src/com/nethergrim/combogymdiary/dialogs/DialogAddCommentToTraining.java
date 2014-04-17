@@ -1,8 +1,5 @@
 package com.nethergrim.combogymdiary.dialogs;
 
-import com.nethergrim.combogymdiary.R;
-import com.nethergrim.combogymdiary.activities.BasicMenuActivityNew;
-
 import android.app.DialogFragment;
 import android.content.DialogInterface;
 import android.content.SharedPreferences;
@@ -14,6 +11,9 @@ import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
+
+import com.nethergrim.combogymdiary.R;
+import com.nethergrim.combogymdiary.activities.BasicMenuActivityNew;
 
 public class DialogAddCommentToTraining extends DialogFragment implements
 		OnClickListener {

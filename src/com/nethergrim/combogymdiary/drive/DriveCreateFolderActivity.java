@@ -1,5 +1,11 @@
 package com.nethergrim.combogymdiary.drive;
 
+import android.content.Intent;
+import android.content.SharedPreferences;
+import android.os.Bundle;
+import android.preference.PreferenceManager;
+import android.util.Log;
+
 import com.google.android.gms.drive.Drive;
 import com.google.android.gms.drive.DriveApi.MetadataBufferResult;
 import com.google.android.gms.drive.DriveFolder.DriveFolderResult;
@@ -13,12 +19,6 @@ import com.google.android.gms.drive.query.Query;
 import com.google.android.gms.drive.query.SearchableField;
 import com.nethergrim.combogymdiary.R;
 import com.yandex.metrica.Counter;
-
-import android.content.Intent;
-import android.content.SharedPreferences;
-import android.os.Bundle;
-import android.preference.PreferenceManager;
-import android.util.Log;
 
 public class DriveCreateFolderActivity extends BasicDriveActivity implements
 		OnCreateFolderCallback, OnChildrenRetrievedCallback {

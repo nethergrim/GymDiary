@@ -1,7 +1,5 @@
 package com.nethergrim.combogymdiary.dialogs;
 
-import com.nethergrim.combogymdiary.R;
-
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.Dialog;
@@ -10,6 +8,8 @@ import android.content.DialogInterface;
 import android.content.DialogInterface.OnClickListener;
 import android.os.Bundle;
 import android.util.Log;
+
+import com.nethergrim.combogymdiary.R;
 
 public class DialogRestoreFromBackup extends DialogFragment implements
 		OnClickListener {

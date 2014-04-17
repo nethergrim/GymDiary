@@ -1,10 +1,5 @@
 package com.nethergrim.combogymdiary.fragments;
 
-import com.nethergrim.combogymdiary.DB;
-import com.nethergrim.combogymdiary.R;
-import com.nethergrim.combogymdiary.activities.AddingMeasurementActivity;
-import com.nethergrim.combogymdiary.activities.MeasurementsDetailedActivity;
-
 import android.app.Fragment;
 import android.content.Context;
 import android.content.Intent;
@@ -16,19 +11,24 @@ import android.support.v4.content.CursorLoader;
 import android.support.v4.content.Loader;
 import android.support.v4.widget.SimpleCursorAdapter;
 import android.view.ContextMenu;
+import android.view.ContextMenu.ContextMenuInfo;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.ContextMenu.ContextMenuInfo;
 import android.widget.AdapterView;
+import android.widget.AdapterView.AdapterContextMenuInfo;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
-import android.widget.AdapterView.AdapterContextMenuInfo;
+
+import com.nethergrim.combogymdiary.DB;
+import com.nethergrim.combogymdiary.R;
+import com.nethergrim.combogymdiary.activities.AddingMeasurementActivity;
+import com.nethergrim.combogymdiary.activities.MeasurementsDetailedActivity;
 
 public class MeasurementsFragment extends Fragment implements
 		LoaderCallbacks<Cursor> {

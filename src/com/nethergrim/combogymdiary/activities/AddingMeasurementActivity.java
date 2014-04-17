@@ -3,9 +3,6 @@ package com.nethergrim.combogymdiary.activities;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
-import com.nethergrim.combogymdiary.DB;
-import com.nethergrim.combogymdiary.R;
-
 import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.SharedPreferences;
@@ -16,6 +13,9 @@ import android.view.MenuItem;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import com.nethergrim.combogymdiary.DB;
+import com.nethergrim.combogymdiary.R;
 
 @SuppressLint("SimpleDateFormat")
 public class AddingMeasurementActivity extends Activity {

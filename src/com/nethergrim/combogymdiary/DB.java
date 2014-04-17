@@ -1,7 +1,5 @@
 package com.nethergrim.combogymdiary;
 
-import com.yandex.metrica.Counter;
-
 import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
@@ -9,6 +7,8 @@ import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteDatabase.CursorFactory;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.util.Log;
+
+import com.yandex.metrica.Counter;
 
 public class DB {
 
@@ -60,18 +60,16 @@ public class DB {
 			+ EXE_NAME + " text" + ");";
 
 	private static final String DB_COMMENT_CREATE = "create table "
-			+ DB_COMMENT_TABLE + "(" 
-			+ COLUMN_ID	+ " integer primary key autoincrement, " 
-			+ DATE + " text, "
-			+ COMMENT_TO_TRAINING + " text, " 
-			+ TOTAL_TIME_OF_TRAINING+ " text, " 
-			+ TOTAL_WEIGHT_OF_TRAINING + " integer" + ");";
+			+ DB_COMMENT_TABLE + "(" + COLUMN_ID
+			+ " integer primary key autoincrement, " + DATE + " text, "
+			+ COMMENT_TO_TRAINING + " text, " + TOTAL_TIME_OF_TRAINING
+			+ " text, " + TOTAL_WEIGHT_OF_TRAINING + " integer" + ");";
 
 	public static final String strSeparator = "__,__";
 
 	private Context mCtx;
 	private DBHelper mDBHelper;
-	public SQLiteDatabase mDB;
+	private SQLiteDatabase mDB;
 
 	public DB(Context ctx) {
 		mCtx = ctx;
@@ -182,34 +180,34 @@ public class DB {
 		return null;
 	}
 
-	public int getLastReps(String _exeName, int _set) {
-		int result = 0;
-		String[] cols = { DB.REPS, DB.SET };
-		String[] tags = { _exeName };
-		Cursor c = mDB.query(DB_MAIN_TABLE, cols, DB.EXE_NAME + "=?", tags,
-				null, null, null);
-		int size = c.getCount();
-		if (size > 1) {
-			int positionLastDay = size - _set - 1;
-			c.moveToPosition(positionLastDay);
-			_set++;
-			if (size > _set + 1) {
-				if (c.getInt(1) == _set) {
-					result = c.getInt(0);
-					return result;
-				} else if (c.getInt(1) > _set) {
-					while (c.getInt(1) > _set && c.moveToPrevious()) {
-						result = c.getInt(0);
-					}
-				}
-			}
-		}
-		if (result > 0) {
-			return result;
-		} else {
-			return 0;
-		}
-	}
+	// public int getLastReps(String _exeName, int _set) {
+	// int result = 0;
+	// String[]
+	// String[] tags = { _exeName };
+	// Cursor c = mDB.query(DB_MAIN_TABLE, cols, DB.EXE_NAME + "=?", tags,
+	// null, null, null);
+	// int size = c.getCount();
+	// if (size > 1) {
+	// int positionLastDay = size - _set - 1;
+	// c.moveToPosition(positionLastDay);
+	// _set++;
+	// if (size > _set + 1) {
+	// if (c.getInt(1) == _set) {
+	// result = c.getInt(0);
+	// return result;
+	// } else if (c.getInt(1) > _set) {
+	// while (c.getInt(1) > _set && c.moveToPrevious()) {
+	// result = c.getInt(0);
+	// }
+	// }
+	// }
+	// }
+	// if (result > 0) {
+	// return result;
+	// } else {
+	// return 0;
+	// }
+	// }
 
 	public void deleteExersiceByName(String name) {
 		Cursor c = mDB.query(DB_TRAININGS_TABLE, null, null, null, null, null,
@@ -280,37 +278,78 @@ public class DB {
 		}
 	}
 
-	public void deleteComment(String date){
+	public void deleteComment(String date) {
 		mDB.delete(DB_COMMENT_TABLE, DATE + " = " + date, null);
 	}
-	
-	public int getLastWeight(String _exeName, int _set) {
-		int result = 0;
+
+	public int getLastWeightOrReps(String _exeName, int _set, boolean ifWeight) {
+		// int result = 0;
 		String[] cols = { DB.WEIGHT, DB.SET };
+		if (ifWeight) {
+			cols[0] = DB.WEIGHT;
+		} else {
+			cols[0] = DB.REPS;
+		}
+
 		String[] tags = { _exeName };
 		Cursor c = mDB.query(DB_MAIN_TABLE, cols, DB.EXE_NAME + "=?", tags,
 				null, null, null);
 		int size = c.getCount();
-		if (size > 1) {
-			int positionLastDay = size - _set - 1;
-			c.moveToPosition(positionLastDay);
-			_set++;
-			if (size > _set + 1) {
-				if (c.getInt(1) == _set) {
-					result = c.getInt(0);
-					return result;
-				} else if (c.getInt(1) > _set) {
-					while (c.getInt(1) > _set && c.moveToPrevious()) {
-						result = c.getInt(0);
+		Log.d(LOG_TAG, " cursor size == " + size + " _set == " + _set); 
+		if (size > 1) { // НОВЫЙ алгоритм нахождения
+			if (c.moveToLast() && (size > (_set + 1))) {
+				
+				if (_set > 0 ){
+					for (int i = 0; i < _set; i++) {
+						c.moveToPrevious();
+						size--;
 					}
 				}
-			}
-		}
-		if (result > 0) {
-			return result;
-		} else {
+				
+				
+				int setNumberAtLastTraining = c.getInt(1);
+				int delta = setNumberAtLastTraining - _set;
+				if (size > delta) {
+					if (setNumberAtLastTraining > _set) {
+						for (int j = 0; j < delta; j++) {
+							c.moveToPrevious();
+						}
+						return c.getInt(0);
+					} else if (setNumberAtLastTraining == _set) {
+						return c.getInt(0);
+					} else
+						return 0;
+				} else
+					return 0;
+
+				// do {
+				// if (c.getInt(1) == _set)
+				// return c.getInt(0);
+				// } while (c.moveToPrevious());
+			} else
+				return 0;
+
+			// старый алгоритм нахождения
+			// int positionLastDay = size - _set - 1;
+			// c.moveToPosition(positionLastDay);
+			// _set++;
+			// if (size > _set + 1) {
+			// if (c.getInt(1) == _set) {
+			// result = c.getInt(0);
+			// return result;
+			// } else if (c.getInt(1) > _set) {
+			// while (c.getInt(1) > _set && c.moveToPrevious()) {
+			// result = c.getInt(0);
+			// }
+			// }
+			// }
+		} else
 			return 0;
-		}
+		// if (result > 0) {
+		// return result;
+		// } else {
+		// return 0;
+		// }
 	}
 
 	public String getTimerValueByExerciseName(String exeName) {
@@ -421,11 +460,12 @@ public class DB {
 	}
 
 	public Cursor getCommentData(String date) {
-		String[] args = {date};
-		Cursor c = mDB.query(DB_COMMENT_TABLE, null, DATE + "=?", args, null, null, null);
+		String[] args = { date };
+		Cursor c = mDB.query(DB_COMMENT_TABLE, null, DATE + "=?", args, null,
+				null, null);
 		return c;
-	}	
-	
+	}
+
 	public Cursor getDataMeasures(String[] column, // The columns to return
 			String selection, // The columns for the WHERE clause
 			String[] selectionArgs, // The values for the WHERE clause

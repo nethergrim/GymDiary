@@ -1,8 +1,5 @@
 package com.nethergrim.combogymdiary.activities;
 
-import com.nethergrim.combogymdiary.DB;
-import com.nethergrim.combogymdiary.R;
-
 import android.content.Context;
 import android.content.Intent;
 import android.content.res.Configuration;
@@ -18,6 +15,9 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.EditText;
 import android.widget.ListView;
+
+import com.nethergrim.combogymdiary.DB;
+import com.nethergrim.combogymdiary.R;
 
 public class EditingProgramAtTrainingActivity extends FragmentActivity
 		implements LoaderCallbacks<Cursor> {
