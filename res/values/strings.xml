@@ -10,6 +10,9 @@
         <item>2</item>
     </string-array>
 
+    
+    <string name="edit_timer_value">Edit timer</string>
+    <string name="input_new_timer_value">Input new timer value (sec): </string>
     <string name="weight_reps">Weight/reps</string>
     <string name="measures">Measures</string>
     <string name="total_weight">Total weight</string>

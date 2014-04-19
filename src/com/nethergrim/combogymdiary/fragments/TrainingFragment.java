@@ -115,9 +115,9 @@ public class TrainingFragment extends Fragment implements
 		sp.edit().putBoolean(TRAINING_AT_PROGRESS, true).apply();
 		traName = db.getTrainingName(trainingId);
 		getActivity().getActionBar().setTitle(traName);
-		if (db.getTrainingListById(trainingId) != null) {
+		if (db.getTrainingList(trainingId) != null) {
 			exersices = db.convertStringToArray(db
-					.getTrainingListById(trainingId));
+					.getTrainingList(trainingId));
 		} else {
 			Counter.sharedInstance()
 					.reportEvent(
@@ -224,7 +224,7 @@ public class TrainingFragment extends Fragment implements
 			String nameToDelete = alMain.get(acmi.position);
 			alMain.remove(acmi.position);
 			alSet.remove(acmi.position);
-			db.deleteExersiceByName(nameToDelete, traName);
+			db.deleteExersice(nameToDelete, traName);
 			adapter.notifyDataSetChanged();
 			if (alMain.size() > 0) {
 				initData(0);
@@ -266,9 +266,9 @@ public class TrainingFragment extends Fragment implements
 		tValue = db.getTimerValueByExerciseName(exeName);
 		etTimer.setText(tValue);
 		initSetButtons();
-//		oldReps = db.getLastReps(exeName, set);
+		// oldReps = db.getLastReps(exeName, set);
 		oldReps = db.getLastWeightOrReps(exeName, set, false);
-		oldWeight = db.getLastWeightOrReps(exeName, set,true);
+		oldWeight = db.getLastWeightOrReps(exeName, set, true);
 		if (oldReps > 0 && oldWeight > 0) {
 			infoText.setText(getResources().getString(
 					R.string.previous_result_was)
@@ -323,7 +323,7 @@ public class TrainingFragment extends Fragment implements
 
 	@SuppressLint("HandlerLeak")
 	private void goDialogProgress() {
-		
+
 		pd = new ProgressDialog(getActivity());
 		pd.setTitle(R.string.resting);
 		pd.setProgressStyle(ProgressDialog.STYLE_HORIZONTAL);
@@ -390,8 +390,8 @@ public class TrainingFragment extends Fragment implements
 					&& (tmpCursor.getCount() > 1 || !tmpCursor.getString(3)
 							.equals(date))) {
 
-				if (tmpCursor.getString(3).equals(date)) { // ñåãîäíÿ óæå áûëè
-															// ñåòû
+				if (tmpCursor.getString(3).equals(date)) { // Ã±Ã¥Ã£Ã®Ã¤Ã­Ã¿ Ã³Ã¦Ã¥ Ã¡Ã»Ã«Ã¨
+															// Ã±Ã¥Ã²Ã»
 					tmpCursor.moveToPrevious();
 				}
 
@@ -443,15 +443,15 @@ public class TrainingFragment extends Fragment implements
 
 	}
 
-	private void updateTimer(){
+	private void updateTimer() {
 		String tmpStr = db.getTimerValueByExerciseName(exeName);
 		String timerv = etTimer.getText().toString();
-		if (!tmpStr.equals(timerv)) { 
+		if (!tmpStr.equals(timerv)) {
 			int exe_id = db.getExeIdByName(exeName);
 			db.updateRec_Exe(exe_id, DB.TIMER_VALUE, timerv);
 		}
 	}
-	
+
 	@Override
 	public void onClick(View arg0) {
 		int id = arg0.getId();
@@ -472,7 +472,7 @@ public class TrainingFragment extends Fragment implements
 			initSetButtons();
 			Toast.makeText(getActivity(), R.string.saved, Toast.LENGTH_SHORT)
 					.show();
-//			oldReps = db.getLastReps(exeName, set);
+			// oldReps = db.getLastReps(exeName, set);
 			oldReps = db.getLastWeightOrReps(exeName, set, false);
 			oldWeight = db.getLastWeightOrReps(exeName, set, true);
 			if (oldReps > 0 && oldWeight > 0) {
@@ -621,13 +621,13 @@ public class TrainingFragment extends Fragment implements
 			seconds = (int) (millis / 1000);
 			minutes = (seconds / 60);
 			seconds = (seconds % 60);
+//			Log.d(LOG_TAG, "exercise == " + exeName + " set == " + set + " currentSet == " + currentSet);
 			getActivity().getActionBar().setSubtitle(
 					(String.format("%d:%02d", minutes, seconds)) + " " + total
-							+ " " + measureItem + " "
-							+ " ["	
+							+ " " + measureItem + " " + " ["
 							+ ((set == currentSet ? set : currentSet) + 1)
-							+ " " + getResources().getString(R.string.set) + "] "							
-						);
+							+ " " + getResources().getString(R.string.set)
+							+ "] ");
 			timerHandler.postDelayed(this, 500);
 		}
 	};

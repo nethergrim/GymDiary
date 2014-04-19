@@ -9,6 +9,9 @@
         <item>2</item>
     </string-array>
 
+    
+    <string name="edit_timer_value">Редактирование таймера</string>
+    <string name="input_new_timer_value">Введите новое значение таймреа (сек): </string>
     <string name="weight_reps">Вес/повт</string>
     <string name="measures">Замеры</string>
     <string name="total_weight">Общий вес</string>

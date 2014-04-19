@@ -184,7 +184,7 @@ public class ExerciseListFragment extends Fragment implements
 						Toast.LENGTH_SHORT).show();
 			} else {
 				db.delRec_Exe(acmi.id);
-				db.deleteExersiceByName(exeName);
+				db.deleteExersice(exeName);
 				Toast.makeText(getActivity(), R.string.deleted,
 						Toast.LENGTH_SHORT).show();
 				((FragmentActivity) getActivity()).getSupportLoaderManager()

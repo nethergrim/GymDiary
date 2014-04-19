@@ -8,8 +8,6 @@ import android.database.sqlite.SQLiteDatabase.CursorFactory;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.util.Log;
 
-import com.yandex.metrica.Counter;
-
 public class DB {
 
 	public static final String LOG_TAG = "myLogs";
@@ -151,23 +149,7 @@ public class DB {
 			return false;
 	}
 
-//	public String getTrainingNameById(int _id) {
-//		Cursor c = mDB.query(DB_TRAININGS_TABLE, null, null, null, null, null,
-//				null);
-//		if (c.moveToFirst()) {
-//			do {
-//				if (c.getInt(0) == _id) {
-//					return c.getString(1);
-//				}
-//			} while ((c.moveToNext()));
-//		}
-//		Counter.sharedInstance()
-//				.reportEvent(
-//						"DB.getTrainingNameById  ERROR!! not found id that matches col_id");
-//		return "name_not_found";
-//	}
-
-	public String getTrainingListById(int _id) {
+	public String getTrainingList(int _id) {
 		Cursor c = mDB.query(DB_TRAININGS_TABLE, null, null, null, null, null,
 				null);
 		if (c.moveToFirst()) {
@@ -180,7 +162,7 @@ public class DB {
 		return null;
 	}
 
-	public void deleteExersiceByName(String name) {
+	public void deleteExersice(String name) {
 		Cursor c = mDB.query(DB_TRAININGS_TABLE, null, null, null, null, null,
 				null);
 		if (c.moveToFirst()) {
@@ -216,7 +198,7 @@ public class DB {
 		}
 	}
 
-	public void deleteExersiceByName(String name, String trainingName) {
+	public void deleteExersice(String name, String trainingName) {
 		String[] args = { trainingName };
 		Cursor c = mDB.query(DB_TRAININGS_TABLE, null, TRA_NAME + "=?", args,
 				(String) null, (String) null, (String) null);
@@ -264,6 +246,7 @@ public class DB {
 		String[] tags = { _exeName };
 		Cursor c = mDB.query(DB_MAIN_TABLE, cols, DB.EXE_NAME + "=?", tags,
 				null, null, null);
+
 		int size = c.getCount();
 		if (size > 1) { // НОВЫЙ алгоритм нахождения
 			if (c.moveToLast() && (size > (_set + 1))) {
@@ -287,14 +270,13 @@ public class DB {
 						}
 						return c.getInt(0);
 					} else if (setNumberAtLastTraining == _set) {
-						return c.getInt(0);
+						return 0;
 					} else
 						return 0;
 				} else
 					return 0;
 			} else
 				return 0;
-
 		} else
 			return 0;
 	}
@@ -431,7 +413,7 @@ public class DB {
 		mDB.insert(DB_EXE_TABLE, null, cv);
 	}
 
-	public String getTrainingName(int _id) { // TODO возможно не работаеты
+	public String getTrainingName(int _id) {
 		String[] args = { _id + "" };
 		Cursor c = mDB.query(DB_TRAININGS_TABLE, null, COLUMN_ID + "=?", args,
 				null, null, null);

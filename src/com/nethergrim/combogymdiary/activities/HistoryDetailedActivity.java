@@ -60,8 +60,11 @@ public class HistoryDetailedActivity extends Activity {
 		if (c.moveToFirst()) {
 			Log.d("myLogs", c.getInt(4) + "");
 			total = c.getInt(4);
-			tvComment.setText(getResources().getString(R.string.comment) + " "
-					+ c.getString(2));
+			if (c.getString(2) != null){
+				tvComment.setText(getResources().getString(R.string.comment) + " "
+						+ c.getString(2));
+			}
+			
 		}
 		
 		c.close();
