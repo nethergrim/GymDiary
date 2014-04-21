@@ -3,8 +3,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     package="com.nethergrim.combogymdiary"
     android:installLocation="auto"
-    android:versionCode="83"
-    android:versionName="1.4.6" >
+    android:versionCode="85"
+    android:versionName="1.4.8" >
 
     <uses-sdk
         android:minSdkVersion="15"
@@ -26,7 +26,7 @@
         android:theme="@style/Theme.Mynewactionbar" >
         <meta-data
             android:name="com.google.android.gms.version"
-            android:value="4132500" />
+            android:value="4323000" />
 
         <activity
             android:name="com.nethergrim.combogymdiary.activities.MainActivity"
@@ -180,9 +180,9 @@
             android:name="com.nethergrim.combogymdiary.StatisticsActivity"
             android:label="@string/title_activity_statistics" >
         </activity>
-        
-        <activity android:name="com.google.android.gms.ads.AdActivity"
-             android:configChanges="keyboard|keyboardHidden|orientation|screenLayout|uiMode|screenSize|smallestScreenSize"/>
+        <activity
+            android:name="com.google.android.gms.ads.AdActivity"
+            android:configChanges="keyboard|keyboardHidden|orientation|screenLayout|uiMode|screenSize|smallestScreenSize" />
     </application>
 
 </manifest>
