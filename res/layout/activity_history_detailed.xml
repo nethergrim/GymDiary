@@ -2,7 +2,8 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/cream_pixels_bitmap" >
+    android:background="@color/light_gray_background"
+    android:padding="8dp" >
 
     <TextView
         android:id="@+id/textViewWeightTOtal"
@@ -11,7 +12,9 @@
         android:layout_alignParentLeft="true"
         android:layout_alignParentRight="true"
         android:layout_alignParentTop="true"
+        android:background="@drawable/card"
         android:gravity="center_horizontal"
+        android:textColor="@color/dark_gray"
         android:textSize="17sp" />
 
     <TextView
@@ -21,7 +24,11 @@
         android:layout_alignParentLeft="true"
         android:layout_alignParentRight="true"
         android:layout_below="@+id/textViewWeightTOtal"
+        android:layout_marginTop="8dp"
+        android:background="@drawable/card"
         android:gravity="center_horizontal"
+        android:visibility="gone"
+        android:textColor="@color/dark_gray"
         android:textSize="17sp" />
 
     <FrameLayout

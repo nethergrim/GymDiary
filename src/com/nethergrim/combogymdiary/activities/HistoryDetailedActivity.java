@@ -1,15 +1,15 @@
 package com.nethergrim.combogymdiary.activities;
 
-import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.database.Cursor;
-import android.graphics.Color;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.util.Log;
+import android.util.TypedValue;
 import android.view.Gravity;
+import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup.LayoutParams;
@@ -55,22 +55,25 @@ public class HistoryDetailedActivity extends Activity {
 		trName = intent.getStringExtra("trName");
 		trDate = intent.getStringExtra("date");
 		setupActionBar();
-		
-		Cursor c = db.getCommentData(trDate);		
+
+		Cursor c = db.getCommentData(trDate);
 		if (c.moveToFirst()) {
 			Log.d("myLogs", c.getInt(4) + "");
 			total = c.getInt(4);
-			if (c.getString(2) != null){
-				tvComment.setText(getResources().getString(R.string.comment) + " "
-						+ c.getString(2));
+			if (c.getString(2) != null) {
+				tvComment.setText(getResources().getString(R.string.comment)
+						+ " " + c.getString(2));
+				tvComment.setVisibility(View.VISIBLE);
+			} else {
+				tvComment.setVisibility(View.GONE);
 			}
-			
+
 		}
-		
+
 		c.close();
 		setupCursor();
 		setupLayout();
-		
+
 		tvWeight.setText(getResources().getString(
 				R.string.total_weight_of_training)
 				+ " " + total + measureItem);
@@ -89,11 +92,18 @@ public class HistoryDetailedActivity extends Activity {
 		cursor = db.getDataMain(cols, DB.DATE + "=?", args, null, null, null);
 	}
 
-	@SuppressLint("NewApi")
 	private void setupLayout() {
 		ScrollView scrollView = new ScrollView(this);
-		LayoutParams lpView = new LayoutParams(LayoutParams.WRAP_CONTENT,
-				LayoutParams.WRAP_CONTENT);
+		LinearLayout.LayoutParams lpView = new LinearLayout.LayoutParams(
+				LinearLayout.LayoutParams.MATCH_PARENT,
+				LinearLayout.LayoutParams.WRAP_CONTENT);
+		lpView.gravity = Gravity.CENTER;
+
+		LinearLayout.LayoutParams lpData = new LinearLayout.LayoutParams(
+				LinearLayout.LayoutParams.MATCH_PARENT,
+				LinearLayout.LayoutParams.WRAP_CONTENT);
+		lpData.gravity = Gravity.CENTER;
+
 		LinearLayout llMain = new LinearLayout(this);
 
 		llMain.setOrientation(LinearLayout.VERTICAL);
@@ -101,11 +111,11 @@ public class HistoryDetailedActivity extends Activity {
 				LayoutParams.MATCH_PARENT, LayoutParams.MATCH_PARENT);
 
 		content_frame.addView(scrollView, linLayoutParam);
-		
+
 		boolean ifZero = false;
 		if (total == 0)
 			ifZero = true;
-		
+
 		SharedPreferences sp = PreferenceManager
 				.getDefaultSharedPreferences(this);
 		String item = sp.getString(BasicMenuActivityNew.MEASURE_ITEM, "1");
@@ -120,30 +130,45 @@ public class HistoryDetailedActivity extends Activity {
 					+ ") ";
 		}
 		scrollView.addView(llMain, linLayoutParam);
-		llMain.setGravity(Gravity.CENTER_HORIZONTAL);
+		llMain.setGravity(Gravity.CENTER);
+
+		int color = getResources().getColor(R.color.dark_gray);
 		if (cursor.moveToFirst()) {
 			do {
-				TextView tvNew = new TextView(this);
-				tvNew.setText(cursor.getString(2));
-				tvNew.setLayoutParams(lpView);
-				llMain.addView(tvNew, lpView);
+
+				LayoutInflater inflater = getLayoutInflater();
+				View card = inflater.inflate(R.layout.item_detailed_history,
+						null, false);
+				TextView tvName = (TextView) card
+						.findViewById(R.id.textViewExerciseName);
+				LinearLayout llData = (LinearLayout) card
+						.findViewById(R.id.linearLayoutForConent);
+				llData.setGravity(Gravity.CENTER);
+				tvName.setText(cursor.getString(2));
+				tvName.setTextColor(color);
+
+				int px = (int) TypedValue.applyDimension(
+						TypedValue.COMPLEX_UNIT_DIP, 8, getResources()
+								.getDisplayMetrics());
+
+				lpView.setMargins(0, px, 0, 0);
+
+				llMain.addView(card, lpView);
 				do {
 					TextView tvNewSet = new TextView(this);
+					tvNewSet.setGravity(Gravity.CENTER);
 					tvNewSet.setText("" + cursor.getInt(3) + measureItem + "/"
 							+ cursor.getInt(4));
-					if (ifZero == true){
+					tvNewSet.setTextColor(color);
+					if (ifZero == true) {
 						total += cursor.getInt(3) * cursor.getInt(4);
 					}
-					llMain.addView(tvNewSet, lpView);
+
+					lpData.gravity = Gravity.CENTER;
+					llData.addView(tvNewSet, lpData);
 				} while (cursor.moveToNext() && cursor.getInt(5) != 1);
 				cursor.moveToPrevious();
-				View div = new View(this);
-				LinearLayout.LayoutParams lparamDivider = new LinearLayout.LayoutParams(
-						LinearLayout.LayoutParams.MATCH_PARENT, 1);
-				lparamDivider.setMargins(20, 10, 20, 0);
-				div.setLayoutParams(lparamDivider);
-				div.setBackgroundColor(Color.GRAY);
-				llMain.addView(div);
+
 			} while (cursor.moveToNext());
 		}
 		cursor.close();

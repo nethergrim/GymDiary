@@ -38,5 +38,6 @@
     <color name="white">#ffffff</color>
     <color name="light_gray_google">#E3EAE3</color>
     <color name="dark_gray">#575757</color>
+    <color name="light_gray_background">#E3E4E6</color>
 
 </resources>
