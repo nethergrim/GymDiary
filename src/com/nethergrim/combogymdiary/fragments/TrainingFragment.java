@@ -20,6 +20,8 @@ import android.os.Handler;
 import android.os.Message;
 import android.os.Vibrator;
 import android.preference.PreferenceManager;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.ContextMenu;
 import android.view.ContextMenu.ContextMenuInfo;
 import android.view.LayoutInflater;
@@ -40,7 +42,6 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ListView;
-import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 import android.widget.ToggleButton;
@@ -85,7 +86,6 @@ public class TrainingFragment extends Fragment implements
 	private long startTime = 0;
 	private Handler h;
 	private WheelView reps, weights;
-	private ProgressBar pb;
 	private TextView infoText;
 	private ArrayList<String> alMain = new ArrayList<String>();
 	private ArrayList<Integer> alSet = new ArrayList<Integer>();
@@ -116,8 +116,7 @@ public class TrainingFragment extends Fragment implements
 		traName = db.getTrainingName(trainingId);
 		getActivity().getActionBar().setTitle(traName);
 		if (db.getTrainingList(trainingId) != null) {
-			exersices = db.convertStringToArray(db
-					.getTrainingList(trainingId));
+			exersices = db.convertStringToArray(db.getTrainingList(trainingId));
 		} else {
 			Counter.sharedInstance()
 					.reportEvent(
@@ -144,7 +143,6 @@ public class TrainingFragment extends Fragment implements
 			llTimerProgress.setVisibility(View.VISIBLE);
 		} else
 			llTimerProgress.setVisibility(View.GONE);
-		pb = (ProgressBar) v.findViewById(R.id.pbTrainingRest);
 		llBottom = (LinearLayout) v.findViewById(R.id.LLBottom);
 		anim = AnimationUtils.loadAnimation(getActivity(),
 				R.anim.setfortraining);
@@ -175,6 +173,36 @@ public class TrainingFragment extends Fragment implements
 		tglTimerOn.setOnCheckedChangeListener(this);
 		etTimer = (EditText) v.findViewById(R.id.etTimerValueAtTraining);
 		etTimer.setOnClickListener(this);
+		etTimer.addTextChangedListener(new TextWatcher() {
+
+			@Override
+			public void onTextChanged(CharSequence s, int start, int before,
+					int count) {
+
+			}
+
+			@Override
+			public void beforeTextChanged(CharSequence s, int start, int count,
+					int after) {
+
+			}
+
+			@Override
+			public void afterTextChanged(Editable s) {
+				// String timer = s.toString();
+				// int timerSeconds = 0;
+				// try {
+				// timerSeconds = Integer.parseInt(timer);
+				// } catch (Exception e){
+				// timerSeconds = 60;
+				// }
+				// timerValue = timerSeconds;
+				// db.updateRec_Exe(Id, column, data)
+
+				updateTimer(s.toString());
+			}
+		});
+
 		infoText = (TextView) v.findViewById(R.id.infoText);
 		list = (ListView) v.findViewById(R.id.lvSets);
 		list.setChoiceMode(ListView.CHOICE_MODE_SINGLE);
@@ -255,9 +283,12 @@ public class TrainingFragment extends Fragment implements
 	private void initData(int position) {
 		exeName = alMain.get(position);
 		try {
-			pb.setMax(Integer.parseInt(db.getTimerValueByExerciseName(exeName)));
+			timerValue = Integer.parseInt(db
+					.getTimerValueByExerciseName(exeName));
+			// pb.setMax(Integer.parseInt(db.getTimerValueByExerciseName(exeName)));
 		} catch (Exception e) {
-			pb.setMax(30);
+			// pb.setMax(30);
+			timerValue = 60;
 		}
 
 		set = alSet.get(position);
@@ -329,7 +360,6 @@ public class TrainingFragment extends Fragment implements
 		pd.setProgressStyle(ProgressDialog.STYLE_HORIZONTAL);
 		pd.setMax(timerValue);
 		pd.setCanceledOnTouchOutside(false);
-		pd.setIndeterminate(true);
 		pd.show();
 		h = new Handler() {
 			public void handleMessage(Message msg) {
@@ -443,9 +473,15 @@ public class TrainingFragment extends Fragment implements
 
 	}
 
-	private void updateTimer() {
+	private void updateTimer(String tmp) {
+		String timerv;
+		if (tmp != null) {
+			timerv = tmp;
+		} else {
+			timerv = etTimer.getText().toString();
+		}
 		String tmpStr = db.getTimerValueByExerciseName(exeName);
-		String timerv = etTimer.getText().toString();
+
 		if (!tmpStr.equals(timerv)) {
 			int exe_id = db.getExeIdByName(exeName);
 			db.updateRec_Exe(exe_id, DB.TIMER_VALUE, timerv);
@@ -455,7 +491,7 @@ public class TrainingFragment extends Fragment implements
 	@Override
 	public void onClick(View arg0) {
 		int id = arg0.getId();
-		updateTimer();
+		updateTimer(null);
 
 		if (id == R.id.llBtnSave && currentSet == set) {
 			int wei = (weights.getCurrentItem() + 1);
@@ -621,7 +657,8 @@ public class TrainingFragment extends Fragment implements
 			seconds = (int) (millis / 1000);
 			minutes = (seconds / 60);
 			seconds = (seconds % 60);
-//			Log.d(LOG_TAG, "exercise == " + exeName + " set == " + set + " currentSet == " + currentSet);
+			// Log.d(LOG_TAG, "exercise == " + exeName + " set == " + set +
+			// " currentSet == " + currentSet);
 			getActivity().getActionBar().setSubtitle(
 					(String.format("%d:%02d", minutes, seconds)) + " " + total
 							+ " " + measureItem + " " + " ["
