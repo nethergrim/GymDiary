@@ -206,6 +206,7 @@ public class BasicMenuActivityNew extends FragmentActivity implements
 			FRAGMENT_NUMBER = 0;
 			if (get_TRAINING_STARTED()) {
 				fragment = new TrainingFragment();
+
 				Bundle args = new Bundle();
 				args.putInt(TRAINING_ID, sp.getInt(TRA_ID, 0));
 				fragment.setArguments(args);
@@ -428,6 +429,10 @@ public class BasicMenuActivityNew extends FragmentActivity implements
 			dialog.setArguments(args);
 			dialog.show(getFragmentManager(), "tag");
 		}
+	}
+
+	@Override
+	public void onBackPressed() {
 
 	}
 

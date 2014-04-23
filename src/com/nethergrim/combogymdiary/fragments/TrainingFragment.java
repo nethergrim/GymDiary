@@ -12,6 +12,7 @@ import android.app.DialogFragment;
 import android.app.Fragment;
 import android.app.ProgressDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.database.Cursor;
@@ -22,6 +23,7 @@ import android.os.Vibrator;
 import android.preference.PreferenceManager;
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.util.Log;
 import android.view.ContextMenu;
 import android.view.ContextMenu.ContextMenuInfo;
 import android.view.LayoutInflater;
@@ -82,7 +84,6 @@ public class TrainingFragment extends Fragment implements
 	private int checkedPosition = 0, set = 0, currentSet = 0, oldReps = 0,
 			oldWeight = 0, timerValue = 0, vibrateLenght = 0, currentId = 0;
 	private DialogFragment dlg1;
-	private Boolean isProgressBarActive = false;
 	private long startTime = 0;
 	private Handler h;
 	private WheelView reps, weights;
@@ -101,6 +102,7 @@ public class TrainingFragment extends Fragment implements
 	private int total = 0;
 	private ProgressDialog pd;
 	private String measureItem = "";
+	private boolean isActiveDialog = false;
 
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -139,10 +141,8 @@ public class TrainingFragment extends Fragment implements
 		View v = inflater.inflate(
 				R.layout.training_at_progress_new_wheel_new_list, null);
 		llTimerProgress = (LinearLayout) v.findViewById(R.id.llProgressShow);
-		if (isProgressBarActive) {
-			llTimerProgress.setVisibility(View.VISIBLE);
-		} else
-			llTimerProgress.setVisibility(View.GONE);
+
+		llTimerProgress.setVisibility(View.GONE);
 		llBottom = (LinearLayout) v.findViewById(R.id.LLBottom);
 		anim = AnimationUtils.loadAnimation(getActivity(),
 				R.anim.setfortraining);
@@ -312,6 +312,7 @@ public class TrainingFragment extends Fragment implements
 		}
 	}
 
+	@SuppressLint("HandlerLeak")
 	public void onResume() {
 		super.onResume();
 		turnOff = sp.getBoolean("toTurnOff", false);
@@ -350,6 +351,35 @@ public class TrainingFragment extends Fragment implements
 			}
 		}
 		timerHandler.postDelayed(timerRunnable, 0);
+
+		h = new Handler() {
+			public void handleMessage(Message msg) {
+				if (msg.what == 0) {
+					this.removeMessages(0);
+				} else {
+					pd.setIndeterminate(false);
+					if (pd.getProgress() < pd.getMax()) {
+						pd.incrementProgressBy(1);
+						h.sendEmptyMessageDelayed(1, 1000);
+					} else {
+						if (vibrate) {
+							try {
+								Vibrator v = (Vibrator) getActivity()
+										.getSystemService(
+												Context.VIBRATOR_SERVICE);
+								v.vibrate(vibrateLenght);
+							} catch (Exception e) {
+								Counter.sharedInstance().reportError(
+										"error vibrating", e);
+							}
+						}
+						pd.dismiss();
+					}
+				}
+
+			}
+		};
+
 	}
 
 	@SuppressLint("HandlerLeak")
@@ -359,31 +389,21 @@ public class TrainingFragment extends Fragment implements
 		pd.setTitle(R.string.resting);
 		pd.setProgressStyle(ProgressDialog.STYLE_HORIZONTAL);
 		pd.setMax(timerValue);
-		pd.setCanceledOnTouchOutside(false);
-		pd.show();
-		h = new Handler() {
-			public void handleMessage(Message msg) {
-				pd.setIndeterminate(false);
-				if (pd.getProgress() < pd.getMax()) {
-					pd.incrementProgressBy(1);
-					h.sendEmptyMessageDelayed(0, 1000);
-				} else {
-					if (vibrate) {
-						try {
-							Vibrator v = (Vibrator) getActivity()
-									.getSystemService(Context.VIBRATOR_SERVICE);
-							v.vibrate(vibrateLenght);
-						} catch (Exception e) {
-							Counter.sharedInstance().reportError(
-									"error vibrating", e);
-						}
-					}
-					pd.dismiss();
-				}
+		pd.setCancelable(false);
 
-			}
-		};
-		h.sendEmptyMessageDelayed(0, 100);
+		pd.setButton(DialogInterface.BUTTON_NEGATIVE,
+				getResources().getString(R.string.cancel),
+				new DialogInterface.OnClickListener() {
+					@Override
+					public void onClick(DialogInterface dialog, int which) {
+						dialog.dismiss();
+						h.removeCallbacksAndMessages(null);
+					}
+				});
+		pd.show();
+
+		isActiveDialog = true;
+		h.sendEmptyMessageDelayed(1, 100);
 	}
 
 	public void onPause() {
@@ -508,7 +528,6 @@ public class TrainingFragment extends Fragment implements
 			initSetButtons();
 			Toast.makeText(getActivity(), R.string.saved, Toast.LENGTH_SHORT)
 					.show();
-			// oldReps = db.getLastReps(exeName, set);
 			oldReps = db.getLastWeightOrReps(exeName, set, false);
 			oldWeight = db.getLastWeightOrReps(exeName, set, true);
 			if (oldReps > 0 && oldWeight > 0) {
@@ -521,9 +540,15 @@ public class TrainingFragment extends Fragment implements
 				infoText.setText(getResources().getString(R.string.new_set)
 						+ " (" + (set + 1) + ")");
 			}
-			if (tglChecked && !isProgressBarActive) {
+			if (isActiveDialog) {
+				h.sendEmptyMessage(0);
+				// h.removeCallbacksAndMessages(null);
+				Log.d(LOG_TAG, "handler отменен");
+			}
+			if (tglChecked) {
 				sp.edit().putInt(PROGRESS, 0).apply();
 				goDialogProgress();
+				Log.d(LOG_TAG, "handler запущен");
 			}
 		} else if (id == R.id.llBtnSave && currentSet < set) {
 			int wei = (weights.getCurrentItem() + 1);
