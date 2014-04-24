@@ -14,6 +14,7 @@ import android.database.Cursor;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.Bundle;
+import android.os.Handler;
 import android.preference.PreferenceManager;
 import android.support.v4.app.ActionBarDrawerToggle;
 import android.support.v4.app.FragmentActivity;
@@ -23,7 +24,6 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
-import android.widget.FrameLayout;
 import android.widget.ListView;
 import android.widget.Toast;
 
@@ -88,7 +88,6 @@ public class BasicMenuActivityNew extends FragmentActivity implements
 	public final static String TYPE_OF_DIALOG = "type_of_dialog";
 	public final static String ID = "id";
 	public final static String POSITION = "position";
-	private FrameLayout content;
 	private int FRAGMENT_NUMBER = 0;
 	private final static String FRAGMENT_ID = "fragment_id";
 	private static boolean IF_TRAINING_STARTED = false;
@@ -97,6 +96,7 @@ public class BasicMenuActivityNew extends FragmentActivity implements
 	private int previouslyChecked = 0;
 	private DB db;
 	private AdView adView;
+	private boolean doubleBackToExitPressedOnce = false;
 
 	@Override
 	public void onConfigurationChanged(Configuration newConfig) {
@@ -111,7 +111,6 @@ public class BasicMenuActivityNew extends FragmentActivity implements
 		db.open();
 		setContentView(R.layout.menu);
 		initStrings();
-		content = (FrameLayout) findViewById(R.id.content);
 		mDrawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
 		mDrawerList = (ListView) findViewById(R.id.left_drawer);
 		mDrawerLayout.setDrawerShadow(R.drawable.drawer_shadow,
@@ -432,7 +431,22 @@ public class BasicMenuActivityNew extends FragmentActivity implements
 
 	@Override
 	public void onBackPressed() {
+		if (doubleBackToExitPressedOnce) {
+			super.onBackPressed();
+			return;
+		}
 
+		this.doubleBackToExitPressedOnce = true;
+		Toast.makeText(this, R.string.press_back_to_exit, Toast.LENGTH_SHORT)
+				.show();
+
+		new Handler().postDelayed(new Runnable() {
+
+			@Override
+			public void run() {
+				doubleBackToExitPressedOnce = false;
+			}
+		}, 2000);
 	}
 
 	@Override

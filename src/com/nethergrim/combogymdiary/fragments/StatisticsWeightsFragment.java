@@ -167,7 +167,7 @@ public class StatisticsWeightsFragment extends android.support.v4.app.Fragment
 						if (pos > 1 && pos < dataCursor.getCount()) {
 							dataCursor.moveToPosition(pos);
 							return dataCursor.getString(3);
-						} else if (pos > 0 && pos < 1) {
+						} else if (pos < 1) {
 							dataCursor.moveToPosition(0);
 							return dataCursor.getString(3);
 						} else

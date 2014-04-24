@@ -3,7 +3,6 @@ package com.nethergrim.combogymdiary.activities;
 import android.app.Activity;
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.content.res.Configuration;
 import android.database.Cursor;
 import android.os.AsyncTask;
 import android.os.Bundle;
@@ -20,22 +19,13 @@ public class MainActivity extends Activity {
 	private final static String DATABASE_FILLED = "database_filled";
 	private InitTask task;
 
-	@Override
-	public void onConfigurationChanged(Configuration newConfig) {
-		super.onConfigurationChanged(newConfig);
-		initUi();
-	}
-
-	private void goNext() { // TODO здесь менять вызов главной активити
+	private void goNext() {
 		Intent gotoStartTraining = new Intent(this, BasicMenuActivityNew.class);
 		startActivity(gotoStartTraining);
 	}
 
 	private void initUi() {
-		getActionBar().setDisplayShowHomeEnabled(false);
 		sp = PreferenceManager.getDefaultSharedPreferences(this);
-		setContentView(R.layout.activity_main);
-		getActionBar().setTitle("");
 		db = new DB(this);
 		db.open();
 		Cursor tmp = db.getDataExe(null, null, null, null, null, null);
@@ -50,6 +40,10 @@ public class MainActivity extends Activity {
 	@Override
 	public void onResume() {
 		super.onResume();
+
+		getActionBar().setDisplayHomeAsUpEnabled(false);
+		getActionBar().setDisplayShowHomeEnabled(false);
+		initUi();
 		if (!sp.getBoolean(DATABASE_FILLED, false)) {
 			task = new InitTask();
 			task.execute();
@@ -62,7 +56,7 @@ public class MainActivity extends Activity {
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		initUi();
+		setContentView(R.layout.activity_main);
 	}
 
 	private void initTable() {

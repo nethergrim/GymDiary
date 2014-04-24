@@ -29,8 +29,8 @@ import com.jjoe64.graphview.LineGraphView;
 import com.nethergrim.combogymdiary.DB;
 import com.nethergrim.combogymdiary.R;
 
-public class StatisticsMeasuringsFragment extends android.support.v4.app.Fragment implements
-		LoaderCallbacks<Cursor> {
+public class StatisticsMeasuringsFragment extends
+		android.support.v4.app.Fragment implements LoaderCallbacks<Cursor> {
 
 	private FrameLayout content;
 	private Spinner spinnerExercises;
@@ -134,8 +134,14 @@ public class StatisticsMeasuringsFragment extends android.support.v4.app.Fragmen
 			} while (dataCursor.moveToNext());
 
 			for (int p = 0; p < measures.length; p++) {
-				weightsArray[p] = new GraphViewData(p,
-						Double.parseDouble(measures[p]));
+
+				try {
+					weightsArray[p] = new GraphViewData(p,
+							Double.parseDouble(measures[p]));
+				} catch (Exception e) {
+					weightsArray[p] = new GraphViewData(p, 0d);
+				}
+
 			}
 
 			GraphViewSeries weightsSeries = new GraphViewSeries(name,
@@ -151,15 +157,14 @@ public class StatisticsMeasuringsFragment extends android.support.v4.app.Fragmen
 						if (pos > 1 && pos < dataCursor.getCount()) {
 							dataCursor.moveToPosition(pos);
 							return dataCursor.getString(1);
-						} else if (pos > 0 && pos < 1) {
+						} else if (pos < 1) {
 							dataCursor.moveToPosition(0);
 							return dataCursor.getString(1);
 						} else
 							return null;
 
 					} else {
-						int tmp = (int) value;
-						String result = String.valueOf(tmp);
+						String result = String.valueOf(value);
 						return result;
 					}
 				}
@@ -219,7 +224,8 @@ public class StatisticsMeasuringsFragment extends android.support.v4.app.Fragmen
 		@Override
 		public Cursor loadInBackground() {
 			if (ID == LOADER_EXE_ID) {
-				cursor = db.getDataMeasures(null, null, null, null, null, null);
+				cursor = db.getDataMeasures(null, null, null,
+						DB.PART_OF_BODY_FOR_MEASURING, null, null);
 			}
 			return cursor;
 		}
