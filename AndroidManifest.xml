@@ -3,8 +3,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     package="com.nethergrim.combogymdiary"
     android:installLocation="auto"
-    android:versionCode="89"
-    android:versionName="1.4.12" >
+    android:versionCode="90"
+    android:versionName="1.4.13" >
 
     <uses-sdk
         android:minSdkVersion="15"
@@ -126,7 +126,7 @@
             android:theme="@android:style/Theme.DeviceDefault.Light.NoActionBar.Fullscreen" >
         </activity>
 
-        <!-- Опциональное поле. Может быть установлено программно. -->
+
         <meta-data
             android:name="metrica:api:key"
             android:value="20452" />
@@ -176,7 +176,7 @@
             android:screenOrientation="portrait" >
         </activity>
         <activity
-            android:name="com.nethergrim.combogymdiary.StatisticsActivity"
+            android:name="com.nethergrim.combogymdiary.activities.StatisticsActivity"
             android:label="@string/title_activity_statistics" >
         </activity>
         <activity

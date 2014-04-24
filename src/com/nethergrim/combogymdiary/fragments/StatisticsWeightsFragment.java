@@ -29,7 +29,7 @@ import com.jjoe64.graphview.LineGraphView;
 import com.nethergrim.combogymdiary.DB;
 import com.nethergrim.combogymdiary.R;
 
-public class StatisticsFragment extends android.support.v4.app.Fragment
+public class StatisticsWeightsFragment extends android.support.v4.app.Fragment
 		implements LoaderCallbacks<Cursor> {
 
 	private FrameLayout content;

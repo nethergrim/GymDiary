@@ -23,7 +23,6 @@ import android.os.Vibrator;
 import android.preference.PreferenceManager;
 import android.text.Editable;
 import android.text.TextWatcher;
-import android.util.Log;
 import android.view.ContextMenu;
 import android.view.ContextMenu.ContextMenuInfo;
 import android.view.LayoutInflater;
@@ -189,15 +188,6 @@ public class TrainingFragment extends Fragment implements
 
 			@Override
 			public void afterTextChanged(Editable s) {
-				// String timer = s.toString();
-				// int timerSeconds = 0;
-				// try {
-				// timerSeconds = Integer.parseInt(timer);
-				// } catch (Exception e){
-				// timerSeconds = 60;
-				// }
-				// timerValue = timerSeconds;
-				// db.updateRec_Exe(Id, column, data)
 
 				updateTimer(s.toString());
 			}
@@ -285,9 +275,7 @@ public class TrainingFragment extends Fragment implements
 		try {
 			timerValue = Integer.parseInt(db
 					.getTimerValueByExerciseName(exeName));
-			// pb.setMax(Integer.parseInt(db.getTimerValueByExerciseName(exeName)));
 		} catch (Exception e) {
-			// pb.setMax(30);
 			timerValue = 60;
 		}
 
@@ -297,7 +285,6 @@ public class TrainingFragment extends Fragment implements
 		tValue = db.getTimerValueByExerciseName(exeName);
 		etTimer.setText(tValue);
 		initSetButtons();
-		// oldReps = db.getLastReps(exeName, set);
 		oldReps = db.getLastWeightOrReps(exeName, set, false);
 		oldWeight = db.getLastWeightOrReps(exeName, set, true);
 		if (oldReps > 0 && oldWeight > 0) {
@@ -382,7 +369,6 @@ public class TrainingFragment extends Fragment implements
 
 	}
 
-	@SuppressLint("HandlerLeak")
 	private void goDialogProgress() {
 
 		pd = new ProgressDialog(getActivity());
@@ -440,8 +426,7 @@ public class TrainingFragment extends Fragment implements
 					&& (tmpCursor.getCount() > 1 || !tmpCursor.getString(3)
 							.equals(date))) {
 
-				if (tmpCursor.getString(3).equals(date)) { // ñåãîäíÿ óæå áûëè
-															// ñåòû
+				if (tmpCursor.getString(3).equals(date)) {
 					tmpCursor.moveToPrevious();
 				}
 
@@ -542,13 +527,10 @@ public class TrainingFragment extends Fragment implements
 			}
 			if (isActiveDialog) {
 				h.sendEmptyMessage(0);
-				// h.removeCallbacksAndMessages(null);
-				Log.d(LOG_TAG, "handler отменен");
 			}
 			if (tglChecked) {
 				sp.edit().putInt(PROGRESS, 0).apply();
 				goDialogProgress();
-				Log.d(LOG_TAG, "handler запущен");
 			}
 		} else if (id == R.id.llBtnSave && currentSet < set) {
 			int wei = (weights.getCurrentItem() + 1);

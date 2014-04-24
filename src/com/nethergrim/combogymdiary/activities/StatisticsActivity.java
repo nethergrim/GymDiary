@@ -1,4 +1,4 @@
-package com.nethergrim.combogymdiary;
+package com.nethergrim.combogymdiary.activities;
 
 import java.util.Locale;
 
@@ -10,13 +10,11 @@ import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
-import android.view.LayoutInflater;
 import android.view.MenuItem;
-import android.view.View;
-import android.view.ViewGroup;
-import android.widget.TextView;
 
-import com.nethergrim.combogymdiary.fragments.StatisticsFragment;
+import com.nethergrim.combogymdiary.R;
+import com.nethergrim.combogymdiary.fragments.StatisticsMeasuringsFragment;
+import com.nethergrim.combogymdiary.fragments.StatisticsWeightsFragment;
 
 public class StatisticsActivity extends FragmentActivity implements
 		ActionBar.TabListener {
@@ -120,20 +118,20 @@ public class StatisticsActivity extends FragmentActivity implements
 
 		@Override
 		public Fragment getItem(int position) {
-			// getItem is called to instantiate the fragment for the given page.
-			// Return a DummySectionFragment (defined as a static inner class
-			// below) with the page number as its lone argument.
-			Fragment fragment = new StatisticsFragment();
-//			Bundle args = new Bundle();
-//			args.putInt(DummySectionFragment.ARG_SECTION_NUMBER, position + 1);
-//			fragment.setArguments(args);
+			Fragment fragment = null;
+			if (position == 0){
+				fragment = new StatisticsWeightsFragment();
+			} else if (position == 1) {
+				fragment = new StatisticsMeasuringsFragment();
+			}
+			
+
 			return fragment;
 		}
 
 		@Override
 		public int getCount() {
-			// Show 3 total pages.
-			return 1;
+			return 2;
 		}
 
 		@Override
@@ -151,31 +149,5 @@ public class StatisticsActivity extends FragmentActivity implements
 		}
 	}
 
-	/**
-	 * A dummy fragment representing a section of the app, but that simply
-	 * displays dummy text.
-	 */
-	public static class DummySectionFragment extends Fragment {
-		/**
-		 * The fragment argument representing the section number for this
-		 * fragment.
-		 */
-		public static final String ARG_SECTION_NUMBER = "section_number";
-
-		public DummySectionFragment() {
-		}
-
-		@Override
-		public View onCreateView(LayoutInflater inflater, ViewGroup container,
-				Bundle savedInstanceState) {
-			View rootView = inflater.inflate(
-					R.layout.fragment_statistics_dummy, container, false);
-			TextView dummyTextView = (TextView) rootView
-					.findViewById(R.id.section_label);
-			dummyTextView.setText(Integer.toString(getArguments().getInt(
-					ARG_SECTION_NUMBER)));
-			return rootView;
-		}
-	}
 
 }

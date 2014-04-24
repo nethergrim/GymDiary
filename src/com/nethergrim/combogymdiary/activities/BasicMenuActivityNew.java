@@ -32,7 +32,6 @@ import com.google.android.gms.ads.AdView;
 import com.nethergrim.combogymdiary.Backuper;
 import com.nethergrim.combogymdiary.DB;
 import com.nethergrim.combogymdiary.R;
-import com.nethergrim.combogymdiary.StatisticsActivity;
 import com.nethergrim.combogymdiary.TrainingService;
 import com.nethergrim.combogymdiary.dialogs.DialogAddExercise;
 import com.nethergrim.combogymdiary.dialogs.DialogExitFromTraining.MyInterface;
