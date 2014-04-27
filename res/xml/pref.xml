@@ -21,7 +21,7 @@
     <PreferenceCategory android:title="@string/timer" >
         <EditTextPreference
             android:defaultValue="60"
-            android:enabled="true"            
+            android:enabled="true"
             android:key="etDefault"
             android:summary="@string/default_timer_value_prop"
             android:title="@string/default_timer" >
@@ -37,6 +37,23 @@
             android:key="vibrateOn"
             android:summary="@string/vibrate_on_save"
             android:title="@string/vibrate" />
+        <CheckBoxPreference
+            android:defaultValue="true"
+            android:key="toNotifyWithSound"
+            android:summary="@string/play_sound_detailed"
+            android:title="@string/play_sound" />
+
+        <!-- <RingtonePreference -->
+        <!-- android:key="ringtone" -->
+        <!-- android:ringtoneType="notification" -->
+        <!-- android:showDefault="true" -->
+        <!-- android:title="@string/select_sound_to_play" > -->
+        <!-- </RingtonePreference> -->
+
+        
+        <Preference
+            android:key="toPlaySound"
+            android:title="@string/select_sound_to_play" />
 
         <EditTextPreference
             android:defaultValue="2"

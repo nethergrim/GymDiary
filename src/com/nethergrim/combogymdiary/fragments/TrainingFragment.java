@@ -16,6 +16,10 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.database.Cursor;
+import android.media.AudioManager;
+import android.media.MediaPlayer;
+import android.media.RingtoneManager;
+import android.net.Uri;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
@@ -62,6 +66,7 @@ public class TrainingFragment extends Fragment implements
 		OnCheckedChangeListener, OnClickListener {
 
 	public final static String LOG_TAG = "myLogs";
+	public String RINGTONE = "ringtone";
 	public final static String TRAINING_AT_PROGRESS = "training_at_progress";
 	public final static String TRAINING_NAME = "training_name";
 	public final static String TRA_ID = "tra_id";
@@ -86,6 +91,7 @@ public class TrainingFragment extends Fragment implements
 	private DialogFragment dlg1;
 	private long startTime = 0;
 	private Handler h;
+	private MediaPlayer mMediaPlayer;
 	private WheelView reps, weights;
 	private TextView infoText;
 	private ArrayList<String> alExersicesList = new ArrayList<String>();
@@ -98,7 +104,7 @@ public class TrainingFragment extends Fragment implements
 	private ListView list;
 	private int trainingId = 0;
 	private TextView tvWeight;
-	private boolean isTrainingAtProgress = false;
+	private boolean isTrainingAtProgress = false, toPlaySound = false;
 	private int total = 0;
 	private ProgressDialog pd;
 	private String measureItem = "";
@@ -330,7 +336,7 @@ public class TrainingFragment extends Fragment implements
 			measureItem = getResources().getStringArray(R.array.measure_items)[1];
 		}
 		vibrateLenght *= 1000;
-
+		toPlaySound = sp.getBoolean("toNotifyWithSound", true);
 		if (isTrainingAtProgress) {
 			total = sp.getInt(TOTAL_WEIGHT, 0);
 			startTime = sp.getLong(START_TIME, 0);
@@ -355,6 +361,22 @@ public class TrainingFragment extends Fragment implements
 						pd.incrementProgressBy(1);
 						h.sendEmptyMessageDelayed(1, 1000);
 					} else {
+						if (toPlaySound) {
+							String sound = sp.getString(RINGTONE, null);
+
+							if (sound == null) {
+								playSound(
+										getActivity(),
+										RingtoneManager
+												.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION));
+							} else {
+								Log.d(LOG_TAG, "Playing: " + sound);
+								Uri uri = Uri.parse(sound);
+								playSound(getActivity(), uri);
+							}
+
+						}
+
 						if (vibrate) {
 							try {
 								Vibrator v = (Vibrator) getActivity()
@@ -497,6 +519,12 @@ public class TrainingFragment extends Fragment implements
 			int exe_id = db.getExeIdByName(exeName);
 			db.updateRec_Exe(exe_id, DB.TIMER_VALUE, timerv);
 		}
+		try {
+			timerValue = Integer.parseInt(timerv);
+		} catch (Exception e) {
+			timerValue = 60;
+		}
+
 	}
 
 	@Override
@@ -677,10 +705,10 @@ public class TrainingFragment extends Fragment implements
 			// Log.d(LOG_TAG, "exercise == " + exeName + " set == " + set +
 			// " currentSet == " + currentSet);
 
-			Log.d(LOG_TAG, "set list: " + alSetList.get(0) + alSetList.get(1)
-					+ alSetList.get(2) + alSetList.get(3) + alSetList.get(4)
-					+ alSetList.get(5) + alSetList.get(6) + alSetList.get(7)
-					+ alSetList.get(8) + alSetList.get(9) + alSetList.get(10));
+			// Log.d(LOG_TAG, "set list: " + alSetList.get(0) + alSetList.get(1)
+			// + alSetList.get(2) + alSetList.get(3) + alSetList.get(4)
+			// + alSetList.get(5) + alSetList.get(6) + alSetList.get(7)
+			// + alSetList.get(8) + alSetList.get(9) + alSetList.get(10));
 
 			getActivity().getActionBar().setSubtitle(
 					(String.format("%d:%02d", minutes, seconds)) + " " + total
@@ -715,6 +743,24 @@ public class TrainingFragment extends Fragment implements
 				}
 			}
 			alSetList = array;
+		}
+	}
+
+	private void playSound(Context context, Uri alert) {
+		Log.d(LOG_TAG, "playing: " + alert.toString());
+		mMediaPlayer = new MediaPlayer();
+		try {
+			mMediaPlayer.setDataSource(context, alert);
+			final AudioManager audioManager = (AudioManager) context
+					.getSystemService(Context.AUDIO_SERVICE);
+			if (audioManager.getStreamVolume(AudioManager.STREAM_ALARM) != 0) {
+				mMediaPlayer.setAudioStreamType(AudioManager.STREAM_ALARM);
+				mMediaPlayer.prepare();
+				mMediaPlayer.start();
+			}
+		} catch (Exception e) {
+			System.out.println("OOPS");
+			System.out.println(e.getMessage());
 		}
 	}
 

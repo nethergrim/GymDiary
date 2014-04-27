@@ -147,7 +147,7 @@ public class MeasurementsFragment extends Fragment implements
 		@Override
 		public Cursor loadInBackground() {
 			cursor = db.getDataMeasures(null, null, null, DB.DATE, null,
-					DB.DATE);
+					DB.COLUMN_ID + " DESC");
 			return cursor;
 		}
 	}

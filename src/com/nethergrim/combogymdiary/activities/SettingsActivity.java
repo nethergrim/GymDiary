@@ -1,15 +1,18 @@
 package com.nethergrim.combogymdiary.activities;
 
 import android.app.ActionBar;
+import android.app.Activity;
 import android.app.DialogFragment;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.media.RingtoneManager;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Environment;
 import android.preference.Preference;
 import android.preference.PreferenceActivity;
 import android.preference.PreferenceManager;
+import android.util.Log;
 import android.view.MenuItem;
 import android.widget.Toast;
 
@@ -24,9 +27,11 @@ import com.nethergrim.combogymdiary.drive.DriveRestoreActivity;
 public class SettingsActivity extends PreferenceActivity implements MyInterface {
 
 	private DialogFragment dlg2;
+	public String RINGTONE = "ringtone";
 	private DB db;
 	public final String LOG_TAG = "myLogs";
 	private final static int REQUEST_CODE_GET_FILE_FOR_RESTORE = 133;
+	private SharedPreferences sp;
 
 	@SuppressWarnings("deprecation")
 	@Override
@@ -36,6 +41,7 @@ public class SettingsActivity extends PreferenceActivity implements MyInterface 
 		ActionBar bar = getActionBar();
 		db = new DB(this);
 		db.open();
+		sp = PreferenceManager.getDefaultSharedPreferences(this);
 		getActionBar().setDisplayShowHomeEnabled(false);
 		bar.setDisplayHomeAsUpEnabled(true);
 		bar.setTitle(R.string.settingsButtonString);
@@ -120,6 +126,25 @@ public class SettingsActivity extends PreferenceActivity implements MyInterface 
 						return true;
 					}
 				});
+
+		Preference btnSelectSound = (Preference) findPreference("toPlaySound");
+		btnSelectSound
+				.setOnPreferenceClickListener(new Preference.OnPreferenceClickListener() {
+					@Override
+					public boolean onPreferenceClick(Preference arg0) {
+						gotoSelectSound();
+						return true;
+					}
+				});
+	}
+
+	protected void gotoSelectSound() {
+		Intent intent = new Intent(RingtoneManager.ACTION_RINGTONE_PICKER);
+		intent.putExtra(RingtoneManager.EXTRA_RINGTONE_TYPE,
+				RingtoneManager.TYPE_NOTIFICATION);
+		intent.putExtra(RingtoneManager.EXTRA_RINGTONE_TITLE, "Select Tone");
+		intent.putExtra(RingtoneManager.EXTRA_RINGTONE_EXISTING_URI, (Uri) null);
+		this.startActivityForResult(intent, 5);
 	}
 
 	protected void gotoDriveRestore() {
@@ -191,6 +216,16 @@ public class SettingsActivity extends PreferenceActivity implements MyInterface 
 			DB db = new DB(getApplicationContext());
 			db.open();
 			db.close();
+		}
+		if (resultCode == Activity.RESULT_OK && requestCode == 5) {
+			Uri uri = data
+					.getParcelableExtra(RingtoneManager.EXTRA_RINGTONE_PICKED_URI);
+
+			if (uri != null) {
+				Log.d(LOG_TAG, "putting uri to alarm: " + uri.toString());
+				sp.edit().putString(RINGTONE, uri.toString()).apply();
+			} else {
+			}
 		}
 	}
 

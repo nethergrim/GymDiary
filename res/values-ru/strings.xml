@@ -9,6 +9,9 @@
         <item>2</item>
     </string-array>
 
+    <string name="select_sound_to_play">Выберите звук уведомления</string>
+    <string name="play_sound">Проигрывать звук</string>
+    <string name="play_sound_detailed">Проигрывать звук при окончании таймера</string>
     <string name="select_an_exercise">Выберите упражнение из списка</string>
     <string name="press_back_to_exit">Нажмите НАЗАД еще раз, для выхода</string>
     <string name="edit_timer_value">Редактирование таймера</string>
@@ -97,7 +100,6 @@
     <string name="no_history">Нет истории для этой тренировки: </string>
     <string name="see_last_training">Просмотреть прошлую тренировку</string>
     <string name="training_started">Тренировка началась</string>
-    <string name="finish_training">Закончите тренировку !</string>
     <string name="training_finished">Тренировка окончена</string>
     <string name="resaved_text">Сохраненный результат:</string>
     <string name="attention">Внимание!</string>
