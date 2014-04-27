@@ -9,7 +9,7 @@
         <item>1</item>
         <item>2</item>
     </string-array>
-
+	<string name="select_an_exercise">Select an exercise from the list</string>
     <string name="press_back_to_exit">Please click BACK again to exit</string>
     <string name="edit_timer_value">Edit timer</string>
     <string name="input_new_timer_value">Input new timer value (sec): </string>

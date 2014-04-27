@@ -23,6 +23,7 @@ import android.os.Vibrator;
 import android.preference.PreferenceManager;
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.util.Log;
 import android.view.ContextMenu;
 import android.view.ContextMenu.ContextMenuInfo;
 import android.view.LayoutInflater;
@@ -87,8 +88,8 @@ public class TrainingFragment extends Fragment implements
 	private Handler h;
 	private WheelView reps, weights;
 	private TextView infoText;
-	private ArrayList<String> alMain = new ArrayList<String>();
-	private ArrayList<Integer> alSet = new ArrayList<Integer>();
+	private ArrayList<String> alExersicesList = new ArrayList<String>();
+	private ArrayList<Integer> alSetList = new ArrayList<Integer>();
 	private int seconds, minutes;
 	private Handler timerHandler = new Handler();
 	private LinearLayout llBack, llSave, llForward, llBottom, llTimerProgress;
@@ -101,7 +102,7 @@ public class TrainingFragment extends Fragment implements
 	private int total = 0;
 	private ProgressDialog pd;
 	private String measureItem = "";
-	private boolean isActiveDialog = false;
+	private boolean isActiveDialog = false, blocked = false;
 
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -124,10 +125,10 @@ public class TrainingFragment extends Fragment implements
 							"ERROR in db.getTrainingListById(trainingId) at TrainingFragment!!");
 		}
 		for (int i = 0; i < exersices.length; i++) {
-			alMain.add(exersices[i]);
+			alExersicesList.add(exersices[i]);
 		}
-		for (int i = 0; i < 200; i++) {
-			alSet.add(0);
+		for (int i = 0; i < 150; i++) {
+			alSetList.add(0);
 		}
 		getActivity().startService(
 				new Intent(getActivity(), TrainingService.class));
@@ -197,7 +198,7 @@ public class TrainingFragment extends Fragment implements
 		list = (ListView) v.findViewById(R.id.lvSets);
 		list.setChoiceMode(ListView.CHOICE_MODE_SINGLE);
 		adapter = new ArrayAdapter<String>(getActivity(),
-				R.layout.my_training_list_item, R.id.tvText, alMain);
+				R.layout.my_training_list_item, R.id.tvText, alExersicesList);
 		list.setAdapter(adapter);
 		list.setOnItemClickListener(new AdapterView.OnItemClickListener() {
 			@Override
@@ -205,12 +206,12 @@ public class TrainingFragment extends Fragment implements
 					int position, long id) {
 				checkedPosition = position;
 				sp.edit().putInt(CHECKED_POSITION, position).apply();
-				initData(position);
+				onSelected(position);
 			}
 		});
 		registerForContextMenu(list);
 		list.setItemChecked(sp.getInt(CHECKED_POSITION, 0), true);
-		initData(sp.getInt(CHECKED_POSITION, 0));
+		onSelected(sp.getInt(CHECKED_POSITION, 0));
 		SimpleDateFormat sdf = new SimpleDateFormat("dd.MM.yyyy");
 		date = sdf.format(new Date(System.currentTimeMillis()));
 		dlg1 = new DialogExitFromTraining();
@@ -239,14 +240,18 @@ public class TrainingFragment extends Fragment implements
 		AdapterContextMenuInfo acmi = (AdapterContextMenuInfo) item
 				.getMenuInfo();
 		if (item.getItemId() == CM_DELETE_ID) {
-			String nameToDelete = alMain.get(acmi.position);
-			alMain.remove(acmi.position);
-			alSet.remove(acmi.position);
+			String nameToDelete = alExersicesList.get(acmi.position);
+			alExersicesList.remove(acmi.position);
+			alSetList.remove(acmi.position);
 			db.deleteExersice(nameToDelete, traName);
 			adapter.notifyDataSetChanged();
-			if (alMain.size() > 0) {
-				initData(0);
-				list.setItemChecked(0, true);
+			if (alExersicesList.size() > 0) {
+				onSelected(0);
+				for (int i = 0; i < list.getCount(); i++) {
+					list.setItemChecked(i, false);
+				}
+				blocked = true;
+
 			}
 			return true;
 		}
@@ -270,8 +275,8 @@ public class TrainingFragment extends Fragment implements
 		}
 	}
 
-	private void initData(int position) {
-		exeName = alMain.get(position);
+	private void onSelected(int position) {
+		exeName = alExersicesList.get(position);
 		try {
 			timerValue = Integer.parseInt(db
 					.getTimerValueByExerciseName(exeName));
@@ -279,7 +284,7 @@ public class TrainingFragment extends Fragment implements
 			timerValue = 60;
 		}
 
-		set = alSet.get(position);
+		set = alSetList.get(position);
 		currentSet = set;
 
 		tValue = db.getTimerValueByExerciseName(exeName);
@@ -297,6 +302,7 @@ public class TrainingFragment extends Fragment implements
 			infoText.setText(getResources().getString(R.string.new_set) + " ("
 					+ (set + 1) + ")");
 		}
+		blocked = false;
 	}
 
 	@SuppressLint("HandlerLeak")
@@ -331,10 +337,10 @@ public class TrainingFragment extends Fragment implements
 			restoreSetsFromPreferences();
 			try {
 				list.setItemChecked(sp.getInt(CHECKED_POSITION, 0), true);
-				initData(sp.getInt(CHECKED_POSITION, 0));
+				onSelected(sp.getInt(CHECKED_POSITION, 0));
 			} catch (Exception e) {
 				list.setItemChecked(0, true);
-				initData(0);
+				onSelected(0);
 			}
 		}
 		timerHandler.postDelayed(timerRunnable, 0);
@@ -462,17 +468,17 @@ public class TrainingFragment extends Fragment implements
 				.getLongArrayExtra("return_array_of_exersices");
 		for (int i = 0; i < itemsChecked.length; i++) {
 
-			alMain.add(db.getExerciseByID((int) itemsChecked[i]));
-			alSet.add(0);
+			alExersicesList.add(db.getExerciseByID((int) itemsChecked[i]));
+			alSetList.add(0);
 		}
 		for (int j = 0; j < 100; j++) {
-			alSet.add(0);
+			alSetList.add(0);
 		}
 		adapter.notifyDataSetChanged();
-		String[] tmp = new String[alMain.size()];
+		String[] tmp = new String[alExersicesList.size()];
 
-		for (int i = 0; i < alMain.size(); i++) {
-			tmp[i] = alMain.get(i);
+		for (int i = 0; i < alExersicesList.size(); i++) {
+			tmp[i] = alExersicesList.get(i);
 		}
 		db.updateRec_Training(trainingId, 2, db.convertArrayToString(tmp));
 
@@ -487,7 +493,7 @@ public class TrainingFragment extends Fragment implements
 		}
 		String tmpStr = db.getTimerValueByExerciseName(exeName);
 
-		if (tmpStr != null && timerv !=null && !tmpStr.equals(timerv)) {
+		if (tmpStr != null && timerv != null && !tmpStr.equals(timerv)) {
 			int exe_id = db.getExeIdByName(exeName);
 			db.updateRec_Exe(exe_id, DB.TIMER_VALUE, timerv);
 		}
@@ -496,15 +502,19 @@ public class TrainingFragment extends Fragment implements
 	@Override
 	public void onClick(View arg0) {
 		int id = arg0.getId();
-		updateTimer(null);
-
+		if (blocked) {
+			Toast.makeText(getActivity(),
+					getResources().getString(R.string.select_an_exercise),
+					Toast.LENGTH_LONG).show();
+			return;
+		}
 		if (id == R.id.llBtnSave && currentSet == set) {
 			int wei = (weights.getCurrentItem() + 1);
 			int rep_s = (reps.getCurrentItem() + 1);
-			int tmp = alSet.get(checkedPosition);
+			int tmp = alSetList.get(checkedPosition);
 			tmp++;
-			alSet.set(checkedPosition, tmp);
-			set = alSet.get(checkedPosition);
+			alSetList.set(checkedPosition, tmp);
+			set = alSetList.get(checkedPosition);
 			total = wei * rep_s;
 			total += sp.getInt(BasicMenuActivityNew.TOTAL_WEIGHT, 0);
 			sp.edit().putInt(BasicMenuActivityNew.TOTAL_WEIGHT, total).apply();
@@ -540,7 +550,7 @@ public class TrainingFragment extends Fragment implements
 			Toast.makeText(getActivity(), R.string.resaved, Toast.LENGTH_SHORT)
 					.show();
 			currentSet = set;
-			initData(checkedPosition);
+			onSelected(checkedPosition);
 		} else if (id == R.id.llBtnBack) {
 			if (currentSet > 0) {
 				llBottom.startAnimation(anim);
@@ -578,7 +588,7 @@ public class TrainingFragment extends Fragment implements
 						+ (currentSet + 1) + ")");
 			} else if (currentSet == set - 1) {
 				llBottom.startAnimation(anim);
-				initData(checkedPosition);
+				onSelected(checkedPosition);
 			}
 		}
 		initSetButtons();
@@ -666,6 +676,12 @@ public class TrainingFragment extends Fragment implements
 			seconds = (seconds % 60);
 			// Log.d(LOG_TAG, "exercise == " + exeName + " set == " + set +
 			// " currentSet == " + currentSet);
+
+			Log.d(LOG_TAG, "set list: " + alSetList.get(0) + alSetList.get(1)
+					+ alSetList.get(2) + alSetList.get(3) + alSetList.get(4)
+					+ alSetList.get(5) + alSetList.get(6) + alSetList.get(7)
+					+ alSetList.get(8) + alSetList.get(9) + alSetList.get(10));
+
 			getActivity().getActionBar().setSubtitle(
 					(String.format("%d:%02d", minutes, seconds)) + " " + total
 							+ " " + measureItem + " " + " ["
@@ -679,8 +695,8 @@ public class TrainingFragment extends Fragment implements
 	public void saveSetsToPreferences() {
 
 		StringBuilder str = new StringBuilder();
-		for (int i = 0; i < alSet.size(); i++) {
-			str.append(alSet.get(i)).append(",");
+		for (int i = 0; i < alSetList.size(); i++) {
+			str.append(alSetList.get(i)).append(",");
 		}
 		sp.edit().putString(LIST_OF_SETS, str.toString()).apply();
 	}
@@ -698,7 +714,7 @@ public class TrainingFragment extends Fragment implements
 					array.add(0);
 				}
 			}
-			alSet = array;
+			alSetList = array;
 		}
 	}
 

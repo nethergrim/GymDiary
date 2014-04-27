@@ -9,6 +9,7 @@
         <item>2</item>
     </string-array>
 
+    <string name="select_an_exercise">Выберите упражнение из списка</string>
     <string name="press_back_to_exit">Нажмите НАЗАД еще раз, для выхода</string>
     <string name="edit_timer_value">Редактирование таймера</string>
     <string name="input_new_timer_value">Введите новое значение таймреа (сек): </string>
