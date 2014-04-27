@@ -487,7 +487,7 @@ public class TrainingFragment extends Fragment implements
 		}
 		String tmpStr = db.getTimerValueByExerciseName(exeName);
 
-		if (!tmpStr.equals(timerv)) {
+		if (tmpStr != null && timerv !=null && !tmpStr.equals(timerv)) {
 			int exe_id = db.getExeIdByName(exeName);
 			db.updateRec_Exe(exe_id, DB.TIMER_VALUE, timerv);
 		}

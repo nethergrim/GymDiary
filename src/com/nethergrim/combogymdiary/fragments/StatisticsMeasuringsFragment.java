@@ -75,6 +75,7 @@ public class StatisticsMeasuringsFragment extends
 		graphView.getGraphViewStyle().setLegendBorder(20);
 		graphView.getGraphViewStyle().setLegendSpacing(30);
 		graphView.getGraphViewStyle().setLegendWidth(300);
+		
 
 		((LineGraphView) graphView).setDrawDataPoints(true);
 		((LineGraphView) graphView).setDataPointsRadius(10f);
