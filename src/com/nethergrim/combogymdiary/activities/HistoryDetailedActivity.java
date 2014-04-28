@@ -71,7 +71,6 @@ public class HistoryDetailedActivity extends Activity {
 			} else {
 				tvComment.setVisibility(View.GONE);
 			}
-
 		}
 
 		c.close();
@@ -82,7 +81,6 @@ public class HistoryDetailedActivity extends Activity {
 				R.string.total_weight_of_training)
 				+ " " + total + measureItem);
 
-		adView = new SADView(this, "52ebc42807089e0f00000000");
 	}
 
 	private void setupActionBar() {
@@ -122,6 +120,9 @@ public class HistoryDetailedActivity extends Activity {
 		if (total == 0)
 			ifZero = true;
 
+		int px = (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP,
+				8, getResources().getDisplayMetrics());
+
 		SharedPreferences sp = PreferenceManager
 				.getDefaultSharedPreferences(this);
 		String item = sp.getString(BasicMenuActivityNew.MEASURE_ITEM, "1");
@@ -153,10 +154,6 @@ public class HistoryDetailedActivity extends Activity {
 				tvName.setText(cursor.getString(2));
 				tvName.setTextColor(color);
 
-				int px = (int) TypedValue.applyDimension(
-						TypedValue.COMPLEX_UNIT_DIP, 8, getResources()
-								.getDisplayMetrics());
-
 				lpView.setMargins(0, px, 0, 0);
 
 				llMain.addView(card, lpView);
@@ -176,7 +173,14 @@ public class HistoryDetailedActivity extends Activity {
 				cursor.moveToPrevious();
 
 			} while (cursor.moveToNext());
-			llMain.addView(adView);
+
+			LinearLayout.LayoutParams llParams = new LinearLayout.LayoutParams(
+					LinearLayout.LayoutParams.MATCH_PARENT,
+					LinearLayout.LayoutParams.WRAP_CONTENT);
+			llParams.setMargins(0, px, 0, px);
+
+			adView = new SADView(this, "52ebc42807089e0f00000000");
+			llMain.addView(this.adView, llParams);
 
 			if (Locale.getDefault().getLanguage().equals("ru")) {
 				this.adView.loadAd(SADView.LANGUAGE_RU);
