@@ -162,6 +162,8 @@ public class BasicMenuActivityNew extends FragmentActivity implements
 		adView = (AdView) this.findViewById(R.id.adView);
 		AdRequest adRequest = new AdRequest.Builder().build();
 		adView.loadAd(adRequest);
+		
+		
 	}
 
 	@Override
@@ -342,7 +344,7 @@ public class BasicMenuActivityNew extends FragmentActivity implements
 			db.addRecComment(date, sp.getString(COMMENT_TO_TRAINING, ""),
 					total, time);
 		} else {
-			db.addRecComment(date, null, total, time);// TODO
+			db.addRecComment(date, null, total, time);
 		}
 		sp.edit().putString(COMMENT_TO_TRAINING, "").apply();
 		sp.edit().putInt(TOTAL_WEIGHT, 0).apply();

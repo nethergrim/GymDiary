@@ -1,5 +1,7 @@
 package com.nethergrim.combogymdiary.activities;
 
+import java.util.Locale;
+
 import android.app.Activity;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -20,6 +22,7 @@ import android.widget.TextView;
 
 import com.nethergrim.combogymdiary.DB;
 import com.nethergrim.combogymdiary.R;
+import com.startad.lib.SADView;
 
 public class HistoryDetailedActivity extends Activity {
 
@@ -31,6 +34,7 @@ public class HistoryDetailedActivity extends Activity {
 	private FrameLayout content_frame;
 	private String measureItem;
 	private int total = 0;
+	private SADView adView;
 
 	@Override
 	public boolean onOptionsItemSelected(MenuItem item) {
@@ -77,6 +81,8 @@ public class HistoryDetailedActivity extends Activity {
 		tvWeight.setText(getResources().getString(
 				R.string.total_weight_of_training)
 				+ " " + total + measureItem);
+
+		adView = new SADView(this, "52ebc42807089e0f00000000");
 	}
 
 	private void setupActionBar() {
@@ -170,6 +176,14 @@ public class HistoryDetailedActivity extends Activity {
 				cursor.moveToPrevious();
 
 			} while (cursor.moveToNext());
+			llMain.addView(adView);
+
+			if (Locale.getDefault().getLanguage().equals("ru")) {
+				this.adView.loadAd(SADView.LANGUAGE_RU);
+			} else {
+				this.adView.loadAd(SADView.LANGUAGE_EN);
+			}
+
 		}
 		cursor.close();
 	}
@@ -177,5 +191,9 @@ public class HistoryDetailedActivity extends Activity {
 	protected void onDestroy() {
 		super.onDestroy();
 		db.close();
+
+		if (this.adView != null) {
+			this.adView.destroy();
+		}
 	}
 }
