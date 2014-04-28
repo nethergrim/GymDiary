@@ -162,8 +162,7 @@ public class BasicMenuActivityNew extends FragmentActivity implements
 		adView = (AdView) this.findViewById(R.id.adView);
 		AdRequest adRequest = new AdRequest.Builder().build();
 		adView.loadAd(adRequest);
-		
-		
+
 	}
 
 	@Override
@@ -258,7 +257,8 @@ public class BasicMenuActivityNew extends FragmentActivity implements
 		if (fragment != null) {
 			mDrawerList.setItemChecked(position, true);
 			getFragmentManager().beginTransaction()
-					.replace(R.id.content, fragment).commit();
+					.replace(R.id.content, fragment)
+					/* .addToBackStack(null) */.commit();
 		}
 		invalidateOptionsMenu();
 	}

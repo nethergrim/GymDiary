@@ -112,6 +112,7 @@ public class TrainingFragment extends Fragment implements
 
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
+		Log.d(LOG_TAG, "training fragment onCreate");
 		setHasOptionsMenu(true);
 		setRetainInstance(true);
 		db = new DB(getActivity());
@@ -146,6 +147,7 @@ public class TrainingFragment extends Fragment implements
 
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
 			Bundle savedInstanceState) {
+		Log.d(LOG_TAG, "training fragment onCreateView");
 		View v = inflater.inflate(
 				R.layout.training_at_progress_new_wheel_new_list, null);
 		llTimerProgress = (LinearLayout) v.findViewById(R.id.llProgressShow);
@@ -212,8 +214,6 @@ public class TrainingFragment extends Fragment implements
 			@Override
 			public void onItemClick(AdapterView<?> parent, View itemClicked,
 					int position, long id) {
-				checkedPosition = position;
-				sp.edit().putInt(CHECKED_POSITION, position).apply();
 				onSelected(position);
 			}
 		});
@@ -284,14 +284,16 @@ public class TrainingFragment extends Fragment implements
 	}
 
 	private void onSelected(int position) {
-		exeName = alExersicesList.get(position);
+		sp.edit().putInt(CHECKED_POSITION, position).apply();
+		checkedPosition = position;		
 		try {
 			timerValue = Integer.parseInt(db
 					.getTimerValueByExerciseName(exeName));
 		} catch (Exception e) {
 			timerValue = 60;
+			Counter.sharedInstance().reportError("", e);
 		}
-
+		exeName = alExersicesList.get(position);
 		set = alSetList.get(position);
 		currentSet = set;
 
@@ -316,6 +318,7 @@ public class TrainingFragment extends Fragment implements
 	@SuppressLint("HandlerLeak")
 	public void onResume() {
 		super.onResume();
+		Log.d(LOG_TAG, "training fragment onResume");
 		turnOff = sp.getBoolean("toTurnOff", false);
 		list.setKeepScreenOn(!turnOff);
 		vibrate = sp.getBoolean("vibrateOn", true);
@@ -424,6 +427,7 @@ public class TrainingFragment extends Fragment implements
 
 	public void onPause() {
 		super.onPause();
+		Log.d(LOG_TAG, "training fragment onPause");
 		sp.edit().putLong(START_TIME, startTime).apply();
 		timerHandler.removeCallbacks(timerRunnable);
 		saveSetsToPreferences();

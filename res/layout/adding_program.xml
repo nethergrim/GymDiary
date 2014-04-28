@@ -18,6 +18,7 @@
         android:layout_marginLeft="5dp"
         android:layout_marginRight="5dp"
         android:ems="10"
+        android:inputType="textCapSentences"
         android:gravity="center_vertical|center"
         android:hint="@string/add_training_program_to_list"
         android:textStyle="italic" />

@@ -21,6 +21,7 @@
         android:textSize="20sp"
         android:layout_alignParentLeft="true"
         android:textColor="@color/holo_orange_dark"
+        android:inputType="textCapSentences"
         android:layout_alignParentRight="true"
         android:layout_alignParentTop="true"
         android:ems="10" > 
