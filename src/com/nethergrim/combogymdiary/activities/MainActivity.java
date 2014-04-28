@@ -21,6 +21,8 @@ public class MainActivity extends Activity {
 
 	private void goNext() {
 		Intent gotoStartTraining = new Intent(this, BasicMenuActivityNew.class);
+		// Intent gotoStartTraining = new Intent(this, TempActivity.class);//
+		// TODO
 		startActivity(gotoStartTraining);
 	}
 

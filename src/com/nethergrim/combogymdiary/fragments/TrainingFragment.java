@@ -125,14 +125,16 @@ public class TrainingFragment extends Fragment implements
 		getActivity().getActionBar().setTitle(traName);
 		if (db.getTrainingList(trainingId) != null) {
 			exersices = db.convertStringToArray(db.getTrainingList(trainingId));
+			for (int i = 0; i < exersices.length; i++) {
+				alExersicesList.add(exersices[i]);
+			}
 		} else {
 			Counter.sharedInstance()
 					.reportEvent(
 							"ERROR in db.getTrainingListById(trainingId) at TrainingFragment!!");
+			alExersicesList.add("empty");
 		}
-		for (int i = 0; i < exersices.length; i++) {
-			alExersicesList.add(exersices[i]);
-		}
+
 		for (int i = 0; i < 150; i++) {
 			alSetList.add(0);
 		}

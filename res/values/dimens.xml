@@ -13,6 +13,9 @@
     <dimen name="layer_width">100dp</dimen>
     <dimen name="slidingmenu_offset">60dp</dimen>
     <dimen name="list_padding">10dp</dimen>
+    
+    <dimen name="normal_height">66dip</dimen>
+    <dimen name="expanded_height">132dip</dimen>
     <dimen name="shadow_width">15dp</dimen>
 
     <integer name="num_cols">1</integer>

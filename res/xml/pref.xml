@@ -43,14 +43,6 @@
             android:summary="@string/play_sound_detailed"
             android:title="@string/play_sound" />
 
-        <!-- <RingtonePreference -->
-        <!-- android:key="ringtone" -->
-        <!-- android:ringtoneType="notification" -->
-        <!-- android:showDefault="true" -->
-        <!-- android:title="@string/select_sound_to_play" > -->
-        <!-- </RingtonePreference> -->
-
-        
         <Preference
             android:key="toPlaySound"
             android:title="@string/select_sound_to_play" />
