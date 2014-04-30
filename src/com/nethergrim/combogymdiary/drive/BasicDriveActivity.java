@@ -121,7 +121,7 @@ public abstract class BasicDriveActivity extends Activity implements
 		try {
 			result.startResolutionForResult(this, REQUEST_CODE_RESOLUTION);
 		} catch (SendIntentException e) {
-			Log.e(TAG, "Exception while starting resolution activity", e);
+			Counter.sharedInstance().reportError("", e);
 		}
 	}
 

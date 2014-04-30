@@ -97,17 +97,14 @@ public class DriveCreateFolderActivity extends BasicDriveActivity implements
 						.addResultCallback(this);
 				sp.edit().putBoolean(DRIVE_EXISTS, true).apply();
 			} catch (Exception e) {
+				Counter.sharedInstance().reportError("", e);
 				getGoogleApiClient().connect();
 
 				Drive.DriveApi.getRootFolder(getGoogleApiClient())
 						.createFolder(getGoogleApiClient(), changeSet)
 						.addResultCallback(this);
 				sp.edit().putBoolean(DRIVE_EXISTS, true).apply();
-
-				Counter.sharedInstance()
-						.reportError(
-								"ERROR in DiskCreateFolderActivity when creating folder. disconnected. repaired.",
-								e);
+				
 			}
 
 		} else if (mdb.getCount() > 0) { // just get Folder DriveId and upload a

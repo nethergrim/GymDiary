@@ -127,8 +127,7 @@ public class MainActivity extends Activity {
 			try {
 				initTable();
 			} catch (Exception e) {
-				Counter.sharedInstance()
-						.reportError("error in initTable();", e);
+				Counter.sharedInstance().reportError("", e);
 			}
 			return null;
 		}

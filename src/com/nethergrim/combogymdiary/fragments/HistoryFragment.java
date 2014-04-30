@@ -28,6 +28,7 @@ import android.widget.TextView;
 import com.nethergrim.combogymdiary.DB;
 import com.nethergrim.combogymdiary.R;
 import com.nethergrim.combogymdiary.activities.HistoryDetailedActivity;
+import com.yandex.metrica.Counter;
 
 public class HistoryFragment extends Fragment implements
 		LoaderCallbacks<Cursor> {
@@ -126,7 +127,13 @@ public class HistoryFragment extends Fragment implements
 					db.delRec_Main(cur.getInt(0));
 				} while (cur.moveToNext());
 			}
-			adapter.notifyDataSetChanged();
+			try {
+				adapter.notifyDataSetChanged();
+			} catch (Exception e) {
+				adapter.notifyDataSetChanged();
+				Counter.sharedInstance().reportError("", e);
+			}
+
 			((FragmentActivity) getActivity()).getSupportLoaderManager()
 					.getLoader(LOADER_ID).forceLoad();
 			return true;
