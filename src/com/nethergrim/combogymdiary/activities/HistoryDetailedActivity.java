@@ -1,7 +1,5 @@
 package com.nethergrim.combogymdiary.activities;
 
-import java.util.Locale;
-
 import android.app.Activity;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -174,19 +172,19 @@ public class HistoryDetailedActivity extends Activity {
 
 			} while (cursor.moveToNext());
 
-			LinearLayout.LayoutParams llParams = new LinearLayout.LayoutParams(
-					LinearLayout.LayoutParams.MATCH_PARENT,
-					LinearLayout.LayoutParams.WRAP_CONTENT);
-			llParams.setMargins(0, px, 0, px);
-
-			adView = new SADView(this, "52ebc42807089e0f00000000");
-			llMain.addView(this.adView, llParams);
-
-			if (Locale.getDefault().getLanguage().equals("ru")) {
-				this.adView.loadAd(SADView.LANGUAGE_RU);
-			} else {
-				this.adView.loadAd(SADView.LANGUAGE_EN);
-			}
+//			LinearLayout.LayoutParams llParams = new LinearLayout.LayoutParams(
+//					LinearLayout.LayoutParams.MATCH_PARENT,
+//					LinearLayout.LayoutParams.WRAP_CONTENT);
+//			llParams.setMargins(0, px, 0, px);
+//
+//			adView = new SADView(this, "52ebc42807089e0f00000000");
+//			llMain.addView(this.adView, llParams);
+//
+//			if (Locale.getDefault().getLanguage().equals("ru")) {
+//				this.adView.loadAd(SADView.LANGUAGE_RU);
+//			} else {
+//				this.adView.loadAd(SADView.LANGUAGE_EN);
+//			}
 
 		}
 		cursor.close();

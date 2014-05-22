@@ -84,7 +84,7 @@ public class TrainingFragment extends Fragment implements
 	private ArrayAdapter<String> adapter;
 	private static final int CM_DELETE_ID = 6;
 	private String[] exersices;
-	private String traName = "", exeName = "", date = "", tValue = "";
+	private String traName = "", exeName = "", date = "";
 	private SharedPreferences sp;
 	private int checkedPosition = 0, set = 0, currentSet = 0, oldReps = 0,
 			oldWeight = 0, timerValue = 0, vibrateLenght = 0, currentId = 0;
@@ -285,20 +285,21 @@ public class TrainingFragment extends Fragment implements
 
 	private void onSelected(int position) {
 		sp.edit().putInt(CHECKED_POSITION, position).apply();
-		checkedPosition = position;		
+		checkedPosition = position;
+		exeName = alExersicesList.get(position);
+		set = alSetList.get(position);
 		try {
 			timerValue = Integer.parseInt(db
 					.getTimerValueByExerciseName(exeName));
-		} catch (Exception e) {
+		} catch (NumberFormatException e) {
+			Toast.makeText(getActivity(), R.string.parsing_error,
+					Toast.LENGTH_LONG).show();
 			timerValue = 60;
 			Counter.sharedInstance().reportError("", e);
 		}
-		exeName = alExersicesList.get(position);
-		set = alSetList.get(position);
-		currentSet = set;
 
-		tValue = db.getTimerValueByExerciseName(exeName);
-		etTimer.setText(tValue);
+		currentSet = set;
+		etTimer.setText(timerValue);
 		initSetButtons();
 		oldReps = db.getLastWeightOrReps(exeName, set, false);
 		oldWeight = db.getLastWeightOrReps(exeName, set, true);
@@ -403,13 +404,11 @@ public class TrainingFragment extends Fragment implements
 	}
 
 	private void goDialogProgress() {
-
 		pd = new ProgressDialog(getActivity());
 		pd.setTitle(R.string.resting);
 		pd.setProgressStyle(ProgressDialog.STYLE_HORIZONTAL);
 		pd.setMax(timerValue);
 		pd.setCancelable(false);
-
 		pd.setButton(DialogInterface.BUTTON_NEGATIVE,
 				getResources().getString(R.string.cancel),
 				new DialogInterface.OnClickListener() {
@@ -420,7 +419,6 @@ public class TrainingFragment extends Fragment implements
 					}
 				});
 		pd.show();
-
 		isActiveDialog = true;
 		h.sendEmptyMessageDelayed(1, 100);
 	}
