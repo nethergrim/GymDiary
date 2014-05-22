@@ -8,6 +8,7 @@ import java.util.StringTokenizer;
 import kankan.wheel.widget.WheelView;
 import kankan.wheel.widget.adapters.AbstractWheelTextAdapter;
 import android.annotation.SuppressLint;
+import android.app.ActionBar;
 import android.app.DialogFragment;
 import android.app.Fragment;
 import android.app.ProgressDialog;
@@ -78,6 +79,7 @@ public class TrainingFragment extends Fragment implements
 	private static final String TOTAL_WEIGHT = "total_weight";
 	private final static String TIMER_IS_ON = "timerIsOn";
 	private ToggleButton tglTimerOn;
+	private ActionBar bar;
 	private Boolean tglChecked = true, turnOff = false, vibrate = false;
 	private EditText etTimer;
 	private DB db;
@@ -123,7 +125,8 @@ public class TrainingFragment extends Fragment implements
 		sp.edit().putInt(TRA_ID, trainingId).apply();
 		sp.edit().putBoolean(TRAINING_AT_PROGRESS, true).apply();
 		traName = db.getTrainingName(trainingId);
-		getActivity().getActionBar().setTitle(traName);
+		bar = getActivity().getActionBar();
+		bar.setTitle(traName);
 		if (db.getTrainingList(trainingId) != null) {
 			exersices = db.convertStringToArray(db.getTrainingList(trainingId));
 			for (int i = 0; i < exersices.length; i++) {
@@ -706,15 +709,7 @@ public class TrainingFragment extends Fragment implements
 			seconds = (int) (millis / 1000);
 			minutes = (seconds / 60);
 			seconds = (seconds % 60);
-			// Log.d(LOG_TAG, "exercise == " + exeName + " set == " + set +
-			// " currentSet == " + currentSet);
-
-			// Log.d(LOG_TAG, "set list: " + alSetList.get(0) + alSetList.get(1)
-			// + alSetList.get(2) + alSetList.get(3) + alSetList.get(4)
-			// + alSetList.get(5) + alSetList.get(6) + alSetList.get(7)
-			// + alSetList.get(8) + alSetList.get(9) + alSetList.get(10));
-
-			getActivity().getActionBar().setSubtitle(
+			bar.setSubtitle(
 					(String.format("%d:%02d", minutes, seconds)) + " " + total
 							+ " " + measureItem + " " + " ["
 							+ ((set == currentSet ? set : currentSet) + 1)
@@ -750,11 +745,11 @@ public class TrainingFragment extends Fragment implements
 		}
 	}
 
-	private void playSound(Context context, Uri alert) {
-		Log.d(LOG_TAG, "playing: " + alert.toString());
+	private void playSound(Context context, Uri sound) {
+		Log.d(LOG_TAG, "playing: " + sound.toString());
 		mMediaPlayer = new MediaPlayer();
 		try {
-			mMediaPlayer.setDataSource(context, alert);
+			mMediaPlayer.setDataSource(context, sound);
 			final AudioManager audioManager = (AudioManager) context
 					.getSystemService(Context.AUDIO_SERVICE);
 			if (audioManager.getStreamVolume(AudioManager.STREAM_ALARM) != 0) {

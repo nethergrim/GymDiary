@@ -47,6 +47,8 @@ import com.nethergrim.combogymdiary.fragments.HistoryFragment;
 import com.nethergrim.combogymdiary.fragments.MeasurementsFragment;
 import com.nethergrim.combogymdiary.fragments.StartTrainingFragment;
 import com.nethergrim.combogymdiary.fragments.StartTrainingFragment.OnSelectedListener;
+import com.nethergrim.combogymdiary.fragments.StatisticsMeasuringsFragment;
+import com.nethergrim.combogymdiary.fragments.StatisticsWeightsFragment;
 import com.nethergrim.combogymdiary.fragments.TrainingFragment;
 import com.yandex.metrica.Counter;
 
@@ -98,6 +100,15 @@ public class BasicMenuActivityNew extends FragmentActivity implements
 	private AdView adView;
 	private boolean doubleBackToExitPressedOnce = false;
 
+	private CatalogFragment catalogFragment = new CatalogFragment();
+	private ExerciseListFragment exerciseListFragment = new ExerciseListFragment();
+	private HistoryFragment historyFragment = new HistoryFragment();
+	private MeasurementsFragment measurementsFragment = new MeasurementsFragment();
+	private StartTrainingFragment startTrainingFragment = new StartTrainingFragment();
+	private StatisticsMeasuringsFragment statisticsMeasuringsFragment = new StatisticsMeasuringsFragment();
+	private StatisticsWeightsFragment statisticsWeightsFragment = new StatisticsWeightsFragment();
+	private TrainingFragment trainingFragment = new TrainingFragment();
+
 	@Override
 	public void onConfigurationChanged(Configuration newConfig) {
 		super.onConfigurationChanged(newConfig);
@@ -140,7 +151,7 @@ public class BasicMenuActivityNew extends FragmentActivity implements
 		sp = PreferenceManager.getDefaultSharedPreferences(this);
 		Fragment frag = null;
 		if (sp.getBoolean(TRAINING_AT_PROGRESS, false)) {
-			frag = new TrainingFragment();
+			frag = trainingFragment;
 			Bundle args = new Bundle();
 			args.putInt(TRAINING_ID, sp.getInt(TRA_ID, 0));
 			frag.setArguments(args);
@@ -149,7 +160,7 @@ public class BasicMenuActivityNew extends FragmentActivity implements
 			adapter.notifyDataSetChanged();
 			set_TRAINING_STARTED(true);
 		} else {
-			frag = new StartTrainingFragment();
+			frag = startTrainingFragment;
 		}
 		if (frag != null)
 			getFragmentManager().beginTransaction().add(R.id.content, frag)
@@ -204,7 +215,7 @@ public class BasicMenuActivityNew extends FragmentActivity implements
 		case 0:
 			FRAGMENT_NUMBER = 0;
 			if (get_TRAINING_STARTED()) {
-				fragment = new TrainingFragment();
+				fragment = trainingFragment;
 				Bundle args = new Bundle();
 				args.putInt(TRAINING_ID, sp.getInt(TRA_ID, 0));
 				fragment.setArguments(args);
@@ -212,13 +223,13 @@ public class BasicMenuActivityNew extends FragmentActivity implements
 						R.string.continue_training);
 				adapter.notifyDataSetChanged();
 			} else {
-				fragment = new StartTrainingFragment();
+				fragment = startTrainingFragment;
 			}
 			previouslyChecked = 0;
 			break;
 		case 1:
 			FRAGMENT_NUMBER = 1;
-			fragment = new ExerciseListFragment();
+			fragment = exerciseListFragment;
 			previouslyChecked = 1;
 			break;
 		case 6:
@@ -233,17 +244,17 @@ public class BasicMenuActivityNew extends FragmentActivity implements
 			break;
 		case 2:
 			FRAGMENT_NUMBER = 2;
-			fragment = new HistoryFragment();
+			fragment = historyFragment;
 			previouslyChecked = 2;
 			break;
 		case 3:
 			FRAGMENT_NUMBER = 3;
-			fragment = new MeasurementsFragment();
+			fragment = measurementsFragment;
 			previouslyChecked = 3;
 			break;
 		case 4:
 			FRAGMENT_NUMBER = 4;
-			fragment = new CatalogFragment();
+			fragment = catalogFragment;
 			previouslyChecked = 4;
 			break;
 		case 5:
@@ -256,8 +267,7 @@ public class BasicMenuActivityNew extends FragmentActivity implements
 		if (fragment != null) {
 			mDrawerList.setItemChecked(position, true);
 			getFragmentManager().beginTransaction()
-					.replace(R.id.content, fragment)
-					/* .addToBackStack(null) */.commit();
+					.replace(R.id.content, fragment).commit();
 		}
 		invalidateOptionsMenu();
 	}
