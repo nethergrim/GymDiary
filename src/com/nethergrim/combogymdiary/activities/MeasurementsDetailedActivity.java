@@ -16,7 +16,7 @@ public class MeasurementsDetailedActivity extends Activity {
 
 	private String date;
 	private DB db;
-	private Cursor c;
+	private Cursor cursor;
 	private TextView tv1, tv2, tv3, tv4, tv5, tv6, tv7, tv8;
 	private String longValue;
 
@@ -47,7 +47,7 @@ public class MeasurementsDetailedActivity extends Activity {
 		String[] cols = { DB.DATE, DB.PART_OF_BODY_FOR_MEASURING,
 				DB.MEASURE_VALUE };
 		String[] args = { date };
-		c = db.getDataMeasures(cols, DB.DATE + "=?", args, null, null, DB.DATE);
+		cursor = db.getDataMeasures(cols, DB.DATE + "=?", args, null, null, DB.DATE);
 
 		SharedPreferences sp = PreferenceManager
 				.getDefaultSharedPreferences(this);
@@ -63,28 +63,29 @@ public class MeasurementsDetailedActivity extends Activity {
 					+ ") ";
 		}
 
-		if (c.moveToFirst()) {
+		if (cursor.moveToFirst()) {
 			do {
-				String tmp_type = c.getString(1);
+				String tmp_type = cursor.getString(1);
 				if (tmp_type.equals(weight)) {
-					tv1.setText(tmp_type + " - " + c.getString(2) + measureItem);
+					tv1.setText(tmp_type + " - " + cursor.getString(2) + measureItem);
 				} else if (tmp_type.equals(tall)) {
-					tv2.setText(tmp_type + " - " + c.getString(2) + longValue);
+					tv2.setText(tmp_type + " - " + cursor.getString(2) + longValue);
 				} else if (tmp_type.equals(chest)) {
-					tv3.setText(tmp_type + " - " + c.getString(2) + longValue);
+					tv3.setText(tmp_type + " - " + cursor.getString(2) + longValue);
 				} else if (tmp_type.equals(waist)) {
-					tv4.setText(tmp_type + " - " + c.getString(2) + longValue);
+					tv4.setText(tmp_type + " - " + cursor.getString(2) + longValue);
 				} else if (tmp_type.equals(hip)) {
-					tv5.setText(tmp_type + " - " + c.getString(2) + longValue);
+					tv5.setText(tmp_type + " - " + cursor.getString(2) + longValue);
 				} else if (tmp_type.equals(leg)) {
-					tv6.setText(tmp_type + " - " + c.getString(2) + longValue);
+					tv6.setText(tmp_type + " - " + cursor.getString(2) + longValue);
 				} else if (tmp_type.equals(calf)) {
-					tv7.setText(tmp_type + " - " + c.getString(2) + longValue);
+					tv7.setText(tmp_type + " - " + cursor.getString(2) + longValue);
 				} else if (tmp_type.equals(arm)) {
-					tv8.setText(tmp_type + " - " + c.getString(2) + longValue);
+					tv8.setText(tmp_type + " - " + cursor.getString(2) + longValue);
 				}
-			} while (c.moveToNext());
+			} while (cursor.moveToNext());
 		}
+		cursor.close();
 
 	}
 

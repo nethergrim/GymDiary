@@ -472,6 +472,7 @@ public class TrainingFragment extends Fragment implements
 				intent_history_detailed.putExtra("trName",
 						tmpCursor.getString(1));
 				startActivity(intent_history_detailed);
+				tmpCursor.close();
 
 			} else {
 				Toast.makeText(

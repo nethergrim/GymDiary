@@ -71,7 +71,6 @@ public class StartTrainingFragment extends Fragment implements
 		setHasOptionsMenu(true);
 		db = new DB(getActivity());
 		db.open();
-		cursor = db.getDataTrainings(null, null, null, null, null, null);
 		String[] from = new String[] { DB.TRA_NAME };
 		int[] to = new int[] { R.id.tvText, };
 		scAdapter = new SimpleCursorAdapter(getActivity(),
@@ -161,6 +160,7 @@ public class StartTrainingFragment extends Fragment implements
 		AdapterContextMenuInfo acmi = (AdapterContextMenuInfo) item
 				.getMenuInfo();
 		if (item.getItemId() == CM_DELETE_ID) {
+			cursor = db.getDataTrainings(null, null, null, null, null, null);
 			LinearLayout llTmp = (LinearLayout) acmi.targetView;
 			TextView tvTmp = (TextView) llTmp.findViewById(R.id.tvText);
 			String traName = tvTmp.getText().toString();
@@ -175,6 +175,7 @@ public class StartTrainingFragment extends Fragment implements
 				} while (cursor.moveToNext());
 				((FragmentActivity) getActivity()).getSupportLoaderManager()
 						.getLoader(LOADER_ID).forceLoad();
+				cursor.close();
 				return true;
 			}
 		} else if (item.getItemId() == CM_EDIT_ID) {

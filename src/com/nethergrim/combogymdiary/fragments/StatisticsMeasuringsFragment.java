@@ -173,6 +173,7 @@ public class StatisticsMeasuringsFragment extends
 		} else {
 			content.setVisibility(View.GONE);
 		}
+		dataCursor.close();
 
 	}
 
@@ -209,6 +210,7 @@ public class StatisticsMeasuringsFragment extends
 
 	@Override
 	public void onLoaderReset(Loader<Cursor> loader) {
+		adapterExercise.swapCursor(null);
 	}
 
 	static class MyCursorLoader extends CursorLoader {

@@ -47,8 +47,6 @@ import com.nethergrim.combogymdiary.fragments.HistoryFragment;
 import com.nethergrim.combogymdiary.fragments.MeasurementsFragment;
 import com.nethergrim.combogymdiary.fragments.StartTrainingFragment;
 import com.nethergrim.combogymdiary.fragments.StartTrainingFragment.OnSelectedListener;
-import com.nethergrim.combogymdiary.fragments.StatisticsMeasuringsFragment;
-import com.nethergrim.combogymdiary.fragments.StatisticsWeightsFragment;
 import com.nethergrim.combogymdiary.fragments.TrainingFragment;
 import com.yandex.metrica.Counter;
 
@@ -105,8 +103,6 @@ public class BasicMenuActivityNew extends FragmentActivity implements
 	private HistoryFragment historyFragment = new HistoryFragment();
 	private MeasurementsFragment measurementsFragment = new MeasurementsFragment();
 	private StartTrainingFragment startTrainingFragment = new StartTrainingFragment();
-	private StatisticsMeasuringsFragment statisticsMeasuringsFragment = new StatisticsMeasuringsFragment();
-	private StatisticsWeightsFragment statisticsWeightsFragment = new StatisticsWeightsFragment();
 	private TrainingFragment trainingFragment = new TrainingFragment();
 
 	@Override
@@ -338,6 +334,7 @@ public class BasicMenuActivityNew extends FragmentActivity implements
 			Backuper backUP = new Backuper();
 			backUP.backupToSd();
 		}
+		tmpCursor.close();
 
 		sp.edit().putBoolean(TRAINING_AT_PROGRESS, false).apply();
 		sp.edit().putInt(USER_CLICKED_POSITION, 0).apply();
@@ -429,6 +426,7 @@ public class BasicMenuActivityNew extends FragmentActivity implements
 			}
 			String name = cursor_exe.getString(1);
 			String timV = cursor_exe.getString(2);
+			cursor_exe.close();
 			Bundle args = new Bundle();
 			args.putString("exeName", name);
 			args.putString("timerValue", timV);

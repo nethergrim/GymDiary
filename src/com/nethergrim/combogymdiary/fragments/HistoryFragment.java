@@ -158,6 +158,7 @@ public class HistoryFragment extends Fragment implements
 
 	@Override
 	public void onLoaderReset(Loader<Cursor> loader) {
+		adapter.swapCursor(null);
 	}
 
 	static class MyCursorLoader extends CursorLoader {

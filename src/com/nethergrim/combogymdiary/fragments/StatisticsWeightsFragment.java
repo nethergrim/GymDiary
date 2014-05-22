@@ -183,6 +183,7 @@ public class StatisticsWeightsFragment extends android.support.v4.app.Fragment
 		} else {
 			content.setVisibility(View.GONE);
 		}
+		dataCursor.close();
 
 	}
 
@@ -219,6 +220,7 @@ public class StatisticsWeightsFragment extends android.support.v4.app.Fragment
 
 	@Override
 	public void onLoaderReset(Loader<Cursor> loader) {
+		adapterExercise.swapCursor(null);
 	}
 
 	static class MyCursorLoader extends CursorLoader {

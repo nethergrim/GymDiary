@@ -99,6 +99,7 @@ public class EditingProgramAtTrainingActivity extends FragmentActivity
 
 	@Override
 	public void onLoaderReset(Loader<Cursor> loader) {
+		scAdapter.swapCursor(null);
 	}
 
 	static class MyCursorLoader extends CursorLoader {
@@ -114,7 +115,6 @@ public class EditingProgramAtTrainingActivity extends FragmentActivity
 		@Override
 		public Cursor loadInBackground() {
 			cursor = db.getDataExe(null, null, null, null, null, DB.EXE_NAME);
-
 			return cursor;
 		}
 	}
@@ -172,8 +172,6 @@ public class EditingProgramAtTrainingActivity extends FragmentActivity
 		}
 		return super.onOptionsItemSelected(item);
 	}
-
-
 
 	private void addExe() {
 		long[] arrIDs = lvMain.getCheckedItemIds();

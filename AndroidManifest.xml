@@ -131,7 +131,7 @@
 
         <service
             android:name="com.yandex.metrica.MetricaService"
-            android:process=":Metrica" >
+            android:process=":Metrica" tools:ignore="ExportedService">
             <intent-filter>
                 <category android:name="android.intent.category.DEFAULT" />
 
@@ -145,7 +145,7 @@
                 android:value="4" />
         </service>
 
-        <receiver android:name="com.yandex.metrica.MetricaEventHandler" >
+        <receiver android:name="com.yandex.metrica.MetricaEventHandler" tools:ignore="ExportedReceiver">
             <intent-filter>
                 <action android:name="com.yandex.metrica.intent.action.SYNC" />
             </intent-filter>
@@ -158,7 +158,7 @@
         </receiver>
         <receiver
             android:name="com.yandex.metrica.CampaignReceiver"
-            android:exported="true" >
+            android:exported="true" tools:ignore="ExportedReceiver">
             <intent-filter>
                 <action android:name="com.android.vending.INSTALL_REFERRER" />
             </intent-filter>
@@ -167,7 +167,8 @@
         <provider
             android:name="com.nethergrim.combogymdiary.provider.MetricaContentProvider"
             android:authorities="com.nethergrim.combogymdiary.MetricaContentProvider"
-            android:exported="true" />
+            android:exported="true"
+            tools:ignore="ExportedContentProvider" />
 
         <activity
             android:name="com.nethergrim.combogymdiary.activities.BasicMenuActivityNew"

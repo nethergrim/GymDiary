@@ -80,7 +80,9 @@ public class AddingProgramActivity extends FragmentActivity implements
 
 	@Override
 	public void onLoaderReset(Loader<Cursor> loader) {
+		adapter.swapCursor(null);
 	}
+	
 
 	static class MyCursorLoader extends CursorLoader {
 

@@ -119,12 +119,11 @@ public class StatisticsActivity extends FragmentActivity implements
 		@Override
 		public Fragment getItem(int position) {
 			Fragment fragment = null;
-			if (position == 0){
+			if (position == 0) {
 				fragment = new StatisticsWeightsFragment();
 			} else if (position == 1) {
 				fragment = new StatisticsMeasuringsFragment();
 			}
-			
 
 			return fragment;
 		}
@@ -148,6 +147,5 @@ public class StatisticsActivity extends FragmentActivity implements
 			return null;
 		}
 	}
-
 
 }
