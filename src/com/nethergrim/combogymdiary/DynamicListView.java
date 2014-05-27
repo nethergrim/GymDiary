@@ -23,6 +23,7 @@ import android.animation.AnimatorListenerAdapter;
 import android.animation.ObjectAnimator;
 import android.animation.TypeEvaluator;
 import android.animation.ValueAnimator;
+import android.app.Activity;
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
@@ -68,7 +69,7 @@ public class DynamicListView extends ListView {
 	private final int MOVE_DURATION = 150;
 	private final int LINE_THICKNESS = 15;
 
-	public ArrayList<String> mCheeseList;
+	public ArrayList<String> mList;
 
 	private int mLastEventY = -1;
 
@@ -89,6 +90,8 @@ public class DynamicListView extends ListView {
 	private BitmapDrawable mHoverCell;
 	private Rect mHoverCellCurrentBounds;
 	private Rect mHoverCellOriginalBounds;
+	
+	private Activity activity;
 
 	private final int INVALID_POINTER_ID = -1;
 	private int mActivePointerId = INVALID_POINTER_ID;
@@ -116,6 +119,11 @@ public class DynamicListView extends ListView {
 		setOnScrollListener(mScrollListener);
 		DisplayMetrics metrics = context.getResources().getDisplayMetrics();
 		mSmoothScrollAmountAtEdge = (int) (SMOOTH_SCROLL_AMOUNT_AT_EDGE / metrics.density);
+	}
+	
+	public void setActivity(Activity activity){
+		this.activity = activity;
+		onElSwapped = (onElementsSwapped) this.activity;		
 	}
 
 	/**
@@ -337,8 +345,7 @@ public class DynamicListView extends ListView {
 				return;
 			}
 
-			swapElements(mCheeseList, originalItem,
-					getPositionForView(switchView));
+			swapElements(mList, originalItem, getPositionForView(switchView));
 
 			((BaseAdapter) getAdapter()).notifyDataSetChanged();
 
@@ -376,11 +383,19 @@ public class DynamicListView extends ListView {
 		}
 	}
 
+	public interface onElementsSwapped {
+		@SuppressWarnings("rawtypes")
+		public void onSwapped(ArrayList arrayList, int indexOne, int indexTwo);
+	}
+	
+	private onElementsSwapped onElSwapped;
+
 	@SuppressWarnings({ "rawtypes", "unchecked" })
 	private void swapElements(ArrayList arrayList, int indexOne, int indexTwo) {
 		Object temp = arrayList.get(indexOne);
 		arrayList.set(indexOne, arrayList.get(indexTwo));
-		arrayList.set(indexTwo, temp);
+		arrayList.set(indexTwo, temp);		
+		onElSwapped.onSwapped(arrayList, indexOne, indexTwo);
 	}
 
 	/**
@@ -513,8 +528,8 @@ public class DynamicListView extends ListView {
 		return false;
 	}
 
-	public void setCheeseList(ArrayList<String> cheeseList) {
-		mCheeseList = cheeseList;
+	public void setList(ArrayList<String> list) {
+		mList = list;
 	}
 
 	/**

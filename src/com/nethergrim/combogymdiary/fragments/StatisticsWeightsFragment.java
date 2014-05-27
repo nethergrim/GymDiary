@@ -183,8 +183,6 @@ public class StatisticsWeightsFragment extends android.support.v4.app.Fragment
 		} else {
 			content.setVisibility(View.GONE);
 		}
-		dataCursor.close();
-
 	}
 
 	public class GraphViewData implements GraphViewDataInterface {

@@ -202,7 +202,6 @@ public class TrainingFragment extends Fragment implements
 
 			@Override
 			public void afterTextChanged(Editable s) {
-
 				updateTimer(s.toString());
 			}
 		});
@@ -262,7 +261,6 @@ public class TrainingFragment extends Fragment implements
 					list.setItemChecked(i, false);
 				}
 				blocked = true;
-
 			}
 			return true;
 		}
@@ -300,9 +298,8 @@ public class TrainingFragment extends Fragment implements
 			timerValue = 60;
 			Counter.sharedInstance().reportError("", e);
 		}
-
 		currentSet = set;
-		etTimer.setText(timerValue);
+		etTimer.setText(String.valueOf(timerValue));
 		initSetButtons();
 		oldReps = db.getLastWeightOrReps(exeName, set, false);
 		oldWeight = db.getLastWeightOrReps(exeName, set, true);
@@ -383,9 +380,7 @@ public class TrainingFragment extends Fragment implements
 								Uri uri = Uri.parse(sound);
 								playSound(getActivity(), uri);
 							}
-
 						}
-
 						if (vibrate) {
 							try {
 								Vibrator v = (Vibrator) getActivity()
@@ -682,7 +677,6 @@ public class TrainingFragment extends Fragment implements
 			for (int i = 0; i < 1000; i++) {
 				weights.add("" + (i + 1));
 			}
-
 			setItemTextResource(R.id.city_name);
 		}
 
@@ -710,12 +704,10 @@ public class TrainingFragment extends Fragment implements
 			seconds = (int) (millis / 1000);
 			minutes = (seconds / 60);
 			seconds = (seconds % 60);
-			bar.setSubtitle(
-					(String.format("%d:%02d", minutes, seconds)) + " " + total
-							+ " " + measureItem + " " + " ["
-							+ ((set == currentSet ? set : currentSet) + 1)
-							+ " " + getResources().getString(R.string.set)
-							+ "] ");
+			bar.setSubtitle((String.format("%d:%02d", minutes, seconds)) + " "
+					+ total + " " + measureItem + " " + " ["
+					+ ((set == currentSet ? set : currentSet) + 1) + " "
+					+ getResources().getString(R.string.set) + "] ");
 			timerHandler.postDelayed(this, 500);
 		}
 	};

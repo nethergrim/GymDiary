@@ -12,13 +12,23 @@ import com.nethergrim.combogymdiary.DB;
 import com.nethergrim.combogymdiary.R;
 import com.yandex.metrica.Counter;
 
-public class MainActivity extends Activity {
+public class StartActivity extends Activity {
 
+	public static boolean TEST = true;
 	private SharedPreferences sp;
 	private DB db;
 	private final static String DATABASE_FILLED = "database_filled";
 	private InitTask task;
+	
 
+	public static boolean getTest(){
+		return TEST;
+	}
+	
+	public static void setTest(boolean ifTest){
+		TEST = ifTest;
+	}
+	
 	private void goNext() {
 		Intent gotoStartTraining = new Intent(this, BasicMenuActivityNew.class);
 		startActivity(gotoStartTraining);

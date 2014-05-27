@@ -32,6 +32,7 @@ import com.google.android.gms.ads.AdView;
 import com.nethergrim.combogymdiary.Backuper;
 import com.nethergrim.combogymdiary.DB;
 import com.nethergrim.combogymdiary.R;
+import com.nethergrim.combogymdiary.TestActivity;
 import com.nethergrim.combogymdiary.TrainingService;
 import com.nethergrim.combogymdiary.dialogs.DialogAddExercise;
 import com.nethergrim.combogymdiary.dialogs.DialogExitFromTraining.MyInterface;
@@ -54,17 +55,16 @@ public class BasicMenuActivityNew extends FragmentActivity implements
 		OnSelectedListener, MyInterface, OnStartTrainingAccept, OnExerciseEdit,
 		OnEditExerciseAccept {
 	protected final String LOG_TAG = "myLogs";
-	protected DrawerLayout mDrawerLayout;
-	protected ListView mDrawerList;
-	protected ActionBarDrawerToggle mDrawerToggle;
-	protected String[] listButtons;
+	private DrawerLayout mDrawerLayout;
+	private ListView mDrawerList;
+	private ActionBarDrawerToggle mDrawerToggle;
+	private String[] listButtons;
 
 	protected SharedPreferences sPref;
 	public final static String TOTAL_WEIGHT = "total_weight";
 	public final static String TRAINING_AT_PROGRESS = "training_at_progress";
 	public final static String COMMENT_TO_TRAINING = "comment_to_training";
-
-	private final static String START_TIME = "start_time";
+	public final static String START_TIME = "start_time";
 	public final static String MEASURE_ITEM = "measureItem";
 	public final static String LIST_OF_SETS = "list_of_sets";
 	public final static String TRAINING_ID = "training_id";
@@ -181,7 +181,12 @@ public class BasicMenuActivityNew extends FragmentActivity implements
 	}
 
 	private void initStrings() {
-		listButtons = new String[8];
+		if (StartActivity.getTest()) {
+			listButtons = new String[9];
+		} else {
+			listButtons = new String[8];
+		}
+
 		listButtons[0] = getResources().getString(
 				R.string.startTrainingButtonString);
 		listButtons[1] = getResources().getString(
@@ -193,6 +198,10 @@ public class BasicMenuActivityNew extends FragmentActivity implements
 		listButtons[6] = getResources()
 				.getString(R.string.settingsButtonString);
 		listButtons[7] = getResources().getString(R.string.faq);
+		if (StartActivity.getTest()) {
+			listButtons[8] = "Test Activity";
+		}
+
 	}
 
 	private class DrawerItemClickListener implements
@@ -206,6 +215,8 @@ public class BasicMenuActivityNew extends FragmentActivity implements
 
 	public void selectItem(int position) {
 		mDrawerLayout.closeDrawer(mDrawerList);
+		if (position == previouslyChecked)
+			return;
 		Fragment fragment = null;
 		switch (position) {
 		case 0:
@@ -259,6 +270,10 @@ public class BasicMenuActivityNew extends FragmentActivity implements
 			startActivity(intentStats);
 			mDrawerList.setItemChecked(previouslyChecked, true);
 			break;
+		case 8:
+			Intent testIntent = new Intent(this, TestActivity.class);
+			startActivity(testIntent);
+			return;
 		}
 		if (fragment != null) {
 			mDrawerList.setItemChecked(position, true);

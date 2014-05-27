@@ -9,7 +9,7 @@ import android.content.SharedPreferences;
 import android.os.IBinder;
 import android.preference.PreferenceManager;
 
-import com.nethergrim.combogymdiary.activities.MainActivity;
+import com.nethergrim.combogymdiary.activities.StartActivity;
 
 public class TrainingService extends Service {
 
@@ -40,7 +40,7 @@ public class TrainingService extends Service {
 				getResources().getString(R.string.training_started),
 				System.currentTimeMillis());
 
-		Intent intent = new Intent(this, MainActivity.class);
+		Intent intent = new Intent(this, StartActivity.class);
 		// intent.putExtra("trainingName", trainingNAME);
 		PendingIntent pIntent = PendingIntent.getActivity(this, 0, intent, 0);
 
