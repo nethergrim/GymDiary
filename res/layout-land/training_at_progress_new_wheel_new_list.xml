@@ -29,7 +29,7 @@
         </com.google.android.gms.ads.AdView>
 
         <ListView
-            android:id="@+id/lvSets"
+            android:id="@+id/listViewExerciseList"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:layout_above="@+id/adView1"

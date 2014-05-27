@@ -169,7 +169,6 @@ public class BasicMenuActivityNew extends FragmentActivity implements
 		adView = (AdView) this.findViewById(R.id.adView);
 		AdRequest adRequest = new AdRequest.Builder().build();
 		adView.loadAd(adRequest);
-
 	}
 
 	@Override

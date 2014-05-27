@@ -24,6 +24,7 @@ import android.animation.ObjectAnimator;
 import android.animation.TypeEvaluator;
 import android.animation.ValueAnimator;
 import android.app.Activity;
+import android.app.Fragment;
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
@@ -90,8 +91,6 @@ public class DynamicListView extends ListView {
 	private BitmapDrawable mHoverCell;
 	private Rect mHoverCellCurrentBounds;
 	private Rect mHoverCellOriginalBounds;
-	
-	private Activity activity;
 
 	private final int INVALID_POINTER_ID = -1;
 	private int mActivePointerId = INVALID_POINTER_ID;
@@ -120,10 +119,9 @@ public class DynamicListView extends ListView {
 		DisplayMetrics metrics = context.getResources().getDisplayMetrics();
 		mSmoothScrollAmountAtEdge = (int) (SMOOTH_SCROLL_AMOUNT_AT_EDGE / metrics.density);
 	}
-	
-	public void setActivity(Activity activity){
-		this.activity = activity;
-		onElSwapped = (onElementsSwapped) this.activity;		
+
+	public void setFragment(Fragment fragment) {
+		onElSwapped = (onElementsSwapped) fragment;
 	}
 
 	/**
@@ -387,14 +385,14 @@ public class DynamicListView extends ListView {
 		@SuppressWarnings("rawtypes")
 		public void onSwapped(ArrayList arrayList, int indexOne, int indexTwo);
 	}
-	
+
 	private onElementsSwapped onElSwapped;
 
 	@SuppressWarnings({ "rawtypes", "unchecked" })
 	private void swapElements(ArrayList arrayList, int indexOne, int indexTwo) {
 		Object temp = arrayList.get(indexOne);
 		arrayList.set(indexOne, arrayList.get(indexTwo));
-		arrayList.set(indexTwo, temp);		
+		arrayList.set(indexTwo, temp);
 		onElSwapped.onSwapped(arrayList, indexOne, indexTwo);
 	}
 

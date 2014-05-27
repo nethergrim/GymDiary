@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/cream_pixels_bitmap"    
+    android:background="@drawable/cream_pixels_bitmap"
     android:gravity="center_vertical"
     android:orientation="vertical" >
 
@@ -27,8 +27,8 @@
             android:minHeight="110dp"
             android:visibility="gone" />
 
-        <ListView
-            android:id="@+id/lvSets"
+        <com.nethergrim.combogymdiary.DynamicListView
+            android:id="@+id/listViewExerciseList"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_margin="4dp"
@@ -37,7 +37,7 @@
             android:choiceMode="singleChoice"
             android:dividerHeight="1px"
             android:padding="3dp" >
-        </ListView>
+        </com.nethergrim.combogymdiary.DynamicListView>
     </LinearLayout>
 
     <LinearLayout

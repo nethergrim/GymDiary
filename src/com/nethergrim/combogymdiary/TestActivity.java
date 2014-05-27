@@ -2,14 +2,14 @@ package com.nethergrim.combogymdiary;
 
 import java.util.ArrayList;
 
-import com.nethergrim.combogymdiary.DynamicListView.onElementsSwapped;
-
 import android.app.Activity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.Toast;
+
+import com.nethergrim.combogymdiary.DynamicListView.onElementsSwapped;
 
 public class TestActivity extends Activity implements onElementsSwapped {
 
@@ -43,7 +43,7 @@ public class TestActivity extends Activity implements onElementsSwapped {
 		list.setList(exercisesList);
 		list.setAdapter(adapter);
 		list.setChoiceMode(ListView.CHOICE_MODE_SINGLE);
-		list.setActivity(this);
+//		list.setActivity(this);
 		list.setOnItemClickListener(new AdapterView.OnItemClickListener() {
 			@Override
 			public void onItemClick(AdapterView<?> parent, View itemClicked,

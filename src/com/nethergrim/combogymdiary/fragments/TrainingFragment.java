@@ -42,19 +42,20 @@ import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.AdapterView;
 import android.widget.AdapterView.AdapterContextMenuInfo;
-import android.widget.ArrayAdapter;
 import android.widget.CompoundButton;
 import android.widget.CompoundButton.OnCheckedChangeListener;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
-import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 import android.widget.ToggleButton;
 
 import com.nethergrim.combogymdiary.DB;
+import com.nethergrim.combogymdiary.DynamicListView;
+import com.nethergrim.combogymdiary.DynamicListView.onElementsSwapped;
 import com.nethergrim.combogymdiary.R;
+import com.nethergrim.combogymdiary.StableArrayAdapter;
 import com.nethergrim.combogymdiary.TrainingService;
 import com.nethergrim.combogymdiary.activities.BasicMenuActivityNew;
 import com.nethergrim.combogymdiary.activities.EditingProgramAtTrainingActivity;
@@ -64,7 +65,7 @@ import com.nethergrim.combogymdiary.dialogs.DialogExitFromTraining;
 import com.yandex.metrica.Counter;
 
 public class TrainingFragment extends Fragment implements
-		OnCheckedChangeListener, OnClickListener {
+		OnCheckedChangeListener, OnClickListener, onElementsSwapped {
 
 	public final static String LOG_TAG = "myLogs";
 	public String RINGTONE = "ringtone";
@@ -83,7 +84,6 @@ public class TrainingFragment extends Fragment implements
 	private Boolean tglChecked = true, turnOff = false, vibrate = false;
 	private EditText etTimer;
 	private DB db;
-	private ArrayAdapter<String> adapter;
 	private static final int CM_DELETE_ID = 6;
 	private String[] exersices;
 	private String traName = "", exeName = "", date = "";
@@ -103,7 +103,6 @@ public class TrainingFragment extends Fragment implements
 	private LinearLayout llBack, llSave, llForward, llBottom, llTimerProgress;
 	private ImageView ivBack, ivForward;
 	private Animation anim = null;
-	private ListView list;
 	private int trainingId = 0;
 	private TextView tvWeight;
 	private boolean isTrainingAtProgress = false, toPlaySound = false;
@@ -111,6 +110,21 @@ public class TrainingFragment extends Fragment implements
 	private ProgressDialog pd;
 	private String measureItem = "";
 	private boolean isActiveDialog = false, blocked = false;
+	private DynamicListView listView;
+	private StableArrayAdapter adapter;
+
+	@SuppressWarnings("rawtypes")
+	@Override
+	public void onSwapped(ArrayList arrayList, int indexOne, int indexTwo) {
+		swapElements(alSetList, indexOne, indexTwo);
+	}
+
+	@SuppressWarnings({ "rawtypes", "unchecked" })
+	private void swapElements(ArrayList arrayList, int indexOne, int indexTwo) {
+		Object temp = arrayList.get(indexOne);
+		arrayList.set(indexOne, arrayList.get(indexTwo));
+		arrayList.set(indexTwo, temp);
+	}
 
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -207,20 +221,21 @@ public class TrainingFragment extends Fragment implements
 		});
 
 		infoText = (TextView) v.findViewById(R.id.infoText);
-		list = (ListView) v.findViewById(R.id.lvSets);
-		list.setChoiceMode(ListView.CHOICE_MODE_SINGLE);
-		adapter = new ArrayAdapter<String>(getActivity(),
-				R.layout.my_training_list_item, R.id.tvText, alExersicesList);
-		list.setAdapter(adapter);
-		list.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+		listView = (DynamicListView) v.findViewById(R.id.listViewExerciseList);
+
+		listView.setList(alExersicesList);
+		listView.setFragment(this);
+		adapter = new StableArrayAdapter(getActivity(),
+				R.layout.my_training_list_item, alExersicesList);
+		listView.setAdapter(adapter);
+		listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
 			@Override
 			public void onItemClick(AdapterView<?> parent, View itemClicked,
 					int position, long id) {
 				onSelected(position);
 			}
 		});
-		registerForContextMenu(list);
-		list.setItemChecked(sp.getInt(CHECKED_POSITION, 0), true);
+		listView.setItemChecked(sp.getInt(CHECKED_POSITION, 0), true);
 		onSelected(sp.getInt(CHECKED_POSITION, 0));
 		SimpleDateFormat sdf = new SimpleDateFormat("dd.MM.yyyy");
 		date = sdf.format(new Date(System.currentTimeMillis()));
@@ -257,8 +272,8 @@ public class TrainingFragment extends Fragment implements
 			adapter.notifyDataSetChanged();
 			if (alExersicesList.size() > 0) {
 				onSelected(0);
-				for (int i = 0; i < list.getCount(); i++) {
-					list.setItemChecked(i, false);
+				for (int i = 0; i < listView.getCount(); i++) {
+					listView.setItemChecked(i, false);
 				}
 				blocked = true;
 			}
@@ -321,7 +336,7 @@ public class TrainingFragment extends Fragment implements
 		super.onResume();
 		Log.d(LOG_TAG, "training fragment onResume");
 		turnOff = sp.getBoolean("toTurnOff", false);
-		list.setKeepScreenOn(!turnOff);
+		listView.setKeepScreenOn(!turnOff);
 		vibrate = sp.getBoolean("vibrateOn", true);
 		String vl = sp.getString("vibtateLenght", "2");
 		try {
@@ -348,10 +363,10 @@ public class TrainingFragment extends Fragment implements
 			startTime = sp.getLong(START_TIME, 0);
 			restoreSetsFromPreferences();
 			try {
-				list.setItemChecked(sp.getInt(CHECKED_POSITION, 0), true);
+				listView.setItemChecked(sp.getInt(CHECKED_POSITION, 0), true);
 				onSelected(sp.getInt(CHECKED_POSITION, 0));
 			} catch (Exception e) {
-				list.setItemChecked(0, true);
+				listView.setItemChecked(0, true);
 				onSelected(0);
 			}
 		}

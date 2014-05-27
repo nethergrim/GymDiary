@@ -14,7 +14,7 @@ import com.yandex.metrica.Counter;
 
 public class StartActivity extends Activity {
 
-	public static boolean TEST = true;
+	public static boolean TEST = false;
 	private SharedPreferences sp;
 	private DB db;
 	private final static String DATABASE_FILLED = "database_filled";

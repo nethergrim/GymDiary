@@ -534,6 +534,7 @@ containing a value of this type.
         public static final int list=0x7f070030;
         public static final int listView1=0x7f070036;
         public static final int listView11=0x7f070051;
+        public static final int listViewExerciseList=0x7f070069;
         public static final int ll2=0x7f07006b;
         public static final int llBtnBack=0x7f070078;
         public static final int llBtnForward=0x7f07007b;
@@ -544,7 +545,6 @@ containing a value of this type.
         public static final int lvExers=0x7f07001c;
         public static final int lvMainHistory=0x7f07001e;
         public static final int lvMeasurements=0x7f070023;
-        public static final int lvSets=0x7f070069;
         public static final int lvStartTraining=0x7f070065;
         public static final int none=0x7f070000;
         public static final int normal=0x7f070001;
