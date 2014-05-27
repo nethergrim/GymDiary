@@ -282,7 +282,7 @@ public class DB {
 	}
 
 	public String getTimerValueByExerciseName(String exeName) {
-		String result = null;
+		String result = "60";
 		String[] cols = { DB.TIMER_VALUE };
 		String[] tags = { exeName };
 		Cursor c1 = mDB.query(DB_EXE_TABLE, cols, DB.EXE_NAME + "=?", tags,

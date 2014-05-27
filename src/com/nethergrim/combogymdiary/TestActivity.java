@@ -15,6 +15,7 @@ public class TestActivity extends Activity implements onElementsSwapped {
 
 	private DynamicListView list;
 	private ArrayList<String> exercisesList = new ArrayList<String>();
+	private ArrayList<Integer> setValuesList = new ArrayList<Integer>();
 	private DB db;
 	private String[] exersices;
 	private int trainingId = 2;
@@ -30,6 +31,7 @@ public class TestActivity extends Activity implements onElementsSwapped {
 			exersices = db.convertStringToArray(db.getTrainingList(trainingId));
 			for (int i = 0; i < exersices.length; i++) {
 				exercisesList.add(exersices[i]);
+				setValuesList.add(0);
 			}
 		}
 
@@ -53,12 +55,21 @@ public class TestActivity extends Activity implements onElementsSwapped {
 
 	}
 
+	@SuppressWarnings("rawtypes")
 	@Override
 	public void onSwapped(ArrayList arrayList, int indexOne, int indexTwo) {
 		Toast.makeText(TestActivity.this,
 				"swapped " + indexOne + " with " + indexTwo, Toast.LENGTH_SHORT)
 				.show();
+		swapElements(setValuesList, indexOne, indexTwo);
 
+	}
+
+	@SuppressWarnings({ "rawtypes", "unchecked" })
+	private void swapElements(ArrayList arrayList, int indexOne, int indexTwo) {
+		Object temp = arrayList.get(indexOne);
+		arrayList.set(indexOne, arrayList.get(indexTwo));
+		arrayList.set(indexTwo, temp);
 	}
 
 }

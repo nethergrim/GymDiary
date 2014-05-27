@@ -104,6 +104,7 @@ public class BasicMenuActivityNew extends FragmentActivity implements
 	private MeasurementsFragment measurementsFragment = new MeasurementsFragment();
 	private StartTrainingFragment startTrainingFragment = new StartTrainingFragment();
 	private TrainingFragment trainingFragment = new TrainingFragment();
+	private Fragment currentFragment;
 
 	@Override
 	public void onConfigurationChanged(Configuration newConfig) {
@@ -145,22 +146,21 @@ public class BasicMenuActivityNew extends FragmentActivity implements
 		};
 		mDrawerLayout.setDrawerListener(mDrawerToggle);
 		sp = PreferenceManager.getDefaultSharedPreferences(this);
-		Fragment frag = null;
 		if (sp.getBoolean(TRAINING_AT_PROGRESS, false)) {
-			frag = trainingFragment;
+			currentFragment = trainingFragment;
 			Bundle args = new Bundle();
 			args.putInt(TRAINING_ID, sp.getInt(TRA_ID, 0));
-			frag.setArguments(args);
+			currentFragment.setArguments(args);
 			listButtons[0] = getResources().getString(
 					R.string.continue_training);
 			adapter.notifyDataSetChanged();
 			set_TRAINING_STARTED(true);
 		} else {
-			frag = startTrainingFragment;
+			currentFragment = startTrainingFragment;
 		}
-		if (frag != null)
-			getFragmentManager().beginTransaction().add(R.id.content, frag)
-					.commit();
+		if (currentFragment != null)
+			getFragmentManager().beginTransaction()
+					.add(R.id.content, currentFragment).commit();
 		mDrawerList.setItemChecked(0, true);
 
 		if (savedInstanceState == null) {
@@ -217,26 +217,28 @@ public class BasicMenuActivityNew extends FragmentActivity implements
 		mDrawerLayout.closeDrawer(mDrawerList);
 		if (position == previouslyChecked)
 			return;
-		Fragment fragment = null;
 		switch (position) {
 		case 0:
 			FRAGMENT_NUMBER = 0;
 			if (get_TRAINING_STARTED()) {
-				fragment = trainingFragment;
+				currentFragment = trainingFragment;
 				Bundle args = new Bundle();
-				args.putInt(TRAINING_ID, sp.getInt(TRA_ID, 0));
-				fragment.setArguments(args);
+				if (!currentFragment.isVisible())
+					args.putInt(TRAINING_ID, sp.getInt(TRA_ID, 0));
+				else
+					return;
+				currentFragment.setArguments(args);
 				listButtons[0] = getResources().getString(
 						R.string.continue_training);
 				adapter.notifyDataSetChanged();
 			} else {
-				fragment = startTrainingFragment;
+				currentFragment = startTrainingFragment;
 			}
 			previouslyChecked = 0;
 			break;
 		case 1:
 			FRAGMENT_NUMBER = 1;
-			fragment = exerciseListFragment;
+			currentFragment = exerciseListFragment;
 			previouslyChecked = 1;
 			break;
 		case 6:
@@ -251,21 +253,21 @@ public class BasicMenuActivityNew extends FragmentActivity implements
 			break;
 		case 2:
 			FRAGMENT_NUMBER = 2;
-			fragment = historyFragment;
+			currentFragment = historyFragment;
 			previouslyChecked = 2;
 			break;
 		case 3:
 			FRAGMENT_NUMBER = 3;
-			fragment = measurementsFragment;
+			currentFragment = measurementsFragment;
 			previouslyChecked = 3;
 			break;
 		case 4:
 			FRAGMENT_NUMBER = 4;
-			fragment = catalogFragment;
+			currentFragment = catalogFragment;
 			previouslyChecked = 4;
 			break;
 		case 5:
-			fragment = null;
+			currentFragment = null;
 			Intent intentStats = new Intent(this, StatisticsActivity.class);
 			startActivity(intentStats);
 			mDrawerList.setItemChecked(previouslyChecked, true);
@@ -275,10 +277,10 @@ public class BasicMenuActivityNew extends FragmentActivity implements
 			startActivity(testIntent);
 			return;
 		}
-		if (fragment != null) {
+		if (currentFragment != null) {
 			mDrawerList.setItemChecked(position, true);
 			getFragmentManager().beginTransaction()
-					.replace(R.id.content, fragment).commit();
+					.replace(R.id.content, currentFragment).commit();
 		}
 		invalidateOptionsMenu();
 	}
@@ -305,7 +307,8 @@ public class BasicMenuActivityNew extends FragmentActivity implements
 
 	@Override
 	protected void onPause() {
-		adView.pause();
+		if (!(adView == null))
+			adView.pause();
 		super.onPause();
 		Counter.sharedInstance().onPauseActivity(this);
 	}

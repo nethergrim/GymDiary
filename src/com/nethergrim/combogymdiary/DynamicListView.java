@@ -528,8 +528,8 @@ public class DynamicListView extends ListView {
 		return false;
 	}
 
-	public void setList(ArrayList<String> list) {
-		mList = list;
+	public void setList(ArrayList<String> exerciseList) {
+		mList = exerciseList;
 	}
 
 	/**
