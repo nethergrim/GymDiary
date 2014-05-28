@@ -23,7 +23,6 @@ import android.animation.AnimatorListenerAdapter;
 import android.animation.ObjectAnimator;
 import android.animation.TypeEvaluator;
 import android.animation.ValueAnimator;
-import android.app.Activity;
 import android.app.Fragment;
 import android.content.Context;
 import android.graphics.Bitmap;
@@ -389,10 +388,10 @@ public class DynamicListView extends ListView {
 	private onElementsSwapped onElSwapped;
 
 	@SuppressWarnings({ "rawtypes", "unchecked" })
-	private void swapElements(ArrayList arrayList, int indexOne, int indexTwo) {
-		Object temp = arrayList.get(indexOne);
-		arrayList.set(indexOne, arrayList.get(indexTwo));
-		arrayList.set(indexTwo, temp);
+	private void swapElements(ArrayList arrayList, int indexOne, int indexTwo) { // TODO
+//		Object temp = arrayList.get(indexOne);
+//		arrayList.set(indexOne, arrayList.get(indexTwo));
+//		arrayList.set(indexTwo, temp);
 		onElSwapped.onSwapped(arrayList, indexOne, indexTwo);
 	}
 

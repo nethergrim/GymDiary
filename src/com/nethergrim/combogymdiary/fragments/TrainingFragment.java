@@ -117,6 +117,7 @@ public class TrainingFragment extends Fragment implements
 	@Override
 	public void onSwapped(ArrayList arrayList, int indexOne, int indexTwo) {
 		swapElements(alSetList, indexOne, indexTwo);
+		swapElements(alExersicesList, indexOne, indexTwo);
 	}
 
 	@SuppressWarnings({ "rawtypes", "unchecked" })
@@ -124,6 +125,23 @@ public class TrainingFragment extends Fragment implements
 		Object temp = arrayList.get(indexOne);
 		arrayList.set(indexOne, arrayList.get(indexTwo));
 		arrayList.set(indexTwo, temp);
+	}
+
+	private void loadExercisesFromDbAndUpdateList() {
+		alExersicesList = new ArrayList<String>();
+		try {
+			if (db.getTrainingList(trainingId) != null) {
+				exersices = db.convertStringToArray(db
+						.getTrainingList(trainingId));
+				for (int i = 0; i < exersices.length; i++) {
+					alExersicesList.add(exersices[i]);
+				}
+			} else {
+				alExersicesList.add(" none ");
+			}
+		} catch (Exception e2) {
+			Counter.sharedInstance().reportError("", e2);
+		}
 	}
 
 	public void onCreate(Bundle savedInstanceState) {
@@ -141,17 +159,7 @@ public class TrainingFragment extends Fragment implements
 		traName = db.getTrainingName(trainingId);
 		bar = getActivity().getActionBar();
 		bar.setTitle(traName);
-		if (db.getTrainingList(trainingId) != null) {
-			exersices = db.convertStringToArray(db.getTrainingList(trainingId));
-			for (int i = 0; i < exersices.length; i++) {
-				alExersicesList.add(exersices[i]);
-			}
-		} else {
-			Counter.sharedInstance()
-					.reportEvent(
-							"ERROR in db.getTrainingListById(trainingId) at TrainingFragment!!");
-			alExersicesList.add("empty");
-		}
+		loadExercisesFromDbAndUpdateList();
 
 		for (int i = 0; i < 150; i++) {
 			alSetList.add(0);
@@ -239,8 +247,7 @@ public class TrainingFragment extends Fragment implements
 		onSelected(sp.getInt(CHECKED_POSITION, 0));
 		SimpleDateFormat sdf = new SimpleDateFormat("dd.MM.yyyy");
 		date = sdf.format(new Date(System.currentTimeMillis()));
-		dlg1 = new DialogExitFromTraining();
-		dlg1.setCancelable(false);
+
 		infoText.setTextColor(getResources().getColor(R.color.holo_orange_dark));
 		boolean isTimerOn = sp.getBoolean(TIMER_IS_ON, false);
 		if (isTimerOn) {
@@ -456,7 +463,10 @@ public class TrainingFragment extends Fragment implements
 	public boolean onOptionsItemSelected(MenuItem item) {
 		int itemId = item.getItemId();
 		if (itemId == R.id.itemExit) {
-			dlg1.show(getFragmentManager(), "dlg1");
+			dlg1 = new DialogExitFromTraining();
+			dlg1.setCancelable(false);
+			if (!dlg1.isAdded())
+				dlg1.show(getFragmentManager(), "dlg1");
 		} else if (itemId == R.id.itemEditTrainings) {
 			Intent intent = new Intent(getActivity(),
 					EditingProgramAtTrainingActivity.class);
