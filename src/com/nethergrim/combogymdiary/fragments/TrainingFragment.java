@@ -456,6 +456,15 @@ public class TrainingFragment extends Fragment implements
 		saveSetsToPreferences();
 		sp.edit().putInt(TOTAL_WEIGHT, total).apply();
 		isTrainingAtProgress = true;
+		saveExercicesToDatabase();
+	}
+
+	private void saveExercicesToDatabase() {
+		String[] e = new String[alExersicesList.size()];
+		for (int i = 0; i < e.length; ++i) {
+			e[i] = alExersicesList.get(i);
+		}
+		db.updateRec_Training(trainingId, 2, db.convertArrayToString(e));
 	}
 
 	public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
@@ -739,6 +748,10 @@ public class TrainingFragment extends Fragment implements
 					+ ((set == currentSet ? set : currentSet) + 1) + " "
 					+ getResources().getString(R.string.set) + "] ");
 			timerHandler.postDelayed(this, 500);
+
+			// Log.d(LOG_TAG, "position == " + checkedPosition + " exe == "
+			// + alExersicesList.get(checkedPosition) + " set ==  "
+			// + alSetList.get(checkedPosition));
 		}
 	};
 

@@ -22,7 +22,7 @@
         <FrameLayout
             android:id="@+id/content"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             android:layout_above="@+id/adView"
             android:layout_alignParentLeft="true"
             android:layout_alignParentRight="true"
@@ -36,7 +36,8 @@
             android:layout_alignParentLeft="true"
             android:layout_alignParentRight="true"
             ads:adSize="SMART_BANNER"
-            ads:adUnitId="ca-app-pub-5652589022154086/4102541457" />
+            ads:adUnitId="ca-app-pub-5652589022154086/4102541457"
+            android:visibility="gone" />
     </RelativeLayout>
 
     <!-- left drawer -->

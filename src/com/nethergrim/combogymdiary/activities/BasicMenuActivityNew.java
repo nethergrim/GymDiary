@@ -171,7 +171,6 @@ public class BasicMenuActivityNew extends FragmentActivity implements
 		adView = (AdView) this.findViewById(R.id.adView);
 		AdRequest adRequest = new AdRequest.Builder().build();
 		adView.loadAd(adRequest);
-		adView.setVisibility(View.GONE);
 		adView.setAdListener(new AdListener() {
 			@Override
 			public void onAdLoaded() {
@@ -189,12 +188,8 @@ public class BasicMenuActivityNew extends FragmentActivity implements
 	}
 
 	private void initStrings() {
-		if (StartActivity.getTest()) {
-			listButtons = new String[9];
-		} else {
-			listButtons = new String[8];
-		}
 
+		listButtons = new String[8];
 		listButtons[0] = getResources().getString(
 				R.string.startTrainingButtonString);
 		listButtons[1] = getResources().getString(
@@ -206,9 +201,6 @@ public class BasicMenuActivityNew extends FragmentActivity implements
 		listButtons[6] = getResources()
 				.getString(R.string.settingsButtonString);
 		listButtons[7] = getResources().getString(R.string.faq);
-		if (StartActivity.getTest()) {
-			listButtons[8] = "Test Activity";
-		}
 
 	}
 
@@ -223,8 +215,6 @@ public class BasicMenuActivityNew extends FragmentActivity implements
 
 	public void selectItem(int position) {
 		mDrawerLayout.closeDrawer(mDrawerList);
-		if (position == previouslyChecked)
-			return;
 		switch (position) {
 		case 0:
 			FRAGMENT_NUMBER = 0;
@@ -250,11 +240,13 @@ public class BasicMenuActivityNew extends FragmentActivity implements
 			previouslyChecked = 1;
 			break;
 		case 6:
+			currentFragment = null;
 			Intent intent = new Intent(this, SettingsActivity.class);
 			startActivity(intent);
 			mDrawerList.setItemChecked(previouslyChecked, true);
 			break;
 		case 7:
+			currentFragment = null;
 			DialogInfo dialog = new DialogInfo();
 			dialog.show(getFragmentManager(), "info");
 			mDrawerList.setItemChecked(previouslyChecked, true);
@@ -280,10 +272,6 @@ public class BasicMenuActivityNew extends FragmentActivity implements
 			startActivity(intentStats);
 			mDrawerList.setItemChecked(previouslyChecked, true);
 			break;
-		case 8:
-			Intent testIntent = new Intent(this, TestActivity.class);
-			startActivity(testIntent);
-			return;
 		}
 		if (currentFragment != null) {
 			mDrawerList.setItemChecked(position, true);
