@@ -21,6 +21,8 @@ import com.nethergrim.combogymdiary.DB;
 import com.nethergrim.combogymdiary.R;
 import com.nethergrim.combogymdiary.dialogs.DialogRestoreFromBackup;
 import com.nethergrim.combogymdiary.dialogs.DialogRestoreFromBackup.MyInterface;
+import com.nethergrim.combogymdiary.googledrive.BaseDriveActivity;
+import com.nethergrim.combogymdiary.googledrive.DriveBackupActivity;
 
 public class SettingsActivity extends PreferenceActivity implements MyInterface {
 
@@ -191,9 +193,9 @@ public class SettingsActivity extends PreferenceActivity implements MyInterface 
 	}
 
 	private void gotoDisk() {
-		// TODO
-		// Intent intent = new Intent(this, DriveBackupActivity.class);
-		// startActivity(intent);
+		Intent intent = new Intent(this, DriveBackupActivity.class);
+		intent.putExtra(BaseDriveActivity.KEY_AUTOBACKUP, false);
+		startActivity(intent);
 	}
 
 	@Override

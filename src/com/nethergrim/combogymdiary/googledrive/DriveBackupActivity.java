@@ -9,6 +9,9 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 
 import android.annotation.SuppressLint;
+import android.content.Intent;
+import android.content.IntentSender;
+import android.content.IntentSender.SendIntentException;
 import android.os.Bundle;
 
 import com.google.android.gms.common.api.ResultCallback;
@@ -28,9 +31,11 @@ import com.nethergrim.combogymdiary.Backuper;
 import com.nethergrim.combogymdiary.R;
 import com.yandex.metrica.Counter;
 
+@SuppressLint("SimpleDateFormat")
 public class DriveBackupActivity extends BaseDriveActivity {
 
 	static final String DRIVE_FOLDER_NAME = "Workout Diary Backups";
+	protected static final int REQUEST_CODE_CREATOR = 3;
 	static DriveId FOLDER_DRIVE_ID;
 	private static boolean isBackupManual = false;
 	private String fileTitle;
@@ -96,22 +101,85 @@ public class DriveBackupActivity extends BaseDriveActivity {
 		}
 	};
 
-	protected void goIntoFolder() {
+	private void goIntoFolder() {
 		// here we already have DriveId for a folder
 		// next step is backup DB file to a folder
 		Bundle b = getIntent().getExtras();
 		isBackupManual = !b.getBoolean(KEY_AUTOBACKUP);
 		if (isBackupManual) {
 			// manual backup using Creator Activity
-
+			Drive.DriveApi.newContents(getGoogleApiClient()).setResultCallback(
+					contentsManualFileCreateCallback);
 		} else {
 			// automatic backup
 			Drive.DriveApi.newContents(getGoogleApiClient()).setResultCallback(
-					newContentsResult);
+					newContentsResultOnCreatingFile);
 		}
 	}
 
-	final private ResultCallback<ContentsResult> newContentsResult = new ResultCallback<ContentsResult>() {
+	final ResultCallback<ContentsResult> contentsManualFileCreateCallback = new ResultCallback<ContentsResult>() {
+		@Override
+		public void onResult(ContentsResult result) {
+			if (!result.getStatus().isSuccess()) {
+				return;
+			}
+
+			OutputStream outputStream = result.getContents().getOutputStream();
+			Backuper back = new Backuper();
+			File db = back.getDbFile();
+			byte[] b = new byte[(int) db.length()];
+			try {
+				FileInputStream fileInputStream = new FileInputStream(db);
+				fileInputStream.read(b);
+				for (int i = 0; i < b.length; i++) {
+					System.out.print((char) b[i]);
+				}
+				fileInputStream.close();
+			} catch (FileNotFoundException e) {
+				Counter.sharedInstance().reportError("", e);
+			} catch (IOException e1) {
+				Counter.sharedInstance().reportError("", e1);
+			}
+			try {
+				outputStream.write(b);
+			} catch (IOException e1) {
+				Counter.sharedInstance().reportError("", e1);
+			}
+			SimpleDateFormat sdf = new SimpleDateFormat("dd.MM.yyyy");
+			String date = sdf.format(new Date(System.currentTimeMillis()));
+			String fileTitle = "Trainings backup " + date + " .db";
+
+			MetadataChangeSet metadataChangeSet = new MetadataChangeSet.Builder()
+					.setMimeType("text/plain").setTitle(fileTitle).build();
+			IntentSender intentSender = Drive.DriveApi
+					.newCreateFileActivityBuilder()
+					.setActivityStartFolder(FOLDER_DRIVE_ID)
+					.setInitialMetadata(metadataChangeSet)
+					.setInitialContents(result.getContents())
+					.build(getGoogleApiClient());
+			try {
+				startIntentSenderForResult(intentSender, REQUEST_CODE_CREATOR,
+						null, 0, 0, 0);
+			} catch (SendIntentException e) {
+				Counter.sharedInstance().reportError("", e);
+			}
+		}
+	};
+
+	@Override
+	protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+		switch (requestCode) {
+		case REQUEST_CODE_CREATOR:
+			finish();
+			showMessage(getResources().getString(R.string.backuped));
+			break;
+		default:
+			super.onActivityResult(requestCode, resultCode, data);
+			break;
+		}
+	}
+
+	final private ResultCallback<ContentsResult> newContentsResultOnCreatingFile = new ResultCallback<ContentsResult>() {
 		@Override
 		public void onResult(ContentsResult result) {
 			if (!result.getStatus().isSuccess()) {
@@ -159,9 +227,11 @@ public class DriveBackupActivity extends BaseDriveActivity {
 		public void onResult(DriveFileResult result) {
 			if (!result.getStatus().isSuccess()) {
 				showMessage("Error while trying to create the file");
+				finish();
 				return;
 			}
-			showMessage("Created a file: " + result.getDriveFile().getDriveId());
+			showMessage(getResources().getString(R.string.drive_backuped_true));
+			finish();
 		}
 	};
 }

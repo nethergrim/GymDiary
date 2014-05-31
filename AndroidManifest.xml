@@ -199,10 +199,10 @@
             android:label="@string/title_activity_base_drive"
             android:theme="@style/FullscreenTheme" >
         </activity>
-       
         <activity
             android:name="com.nethergrim.combogymdiary.googledrive.DriveBackupActivity"
-            android:label="@string/title_activity_drive_backup" >
+            android:label="@string/title_activity_drive_backup"
+            android:theme="@android:style/Theme.DeviceDefault.Light.NoActionBar" >
         </activity>
     </application>
 

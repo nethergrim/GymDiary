@@ -6,10 +6,14 @@
 
     <ProgressBar
         android:id="@+id/progressBar1"
+        style="?android:attr/progressBarStyleHorizontal"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_centerHorizontal="true"
-        android:layout_centerVertical="true" />
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentRight="true"
+        android:layout_centerVertical="true"
+        android:indeterminateOnly="true"
+        android:padding="8dp" />
 
     <ImageView
         android:id="@+id/imageView1"
@@ -17,7 +21,6 @@
         android:layout_height="wrap_content"
         android:layout_above="@+id/progressBar1"
         android:layout_centerHorizontal="true"
-        android:layout_marginBottom="78dp"
         android:src="@drawable/google_drive_icon" />
 
 </RelativeLayout>
