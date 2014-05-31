@@ -40,7 +40,6 @@ import com.nethergrim.combogymdiary.dialogs.DialogInfo;
 import com.nethergrim.combogymdiary.dialogs.DialogUniversalApprove;
 import com.nethergrim.combogymdiary.dialogs.DialogUniversalApprove.OnEditExerciseAccept;
 import com.nethergrim.combogymdiary.dialogs.DialogUniversalApprove.OnStartTrainingAccept;
-import com.nethergrim.combogymdiary.drive.DriveCreateFolderActivity;
 import com.nethergrim.combogymdiary.fragments.CatalogFragment;
 import com.nethergrim.combogymdiary.fragments.ExerciseListFragment;
 import com.nethergrim.combogymdiary.fragments.ExerciseListFragment.OnExerciseEdit;
@@ -49,6 +48,8 @@ import com.nethergrim.combogymdiary.fragments.MeasurementsFragment;
 import com.nethergrim.combogymdiary.fragments.StartTrainingFragment;
 import com.nethergrim.combogymdiary.fragments.StartTrainingFragment.OnSelectedListener;
 import com.nethergrim.combogymdiary.fragments.TrainingFragment;
+import com.nethergrim.combogymdiary.googledrive.BaseDriveActivity;
+import com.nethergrim.combogymdiary.googledrive.DriveBackupActivity;
 import com.yandex.metrica.Counter;
 
 public class BasicMenuActivityNew extends FragmentActivity implements
@@ -380,9 +381,13 @@ public class BasicMenuActivityNew extends FragmentActivity implements
 
 		if (PreferenceManager.getDefaultSharedPreferences(this).getBoolean(
 				AUTO_BACKUP_TO_DRIVE, true)) {
-			Intent backupIntent = new Intent(this,
-					DriveCreateFolderActivity.class);
-			startActivity(backupIntent);
+
+			Intent backup = new Intent(this,DriveBackupActivity.class);
+			backup.putExtra(BaseDriveActivity.KEY_AUTOBACKUP, true);
+			startActivity(backup);
+			
+			// TODO здесь добавить вызов автобекап активити
+
 		}
 
 		if (sp.contains(TRAININGS_DONE_NUM)) {

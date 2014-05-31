@@ -387,11 +387,8 @@ public class DynamicListView extends ListView {
 
 	private onElementsSwapped onElSwapped;
 
-	@SuppressWarnings({ "rawtypes", "unchecked" })
+	@SuppressWarnings({ "rawtypes" })
 	private void swapElements(ArrayList arrayList, int indexOne, int indexTwo) { // TODO
-//		Object temp = arrayList.get(indexOne);
-//		arrayList.set(indexOne, arrayList.get(indexTwo));
-//		arrayList.set(indexTwo, temp);
 		onElSwapped.onSwapped(arrayList, indexOne, indexTwo);
 	}
 

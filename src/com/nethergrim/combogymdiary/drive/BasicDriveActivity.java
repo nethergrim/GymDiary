@@ -98,7 +98,6 @@ public abstract class BasicDriveActivity extends Activity implements
 	/**
 	 * Called when {@code mGoogleApiClient} is disconnected.
 	 */
-	@Override
 	public void onDisconnected() {
 		Log.i(TAG, "GoogleApiClient disconnected");
 		getGoogleApiClient().connect();

@@ -64,7 +64,6 @@ public class BasicDriveService extends Service implements
 
 	}
 
-	@Override
 	public void onDisconnected() {
 		ifConnected = false;
 		Log.d(TAG, "mGoogleApiClient disconnected");
@@ -98,5 +97,11 @@ public class BasicDriveService extends Service implements
 
 	public GoogleApiClient getGoogleApiClient() {
 		return mGoogleApiClient;
+	}
+
+	@Override
+	public void onConnectionSuspended(int arg0) {
+		// TODO Auto-generated method stub
+		
 	}
 }

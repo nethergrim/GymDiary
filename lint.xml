@@ -18,4 +18,5 @@
     <issue id="Typos">
         <ignore path="res/values/strings.xml" />
     </issue>
+    <issue id="UnusedResources" severity="ignore" />
 </lint>

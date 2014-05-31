@@ -7,6 +7,7 @@ import java.util.StringTokenizer;
 
 import kankan.wheel.widget.WheelView;
 import kankan.wheel.widget.adapters.AbstractWheelTextAdapter;
+import kankan.wheel.widget.adapters.WheelViewAdapter;
 import android.annotation.SuppressLint;
 import android.app.ActionBar;
 import android.app.DialogFragment;
@@ -199,13 +200,15 @@ public class TrainingFragment extends Fragment implements
 		repsWheel.setWheelBackground(R.drawable.wheel_bg_holo);
 		repsWheel.setWheelForeground(R.drawable.wheel_val_holo);
 		repsWheel.setShadowColor(0xFFFFFF, 0xFFFFFF, 0xFFFFFF);
-		repsWheel.setViewAdapter(new RepsAdapter(getActivity()));
+		repsWheel.setViewAdapter((WheelViewAdapter) new RepsAdapter(
+				getActivity()));
 		weightWheel = (WheelView) v.findViewById(R.id.wheelWeight);
 		weightWheel.setVisibleItems(7);
 		weightWheel.setWheelBackground(R.drawable.wheel_bg_holo);
 		weightWheel.setWheelForeground(R.drawable.wheel_val_holo);
 		weightWheel.setShadowColor(0xFFFFFF, 0xFFFFFF, 0xFFFFFF);
-		weightWheel.setViewAdapter(new WeightsAdapter(getActivity()));
+		weightWheel.setViewAdapter((WheelViewAdapter) new WeightsAdapter(
+				getActivity()));
 		tglTimerOn = (ToggleButton) v.findViewById(R.id.tglTurnOff);
 		tglTimerOn.setOnCheckedChangeListener(this);
 		etTimer = (EditText) v.findViewById(R.id.etTimerValueAtTraining);

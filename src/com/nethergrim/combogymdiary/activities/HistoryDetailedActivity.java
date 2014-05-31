@@ -20,7 +20,6 @@ import android.widget.TextView;
 
 import com.nethergrim.combogymdiary.DB;
 import com.nethergrim.combogymdiary.R;
-import com.startad.lib.SADView;
 
 public class HistoryDetailedActivity extends Activity {
 
@@ -32,7 +31,6 @@ public class HistoryDetailedActivity extends Activity {
 	private FrameLayout content_frame;
 	private String measureItem;
 	private int total = 0;
-	private SADView adView;
 
 	@Override
 	public boolean onOptionsItemSelected(MenuItem item) {
@@ -178,9 +176,5 @@ public class HistoryDetailedActivity extends Activity {
 	protected void onDestroy() {
 		super.onDestroy();
 		db.close();
-
-		if (this.adView != null) {
-			this.adView.destroy();
-		}
 	}
 }

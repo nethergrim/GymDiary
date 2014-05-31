@@ -88,7 +88,7 @@
             android:name="com.nethergrim.combogymdiary.drive.DriveBackupActivity"
             android:parentActivityName="com.nethergrim.combogymdiary.activities.SettingsActivity"
             android:screenOrientation="portrait"
-            android:theme="@android:style/Theme.DeviceDefault.Light.NoActionBar.Fullscreen" >
+            android:theme="@android:style/Theme.Light.NoTitleBar.Fullscreen" >
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.nethergrim.combogymdiary.SettingsActivity" />
@@ -97,7 +97,7 @@
             android:name="com.nethergrim.combogymdiary.drive.DriveRestoreActivity"
             android:parentActivityName="com.nethergrim.combogymdiary.activities.SettingsActivity"
             android:screenOrientation="portrait"
-            android:theme="@android:style/Theme.DeviceDefault.Light.NoActionBar.Fullscreen" >
+            android:theme="@android:style/Theme.Light.NoTitleBar.Fullscreen" >
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.nethergrim.combogymdiary.SettingsActivity" />
@@ -107,7 +107,7 @@
             android:configChanges="keyboardHidden|orientation|screenSize"
             android:parentActivityName="com.nethergrim.combogymdiary.drive.DriveRestoreActivity"
             android:screenOrientation="portrait"
-            android:theme="@android:style/Theme.DeviceDefault.Light.NoActionBar.Fullscreen" >
+            android:theme="@android:style/Theme.Light.NoTitleBar.Fullscreen" >
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.nethergrim.combogymdiary.DiskRestoreActivity" />
@@ -116,13 +116,13 @@
             android:name="com.nethergrim.combogymdiary.drive.DriveCreateFolderActivity"
             android:configChanges="keyboardHidden|orientation|screenSize"
             android:screenOrientation="portrait"
-            android:theme="@android:style/Theme.DeviceDefault.Light.NoActionBar.Fullscreen" >
+            android:theme="@android:style/Theme.Light.NoTitleBar.Fullscreen" >
         </activity>
         <activity
             android:name="com.nethergrim.combogymdiary.drive.DriveAutoBackupActivity"
             android:configChanges="keyboardHidden|orientation|screenSize"
             android:screenOrientation="portrait"
-            android:theme="@android:style/Theme.DeviceDefault.Light.NoActionBar.Fullscreen" >
+            android:theme="@android:style/Theme.Light.NoTitleBar.Fullscreen" >
         </activity>
 
         <meta-data
@@ -192,6 +192,17 @@
         <activity
             android:name="com.nethergrim.combogymdiary.TestActivity"
             android:label="@string/title_activity_test" >
+        </activity>
+        <activity
+            android:name="com.nethergrim.combogymdiary.googledrive.BaseDriveActivity"
+            android:configChanges="orientation|keyboardHidden|screenSize"
+            android:label="@string/title_activity_base_drive"
+            android:theme="@style/FullscreenTheme" >
+        </activity>
+       
+        <activity
+            android:name="com.nethergrim.combogymdiary.googledrive.DriveBackupActivity"
+            android:label="@string/title_activity_drive_backup" >
         </activity>
     </application>
 
