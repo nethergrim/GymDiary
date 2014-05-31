@@ -1,7 +1,6 @@
 <android.support.v4.widget.DrawerLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:ads="http://schemas.android.com/apk/res-auto"
     android:id="@+id/drawer_layout"
-    
     android:layout_width="match_parent"
     android:layout_height="match_parent" >
 
@@ -17,26 +16,26 @@
         xmlns:android="http://schemas.android.com/apk/res/android"
         android:id="@+id/content_frame"
         android:layout_width="match_parent"
-        android:background="@drawable/cream_pixels_bitmap"
-        android:layout_height="match_parent" >
+        android:layout_height="match_parent"
+        android:background="@drawable/cream_pixels_bitmap" >
 
         <FrameLayout
             android:id="@+id/content"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_alignParentTop="true" 
             android:layout_above="@+id/adView"
             android:layout_alignParentLeft="true"
-            android:layout_alignParentRight="true"/>
+            android:layout_alignParentRight="true"
+            android:layout_alignParentTop="true" />
 
         <com.google.android.gms.ads.AdView
             android:id="@+id/adView"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"            
+            android:layout_height="wrap_content"
             android:layout_alignParentBottom="true"
             android:layout_alignParentLeft="true"
             android:layout_alignParentRight="true"
-            ads:adSize="BANNER"
+            ads:adSize="SMART_BANNER"
             ads:adUnitId="ca-app-pub-5652589022154086/4102541457" />
     </RelativeLayout>
 

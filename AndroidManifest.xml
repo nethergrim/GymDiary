@@ -153,7 +153,7 @@
             android:theme="@android:style/Theme.DeviceDefault.Light.NoActionBar" >
         </activity>
         <activity
-            android:name="com.nethergrim.combogymdiary.DriveRestoreActivity"
+            android:name="com.nethergrim.combogymdiary.googledrive.DriveRestoreActivity"
             android:label="@string/title_activity_drive_restore"
             android:screenOrientation="portrait"
             android:theme="@android:style/Theme.DeviceDefault.Light.NoActionBar" >

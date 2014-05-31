@@ -227,10 +227,11 @@ public class DriveBackupActivity extends BaseDriveActivity {
 		public void onResult(DriveFileResult result) {
 			if (!result.getStatus().isSuccess()) {
 				showMessage("Error while trying to create the file");
-				finish();
 				return;
+			} else {
+				showMessage(getResources().getString(
+						R.string.drive_backuped_true));
 			}
-			showMessage(getResources().getString(R.string.drive_backuped_true));
 			finish();
 		}
 	};

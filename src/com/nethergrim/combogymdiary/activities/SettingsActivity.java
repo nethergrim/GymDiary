@@ -18,12 +18,12 @@ import android.widget.Toast;
 
 import com.nethergrim.combogymdiary.Backuper;
 import com.nethergrim.combogymdiary.DB;
-import com.nethergrim.combogymdiary.DriveRestoreActivity;
 import com.nethergrim.combogymdiary.R;
 import com.nethergrim.combogymdiary.dialogs.DialogRestoreFromBackup;
 import com.nethergrim.combogymdiary.dialogs.DialogRestoreFromBackup.MyInterface;
 import com.nethergrim.combogymdiary.googledrive.BaseDriveActivity;
 import com.nethergrim.combogymdiary.googledrive.DriveBackupActivity;
+import com.nethergrim.combogymdiary.googledrive.DriveRestoreActivity;
 
 public class SettingsActivity extends PreferenceActivity implements MyInterface {
 

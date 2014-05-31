@@ -27,6 +27,7 @@ import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.Toast;
 
+import com.google.android.gms.ads.AdListener;
 import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.AdView;
 import com.nethergrim.combogymdiary.Backuper;
@@ -170,6 +171,13 @@ public class BasicMenuActivityNew extends FragmentActivity implements
 		adView = (AdView) this.findViewById(R.id.adView);
 		AdRequest adRequest = new AdRequest.Builder().build();
 		adView.loadAd(adRequest);
+		adView.setVisibility(View.GONE);
+		adView.setAdListener(new AdListener() {
+			@Override
+			public void onAdLoaded() {
+				adView.setVisibility(View.VISIBLE);
+			}
+		});
 	}
 
 	@Override
@@ -382,12 +390,9 @@ public class BasicMenuActivityNew extends FragmentActivity implements
 		if (PreferenceManager.getDefaultSharedPreferences(this).getBoolean(
 				AUTO_BACKUP_TO_DRIVE, true)) {
 
-			Intent backup = new Intent(this,DriveBackupActivity.class);
+			Intent backup = new Intent(this, DriveBackupActivity.class);
 			backup.putExtra(BaseDriveActivity.KEY_AUTOBACKUP, true);
 			startActivity(backup);
-			
-			// TODO здесь добавить вызов автобекап активити
-
 		}
 
 		if (sp.contains(TRAININGS_DONE_NUM)) {
