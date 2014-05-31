@@ -81,12 +81,12 @@ public class TrainingFragment extends Fragment implements
 	private final static String TIMER_IS_ON = "timerIsOn";
 	private ToggleButton tglTimerOn;
 	private ActionBar bar;
-	private Boolean tglChecked = true, turnOff = false, vibrate = false;
+	private Boolean tglChecked = true, vibrate = false;
 	private EditText etTimer;
 	private DB db;
 	private static final int CM_DELETE_ID = 6;
 	private String[] exersices;
-	private String traName = "", exeName = "", date = "";
+	private String traName = "", exeName = "", date = "", measureItem = "";
 	private SharedPreferences sp;
 	private int checkedPosition = 0, set = 0, currentSet = 0, oldReps = 0,
 			oldWeight = 0, timerValue = 0, vibrateLenght = 0, currentId = 0;
@@ -94,21 +94,17 @@ public class TrainingFragment extends Fragment implements
 	private long startTime = 0;
 	private Handler h;
 	private MediaPlayer mMediaPlayer;
-	private WheelView reps, weights;
-	private TextView infoText;
+	private WheelView repsWheel, weightWheel;
+	private TextView tvInfoText, tvWeight;
 	private ArrayList<String> alExersicesList = new ArrayList<String>();
 	private ArrayList<Integer> alSetList = new ArrayList<Integer>();
-	private int seconds, minutes;
+	private int seconds, minutes, trainingId = 0, total = 0;
 	private Handler timerHandler = new Handler();
 	private LinearLayout llBack, llSave, llForward, llBottom, llTimerProgress;
 	private ImageView ivBack, ivForward;
 	private Animation anim = null;
-	private int trainingId = 0;
-	private TextView tvWeight;
 	private boolean isTrainingAtProgress = false, toPlaySound = false;
-	private int total = 0;
 	private ProgressDialog pd;
-	private String measureItem = "";
 	private boolean isActiveDialog = false, blocked = false;
 	private DynamicListView listView;
 	private StableArrayAdapter adapter;
@@ -118,6 +114,12 @@ public class TrainingFragment extends Fragment implements
 	public void onSwapped(ArrayList arrayList, int indexOne, int indexTwo) {
 		swapElements(alSetList, indexOne, indexTwo);
 		swapElements(alExersicesList, indexOne, indexTwo);
+		if (checkedPosition == indexOne) {
+			checkedPosition = indexTwo;
+		} else if (checkedPosition == indexTwo) {
+			checkedPosition = indexOne;
+		}
+		onSelected(checkedPosition);
 	}
 
 	@SuppressWarnings({ "rawtypes", "unchecked" })
@@ -192,18 +194,18 @@ public class TrainingFragment extends Fragment implements
 		tvWeight = (TextView) v.findViewById(R.id.textView4__);
 		ivBack = (ImageView) v.findViewById(R.id.imageView2);
 		ivForward = (ImageView) v.findViewById(R.id.imageView3);
-		reps = (WheelView) v.findViewById(R.id.wheelReps);
-		reps.setVisibleItems(7);
-		reps.setWheelBackground(R.drawable.wheel_bg_holo);
-		reps.setWheelForeground(R.drawable.wheel_val_holo);
-		reps.setShadowColor(0xFFFFFF, 0xFFFFFF, 0xFFFFFF);
-		reps.setViewAdapter(new RepsAdapter(getActivity()));
-		weights = (WheelView) v.findViewById(R.id.wheelWeight);
-		weights.setVisibleItems(7);
-		weights.setWheelBackground(R.drawable.wheel_bg_holo);
-		weights.setWheelForeground(R.drawable.wheel_val_holo);
-		weights.setShadowColor(0xFFFFFF, 0xFFFFFF, 0xFFFFFF);
-		weights.setViewAdapter(new WeightsAdapter(getActivity()));
+		repsWheel = (WheelView) v.findViewById(R.id.wheelReps);
+		repsWheel.setVisibleItems(7);
+		repsWheel.setWheelBackground(R.drawable.wheel_bg_holo);
+		repsWheel.setWheelForeground(R.drawable.wheel_val_holo);
+		repsWheel.setShadowColor(0xFFFFFF, 0xFFFFFF, 0xFFFFFF);
+		repsWheel.setViewAdapter(new RepsAdapter(getActivity()));
+		weightWheel = (WheelView) v.findViewById(R.id.wheelWeight);
+		weightWheel.setVisibleItems(7);
+		weightWheel.setWheelBackground(R.drawable.wheel_bg_holo);
+		weightWheel.setWheelForeground(R.drawable.wheel_val_holo);
+		weightWheel.setShadowColor(0xFFFFFF, 0xFFFFFF, 0xFFFFFF);
+		weightWheel.setViewAdapter(new WeightsAdapter(getActivity()));
 		tglTimerOn = (ToggleButton) v.findViewById(R.id.tglTurnOff);
 		tglTimerOn.setOnCheckedChangeListener(this);
 		etTimer = (EditText) v.findViewById(R.id.etTimerValueAtTraining);
@@ -228,7 +230,7 @@ public class TrainingFragment extends Fragment implements
 			}
 		});
 
-		infoText = (TextView) v.findViewById(R.id.infoText);
+		tvInfoText = (TextView) v.findViewById(R.id.infoText);
 		listView = (DynamicListView) v.findViewById(R.id.listViewExerciseList);
 
 		listView.setList(alExersicesList);
@@ -248,7 +250,8 @@ public class TrainingFragment extends Fragment implements
 		SimpleDateFormat sdf = new SimpleDateFormat("dd.MM.yyyy");
 		date = sdf.format(new Date(System.currentTimeMillis()));
 
-		infoText.setTextColor(getResources().getColor(R.color.holo_orange_dark));
+		tvInfoText.setTextColor(getResources().getColor(
+				R.color.holo_orange_dark));
 		boolean isTimerOn = sp.getBoolean(TIMER_IS_ON, false);
 		if (isTimerOn) {
 			tglTimerOn.setChecked(true);
@@ -326,14 +329,14 @@ public class TrainingFragment extends Fragment implements
 		oldReps = db.getLastWeightOrReps(exeName, set, false);
 		oldWeight = db.getLastWeightOrReps(exeName, set, true);
 		if (oldReps > 0 && oldWeight > 0) {
-			infoText.setText(getResources().getString(
+			tvInfoText.setText(getResources().getString(
 					R.string.previous_result_was)
 					+ " " + oldWeight + "x" + oldReps);
-			weights.setCurrentItem(oldWeight - 1);
-			reps.setCurrentItem(oldReps - 1);
+			weightWheel.setCurrentItem(oldWeight - 1);
+			repsWheel.setCurrentItem(oldReps - 1);
 		} else {
-			infoText.setText(getResources().getString(R.string.new_set) + " ("
-					+ (set + 1) + ")");
+			tvInfoText.setText(getResources().getString(R.string.new_set)
+					+ " (" + (set + 1) + ")");
 		}
 		blocked = false;
 	}
@@ -342,8 +345,7 @@ public class TrainingFragment extends Fragment implements
 	public void onResume() {
 		super.onResume();
 		Log.d(LOG_TAG, "training fragment onResume");
-		turnOff = sp.getBoolean("toTurnOff", false);
-		listView.setKeepScreenOn(!turnOff);
+		listView.setKeepScreenOn(!(sp.getBoolean("toTurnOff", false)));
 		vibrate = sp.getBoolean("vibrateOn", true);
 		String vl = sp.getString("vibtateLenght", "2");
 		try {
@@ -565,8 +567,8 @@ public class TrainingFragment extends Fragment implements
 			return;
 		}
 		if (id == R.id.llBtnSave && currentSet == set) {
-			int wei = (weights.getCurrentItem() + 1);
-			int rep_s = (reps.getCurrentItem() + 1);
+			int wei = (weightWheel.getCurrentItem() + 1);
+			int rep_s = (repsWheel.getCurrentItem() + 1);
 			int tmp = alSetList.get(checkedPosition);
 			tmp++;
 			alSetList.set(checkedPosition, tmp);
@@ -582,13 +584,13 @@ public class TrainingFragment extends Fragment implements
 			oldReps = db.getLastWeightOrReps(exeName, set, false);
 			oldWeight = db.getLastWeightOrReps(exeName, set, true);
 			if (oldReps > 0 && oldWeight > 0) {
-				infoText.setText(getResources().getString(
+				tvInfoText.setText(getResources().getString(
 						R.string.previous_result_was)
 						+ " " + oldWeight + "x" + oldReps);
-				weights.setCurrentItem(oldWeight - 1);
-				reps.setCurrentItem(oldReps - 1);
+				weightWheel.setCurrentItem(oldWeight - 1);
+				repsWheel.setCurrentItem(oldReps - 1);
 			} else {
-				infoText.setText(getResources().getString(R.string.new_set)
+				tvInfoText.setText(getResources().getString(R.string.new_set)
 						+ " (" + (set + 1) + ")");
 			}
 			if (isActiveDialog) {
@@ -599,8 +601,8 @@ public class TrainingFragment extends Fragment implements
 				goDialogProgress();
 			}
 		} else if (id == R.id.llBtnSave && currentSet < set) {
-			int wei = (weights.getCurrentItem() + 1);
-			int rep_s = (reps.getCurrentItem() + 1);
+			int wei = (weightWheel.getCurrentItem() + 1);
+			int rep_s = (repsWheel.getCurrentItem() + 1);
 			db.updateRec_Main(currentId, 4, null, wei);
 			db.updateRec_Main(currentId, 5, null, rep_s);
 			Toast.makeText(getActivity(), R.string.resaved, Toast.LENGTH_SHORT)
@@ -614,10 +616,10 @@ public class TrainingFragment extends Fragment implements
 				int weitghsS = db.getThisWeight(currentSet + 1, exeName) - 1;
 				int repsS = db.getThisReps(currentSet + 1, exeName) - 1;
 				currentId = db.getThisId(currentSet + 1, exeName);
-				weights.setCurrentItem(weitghsS);
-				reps.setCurrentItem(repsS);
-				infoText.setText(getResources()
-						.getString(R.string.resaved_text)
+				weightWheel.setCurrentItem(weitghsS);
+				repsWheel.setCurrentItem(repsS);
+				tvInfoText.setText(getResources().getString(
+						R.string.resaved_text)
 						+ " "
 						+ (weitghsS + 1)
 						+ "x"
@@ -632,10 +634,10 @@ public class TrainingFragment extends Fragment implements
 				currentSet++;
 				int weitghsS = db.getThisWeight(currentSet + 1, exeName) - 1;
 				int repsS = db.getThisReps(currentSet + 1, exeName) - 1;
-				weights.setCurrentItem(weitghsS);
-				reps.setCurrentItem(repsS);
-				infoText.setText(getResources()
-						.getString(R.string.resaved_text)
+				weightWheel.setCurrentItem(weitghsS);
+				repsWheel.setCurrentItem(repsS);
+				tvInfoText.setText(getResources().getString(
+						R.string.resaved_text)
 						+ " "
 						+ (weitghsS + 1)
 						+ "x"
