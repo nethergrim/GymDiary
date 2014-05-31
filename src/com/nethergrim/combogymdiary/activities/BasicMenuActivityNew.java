@@ -33,7 +33,6 @@ import com.google.android.gms.ads.AdView;
 import com.nethergrim.combogymdiary.Backuper;
 import com.nethergrim.combogymdiary.DB;
 import com.nethergrim.combogymdiary.R;
-import com.nethergrim.combogymdiary.TestActivity;
 import com.nethergrim.combogymdiary.TrainingService;
 import com.nethergrim.combogymdiary.dialogs.DialogAddExercise;
 import com.nethergrim.combogymdiary.dialogs.DialogExitFromTraining.MyInterface;
@@ -188,7 +187,6 @@ public class BasicMenuActivityNew extends FragmentActivity implements
 	}
 
 	private void initStrings() {
-
 		listButtons = new String[8];
 		listButtons[0] = getResources().getString(
 				R.string.startTrainingButtonString);
@@ -201,7 +199,6 @@ public class BasicMenuActivityNew extends FragmentActivity implements
 		listButtons[6] = getResources()
 				.getString(R.string.settingsButtonString);
 		listButtons[7] = getResources().getString(R.string.faq);
-
 	}
 
 	private class DrawerItemClickListener implements

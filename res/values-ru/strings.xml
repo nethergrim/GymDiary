@@ -8,7 +8,10 @@
         <item>1</item>
         <item>2</item>
     </string-array>
-	<string name="parsing_error">Ошбика в значении таймера отдыха. Он будет установлен на 60 секунд.</string>
+
+    <string name="parsing_error">Ошбика в значении таймера отдыха. Он будет установлен на 60 секунд.</string>
+    <string name="delete_exe">Удалить упражнение</string>
+    <string name="please_add_an_exe">Пожалуйста, добавьте упражнения !!! </string>
     <string name="select_sound_to_play">Выберите звук уведомления</string>
     <string name="play_sound">Проигрывать звук</string>
     <string name="play_sound_detailed">Проигрывать звук при окончании таймера</string>

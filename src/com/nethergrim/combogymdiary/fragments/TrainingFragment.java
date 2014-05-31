@@ -30,6 +30,7 @@ import android.preference.PreferenceManager;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.util.Log;
+import android.view.ActionMode;
 import android.view.ContextMenu;
 import android.view.ContextMenu.ContextMenuInfo;
 import android.view.LayoutInflater;
@@ -48,6 +49,7 @@ import android.widget.CompoundButton.OnCheckedChangeListener;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 import android.widget.ToggleButton;
@@ -313,6 +315,15 @@ public class TrainingFragment extends Fragment implements
 	}
 
 	private void onSelected(int position) {
+		if (alExersicesList.size() == 0) {
+			llBottom.setVisibility(View.GONE);
+			Toast.makeText(getActivity(), R.string.please_add_an_exe,
+					Toast.LENGTH_LONG).show();
+			return;
+		} else {
+			llBottom.setVisibility(View.VISIBLE);
+		}
+
 		sp.edit().putInt(CHECKED_POSITION, position).apply();
 		checkedPosition = position;
 		exeName = alExersicesList.get(position);
@@ -518,6 +529,8 @@ public class TrainingFragment extends Fragment implements
 
 			DialogAddCommentToTraining dialog = new DialogAddCommentToTraining();
 			dialog.show(getFragmentManager(), "");
+		} else if (itemId == R.id.itemDeleteExercise) {
+			getActivity().startActionMode(mActionModeCallback);
 		}
 		return false;
 	}
@@ -749,9 +762,6 @@ public class TrainingFragment extends Fragment implements
 					+ getResources().getString(R.string.set) + "] ");
 			timerHandler.postDelayed(this, 500);
 
-			// Log.d(LOG_TAG, "position == " + checkedPosition + " exe == "
-			// + alExersicesList.get(checkedPosition) + " set ==  "
-			// + alSetList.get(checkedPosition));
 		}
 	};
 
@@ -798,5 +808,72 @@ public class TrainingFragment extends Fragment implements
 			System.out.println(e.getMessage());
 		}
 	}
+
+	private ActionMode.Callback mActionModeCallback = new ActionMode.Callback() {
+
+		@Override
+		public boolean onCreateActionMode(ActionMode mode, Menu menu) {
+			MenuInflater inflater = mode.getMenuInflater();
+			inflater.inflate(R.menu.cab_training, menu);
+			return true;
+		}
+
+		@Override
+		public boolean onPrepareActionMode(ActionMode mode, Menu menu) {
+			listView.setChoiceMode(ListView.CHOICE_MODE_MULTIPLE);
+			for (int i = 0; i < listView.getCount(); ++i) {
+				listView.setItemChecked(i, false);
+			}
+			listView.setupLongClickListener(0);
+			llBottom.setVisibility(View.GONE);
+			return false;
+		}
+
+		@Override
+		public boolean onActionItemClicked(ActionMode mode, MenuItem item) {
+			if (item.getItemId() == R.id.cab_delete) {
+				long[] itemsChecked = listView.getCheckedItemIds();
+				if (itemsChecked.length > 0) {
+
+					for (int i = itemsChecked.length - 1; i > -1; i--) {
+						alExersicesList.remove((int) itemsChecked[i]);
+						alSetList.remove((int) itemsChecked[i]);
+					}
+
+					adapter.notifyDataSetChanged();
+				}
+
+				for (int i = 0; i < listView.getCount(); ++i) {
+					listView.setItemChecked(i, false);
+				}
+				listView.setChoiceMode(ListView.CHOICE_MODE_SINGLE);
+				listView.setupLongClickListener();
+
+				if (listView.getCount() > 0) {
+					onSelected(0);
+					listView.setItemChecked(0, true);
+					llBottom.setVisibility(View.VISIBLE);
+				}
+
+				mode.finish();
+				return true;
+			}
+			return false;
+		}
+
+		@Override
+		public void onDestroyActionMode(ActionMode mode) {
+			for (int i = 0; i < listView.getCount(); ++i) {
+				listView.setItemChecked(i, false);
+			}
+			listView.setChoiceMode(ListView.CHOICE_MODE_SINGLE);
+			listView.setupLongClickListener();
+			if (listView.getCount() > 0) {
+				onSelected(0);
+				listView.setItemChecked(0, true);
+				llBottom.setVisibility(View.VISIBLE);
+			}
+		}
+	};
 
 }

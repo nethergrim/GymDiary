@@ -22,8 +22,6 @@ import com.google.android.gms.drive.DriveFile;
 import com.google.android.gms.drive.DriveId;
 import com.google.android.gms.drive.OpenFileActivityBuilder;
 import com.nethergrim.combogymdiary.R;
-import com.nethergrim.combogymdiary.R.layout;
-import com.nethergrim.combogymdiary.R.string;
 import com.yandex.metrica.Counter;
 
 public class DriveRestoreActivity extends BaseDriveActivity {

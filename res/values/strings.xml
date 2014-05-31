@@ -13,6 +13,8 @@
     <string name="parsing_error">Error in timer value! It will be set to 60 sec.</string>
     <string name="select_sound_to_play">Select sound to play</string>
     <string name="play_sound">Play sound</string>
+    <string name="please_add_an_exe">Please, add an exercise !!! </string>
+    <string name="delete_exe">Delete exercise</string>
     <string name="play_sound_detailed">Play sound on timer end</string>
     <string name="select_an_exercise">Select an exercise from the list</string>
     <string name="press_back_to_exit">Please click BACK again to exit</string>

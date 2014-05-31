@@ -27,7 +27,6 @@ import android.app.Fragment;
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
-import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.Rect;
 import android.graphics.drawable.BitmapDrawable;
@@ -67,7 +66,7 @@ public class DynamicListView extends ListView {
 
 	private final int SMOOTH_SCROLL_AMOUNT_AT_EDGE = 15;
 	private final int MOVE_DURATION = 150;
-	private final int LINE_THICKNESS = 15;
+	private final int LINE_THICKNESS = 10;
 
 	public ArrayList<String> mList;
 
@@ -113,10 +112,19 @@ public class DynamicListView extends ListView {
 	}
 
 	public void init(Context context) {
-		setOnItemLongClickListener(mOnItemLongClickListener);
+		setupLongClickListener();
 		setOnScrollListener(mScrollListener);
 		DisplayMetrics metrics = context.getResources().getDisplayMetrics();
 		mSmoothScrollAmountAtEdge = (int) (SMOOTH_SCROLL_AMOUNT_AT_EDGE / metrics.density);
+	}
+
+	public void setupLongClickListener() {
+		setOnItemLongClickListener(mOnItemLongClickListener);
+	}
+
+	public void setupLongClickListener(int value) {
+		if (value == 0)
+			setOnItemLongClickListener(null);
 	}
 
 	public void setFragment(Fragment fragment) {
@@ -182,7 +190,7 @@ public class DynamicListView extends ListView {
 		Paint paint = new Paint();
 		paint.setStyle(Paint.Style.STROKE);
 		paint.setStrokeWidth(LINE_THICKNESS);
-		paint.setColor(Color.BLACK);
+		paint.setColor(getResources().getColor(R.color.holo_orange_light));
 
 		can.drawBitmap(bitmap, 0, 0, null);
 		can.drawRect(rect, paint);

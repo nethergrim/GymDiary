@@ -14,15 +14,18 @@
         android:title="@string/add_an_exercise">
     </item>
     <item
+        android:id="@+id/itemDeleteExercise"
+        android:showAsAction="collapseActionView"
+        android:title="@string/delete_exe"/>
+    <item
         android:id="@+id/itemExit"
         android:icon="@drawable/ic_action_accept"
         android:showAsAction="always"
         android:title="@string/finish_training">
     </item>
-    <item 
+    <item
         android:id="@+id/itemAddCommentToTraining"
-        android:title="@string/add_comment_to_training"
         android:showAsAction="collapseActionView"
-        />
+        android:title="@string/add_comment_to_training"/>
 
 </menu>
