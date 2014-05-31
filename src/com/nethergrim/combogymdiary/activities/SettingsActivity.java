@@ -18,6 +18,7 @@ import android.widget.Toast;
 
 import com.nethergrim.combogymdiary.Backuper;
 import com.nethergrim.combogymdiary.DB;
+import com.nethergrim.combogymdiary.DriveRestoreActivity;
 import com.nethergrim.combogymdiary.R;
 import com.nethergrim.combogymdiary.dialogs.DialogRestoreFromBackup;
 import com.nethergrim.combogymdiary.dialogs.DialogRestoreFromBackup.MyInterface;
@@ -153,9 +154,9 @@ public class SettingsActivity extends PreferenceActivity implements MyInterface 
 		Boolean isAtTraining = sp.getBoolean("training_at_progress", false);
 		if (!isAtTraining) {
 
-			// TODO
-			// Intent intent = new Intent(this, DriveRestoreActivity.class);
-			// startActivity(intent);
+			 
+			 Intent intent = new Intent(this, DriveRestoreActivity.class);
+			 startActivity(intent);
 		} else {
 			Toast.makeText(getApplicationContext(),
 					getResources().getString(R.string.error_restoring),

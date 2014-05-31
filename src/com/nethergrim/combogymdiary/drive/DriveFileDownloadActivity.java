@@ -36,7 +36,7 @@
 //		driveId = DriveId.decodeFromString(driveIdStr);
 //
 //	}
-//	
+//
 //	@Override
 //	public void onBackPressed() {
 //	}
@@ -105,7 +105,12 @@
 //			finish();
 //
 //		}
-//		
+//
+//	}
+//
+//	@Override
+//	public void onConnectionSuspended(int arg0) {
+//		// TODO Auto-generated method stub
 //		
 //	}
 //

@@ -2271,9 +2271,9 @@ containing a value of this type.
         public static final int ex_2_9=0x7f060100;
         public static final int ex_3_0=0x7f060103;
         public static final int ex_3_1=0x7f060104;
-        public static final int ex_3_10=0x7f060126;
-        public static final int ex_3_11=0x7f060127;
-        public static final int ex_3_12=0x7f060128;
+        public static final int ex_3_10=0x7f060127;
+        public static final int ex_3_11=0x7f060128;
+        public static final int ex_3_12=0x7f060129;
         public static final int ex_3_2=0x7f060105;
         public static final int ex_3_3=0x7f060106;
         public static final int ex_3_4=0x7f060107;
@@ -2387,6 +2387,7 @@ containing a value of this type.
         public static final int timer_default_state=0x7f060067;
         public static final int title_activity_base_drive=0x7f060122;
         public static final int title_activity_drive_backup=0x7f060125;
+        public static final int title_activity_drive_restore=0x7f060126;
         public static final int title_activity_statistics=0x7f06011d;
         public static final int title_activity_temp=0x7f0600d9;
         public static final int title_activity_test=0x7f060121;

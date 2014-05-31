@@ -75,55 +75,6 @@
             android:name="com.nethergrim.combogymdiary.TrainingService"
             android:process=":myservice" >
         </service>
-        <service
-            android:name="com.nethergrim.combogymdiary.drive.BasicDriveService"
-            android:process=":driveBackup" >
-        </service>
-        <service
-            android:name="com.nethergrim.combogymdiary.drive.DriveAutoBackupService"
-            android:process=":driveBackup" >
-        </service>
-
-        <activity
-            android:name="com.nethergrim.combogymdiary.drive.DriveBackupActivity"
-            android:parentActivityName="com.nethergrim.combogymdiary.activities.SettingsActivity"
-            android:screenOrientation="portrait"
-            android:theme="@android:style/Theme.Light.NoTitleBar.Fullscreen" >
-            <meta-data
-                android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.nethergrim.combogymdiary.SettingsActivity" />
-        </activity>
-        <activity
-            android:name="com.nethergrim.combogymdiary.drive.DriveRestoreActivity"
-            android:parentActivityName="com.nethergrim.combogymdiary.activities.SettingsActivity"
-            android:screenOrientation="portrait"
-            android:theme="@android:style/Theme.Light.NoTitleBar.Fullscreen" >
-            <meta-data
-                android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.nethergrim.combogymdiary.SettingsActivity" />
-        </activity>
-        <activity
-            android:name="com.nethergrim.combogymdiary.drive.DriveFileDownloadActivity"
-            android:configChanges="keyboardHidden|orientation|screenSize"
-            android:parentActivityName="com.nethergrim.combogymdiary.drive.DriveRestoreActivity"
-            android:screenOrientation="portrait"
-            android:theme="@android:style/Theme.Light.NoTitleBar.Fullscreen" >
-            <meta-data
-                android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.nethergrim.combogymdiary.DiskRestoreActivity" />
-        </activity>
-        <activity
-            android:name="com.nethergrim.combogymdiary.drive.DriveCreateFolderActivity"
-            android:configChanges="keyboardHidden|orientation|screenSize"
-            android:screenOrientation="portrait"
-            android:theme="@android:style/Theme.Light.NoTitleBar.Fullscreen" >
-        </activity>
-        <activity
-            android:name="com.nethergrim.combogymdiary.drive.DriveAutoBackupActivity"
-            android:configChanges="keyboardHidden|orientation|screenSize"
-            android:screenOrientation="portrait"
-            android:theme="@android:style/Theme.Light.NoTitleBar.Fullscreen" >
-        </activity>
 
         <meta-data
             android:name="metrica:api:key"
@@ -186,10 +137,6 @@
             android:name="com.google.android.gms.ads.AdActivity"
             android:configChanges="keyboard|keyboardHidden|orientation|screenLayout|uiMode|screenSize|smallestScreenSize" />
         <activity
-            android:name="com.nethergrim.combogymdiary.TempActivity"
-            android:label="@string/title_activity_temp" >
-        </activity>
-        <activity
             android:name="com.nethergrim.combogymdiary.TestActivity"
             android:label="@string/title_activity_test" >
         </activity>
@@ -202,6 +149,13 @@
         <activity
             android:name="com.nethergrim.combogymdiary.googledrive.DriveBackupActivity"
             android:label="@string/title_activity_drive_backup"
+            android:screenOrientation="portrait"
+            android:theme="@android:style/Theme.DeviceDefault.Light.NoActionBar" >
+        </activity>
+        <activity
+            android:name="com.nethergrim.combogymdiary.DriveRestoreActivity"
+            android:label="@string/title_activity_drive_restore"
+            android:screenOrientation="portrait"
             android:theme="@android:style/Theme.DeviceDefault.Light.NoActionBar" >
         </activity>
     </application>

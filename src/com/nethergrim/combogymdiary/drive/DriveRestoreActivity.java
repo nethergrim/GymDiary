@@ -67,4 +67,10 @@
 //		startActivity(intent);
 //	}
 //
-//}
+//	@Override
+//	public void onConnectionSuspended(int arg0) {
+//		// TODO Auto-generated method stub
+//		
+//	}
+//
+// }
