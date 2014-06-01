@@ -30,9 +30,8 @@ import android.preference.PreferenceManager;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.util.Log;
+import android.util.SparseBooleanArray;
 import android.view.ActionMode;
-import android.view.ContextMenu;
-import android.view.ContextMenu.ContextMenuInfo;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -43,7 +42,6 @@ import android.view.ViewGroup;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.AdapterView;
-import android.widget.AdapterView.AdapterContextMenuInfo;
 import android.widget.CompoundButton;
 import android.widget.CompoundButton.OnCheckedChangeListener;
 import android.widget.EditText;
@@ -87,7 +85,6 @@ public class TrainingFragment extends Fragment implements
 	private Boolean tglChecked = true, vibrate = false;
 	private EditText etTimer;
 	private DB db;
-	private static final int CM_DELETE_ID = 6;
 	private String[] exersices;
 	private String traName = "", exeName = "", date = "", measureItem = "";
 	private SharedPreferences sp;
@@ -108,7 +105,8 @@ public class TrainingFragment extends Fragment implements
 	private Animation anim = null;
 	private boolean isTrainingAtProgress = false, toPlaySound = false;
 	private ProgressDialog pd;
-	private boolean isActiveDialog = false, blocked = false;
+	private boolean isActiveDialog = false, blocked = false,
+			blockedSelection = false;
 	private DynamicListView listView;
 	private StableArrayAdapter adapter;
 
@@ -270,33 +268,6 @@ public class TrainingFragment extends Fragment implements
 		return v;
 	}
 
-	public void onCreateContextMenu(ContextMenu menu, View v,
-			ContextMenuInfo menuInfo) {
-		super.onCreateContextMenu(menu, v, menuInfo);
-		menu.add(5, CM_DELETE_ID, 0, R.string.delete_from_this_list);
-	}
-
-	public boolean onContextItemSelected(MenuItem item) {
-		AdapterContextMenuInfo acmi = (AdapterContextMenuInfo) item
-				.getMenuInfo();
-		if (item.getItemId() == CM_DELETE_ID) {
-			String nameToDelete = alExersicesList.get(acmi.position);
-			alExersicesList.remove(acmi.position);
-			alSetList.remove(acmi.position);
-			db.deleteExersice(nameToDelete, traName);
-			adapter.notifyDataSetChanged();
-			if (alExersicesList.size() > 0) {
-				onSelected(0);
-				for (int i = 0; i < listView.getCount(); i++) {
-					listView.setItemChecked(i, false);
-				}
-				blocked = true;
-			}
-			return true;
-		}
-		return super.onContextItemSelected(item);
-	}
-
 	private void initSetButtons() {
 		if (set > 0 && currentSet > 0) {
 			llBack.setEnabled(true);
@@ -315,6 +286,8 @@ public class TrainingFragment extends Fragment implements
 	}
 
 	private void onSelected(int position) {
+		if (blockedSelection)
+			return;
 		if (alExersicesList.size() == 0) {
 			llBottom.setVisibility(View.GONE);
 			Toast.makeText(getActivity(), R.string.please_add_an_exe,
@@ -558,7 +531,7 @@ public class TrainingFragment extends Fragment implements
 			tmp[i] = alExersicesList.get(i);
 		}
 		db.updateRec_Training(trainingId, 2, db.convertArrayToString(tmp));
-
+		updateAdapter();
 	}
 
 	private void updateTimer(String tmp) {
@@ -820,6 +793,7 @@ public class TrainingFragment extends Fragment implements
 
 		@Override
 		public boolean onPrepareActionMode(ActionMode mode, Menu menu) {
+			blockedSelection = true;
 			listView.setChoiceMode(ListView.CHOICE_MODE_MULTIPLE);
 			for (int i = 0; i < listView.getCount(); ++i) {
 				listView.setItemChecked(i, false);
@@ -833,19 +807,38 @@ public class TrainingFragment extends Fragment implements
 		public boolean onActionItemClicked(ActionMode mode, MenuItem item) {
 			if (item.getItemId() == R.id.cab_delete) {
 				long[] itemsChecked = listView.getCheckedItemIds();
+				SparseBooleanArray deletingPositions = listView
+						.getCheckedItemPositions();
+
+				for (int i = 0; i < listView.getCount(); i++) {
+					Log.d(LOG_TAG, "*** Deleting ID == " + i + " == "
+							+ deletingPositions.get(i));
+				}
+
+				if (itemsChecked.length >= listView.getCount()) {
+					Toast.makeText(getActivity(),
+							R.string.cannot_delete_all_exe, Toast.LENGTH_LONG)
+							.show();
+					return false;
+				}
+
 				if (itemsChecked.length > 0) {
 
-					for (int i = itemsChecked.length - 1; i > -1; i--) {
-						alExersicesList.remove((int) itemsChecked[i]);
-						alSetList.remove((int) itemsChecked[i]);
+					for (int i = listView.getCount(); i > 0; i--) {
+						if (deletingPositions.get(i - 1)) {
+							alExersicesList.remove(i - 1);
+							alSetList.remove(i - 1);
+						}
 					}
 
-					adapter.notifyDataSetChanged();
+					// adapter.notifyDataSetChanged();
+					updateAdapter();
 				}
 
 				for (int i = 0; i < listView.getCount(); ++i) {
 					listView.setItemChecked(i, false);
 				}
+				blockedSelection = false;
 				listView.setChoiceMode(ListView.CHOICE_MODE_SINGLE);
 				listView.setupLongClickListener();
 
@@ -866,6 +859,7 @@ public class TrainingFragment extends Fragment implements
 			for (int i = 0; i < listView.getCount(); ++i) {
 				listView.setItemChecked(i, false);
 			}
+			blockedSelection = false;
 			listView.setChoiceMode(ListView.CHOICE_MODE_SINGLE);
 			listView.setupLongClickListener();
 			if (listView.getCount() > 0) {
@@ -873,7 +867,14 @@ public class TrainingFragment extends Fragment implements
 				listView.setItemChecked(0, true);
 				llBottom.setVisibility(View.VISIBLE);
 			}
+
 		}
 	};
+
+	protected void updateAdapter() {
+		adapter = new StableArrayAdapter(getActivity(),
+				R.layout.my_training_list_item, alExersicesList);
+		listView.setAdapter(adapter);
+	}
 
 }

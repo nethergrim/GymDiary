@@ -10,6 +10,7 @@
     </string-array>
 
     <string name="parsing_error">Ошбика в значении таймера отдыха. Он будет установлен на 60 секунд.</string>
+    <string name="cannot_delete_all_exe">Нельзя удалить все упражнения!</string>
     <string name="delete_exe">Удалить упражнение</string>
     <string name="please_add_an_exe">Пожалуйста, добавьте упражнения !!! </string>
     <string name="select_sound_to_play">Выберите звук уведомления</string>

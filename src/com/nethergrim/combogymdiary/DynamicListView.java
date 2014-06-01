@@ -215,7 +215,7 @@ public class DynamicListView extends ListView {
 	 */
 	private void updateNeighborViewsForID(long itemID) {
 		int position = getPositionForID(itemID);
-		StableArrayAdapter adapter = ((StableArrayAdapter) getAdapter());
+		StableArrayAdapter adapter = ((StableArrayAdapter) getAdapter()); //FIXME
 		mAboveItemId = adapter.getItemId(position - 1);
 		mBelowItemId = adapter.getItemId(position + 1);
 	}
@@ -223,7 +223,7 @@ public class DynamicListView extends ListView {
 	/** Retrieves the view in the list corresponding to itemID */
 	public View getViewForID(long itemID) {
 		int firstVisiblePosition = getFirstVisiblePosition();
-		StableArrayAdapter adapter = ((StableArrayAdapter) getAdapter());
+		StableArrayAdapter adapter = ((StableArrayAdapter) getAdapter()); //FIXME
 		for (int i = 0; i < getChildCount(); i++) {
 			View v = getChildAt(i);
 			int position = firstVisiblePosition + i;
