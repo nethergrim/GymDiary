@@ -212,6 +212,9 @@ public class BasicMenuActivityNew extends FragmentActivity implements
 
 	public void selectItem(int position) {
 		mDrawerLayout.closeDrawer(mDrawerList);
+		if (previouslyChecked == position) {
+			return;
+		}
 		switch (position) {
 		case 0:
 			FRAGMENT_NUMBER = 0;

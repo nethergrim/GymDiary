@@ -70,9 +70,7 @@ public class DriveRestoreActivity extends BaseDriveActivity {
 				blocked = true;
 				getGoogleApiClient().disconnect();
 				getGoogleApiClient().connect();
-
 			}
-			finish();
 			break;
 		default:
 			super.onActivityResult(requestCode, resultCode, data);

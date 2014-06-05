@@ -12,6 +12,7 @@ import com.google.android.gms.common.GooglePlayServicesUtil;
 import com.google.android.gms.common.api.GoogleApiClient;
 import com.google.android.gms.drive.Drive;
 import com.nethergrim.combogymdiary.R;
+import com.yandex.metrica.Counter;
 
 public abstract class BaseDriveActivity extends Activity implements
 		GoogleApiClient.ConnectionCallbacks,
@@ -75,8 +76,13 @@ public abstract class BaseDriveActivity extends Activity implements
 		Log.i(TAG, "GoogleApiClient connection failed: " + result.toString());
 		if (!result.hasResolution()) {
 			// show the localized error dialog.
-			GooglePlayServicesUtil.getErrorDialog(result.getErrorCode(), this,
-					0).show();
+			try {
+				GooglePlayServicesUtil.getErrorDialog(result.getErrorCode(),
+						this, 0).show();
+			} catch (Exception e) {
+				Counter.sharedInstance().reportError("", e);
+			}
+
 			return;
 		}
 		try {
