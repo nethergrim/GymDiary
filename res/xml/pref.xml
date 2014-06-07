@@ -1,6 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android" >
 
+    <PreferenceCategory android:title="@string/ads" >
+        <Preference
+            android:key="ads"
+            android:summary="@string/remove_ads_detailed"
+            android:title="@string/remove_ads" />
+    </PreferenceCategory>
     <PreferenceCategory android:title="@string/training" >
         <CheckBoxPreference
             android:defaultValue="false"

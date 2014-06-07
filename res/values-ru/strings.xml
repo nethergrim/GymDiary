@@ -8,7 +8,9 @@
         <item>1</item>
         <item>2</item>
     </string-array>
-
+    <string name="ads">Реклама</string>
+	<string name="remove_ads">Убрать рекламу</string>
+	<string name="remove_ads_detailed">Убрать рекламу за 2$ навсегда!</string>
     <string name="parsing_error">Ошбика в значении таймера отдыха. Он будет установлен на 60 секунд.</string>
     <string name="cannot_delete_all_exe">Нельзя удалить все упражнения!</string>
     <string name="delete_exe">Удалить упражнение</string>

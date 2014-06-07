@@ -9,7 +9,9 @@
         <item>1</item>
         <item>2</item>
     </string-array>
-
+    <string name="ads">Ads</string>
+	<string name="remove_ads">Remove ads</string>
+	<string name="remove_ads_detailed">Remove ads for 2$ forever!</string>
     <string name="parsing_error">Error in timer value! It will be set to 60 sec.</string>
     <string name="cannot_delete_all_exe">You can not remove all of the exercises</string>
     <string name="select_sound_to_play">Select sound to play</string>

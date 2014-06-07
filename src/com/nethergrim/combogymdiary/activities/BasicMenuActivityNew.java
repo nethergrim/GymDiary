@@ -30,6 +30,7 @@ import android.widget.Toast;
 import com.google.android.gms.ads.AdListener;
 import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.AdView;
+import com.nethergrim.combogymdiary.AdEnabler;
 import com.nethergrim.combogymdiary.Backuper;
 import com.nethergrim.combogymdiary.DB;
 import com.nethergrim.combogymdiary.R;
@@ -167,15 +168,18 @@ public class BasicMenuActivityNew extends FragmentActivity implements
 		if (savedInstanceState == null) {
 			selectItem(0);
 		}
-		adView = (AdView) this.findViewById(R.id.adView);
-		AdRequest adRequest = new AdRequest.Builder().build();
-		adView.loadAd(adRequest);
-		adView.setAdListener(new AdListener() {
-			@Override
-			public void onAdLoaded() {
-				adView.setVisibility(View.VISIBLE);
-			}
-		});
+
+		if (!AdEnabler.getIsPaid()) {
+			adView = (AdView) this.findViewById(R.id.adView);
+			AdRequest adRequest = new AdRequest.Builder().build();
+			adView.loadAd(adRequest);
+			adView.setAdListener(new AdListener() {
+				@Override
+				public void onAdLoaded() {
+					adView.setVisibility(View.VISIBLE);
+				}
+			});
+		}
 	}
 
 	@Override
@@ -297,14 +301,20 @@ public class BasicMenuActivityNew extends FragmentActivity implements
 	@Override
 	protected void onResume() {
 		super.onResume();
-		adView.resume();
+		if (!AdEnabler.getIsPaid()) {
+			adView.resume();
+		}
 		Counter.sharedInstance().onResumeActivity(this);
 	}
 
 	@Override
 	protected void onPause() {
-		if (!(adView == null))
-			adView.pause();
+
+		if (!AdEnabler.getIsPaid()) {
+			if (!(adView == null))
+				adView.pause();
+		}
+
 		super.onPause();
 		Counter.sharedInstance().onPauseActivity(this);
 	}
@@ -475,7 +485,9 @@ public class BasicMenuActivityNew extends FragmentActivity implements
 
 	@Override
 	public void onDestroy() {
-		adView.destroy();
+		if (!AdEnabler.getIsPaid()) {
+			adView.destroy();
+		}
 		super.onDestroy();
 	}
 

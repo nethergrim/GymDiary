@@ -1,13 +1,23 @@
 package com.nethergrim.combogymdiary.activities;
 
+import java.util.ArrayList;
+
 import android.app.Activity;
+import android.content.ComponentName;
+import android.content.Context;
 import android.content.Intent;
+import android.content.ServiceConnection;
 import android.content.SharedPreferences;
 import android.database.Cursor;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.os.IBinder;
+import android.os.RemoteException;
 import android.preference.PreferenceManager;
+import android.util.Log;
 
+import com.android.vending.billing.IInAppBillingService;
+import com.nethergrim.combogymdiary.AdEnabler;
 import com.nethergrim.combogymdiary.DB;
 import com.nethergrim.combogymdiary.R;
 import com.yandex.metrica.Counter;
@@ -19,16 +29,30 @@ public class StartActivity extends Activity {
 	private DB db;
 	private final static String DATABASE_FILLED = "database_filled";
 	private InitTask task;
-	
 
-	public static boolean getTest(){
+	private IInAppBillingService mService;
+
+	private ServiceConnection mServiceConn = new ServiceConnection() {
+		@Override
+		public void onServiceDisconnected(ComponentName name) {
+			mService = null;
+		}
+
+		@Override
+		public void onServiceConnected(ComponentName name, IBinder service) {
+			mService = IInAppBillingService.Stub.asInterface(service);
+			checkAdPaid();
+		}
+	};
+
+	public static boolean getTest() {
 		return TEST;
 	}
-	
-	public static void setTest(boolean ifTest){
+
+	public static void setTest(boolean ifTest) {
 		TEST = ifTest;
 	}
-	
+
 	private void goNext() {
 		Intent gotoStartTraining = new Intent(this, BasicMenuActivityNew.class);
 		startActivity(gotoStartTraining);
@@ -67,6 +91,55 @@ public class StartActivity extends Activity {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main);
+		bindService(new Intent(
+				"com.android.vending.billing.InAppBillingService.BIND"),
+				mServiceConn, Context.BIND_AUTO_CREATE);
+		// checkAdPaid();
+	}
+
+	private void checkAdPaid() {
+
+		try {
+			Bundle ownedItems = mService.getPurchases(3, getPackageName(),
+					"inapp", null);
+
+			int response = ownedItems.getInt("RESPONSE_CODE");
+			if (response == 0) {
+//				ArrayList<String> ownedSkus = ownedItems
+//						.getStringArrayList("INAPP_PURCHASE_ITEM_LIST");
+				ArrayList<String> purchaseDataList = ownedItems
+						.getStringArrayList("INAPP_PURCHASE_DATA_LIST");
+				// ArrayList<String> signatureList = ownedItems
+				// .getStringArrayList("INAPP_DATA_SIGNATURE");
+				// String continuationToken = ownedItems
+				// .getString("INAPP_CONTINUATION_TOKEN");
+
+				Log.d("myLogs", "purchaseDataList.size() == "
+						+ purchaseDataList.size());
+				for (int i = 0; i < purchaseDataList.size(); ++i) {
+					String purchaseData = purchaseDataList.get(i);
+					Log.d("myLogs", "purchaseData[" + i + "] == "
+							+ purchaseData);
+					if (purchaseData == "remove_ad") {
+						AdEnabler.setPaid(true);
+					}
+
+				}
+
+				if (AdEnabler.getIsPaid()
+						&& !PreferenceManager.getDefaultSharedPreferences(this)
+								.getBoolean("ad", false)) {
+					Counter.sharedInstance()
+							.reportEvent(
+									"AdEnabler.getIsPaid() && !PreferenceManager.getDefaultSharedPreferences(this).getBoolean(\"ad\", false)");
+				}
+
+			}
+
+		} catch (RemoteException e) {
+			Counter.sharedInstance().reportError("", e);
+		}
+
 	}
 
 	private void initTable() {
@@ -119,6 +192,9 @@ public class StartActivity extends Activity {
 	protected void onDestroy() {
 		super.onDestroy();
 		db.close();
+		if (mService != null) {
+			unbindService(mServiceConn);
+		}
 	}
 
 	class InitTask extends AsyncTask<Void, Void, Void> {
