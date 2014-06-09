@@ -3,8 +3,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     package="com.nethergrim.combogymdiary"
     android:installLocation="auto"
-    android:versionCode="101"
-    android:versionName="1.4.24" >
+    android:versionCode="103"
+    android:versionName="1.4.25" >
 
     <uses-sdk
         android:minSdkVersion="15"
@@ -159,6 +159,19 @@
             android:screenOrientation="portrait"
             android:theme="@android:style/Theme.DeviceDefault.Light.NoActionBar" >
         </activity>
+
+        <receiver
+            android:name="WidgetStatistics"
+            android:icon="@drawable/ic_launcher"
+            android:label="Example Widget of Training Diary" >
+            <intent-filter>
+                <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
+            </intent-filter>
+
+            <meta-data
+                android:name="android.appwidget.provider"
+                android:resource="@xml/widget_info" />
+        </receiver>
     </application>
 
 </manifest>

@@ -1,13 +1,16 @@
 package com.nethergrim.combogymdiary.activities;
 
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 
 import android.annotation.SuppressLint;
 import android.app.Fragment;
 import android.app.NotificationManager;
+import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
+import android.content.ServiceConnection;
 import android.content.SharedPreferences;
 import android.content.res.Configuration;
 import android.database.Cursor;
@@ -15,11 +18,14 @@ import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.Bundle;
 import android.os.Handler;
+import android.os.IBinder;
+import android.os.RemoteException;
 import android.preference.PreferenceManager;
 import android.support.v4.app.ActionBarDrawerToggle;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
+import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
@@ -27,6 +33,7 @@ import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.Toast;
 
+import com.android.vending.billing.IInAppBillingService;
 import com.google.android.gms.ads.AdListener;
 import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.AdView;
@@ -100,6 +107,21 @@ public class BasicMenuActivityNew extends FragmentActivity implements
 	private AdView adView;
 	private boolean doubleBackToExitPressedOnce = false;
 
+	private IInAppBillingService mService;
+
+	private ServiceConnection mServiceConn = new ServiceConnection() {
+		@Override
+		public void onServiceDisconnected(ComponentName name) {
+			mService = null;
+		}
+
+		@Override
+		public void onServiceConnected(ComponentName name, IBinder service) {
+			mService = IInAppBillingService.Stub.asInterface(service);
+			checkAd();
+		}
+	};
+
 	private CatalogFragment catalogFragment = new CatalogFragment();
 	private ExerciseListFragment exerciseListFragment = new ExerciseListFragment();
 	private HistoryFragment historyFragment = new HistoryFragment();
@@ -119,6 +141,9 @@ public class BasicMenuActivityNew extends FragmentActivity implements
 		super.onCreate(savedInstanceState);
 		db = new DB(this);
 		db.open();
+		bindService(new Intent(
+				"com.android.vending.billing.InAppBillingService.BIND"),
+				mServiceConn, Context.BIND_AUTO_CREATE);
 		setContentView(R.layout.menu);
 		initStrings();
 		mDrawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
@@ -169,17 +194,66 @@ public class BasicMenuActivityNew extends FragmentActivity implements
 			selectItem(0);
 		}
 
-		if (!AdEnabler.getIsPaid()) {
-			adView = (AdView) this.findViewById(R.id.adView);
-			AdRequest adRequest = new AdRequest.Builder().build();
-			adView.loadAd(adRequest);
-			adView.setAdListener(new AdListener() {
-				@Override
-				public void onAdLoaded() {
-					adView.setVisibility(View.VISIBLE);
-				}
-			});
+		if (sp.getBoolean("ad", false)) {
+			AdEnabler.setPaid(true);
 		}
+
+		adView = (AdView) this.findViewById(R.id.adView);
+		AdRequest adRequest = new AdRequest.Builder().build();
+		adView.loadAd(adRequest);
+		adView.setAdListener(new AdListener() {
+			@Override
+			public void onAdLoaded() {
+				if (!AdEnabler.IsPaid())
+					adView.setVisibility(View.VISIBLE);
+			}
+		});
+
+	}
+
+	private boolean checkAd() {
+		try {
+			Bundle ownedItems = mService.getPurchases(3, getPackageName(),
+					"inapp", null);
+
+			int response = ownedItems.getInt("RESPONSE_CODE");
+			if (response == 0) {
+				ArrayList<String> purchaseDataList = ownedItems
+						.getStringArrayList("INAPP_PURCHASE_DATA_LIST");
+				Log.d("myLogs", "purchaseDataList.size() == "
+						+ purchaseDataList.size());
+
+				if (purchaseDataList.size() > 0) {
+					AdEnabler.setPaid(true);
+					PreferenceManager.getDefaultSharedPreferences(this).edit()
+							.putBoolean("ad", true).apply();
+					Counter.sharedInstance()
+							.reportEvent("checkAd() true, paid");
+					return true;
+				} else if (purchaseDataList.size() == 0) {
+					AdEnabler.setPaid(false);
+
+					PreferenceManager.getDefaultSharedPreferences(this).edit()
+							.putBoolean("ad", false).apply();
+					Counter.sharedInstance().reportEvent(
+							"checkAd() false, not paid");
+					return false;
+				}
+
+				if (AdEnabler.IsPaid()
+						&& !PreferenceManager.getDefaultSharedPreferences(this)
+								.getBoolean("ad", false)) {
+					Counter.sharedInstance()
+							.reportEvent(
+									"AdEnabler.getIsPaid() && !PreferenceManager.getDefaultSharedPreferences(this).getBoolean(\"ad\", false)");
+				}
+
+			}
+
+		} catch (RemoteException e) {
+			Counter.sharedInstance().reportError("", e);
+		}
+		return false;
 	}
 
 	@Override
@@ -301,8 +375,12 @@ public class BasicMenuActivityNew extends FragmentActivity implements
 	@Override
 	protected void onResume() {
 		super.onResume();
-		if (!AdEnabler.getIsPaid()) {
+		AdEnabler.setPaid(PreferenceManager.getDefaultSharedPreferences(this)
+				.getBoolean("ad", false));
+		if (!AdEnabler.IsPaid() && adView != null) {
 			adView.resume();
+		} else if (adView != null) {
+			adView.setVisibility(View.GONE);
 		}
 		Counter.sharedInstance().onResumeActivity(this);
 	}
@@ -310,7 +388,7 @@ public class BasicMenuActivityNew extends FragmentActivity implements
 	@Override
 	protected void onPause() {
 
-		if (!AdEnabler.getIsPaid()) {
+		if (!AdEnabler.IsPaid()) {
 			if (!(adView == null))
 				adView.pause();
 		}
@@ -485,8 +563,11 @@ public class BasicMenuActivityNew extends FragmentActivity implements
 
 	@Override
 	public void onDestroy() {
-		if (!AdEnabler.getIsPaid()) {
+		if (!AdEnabler.IsPaid()) {
 			adView.destroy();
+		}
+		if (mService != null) {
+			unbindService(mServiceConn);
 		}
 		super.onDestroy();
 	}

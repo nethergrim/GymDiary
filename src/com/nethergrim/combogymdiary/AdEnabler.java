@@ -8,7 +8,7 @@ public  class AdEnabler {
 		isPaid = paid;
 	}
 	
-	public static boolean getIsPaid(){
+	public static boolean IsPaid(){
 		return isPaid;
 	}
 	

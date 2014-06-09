@@ -94,7 +94,7 @@
             android:weightSum="5" >
 
             <TextView
-                android:id="@+id/textView1"
+                android:id="@+id/tvWidget2"
                 android:layout_width="0dip"
                 android:layout_height="wrap_content"
                 android:layout_weight="1.2" />

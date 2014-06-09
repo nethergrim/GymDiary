@@ -15,7 +15,7 @@
      distributed under the License is distributed on an "AS IS" BASIS,
      WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
      See the License for the specific language governing permissions and
-     limitations under the License.
+     limitations under the License.
 -->
 
 <resources>
@@ -34,10 +34,11 @@
     <color name="holo_orange_dark">#FF8800</color>
     <color name="holo_red_light">#FF4444</color>
     <color name="holo_red_dark">#CC0000</color>
-    <color name="dark_gray_google">#A6ACAA</color>
+    <color name="gray_google_light">#A6A6A6</color>
+    <color name="gray_middle">#7A7A7A</color>
     <color name="white">#ffffff</color>
-    <color name="light_gray_google">#E3EAE3</color>
-    <color name="dark_gray">#575757</color>
-    <color name="light_gray_background">#E3E4E6</color>
+    <color name="white_alpha_30">#CCFFFFFF</color>
+    <color name="gray_dark">#575757</color>
+    <color name="gray_light_background">#E3E3E3</color>
 
 </resources>

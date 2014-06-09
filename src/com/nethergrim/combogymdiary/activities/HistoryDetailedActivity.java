@@ -135,7 +135,7 @@ public class HistoryDetailedActivity extends Activity {
 		scrollView.addView(llMain, linLayoutParam);
 		llMain.setGravity(Gravity.CENTER);
 
-		int color = getResources().getColor(R.color.dark_gray);
+		int color = getResources().getColor(R.color.gray_dark);
 		if (cursor.moveToFirst()) {
 			do {
 

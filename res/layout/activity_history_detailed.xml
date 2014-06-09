@@ -2,7 +2,7 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/light_gray_background"
+    android:background="@color/gray_light_background"
     android:padding="8dp" >
 
     <TextView
@@ -14,7 +14,7 @@
         android:layout_alignParentTop="true"
         android:background="@drawable/card"
         android:gravity="center_horizontal"
-        android:textColor="@color/dark_gray"
+        android:textColor="@color/gray_dark"
         android:textSize="17sp" />
 
     <TextView
@@ -28,7 +28,7 @@
         android:background="@drawable/card"
         android:gravity="center_horizontal"
         android:visibility="gone"
-        android:textColor="@color/dark_gray"
+        android:textColor="@color/gray_dark"
         android:textSize="17sp" />
 
     <FrameLayout

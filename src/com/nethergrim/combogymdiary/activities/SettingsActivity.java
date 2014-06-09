@@ -3,8 +3,10 @@ package com.nethergrim.combogymdiary.activities;
 import java.math.BigInteger;
 import java.security.SecureRandom;
 import java.util.Random;
+
 import org.json.JSONException;
 import org.json.JSONObject;
+
 import android.annotation.SuppressLint;
 import android.app.ActionBar;
 import android.app.Activity;
@@ -28,6 +30,7 @@ import android.preference.PreferenceManager;
 import android.util.Log;
 import android.view.MenuItem;
 import android.widget.Toast;
+
 import com.android.vending.billing.IInAppBillingService;
 import com.nethergrim.combogymdiary.AdEnabler;
 import com.nethergrim.combogymdiary.Backuper;
@@ -49,6 +52,7 @@ public class SettingsActivity extends PreferenceActivity implements MyInterface 
 	private final static int REQUEST_CODE_GET_FILE_FOR_RESTORE = 133;
 	private SharedPreferences sp;
 	private IInAppBillingService mService;
+	private Preference btnRemoveAds;
 
 	private static final char[] symbols = new char[36];
 
@@ -179,8 +183,8 @@ public class SettingsActivity extends PreferenceActivity implements MyInterface 
 					}
 				});
 
-		Preference btnRemoveAds = (Preference) findPreference("ads");
-		if (AdEnabler.getIsPaid()) {
+		btnRemoveAds = (Preference) findPreference("ads");
+		if (AdEnabler.IsPaid()) {
 			btnRemoveAds.setEnabled(false);
 		}
 		btnRemoveAds
@@ -194,8 +198,6 @@ public class SettingsActivity extends PreferenceActivity implements MyInterface 
 	}
 
 	protected void removeAds() {
-		// TODO Auto-generated method stub
-
 		RandomString randomString = new RandomString(36);
 		String payload = randomString.nextString();
 		try {
@@ -288,11 +290,7 @@ public class SettingsActivity extends PreferenceActivity implements MyInterface 
 	protected void onActivityResult(int requestCode, int resultCode, Intent data) {
 
 		if (requestCode == 1001) {
-			// int responseCode = data.getIntExtra("RESPONSE_CODE", 0);
 			String purchaseData = data.getStringExtra("INAPP_PURCHASE_DATA");
-			// String dataSignature =
-			// data.getStringExtra("INAPP_DATA_SIGNATURE");
-
 			if (resultCode == RESULT_OK) {
 				try {
 					JSONObject jo = new JSONObject(purchaseData);

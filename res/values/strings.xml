@@ -9,6 +9,8 @@
         <item>1</item>
         <item>2</item>
     </string-array>
+    <string name="fav_exercise">Favourite exercise</string>
+    <string name="none">None</string>
     <string name="ads">Ads</string>
 	<string name="remove_ads">Remove ads</string>
 	<string name="remove_ads_detailed">Remove ads for 2$ forever!</string>

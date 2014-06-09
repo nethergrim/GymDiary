@@ -42,7 +42,7 @@
         android:layout_height="wrap_content"
         android:layout_above="@id/etTimerValue"
         android:layout_alignParentLeft="true"
-        android:layout_below="@+id/textView1"
+        android:layout_below="@+id/tvWidget2"
         android:layout_marginBottom="4dp"
         android:layout_marginLeft="8dp"
         android:layout_marginRight="8dp"
@@ -50,7 +50,7 @@
     </ListView>
 
     <TextView
-        android:id="@+id/textView1"
+        android:id="@+id/tvWidget2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignLeft="@+id/listView1"

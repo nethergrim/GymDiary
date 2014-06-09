@@ -7,7 +7,7 @@
             android:shape="rectangle" >
             <corners android:radius="2dp" />
 
-            <solid android:color="#ccc" />
+            <solid android:color="#32ffffff" />
         </shape>
     </item>
     <item android:bottom="2dp">
@@ -16,13 +16,13 @@
             android:shape="rectangle" >
             <corners android:radius="2dp" />
 
-            <solid android:color="@color/white" />
+            <solid android:color="#32ffffff" />
 
             <padding
-                android:bottom="8dp"
-                android:left="8dp"
-                android:right="8dp"
-                android:top="8dp" />
+                android:bottom="6dp"
+                android:left="6dp"
+                android:right="6dp"
+                android:top="6dp" />
         </shape>
     </item>
 

@@ -118,7 +118,7 @@ public class DB {
 		return mDB.query(DB_EXE_TABLE, null, null, null, null, null, null);
 	}
 
-	public Cursor getData_Exe_GroupBy(String groupBy) {
+	public Cursor getDataExercises(String groupBy) {
 
 		return mDB.query(DB_EXE_TABLE, null, null, null, groupBy, null, null);
 	}
@@ -136,7 +136,7 @@ public class DB {
 		}
 	}
 
-	public Cursor getData_Main_GroupBy(String groupBy) {
+	public Cursor getDataMain(String groupBy) {
 		return mDB.query(DB_MAIN_TABLE, null, null, null, groupBy, null, null);
 	}
 
