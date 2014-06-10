@@ -29,7 +29,6 @@ import android.os.Vibrator;
 import android.preference.PreferenceManager;
 import android.text.Editable;
 import android.text.TextWatcher;
-import android.util.Log;
 import android.util.SparseBooleanArray;
 import android.view.ActionMode;
 import android.view.LayoutInflater;
@@ -149,7 +148,6 @@ public class TrainingFragment extends Fragment implements
 
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		Log.d(LOG_TAG, "training fragment onCreate");
 		setHasOptionsMenu(true);
 		setRetainInstance(true);
 		db = new DB(getActivity());
@@ -175,7 +173,6 @@ public class TrainingFragment extends Fragment implements
 
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
 			Bundle savedInstanceState) {
-		Log.d(LOG_TAG, "training fragment onCreateView");
 		View v = inflater.inflate(
 				R.layout.training_at_progress_new_wheel_new_list, null);
 		llTimerProgress = (LinearLayout) v.findViewById(R.id.llProgressShow);
@@ -331,7 +328,6 @@ public class TrainingFragment extends Fragment implements
 	@SuppressLint("HandlerLeak")
 	public void onResume() {
 		super.onResume();
-		Log.d(LOG_TAG, "training fragment onResume");
 		listView.setKeepScreenOn(!(sp.getBoolean("toTurnOff", false)));
 		vibrate = sp.getBoolean("vibrateOn", true);
 		String vl = sp.getString("vibtateLenght", "2");
@@ -387,7 +383,6 @@ public class TrainingFragment extends Fragment implements
 										RingtoneManager
 												.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION));
 							} else {
-								Log.d(LOG_TAG, "Playing: " + sound);
 								Uri uri = Uri.parse(sound);
 								playSound(getActivity(), uri);
 							}
@@ -434,7 +429,6 @@ public class TrainingFragment extends Fragment implements
 
 	public void onPause() {
 		super.onPause();
-		Log.d(LOG_TAG, "training fragment onPause");
 		sp.edit().putLong(START_TIME, startTime).apply();
 		timerHandler.removeCallbacks(timerRunnable);
 		saveSetsToPreferences();
@@ -765,7 +759,6 @@ public class TrainingFragment extends Fragment implements
 	}
 
 	private void playSound(Context context, Uri sound) {
-		Log.d(LOG_TAG, "playing: " + sound.toString());
 		mMediaPlayer = new MediaPlayer();
 		try {
 			mMediaPlayer.setDataSource(context, sound);
@@ -809,11 +802,6 @@ public class TrainingFragment extends Fragment implements
 				long[] itemsChecked = listView.getCheckedItemIds();
 				SparseBooleanArray deletingPositions = listView
 						.getCheckedItemPositions();
-
-				for (int i = 0; i < listView.getCount(); i++) {
-					Log.d(LOG_TAG, "*** Deleting ID == " + i + " == "
-							+ deletingPositions.get(i));
-				}
 
 				if (itemsChecked.length >= listView.getCount()) {
 					Toast.makeText(getActivity(),

@@ -7,6 +7,7 @@ import java.util.Date;
 import android.annotation.SuppressLint;
 import android.app.Fragment;
 import android.app.NotificationManager;
+import android.appwidget.AppWidgetManager;
 import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
@@ -42,6 +43,7 @@ import com.nethergrim.combogymdiary.Backuper;
 import com.nethergrim.combogymdiary.DB;
 import com.nethergrim.combogymdiary.R;
 import com.nethergrim.combogymdiary.TrainingService;
+import com.nethergrim.combogymdiary.WidgetStatistics;
 import com.nethergrim.combogymdiary.dialogs.DialogAddExercise;
 import com.nethergrim.combogymdiary.dialogs.DialogExitFromTraining.MyInterface;
 import com.nethergrim.combogymdiary.dialogs.DialogInfo;
@@ -486,6 +488,7 @@ public class BasicMenuActivityNew extends FragmentActivity implements
 				R.string.startTrainingButtonString);
 		adapter.notifyDataSetChanged();
 		db.close();
+		WidgetStatistics.updateWidget(this, AppWidgetManager.getInstance(this), sp, sp.getInt("widget_id", -1));
 	}
 
 	@Override
