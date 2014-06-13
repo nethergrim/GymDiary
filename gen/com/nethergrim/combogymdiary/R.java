@@ -661,10 +661,8 @@ containing a value of this type.
         public static final int tab_unselected_pressed_mybarstyle=0x7f0200d9;
         public static final int tab_unselected_pressed_mynewactionbar=0x7f0200da;
         public static final int text_color_selector=0x7f0200db;
-        public static final int wheel_bg=0x7f0200dc;
-        public static final int wheel_bg_holo=0x7f0200dd;
-        public static final int wheel_val=0x7f0200de;
-        public static final int wheel_val_holo=0x7f0200df;
+        public static final int wheel_bg_holo=0x7f0200dc;
+        public static final int wheel_val_holo=0x7f0200dd;
     }
     public static final class id {
         public static final int LL1=0x7f080080;
