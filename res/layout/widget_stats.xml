@@ -2,6 +2,7 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:id="@+id/widget"
     android:background="@drawable/card_half_alpha" >
 
     <LinearLayout
@@ -27,33 +28,41 @@
             android:gravity="center_horizontal"
             android:text="@string/fav_exercise"
             android:textColor="@color/gray_google_light"
-            android:textSize="16sp" />
+            android:textSize="14sp" />
     </LinearLayout>
 
-    <TextView
-        android:id="@+id/tvWidget2"
-        android:layout_width="wrap_content"
+    <LinearLayout
+        android:id="@+id/linearLayout2"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentRight="true"
+        android:background="@drawable/card"
+        android:layout_marginTop="4dp"
+        android:orientation="vertical"
         android:layout_below="@+id/linearLayout1"
-        android:layout_marginTop="6dp"
-        android:background="@drawable/card"
-        android:gravity="center_vertical"
-        android:text="Статистика вчера"
-        android:textColor="@color/gray_middle" />
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true">
 
-    <TextView
-        android:id="@+id/tvWidget3"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/tvWidget2"
-        android:layout_alignRight="@+id/tvWidget2"
-        android:layout_below="@+id/tvWidget2"
-        android:layout_marginTop="6dp"
-        android:background="@drawable/card"
-        android:gravity="center_vertical"
-        android:text="Статистика за эту неделю"
-        android:textColor="@color/gray_middle" />
+        <TextView
+            android:id="@+id/tvWidget2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:textColor="@color/gray_middle"
+            android:textSize="20sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/textView2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_horizontal"
+            android:text="@string/weight_delta"
+            android:textColor="@color/gray_google_light"
+            android:textSize="14sp" />
+    </LinearLayout>
+
+
+
+
 
 </RelativeLayout>

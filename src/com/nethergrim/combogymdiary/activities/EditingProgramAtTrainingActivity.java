@@ -20,202 +20,203 @@ import com.nethergrim.combogymdiary.DB;
 import com.nethergrim.combogymdiary.R;
 
 public class EditingProgramAtTrainingActivity extends FragmentActivity
-		implements LoaderCallbacks<Cursor> {
+        implements LoaderCallbacks<Cursor> {
 
-	private ListView lvMain;
-	private DB db;
-	private long traID = 0;
-	private SimpleCursorAdapter scAdapter;
-	private String traName;
-	private String[] exercisesOld;
-	private boolean ifAddingExe = false;
-	private EditText etName;
+    private ListView lvMain;
+    private DB db;
+    private long traID = 0;
+    private SimpleCursorAdapter scAdapter;
+    private String traName;
+    private String[] exercisesOld;
+    private boolean ifAddingExe = false;
+    private EditText etName;
 
-	@Override
-	public void onConfigurationChanged(Configuration newConfig) {
-		super.onConfigurationChanged(newConfig);
-		initUi();
-	}
+    @Override
+    public void onConfigurationChanged(Configuration newConfig) {
+        super.onConfigurationChanged(newConfig);
+        initUi();
+    }
 
-	private void initUi() {
-		setContentView(R.layout.activity_editing_program_at_training);
-		lvMain = (ListView) findViewById(R.id.lvExers);
-		lvMain.setChoiceMode(ListView.CHOICE_MODE_MULTIPLE);
-		Intent in = getIntent();
-		db = new DB(this);
-		db.open();
-		etName = (EditText) findViewById(R.id.etNewNameOfProgram);
-		ifAddingExe = in.getBooleanExtra("ifAddingExe", false);
-		traName = in.getStringExtra("trName");
-		traID = in.getLongExtra("trID", 0);
-		getActionBar().setDisplayHomeAsUpEnabled(true);
-		getActionBar().setDisplayShowHomeEnabled(false);
-		String[] from = new String[] { DB.EXE_NAME };
-		int[] to = new int[] { android.R.id.text1 };
-		scAdapter = new SimpleCursorAdapter(this,
-				android.R.layout.simple_list_item_multiple_choice, null, from,
-				to, 0);
-		lvMain.setAdapter(scAdapter);
-		getSupportLoaderManager().initLoader(0, null, this);
-		if (ifAddingExe) {
-			etName.setEnabled(false);
-			etName.setText(traName);
-			getActionBar().setTitle(
-					getResources().getString(R.string.add_an_exercise));
-		} else {
-			if (traID > 0) {
-				initData();
-			}
-		}
-	}
+    private void initUi() {
+        setContentView(R.layout.activity_editing_program_at_training);
+        lvMain = (ListView) findViewById(R.id.lvExers);
+        lvMain.setChoiceMode(ListView.CHOICE_MODE_MULTIPLE);
+        Intent in = getIntent();
+        db = new DB(this);
+        db.open();
+        etName = (EditText) findViewById(R.id.etNewNameOfProgram);
+        ifAddingExe = in.getBooleanExtra("ifAddingExe", false);
+        traName = in.getStringExtra("trName");
+        traID = in.getLongExtra("trID", 0);
+        getActionBar().setDisplayHomeAsUpEnabled(true);
+        getActionBar().setDisplayShowHomeEnabled(false);
+        String[] from = new String[]{DB.EXE_NAME};
+        int[] to = new int[]{android.R.id.text1};
+        scAdapter = new SimpleCursorAdapter(this,
+                android.R.layout.simple_list_item_multiple_choice, null, from,
+                to, 0);
+        lvMain.setAdapter(scAdapter);
+        getSupportLoaderManager().initLoader(0, null, this);
+        if (ifAddingExe) {
+            etName.setEnabled(false);
+            etName.setText(traName);
+            getActionBar().setTitle(
+                    getResources().getString(R.string.add_an_exercise));
+        } else {
+            if (traID > 0) {
+                initData();
+            }
+        }
+    }
 
-	@Override
-	protected void onCreate(Bundle savedInstanceState) {
-		super.onCreate(savedInstanceState);
-		initUi();
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        initUi();
 
-	}
+    }
 
-	@Override
-	protected void onResume() {
-		getSupportLoaderManager().getLoader(0).forceLoad();
+    @Override
+    protected void onResume() {
+        getSupportLoaderManager().getLoader(0).forceLoad();
 
-		super.onResume();
-	}
+        super.onResume();
+    }
 
-	@Override
-	public Loader<Cursor> onCreateLoader(int id, Bundle bndl) {
-		return new MyCursorLoader(this, db);
-	}
+    @Override
+    public Loader<Cursor> onCreateLoader(int id, Bundle bndl) {
+        return new MyCursorLoader(this, db);
+    }
 
-	@Override
-	public void onLoadFinished(Loader<Cursor> loader, Cursor cursor) {
-		scAdapter.swapCursor(cursor);
-		if (!ifAddingExe) {
-			setClicked(cursor);
-		}
+    @Override
+    public void onLoadFinished(Loader<Cursor> loader, Cursor cursor) {
+        scAdapter.swapCursor(cursor);
+        if (!ifAddingExe) {
+            setClicked(cursor);
+        }
 
-	}
+    }
 
-	@Override
-	public void onLoaderReset(Loader<Cursor> loader) {
-		scAdapter.swapCursor(null);
-	}
+    @Override
+    public void onLoaderReset(Loader<Cursor> loader) {
+        scAdapter.swapCursor(null);
+    }
 
-	static class MyCursorLoader extends CursorLoader {
+    private void initData() {
+        String[] args = {"" + traID};
+        Cursor c = db.getDataTrainings(null, DB.COLUMN_ID + "=?", args, null,
+                null, null);
+        c.moveToFirst();
+        getActionBar().setTitle(
+                getResources().getString(R.string.editing_program) + ":  "
+                        + c.getString(1)
+        );
+        etName.setText(c.getString(1));
+        exercisesOld = db.convertStringToArray(c.getString(2));
+    }
 
-		DB db;
-		Cursor cursor;
+    private void setClicked(Cursor c) {
 
-		public MyCursorLoader(Context context, DB db) {
-			super(context);
-			this.db = db;
-		}
+        if (c.moveToFirst()) {
+            int i = 0;
+            do {
+                for (int j = 0; j < exercisesOld.length; j++) {
 
-		@Override
-		public Cursor loadInBackground() {
-			cursor = db.getDataExe(null, null, null, null, null, DB.EXE_NAME);
-			return cursor;
-		}
-	}
+                    if (c.getString(2).equals(exercisesOld[j])) {
+                        Log.d("myLogs", " c.getString(2) == " + c.getString(2)
+                                + " == exercisesOld[j] == " + exercisesOld[j]);
+                        lvMain.setItemChecked(i, true);
+                    }
+                }
+                i++;
+            } while (c.moveToNext());
+        }
 
-	private void initData() {
-		String[] args = { "" + traID };
-		Cursor c = db.getDataTrainings(null, DB.COLUMN_ID + "=?", args, null,
-				null, null);
-		c.moveToFirst();
-		getActionBar().setTitle(
-				getResources().getString(R.string.editing_program) + ":  "
-						+ c.getString(1));
-		etName.setText(c.getString(1));
-		exercisesOld = db.convertStringToArray(c.getString(2));
-	}
+    }
 
-	private void setClicked(Cursor c) {
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.editing_program_at_training, menu);
+        return true;
+    }
 
-		if (c.moveToFirst()) {
-			int i = 0;
-			do {
-				for (int j = 0; j < exercisesOld.length; j++) {
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case R.id.actionSaveEdited:
+                if (ifAddingExe) {
+                    addExe();
+                } else {
+                    editProgram();
+                }
+                break;
+            case android.R.id.home:
+                super.onBackPressed();
+                return true;
+        }
+        return super.onOptionsItemSelected(item);
+    }
 
-					if (c.getString(2).equals(exercisesOld[j])) {
-						Log.d("myLogs", " c.getString(2) == " + c.getString(2)
-								+ " == exercisesOld[j] == " + exercisesOld[j]);
-						lvMain.setItemChecked(i, true);
-					}
-				}
-				i++;
-			} while (c.moveToNext());
-		}
+    private void addExe() {
+        long[] arrIDs = lvMain.getCheckedItemIds();
+        Intent intent = new Intent();
+        setResult(RESULT_OK, intent);
+        intent.putExtra("return_array_of_exersices", arrIDs);
+        finish();
+    }
 
-	}
+    private void editProgram() {
+        long[] arrIDs = lvMain.getCheckedItemIds();
+        Cursor cur = db.getDataExe(null, null, null, null, null, null);
+        String[] args = new String[arrIDs.length];
+        if (cur.moveToFirst()) {
+            int i = 0;
+            do {
+                for (int j = 0; j < arrIDs.length; j++) {
+                    if (cur.getInt(0) == arrIDs[j]) {
+                        args[i] = cur.getString(2);
+                        i++;
+                    }
+                }
+            } while (cur.moveToNext());
+            String newW = db.convertArrayToString(args);
+            db.updateRec_Training((int) traID, 1, etName.getText().toString());
+            db.updateRec_Training((int) traID, 2, newW);
+        }
+        Intent intent = new Intent();
+        setResult(RESULT_OK, intent);
+        finish();
 
-	@Override
-	public boolean onCreateOptionsMenu(Menu menu) {
-		getMenuInflater().inflate(R.menu.editing_program_at_training, menu);
-		return true;
-	}
+    }
 
-	@Override
-	public boolean onOptionsItemSelected(MenuItem item) {
-		switch (item.getItemId()) {
-		case R.id.actionSaveEdited:
-			if (ifAddingExe) {
-				addExe();
-			} else {
-				editProgram();
-			}
-			break;
-		case android.R.id.home:
-			super.onBackPressed();
-			return true;
-		}
-		return super.onOptionsItemSelected(item);
-	}
+    @Override
+    public void onBackPressed() {
+        if (ifAddingExe == false) {
+            editProgram();
+        } else {
+            addExe();
+        }
+    }
 
-	private void addExe() {
-		long[] arrIDs = lvMain.getCheckedItemIds();
-		Intent intent = new Intent();
-		setResult(RESULT_OK, intent);
-		intent.putExtra("return_array_of_exersices", arrIDs);
-		finish();
-	}
+    protected void onDestroy() {
+        super.onDestroy();
+        db.close();
+    }
 
-	private void editProgram() {
-		long[] arrIDs = lvMain.getCheckedItemIds();
-		Cursor cur = db.getDataExe(null, null, null, null, null, null);
-		String[] args = new String[arrIDs.length];
-		if (cur.moveToFirst()) {
-			int i = 0;
-			do {
-				for (int j = 0; j < arrIDs.length; j++) {
-					if (cur.getInt(0) == arrIDs[j]) {
-						args[i] = cur.getString(2);
-						i++;
-					}
-				}
-			} while (cur.moveToNext());
-			String newW = db.convertArrayToString(args);
-			db.updateRec_Training((int) traID, 1, etName.getText().toString());
-			db.updateRec_Training((int) traID, 2, newW);
-		}
-		Intent intent = new Intent();
-		setResult(RESULT_OK, intent);
-		finish();
+    static class MyCursorLoader extends CursorLoader {
 
-	}
+        DB db;
+        Cursor cursor;
 
-	@Override
-	public void onBackPressed() {
-		if (ifAddingExe == false) {
-			editProgram();
-		} else {
-			addExe();
-		}
-	}
+        public MyCursorLoader(Context context, DB db) {
+            super(context);
+            this.db = db;
+        }
 
-	protected void onDestroy() {
-		super.onDestroy();
-		db.close();
-	}
+        @Override
+        public Cursor loadInBackground() {
+            cursor = db.getDataExe(null, null, null, null, null, DB.EXE_NAME);
+            return cursor;
+        }
+    }
 }

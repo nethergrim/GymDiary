@@ -11,15 +11,12 @@ import com.nethergrim.combogymdiary.R;
 public class DialogInfo extends DialogFragment {
 
 
-	
-	public View onCreateView(LayoutInflater inflater, ViewGroup container,
-			Bundle savedInstanceState) {
-		getDialog().setTitle(R.string.info);
-		View v = inflater.inflate(R.layout.dialog_info, null);
-		return v;
-	}
-	
-
+    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+                             Bundle savedInstanceState) {
+        getDialog().setTitle(R.string.info);
+        View v = inflater.inflate(R.layout.dialog_info, null);
+        return v;
+    }
 
 
 }

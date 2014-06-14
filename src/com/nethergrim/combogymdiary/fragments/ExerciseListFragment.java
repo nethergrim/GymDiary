@@ -32,177 +32,177 @@ import com.nethergrim.combogymdiary.R;
 import com.nethergrim.combogymdiary.dialogs.DialogAddExercise;
 
 public class ExerciseListFragment extends Fragment implements
-		LoaderCallbacks<Cursor> {
+        LoaderCallbacks<Cursor> {
 
-	private ListView listview;
-	public final static String TRAINING_AT_PROGRESS = "training_at_progress";
-	private static final int CM_DELETE_ID = 1;
-	private static final int CM_EDIT_ID = 2;
-	private DB db;
-	private SimpleCursorAdapter scAdapter;
-	private SharedPreferences sp;
-	private int LOADER_ID = 1;
-	private OnExerciseEdit mListener;
+    public final static String TRAINING_AT_PROGRESS = "training_at_progress";
+    private static final int CM_DELETE_ID = 1;
+    private static final int CM_EDIT_ID = 2;
+    private ListView listview;
+    private DB db;
+    private SimpleCursorAdapter scAdapter;
+    private SharedPreferences sp;
+    private int LOADER_ID = 1;
+    private OnExerciseEdit mListener;
 
-	@Override
-	public void onAttach(Activity activity) {
-		super.onAttach(activity);
-		try {
-			mListener = (OnExerciseEdit) activity;
-		} catch (ClassCastException e) {
-			throw new ClassCastException(activity.toString()
-					+ " must implement OnHeadlineSelectedListener");
-		}
-	}
+    @Override
+    public void onAttach(Activity activity) {
+        super.onAttach(activity);
+        try {
+            mListener = (OnExerciseEdit) activity;
+        } catch (ClassCastException e) {
+            throw new ClassCastException(activity.toString()
+                    + " must implement OnHeadlineSelectedListener");
+        }
+    }
 
-	public void onCreate(Bundle savedInstanceState) {
-		super.onCreate(savedInstanceState);
-		setHasOptionsMenu(true);
-		setRetainInstance(true);
-		db = new DB(getActivity());
-		db.open();
-		String[] from = new String[] { DB.EXE_NAME };
-		int[] to = new int[] { R.id.tvText, };
-		scAdapter = new SimpleCursorAdapter(getActivity(),
-				R.layout.my_list_item2, null, from, to, 0);
-	}
+    public void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setHasOptionsMenu(true);
+        setRetainInstance(true);
+        db = new DB(getActivity());
+        db.open();
+        String[] from = new String[]{DB.EXE_NAME};
+        int[] to = new int[]{R.id.tvText,};
+        scAdapter = new SimpleCursorAdapter(getActivity(),
+                R.layout.my_list_item2, null, from, to, 0);
+    }
 
-	public View onCreateView(LayoutInflater inflater, ViewGroup container,
-			Bundle savedInstanceState) {
-		View v = inflater.inflate(R.layout.exersises_list, null);
-		getActivity().getActionBar().setTitle(
-				R.string.excersisiesListButtonString);
-		listview = (ListView) v.findViewById(R.id.listView11);
-		listview.setAdapter(scAdapter);
-		listview.setOnItemClickListener(new OnItemClickListener() {
-			public void onItemClick(AdapterView<?> parent, View view,
-					int position, long id) {
-				goToEditExe(position, id);
-			}
-		});
-		((FragmentActivity) getActivity()).getSupportLoaderManager()
-				.initLoader(LOADER_ID, null, this);
-		return v;
-	}
+    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+                             Bundle savedInstanceState) {
+        View v = inflater.inflate(R.layout.exersises_list, null);
+        getActivity().getActionBar().setTitle(
+                R.string.excersisiesListButtonString);
+        listview = (ListView) v.findViewById(R.id.listView11);
+        listview.setAdapter(scAdapter);
+        listview.setOnItemClickListener(new OnItemClickListener() {
+            public void onItemClick(AdapterView<?> parent, View view,
+                                    int position, long id) {
+                goToEditExe(position, id);
+            }
+        });
+        ((FragmentActivity) getActivity()).getSupportLoaderManager()
+                .initLoader(LOADER_ID, null, this);
+        return v;
+    }
 
-	private void goToEditExe(int position, long ID) {
-		mListener.onExerciseEdit(position, ID);
-	}
+    private void goToEditExe(int position, long ID) {
+        mListener.onExerciseEdit(position, ID);
+    }
 
-	public static interface OnExerciseEdit {
-		public void onExerciseEdit(int pos, long id);
-	}
+    @Override
+    public void onActivityCreated(Bundle savedInstanceState) {
+        super.onActivityCreated(savedInstanceState);
+        registerForContextMenu(listview);
+    }
 
-	@Override
-	public void onActivityCreated(Bundle savedInstanceState) {
-		super.onActivityCreated(savedInstanceState);
-		registerForContextMenu(listview);
-	}
+    public void onResume() {
+        super.onResume();
+        sp = PreferenceManager.getDefaultSharedPreferences(getActivity());
+        ((FragmentActivity) getActivity()).getSupportLoaderManager()
+                .getLoader(LOADER_ID).forceLoad();
+    }
 
-	public void onResume() {
-		super.onResume();
-		sp = PreferenceManager.getDefaultSharedPreferences(getActivity());
-		((FragmentActivity) getActivity()).getSupportLoaderManager()
-				.getLoader(LOADER_ID).forceLoad();
-	}
+    public void onPause() {
+        super.onPause();
+        unregisterForContextMenu(listview);
+    }
 
-	public void onPause() {
-		super.onPause();
-		unregisterForContextMenu(listview);
-	}
+    public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
 
-	public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
+        menu.clear();
+        inflater.inflate(R.menu.exercise_list, menu);
+        super.onCreateOptionsMenu(menu, inflater);
+    }
 
-		menu.clear();
-		inflater.inflate(R.menu.exercise_list, menu);
-		super.onCreateOptionsMenu(menu, inflater);
-	}
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        int id = item.getItemId();
+        if (id == R.id.itemAddNewExe) {
+            DialogAddExercise dialog = new DialogAddExercise();
+            dialog.show(getFragmentManager(), "tag");
+            return true;
+        }
+        return false;
+    }
 
-	@Override
-	public boolean onOptionsItemSelected(MenuItem item) {
-		int id = item.getItemId();
-		if (id == R.id.itemAddNewExe) {
-			DialogAddExercise dialog = new DialogAddExercise();
-			dialog.show(getFragmentManager(), "tag");
-			return true;
-		}
-		return false;
-	}
+    @Override
+    public Loader<Cursor> onCreateLoader(int id, Bundle bndl) {
+        if (id == LOADER_ID)
+            return new MyCursorLoader(getActivity(), db);
+        else
+            return null;
+    }
 
-	@Override
-	public Loader<Cursor> onCreateLoader(int id, Bundle bndl) {
-		if (id == LOADER_ID)
-			return new MyCursorLoader(getActivity(), db);
-		else
-			return null;
-	}
+    @Override
+    public void onLoadFinished(Loader<Cursor> loader, Cursor cursor) {
+        if (!cursor.isClosed()) {
+            scAdapter.swapCursor(cursor);
+        }
+    }
 
-	@Override
-	public void onLoadFinished(Loader<Cursor> loader, Cursor cursor) {
-		if (!cursor.isClosed()) {
-			scAdapter.swapCursor(cursor);
-		}
-	}
+    @Override
+    public void onLoaderReset(Loader<Cursor> loader) {
+        scAdapter.swapCursor(null);
+    }
 
-	@Override
-	public void onLoaderReset(Loader<Cursor> loader) {
-		scAdapter.swapCursor(null);
-	}
+    public void onCreateContextMenu(ContextMenu menu, View v,
+                                    ContextMenuInfo menuInfo) {
+        super.onCreateContextMenu(menu, v, menuInfo);
+        menu.add(0, CM_DELETE_ID, 0, R.string.delete_record);
+        menu.add(0, CM_EDIT_ID, 0, R.string.edit);
+    }
 
-	static class MyCursorLoader extends CursorLoader {
-		DB db;
-		Cursor cursor;
+    public boolean onContextItemSelected(MenuItem item) {
+        AdapterContextMenuInfo acmi = (AdapterContextMenuInfo) item
+                .getMenuInfo();
+        if (item.getItemId() == CM_DELETE_ID) {
 
-		public MyCursorLoader(Context context, DB db) {
-			super(context);
-			this.db = db;
-		}
+            TextView tvTmp = (TextView) acmi.targetView;
+            String exeName = tvTmp.getText().toString();
 
-		@Override
-		public Cursor loadInBackground() {
-			return db.getDataExe(null, null, null, null, null, DB.EXE_NAME);
-		}
-	}
+            if (sp.getBoolean(TRAINING_AT_PROGRESS, false)) {
+                Toast.makeText(getActivity(), R.string.error_deleting_exe,
+                        Toast.LENGTH_SHORT).show();
+            } else {
+                db.delRec_Exe(acmi.id);
+                db.deleteExersice(exeName);
+                Toast.makeText(getActivity(), R.string.deleted,
+                        Toast.LENGTH_SHORT).show();
+                ((FragmentActivity) getActivity()).getSupportLoaderManager()
+                        .getLoader(LOADER_ID).forceLoad();
+            }
 
-	public void onCreateContextMenu(ContextMenu menu, View v,
-			ContextMenuInfo menuInfo) {
-		super.onCreateContextMenu(menu, v, menuInfo);
-		menu.add(0, CM_DELETE_ID, 0, R.string.delete_record);
-		menu.add(0, CM_EDIT_ID, 0, R.string.edit);
-	}
+            return true;
+        } else if (item.getItemId() == CM_EDIT_ID) {
+            if (sp.getBoolean(TRAINING_AT_PROGRESS, false)) {
+                Toast.makeText(getActivity(), R.string.error_editing_exe,
+                        Toast.LENGTH_SHORT).show();
+            } else {
+                goToEditExe(acmi.position, acmi.id);
+            }
+            ((FragmentActivity) getActivity()).getSupportLoaderManager()
+                    .getLoader(LOADER_ID).forceLoad();
+            return true;
+        }
+        return super.onContextItemSelected(item);
+    }
 
-	public boolean onContextItemSelected(MenuItem item) {
-		AdapterContextMenuInfo acmi = (AdapterContextMenuInfo) item
-				.getMenuInfo();
-		if (item.getItemId() == CM_DELETE_ID) {
+    public static interface OnExerciseEdit {
+        public void onExerciseEdit(int pos, long id);
+    }
 
-			TextView tvTmp = (TextView) acmi.targetView;
-			String exeName = tvTmp.getText().toString();
+    static class MyCursorLoader extends CursorLoader {
+        DB db;
+        Cursor cursor;
 
-			if (sp.getBoolean(TRAINING_AT_PROGRESS, false)) {
-				Toast.makeText(getActivity(), R.string.error_deleting_exe,
-						Toast.LENGTH_SHORT).show();
-			} else {
-				db.delRec_Exe(acmi.id);
-				db.deleteExersice(exeName);
-				Toast.makeText(getActivity(), R.string.deleted,
-						Toast.LENGTH_SHORT).show();
-				((FragmentActivity) getActivity()).getSupportLoaderManager()
-						.getLoader(LOADER_ID).forceLoad();
-			}
+        public MyCursorLoader(Context context, DB db) {
+            super(context);
+            this.db = db;
+        }
 
-			return true;
-		} else if (item.getItemId() == CM_EDIT_ID) {
-			if (sp.getBoolean(TRAINING_AT_PROGRESS, false)) {
-				Toast.makeText(getActivity(), R.string.error_editing_exe,
-						Toast.LENGTH_SHORT).show();
-			} else {
-				goToEditExe(acmi.position, acmi.id);
-			}
-			((FragmentActivity) getActivity()).getSupportLoaderManager()
-					.getLoader(LOADER_ID).forceLoad();
-			return true;
-		}
-		return super.onContextItemSelected(item);
-	}
+        @Override
+        public Cursor loadInBackground() {
+            return db.getDataExe(null, null, null, null, null, DB.EXE_NAME);
+        }
+    }
 }

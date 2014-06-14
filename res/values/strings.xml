@@ -10,6 +10,7 @@
         <item>2</item>
     </string-array>
     <string name="fav_exercise">Favourite exercise</string>
+    <string name="weight_delta">Body weight delta for 30 days</string>
     <string name="none">None</string>
     <string name="ads">Ads</string>
 	<string name="remove_ads">Remove ads</string>
