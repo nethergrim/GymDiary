@@ -86,8 +86,8 @@ public class StartTrainingFragment extends Fragment implements
         getActivity().getActionBar().setTitle(
                 R.string.startTrainingButtonString);
 
-        FrameLayout fl = (FrameLayout) v.findViewById(R.id.frameAd);
-        fl.setVisibility(View.GONE);
+
+
         lvMain.setAdapter(scAdapter);
         lvMain.setOnItemClickListener(new OnItemClickListener() {
             public void onItemClick(AdapterView<?> parent, View view,

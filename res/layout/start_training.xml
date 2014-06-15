@@ -1,32 +1,24 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:ads="http://schemas.android.com/apk/lib/com.google.ads"
     android:id="@+id/rl1"
     android:layout_width="match_parent"
+    android:padding="8dp"
     android:layout_height="match_parent"
-    android:background="@drawable/cream_pixels_bitmap"
+    android:background="@color/gray_light_background"
     android:orientation="vertical" >
 
     <ListView
         android:id="@+id/lvStartTraining"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_above="@+id/frameAd"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentRight="true"
+        android:background="@drawable/card"
+        android:layout_alignParentBottom="true"
         android:layout_alignParentTop="true"
-        android:layout_margin="8dp"
-        android:background="@drawable/rounded" >
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true">
 
     </ListView>
-
-    <FrameLayout
-        android:id="@+id/frameAd"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:layout_alignParentLeft="true" >
-
-    </FrameLayout>
 
 </RelativeLayout>

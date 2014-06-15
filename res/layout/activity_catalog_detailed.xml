@@ -1,5 +1,4 @@
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:ads="http://schemas.android.com/apk/lib/com.google.ads"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/scrollView1"
     android:layout_width="match_parent"
@@ -8,14 +7,14 @@
     android:layout_alignParentLeft="true"
     android:layout_alignParentRight="true"
     android:layout_below="@+id/adView5"
-    android:layout_marginLeft="4dp"
-    android:layout_marginRight="4dp"
-    android:background="@drawable/cream_pixels_bitmap"
+    android:padding="8dp"
+    android:background="@color/gray_light_background"
     tools:context=".CatalogDetailedActivity" >
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:background="@drawable/card"
         android:orientation="vertical" >
 
         <ImageView

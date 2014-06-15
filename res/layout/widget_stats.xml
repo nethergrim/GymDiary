@@ -36,7 +36,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@drawable/card"
-        android:layout_marginTop="4dp"
+        android:layout_marginTop="5dp"
         android:orientation="vertical"
         android:layout_below="@+id/linearLayout1"
         android:layout_alignParentRight="true"

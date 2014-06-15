@@ -1,34 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:ads="http://schemas.android.com/apk/lib/com.google.ads"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/cream_pixels_bitmap"
-    android:orientation="vertical" xmlns:app="http://schemas.android.com/apk/res-auto">
+    android:background="@color/gray_light_background"
+    android:orientation="vertical"
+    >
     
     <ListView
         android:id="@+id/lvMainHistory"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_above="@+id/adView2"
         android:layout_alignParentLeft="true"
         android:layout_margin="8dp"
-        android:background="@drawable/rounded"
+        android:background="@drawable/card"
         android:focusableInTouchMode="true" >
 
     </ListView>
-
-    <com.google.android.gms.ads.AdView
-        xmlns:ads="http://schemas.android.com/apk/res-auto"
-        android:id="@+id/adView2"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:visibility="gone"
-        android:layout_alignParentLeft="true"
-        android:gravity="center_horizontal"
-        app:adSize="SMART_BANNER"
-        app:adUnitId="ca-app-pub-5652589022154086/4102541457" >
-    </com.google.android.gms.ads.AdView>
 
 </RelativeLayout>
