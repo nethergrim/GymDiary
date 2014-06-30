@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="module_gymdiary" default="compile.module.gymdiary">
+  <dirname property="module.gymdiary.basedir" file="${ant.file.module_gymdiary}"/>
+  
+  <property name="module.jdk.home.gymdiary" value="${project.jdk.home}"/>
+  <property name="module.jdk.bin.gymdiary" value="${project.jdk.bin}"/>
+  <property name="module.jdk.classpath.gymdiary" value="${project.jdk.classpath}"/>
+  
+  <property name="compiler.args.gymdiary" value="-encoding UTF-8 -source 1.6 ${compiler.args}"/>
+  
+  <property name="gymdiary.output.dir" value="undefined"/>
+  <property name="gymdiary.testoutput.dir" value="undefined"/>
+  
+  <path id="gymdiary.module.bootclasspath">
+    <!-- Paths to be included in compilation bootclasspath -->
+  </path>
+  
+  <path id="gymdiary.module.production.classpath">
+    <path refid="${module.jdk.classpath.gymdiary}"/>
+  </path>
+  
+  <path id="gymdiary.runtime.production.module.classpath"/>
+  
+  <path id="gymdiary.module.classpath">
+    <path refid="${module.jdk.classpath.gymdiary}"/>
+  </path>
+  
+  <path id="gymdiary.runtime.module.classpath"/>
+  
+  
+  <patternset id="excluded.from.module.gymdiary">
+    <patternset refid="ignored.files"/>
+  </patternset>
+  
+  <patternset id="excluded.from.compilation.gymdiary">
+    <patternset refid="excluded.from.module.gymdiary"/>
+  </patternset>
+  
+  
+  <target name="compile.module.gymdiary" depends="compile.module.gymdiary.production,compile.module.gymdiary.tests" description="Compile module GymDiary"/>
+  
+  <target name="compile.module.gymdiary.production" depends="register.custom.compilers" description="Compile module GymDiary; production classes"/>
+  
+  <target name="compile.module.gymdiary.tests" depends="register.custom.compilers,compile.module.gymdiary.production" description="compile module GymDiary; test classes" unless="skip.tests"/>
+  
+  <target name="clean.module.gymdiary" description="cleanup module">
+    <delete dir="${gymdiary.output.dir}"/>
+    <delete dir="${gymdiary.testoutput.dir}"/>
+  </target>
+</project>

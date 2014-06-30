@@ -13,49 +13,50 @@ import android.widget.Button;
 import com.nethergrim.combogymdiary.R;
 
 public class DialogExitFromTraining extends DialogFragment implements
-        OnClickListener {
+		OnClickListener {
 
-    final String LOG_TAG = "myLogs";
-    private MyInterface mListener;
+	final String LOG_TAG = "myLogs";
 
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
-        getDialog().setTitle(R.string.save_and_exit);
-        View v = inflater.inflate(R.layout.dialog_exit, null);
-        v.findViewById(R.id.btnYes).setOnClickListener(this);
-        v.findViewById(R.id.btnNo).setOnClickListener(this);
-        return v;
-    }
+	public View onCreateView(LayoutInflater inflater, ViewGroup container,
+			Bundle savedInstanceState) {
+		getDialog().setTitle(R.string.save_and_exit);
+		View v = inflater.inflate(R.layout.dialog_exit, null);
+		v.findViewById(R.id.btnYes).setOnClickListener(this);
+		v.findViewById(R.id.btnNo).setOnClickListener(this);
+		return v;
+	}
 
-    public void onClick(View v) {
-        int ID = ((Button) v).getId();
-        if (ID == R.id.btnYes) {
-            mListener.onChoose();
-        }
-        dismiss();
-    }
+	public void onClick(View v) {
+		int ID = ((Button) v).getId();
+		if (ID == R.id.btnYes) {
+			mListener.onChoose();
+		}
+		dismiss();
+	}
 
-    public void onDismiss(DialogInterface dialog) {
-        super.onDismiss(dialog);
-    }
+	public void onDismiss(DialogInterface dialog) {
+		super.onDismiss(dialog);
+	}
 
-    public void onCancel(DialogInterface dialog) {
-        super.onCancel(dialog);
-    }
+	public void onCancel(DialogInterface dialog) {
+		super.onCancel(dialog);
+	}
 
-    @Override
-    public void onAttach(Activity activity) {
-        mListener = (MyInterface) activity;
-        super.onAttach(activity);
-    }
+	public static interface MyInterface {
+		public void onChoose();
+	}
 
-    @Override
-    public void onDetach() {
-        mListener = null;
-        super.onDetach();
-    }
+	private MyInterface mListener;
 
-    public static interface MyInterface {
-        public void onChoose();
-    }
+	@Override
+	public void onAttach(Activity activity) {
+		mListener = (MyInterface) activity;
+		super.onAttach(activity);
+	}
+
+	@Override
+	public void onDetach() {
+		mListener = null;
+		super.onDetach();
+	}
 }
